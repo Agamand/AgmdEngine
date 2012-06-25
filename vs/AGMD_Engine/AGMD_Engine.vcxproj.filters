@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{27a86e38-e2b3-4273-96f8-20e947e082ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maths">
+      <UniqueIdentifier>{ab6b000e-70b1-46a5-8a27-46b4d9c4c692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{4500722e-55b2-461a-9bb1-8111eb13a43e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdDefines.h" />
+    <ClInclude Include="..\..\src\Debug\New.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Debug\NewOff.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Matrix4.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Plane.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Quaternion.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Rectangle.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Vector2.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Vector3.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Maths\Vector4.h">
+      <Filter>Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Config\Export.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Maths\Plane.inl">
+      <Filter>Maths</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Maths\Rectangle.cpp">
+      <Filter>Maths</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

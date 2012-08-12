@@ -3,7 +3,7 @@
 #define AGMDDEFINES_H
 
 #define ENGINE_REV 1
-#define ENGINE_NAME "Agmd Engine"
+#define ENGINE_NAME "AgmdEngine"
 #define ENGINE_STATE "Alpha"
 
 typedef long long  int64;

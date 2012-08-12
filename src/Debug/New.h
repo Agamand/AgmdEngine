@@ -5,42 +5,41 @@
 
 #ifndef DEBUGNEW_H
 #define DEBUGNEW_H
-
 #include <Debug/MemoryMgr.h>
 
-inline void* operator new(std::size_t Size, const char* File, int Line)
+inline void* operator new(std::size_t size, const char* file, int line)
 {
-    return Agmd::MemoryMgr::Instance().Allocate(Size, File, Line, false);
+    return Agmd::MemoryMgr::Instance().Allocate(size, file, line, false);
 }
 
 
-inline void* operator new[](std::size_t Size, const char* File, int Line)
+inline void* operator new[](std::size_t size, const char* file, int line)
 {
-    return Agmd::MemoryMgr::Instance().Allocate(Size, File, Line, true);
+    return Agmd::MemoryMgr::Instance().Allocate(size, file, line, true);
 }
 
-inline void operator delete(void* Ptr) throw()
+inline void operator delete(void* ptr) throw()
 {
-    Agmd::MemoryMgr::Instance().Free(Ptr, false);
+    Agmd::MemoryMgr::Instance().Free(ptr, false);
 }
 
-inline void operator delete[](void* Ptr) throw()
+inline void operator delete[](void* ptr) throw()
 {
-    Agmd::MemoryMgr::Instance().Free(Ptr, true);
+    Agmd::MemoryMgr::Instance().Free(ptr, true);
 }
 
 #ifndef __BORLANDC__
 
-inline void operator delete(void* Ptr, const char* File, int Line) throw()
+inline void operator delete(void* ptr, const char* file, int line) throw()
 {
-    Agmd::MemoryMgr::Instance().NextDelete(File, Line);
-    Agmd::MemoryMgr::Instance().Free(Ptr, false);
+    Agmd::MemoryMgr::Instance().NextDelete(file, line);
+    Agmd::MemoryMgr::Instance().Free(ptr, false);
 }
 
-inline void operator delete[](void* Ptr, const char* File, int Line) throw()
+inline void operator delete[](void* ptr, const char* file, int line) throw()
 {
-    Agmd::MemoryMgr::Instance().NextDelete(File, Line);
-    Agmd::MemoryMgr::Instance().Free(Ptr, true);
+    Agmd::MemoryMgr::Instance().NextDelete(file, line);
+    Agmd::MemoryMgr::Instance().Free(ptr, true);
 }
 #endif // __BORLANDC__
 

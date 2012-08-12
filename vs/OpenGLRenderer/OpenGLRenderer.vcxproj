@@ -10,6 +10,30 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlDeclaration.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlEnums.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlRenderer.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlShader.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTexture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlDeclaration.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlEnums.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlShader.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlShaderProgram.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTexture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Renderer\OpenGL\GlBuffer.inl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F8673B65-750A-4E24-A57F-157960E0D75A}</ProjectGuid>
     <RootNamespace>OpenGLRenderer</RootNamespace>
@@ -21,7 +45,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
@@ -47,11 +71,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AGMD_Engine.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AgmdEngine.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -61,13 +86,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AGMD_Engine.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AgmdEngine.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

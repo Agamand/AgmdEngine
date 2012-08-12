@@ -1,25 +1,9 @@
-﻿La génération a démarré 17/06/2012 04:41:23.
-     1>Projet "J:\Projet Infographie\Moteur3D\AGMD_Engine\vs\AGMD_Engine\AGMD_Engine.vcxproj" sur le nœud 2 (build cible(s)).
-     1>InitializeBuildStatus:
-         Mise à jour de l'horodatage "Debug\AGMD_Engine.unsuccessfulbuild".
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"J:\Projet Infographie\Moteur3D\AGMD_Engine\vs\..\src" /I"J:\Projet Infographie\Moteur3D\AGMD_Engine\vs\\..\dep\\" /ZI /nologo /W3 /WX- /Od /Oy- /D AGMDENGINE_EXPORTS /D _WINDLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\Camera\Camera.cpp ..\..\src\Core\YesApplication.cpp
-         YesApplication.cpp
-         Camera.cpp
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2039: 'istream' : n'est pas membre de 'std'
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2143: erreur de syntaxe : absence de ';' avant '&'
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2433: 'istream' : 'inline' non autorisé sur les déclarations de données
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C4430: spécificateur de type manquant - int est pris en compte par défaut. Remarque : C++ ne prend pas en charge int par défaut
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2039: 'istream' : n'est pas membre de 'std'
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2065: 'stream' : identificateur non déclaré
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2065: 'vector' : identificateur non déclaré
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C2275: 'glm::ivec3' : utilisation non conforme de ce type comme expression
-                 j:\projet infographie\moteur3d\agmd_engine\dep\glm\core\type.hpp(202) : voir la déclaration de 'glm::ivec3'
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): error C4430: spécificateur de type manquant - int est pris en compte par défaut. Remarque : C++ ne prend pas en charge int par défaut
-     1>j:\projet infographie\moteur3d\agmd_engine\src\maths\vector3.h(19): fatal error C1903: impossible de récupérer à partir des erreurs précédentes ; arrêt de la compilation
-         Génération de code en cours...
-     1>Génération du projet "J:\Projet Infographie\Moteur3D\AGMD_Engine\vs\AGMD_Engine\AGMD_Engine.vcxproj" terminée (build cible(s)) -- ÉCHEC.
+﻿La génération a démarré 12/08/2012 19:40:21.
+     1>Projet "J:\Projet Infographie\Moteur3D\AgmdEngine\vs\AGMD_Engine\AGMD_Engine.vcxproj" sur le nœud 2 (clean cible(s)).
+     1>_PrepareForClean:
+         Suppression du fichier "Debug\AgmdEngine.lastbuildstate".
+     1>Génération du projet "J:\Projet Infographie\Moteur3D\AgmdEngine\vs\AGMD_Engine\AGMD_Engine.vcxproj" terminée (clean cible(s)).
 
-ÉCHEC de la build.
+La génération a réussi.
 
-Temps écoulé 00:00:40.22
+Temps écoulé 00:00:00.15

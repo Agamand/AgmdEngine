@@ -1,0 +1,182 @@
+#include <Renderer\OpenGL\GlEnums.h>
+#include <gl\glext.h>
+
+namespace Agmd
+{
+	GLenum RGLEnum::MatrixType[] =
+	{
+		GL_MODELVIEW,
+		GL_PROJECTION,
+		GL_TEXTURE,
+		GL_TEXTURE,
+		GL_TEXTURE,
+		GL_TEXTURE
+	};
+
+	std::string  RGLEnum::MatrixName[] =
+	{
+		"modelMatrix",
+		"viewMatrix",
+		"projectionMatrix",
+		"texture0Matrix",
+		"texture1Matrix",
+		"texture2Matrix",
+		"texture3Matrix",
+		"normalMatrix",
+		"positionMatrix",
+		"rotationMatrix"
+	};
+
+	RGLEnum::TPixelFmt RGLEnum::PixelFormat[] =
+	{
+		{GL_LUMINANCE,       GL_LUMINANCE8,                    GL_UNSIGNED_BYTE,			  GL_RGBA},
+		{GL_LUMINANCE_ALPHA, GL_LUMINANCE8_ALPHA8,             GL_UNSIGNED_BYTE,			  GL_RGBA},
+		{GL_BGRA,            GL_RGB5_A1,                       GL_UNSIGNED_SHORT_1_5_5_5_REV, GL_RGBA},
+		{GL_BGRA,            GL_RGBA4,                         GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_RGBA},
+		{GL_BGR,             GL_RGB8,                          GL_UNSIGNED_BYTE,			  GL_RGBA},
+		{GL_BGRA,            GL_RGBA8,                         GL_UNSIGNED_BYTE,			  GL_RGBA},
+		{GL_BGR,             GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0,							  GL_RGBA},
+		{GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0,							  GL_RGBA},
+		{GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, 0,                             GL_RGBA},
+		{GL_BGRA,			 GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT}
+	};
+
+	GLenum RGLEnum::Blend[] =
+	{
+		GL_SRC_ALPHA,
+		GL_ONE_MINUS_SRC_ALPHA,
+		GL_DST_ALPHA,
+		GL_ONE_MINUS_DST_ALPHA,
+		GL_SRC_COLOR,
+		GL_ONE_MINUS_SRC_COLOR,
+		GL_DST_COLOR,
+		GL_ONE_MINUS_DST_COLOR,
+		GL_ONE,
+		GL_ZERO
+	};
+
+	GLenum RGLEnum::TextureOp[] =
+	{
+		GL_REPLACE,
+		GL_ADD,
+		GL_MODULATE,
+		GL_REPLACE,
+		GL_ADD,
+		GL_MODULATE
+	};
+
+	GLenum RGLEnum::TextureArg[] =
+	{
+		GL_PRIMARY_COLOR_EXT,
+		GL_TEXTURE,
+		GL_PREVIOUS_EXT,
+		GL_CONSTANT_EXT
+	};
+
+	GLenum RGLEnum::RenderParameter[] =
+	{
+		0,
+		GL_BLEND,
+	};
+
+	GLenum RGLEnum::RenderMode[] =
+	{
+		GL_FILL,
+		GL_LINE,
+		GL_POINT
+	};
+
+	GLenum RGLEnum::ShaderType[] =
+	{
+		GL_VERTEX_SHADER,
+		GL_TESS_CONTROL_SHADER,
+		GL_TESS_EVALUATION_SHADER,
+		GL_GEOMETRY_SHADER,
+		GL_FRAGMENT_SHADER
+	};
+
+	GLenum RGLEnum::AttachmentType[] =
+	{
+		GL_COLOR_ATTACHMENT0,
+		GL_COLOR_ATTACHMENT1,
+		GL_COLOR_ATTACHMENT2,
+		GL_COLOR_ATTACHMENT3,
+		GL_COLOR_ATTACHMENT4,
+		GL_COLOR_ATTACHMENT5,
+		GL_COLOR_ATTACHMENT6,
+		GL_COLOR_ATTACHMENT7,
+		GL_COLOR_ATTACHMENT8,
+		GL_COLOR_ATTACHMENT9,
+		GL_COLOR_ATTACHMENT10,
+		GL_COLOR_ATTACHMENT11,
+		GL_COLOR_ATTACHMENT12,
+		GL_COLOR_ATTACHMENT13,
+		GL_COLOR_ATTACHMENT14,
+		GL_COLOR_ATTACHMENT15,
+		GL_DEPTH_ATTACHMENT,
+		GL_STENCIL_ATTACHMENT
+	};
+
+	unsigned long RGLEnum::BufferFlags(unsigned long flags)
+	{
+		return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+	}
+
+	unsigned long RGLEnum::LockFlags(unsigned long flags)
+	{
+		unsigned long lockFlags = GL_READ_WRITE;
+		if (flags & LOCK_READONLY)  lockFlags = GL_READ_ONLY;
+		if (flags & LOCK_WRITEONLY) lockFlags = GL_WRITE_ONLY;
+
+		return lockFlags;
+	}
+	GLenum RGLEnum::Get(TMatrixType value)
+	{
+		return MatrixType[value];
+	}
+
+	std::string RGLEnum::GetName(TMatrixType value)
+	{
+		return MatrixName[value];
+	}
+
+	RGLEnum::TPixelFmt RGLEnum::Get(TPixelFormat value)
+	{
+		return PixelFormat[value];
+	}
+
+	GLenum RGLEnum::Get(TBlend value)
+	{
+		return Blend[value];
+	}
+
+	GLenum RGLEnum::Get(TTextureOp value)
+	{
+		return TextureOp[value];
+	}
+
+	GLenum RGLEnum::Get(TTextureArg value)
+	{
+		return TextureArg[value];
+	}
+
+	GLenum RGLEnum::Get(TRenderParameter value)
+	{
+		return RenderParameter[value];
+	}
+
+	GLenum RGLEnum::Get(TRenderMode value)
+	{
+		return RenderMode[value];
+	}
+
+	GLenum RGLEnum::Get(TShaderType value)
+	{
+		return ShaderType[value];
+	}
+
+	GLenum RGLEnum::Get(TAttachment value)
+	{
+		return AttachmentType[value];
+	}
+}

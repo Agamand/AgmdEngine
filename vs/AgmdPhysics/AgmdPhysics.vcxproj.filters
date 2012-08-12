@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdPhysics\AgmdPhysics.cpp" />
+    <ClCompile Include="..\..\src\AgmdPhysics\Entities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdPhysics\AgmdPhysics.h" />
+    <ClInclude Include="..\..\src\AgmdPhysics\Entities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{14349cfb-ad11-414a-bbb0-b4f424b72044}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

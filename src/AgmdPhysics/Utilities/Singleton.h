@@ -38,15 +38,15 @@ namespace AgmdPhysics
 
     #define MAKE_SINGLETON(Class) \
         public : \
-            friend class Agmd::Singleton<Class>; \
+            friend class AgmdPhysics::Singleton<Class>; \
             static Class& Instance(); \
         private :
 
     #define SINGLETON_IMPL(Class) \
-        template <> Class* Agmd::Singleton<Class>::Inst = NULL; \
+        template <> Class* AgmdPhysics::Singleton<Class>::Inst = NULL; \
         Class& Class::Instance() \
         { \
-            return Agmd::Singleton<Class>::Instance(); \
+            return AgmdPhysics::Singleton<Class>::Instance(); \
         } \
 
 }

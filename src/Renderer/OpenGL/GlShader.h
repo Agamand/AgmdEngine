@@ -2,7 +2,7 @@
 #define GLSHADER_H
 
 #include <AgmdDefines.h>
-#include <Core\BaseShader.h>
+#include <Core/Shader/BaseShader.h>
 #include <string>
 
 namespace Agmd

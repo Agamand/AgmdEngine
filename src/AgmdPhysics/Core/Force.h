@@ -7,6 +7,7 @@ namespace AgmdPhysics
 {
 	class Force
 	{
+	public:
 		Force(vec3 _vForce = vec3(0.0f), vec3 _vAppPoint = vec3(0.0f)) :
 	    m_vForce(_vForce), 
 		m_vAppPoint(_vAppPoint)
@@ -22,7 +23,7 @@ namespace AgmdPhysics
 	private:
 		vec3 m_vForce;
 		vec3 m_vAppPoint;
-	}
+	};
 }
 
 #endif // FORCE_H

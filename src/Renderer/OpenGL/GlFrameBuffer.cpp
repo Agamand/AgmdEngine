@@ -46,4 +46,11 @@ namespace Agmd
 		return m_Id;
 	}
 
+	void GLFrameBuffer::Clear()
+	{
+		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+	}
+
 }

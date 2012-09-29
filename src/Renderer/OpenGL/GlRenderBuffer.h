@@ -1,7 +1,7 @@
 #ifndef GLRENDERBUFFER_H
 #define GLRENDERBUFFER_H
 
-#include <Core\RenderBuffer.h>
+#include <Core/Buffer/RenderBuffer.h>
 namespace Agmd
 {
 

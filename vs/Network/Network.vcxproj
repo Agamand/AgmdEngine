@@ -11,12 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Network\Client\Client.cpp" />
-    <ClCompile Include="..\..\src\Network\Server\Server.cpp" />
+    <ClInclude Include="..\..\src\AgmdDefines.h" />
+    <ClInclude Include="..\..\src\AgmdNetwork\Client\Client.h" />
+    <ClInclude Include="..\..\src\AgmdNetwork\Opcode\OpcodeMgr.h" />
+    <ClInclude Include="..\..\src\AgmdNetwork\Packet\ByteBuffer.h" />
+    <ClInclude Include="..\..\src\AgmdNetwork\Packet\Packet.h" />
+    <ClInclude Include="..\..\src\AgmdNetwork\Server\Server.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Network\Client\Client.h" />
-    <ClInclude Include="..\..\src\Network\Server\Server.h" />
+    <ClCompile Include="..\..\src\AgmdNetwork\Client\Client.cpp" />
+    <ClCompile Include="..\..\src\AgmdNetwork\Opcode\OpcodeMgr.cpp" />
+    <ClCompile Include="..\..\src\AgmdNetwork\Packet\Packet.cpp" />
+    <ClCompile Include="..\..\src\AgmdNetwork\Server\Server.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6}</ProjectGuid>
@@ -45,12 +51,17 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Network</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdNetwork</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

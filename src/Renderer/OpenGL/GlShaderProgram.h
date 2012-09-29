@@ -2,7 +2,7 @@
 #define GLSHADERPROGRAM_H
 
 #include <Config\Fwd.h>
-#include <Core\BaseShaderProgram.h>
+#include <Core\Shader/BaseShaderProgram.h>
 #include <Renderer\OpenGL\GlShader.h>
 #include <AgmdDefines.h>
 #include <string>
@@ -48,6 +48,8 @@ namespace Agmd
 		virtual void SetParameter(std::string name, mat2 value);
 		virtual void SetParameter(std::string name, mat3 value);
 		virtual void SetParameter(std::string name, mat4 value);
+
+		virtual void SetParameter(std::string name, mat4* value, uint32 count);
 
 		virtual void Use(bool);
 	private:

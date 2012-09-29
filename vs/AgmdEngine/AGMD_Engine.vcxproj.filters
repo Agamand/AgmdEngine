@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Config">
+      <UniqueIdentifier>{4500722e-55b2-461a-9bb1-8111eb13a43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{01ef91d5-8224-49f0-a58d-c8e74d9302bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Camera">
+      <UniqueIdentifier>{b4b243ee-bf96-4538-9e86-292725ab7172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Buffer">
+      <UniqueIdentifier>{7d6a6cec-9787-4158-9566-95f7463add40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Loaders">
+      <UniqueIdentifier>{594be0de-50e4-4684-b096-30d47d55eee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Shader">
+      <UniqueIdentifier>{3b0a5ce0-58b1-44de-84b9-211c046ff787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Effect">
+      <UniqueIdentifier>{c99ef579-1871-4872-95d0-6350b6fbede7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI">
+      <UniqueIdentifier>{ce8980ec-2125-498b-b7c2-64ee1546fd33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdDefines.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Config\Export.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Config\Fwd.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.h">
+      <Filter>Core\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\Buffer.h">
+      <Filter>Core\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\FrameBuffer.h">
+      <Filter>Core\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\RenderBuffer.h">
+      <Filter>Core\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\Camera.h">
+      <Filter>Core\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\FPCamera.h">
+      <Filter>Core\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\TPCamera.h">
+      <Filter>Core\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect.h">
+      <Filter>Core\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.h">
+      <Filter>Core\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AButton.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AContainer.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\ATextBox.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWidget.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWindow.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\EventMgr.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShader.h">
+      <Filter>Core\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.h">
+      <Filter>Core\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\Shader.h">
+      <Filter>Core\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.h">
+      <Filter>Core\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\AgmdApp.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Declaration.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\DeclarationElement.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Enums.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\FontManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GraphicString.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Image.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Loader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\MediaManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Model.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Renderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Resource.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\ResourceManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Terrain.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Texture.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\TextureBase.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ImagesLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\Loaders.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ObjLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ShaderProgramsLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ShadersLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.h">
+      <Filter>Core\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Scene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Water.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
+      <Filter>Core\Buffer</Filter>
+    </None>
+    <None Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.inl">
+      <Filter>Core\Shader</Filter>
+    </None>
+    <None Include="..\..\src\Agmd3D\Core\MediaManager.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\src\Agmd3D\Core\Renderer.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">
+      <Filter>Core\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\FrameBuffer.cpp">
+      <Filter>Core\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\RenderBuffer.cpp">
+      <Filter>Core\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\Camera.cpp">
+      <Filter>Core\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\FPCamera.cpp">
+      <Filter>Core\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\TPCamera.cpp">
+      <Filter>Core\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect.cpp">
+      <Filter>Core\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.cpp">
+      <Filter>Core\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AButton.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AContainer.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ATextBox.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWidget.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWindow.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\EventMgr.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShader.cpp">
+      <Filter>Core\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.cpp">
+      <Filter>Core\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\Shader.cpp">
+      <Filter>Core\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.cpp">
+      <Filter>Core\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApp.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\FontManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GraphicString.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Image.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\MediaManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Model.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Renderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Resource.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\ResourceManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Terrain.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Texture.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\TextureBase.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ImagesLoader.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\Loaders.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ObjLoader.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ShaderProgramsLoader.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ShadersLoader.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.cpp">
+      <Filter>Core\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Scene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Water.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

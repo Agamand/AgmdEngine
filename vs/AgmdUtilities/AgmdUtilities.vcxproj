@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp" />
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\Logger.cpp" />
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.cpp" />
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Color.cpp" />
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\File.cpp" />
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Plugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\Exception.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\Logger.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\PixelUtils.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Plugin.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Singleton.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtrPolicies.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\StringUtils.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Typelist.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl" />
+    <None Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.inl" />
+    <None Include="..\..\src\AgmdUtilities\Utilities\StringUtils.inl" />
+    <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D9865307-6A96-4D5F-9896-5F3BD446DC3E}</ProjectGuid>
+    <RootNamespace>AgmdUtilities</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdUtilities</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdUtilities</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

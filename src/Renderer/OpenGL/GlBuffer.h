@@ -1,7 +1,7 @@
 #ifndef GLBUFFER_H
 #define GLBUFFER_H
 
-#include <Core/BaseBuffer.h>
+#include <Core/Buffer/BaseBuffer.h>
 #include <Renderer\OpenGL\GlEnums.h>
 #include <gl\glext.h>
 

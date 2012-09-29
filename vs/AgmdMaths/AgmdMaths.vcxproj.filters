@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdMaths\Matrix4.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Plane.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Quaternion.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Rectangle.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Vector2.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Vector3.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Vector4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdMaths\Rectangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\AgmdMaths\Plane.inl" />
+  </ItemGroup>
+</Project>

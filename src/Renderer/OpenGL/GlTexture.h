@@ -18,7 +18,7 @@ namespace Agmd
 
     private :
 
-        virtual void Update(const Rectangle& rect);
+        virtual void Update(const AgmdMaths::Rectangle& rect);
 
         uint32 m_Texture;
     };

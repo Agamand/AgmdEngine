@@ -7,7 +7,7 @@
 #include <Renderer\OpenGL\GlDeclaration.h>
 #include <Renderer\OpenGL\GlShaderProgram.h>
 #include <Renderer\OpenGL\GlEnums.h>
-#include <Core\ShaderProgram.h>
+#include <Core\Shader\ShaderProgram.h>
 #include <Utilities/Singleton.h>
 #include <vector>
 #include <windows.h>
@@ -60,9 +60,11 @@ namespace Agmd
 		
 		virtual RenderBuffer* CreateRenderBuffer(const ivec2& size, TPixelFormat format) const;
 
+		virtual void setClipPlane(uint32 clipUnit, double* plane);
+
 		virtual void setRenderMode(TRenderMode mode);
 
-		virtual ShaderProgram getPipeline();
+		virtual BaseShaderProgram* getPipeline();
 
 		virtual void ReloadPipeline();
 
@@ -165,6 +167,9 @@ namespace Agmd
 				m_CurrentProgram->SetParameter(RGLEnum::GetName(type),matrix);
 			else
 				m_Pipeline.SetParameter(RGLEnum::GetName(type),matrix);
+
+			glMatrixMode(RGLEnum::Get(type));
+			glLoadMatrixf(value_ptr(matrix));
 		}
 
         virtual void Setup(HWND Hwnd);

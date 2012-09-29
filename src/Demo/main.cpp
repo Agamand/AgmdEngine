@@ -4,6 +4,9 @@
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
+
+	App * d = NULL;
+	d->getFps();
     try
     {
         App::Instance().Run();

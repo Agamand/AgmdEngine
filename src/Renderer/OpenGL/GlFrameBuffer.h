@@ -2,7 +2,7 @@
 #define GLFRAMEBUFFER_H
 
 #include <AgmdDefines.h>
-#include <Core\FrameBuffer.h>
+#include <Core/Buffer/FrameBuffer.h>
 #include <Core\TextureBase.h>
 
 namespace Agmd
@@ -19,6 +19,8 @@ namespace Agmd
 
 		virtual void Bind();
 		virtual void UnBind();
+
+		virtual void Clear();
 
 		uint32 GetID();
 

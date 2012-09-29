@@ -1,4 +1,3 @@
-
 #ifndef AGMDDEFINES_H
 #define AGMDDEFINES_H
 

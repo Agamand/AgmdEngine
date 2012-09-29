@@ -155,6 +155,19 @@ namespace Agmd
 			GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
 	}
 
+	void GLShaderProgram::SetParameter(std::string name, mat4* value, uint32 count)
+	{
+		Parameter var = GetParameter(name);
+		if(var.type == PARAMETER_UNIFORM)
+		{
+			if(var.size < (sizeof(mat4)*count))
+				return;
+
+			for(uint32 i = 0; i < count; i++)
+				GLRenderer::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
+		}
+	}
+
 	void GLShaderProgram::Use(bool use)
 	{
  		GLRenderer::glUseProgram(use ? m_id : 0);

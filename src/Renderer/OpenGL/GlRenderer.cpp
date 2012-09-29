@@ -7,12 +7,12 @@
 #include <Renderer\OpenGL\GlRenderBuffer.h>
 #include <Utilities\Color.h>
 #include <Utilities\PixelUtils.h>
-#include <Maths/Matrix4.h>
+#include <Matrix4.h>
 #include <gl\GLU.h>
 #include <Cg/cgGL.h>
 #include <Debug/New.h>
 
-
+SINGLETON_IMPL(Agmd::GLRenderer)
 
 namespace Agmd
 {
@@ -35,7 +35,6 @@ namespace Agmd
 
 	#define BUFFER_OFFSET(n) ((char*)NULL + (n))
 
-	SINGLETON_IMPL(GLRenderer)
 
 	PFNGLBINDBUFFERPROC               GLRenderer::glBindBuffer;
 	PFNGLDELETEBUFFERSPROC            GLRenderer::glDeleteBuffers;
@@ -322,7 +321,7 @@ namespace Agmd
 		BaseShader* geo = CreateShader(geom,SHADER_GEOMETRY);
 
 		m_Pipeline.Create(vertex, eval, control, geo, fragment);*/
-		m_Pipeline.LoadFromFile("classic_pipeline.glsl");
+		m_Pipeline.LoadFromFile("Shader/classic_pipeline.glsl");
 		m_Pipeline.SetParameter("TessLevelInner",1.0f);
 		m_Pipeline.SetParameter("TessLevelOuter",1.0f);
 
@@ -415,7 +414,7 @@ namespace Agmd
 	{
 		if(m_Reload)
 		{
-			m_Pipeline.ReloadFromFile("classic_pipeline.glsl");
+			m_Pipeline.ReloadFromFile("Shader/classic_pipeline.glsl");
 			m_Pipeline.SetParameter("TessLevelInner",1.0f);
 			m_Pipeline.SetParameter("TessLevelOuter",1.0f);
 			m_Reload = false;
@@ -488,7 +487,6 @@ namespace Agmd
 		static const unsigned int Size[] = {1, 2, 3, 4, 4};
 		static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE};
 
-		// Paramètrage des glPointer
 		const GLDeclaration::TElementArray& StreamDesc = m_CurrentDeclaration->GetStreamElements(stream);
 		for (GLDeclaration::TElementArray::const_iterator i = StreamDesc.begin(); i != StreamDesc.end(); ++i)
 		{
@@ -564,6 +562,18 @@ namespace Agmd
 				case ELT_USAGE_TANGENT :
 					glEnableVertexAttribArray(7);
 					glVertexAttribPointer(7, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
+					break;
+				case ELT_USAGE_BONE_WEIGHT :
+					glEnableVertexAttribArray(8);
+					glVertexAttribPointer(8, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
+					break;
+				case ELT_USAGE_BONE_INDEX :
+					glEnableVertexAttribArray(9);
+					glVertexAttribPointer(9, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
+					break;
+				case ELT_USAGE_BONE_COUNT :
+					glEnableVertexAttribArray(10);
+					glVertexAttribPointer(10, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 			}
 		}
@@ -731,6 +741,14 @@ namespace Agmd
 				glDepthMask(value);
 				break;
 			}
+			case RENDER_TRANSPARENT:
+			{
+				if(value)
+					glEnable(GL_ALPHA_TEST);
+				else glDisable(GL_ALPHA_TEST);
+				glAlphaFunc(GL_GEQUAL,0.7f);
+				break;
+			}
 			case RENDER_TEXTURE0:
 			case RENDER_TEXTURE1:
 			case RENDER_TEXTURE2:
@@ -745,7 +763,18 @@ namespace Agmd
 					m_CurrentProgram->SetParameter("RenderFlags",(int)m_RenderFlags);
 				else m_Pipeline.SetParameter("RenderFlags",(int)m_RenderFlags);
 				break;
+			case RENDER_CLIP_PLANE0:
+			case RENDER_CLIP_PLANE1:
+			case RENDER_CLIP_PLANE2:
+			case RENDER_CLIP_PLANE3:
+			case RENDER_CLIP_PLANE4:
+			case RENDER_CLIP_PLANE5:
+				if(value)
+					glEnable(GL_CLIP_PLANE0+param - RENDER_CLIP_PLANE0);
+				else
+					glDisable(GL_CLIP_PLANE0+param - RENDER_CLIP_PLANE0);
 
+				break;
 			default :
 			{
 				if (value)
@@ -755,6 +784,15 @@ namespace Agmd
 			}
 		}
 	}
+
+	void GLRenderer::setClipPlane(uint32 clipUnit, double* plane)
+	{
+		if(clipUnit > 5)
+			return;
+
+		glClipPlane(GL_CLIP_PLANE0+clipUnit,plane);
+	}
+
 	void GLRenderer::setRenderMode(TRenderMode mode)
 	{
 
@@ -811,14 +849,17 @@ namespace Agmd
 
 
 		/* Bind engine var*/
-		glBindAttribLocation(id, 0, "in_Vertex");
-		glBindAttribLocation(id, 1, "in_Normal");
-		glBindAttribLocation(id, 2, "in_Color");
-		glBindAttribLocation(id, 3, "in_TexCoord0");
-		glBindAttribLocation(id, 4, "in_TexCoord1");
-		glBindAttribLocation(id, 5, "in_TexCoord2");
-		glBindAttribLocation(id, 6, "in_TexCoord3");
-		glBindAttribLocation(id, 7, "in_Tangent");
+		glBindAttribLocation(id, 0,  "in_Vertex");
+		glBindAttribLocation(id, 1,  "in_Normal");
+		glBindAttribLocation(id, 2,  "in_Color");
+		glBindAttribLocation(id, 3,  "in_TexCoord0");
+		glBindAttribLocation(id, 4,  "in_TexCoord1");
+		glBindAttribLocation(id, 5,  "in_TexCoord2");
+		glBindAttribLocation(id, 6,  "in_TexCoord3");
+		glBindAttribLocation(id, 7,  "in_Tangent");
+		glBindAttribLocation(id, 8,  "in_BoneWeight");
+		glBindAttribLocation(id, 9,  "in_BoneIndex");
+		glBindAttribLocation(id, 10, "in_BoneCount");
 		/**/
 
 		glLinkProgram(id);
@@ -844,10 +885,14 @@ namespace Agmd
 		return new GLShaderProgram(id);
 	}
 
-	ShaderProgram GLRenderer::getPipeline()
+	BaseShaderProgram* GLRenderer::getPipeline()
 	{
-		return m_Pipeline;
+		if(m_CurrentProgram)
+			return m_CurrentProgram;
+		else
+			return m_Pipeline.GetShaderProgram();
 	}
+
 	FrameBuffer* GLRenderer::CreateFrameBuffer() const
 	{
 		uint32 id = 0;
@@ -894,6 +939,9 @@ namespace Agmd
 			m_CurrentProgram->Use(true);
 		}
 		else m_Pipeline.Enable();
+
+		_LoadMatrix(MAT_PROJECTION,m_MatProjection);
+		_LoadMatrix(MAT_VIEW,m_MatView);
 	}
 }
 

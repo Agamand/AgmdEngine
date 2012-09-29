@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{37117062-6c26-4043-8fae-b785e0a90038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{4b987a71-eb6e-4922-bb29-25e273a2eb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug\Log">
+      <UniqueIdentifier>{9fd08ae7-c4ea-420a-9795-4e6b85e4997b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\Logger.cpp">
+      <Filter>Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Color.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\File.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Plugin.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\Exception.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\Logger.h">
+      <Filter>Debug\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\PixelUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Plugin.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Singleton.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtrPolicies.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\StringUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Typelist.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Util.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl">
+      <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.inl">
+      <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Utilities\StringUtils.inl">
+      <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl">
+      <Filter>Utilities</Filter>
+    </None>
+  </ItemGroup>
+</Project>

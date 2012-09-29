@@ -3,8 +3,15 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Demo\main.cpp" />
     <ClCompile Include="..\..\src\Demo\App.cpp" />
+    <ClCompile Include="..\..\src\Demo\M2Loader.cpp" />
+    <ClCompile Include="..\..\src\Demo\M2Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Demo\App.h" />
+    <ClInclude Include="..\..\src\Demo\M2Loader.h" />
+    <ClInclude Include="..\..\src\Demo\M2Model.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

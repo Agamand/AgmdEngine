@@ -162,6 +162,8 @@ namespace Agmd
 
 	GLenum RGLEnum::Get(TRenderParameter value)
 	{
+		if(value > 1)
+			return RenderParameter[0];
 		return RenderParameter[value];
 	}
 

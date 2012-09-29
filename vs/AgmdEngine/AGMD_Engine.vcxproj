@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Agmd3D\Config\Export.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Config\Fwd.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\AgmdApp.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\Buffer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\FrameBuffer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Buffer\RenderBuffer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\Camera.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\FPCamera.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\TPCamera.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Declaration.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\DeclarationElement.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Enums.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\FontManager.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GraphicString.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AButton.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AContainer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\ATextBox.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWidget.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWindow.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\EventMgr.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Image.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Loader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\MediaManager.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Model.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Renderer.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Resource.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\ResourceManager.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Scene.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\Shader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Terrain.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Texture.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\TextureBase.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Water.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ImagesLoader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\Loaders.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ObjLoader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ShaderProgramsLoader.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ShadersLoader.h" />
+    <ClInclude Include="..\..\src\AgmdDefines.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl" />
+    <None Include="..\..\src\Agmd3D\Core\MediaManager.inl" />
+    <None Include="..\..\src\Agmd3D\Core\Renderer.inl" />
+    <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl" />
+    <None Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.inl" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApp.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\FrameBuffer.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\RenderBuffer.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\Camera.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\FPCamera.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\TPCamera.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\FontManager.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GraphicString.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AButton.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AContainer.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ATextBox.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWidget.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWindow.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\EventMgr.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Image.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\MediaManager.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Model.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Renderer.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Resource.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\ResourceManager.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Scene.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShader.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\Shader.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Terrain.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Texture.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\TextureBase.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Water.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ImagesLoader.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\Loaders.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ObjLoader.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ShaderProgramsLoader.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ShadersLoader.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{559D2DB9-42C9-40DA-A5DA-752F610DC378}</ProjectGuid>
+    <RootNamespace>AGMD_Engine</RootNamespace>
+    <ProjectName>AgmdEngine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -22,7 +22,7 @@ namespace Agmd
 		TextureBase* tex;
 	};*/
 
-	typedef std::map<TAttachment,TextureBase*> TextureMap;
+	typedef std::map<TAttachment,Texture> TextureMap;
 	typedef std::map<TAttachment,RenderBuffer*> RenderBufferMap;
 
 	class AGMD_EXPORT FrameBuffer
@@ -31,7 +31,8 @@ namespace Agmd
 		FrameBuffer();
 		virtual ~FrameBuffer();
 
-		virtual void setTexture(TextureBase*, TAttachment) = 0;
+		virtual void setTexture(Texture, TAttachment) = 0;
+		virtual void setTextureCube(Texture, TAttachment, int face) = 0;
 		virtual void setRender(RenderBuffer*, TAttachment) = 0;
 	
 		virtual void Bind() = 0;

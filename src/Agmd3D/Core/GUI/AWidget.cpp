@@ -39,6 +39,15 @@ namespace Agmd
 
 	void AWidget::SetSize(ivec2 size)
 	{
+		if(size.x < 0)
+			size.x = 0;
+
+		if(size.y < 0)
+			size.y = 0;
+
+		if(size == m_vSize)
+			return;
+
 		m_vSize = size;
 		OnSizeChanged();
 	}

@@ -117,6 +117,12 @@ namespace Agmd
 		GL_STENCIL_ATTACHMENT
 	};
 
+	GLenum RGLEnum::TextureType[] = 
+	{
+		GL_TEXTURE_2D,
+		GL_TEXTURE_CUBE_MAP
+	};
+
 	unsigned long RGLEnum::BufferFlags(unsigned long flags)
 	{
 		return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
@@ -180,5 +186,10 @@ namespace Agmd
 	GLenum RGLEnum::Get(TAttachment value)
 	{
 		return AttachmentType[value];
+	}
+
+	GLenum RGLEnum::Get(TTextureType value)
+	{
+		return TextureType[value];
 	}
 }

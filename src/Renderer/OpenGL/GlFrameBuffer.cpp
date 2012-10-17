@@ -2,6 +2,7 @@
 #include <Renderer\OpenGL\GlRenderer.h>
 #include <Renderer\OpenGL\GlTexture.h>
 #include <Renderer\OpenGL\GlRenderBuffer.h>
+#include <Core\Texture.h>
 
 namespace Agmd
 {
@@ -15,11 +16,29 @@ namespace Agmd
 		GLRenderer::glDeleteFramebuffers(1 ,&m_Id);
 	}
 
-	void GLFrameBuffer::setTexture(TextureBase* tex, TAttachment attach)
+	void GLFrameBuffer::setTexture(Texture tex, TAttachment attach)
 	{
+		if(tex.GetType() != TEXTURE_2D)
+			return;
+
+		const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
 		m_TextureMap[attach] = tex;
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-		GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::Get(attach),static_cast<GLTexture*>(m_TextureMap[attach])->GetGLTexture(),0);
+		GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::Get(attach),gl_tex->GetGLTexture(),0);
+
+		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+	}
+
+	void GLFrameBuffer::setTextureCube(Texture tex, TAttachment attach, int face)
+	{
+		if(tex.GetType() != TEXTURE_CUBE)
+			return;
+
+		const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
+		m_TextureMap[attach] = tex;
+		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+		if(face >= 0 && face < 6)
+			GLRenderer::glFramebufferTexture2D(GL_FRAMEBUFFER,RGLEnum::Get(attach),GL_TEXTURE_CUBE_MAP_POSITIVE_X+face,gl_tex->GetGLTexture(),0);
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
 	}
 

@@ -19,21 +19,27 @@ namespace Agmd
     {
     public :
 
-        void Create(const ivec2& size, TPixelFormat format, unsigned long flags = 0, const std::string& name = "");
+        void Create(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0, const std::string& name = "");
 
         void CreateFromFile(const std::string& filename, TPixelFormat format, unsigned long flags = 0);
 
-        void CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags = 0, const std::string& name = "");
+        void CreateFromImage(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags = 0, const std::string& name = "");
 
         void SaveToFile(const std::string& filename) const;
 
         void Update(const AgmdMaths::Rectangle& rect = AgmdMaths::Rectangle(-1, -1, -1, -1));
+
+		void SetActiveTexture(int32 id);
 
         Image& GetPixels();
 
         const ivec2& GetSize() const;
 
         TPixelFormat GetFormat() const;
+
+		TTextureType GetType() const;
+	
+		int GetActiveTexture() const;
 
         const std::string& GetName() const;
 
@@ -45,7 +51,7 @@ namespace Agmd
 
     private :
 
-        void Load(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name);
+        void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
 
         SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };

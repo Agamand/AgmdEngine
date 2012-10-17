@@ -21,7 +21,7 @@ namespace Agmd
 	struct WaveDirections
 	{
 		float x;
-		float z;
+		float y;
 	};
 
 	class AGMD_EXPORT Water : public Model
@@ -36,18 +36,23 @@ namespace Agmd
 	private:
 
 		void generate();
-		void GenerateRefraction() const;
-		void GenerateReflection() const;
+		void GenerateCubeMap() const;
+		void GenerateNormal() const;
 		ivec2 size;
 		ivec2 n_poly;
 
 		Scene* scene; // Scene use to make Reflection & Refraction texture
 		BaseShaderProgram* m_program;
-		TextureBase* m_ReflectionMap;
-		TextureBase* m_RefractionMap;
-		TextureBase* m_WaterTexture;
+		BaseShaderProgram* m_programWaterNormal;
+		mat4 m_projection;
+		Texture m_CubeMap;
+		Texture m_WaterNormal;
 		FrameBuffer* fbo[2];
-		RenderBuffer* m_MirrorTex;
+		RenderBuffer* m_Depth;
+		WaveParameters m_PWave[4];
+		WaveDirections m_DWave[4];
+		uint64 lastTime;
+		float time;
 	};
 
 }

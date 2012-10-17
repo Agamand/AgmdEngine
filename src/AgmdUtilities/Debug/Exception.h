@@ -29,7 +29,7 @@ namespace AgmdUtilities
 	};
 
     #ifdef _DEBUG
-    #   define Assert(condition) if (!(condition)) throw AssertException(__FILE__, __LINE__, "Condition error\n" #condition)
+    #   define Assert(condition) if (!(condition)) throw AssertException(__FILE__, __LINE__, "Condition error" #condition)
     #else
         inline void DoNothing(bool) {}
     #   define Assert(condition) DoNothing(!(condition))

@@ -163,6 +163,15 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Water.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Sky.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SkyBox.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SkyDome.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -296,6 +305,15 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Water.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Sky.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SkyBox.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SkyDome.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

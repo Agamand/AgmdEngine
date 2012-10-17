@@ -7,7 +7,8 @@
 namespace Agmd
 {
 
-	Scene::Scene()
+	Scene::Scene() : 
+	m_fTime(0.0f)
 	{}
 
 	Scene::~Scene()
@@ -35,6 +36,11 @@ namespace Agmd
 			for(uint32 i = 0; i < m_vWaters.size(); i++)
 				m_vWaters[i]->Render();
 		}
+	}
+
+	void Scene::Update(uint64 t_diff)
+	{
+		m_fTime += t_diff/1000.0f;
 	}
 
 	void Scene::AddModel(Model* m)

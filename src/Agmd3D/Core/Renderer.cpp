@@ -55,11 +55,17 @@ namespace Agmd
 		Setup(Hwnd);
 		CheckCaps();
 
-		Logger::Log(LOGNORMAL,"Système de rendu : %s\n",GetRendererDesc());
-		Logger::Log(LOGNORMAL,"Fonctionnalités supportées :\n");
+		Logger::Instance().SetFilename("Agmd3D");
+
+		Logger::Log(LOGNORMAL,"Système de rendu : %s",GetRendererDesc().c_str());
+		Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
 		for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
-			Logger::Log(LOGNORMAL,"    %s : %s", CapToString(i->first), (i->second ? "OK" : "NO"));
-		Logger::Log(LOGNORMAL,"\n");
+			Logger::Log(LOGNORMAL,"%s : %s", CapToString(i->first).c_str(), (i->second ? "OK" : "NO"));
+		//Logger::Log(LOGNORMAL,"Fonctionnalités proposée :");
+		//Logger::Log(LOGNORMAL,"%s",GetExtension().c_str());
+		Logger::Log(LOGNORMAL,"Constante interface :");
+		Logger::Log(LOGNORMAL,"%s",GetConstant().c_str());
+		Logger::Log(LOGNORMAL,"");
 	}
 
 		mat4 Renderer::GetMatView() 
@@ -92,5 +98,14 @@ namespace Agmd
 		ivec2 Renderer::GetScreen()
 		{
 			return m_Screen;
+		}
+
+		void Renderer::SetCamera(Camera* cam)
+		{
+			m_Camera = cam;
+		}
+		Camera* Renderer::getCamera()
+		{
+			return m_Camera;
 		}
 }

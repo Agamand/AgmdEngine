@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_No_Opti|Win32">
+      <Configuration>Release_No_Opti</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -47,6 +51,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\Shader.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Sky.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\SkyBox.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\SkyDome.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Terrain.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Texture.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\TextureBase.h" />
@@ -97,6 +104,9 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShaderProgram.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\Shader.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Sky.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SkyBox.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SkyDome.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Terrain.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Texture.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\TextureBase.cpp" />
@@ -124,6 +134,12 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -133,12 +149,19 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -161,15 +184,34 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

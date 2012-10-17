@@ -13,8 +13,8 @@
 namespace Agmd
 {
 
-	GLTexture::GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
-	TextureBase(size, format, hasMipmaps, autoMipmaps),
+	GLTexture::GLTexture(const ivec2& size, TPixelFormat format, TTextureType type, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
+	TextureBase(size, format, type, hasMipmaps, autoMipmaps),
 	m_Texture   (texture)
 	{}
 
@@ -33,6 +33,8 @@ namespace Agmd
 	{
 		Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).Intersects(rect) == INT_IN);
 
+		if(m_Type != TEXTURE_2D)
+			return;
 		RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
 		RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
 
@@ -72,6 +74,13 @@ namespace Agmd
 		}
 
 		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	void GLTexture::SetActiveTexture(int32 id)
+	{
+		if(m_Type != TEXTURE_CUBE)
+			return;
+
 	}
 
 }

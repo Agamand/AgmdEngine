@@ -20,15 +20,20 @@ namespace Agmd
     protected :
         friend class Texture;
 
-        TextureBase(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps);
+        TextureBase(const ivec2& size, TPixelFormat format, TTextureType type, bool hasMipmaps, bool autoMipmaps);
+
 
         virtual void Update(const AgmdMaths::Rectangle& rect) = 0;
+
+		virtual void SetActiveTexture(int32 id) = 0;
 
         TPixelFormat m_Format;
         ivec2		 m_Size;
         Image        m_Data;
+		TTextureType m_Type;
         bool         m_HasMipmaps;
         bool         m_AutoMipmaps;
+		int32		 activeTexture; // -1 : Cube MAP / 0-5 : Texture X+ to Z-;
     };
 
 }

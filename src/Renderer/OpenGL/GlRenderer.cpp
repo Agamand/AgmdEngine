@@ -7,12 +7,15 @@
 #include <Renderer\OpenGL\GlRenderBuffer.h>
 #include <Utilities\Color.h>
 #include <Utilities\PixelUtils.h>
+#include <Debug\Logger.h>
 #include <Matrix4.h>
 #include <gl\GLU.h>
 #include <Cg/cgGL.h>
 #include <Debug/New.h>
 
 SINGLETON_IMPL(Agmd::GLRenderer)
+
+using namespace AgmdUtilities;
 
 namespace Agmd
 {
@@ -76,6 +79,10 @@ namespace Agmd
 	PFNGLUNIFORM2FPROC				  GLRenderer::glUniform2f;
 	PFNGLUNIFORM3FPROC				  GLRenderer::glUniform3f;
     PFNGLUNIFORM4FPROC				  GLRenderer::glUniform4f;
+	PFNGLUNIFORM4FVPROC				  GLRenderer::glUniform1fv;
+	PFNGLUNIFORM4FVPROC				  GLRenderer::glUniform2fv;
+	PFNGLUNIFORM4FVPROC				  GLRenderer::glUniform3fv;
+	PFNGLUNIFORM4FVPROC				  GLRenderer::glUniform4fv;
 	PFNGLUNIFORMMATRIX2FVPROC		  GLRenderer::glUniformMatrix2fv;
 	PFNGLUNIFORMMATRIX3FVPROC		  GLRenderer::glUniformMatrix3fv;
 	PFNGLUNIFORMMATRIX4FVPROC		  GLRenderer::glUniformMatrix4fv;
@@ -95,6 +102,7 @@ namespace Agmd
 	PFNGLBINDFRAMEBUFFERPROC          GLRenderer::glBindFramebuffer;
 	PFNGLFRAMEBUFFERRENDERBUFFERPROC  GLRenderer::glFramebufferRenderbuffer;
 	PFNGLFRAMEBUFFERTEXTUREPROC       GLRenderer::glFramebufferTexture;
+	PFNGLFRAMEBUFFERTEXTURE2DPROC     GLRenderer::glFramebufferTexture2D;
 	PFNGLCHECKFRAMEBUFFERSTATUSPROC   GLRenderer::glCheckFramebufferStatus;
 
 	char GLRenderer::VertexPipeline[]   = 
@@ -236,6 +244,7 @@ namespace Agmd
 		{
 			ReleaseDC(m_Hwnd, m_Handle);
 		}
+		Logger::Destroy();
 	}
 
 	std::string GLRenderer::GetRendererDesc() const
@@ -245,9 +254,9 @@ namespace Agmd
 
 	void GLRenderer::Setup(HWND Hwnd)
 	{
+		Logger::Instance().SetFilename("OpenGL");
 		/*if (bFullscreen)
 		{
-			// Paramètres
 			DEVMODE ScreenSettings;
 			memset(&ScreenSettings, 0, sizeof(DEVMODE));
 			ScreenSettings.dmSize       = sizeof(DEVMODE);
@@ -255,8 +264,7 @@ namespace Agmd
 			ScreenSettings.dmPelsHeight = 768;
 			ScreenSettings.dmBitsPerPel = 32;
 			ScreenSettings.dmFields     = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-
-			// Passage en plein écran
+	
 			if (ChangeDisplaySettings(&ScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
 				throw COGLException("ChangeDisplaySettings", "Initialize");
 		}*/
@@ -346,6 +354,23 @@ namespace Agmd
 		return m_Extensions.find(Extension) != std::string::npos;
 	}
 
+	const std::string GLRenderer::GetExtension() const
+	{
+		return m_Extensions;
+	}
+
+	const std::string GLRenderer::GetConstant() const
+	{
+		std::string str = "";
+		int32 value;
+		glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &value);
+		str += "Max vertex attrib : " + value;
+
+		glGetIntegerv(GL_MAX_VARYING_FLOATS, &value);
+		str += "\nMax vertex attrib : " + value;
+		return str;
+	}
+
 	void GLRenderer::LoadExtensions()
 	{
 		LOAD_EXTENSION(glBindBuffer);
@@ -387,7 +412,11 @@ namespace Agmd
 		LOAD_EXTENSION(glUniform1f);
 		LOAD_EXTENSION(glUniform2f);
 		LOAD_EXTENSION(glUniform3f);
-		LOAD_EXTENSION(glUniform4f);
+		LOAD_EXTENSION(glUniform4f);	
+		LOAD_EXTENSION(glUniform1fv);
+		LOAD_EXTENSION(glUniform2fv);
+		LOAD_EXTENSION(glUniform3fv);
+		LOAD_EXTENSION(glUniform4fv);
 		LOAD_EXTENSION(glUniformMatrix2fv);
 		LOAD_EXTENSION(glUniformMatrix3fv);
 		LOAD_EXTENSION(glUniformMatrix4fv);
@@ -407,6 +436,7 @@ namespace Agmd
 		LOAD_EXTENSION(glBindFramebuffer);
 		LOAD_EXTENSION(glFramebufferRenderbuffer);
 		LOAD_EXTENSION(glFramebufferTexture);
+		LOAD_EXTENSION(glFramebufferTexture2D);
 		LOAD_EXTENSION(glCheckFramebufferStatus);
 	}
 
@@ -433,11 +463,9 @@ namespace Agmd
 
 	BaseBuffer* GLRenderer::CreateVB(unsigned long size, unsigned long stride, unsigned long flags) const
 	{
-		// Création du buffer
 		unsigned int VertexBuffer = 0;
 		glGenBuffers(1, &VertexBuffer);
 
-		// Remplissage
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
 		glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
 
@@ -446,11 +474,9 @@ namespace Agmd
 
 	BaseBuffer* GLRenderer::CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const
 	{
-		// Création du buffer
 		unsigned int IndexBuffer = 0;
 		glGenBuffers(1, &IndexBuffer);
 
-		// Remplissage
 		glBindBuffer(GL_ARRAY_BUFFER, IndexBuffer);
 		glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
 
@@ -459,7 +485,6 @@ namespace Agmd
 
 	Declaration* GLRenderer::CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const
 	{
-		// Création de la déclaration OpenGL
 		GLDeclaration* declaration = new GLDeclaration;
 
 		std::vector<int> offset(count, 0);
@@ -492,89 +517,72 @@ namespace Agmd
 		{
 			switch (i->usage)
 			{
-				// Position
 				case ELT_USAGE_POSITION :
 					glEnableVertexAttribArray(0);
 					glVertexAttribPointer(0, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_VERTEX_ARRAY);
-					//glVertexPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Normale
 				case ELT_USAGE_NORMAL :
 					glEnableVertexAttribArray(1);
 					glVertexAttribPointer(1, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_NORMAL_ARRAY);
-					//glNormalPointer(Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Couleur diffuse
 				case ELT_USAGE_DIFFUSE :
 					glEnableVertexAttribArray(2);
 					glVertexAttribPointer(2, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_COLOR_ARRAY);
-					//glColorPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Coordonnées de texture 0
 				case ELT_USAGE_TEXCOORD0 :
 					glActiveTexture(GL_TEXTURE0);
 					glEnable(GL_TEXTURE_2D);
 					glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(3);
 					glVertexAttribPointer(3, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-					//glTexCoordPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Coordonnées de texture 1
 				case ELT_USAGE_TEXCOORD1 :
 					glActiveTexture(GL_TEXTURE0);
 					glEnable(GL_TEXTURE_2D);
 					glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(4);
 					glVertexAttribPointer(4, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					
-					//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-					//glTexCoordPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Coordonnées de texture 2
 				case ELT_USAGE_TEXCOORD2 :
 					glActiveTexture(GL_TEXTURE0);
 					glEnable(GL_TEXTURE_2D);
 					glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(5);
 					glVertexAttribPointer(5, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-					//glTexCoordPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
-				// Coordonnées de texture 3
 				case ELT_USAGE_TEXCOORD3 :
 					glActiveTexture(GL_TEXTURE0);
 					glEnable(GL_TEXTURE_2D);
 					glClientActiveTexture(GL_TEXTURE0);
 					glVertexAttribPointer(6, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
-					//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-					//glTexCoordPointer(Size[i->type], Type[i->type], stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
+
 				case ELT_USAGE_TANGENT :
 					glEnableVertexAttribArray(7);
 					glVertexAttribPointer(7, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
+
 				case ELT_USAGE_BONE_WEIGHT :
 					glEnableVertexAttribArray(8);
 					glVertexAttribPointer(8, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
+
 				case ELT_USAGE_BONE_INDEX :
 					glEnableVertexAttribArray(9);
 					glVertexAttribPointer(9, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
+
 				case ELT_USAGE_BONE_COUNT :
 					glEnableVertexAttribArray(10);
 					glVertexAttribPointer(10, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
+
 			}
 		}
 	}
@@ -627,8 +635,8 @@ namespace Agmd
 			case PT_TRIANGLEFAN :   glDrawElements(GL_TRIANGLE_FAN,   count, indicesType, offset); break;
 			case PT_LINELIST :      glDrawElements(GL_LINES,          count, indicesType, offset); break; 
 			case PT_LINESTRIP :     glDrawElements(GL_LINE_STRIP,     count, indicesType, offset); break;
-			case PT_POINTLIST :     glDrawElements(GL_POINTS,         count,     indicesType, offset); break;
-			case PT_PATCHLIST :     glDrawElements(GL_PATCHES,        count*3,     indicesType, offset); break;
+			case PT_POINTLIST :     glDrawElements(GL_POINTS,         count, indicesType, offset); break;
+			case PT_PATCHLIST :     glDrawElements(GL_PATCHES,        count, indicesType, offset); break;
 		}
 	}
 	void GLRenderer::DrawSomething()
@@ -646,54 +654,72 @@ namespace Agmd
 		return color.ToABGR();
 	}
 
-	void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture) const
+	void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture, TTextureType type) const
 	{
-		glActiveTexture(GL_TEXTURE0 + unit);
+
+		glActiveTexture(GL_TEXTURE0+unit);
 		const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
 
 		if (texture)
 		{
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, oGLTexture->GetGLTexture());
+			glBindTexture(RGLEnum::Get(type), oGLTexture->GetGLTexture());
 		}
 		else
 		{
-			glDisable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, 0);
+			glBindTexture(RGLEnum::Get(type), 0);
 		}
 	}
 
-	TextureBase* GLRenderer::CreateTexture(const ivec2& size, TPixelFormat format, unsigned long flags) const
+	TextureBase* GLRenderer::CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags) const
 	{
 		uint32 texture;
 		glGenTextures(1, &texture);
-
-		glBindTexture(GL_TEXTURE_2D, texture);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-
-		int nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
-
-		if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
-			glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
-
 		int width  = size.x;
 		int height = size.y;
-		for (int i = 0; i <= nbMipmaps; ++i)
+		int nbMipmaps = 0;
+		switch(type)
 		{
-			glTexImage2D(GL_TEXTURE_2D, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
+		case TEXTURE_2D:
+			glBindTexture(GL_TEXTURE_2D, texture);
 
-			if (width > 1)  width  /= 2;
-			if (height > 1) height /= 2;
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+
+			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
+
+			if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
+				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
+
+
+			for (int i = 0; i <= nbMipmaps; ++i)
+			{
+				glTexImage2D(GL_TEXTURE_2D, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
+
+				if (width > 1)  width  /= 2;
+				if (height > 1) height /= 2;
+			}
+
+			glBindTexture(GL_TEXTURE_2D, 0);
+			break;
+		case TEXTURE_CUBE:
+
+			for (int i = 0; i < 6; i++)
+			{
+				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_S, GL_CLAMP);
+				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_T, GL_CLAMP);
+			    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
+			}
+
+			break;
 		}
 
-		glBindTexture(GL_TEXTURE_2D, 0);
-
-		return new GLTexture(size, format, nbMipmaps > 0, HasCapability(CAP_HW_MIPMAPPING), texture);
+		return new GLTexture(size, format, type, nbMipmaps > 0, HasCapability(CAP_HW_MIPMAPPING), texture);
 	}
 
 	void GLRenderer::SetupAlphaBlending(TBlend src, TBlend dest) const
@@ -770,9 +796,9 @@ namespace Agmd
 			case RENDER_CLIP_PLANE4:
 			case RENDER_CLIP_PLANE5:
 				if(value)
-					glEnable(GL_CLIP_PLANE0+param - RENDER_CLIP_PLANE0);
+					glEnable(GL_CLIP_PLANE0 + param - RENDER_CLIP_PLANE0);
 				else
-					glDisable(GL_CLIP_PLANE0+param - RENDER_CLIP_PLANE0);
+					glDisable(GL_CLIP_PLANE0 + param - RENDER_CLIP_PLANE0);
 
 				break;
 			default :
@@ -809,20 +835,20 @@ namespace Agmd
     
 		int32 compile_status;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_status);
+		int32 logsize;
+		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logsize);
+        
+		char *log = new char[logsize+1];
+		memset(log, '\0', logsize + 1);
+        
+		glGetShaderInfoLog(shader, logsize, &logsize, log);
+		Logger::Log(LOGNORMAL, "%s", log);
+       
+		delete[] log;
 		if(compile_status != GL_TRUE)
 		{
-			int32 logsize;
-			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logsize);
-        
-			char *log = new char[logsize+1];
-			memset(log, '\0', logsize + 1);
-        
-			glGetShaderInfoLog(shader, logsize, &logsize, log);
-			//Logger::Log(LOGNORMAL, "Impossible de compiler le shader :\n%s\n", log);
-       
-			delete log;
+
 			glDeleteShader(shader);
-        
 			return NULL;
 		}
     
@@ -868,17 +894,21 @@ namespace Agmd
 
 		glGetProgramiv(id, GL_LINK_STATUS, &link);
 
+		int32 logsize;
+		glGetProgramiv(id, GL_INFO_LOG_LENGTH, &logsize);
+	
+		char* log = new char[logsize + 1];
+
+		glGetProgramInfoLog(id, logsize, &logsize, log);
+		log[logsize] = '\0';
+
+		Logger::Log(LOGNORMAL, "%s", log);
+
+		delete[] log;
+
 		if(link != GL_TRUE)
 		{
-			int32 errorsize;
-			glGetProgramiv(id, GL_INFO_LOG_LENGTH, &errorsize);
-	
-			char* error = new char[errorsize + 1];
-
-			glGetProgramInfoLog(id, errorsize, &errorsize, error);
-			error[errorsize] = '\0';
-
-			delete[] error;
+			glDeleteProgram(id);
 			return NULL;
 		}
 
@@ -942,6 +972,11 @@ namespace Agmd
 
 		_LoadMatrix(MAT_PROJECTION,m_MatProjection);
 		_LoadMatrix(MAT_VIEW,m_MatView);
+	}
+
+	void GLRenderer::SetViewPort(ivec2 xy, ivec2 size)
+	{
+		glViewport(xy.x, xy.y, size.x, size.y);
 	}
 }
 

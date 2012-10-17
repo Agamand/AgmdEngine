@@ -24,6 +24,7 @@ namespace AgmdUtilities
 		Logger();
         ~Logger();
         static void Log(LogLevel loglevel,const char* format, ...);
+		void SetFilename(std::string name);
 
     protected :
 

@@ -131,11 +131,11 @@ void FontManager::LoadFont(const std::string& FontName, int Quality)
     DeleteDC(Hdc);
 
     // Création de la texture
-    m_Fonts[FontName].Texture.CreateFromImage(ImgFont, PXF_A8L8, TEX_NOMIPMAP, FontName);
+    m_Fonts[FontName].Texture.CreateFromImage(ImgFont, PXF_A8L8, TEXTURE_2D, TEX_NOMIPMAP, FontName);
 
     std::copy(CharSize, CharSize + 256, m_Fonts[FontName].CharSize);
 
-	Logger::Log(LOGNORMAL,"Chargement de la police : %s \n",FontName);
+	Logger::Log(LOGNORMAL,"Chargement de la police : %s ",FontName.c_str());
 }
 
 void FontManager::DrawString(const GraphicString& str)

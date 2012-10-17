@@ -10,15 +10,19 @@ namespace Agmd
     {
     public :
 
-        GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture);
+        GLTexture(const ivec2& size, TPixelFormat format, TTextureType type, bool hasMipmaps, bool autoMipmaps, uint32 texture);
 
         ~GLTexture();
 
         uint32 GetGLTexture() const;
+		int GetActiveTexture() { return activeTexture;}
 
     private :
 
         virtual void Update(const AgmdMaths::Rectangle& rect);
+
+		virtual void SetActiveTexture(int32 id);
+		
 
         uint32 m_Texture;
     };

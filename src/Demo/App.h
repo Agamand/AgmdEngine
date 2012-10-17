@@ -30,7 +30,9 @@ class App : public Agmd::AgmdApp, public Singleton<App>
 
 MAKE_SINGLETON(App)
 public:
-	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture);
+	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type);
+	static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
+	static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
 	Agmd::GraphicString* m_text;
 private :
 
@@ -54,15 +56,37 @@ private :
 	glm::vec3            m_light_pos;
 	glm::vec3            m_light_dir;
 	float				 m_light_angle;
+	float				 m_tesslationInner;
+	float				 m_tesslationOuter;
+	float				 height;
 
 	Agmd::Scene*		m_Scene;
 
 	Agmd::BaseShaderProgram* shader2D;
 	Agmd::GraphicString* m_fps;
 
-	Agmd::TextureBase* m_ReflectionMap;
-	Agmd::TextureBase* m_RefractionMap;
+
+
+
+	//TESS TEST
+
+	Agmd::Buffer<float>	   m_vbuffer;
+	Agmd::Buffer<short>	   m_ibuffer;
+	Agmd::DeclarationPtr   m_d;
+
+	Agmd::BaseShaderProgram* tesselation_shader;
+	Agmd::BaseShaderProgram* simple_shader;
+	Agmd::Model* sphere[2];
+	
+
+	//TEST 2
+	Agmd::TextureBase* buffer[2];
 	Agmd::FrameBuffer* fbo[2];
+
+	Agmd::TextureBase* use_buffer;
+	Agmd::FrameBuffer* use_fbo;
+	Agmd::AWindow* testwindow;
+	
 
 };
 

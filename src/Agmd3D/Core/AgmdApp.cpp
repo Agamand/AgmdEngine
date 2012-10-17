@@ -47,6 +47,7 @@ namespace Agmd
 
 		Renderer::Get().Initialize(m_Hwnd);
 		Renderer::Get().SetScreen(m_ScreenSize);
+		Renderer::Get().SetCamera(&camera);
 
 		OnInit();
 

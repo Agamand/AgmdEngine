@@ -12,9 +12,9 @@
 namespace Agmd
 {
 
-	void Texture::Create(const ivec2& size, TPixelFormat format, unsigned long flags, const std::string& name)
+	void Texture::Create(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
 	{
-		CreateFromImage(Image(size, format), format, flags, name);
+		CreateFromImage(Image(size, format), format, type, flags, name);
 	}
 
 	void Texture::CreateFromFile(const std::string& filename, TPixelFormat format, unsigned long flags)
@@ -25,30 +25,30 @@ namespace Agmd
 		{
 			SmartPtr<Image> image = MediaManager::Instance().LoadMediaFromFile<Image>(filename);
 
-			Load(*image, format, flags, filename);
+			Load(*image, format, TEXTURE_2D, flags, filename);
 		}
 	}
 
-	void Texture::CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name)
+	void Texture::CreateFromImage(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
 	{
 		m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
 
 		if (!m_Texture)
-		   Load(image, format, flags, name);
+		   Load(image, format, type, flags, name);
 	}
 
-	void Texture::Load(const Image& pixels, TPixelFormat format, unsigned long flags, const std::string& name)
+	void Texture::Load(const Image& pixels, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
 	{
 		if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
 		{
 			format = PXF_A8R8G8B8;
-			Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s\n", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
+			Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
 		}
 
 		ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
 		if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
 		{
-			Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)\n", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
+			Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
 		}
 		else
 		{
@@ -57,7 +57,7 @@ namespace Agmd
 
 		try
 		{
-			m_Texture = Renderer::Get().CreateTexture(size, format, flags);
+			m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
 		}
 		catch (const std::exception& E)
 		{
@@ -101,6 +101,16 @@ namespace Agmd
 	TPixelFormat Texture::GetFormat() const
 	{
 		return m_Texture->m_Format;
+	}
+
+	TTextureType Texture::GetType() const
+	{
+		return m_Texture->m_Type;
+	}
+
+	int Texture::GetActiveTexture() const
+	{
+		return m_Texture->activeTexture;
 	}
 
 	const std::string& Texture::GetName() const

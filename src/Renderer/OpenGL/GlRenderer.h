@@ -26,6 +26,10 @@ namespace Agmd
 
         virtual std::string GetRendererDesc() const;
 
+		virtual const std::string GetExtension() const;
+
+		virtual const std::string GetConstant() const;
+
         virtual void InitScene();
 
         virtual void EndScene();
@@ -42,9 +46,9 @@ namespace Agmd
 
         virtual uint32 ConvertColor(const Color& color) const;
 
-        virtual void SetTexture(unsigned int Unit, const TextureBase* texture) const;
+        virtual void SetTexture(unsigned int Unit, const TextureBase* texture, TTextureType type) const;
 
-        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const;
+        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const;
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const;
 
@@ -69,6 +73,8 @@ namespace Agmd
 		virtual void ReloadPipeline();
 
 		virtual void SetCurrentProgram(BaseShaderProgram* prog);
+
+		virtual void SetViewPort(ivec2 xy, ivec2 size);
 
     public :
 
@@ -112,6 +118,10 @@ namespace Agmd
 		static PFNGLUNIFORM2FPROC					glUniform2f;
 		static PFNGLUNIFORM3FPROC					glUniform3f;
         static PFNGLUNIFORM4FPROC					glUniform4f;
+		static PFNGLUNIFORM1FVPROC					glUniform1fv;
+		static PFNGLUNIFORM2FVPROC					glUniform2fv;
+		static PFNGLUNIFORM3FVPROC					glUniform3fv;
+		static PFNGLUNIFORM4FVPROC					glUniform4fv;
 		static PFNGLUNIFORMMATRIX2FVPROC			glUniformMatrix2fv;
 		static PFNGLUNIFORMMATRIX3FVPROC			glUniformMatrix3fv;
 		static PFNGLUNIFORMMATRIX4FVPROC			glUniformMatrix4fv;
@@ -130,6 +140,7 @@ namespace Agmd
 		static PFNGLBINDFRAMEBUFFERPROC             glBindFramebuffer;
 		static PFNGLFRAMEBUFFERRENDERBUFFERPROC     glFramebufferRenderbuffer;
 		static PFNGLFRAMEBUFFERTEXTUREPROC          glFramebufferTexture;
+		static PFNGLFRAMEBUFFERTEXTURE2DPROC        glFramebufferTexture2D;
 		static PFNGLCHECKFRAMEBUFFERSTATUSPROC      glCheckFramebufferStatus;
 		static PFNGLDELETEFRAMEBUFFERSPROC          glDeleteFramebuffers;
 			
@@ -167,9 +178,6 @@ namespace Agmd
 				m_CurrentProgram->SetParameter(RGLEnum::GetName(type),matrix);
 			else
 				m_Pipeline.SetParameter(RGLEnum::GetName(type),matrix);
-
-			glMatrixMode(RGLEnum::Get(type));
-			glLoadMatrixf(value_ptr(matrix));
 		}
 
         virtual void Setup(HWND Hwnd);

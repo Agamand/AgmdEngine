@@ -4,6 +4,9 @@
 #include <Core/Scene.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
+#include <Core/Shader/BaseShaderProgram.h>
+
+#include <ctime>
 
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
@@ -13,23 +16,61 @@ namespace Agmd
 	Water::Water(ivec2 _size, ivec2 _poly) :
 	Model(),
 	size(_size),
-	n_poly(_poly)
+	n_poly(_poly),
+	scene(NULL)
 	{
 		m_PrimitiveType = PT_TRIANGLELIST;
 		generate();
 		m_program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/water.glsl");
-		//m_program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/waterTexture.glsl");
+		m_programWaterNormal = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/waterNormal.glsl");
 		fbo[0] = Renderer::Get().CreateFrameBuffer();
 		fbo[1] = Renderer::Get().CreateFrameBuffer();
+
 		ivec2 size = Renderer::Get().GetScreen();
-		m_RefractionMap = Renderer::Get().CreateTexture(size,  PXF_A8R8G8B8);
-		m_ReflectionMap = Renderer::Get().CreateTexture(size,  PXF_A8R8G8B8);
-		m_MirrorTex = Renderer::Get().CreateRenderBuffer(size, PXF_DEPTH);
-		fbo[0]->setTexture(m_RefractionMap,COLOR_ATTACHMENT);
-		fbo[1]->setTexture(m_ReflectionMap,COLOR_ATTACHMENT);
-		fbo[1]->setRender(m_MirrorTex, DEPTH_ATTACHMENT);
+		m_CubeMap.Create(size,PXF_A8R8G8B8,TEXTURE_CUBE);
+		m_WaterNormal.Create(ivec2(512),  PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
 
+		m_Depth = Renderer::Get().CreateRenderBuffer(ivec2(512),PXF_DEPTH);
 
+		fbo[1]->setTexture(m_WaterNormal,COLOR_ATTACHMENT);
+		fbo[1]->setRender(m_Depth,DEPTH_ATTACHMENT);
+
+		memset(m_PWave,0,sizeof(WaveParameters)*4);
+		memset(m_DWave,0,sizeof(WaveDirections)*4);
+
+		static float overallSteepness = 0.2f;
+
+		// Wave One
+		m_PWave[0].speed = 0.05f;
+		m_PWave[0].amplitude = 0.02f;
+		m_PWave[0].wavelength = 0.3f;
+		m_PWave[0].steepness = overallSteepness / (m_PWave[0].wavelength * m_PWave[0].amplitude * 4);
+		m_DWave[0].x = +1.0f;
+		m_DWave[0].y = +1.5f;
+
+		// Wave Two
+		m_PWave[1].speed = 0.1f;
+		m_PWave[1].amplitude = 0.01f;
+		m_PWave[1].wavelength = 0.4f;
+		m_PWave[1].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+		m_DWave[1].x = +0.8f;
+		m_DWave[1].y = +0.2f;
+
+		// Wave Thre
+		m_PWave[2].speed = 0.04f;
+		m_PWave[2].amplitude = 0.035f;
+		m_PWave[2].wavelength = 0.1f;
+		m_PWave[2].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+		m_DWave[2].x = -0.2f;
+		m_DWave[2].y = -0.1f;
+
+		// Wave Four
+		m_PWave[3].speed = 0.05f;
+		m_PWave[3].amplitude = 0.007f;
+		m_PWave[3].wavelength = 0.2f;
+		m_PWave[3].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+		m_DWave[3].x = -0.4f;
+		m_DWave[3].y = -0.3f;
 	}
 
 	Water::~Water()
@@ -101,65 +142,126 @@ namespace Agmd
 
 	void Water::Render() const
 	{
-		GenerateRefraction();
-		GenerateReflection();
+		
+		GenerateCubeMap();
+		GenerateNormal();
+
+		Camera* cam = Renderer::Get().getCamera();
+		vec3 dir = cam->getTarget() - cam->getPosition();
+		dir = normalize(dir);
 
 		mat4 modelMatrix = m_position.ModelMatrix();
 		mat3 normalMatrix = mat3(modelMatrix);
+		Renderer::Get().SetCurrentProgram(m_program);
 
 		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
 		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
 
-	/*	Renderer::Get().SetDeclaration(m_Declaration);
+		Renderer::Get().SetTexture(0,m_CubeMap.GetTexture(),TEXTURE_CUBE);
+		Renderer::Get().SetTexture(2,m_WaterNormal.GetTexture());
+
+		m_program->SetParameter("u_dir",dir);
+
+		Renderer::Get().Enable(RENDER_TEXTURE0,true);
+		Renderer::Get().Enable(RENDER_TEXTURE1,true);
+		Renderer::Get().Enable(RENDER_TEXTURE2,true);
+
+		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-		Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());*/
+		Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());
+		Renderer::Get().SetCurrentProgram(NULL);
 	}
 
-	void Water::GenerateRefraction() const
+	void Water::GenerateCubeMap() const
 	{
-		fbo[0]->Clear();
-		fbo[0]->Bind();
+		mat4 view = mat4(1.0f); 
+		mat4 projection = perspectiveFov(60.0f, 9.0f, 16.0f, 0.1f, 10000.0f);
 
-		mat4 view = Renderer::Get().GetMatView();
-		vec4 normal = view*vec4(0,0,-1,0);
-		vec4 pos = view*vec4(m_position.m_position,1.0);
+		mat4 oldProjection = Renderer::Get().GetMatProjection();
+		mat4 oldview = Renderer::Get().GetMatView();
 
-		double plane[] = {normal.x,normal.y,normal.z,normal.x*pos.x + normal.y*pos.y + normal.z*pos.z};
-		Renderer::Get().setClipPlane(0,plane);
-		
-		//Renderer::Get().Enable(RENDER_CLIP_PLANE0,true);
-		if(scene)
-			scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN);
-		Renderer::Get().Enable(RENDER_CLIP_PLANE0,false);
-		fbo[0]->UnBind();
+		Renderer::Get().SetMatProjection(projection);
+
+		for(int nFace = 0; nFace < 6; nFace++) 
+		{ 
+			vec3 vEnvEyePt = vec3(0.0f, 0.0f, 0.0f); 
+			vec3 vLookatPt, vUpVec; 
+
+			switch(nFace) 
+			{ 
+			case 0: 
+			vLookatPt = vec3(1.0f, 0.0f, 0.0f); 
+			vUpVec = vec3(0.0f, 1.0f, 0.0f); 
+			break; 
+			case 1: 
+			vLookatPt = vec3(-1.0f, 0.0f, 0.0f); 
+			vUpVec = vec3( 0.0f, 1.0f, 0.0f); 
+			break; 
+			case 2: 
+			vLookatPt = vec3(0.0f, 1.0f, 0.0f); 
+			vUpVec = vec3(0.0f, 0.0f,-1.0f); 
+			break; 
+			case 3: 
+			vLookatPt = vec3(0.0f,-1.0f, 0.0f); 
+			vUpVec = vec3(0.0f, 0.0f, 1.0f); 
+			break; 
+			case 4: 
+			vLookatPt = vec3( 0.0f, 0.0f, 1.0f); 
+			vUpVec = vec3( 0.0f, 1.0f, 0.0f); 
+			break; 
+			case 5: 
+			vLookatPt = vec3(0.0f, 0.0f,-1.0f); 
+			vUpVec = vec3(0.0f, 1.0f, 0.0f); 
+			break; 
+			} 
+ 
+			view = lookAt(vEnvEyePt, vLookatPt, vUpVec);
+			
+			fbo[0]->setTextureCube(m_CubeMap,COLOR_ATTACHMENT,nFace);
+
+			//fbo[0]->Clear();
+			fbo[0]->Bind();
+			Renderer::Get().SetMatView(view);
+			if(scene)
+				scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN);
+
+			fbo[0]->UnBind();
+		}
+
+		Renderer::Get().SetMatProjection(oldProjection);
+		Renderer::Get().SetMatView(oldview);
 	}
 
-	void Water::GenerateReflection() const
+	void Water::GenerateNormal() const
 	{
+		mat4 modelMatrix = m_position.ModelMatrix();
+		mat3 normalMatrix = mat3(modelMatrix);
+
+		mat4 tempProjection = glm::ortho(-(float)size.x/2.0f,(float)size.x/2.0f, -(float)size.y/2.0f,(float)size.y/2.0f);
+		//mat4 tempView = lookAt(vec3(0.0f,0.0f,5.0f),vef(0,0,0),vec3(0,0,1));
 		fbo[1]->Clear();
 		fbo[1]->Bind();
+		Renderer::Get().SetCurrentProgram(m_programWaterNormal);
+		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
+		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
+		Renderer::Get().SetViewPort(ivec2(0),ivec2(512));
+		m_programWaterNormal->SetParameter("u_waveParameters",(vec4*)m_PWave,4);
+		m_programWaterNormal->SetParameter("u_waveDirections",(vec2*)m_DWave,4);
+		m_programWaterNormal->SetParameter("projectionMatrix",tempProjection);
+		//m_programWaterNormal->SetParameter("viewMatrix",tempView);
+		float _time = scene == NULL ? 0 : scene->GetTime();
 
+		m_programWaterNormal->SetParameter("u_passedTime",_time);
+		
 
-		mat4 view = Renderer::Get().GetMatView();
-		view = scale(view,vec3(1,1,-1));
-		vec4 normal = view*vec4(0,0,1,0);
-		vec4 pos = view*vec4(m_position.m_position,1.0);
-
-		double plane[] = {normal.x,normal.y,normal.z,normal.x*pos.x + normal.y*pos.y + normal.z*pos.z};
-		Renderer::Get().setClipPlane(0,plane);
-		Renderer::Get().SetMatView(view);
-
-
-		Renderer::Get().Enable(RENDER_CLIP_PLANE0,true);
-
-		if(scene)
-			scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN);
-
-		Renderer::Get().Enable(RENDER_CLIP_PLANE0,false);
+		Renderer::Get().SetDeclaration(m_Declaration);
+		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
+		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
+		Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());
+		Renderer::Get().SetCurrentProgram(NULL);
 		fbo[1]->UnBind();
-		view = scale(view,vec3(1,1,-1));
-		Renderer::Get().SetMatView(view);
+		Renderer::Get().SetViewPort(ivec2(0),Renderer::Get().GetScreen());
 	}
 
 	void Water::SetScene(Scene* sc)

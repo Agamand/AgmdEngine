@@ -44,6 +44,8 @@ namespace Agmd
 
 		static GLenum Get(TComponent value);
 
+		static GLenum Get(TTextureType value);
+
 
     private :
 
@@ -58,6 +60,7 @@ namespace Agmd
 		static GLenum       ShaderType[];
 		static GLenum       AttachmentType[];
 		static GLenum		ComponentType[];
+		static GLenum		TextureType[];
     };
 
 }

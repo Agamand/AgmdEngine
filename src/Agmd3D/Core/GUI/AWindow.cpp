@@ -5,13 +5,12 @@ namespace Agmd
 {
 	#define COIN 30
 
-	AWindow::AWindow( TextureBase* font, AWidget* parent) :
+	AWindow::AWindow( AWidget* parent) :
 	AWidget(parent),
-	hold(false),
-	m_Font(font)
+	hold(false)
 	{
 		BuildWindow();
-		m_Texture.CreateFromFile("Gui.png",PXF_A8R8G8B8);
+		m_Texture.CreateFromFile("Texture/Gui.png",PXF_A8R8G8B8);
 		m_Program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/window.glsl");
 	}
 
@@ -31,6 +30,11 @@ namespace Agmd
 		return 1;
 	}
 
+	void AWindow::SetFont(Texture font)
+	{
+		m_Font = font;
+	}
+
 	uint32 AWindow::OnMouseOver()
 	{
 		return 0;
@@ -39,7 +43,7 @@ namespace Agmd
 	uint32 AWindow::OnMouseMove(ivec2 pos_diff, uint32 mouseState)
 	{
 		if(!hold)
-			return 1;
+			return 0;
 
 		hold = mouseState & MOUSE_LEFT;
 		if(hold)
@@ -49,7 +53,7 @@ namespace Agmd
 			else 
 				SetSize(m_vSize-pos_diff);
 		}
-		return 0;
+		return 1;
 	}
 
 	uint32 AWindow::OnKey(char key)
@@ -103,11 +107,11 @@ namespace Agmd
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
 		Renderer::Get().Enable(RENDER_TEXTURE2, false);
 
-		if(m_Font)
-		{
-			Renderer::Get().SetTexture(3, m_Font);
+		//if(m_Font.GetTexture())
+		//{
+			Renderer::Get().SetTexture(3, m_Texture.GetTexture());
 			Renderer::Get().Enable(RENDER_TEXTURE3, true);
-		}
+		//}
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
 		Renderer::Get().Enable(RENDER_TEXTURE3, false);
 		Renderer::Get().SetCurrentProgram(NULL);
@@ -153,12 +157,12 @@ namespace Agmd
 			{vec2(0.25f,1.0f),	vec2(0.0f,0.0f),  vec2(0.0f,0.75f), vec2(0.0f,0.0f)},
 			{vec2(0.25f,0.75f),	vec2(0.0f,0.0f),  vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
 			{vec2(0.25f,1.0f),	vec2(0.0f,0.75f), vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
-			{vec2(0.25f,0.75f),	vec2(0.0f,0.5f),  vec2(1.0f,0.5f),  vec2(0.0f,1.0f)},
-			{vec2(0.5f,1.0f),	vec2(0.0f,0.5f),  vec2(0.0f,0.5f),  vec2(0.0f,0.0f)},
+			{vec2(0.25f,0.75f),	vec2(0.0f,0.5f),  vec2(1.0f,0.5f),  vec2(0.0f,0.0f)},
+			{vec2(0.5f,1.0f),	vec2(0.0f,0.5f),  vec2(0.0f,0.5f),  vec2(0.0f,1.0f)},
 			{vec2(0.5f,0.75f),	vec2(0.0f,0.75f), vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
 			{vec2(0.5f,1.0f),	vec2(1.0f,0.75f), vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
-			{vec2(0.5f,0.75f),	vec2(1.0f,0.5f),  vec2(0.0f,0.5f),  vec2(1.0f,1.0f)},
-			{vec2(0.75f,1.0f),	vec2(1.0f,0.5f),  vec2(1.0f,0.5f),  vec2(1.0f,0.0f)},
+			{vec2(0.5f,0.75f),	vec2(1.0f,0.5f),  vec2(0.0f,0.5f),  vec2(1.0f,0.0f)},
+			{vec2(0.75f,1.0f),	vec2(1.0f,0.5f),  vec2(1.0f,0.5f),  vec2(1.0f,1.0f)},
 			{vec2(0.75f,0.75f),	vec2(1.0f,0.75f), vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
 			{vec2(0.75f,1.0f),	vec2(0.0f,0.0f),  vec2(0.0f,0.0f),  vec2(0.0f,0.0f)},
 			{vec2(0.75f,0.75f),	vec2(0.0f,0.0f),  vec2(0.0f,0.75f), vec2(0.0f,0.0f)},
@@ -246,8 +250,8 @@ namespace Agmd
 		indices.push_back(6);
 		indices.push_back(9);
 		indices.push_back(6);
-		indices.push_back(9);
 		indices.push_back(10);
+		indices.push_back(9);
 
 		m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(vertices.size(), BUF_DYNAMIC,&vertices[0]);
 		m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)indices.size(), 0, &indices[0]);

@@ -26,7 +26,7 @@ inline T* MediaManager::LoadMediaFromFile(const File& filename) const
 
     T* media = FindLoader<T>(mediaPath).LoadFromFile(mediaPath.Fullname());
 
-	Logger::Log(LOGNORMAL,"Ressource chargée : %s\n",mediaPath.Fullname().c_str());
+	Logger::Log(LOGNORMAL,"Ressource chargée : %s",mediaPath.Fullname().c_str());
 
     return media;
 }
@@ -36,7 +36,7 @@ inline void MediaManager::SaveMediaToFile(const T* object, const File& filename)
 {
     FindLoader<T>(filename).SaveToFile(object, filename.Fullname());
 
-    Logger::Log(LOGNORMAL,"Ressource sauvegardée : %s\n",filename.Fullname().c_str());
+    Logger::Log(LOGNORMAL,"Ressource sauvegardée : %s",filename.Fullname().c_str());
 }
 
 template <class T>

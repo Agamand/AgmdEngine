@@ -16,7 +16,8 @@ namespace Agmd
 		SC_DRAW_MODEL	= 0x01,
 		SC_DRAW_TERRAIN = 0x02,
 		SC_DRAW_WATER   = 0x04,
-		SC_DRAW_ALL		= SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_WATER
+		SC_DRAW_SKY		= 0x08,
+		SC_DRAW_ALL		= SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_WATER | SC_DRAW_SKY
 	};
 
 	typedef std::vector<Model*> vModel;
@@ -31,6 +32,8 @@ namespace Agmd
 
 		void Draw(uint32 flag) const;
 
+		void Update(uint64 t_diff);
+
 		void AddModel(Model*);
 		void AddTerrain(Terrain*);
 		void AddWater(Water*);
@@ -39,11 +42,17 @@ namespace Agmd
 		void RemoveTerrain(Terrain*);
 		void RemoveWater(Water*);
 
+		float GetTime()
+		{
+			return m_fTime;
+		}
+
 	private:
 
 		vModel	m_vModels;
 		vMap	m_vMaps;
 		vWater	m_vWaters;
+		float	m_fTime;
 	};
 
 

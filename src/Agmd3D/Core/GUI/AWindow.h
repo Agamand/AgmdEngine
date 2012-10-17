@@ -14,9 +14,10 @@ namespace Agmd
 	class AGMD_EXPORT AWindow : public AWidget
 	{
 	public:
-		AWindow(TextureBase* font, AWidget* parent = NULL);
+		AWindow(AWidget* parent = NULL);
 		virtual ~AWindow();
 
+		void SetFont(Texture font);
 
 		virtual uint32 OnClick(ivec2 pos_mouse, uint32 mouseState);
 		virtual uint32 OnMouseOver();
@@ -52,7 +53,7 @@ namespace Agmd
         Buffer<TIndex>		m_IndexBuffer;
         DeclarationPtr		m_Declaration;
 		Texture				m_Texture;
-		TextureBase*        m_Font;
+		Texture		        m_Font;
 		BaseShaderProgram*	m_Program;
 
 		bool hold;

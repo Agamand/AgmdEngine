@@ -155,15 +155,67 @@ namespace Agmd
 			GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
 	}
 
+	void GLShaderProgram::SetParameter(std::string name, float* value, uint32 count)
+	{
+		Parameter var = GetParameter(name);
+		if(var.type == PARAMETER_UNIFORM)
+		{
+			if(var.size < count)
+				return;
+
+			for(uint32 i = 0; i < 1; i++)
+				GLRenderer::glUniform1fv(var.loc, count, (GLfloat*)value);
+		}
+	}
+
+	void GLShaderProgram::SetParameter(std::string name, vec2* value, uint32 count)
+	{
+		Parameter var = GetParameter(name);
+		if(var.type == PARAMETER_UNIFORM)
+		{
+			if(var.size < count)
+				return;
+
+			for(uint32 i = 0; i < 1; i++)
+				GLRenderer::glUniform2fv(var.loc, count, (GLfloat*)value);
+		}
+	}
+
+	void GLShaderProgram::SetParameter(std::string name, vec3* value, uint32 count)
+	{
+		Parameter var = GetParameter(name);
+		if(var.type == PARAMETER_UNIFORM)
+		{
+			if(var.size < count)
+				return;
+
+			for(uint32 i = 0; i < 1; i++)
+				GLRenderer::glUniform3fv(var.loc, count, (GLfloat*)value);
+		}
+	}
+
+	void GLShaderProgram::SetParameter(std::string name, vec4* value, uint32 count)
+	{
+		Parameter var = GetParameter(name);
+		if(var.type == PARAMETER_UNIFORM)
+		{
+			if(var.size < count)
+				return;
+
+			for(uint32 i = 0; i < 1; i++)
+				GLRenderer::glUniform4fv(var.loc, count, (GLfloat*)value);
+		}
+	}
+
 	void GLShaderProgram::SetParameter(std::string name, mat4* value, uint32 count)
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 		{
-			if(var.size < (sizeof(mat4)*count))
+			if(var.size < count)
 				return;
 
-			for(uint32 i = 0; i < count; i++)
+			for(uint32 i = 0; i < 1; i++)
 				GLRenderer::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
 		}
 	}

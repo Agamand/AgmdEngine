@@ -10,6 +10,7 @@
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Declaration.h>
+#include <Core/Camera/Camera.h>
 #include <Vector2.h>
 #include <Vector3.h>
 #include <Rectangle.h>
@@ -34,6 +35,10 @@ namespace Agmd
 
         virtual std::string GetRendererDesc() const = 0;
 
+		virtual const std::string GetExtension() const = 0;
+
+		virtual const std::string GetConstant() const = 0;
+
         virtual void InitScene() = 0;
         virtual void EndScene() = 0;
 
@@ -49,9 +54,9 @@ namespace Agmd
 
         virtual uint32 ConvertColor(const Color& color) const = 0;
 
-        virtual void SetTexture(unsigned int unit, const TextureBase* texture) const = 0;
+        virtual void SetTexture(unsigned int unit, const TextureBase* texture, TTextureType type = TEXTURE_2D) const = 0;
 
-        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const = 0;
+        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const = 0;
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const = 0;
 
@@ -77,6 +82,9 @@ namespace Agmd
 
 		virtual void SetCurrentProgram(BaseShaderProgram* prog) = 0;
 
+		virtual void SetViewPort(ivec2 xy, ivec2 size) = 0;
+
+
     public :
 
 
@@ -101,6 +109,10 @@ namespace Agmd
 		mat4 GetMatView();
 		mat4 GetMatProjection();
 		ivec2 GetScreen();
+
+
+		void SetCamera(Camera* cam);
+		Camera* getCamera();
 
 
 		void SetMatView(mat4 _MatView);
@@ -135,6 +147,8 @@ namespace Agmd
 		mat4 m_MatView;
 		mat4 m_MatProjection;
 		ivec2 m_Screen;
+
+		Camera* m_Camera;
 
     private :
 

@@ -5,9 +5,10 @@
 namespace Agmd
 {
 
-	TextureBase::TextureBase(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps) :
+	TextureBase::TextureBase(const ivec2& size, TPixelFormat format, TTextureType type, bool hasMipmaps, bool autoMipmaps) :
 	m_Size       (size),
 	m_Format     (format),
+	m_Type		 (type),
 	m_Data       (size, format),
 	m_HasMipmaps (hasMipmaps),
 	m_AutoMipmaps(autoMipmaps)

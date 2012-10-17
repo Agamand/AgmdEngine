@@ -49,6 +49,10 @@ namespace Agmd
 		virtual void SetParameter(std::string name, mat3 value);
 		virtual void SetParameter(std::string name, mat4 value);
 
+		virtual void SetParameter(std::string name,	float* value, uint32 count);
+		virtual void SetParameter(std::string name,	vec2* value, uint32 count);
+		virtual void SetParameter(std::string name,	vec3* value, uint32 count);
+		virtual void SetParameter(std::string name,	vec4* value, uint32 count);
 		virtual void SetParameter(std::string name, mat4* value, uint32 count);
 
 		virtual void Use(bool);

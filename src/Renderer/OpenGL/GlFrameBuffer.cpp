@@ -25,7 +25,6 @@ namespace Agmd
 		m_TextureMap[attach] = tex;
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
 		GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::Get(attach),gl_tex->GetGLTexture(),0);
-
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
 	}
 

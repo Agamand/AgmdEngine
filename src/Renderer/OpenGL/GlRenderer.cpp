@@ -103,6 +103,7 @@ namespace Agmd
 	PFNGLFRAMEBUFFERRENDERBUFFERPROC  GLRenderer::glFramebufferRenderbuffer;
 	PFNGLFRAMEBUFFERTEXTUREPROC       GLRenderer::glFramebufferTexture;
 	PFNGLFRAMEBUFFERTEXTURE2DPROC     GLRenderer::glFramebufferTexture2D;
+	PFNGLFRAMEBUFFERTEXTURE3DPROC     GLRenderer::glFramebufferTexture3D;
 	PFNGLCHECKFRAMEBUFFERSTATUSPROC   GLRenderer::glCheckFramebufferStatus;
 
 	char GLRenderer::VertexPipeline[]   = 
@@ -228,7 +229,9 @@ namespace Agmd
 	m_RenderFlags       (0),
 	m_Reload			(false),
 	m_CurrentProgram    (NULL)
-	{}
+	{
+		std::memset(m_TextureBind,0,sizeof(void*)*MAX_TEXTUREUNIT);
+	}
 
 	GLRenderer::~GLRenderer()
 	{
@@ -437,6 +440,7 @@ namespace Agmd
 		LOAD_EXTENSION(glFramebufferRenderbuffer);
 		LOAD_EXTENSION(glFramebufferTexture);
 		LOAD_EXTENSION(glFramebufferTexture2D);
+		LOAD_EXTENSION(glFramebufferTexture3D);
 		LOAD_EXTENSION(glCheckFramebufferStatus);
 	}
 
@@ -657,17 +661,24 @@ namespace Agmd
 	void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture, TTextureType type) const
 	{
 
+		if(unit > MAX_TEXTUREUNIT)
+			return;
+
 		glActiveTexture(GL_TEXTURE0+unit);
 		const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
 
 		if (texture)
 		{
-			glBindTexture(RGLEnum::Get(type), oGLTexture->GetGLTexture());
+			glBindTexture(RGLEnum::Get(oGLTexture->GetType()), oGLTexture->GetGLTexture());
 		}
-		else
+		else if(m_TextureBind[unit])
 		{
-			glBindTexture(RGLEnum::Get(type), 0);
+			glBindTexture(RGLEnum::Get(m_TextureBind[unit]->GetType()), 0);
 		}
+
+		TextureBase* test = (TextureBase*)(NULL+(int)texture);
+
+		//m_TextureBind[unit] = (const TextureBase*)0;
 	}
 
 	TextureBase* GLRenderer::CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags) const
@@ -684,8 +695,8 @@ namespace Agmd
 
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
 
 
 			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
@@ -713,7 +724,7 @@ namespace Agmd
 				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_S, GL_CLAMP);
 				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
+			    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
 			}
 
 			break;
@@ -977,6 +988,70 @@ namespace Agmd
 	void GLRenderer::SetViewPort(ivec2 xy, ivec2 size)
 	{
 		glViewport(xy.x, xy.y, size.x, size.y);
+	}
+
+	struct vert
+	{
+		vec3 pos;
+		vec2 tpos;
+	};
+
+	void DebugCubeMap(const TextureBase* tex)
+	{
+		if(tex->GetType() != TEXTURE_CUBE)
+			return;
+		float m_fSize = 1.0f;
+		vert vertex[] = 
+		{	
+			//X+
+			{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},
+			//X-
+			{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,1)},
+			//Y+
+			{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,1)},
+			//Y-
+			{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},
+			//Z+
+			{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},
+			//Z-
+			{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,1)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)}
+		};
+
+		std::vector<short> indices;
+
+
+
+		for(uint32 i = 0; i < 6; i++)
+		{
+			glBindTexture(GL_TEXTURE_2D, texture);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,
+
+
+			glBegin(GL_TRIANGLES);
+			glTexCoord2fv((float*)&(vertex[1+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[1+i*4].pos.x));
+			glTexCoord2fv((float*)&(vertex[2+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[2+i*4].pos.x));
+			glTexCoord2fv((float*)&(vertex[0+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[0+i*4].pos.x));
+			glEnd();
+
+			glBegin(GL_TRIANGLES);
+			glTexCoord2fv((float*)&(vertex[1+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[1+i*4].pos.x));
+			glTexCoord2fv((float*)&(vertex[3+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[3+i*4].pos.x));
+			glTexCoord2fv((float*)&(vertex[2+i*4].tpos.x));
+			glVertex3fv((float*)&(vertex[2+i*4].pos.x));
+			glEnd();
+		}
+
+
 	}
 }
 

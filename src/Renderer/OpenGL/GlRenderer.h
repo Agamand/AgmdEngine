@@ -141,6 +141,7 @@ namespace Agmd
 		static PFNGLFRAMEBUFFERRENDERBUFFERPROC     glFramebufferRenderbuffer;
 		static PFNGLFRAMEBUFFERTEXTUREPROC          glFramebufferTexture;
 		static PFNGLFRAMEBUFFERTEXTURE2DPROC        glFramebufferTexture2D;
+		static PFNGLFRAMEBUFFERTEXTURE3DPROC        glFramebufferTexture3D;
 		static PFNGLCHECKFRAMEBUFFERSTATUSPROC      glCheckFramebufferStatus;
 		static PFNGLDELETEFRAMEBUFFERSPROC          glDeleteFramebuffers;
 			
@@ -151,6 +152,8 @@ namespace Agmd
 		static char FragmentPipeline[];
 
 		virtual void DrawSomething();
+
+		virtual void DebugCubeMap(const TextureBase* tex);
 
 
 
@@ -205,6 +208,7 @@ namespace Agmd
         std::string            m_Extensions;
 		ShaderProgram          m_Pipeline;
 		BaseShaderProgram*	   m_CurrentProgram;
+		(const TextureBase*)   m_TextureBind[MAX_TEXTUREUNIT];
 		uint32				   m_RenderFlags;
 		bool				   m_Reload;
     };

@@ -17,6 +17,8 @@ namespace Agmd
 
         virtual ~TextureBase();
 
+		TTextureType GetType() const;
+
     protected :
         friend class Texture;
 
@@ -26,6 +28,7 @@ namespace Agmd
         virtual void Update(const AgmdMaths::Rectangle& rect) = 0;
 
 		virtual void SetActiveTexture(int32 id) = 0;
+
 
         TPixelFormat m_Format;
         ivec2		 m_Size;

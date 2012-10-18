@@ -13,6 +13,7 @@
 #include <Agmd3D\Core\GraphicString.h>
 #include <Agmd3D\Core\Scene.h>
 #include <Agmd3D\Core\Water.h>
+#include <Agmd3D\Core\SkyBox.h>
 #include <Agmd3D\Core\GUI\GUIMgr.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <AgmdNetwork\Client\Client.h>
@@ -74,6 +75,13 @@ public:
 
 };
 
+void App::Run(int argc, char** argv)
+{
+	if(argc > 0)
+		MediaManager::Instance().AddSearchPath(File(argv[0]).Path());
+
+	AgmdApp::Run();
+}
 
 void App::OnInit()
 {
@@ -115,6 +123,20 @@ void App::OnInit()
 	ground->MoveTo(0.0f,0.0,-3.0f);
 	m_Scene->AddTerrain(ground);
 
+	SkyBox* sky = new SkyBox(200);
+	tex.CreateFromFile("Texture/water_pos_y.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,0);
+	tex.CreateFromFile("Texture/water_neg_y.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,1);
+	tex.CreateFromFile("Texture/water_neg_x.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,2);
+	tex.CreateFromFile("Texture/water_pos_z.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,3);
+	tex.CreateFromFile("Texture/water_pos_x.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,4);
+	tex.CreateFromFile("Texture/water_neg_z.tga",PXF_A8R8G8B8);
+	sky->SetTexture(tex,5);
+	m_Scene->SetSky(sky);
 
 	Water* water = new Water(ivec2(200,100),ivec2(200,100));
 	m_Scene->AddWater(water);

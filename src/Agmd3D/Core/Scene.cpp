@@ -2,13 +2,14 @@
 #include <Core/Model.h>
 #include <Core/Terrain.h>
 #include <Core/Water.h>
-
+#include <Core/Sky.h>
 
 namespace Agmd
 {
 
 	Scene::Scene() : 
-	m_fTime(0.0f)
+	m_fTime(0.0f),
+	m_Sky(NULL)	
 	{}
 
 	Scene::~Scene()
@@ -36,6 +37,9 @@ namespace Agmd
 			for(uint32 i = 0; i < m_vWaters.size(); i++)
 				m_vWaters[i]->Render();
 		}
+
+		if(flag & SC_DRAW_SKY && m_Sky)
+			m_Sky->Render();
 	}
 
 	void Scene::Update(uint64 t_diff)
@@ -56,6 +60,16 @@ namespace Agmd
 	void Scene::AddWater(Water* w)
 	{
 		m_vWaters.push_back(w);
+	}
+
+	void Scene::SetSky(Sky* _Sky)
+	{
+		m_Sky = _Sky;
+	}
+
+	Sky* Scene::GetSky()
+	{
+		return m_Sky;
 	}
 
 	void Scene::RemoveModel(Model* m)

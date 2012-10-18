@@ -27,7 +27,7 @@ namespace Agmd
 		fbo[1] = Renderer::Get().CreateFrameBuffer();
 
 		ivec2 size = Renderer::Get().GetScreen();
-		m_CubeMap.Create(size,PXF_A8R8G8B8,TEXTURE_CUBE);
+		m_CubeMap.Create(ivec2(512),PXF_A8R8G8B8,TEXTURE_CUBE);
 		m_WaterNormal.Create(ivec2(512),  PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
 
 		m_Depth = Renderer::Get().CreateRenderBuffer(ivec2(512),PXF_DEPTH);
@@ -182,7 +182,7 @@ namespace Agmd
 		mat4 oldview = Renderer::Get().GetMatView();
 
 		Renderer::Get().SetMatProjection(projection);
-
+		Renderer::Get().SetViewPort(ivec2(0),ivec2(512));
 		for(int nFace = 0; nFace < 6; nFace++) 
 		{ 
 			vec3 vEnvEyePt = vec3(0.0f, 0.0f, 0.0f); 
@@ -224,13 +224,14 @@ namespace Agmd
 			fbo[0]->Bind();
 			Renderer::Get().SetMatView(view);
 			if(scene)
-				scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN);
+				scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_SKY);
 
 			fbo[0]->UnBind();
 		}
 
 		Renderer::Get().SetMatProjection(oldProjection);
 		Renderer::Get().SetMatView(oldview);
+		Renderer::Get().SetViewPort(ivec2(0),Renderer::Get().GetScreen());
 	}
 
 	void Water::GenerateNormal() const

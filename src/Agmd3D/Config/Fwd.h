@@ -41,6 +41,7 @@ namespace Agmd
 	class Model;
 	class Terrain;
 	class Water;
+	class Sky;
 
 	//GUI Class
 

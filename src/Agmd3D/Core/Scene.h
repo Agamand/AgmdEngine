@@ -38,10 +38,13 @@ namespace Agmd
 		void AddTerrain(Terrain*);
 		void AddWater(Water*);
 
+		void SetSky(Sky*);
+		Sky* GetSky();
+
 		void RemoveModel(Model*);
 		void RemoveTerrain(Terrain*);
 		void RemoveWater(Water*);
-
+		
 		float GetTime()
 		{
 			return m_fTime;
@@ -52,6 +55,7 @@ namespace Agmd
 		vModel	m_vModels;
 		vMap	m_vMaps;
 		vWater	m_vWaters;
+		Sky*	m_Sky;
 		float	m_fTime;
 	};
 

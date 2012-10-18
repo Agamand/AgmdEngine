@@ -83,7 +83,10 @@ namespace Agmd
 		virtual void SetCurrentProgram(BaseShaderProgram* prog) = 0;
 
 		virtual void SetViewPort(ivec2 xy, ivec2 size) = 0;
+		
+		virtual void DrawSomething() = 0;
 
+		virtual void DebugCubeMap(const TextureBase* tex) = 0;
 
     public :
 
@@ -118,11 +121,6 @@ namespace Agmd
 		void SetMatView(mat4 _MatView);
 		void SetMatProjection(mat4 _MatProjection);
 		void SetScreen(ivec2 _screen);
-
-		virtual void DrawSomething() = 0;
-
-
-
 
     protected :
 

@@ -18,6 +18,7 @@ namespace AgmdUtilities
         std::string Filename() const;
         std::string ShortFilename() const;
         std::string Extension() const;
+		std::string Path() const;
 
     private :
 

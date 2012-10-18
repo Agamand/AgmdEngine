@@ -53,4 +53,13 @@ namespace AgmdUtilities
 			return "";
 	}
 
+	std::string File::Path() const
+	{
+		std::string::size_type pos = m_Name.find_last_of('\\');
+		if (pos != std::string::npos)
+			return m_Name.substr(0, pos);
+		else
+			return "";
+	}
+
 }

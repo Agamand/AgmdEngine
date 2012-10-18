@@ -174,7 +174,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
       <Filter>Core\Buffer</Filter>
     </None>
@@ -190,7 +189,7 @@
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram11.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">

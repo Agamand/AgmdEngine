@@ -19,4 +19,9 @@ namespace Agmd
 	TextureBase::~TextureBase()
 	{}
 
+
+	TTextureType TextureBase::GetType() const
+	{
+		return m_Type;
+	}
 }

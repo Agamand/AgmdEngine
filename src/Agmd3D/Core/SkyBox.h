@@ -6,6 +6,7 @@
 
 #include <Core\Sky.h>
 #include <Core\Texture.h>
+#include <Core\Declaration.h>
 #include <Core\Buffer\Buffer.h>
 
 
@@ -18,7 +19,7 @@ namespace Agmd
 
 
 
-	class SkyBox : public Sky
+	class AGMD_EXPORT SkyBox : public Sky
 	{
 	public:
 		SkyBox(float size = 1.0f);
@@ -40,7 +41,7 @@ namespace Agmd
 		void Generate();
 
 		Texture				m_Texture[6];
-		//DeclarationPtr		m_Declaration;
+		DeclarationPtr		m_Declaration;
 		Buffer<TVertex>		m_VertexBuffer;
         Buffer<TIndex>		m_IndexBuffer;
 		BaseShaderProgram*	m_Program;

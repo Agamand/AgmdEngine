@@ -11,7 +11,7 @@
 
 namespace Agmd
 {
-	class Sky
+	class AGMD_EXPORT Sky
 	{
 	public:
 		Sky(float size = 1.0f);

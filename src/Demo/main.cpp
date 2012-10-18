@@ -2,11 +2,11 @@
 #include <exception>
 #include "App.h"
 
-INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
+int main(int argc, char** argv)
 {
     try
     {
-        App::Instance().Run();
+        App::Instance().Run(argc,argv);
 
         App::Destroy();
 	}catch(std::exception E){}

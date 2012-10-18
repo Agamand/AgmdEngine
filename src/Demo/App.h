@@ -34,6 +34,8 @@ public:
 	static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
 	static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
 	Agmd::GraphicString* m_text;
+
+	void Run(int argc, char** argv);
 private :
 
     virtual void OnInit();

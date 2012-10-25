@@ -25,6 +25,8 @@ struct planete_info
 	double size;
 };
 
+#include <PhysicsPlugin\Entities.h>
+
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
 
@@ -32,6 +34,7 @@ MAKE_SINGLETON(App)
 public:
 	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type);
 	static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
+	static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
 	static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
 	Agmd::GraphicString* m_text;
 
@@ -63,9 +66,12 @@ private :
 	float				 height;
 
 	Agmd::Scene*		m_Scene;
+	Agmd::Model*		m_testModel;
 
 	Agmd::BaseShaderProgram* shader2D;
 	Agmd::GraphicString* m_fps;
+	Agmd::GraphicString* m_counter;
+	Agmd::ModelTransfo*	 m_sol[5];
 
 
 
@@ -78,7 +84,6 @@ private :
 
 	Agmd::BaseShaderProgram* tesselation_shader;
 	Agmd::BaseShaderProgram* simple_shader;
-	Agmd::Model* sphere[2];
 	
 
 	//TEST 2
@@ -88,6 +93,12 @@ private :
 	Agmd::TextureBase* use_buffer;
 	Agmd::FrameBuffer* use_fbo;
 	Agmd::AWindow* testwindow;
+
+	bool pause;
+	uint64 m_timer;
+	uint32 m_count;
+	Agmd::Entities* model_test;
+	Agmd::Model*	sphere;
 	
 
 };

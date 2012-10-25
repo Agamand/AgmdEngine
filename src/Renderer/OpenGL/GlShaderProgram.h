@@ -4,9 +4,11 @@
 #include <Config\Fwd.h>
 #include <Core\Shader/BaseShaderProgram.h>
 #include <Renderer\OpenGL\GlShader.h>
+#include <Core\Enums.h>
 #include <AgmdDefines.h>
 #include <string>
 #include <map>
+#include <vector>
 
 namespace Agmd
 {
@@ -30,7 +32,7 @@ namespace Agmd
 		};
 
 		typedef std::map<std::string,Parameter> ParameterMap; 
-
+		typedef std::vector<Parameter> APIMatrix;
 
 		GLShaderProgram(uint32 id);
 		virtual ~GLShaderProgram();
@@ -55,6 +57,8 @@ namespace Agmd
 		virtual void SetParameter(std::string name,	vec4* value, uint32 count);
 		virtual void SetParameter(std::string name, mat4* value, uint32 count);
 
+		virtual void SetParameter(TMatrixType type,mat4 value);
+
 		virtual void Use(bool);
 	private:
 		void SetupShader();
@@ -62,6 +66,7 @@ namespace Agmd
 
 		ParameterMap m_UniformMap;
 		ParameterMap m_AttributMap;
+		Parameter    m_APIMatrix[MAX_APIMATRIX];
 		uint32 m_id;
 	};
 }

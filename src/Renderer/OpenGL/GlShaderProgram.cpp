@@ -50,6 +50,15 @@ namespace Agmd
 		SetParameter("texture4",4);
 		SetParameter("texture5",5);
 		Use(false);
+
+		for(int i = 0; i < MAX_APIMATRIX; i++)
+		{
+			Parameter par = GetParameter(RGLEnum::GetName((TMatrixType)(MAT_MODEL+i)));
+			if(par.type == PARAMETER_UNIFORM)
+			{
+				m_APIMatrix[i] = par;
+			}
+		}
 	}
 
 	GLShaderProgram::Parameter GLShaderProgram::GetParameter(std::string name)
@@ -218,6 +227,13 @@ namespace Agmd
 			for(uint32 i = 0; i < 1; i++)
 				GLRenderer::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
 		}
+	}
+
+	void GLShaderProgram::SetParameter(TMatrixType type,mat4 value)
+	{
+		Parameter var = m_APIMatrix[type];
+		if(var.type == PARAMETER_UNIFORM)
+			GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
 	}
 
 	void GLShaderProgram::Use(bool use)

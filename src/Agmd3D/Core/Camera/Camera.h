@@ -44,7 +44,7 @@ namespace Agmd
 		virtual void setTarget(glm::vec3 pos) { _target = pos; } 
 		glm::vec3 getTarget() {return _target;}
 
-		mat4 look();
+		virtual mat4 look();
 
 	protected:
 		virtual void VectorsFromAngles() = 0;

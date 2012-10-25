@@ -40,6 +40,8 @@ namespace Agmd
 		virtual void SetParameter(std::string name,	vec4* value, uint32 count) = 0;
 		virtual void SetParameter(std::string name, mat4* value, uint32 count) = 0;
 
+		virtual void SetParameter(TMatrixType type,mat4 value) = 0;
+
 		virtual void Use(bool) = 0;
 
     protected :

@@ -27,6 +27,7 @@ namespace Agmd
 
 		inline void Disable();
 
+		template <class T> inline void SetParameter(TMatrixType type, T value);
 		template <class T> inline void SetParameter(std::string name, T value);
 		template <class T> inline void SetParameter(std::string name, T value, uint32 size);
 

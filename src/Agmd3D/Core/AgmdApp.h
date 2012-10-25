@@ -47,7 +47,7 @@ namespace Agmd
 		virtual void OnInit() = 0;
 		virtual void OnUpdate(uint64 time_diff) = 0;
 		virtual void OnRender() = 0;
-		Camera&			  camera;
+		Camera*			  camera;
 		ivec2 last_mouse_pos;
 		ivec2 m_ScreenSize;
 		uint32 mouseState;

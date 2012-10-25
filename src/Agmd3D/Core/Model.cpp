@@ -8,8 +8,7 @@
 namespace Agmd
 {
 	Model::Model(Model::TVertex* Vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, ModelRenderPass* renderpass, uint32 passCount, TPrimitiveType type) :
-	m_PrimitiveType(type),
-	m_position()
+	m_PrimitiveType(type)
 	{
 		Assert(Vertices != NULL);
 		Assert(Indices  != NULL);
@@ -31,7 +30,6 @@ namespace Agmd
 
 		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, Vertices);
 		m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(IndicesCount, 0, Indices);
-
 		m_RenderPass.resize(passCount);
 
 		if(renderpass != NULL)
@@ -50,14 +48,23 @@ namespace Agmd
 		}
 
 	}
+
+	Model::Model(Model* m)
+	{
+		this->m_transfo = m->m_transfo;
+		this->m_RenderPass = m->m_RenderPass;
+		this->m_IndexBuffer = m->m_IndexBuffer;
+		this->m_VertexBuffer = m->m_VertexBuffer;
+		this->m_Declaration = m->m_Declaration;
+		this->m_PrimitiveType = m->m_PrimitiveType;
+	}
 	
-	Model::Model() :
-	m_position()
+	Model::Model()
 	{}
 
 	void Model::Render() const
 	{
-		mat4 modelMatrix = m_position.ModelMatrix();
+		mat4 modelMatrix = m_transfo.ModelMatrix();
 		mat3 normalMatrix = mat3(modelMatrix);
 		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
 		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
@@ -86,32 +93,32 @@ namespace Agmd
 
 	void Model::Rotate(float angle, vec3 vector)
 	{
-		m_position.m_rotation = rotate(m_position.m_rotation, angle, vector);
+		m_transfo.m_rotation = rotate(m_transfo.m_rotation, angle, vector);
 	}
 
 	void Model::SetRotation(mat4 mat)
 	{
-		m_position.m_rotation = mat;
+		m_transfo.m_rotation = quat(mat);
 	}
 	
 	void Model::Move(vec3 move)
 	{
-		m_position.m_position += move;
+		m_transfo.m_position += move;
 	}
 
 	void Model::Move(float move_x, float move_y, float move_z)
 	{
-		m_position.m_position += vec3(move_x, move_y, move_z);
+		m_transfo.m_position += vec3(move_x, move_y, move_z);
 	}
 
 	void Model::MoveTo(vec3 pos)
 	{
-		m_position.m_position = pos;
+		m_transfo.m_position = pos;
 	}
 
 	void Model::MoveTo(float pos_x, float pos_y, float pos_z)
 	{
-		m_position.m_position = vec3(pos_x, pos_y, pos_z);
+		m_transfo.m_position = vec3(pos_x, pos_y, pos_z);
 	}
 	void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
 	{

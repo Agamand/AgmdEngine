@@ -150,7 +150,7 @@ namespace Agmd
 		vec3 dir = cam->getTarget() - cam->getPosition();
 		dir = normalize(dir);
 
-		mat4 modelMatrix = m_position.ModelMatrix();
+		mat4 modelMatrix = m_transfo.ModelMatrix();
 		mat3 normalMatrix = mat3(modelMatrix);
 		Renderer::Get().SetCurrentProgram(m_program);
 
@@ -171,6 +171,7 @@ namespace Agmd
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
 		Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());
 		Renderer::Get().SetCurrentProgram(NULL);
+		Renderer::Get().DebugCubeMap(m_CubeMap.GetTexture());
 	}
 
 	void Water::GenerateCubeMap() const
@@ -236,7 +237,7 @@ namespace Agmd
 
 	void Water::GenerateNormal() const
 	{
-		mat4 modelMatrix = m_position.ModelMatrix();
+		mat4 modelMatrix = m_transfo.ModelMatrix();
 		mat3 normalMatrix = mat3(modelMatrix);
 
 		mat4 tempProjection = glm::ortho(-(float)size.x/2.0f,(float)size.x/2.0f, -(float)size.y/2.0f,(float)size.y/2.0f);

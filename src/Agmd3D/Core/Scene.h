@@ -1,8 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <Config\Export.h>
-#include <Config\Fwd.h>
+#include <Config/Export.h>
+#include <Config/Fwd.h>
+#include <Core/Texture.h>
 
 #include <AgmdDefines.h>
 
@@ -17,7 +18,8 @@ namespace Agmd
 		SC_DRAW_TERRAIN = 0x02,
 		SC_DRAW_WATER   = 0x04,
 		SC_DRAW_SKY		= 0x08,
-		SC_DRAW_ALL		= SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_WATER | SC_DRAW_SKY
+		SC_DRAW_SHADOW  = 0x10,
+		SC_DRAW_ALL		= SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_WATER | SC_DRAW_SKY | SC_DRAW_SHADOW
 	};
 
 	typedef std::vector<Model*> vModel;
@@ -52,11 +54,18 @@ namespace Agmd
 
 	private:
 
+		void RenderShadow() const;
+
 		vModel	m_vModels;
 		vMap	m_vMaps;
 		vWater	m_vWaters;
 		Sky*	m_Sky;
 		float	m_fTime;
+
+		FrameBuffer* m_shadowmapping_fbo;
+		RenderBuffer*m_depth_rbo;
+		Texture		 m_shadowMap;
+		Texture		 m_debugMap;
 	};
 
 

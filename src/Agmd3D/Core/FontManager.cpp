@@ -47,10 +47,10 @@ void FontManager::Initialize()
     for (TIndex i = 0; i < NbCharMax; ++i)
     {
         Indices.push_back(i * 4 + 0);
-        Indices.push_back(i * 4 + 1);
-        Indices.push_back(i * 4 + 2);
         Indices.push_back(i * 4 + 2);
         Indices.push_back(i * 4 + 1);
+        Indices.push_back(i * 4 + 1);
+        Indices.push_back(i * 4 + 2);
         Indices.push_back(i * 4 + 3);
     }
     m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);

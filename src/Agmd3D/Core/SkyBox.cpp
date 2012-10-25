@@ -55,7 +55,7 @@ namespace Agmd
 			//Z+
 			{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},
 			//Z-
-			{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,1)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},
+			{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,1)},{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,1)},
 			//X-
 			{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,1)},
 			//Y+
@@ -71,12 +71,12 @@ namespace Agmd
 		for(uint32 i = 0; i < 6; i++)
 		{
 			indices.push_back(1+i*4);
-			indices.push_back(2+i*4);
 			indices.push_back(0+i*4);
+			indices.push_back(2+i*4);
 
 			indices.push_back(1+i*4);
-			indices.push_back(3+i*4);
 			indices.push_back(2+i*4);
+			indices.push_back(3+i*4);
 		}
 
 		TDeclarationElement Elements[] =

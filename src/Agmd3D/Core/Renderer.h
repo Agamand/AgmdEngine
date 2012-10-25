@@ -88,6 +88,8 @@ namespace Agmd
 
 		virtual void DebugCubeMap(const TextureBase* tex) = 0;
 
+		virtual void SetCullFace(int face) = 0;
+
     public :
 
 

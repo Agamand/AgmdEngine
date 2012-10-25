@@ -172,6 +172,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SkyDome.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Camera\DynamicCamera.h">
+      <Filter>Core\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -314,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SkyDome.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Camera\DynamicCamera.cpp">
+      <Filter>Core\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -40,6 +40,7 @@ namespace Agmd
         LOCK_WRITEONLY = 1 << 1
     };
 
+	#define MAX_APIMATRIX 10
     enum TMatrixType
     {
         MAT_MODEL,

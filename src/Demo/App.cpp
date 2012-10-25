@@ -19,6 +19,10 @@
 #include <AgmdNetwork\Client\Client.h>
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
 
+#include <Agmd3D\Core\Camera\DynamicCamera.h>
+
+#include <PhysicsPlugin\PhysicsMgr.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -83,16 +87,20 @@ void App::Run(int argc, char** argv)
 	AgmdApp::Run();
 }
 
+#define TO_PHYS(a) *((PhysicsTransfo*)&a)
+
 void App::OnInit()
 {
+	pause = true;
 	MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
+	PhysicsMgr& physicsMgr = PhysicsMgr::Instance();
 
 	//camera.setTarget(vec3(150.82265,167.96919,19.525068));
 	//camera.setPosition(178.62114,-178.86295,22.452559);
-	
-
+	m_timer = 1000;
+	m_count = 0;
 	m_MatProj3D = glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 10000.0f);
-	m_MatView3D = camera.look();
+	m_MatView3D = camera->look();
 
 	m_MatView2D = mat4(1.0f); // m4 identity
 	m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
@@ -101,27 +109,27 @@ void App::OnInit()
 
 	m_fps = new GraphicString(ivec2(200,200),"",Color::black);
 	m_text = new GraphicString(ivec2(200,250),"",Color::black);
+	 m_counter = new GraphicString(ivec2(200,250),"",Color::black);
+	//AgmdClient* cl = new AgmdClient("192.168.0.5",4015);
+	//cl->Init();
+//	cl->Start();
 
-	AgmdClient* cl = new AgmdClient("192.168.0.5",4015);
-	cl->Init();
-	cl->Start();
-
-	OpClientMgr::Instance().SetReader(_opcode);
+	//OpClientMgr::Instance().SetReader(_opcode);
 
 
 
 	m_Scene = new Scene();
 	Texture tex;
 	
-	Terrain* ground = new Terrain(ivec2(200,100),ivec2(200,100),"","");
+	/*Terrain* ground = new Terrain(ivec2(200,100),ivec2(200,100),"","");
 	tex.CreateFromFile("Texture/gc_h.tga",PXF_A8R8G8B8);
 	ground->SetTextureUnit(tex,5);
 	tex.CreateFromFile("Texture/gc_n.tga",PXF_A8R8G8B8);
 	ground->SetTextureUnit(tex,4);
 	tex.CreateFromFile("Texture/gc_d.tga",PXF_A8R8G8B8);
 	ground->SetTextureUnit(tex,0);
-	ground->MoveTo(0.0f,0.0,-3.0f);
-	m_Scene->AddTerrain(ground);
+	ground->MoveTo(0.0f,0.0,-3.0f);*/
+	//m_Scene->AddTerrain(ground);
 
 	SkyBox* sky = new SkyBox(200);
 	tex.CreateFromFile("Texture/water_pos_y.tga",PXF_A8R8G8B8);
@@ -138,9 +146,9 @@ void App::OnInit()
 	sky->SetTexture(tex,5);
 	m_Scene->SetSky(sky);
 
-	Water* water = new Water(ivec2(200,100),ivec2(200,100));
-	m_Scene->AddWater(water);
-	water->SetScene(m_Scene);
+	//Water* water = new Water(ivec2(200,100),ivec2(200,100));
+	//m_Scene->AddWater(water);
+	//water->SetScene(m_Scene);
 
 	m_light_dir = vec3(1.0f,0.0,0.0f);
 	m_light_angle = 0.0f;
@@ -166,52 +174,155 @@ void App::OnInit()
 	testwindow->SetPosition(200,150);
 
 	GUIMgr::Instance().AddWidget(testwindow);
+	Entities* enti;
+	ModelTransfo* _transfo = (new ModelTransfo());
+	_transfo->m_position.z = -100.0f;
+	m_sol[0] = _transfo;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,1),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	_transfo = (new ModelTransfo());
+	_transfo->m_position.z = 100.0f;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,-1),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	_transfo = (new ModelTransfo());
+	m_sol[1] = _transfo;
+	_transfo->m_position.x = -100.0f;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(1,0,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	_transfo = (new ModelTransfo());
+	m_sol[2] = _transfo;
+	_transfo->m_position.x = 100.0f;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(-1,0,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	_transfo = (new ModelTransfo());
+	m_sol[3] = _transfo;
+	_transfo->m_position.y = 100.0f;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,-1,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	_transfo = (new ModelTransfo());
+	m_sol[4] = _transfo;
+	_transfo->m_position.y = -100.0f;
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,1,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	Model* mod;
 
-	sphere[0] = CreatePlane(ivec2(200,100),ivec2(200,100),"",PT_PATCHLIST);//CreateSphere(1.0f,6.0f,6.0f,2*M_PI,"", PT_PATCHLIST);
-	sphere[1] = CreatePlane(ivec2(10),ivec2(10),"",PT_TRIANGLELIST);//CreateSphere(1.0f,6.0f,6.0f,2*M_PI,"", PT_TRIANGLELIST);
-	sphere[0]->Move(0.0,52.0f,0.0f);
-	Texture t;
-	t.CreateFromFile("Texture/heightmap2.png",PXF_A8R8G8B8);
-	sphere[0]->SetTextureUnit(t,0);
+	//_transfo = *(new ModelTransfo());
+	sphere = CreateBox(vec3(5.0f,5.0f,2.0f),"Texture/bw.png",PT_TRIANGLELIST);
+	//model_test = new Entities(1000.0f, new btSphereShape(5.0f),TO_PHYS(sphere->getPosition()),TYPE_OBJECT);
+	//physicsMgr.Add(model_test);
+	//DynamicCamera* cam = new DynamicCamera();
+	//cam->setLinkTransfo(&sphere->getPosition());
+	//camera = cam;
+	//m_Scene->AddModel(sphere);
+	/* mod= CreatePlane(ivec2(200),ivec2(100),"",PT_TRIANGLELIST);
+	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,1),0),TO_PHYS(mod->getPosition()),TYPE_OBJECT);
+	physicsMgr.Add(enti);
+	m_Scene->AddModel(mod);*/
 
-	
-	t.CreateFromFile("Texture/heightmap2.png",PXF_A8R8G8B8);
+	/*for(int i = 0; i < 20; i++)
+	{
+		//for(int j = 0; j < i*2+1; j++)
+		//{
+			mod = CreateBox(vec3(5.0f,2.0f,0.5f),"Texture/herbe.32932.png",PT_TRIANGLELIST);
+			float offset = i*2 > 1 ? 2.5f : 0.0f;
+			mod->MoveTo(0.0f,0.0f,3.0f+i*0.70f);
+			enti = new Entities(10.0f,new btBoxShape(btVector3(3.0f,1.0f,0.250f)),TO_PHYS(mod->getPosition()),TYPE_OBJECT);
+			physicsMgr.Add(enti);
+			m_Scene->AddModel(mod);
+		//}
+	}*/
 
-	sphere[0]->SetTextureUnit(t,5);
-	//sphere[1]->SetTextureUnit(t,5);
-	//sphere[1]->Move(1.0f,0.0f,0.0f);
-
-
-	//tesselation_shader = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/terrain_with_tessellation.glsl");
-	//simple_shader = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/simple.glsl");
-
-
-
+	Renderer::Get().SetCullFace(1);
 }
 
 #define MODULO_FLOAT(a,x) ((a)-(x)*(int)((a)/(x)))
-
+#define ORIGIN -98.0f
 void App::OnUpdate(uint64 time_diff/*in ms*/)
 {
-	m_MatView3D = camera.look();
+	m_MatView3D = camera->look();
 	m_MatNormal = mat3(m_MatView3D);
 
-	m_light_angle += M_PI*2*(time_diff/60000.0f);
-	m_light_angle = MODULO_FLOAT(m_light_angle,M_PI);
+	m_light_angle += (float)M_PI*2*(time_diff/60000.0f);
+	m_light_angle = MODULO_FLOAT(m_light_angle,(float)M_PI);
 	m_light_dir = vec3(cos(m_light_angle),0.0,sin(m_light_angle));
+
+	if(!pause)
+		PhysicsMgr::Instance().Update(time_diff);
+
 	m_Scene->Update(time_diff);
+
+	if(!pause && m_count < 20)
+	{
+		if(m_timer <= time_diff)
+		{
+			/*vec3 ray = vec3(cos((float)time_diff),sin((float)time_diff),1);
+			ray = normalize(ray)*1000.0f;
+			Model* p = new Model(sphere);
+			Entities* enti;
+			m_Scene->AddModel(p);
+
+			ModelTransfo& _transfo = (p->getPosition());
+			enti = new Entities(100.0f,new btBoxShape(btVector3(2.50f,2.5f,1.0f)),TO_PHYS(_transfo),TYPE_OBJECT);
+			//enti->SetVelocity(ray);
+			PhysicsMgr::Instance().Add(enti);
+			
+			_transfo.m_position = vec3(10.0f*cos(m_count/5.0f*M_PI + (int)(m_count/10)%2*M_PI/10),10.0f*sin(m_count/5.0f*M_PI+ (int)(m_count/10)%2*M_PI/10),ORIGIN+(int)(m_count/10)*2.0f);
+			_transfo.m_rotation = quat(rotate(mat4(1.0f),m_count/5.0f*180+90+(int)(m_count/10)%2*90.0f/5,vec3(0,0,1)));
+
+			m_count++;
+			m_timer = 50;*/
+			for(int j = 0; j < 5; j++)
+			{
+
+			Model* p = new Model(sphere);
+			Entities* enti;
+			m_Scene->AddModel(p);
+
+			ModelTransfo* _transfo = &(p->getPosition());
+			enti = new Entities(100.0f,new btBoxShape(btVector3(2.5f,2.5f,1.0f)),TO_PHYS(*_transfo),TYPE_OBJECT);
+			//enti->SetVelocity(ray);
+			PhysicsMgr::Instance().Add(enti);
+			
+			_transfo->m_position = vec3((6.0f*j)-3*5.0f-0.5f,-3*6.0f,ORIGIN+(int)(m_count)*2.0f);
+			_transfo->m_rotation = quat(rotate(mat4(1.0f),90.0f,vec3(0,0,1)));
+
+			
+
+			p = new Model(sphere);
+			enti;
+			m_Scene->AddModel(p);
+
+			 _transfo = &(p->getPosition());
+			enti = new Entities(100.0f,new btBoxShape(btVector3(2.50f,2.5f,1.0f)),TO_PHYS(*_transfo),TYPE_OBJECT);
+			//enti->SetVelocity(ray);
+			PhysicsMgr::Instance().Add(enti);
+			
+			_transfo->m_position = vec3(4.0f*j-3*4.0f,(3*6.0f),ORIGIN+(int)(m_count)*2.0f);
+			_transfo->m_rotation = quat(rotate(mat4(1.0f),90.0f,vec3(0,0,1)));
+
+			}
+
+			for(int i = 0; i < 6; i++)
+			{
+			}
+
+			m_count++;
+			m_timer = 50;
+		}else m_timer -= time_diff;
+	}
+	
 }
 
 void App::OnRender()
 {
 	// 3D RENDER BEGIN
-
+	
 	Renderer::Get().SetMatView(m_MatView3D);
 	Renderer::Get().SetMatProjection(m_MatProj3D);
 	Renderer::Get().getPipeline()->SetParameter("light",m_light_dir);
 	Renderer::Get().getPipeline()->SetParameter("du",height);
 	
-	m_Scene->Draw(SC_DRAW_ALL);
+	m_Scene->Draw(SC_DRAW_SKY | SC_DRAW_MODEL | SC_DRAW_SHADOW);
 
 	/*Renderer::Get().SetCurrentProgram(tesselation_shader);
 	tesselation_shader->SetParameter("TessLevelInner",m_tesslationInner);
@@ -241,17 +352,18 @@ void App::OnRender()
 	Renderer::Get().SetMatView(m_MatView2D);
 	Renderer::Get().SetMatProjection(m_MatProj2D);
 
-	m_fps->Text = StringBuilder("fps : ")(getFps());
+	m_fps->Text = StringBuilder("fps : ")((int)getFps());
 	m_fps->Draw();
+	m_counter->Text = StringBuilder("Sphere counter : ")(m_count);
+	m_counter->Draw();
 
 	Renderer::Get().SetCurrentProgram(NULL);
 	
 	//GUIMgr::Instance().DrawGUI();
 	// 2D RENDER END
 
-
-
-
+	Renderer::Get().getPipeline()->Use(false);
+	PhysicsMgr::Instance().DebugDraw();
 
 	
 
@@ -260,6 +372,21 @@ void App::OnRender()
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+
+	if(message == WM_LBUTTONDOWN)
+	{
+		vec3 ray = camera->getTarget() - camera->getPosition();
+		ray = normalize(ray)*100.0f;
+		Model* sphere = CreateSphere(0.50f,10.0,10.0,M_PI*2,"Texture/earth_d.png",PT_TRIANGLELIST);
+		Entities* enti;
+		m_Scene->AddModel(sphere);
+		sphere->MoveTo(camera->getPosition());
+
+		ModelTransfo& _transfo = (sphere->getPosition());
+		enti = new Entities(100000.0f,new btSphereShape(0.25f),TO_PHYS(_transfo),TYPE_OBJECT);
+		enti->SetVelocity(ray);
+		PhysicsMgr::Instance().Add(enti);
+	}
 
 	if(message == WM_KEYDOWN)
 	{
@@ -287,6 +414,47 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		case VK_NUMPAD2:
 			height -=0.5f;
 			break;
+		case VK_SPACE:
+			PhysicsMgr::Instance().SetGravity(vec3(0,0,10));/*
+			m_sol[0]->m_position.z = 0.0f;
+			m_sol[1]->m_position.x = -50.0f;
+			m_sol[2]->m_position.x = 50.0f;
+			m_sol[3]->m_position.y = 50.0f;
+			m_sol[4]->m_position.y = -50.0f;*/
+			break;
+		case 'P':
+			pause = !pause;
+			break;
+		case 'Z':
+			//model_test->SetVelocity(vec3(10,0,0));
+			break;
+		case 'S':
+			//model_test->SetVelocity(vec3(-10,0,0));
+			break;
+		case 'Q':
+			//model_test->SetVelocity(vec3(0,-10,0));
+			break;
+		case 'D':
+			//model_test->SetVelocity(vec3(0,10,0));
+			break;
+		case 'M':
+			PhysicsMgr::Instance().SetGravity(vec3(0));
+		break;
+		}
+	}
+	if(message == WM_KEYUP)
+	{
+		switch(LOWORD(wParam))
+		{
+			case VK_SPACE:
+				PhysicsMgr::Instance().SetGravity(vec3(0,0,-10));
+				/*
+				m_sol[0]->m_position.z = -100.0f;
+				m_sol[1]->m_position.x = -100.0f;
+				m_sol[2]->m_position.x = 100.0f;
+				m_sol[3]->m_position.y = 100.0f;
+				m_sol[4]->m_position.y = -100.0f;*/
+				break;
 		}
 	}
 
@@ -394,6 +562,63 @@ Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitive
 	}
 
 	Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),NULL,0,type);
+	Texture tex;
+	if(texture.length() != 0)
+		tex.CreateFromFile(texture,PXF_A8R8G8B8);
+	if(tex.GetTexture())
+		m->SetTextureUnit(tex,0);
+
+	return m;
+}
+Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
+{
+	Model::TVertex vertex[] = 
+	{	
+		//Z+
+		{vec3(size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,0)},
+		{vec3(size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,1)},
+		{vec3(-size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,0)},
+		{vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,1)},
+		//Z-
+		{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,0)},
+		{vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,0)},
+		{vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,1)},
+		{vec3(size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,1)},
+		//X-
+		{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(0,0)},
+		{vec3(-size.x/2,size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(1,0)},
+		{vec3(-size.x/2,-size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(0,1)},
+		{vec3(-size.x/2,size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(1,1)},
+		//Y+
+		{vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(0,0)},
+		{vec3(size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(1,0)},
+		{vec3(-size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(0,1)},
+		{vec3(size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(1,1)},
+		//X+
+		{vec3(size.x/2,size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(0,0)},
+		{vec3(size.x/2,-size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(1,0)},
+		{vec3(size.x/2,size.y/2,size.z/2),vec3(1,0,0),-1,vec2(0,1)},
+		{vec3(size.x/2,-size.y/2,size.z/2),vec3(1,0,0),-1,vec2(1,1)},
+		//Y-
+		{vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(0,0)},
+		{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(1,0)},
+		{vec3(size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(0,1)},
+		{vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(1,1)}
+	};
+
+	std::vector<Model::TIndex> indices;
+
+	for(uint32 i = 0; i < 6; i++)
+	{
+		indices.push_back(1+i*4);
+		indices.push_back(2+i*4);
+		indices.push_back(0+i*4);
+
+		indices.push_back(1+i*4);
+		indices.push_back(3+i*4);
+		indices.push_back(2+i*4);
+	}
+	Model* m = new Model(vertex,4*6,&indices[0],indices.size(),NULL,0,type);
 	Texture tex;
 	if(texture.length() != 0)
 		tex.CreateFromFile(texture,PXF_A8R8G8B8);

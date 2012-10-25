@@ -335,7 +335,7 @@ namespace Agmd
 		m_Pipeline.LoadFromFile("Shader/classic_pipeline.glsl");
 		m_Pipeline.SetParameter("TessLevelInner",1.0f);
 		m_Pipeline.SetParameter("TessLevelOuter",1.0f);
-
+		glFrontFace(GL_CCW);
 		//delete vertex;
 		//delete fragment;
 	}
@@ -537,33 +537,33 @@ namespace Agmd
 					break;
 
 				case ELT_USAGE_TEXCOORD0 :
-					glActiveTexture(GL_TEXTURE0);
-					glEnable(GL_TEXTURE_2D);
-					glClientActiveTexture(GL_TEXTURE0);
+					//glActiveTexture(GL_TEXTURE0);
+					//glEnable(GL_TEXTURE_2D);
+					//glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(3);
 					glVertexAttribPointer(3, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
 				case ELT_USAGE_TEXCOORD1 :
-					glActiveTexture(GL_TEXTURE0);
-					glEnable(GL_TEXTURE_2D);
-					glClientActiveTexture(GL_TEXTURE0);
+					//glActiveTexture(GL_TEXTURE0);
+					//glEnable(GL_TEXTURE_2D);
+					//glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(4);
 					glVertexAttribPointer(4, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
 				case ELT_USAGE_TEXCOORD2 :
-					glActiveTexture(GL_TEXTURE0);
-					glEnable(GL_TEXTURE_2D);
-					glClientActiveTexture(GL_TEXTURE0);
+					//glActiveTexture(GL_TEXTURE0);
+					//glEnable(GL_TEXTURE_2D);
+					//glClientActiveTexture(GL_TEXTURE0);
 					glEnableVertexAttribArray(5);
 					glVertexAttribPointer(5, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
 				case ELT_USAGE_TEXCOORD3 :
-					glActiveTexture(GL_TEXTURE0);
-					glEnable(GL_TEXTURE_2D);
-					glClientActiveTexture(GL_TEXTURE0);
+					//glActiveTexture(GL_TEXTURE0);
+					//glEnable(GL_TEXTURE_2D);
+					glEnableVertexAttribArray(6);
 					glVertexAttribPointer(6, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 					break;
 
@@ -602,13 +602,12 @@ namespace Agmd
 
 	void GLRenderer::SetDeclaration(const Declaration* declaration)
 	{
-		glColor4f(1, 1, 1, 1);
 		
-		for (int i = 0; i < 4; ++i)
+		/*for (int i = 0; i < 4; ++i)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
 			glDisable(GL_TEXTURE_2D);
-		}
+		}*/
 
 		m_CurrentDeclaration = static_cast<const GLDeclaration*>(declaration);
 	}
@@ -664,7 +663,6 @@ namespace Agmd
 		if(unit > MAX_TEXTUREUNIT)
 			return;
 
-		glActiveTexture(GL_TEXTURE0+unit);
 		const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
 
 		if (texture)
@@ -696,7 +694,7 @@ namespace Agmd
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 
 			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
@@ -793,7 +791,11 @@ namespace Agmd
 			case RENDER_TEXTURE4:
 			case RENDER_TEXTURE5:
 				if(value)
+				{
+					if(!(m_RenderFlags & 1 << (param - RENDER_TEXTURE0 + 1)))
+						glActiveTexture(GL_TEXTURE0+(param - RENDER_TEXTURE0));
 					m_RenderFlags |= 1 << (param - RENDER_TEXTURE0 + 1);
+				}
 				else 
 					m_RenderFlags &= ~(1 << (param - RENDER_TEXTURE0 + 1));
 				if(m_CurrentProgram)
@@ -814,10 +816,15 @@ namespace Agmd
 				break;
 			default :
 			{
+				int _value = RGLEnum::Get(param);
+
+				if(!_value)
+					break;
+
 				if (value)
-					glEnable(RGLEnum::Get(param));
+					glEnable(_value);
 				else
-					glDisable(RGLEnum::Get(param));
+					glDisable(_value);
 			}
 		}
 	}
@@ -996,7 +1003,7 @@ namespace Agmd
 		vec2 tpos;
 	};
 
-	void DebugCubeMap(const TextureBase* tex)
+	void GLRenderer::DebugCubeMap(const TextureBase* tex)
 	{
 		if(tex->GetType() != TEXTURE_CUBE)
 			return;
@@ -1023,13 +1030,13 @@ namespace Agmd
 
 		for(uint32 i = 0; i < 6; i++)
 		{
-			glBindTexture(GL_TEXTURE_2D, texture);
+//			glBindTexture(GL_TEXTURE_2D, texture);
 
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,
+		//	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,
 
 
 			glBegin(GL_TRIANGLES);
@@ -1052,6 +1059,22 @@ namespace Agmd
 		}
 
 
+	}
+
+	#define FRONT 1
+	#define BACK  2
+
+	void GLRenderer::SetCullFace(int face)
+	{
+		if(face)
+			glEnable(GL_CULL_FACE);
+		else glDisable(GL_CULL_FACE);
+		if(face == FRONT)
+			glCullFace(GL_FRONT);
+		else if(face == BACK)
+			glCullFace(GL_BACK);
+		else if(face & (FRONT | BACK))
+			glCullFace(GL_FRONT_AND_BACK);
 	}
 }
 

@@ -76,6 +76,8 @@ namespace Agmd
 
 		virtual void SetViewPort(ivec2 xy, ivec2 size);
 
+		virtual void SetCullFace(int face);
+
     public :
 
         static PFNGLBINDBUFFERPROC					glBindBuffer;
@@ -178,9 +180,9 @@ namespace Agmd
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat4& matrix)
 		{
 			if(m_CurrentProgram)
-				m_CurrentProgram->SetParameter(RGLEnum::GetName(type),matrix);
+				m_CurrentProgram->SetParameter(type,matrix);
 			else
-				m_Pipeline.SetParameter(RGLEnum::GetName(type),matrix);
+				m_Pipeline.SetParameter(type,matrix);
 		}
 
         virtual void Setup(HWND Hwnd);

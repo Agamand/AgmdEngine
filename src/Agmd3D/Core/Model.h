@@ -11,6 +11,7 @@
 #include <Vector2.h>
 #include <Vector3.h>
 #include <Matrix4.h>
+#include <Quaternion.h>
 
 using namespace AgmdMaths;
 
@@ -77,22 +78,20 @@ namespace Agmd
 		}
 	};
 
-	struct AGMD_EXPORT SPosition
+	struct AGMD_EXPORT ModelTransfo
 	{
-		SPosition(vec3 _position = vec3(0.0f), mat4 _rotation = mat4(1.0f)) :
+		ModelTransfo(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
 		m_position(_position),
 		m_rotation(_rotation)
 		{}
 
-
-
-		mat4 ModelMatrix() const { return translate(m_rotation,m_position); }
+		mat4 ModelMatrix() const { return translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); }
 
 		vec3 m_position;
-		mat4 m_rotation;
+		quat m_rotation;
 	};
 
-	typedef SPosition* SPositionPtr;
+	typedef ModelTransfo* ModelTransfoPtr;
 	typedef std::vector<ModelRenderPass> MRPvector;
 
     class AGMD_EXPORT Model : public Resource
@@ -123,6 +122,7 @@ namespace Agmd
         typedef unsigned short TIndex;
 
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, ModelRenderPass* renderpass = NULL, uint32 passCount = 1, TPrimitiveType type = PT_TRIANGLELIST);
+		Model(Model* m);
 
         virtual void Render() const;
 
@@ -135,10 +135,10 @@ namespace Agmd
 		void MoveTo(vec3 pos);
 		void MoveTo(float pos_x, float pos_y, float pos_z);
 
-		vec3 getTranslate() {return m_position.m_position;}
-		mat4 getRotate() {return m_position.m_rotation;}
+		vec3 getTranslate() {return m_transfo.m_position;}
+		mat4 getRotate() {return mat4_cast(m_transfo.m_rotation);}
 
-		SPositionPtr getPosition() { return &m_position;}
+		ModelTransfo& getPosition() { return m_transfo;}
 
 		void SetTextureUnit(Texture tex, uint32 unit, uint32 renderpass = 0);
 		void DisableTextureUnit(uint32 unit, uint32 renderpass = 0); 
@@ -155,7 +155,7 @@ namespace Agmd
         Buffer<TIndex>  m_IndexBuffer;
 		MRPvector       m_RenderPass;
         //TextureUnit m_Textures[MAX_TEXTUREUNIT];
-		SPosition		m_position;
+		ModelTransfo	m_transfo;
 		TPrimitiveType  m_PrimitiveType;
 		JointVector     m_vJoints;
 		Mat4Vector		m_vmBindPose;

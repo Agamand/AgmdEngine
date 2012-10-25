@@ -107,9 +107,9 @@ void App::OnInit()
 
 	shader2D = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/classic_pipeline_2D.glsl");
 
-	m_fps = new GraphicString(ivec2(200,200),"",Color::black);
-	m_text = new GraphicString(ivec2(200,250),"",Color::black);
-	 m_counter = new GraphicString(ivec2(200,250),"",Color::black);
+	m_fps = new GraphicString(ivec2(50,650),"",Color::black);
+	m_text = new GraphicString(ivec2(50,600),"",Color::black);
+	m_counter = new GraphicString(ivec2(50,630),"",Color::black);
 	//AgmdClient* cl = new AgmdClient("192.168.0.5",4015);
 	//cl->Init();
 //	cl->Start();

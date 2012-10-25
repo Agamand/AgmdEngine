@@ -38,6 +38,7 @@ namespace Agmd
 		uint64 last_time;
 		uint32 frame;
 		uint64 fps_timer;
+
 		float m_fps;
 
 	protected:

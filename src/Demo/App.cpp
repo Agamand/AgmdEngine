@@ -207,7 +207,7 @@ void App::OnInit()
 	Model* mod;
 
 	//_transfo = *(new ModelTransfo());
-	sphere = CreateBox(vec3(5.0f,5.0f,2.0f),"Texture/bw.png",PT_TRIANGLELIST);
+	sphere = CreateBox(vec3(8.0f,2.0f,1.0f),"Texture/bw.png",PT_TRIANGLELIST);
 	//model_test = new Entities(1000.0f, new btSphereShape(5.0f),TO_PHYS(sphere->getPosition()),TYPE_OBJECT);
 	//physicsMgr.Add(model_test);
 	//DynamicCamera* cam = new DynamicCamera();
@@ -251,27 +251,25 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
 
 	m_Scene->Update(time_diff);
 
-	if(!pause && m_count < 20)
+	if(!pause && m_count < 600)
 	{
 		if(m_timer <= time_diff)
 		{
-			/*vec3 ray = vec3(cos((float)time_diff),sin((float)time_diff),1);
+			vec3 ray = vec3(cos((float)time_diff),sin((float)time_diff),1);
 			ray = normalize(ray)*1000.0f;
 			Model* p = new Model(sphere);
 			Entities* enti;
 			m_Scene->AddModel(p);
 
 			ModelTransfo& _transfo = (p->getPosition());
-			enti = new Entities(100.0f,new btBoxShape(btVector3(2.50f,2.5f,1.0f)),TO_PHYS(_transfo),TYPE_OBJECT);
+			enti = new Entities(1.0f,new btBoxShape(btVector3(4.0f,1.0f,0.5f)),TO_PHYS(_transfo),TYPE_OBJECT);
 			//enti->SetVelocity(ray);
 			PhysicsMgr::Instance().Add(enti);
 			
-			_transfo.m_position = vec3(10.0f*cos(m_count/5.0f*M_PI + (int)(m_count/10)%2*M_PI/10),10.0f*sin(m_count/5.0f*M_PI+ (int)(m_count/10)%2*M_PI/10),ORIGIN+(int)(m_count/10)*2.0f);
+			_transfo.m_position = vec3(15.0f*cos(m_count/5.0f*M_PI + (int)(m_count/10)%2*M_PI/10),15.0f*sin(m_count/5.0f*M_PI+ (int)(m_count/10)%2*M_PI/10),ORIGIN+(int)(m_count/10)*1.0f);
 			_transfo.m_rotation = quat(rotate(mat4(1.0f),m_count/5.0f*180+90+(int)(m_count/10)%2*90.0f/5,vec3(0,0,1)));
 
-			m_count++;
-			m_timer = 50;*/
-			for(int j = 0; j < 5; j++)
+			/*for(int j = 0; j < 5; j++)
 			{
 
 			Model* p = new Model(sphere);
@@ -305,9 +303,9 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
 			for(int i = 0; i < 6; i++)
 			{
 			}
-
+			*/
 			m_count++;
-			m_timer = 50;
+			m_timer = 10;
 		}else m_timer -= time_diff;
 	}
 	
@@ -351,8 +349,8 @@ void App::OnRender()
 
 	Renderer::Get().SetMatView(m_MatView2D);
 	Renderer::Get().SetMatProjection(m_MatProj2D);
-
-	m_fps->Text = StringBuilder("fps : ")((int)getFps());
+	float fps = getFps();
+	m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
 	m_fps->Draw();
 	m_counter->Text = StringBuilder("Sphere counter : ")(m_count);
 	m_counter->Draw();
@@ -376,14 +374,14 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 	if(message == WM_LBUTTONDOWN)
 	{
 		vec3 ray = camera->getTarget() - camera->getPosition();
-		ray = normalize(ray)*100.0f;
-		Model* sphere = CreateSphere(0.50f,10.0,10.0,M_PI*2,"Texture/earth_d.png",PT_TRIANGLELIST);
+		ray = normalize(ray)*50.0f;
+		Model* sphere = CreateSphere(0.5f,40.0,40.0,M_PI*2,"Texture/earth_d.png",PT_TRIANGLELIST);
 		Entities* enti;
 		m_Scene->AddModel(sphere);
 		sphere->MoveTo(camera->getPosition());
 
 		ModelTransfo& _transfo = (sphere->getPosition());
-		enti = new Entities(100000.0f,new btSphereShape(0.25f),TO_PHYS(_transfo),TYPE_OBJECT);
+		enti = new Entities(100000.0f,new btSphereShape(0.5f),TO_PHYS(_transfo),TYPE_OBJECT);
 		enti->SetVelocity(ray);
 		PhysicsMgr::Instance().Add(enti);
 	}

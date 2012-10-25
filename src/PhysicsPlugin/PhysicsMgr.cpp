@@ -39,7 +39,7 @@ namespace Agmd
 			m_evEntities[i]->Prepare();
 
 		if(m_World)
-			m_World->stepSimulation( ((float)dt)/1000.0f, 4);
+			m_World->stepSimulation(((float)dt)/1000.0f);
 		
 		for(std::size_t i = 0; i < size; i++)
 			m_evEntities[i]->Update();

@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 
+#include <Utilities\File.h>
+
 namespace Agmd
 {
 
@@ -16,84 +18,90 @@ namespace Agmd
 
 	BaseShaderProgram* ShaderProgramsLoader::LoadFromFile(const std::string& filename)
 	{
-		std::ifstream file(filename, std::ios::in);
-		std::string stream = "", buffer;
+		std::string buffer = LoadShader(filename);
+		BaseShader* shader[5];
 
-		BaseShader* shader[5] = {NULL};
-		int32 actualShader = -1;
+		shader[0] = Renderer::Get().CreateShader(buffer, SHADER_VERTEX);
+		shader[1] = Renderer::Get().CreateShader(buffer, SHADER_TESS_CONTROL);
+		shader[2] = Renderer::Get().CreateShader(buffer, SHADER_TESS_EVALUATION);
+		shader[3] = Renderer::Get().CreateShader(buffer, SHADER_GEOMETRY);
+		shader[4] = Renderer::Get().CreateShader(buffer, SHADER_PIXEL);
 
-		if (!file)
-			throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ShadersLoader)");
+		return Renderer::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
+	}
 
-		while(std::getline(file,buffer))
-		{
-			if(!buffer.find("-- Vertex"))
-			{
-				if(actualShader >= 0 && !shader[actualShader])
-				{
-					shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
-				}
-
-				stream = "";
-				actualShader = SHADER_VERTEX;
-			}
-			else if(!buffer.find("-- TessControl"))
-			{
-				if(actualShader >= 0 && !shader[actualShader])
-				{
-					shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
-				}
-
-				stream = "";
-				actualShader = SHADER_TESS_CONTROL;
-			}
-			else if(!buffer.find("-- TessEval"))
-			{
-				if(actualShader >= 0 && !shader[actualShader])
-				{
-					shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
-				}
-
-				stream = "";
-				actualShader = SHADER_TESS_EVALUATION;
-			}
-			else if(!buffer.find("-- Geometry"))
-			{
-				if(actualShader >= 0 && !shader[actualShader])
-				{
-					shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
-				}
-
-				stream = "";
-				actualShader = SHADER_GEOMETRY;
-			}
-			else if(!buffer.find("-- Fragment"))
-			{
-				if(actualShader >= 0 && !shader[actualShader])
-				{
-					shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
-				}
-
-				stream = "";
-				actualShader = SHADER_PIXEL;
-			}else
-			{
-				stream += buffer;
-				stream += "\n";
-			}
-		}
+	std::string ShaderProgramsLoader::LoadShader(const std::string& filename, const std::string parentdir)
+	{
 		
-		if(actualShader >= 0 && !shader[actualShader])
+		std::ifstream file;
+		if(parentdir.empty())
+			file.open(filename, std::ios::in);
+		else
 		{
-			shader[actualShader] = Renderer::Get().CreateShader(stream, (TShaderType)actualShader);
+			File f(parentdir);
+			file.open(f.Path()+"\\"+filename, std::ios::in);
+		}
+		std::string str_shader = "", buffer = "";
+		if(!file)
+			throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ShaderProgramsLoader)");
+		char cbuffer = 0;
+		while(file.read(&cbuffer,1))
+		{
+			std::string instruction = "";
+			std::string value = "";
+			switch(cbuffer)
+			{
+			case '#':
+
+
+				while(file.read(&cbuffer,1) && cbuffer != ' ')
+					instruction += cbuffer;
+
+				while(file.read(&cbuffer,1) && cbuffer != '\n')
+					value += cbuffer;
+
+				value += '\n';
+				switch(preprocessor(instruction))
+				{
+				case PREPROCESSOR_INCLUDE:
+					buffer += LoadShader(value.substr(value.find_first_of('"')+1, value.find_last_of('"')-1),filename);
+					break;
+				default:
+					buffer += "#" + instruction + " " + value + "\n";
+					break;
+				}
+				break;
+			case '\n':
+				buffer +=cbuffer;
+				break;
+			default:
+				buffer +=cbuffer;
+				while(file.read(&cbuffer,1) && cbuffer != '\n')
+					buffer +=cbuffer;
+
+				buffer += '\n';
+				break;
+			}
+
+			str_shader += buffer;
+			buffer = "";
+			
+		}
+		return str_shader;
+	}
+
+	ShaderPreprocessor ShaderProgramsLoader::preprocessor(const std::string& instruction)
+	{
+		if(!instruction.compare("include"))
+		{
+			return PREPROCESSOR_INCLUDE;
 		}
 
-
-		file.close();
-		BaseShaderProgram* program = Renderer::Get().CreateShaderProgram(shader[0],shader[1],shader[2],shader[3],shader[4]);
-		for(int32 i = 0; i < 5; i++)
-			delete shader[i];
-		return program;
+		if(!instruction.compare("revision"))
+		{
+			return PREPROCESSOR_REVISION;
+		}
+		return PREPROCESSOR_UNKNOW;
 	}
 
 	void ShaderProgramsLoader::OnError()

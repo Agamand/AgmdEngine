@@ -1,8 +1,5 @@
+-- Vertex
 #version 330
-
-#include "global_uniform.glsl"
-
-#ifdef _VERTEX_
 
 #ifndef MAX_BONES
 #define MAX_BONES 58
@@ -26,6 +23,11 @@ out vec3 normal;
 out vec3 lightDir;
 out vec3 eye;
 
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+uniform mat3 normalMatrix;
+uniform int RenderFlags;
 uniform sampler2D texture5;
 
 uniform mat4 boneMatrix[MAX_BONES];
@@ -62,26 +64,25 @@ void main()
 	
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = mat3(u_matModel) */*normalMatrix */ mat3(skinningMatrix) * in_Normal;
+	normal = mat3(modelMatrix) */*normalMatrix */ mat3(skinningMatrix) * in_Normal;
 	lightDir = _lightDir;
-	tangent = mat3(u_matModel) */*normalMatrix */ mat3(skinningMatrix) * in_Tangent.xyz;
+	tangent = mat3(modelMatrix) */*normalMatrix */ mat3(skinningMatrix) * in_Tangent.xyz;
 	binormal = cross(normal, tangent) * in_Tangent.w;
 
-	if((u_textureFlags & 32) != 0)
+	if((RenderFlags & 64) != 0)
 	{
 		vec4 dv = texture2D( texture5, texCoord0);
 		float df = 0.30*dv.x + 0.59*dv.y + 0.11*dv.z;
 		float du = 2.0f;
 		vertex = vertex + in_Normal * df * du; 
 	}
-	vec4 pos = u_matView * u_matModel * skinningMatrix * vec4(vertex, 1.0f);
+	vec4 pos = viewMatrix * modelMatrix * skinningMatrix * vec4(vertex, 1.0f);
 	eye = -(pos.xyz / pos.w);
-	gl_Position = u_matProjection* pos;
+	gl_Position = projectionMatrix * pos;
 }
-#endif
 
-
-#ifdef _FRAGMENT_
+-- Fragment
+#version 330
 
 in vec3 tangent;
 in vec3 binormal;
@@ -94,6 +95,7 @@ in vec3 eye;
 
 out vec4 out_Color;
 uniform sampler2D texture0;
+uniform int RenderFlags;
 uniform sampler2D texture4;
 uniform sampler2D texture5;
 
@@ -106,7 +108,7 @@ void directLight()
 	vec3 _eye = mtangent * eye;
 	vec3 N = normalize(normal);
 	vec3 L = normalize(lightDir);
-	if((u_textureFlags & 16 ) != 0)
+	if((RenderFlags & 32 ) != 0)
 	{
 		L = mtangent*L;
 		normalize(L);
@@ -123,11 +125,10 @@ void directLight()
 void main()
 {
 	out_Color = vec4(1.0);
-	if((u_textureFlags & 1 ) != 0)
+	if((RenderFlags & 2 ) != 0)
 		out_Color = texture2D(texture0, texCoord0);
 		
-	//if((u_textureFlags & 32 ) != 0)
+	//if((RenderFlags & 64 ) != 0)
 		//out_Color = texture2D(texture5, texCoord0);
 	directLight();
 }
-#endif

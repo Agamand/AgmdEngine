@@ -26,6 +26,7 @@
 #include <Loaders/ShadersLoader.h>
 #include <Loaders/ShaderProgramsLoader.h>
 #include <Loaders/ObjLoader.h>
+#include <Loaders/TxtLoader.h>
 #include <Core/MediaManager.h>
 #include <Debug/New.h>
 
@@ -44,6 +45,7 @@ namespace Agmd
 		mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_CONTROL),  "tessc");
 		mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_EVALUATION),  "tesse");
 		mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl");
+		//mediaManager.RegisterLoader(new TxtLoader(),"txt");
 		mediaManager.RegisterLoader(new ObjLoader(), "obj");
 	}
 

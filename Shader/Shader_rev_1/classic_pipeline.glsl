@@ -1,9 +1,5 @@
+-- Vertex
 #version 330
-
-#include "global_uniform.glsl"
-
-#ifdef _VERTEX_
-
 
 in vec3 in_Vertex;
 in vec3 in_Normal;
@@ -20,7 +16,11 @@ out vec3 normal;
 out vec3 lightDir;
 out vec3 eye;
 
-
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+uniform mat3 normalMatrix;
+uniform int RenderFlags;
 uniform float du = 20.0f;
 uniform sampler2D texture5;
 
@@ -38,24 +38,23 @@ void main()
 	
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = mat3(u_matModel)*in_Normal;
+	normal = normalMatrix*in_Normal;
 	lightDir = light;
-	tangent = mat3(u_matModel) * in_Tangent.xyz;
+	tangent = normalMatrix * in_Tangent.xyz;
 	binormal = cross(normal, tangent) * in_Tangent.w;
-	vec4 pos = u_matView * u_matModel * vec4(in_Vertex, 1.0f);
+	vec4 pos = viewMatrix * modelMatrix * vec4(in_Vertex, 1.0f);
 	eye = -(pos.xyz / pos.w);
-	if((u_textureFlags & 32) != 0)
+	if((RenderFlags & 64) != 0)
 	{
 		vec4 dv = texture2D( texture5, texCoord0);
 		float df = 0.30*dv.x + 0.59*dv.y + 0.11*dv.z;
 		vertex = vertex + in_Normal * df * du; 
 	}
-	gl_Position = u_matProjection * u_matView * u_matModel * vec4(vertex,1.0f);
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertex,1.0f);
 }
-#endif
 
-
-#ifdef _FRAGMENT_
+-- Fragment
+#version 330
 
 in vec3 tangent;
 in vec3 binormal;
@@ -82,7 +81,7 @@ void directLight()
 	vec3 _eye = eye;
 	vec3 N = normalize(normal);
 	vec3 L = normalize(lightDir);
-	if((u_textureFlags & 16 ) != 0)
+	if((RenderFlags & 32 ) != 0)
 	{
 		//L = mtangent*L;
 		normalize(L);
@@ -101,13 +100,11 @@ void directLight()
 void main()
 {
 	out_Color = vec4(1.0);
-	if((u_textureFlags & 1 ) != 0)
+	if((RenderFlags & 2 ) != 0)
 		out_Color = texture2D(texture0, texCoord0);
 		
-	//if((RenderFlags & 32 ) != 0)
+	//if((RenderFlags & 64 ) != 0)
 		//out_Color = texture2D(texture5, texCoord0);
 	//directLight();
 	//out_Color = vec4(1.0f);
 }
-
-#endif

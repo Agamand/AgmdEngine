@@ -1,26 +1,25 @@
-#version 330
-
-#include "global_uniform.glsl"
-
-
-#ifdef _VERTEX_
+-- Vertex
+#version 400
 in vec3 in_Vertex;
 in vec2 in_TexCoord0;
 out vec2 texCoord0;
 
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
 
 
 
 void main()
 {
-    gl_Position = u_matProjection*u_matView*u_matModel*vec4(in_Vertex,1.0);
+    gl_Position = projectionMatrix*viewMatrix*modelMatrix*vec4(in_Vertex,1.0);
 	texCoord0 = in_TexCoord0;
 }
-#endif
 
-#ifdef _FRAGMENT_
+-- Fragment
+#version 400
 
-uniform int u_textureFlags;
+uniform int RenderFlags;
 uniform sampler2D texture5, texture2;
 uniform samplerCube texture0;
 uniform vec3 u_dir;
@@ -40,7 +39,7 @@ vec3 textureToNormal(vec4 orgNormalColor)
 void directLight()
 {			
 	vec3 N = vec3(0.0f,0.0f,1.0f);
-	if((u_textureFlags & 4 ) != 0)
+	if((RenderFlags & 8 ) != 0)
 		 N = textureToNormal(texture(texture2, texCoord0)); 
 	vec3 L = normalize(lightDir);
 N = vec3(0.0f,0.0f,1.0f);
@@ -58,13 +57,13 @@ void main()
 {
 	out_Color = vec4(1.0);
 	
-	/*if((u_textureFlags & 1 ) != 0)
+	/*if((RenderFlags & 2 ) != 0)
 		out_Color = texture(texture0, texCoord0);
 		
-	if((u_textureFlags & 2 ) != 0)
+	if((RenderFlags & 4 ) != 0)
 		out_Color = texture(texture1, texCoord0);
 		
-	if((u_textureFlags & 3 ) != 0)
+	if((RenderFlags & 6 ) != 0)
 	{
 		vec4 water1 = texture(texture0, texCoord0);
 		vec4 water2 = texture(texture1, texCoord0);
@@ -88,5 +87,3 @@ void main()
 	
 
 }
-
-#endif

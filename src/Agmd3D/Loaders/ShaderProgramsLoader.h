@@ -1,5 +1,5 @@
-#ifndef SHADERPROGRAMSLOADER_H
-#define SHADERPROGRAMSLOADER_H
+#ifndef _SHADERPROGRAMSLOADER_H_
+#define _SHADERPROGRAMSLOADER_H_
 
 #include <Core/Loader.h>
 #include <Core/Shader/ShaderProgram.h>
@@ -8,6 +8,13 @@
 
 namespace Agmd
 {
+	enum ShaderPreprocessor
+	{
+		PREPROCESSOR_UNKNOW,
+		PREPROCESSOR_INCLUDE,
+		PREPROCESSOR_REVISION
+	};
+
     class ShaderProgramsLoader : public Loader<BaseShaderProgram>
     {
     public :
@@ -20,6 +27,9 @@ namespace Agmd
 
     private :
 
+		std::string LoadShader(const std::string& filename, const std::string parentdir = "");
+
+		ShaderPreprocessor preprocessor(const std::string& instruction);
         static void OnError();
 
     };
@@ -27,4 +37,4 @@ namespace Agmd
 }
 
 
-#endif //SHADERPROGRAMSLOADER_H
+#endif /* _SHADERPROGRAMSLOADER_H_ */

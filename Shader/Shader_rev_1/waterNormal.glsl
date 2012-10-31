@@ -1,8 +1,9 @@
+-- Vertex
 #version 330
 
-#include "global_uniform.glsl"
+uniform mat4 projectionMatrix;
+uniform mat4 modelMatrix;
 
-#ifdef _VERTEX_
 in vec3 in_Vertex;
 in vec2 in_TexCoord0;
 
@@ -12,11 +13,11 @@ void main(void)
 {
 	v_texCoord = in_TexCoord0;
 
-	gl_Position = u_matProjection*u_matModel*vec4(in_Vertex,1.0f);
+	gl_Position = projectionMatrix*modelMatrix*vec4(in_Vertex,1.0f);
 }
-#endif
 
-#ifdef _FRAGMENT_
+-- Fragment
+#version 330
 
 #define NUMBERWAVES 4
 
@@ -131,5 +132,3 @@ void main(void)
 	out_Color = vec4(normalToTexture(finalNormal), 1.0);
 	
 }
-
-#endif

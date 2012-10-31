@@ -5,7 +5,7 @@
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Shader/BaseShaderProgram.h>
-
+#include <Core/MatStack.h>
 #include <ctime>
 
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
@@ -154,7 +154,7 @@ namespace Agmd
 		mat3 normalMatrix = mat3(modelMatrix);
 		Renderer::Get().SetCurrentProgram(m_program);
 
-		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
+		MatStack::push(modelMatrix);
 		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
 
 		Renderer::Get().SetTexture(0,m_CubeMap.GetTexture(),TEXTURE_CUBE);
@@ -162,15 +162,14 @@ namespace Agmd
 
 		m_program->SetParameter("u_dir",dir);
 
-		Renderer::Get().Enable(RENDER_TEXTURE0,true);
-		Renderer::Get().Enable(RENDER_TEXTURE1,true);
-		Renderer::Get().Enable(RENDER_TEXTURE2,true);
+		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0 | TEXTURE_UNIT_1 | TEXTURE_UNIT_2);
 
 		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
 		Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());
 		Renderer::Get().SetCurrentProgram(NULL);
+		MatStack::pop();
 		Renderer::Get().DebugCubeMap(m_CubeMap.GetTexture());
 	}
 
@@ -245,7 +244,7 @@ namespace Agmd
 		fbo[1]->Clear();
 		fbo[1]->Bind();
 		Renderer::Get().SetCurrentProgram(m_programWaterNormal);
-		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
+		MatStack::push(modelMatrix);
 		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
 		Renderer::Get().SetViewPort(ivec2(0),ivec2(512));
 		m_programWaterNormal->SetParameter("u_waveParameters",(vec4*)m_PWave,4);
@@ -264,6 +263,7 @@ namespace Agmd
 		Renderer::Get().SetCurrentProgram(NULL);
 		fbo[1]->UnBind();
 		Renderer::Get().SetViewPort(ivec2(0),Renderer::Get().GetScreen());
+		MatStack::pop();
 	}
 
 	void Water::SetScene(Scene* sc)

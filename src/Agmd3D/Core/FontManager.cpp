@@ -3,12 +3,13 @@
 #include <Core/Renderer.h>
 #include <Core/Texture.h>
 #include <Core/Image.h>
+#include <Core/MatStack.h>
 #include <windows.h>
 #include <algorithm>
 #include <vector>
 #include <Debug/Logger.h>
 #include <Debug/New.h>
-
+#pragma warning(disable:4996)
 SINGLETON_IMPL(Agmd::FontManager);
 
 namespace Agmd
@@ -231,7 +232,7 @@ void FontManager::DrawString(const GraphicString& str)
     m_VertexBuffer.Unlock();
 
     // Paramètrage du rendu
-	Renderer::Get().LoadMatrix(MAT_MODEL,mat4(1.0f));
+	MatStack::push(mat4(1.0f));
     Renderer::Get().SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
     Renderer::Get().SetupTextureUnit(0, TXO_COLOR_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
     Renderer::Get().SetupTextureUnit(0, TXO_ALPHA_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
@@ -241,7 +242,7 @@ void FontManager::DrawString(const GraphicString& str)
 
     // Affichage du texte
     Renderer::Get().SetDeclaration(m_Declaration);
-	Renderer::Get().Enable(RENDER_TEXTURE0,true);
+	Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
     Renderer::Get().SetTexture(0, CurFont.Texture.GetTexture());
     Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
     Renderer::Get().SetIndexBuffer(m_IndexBuffer);
@@ -250,7 +251,9 @@ void FontManager::DrawString(const GraphicString& str)
     // Rétablissement des options de rendu
     Renderer::Get().Enable(RENDER_ZWRITE, true);
     Renderer::Get().Enable(RENDER_ALPHABLEND, false);
+	MatStack::pop();
 }
+
 
 
 /////////////////////////////////////////////////////////////

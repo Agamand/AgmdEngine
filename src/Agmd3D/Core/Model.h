@@ -71,9 +71,6 @@ namespace Agmd
 
 		bool operator< (const ModelRenderPass &m) const
 		{
-			// This is the old sort order method which I'm pretty sure is wrong - need to try something else.
-			// Althogh transparent part should be displayed later, but don't know how to sort it
-			// And it will sort by geoset id now.
 			return geoset < m.geoset;
 		}
 	};

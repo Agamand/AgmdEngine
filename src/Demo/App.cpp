@@ -95,8 +95,6 @@ void App::OnInit()
 	MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
 	PhysicsMgr& physicsMgr = PhysicsMgr::Instance();
 
-	//camera.setTarget(vec3(150.82265,167.96919,19.525068));
-	//camera.setPosition(178.62114,-178.86295,22.452559);
 	m_timer = 1000;
 	m_count = 0;
 	m_MatProj3D = glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 10000.0f);
@@ -110,39 +108,23 @@ void App::OnInit()
 	m_fps = new GraphicString(ivec2(50,650),"",Color::black);
 	m_text = new GraphicString(ivec2(50,600),"",Color::black);
 	m_counter = new GraphicString(ivec2(50,630),"",Color::black);
-	//AgmdClient* cl = new AgmdClient("192.168.0.5",4015);
-	//cl->Init();
-//	cl->Start();
-
-	//OpClientMgr::Instance().SetReader(_opcode);
-
-
 
 	m_Scene = new Scene();
 	Texture tex;
-	
-	/*Terrain* ground = new Terrain(ivec2(200,100),ivec2(200,100),"","");
-	tex.CreateFromFile("Texture/gc_h.tga",PXF_A8R8G8B8);
-	ground->SetTextureUnit(tex,5);
-	tex.CreateFromFile("Texture/gc_n.tga",PXF_A8R8G8B8);
-	ground->SetTextureUnit(tex,4);
-	tex.CreateFromFile("Texture/gc_d.tga",PXF_A8R8G8B8);
-	ground->SetTextureUnit(tex,0);
-	ground->MoveTo(0.0f,0.0,-3.0f);*/
-	//m_Scene->AddTerrain(ground);
+
 
 	SkyBox* sky = new SkyBox(200);
-	tex.CreateFromFile("Texture/water_pos_y.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_pos_y.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,0);
-	tex.CreateFromFile("Texture/water_neg_y.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_neg_y.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,1);
-	tex.CreateFromFile("Texture/water_neg_x.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_neg_x.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,2);
-	tex.CreateFromFile("Texture/water_pos_z.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_pos_z.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,3);
-	tex.CreateFromFile("Texture/water_pos_x.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_pos_x.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,4);
-	tex.CreateFromFile("Texture/water_neg_z.tga",PXF_A8R8G8B8);
+	tex.CreateFromFile("Texture/starfield_neg_z.jpg",PXF_A8R8G8B8);
 	sky->SetTexture(tex,5);
 	m_Scene->SetSky(sky);
 
@@ -163,11 +145,6 @@ void App::OnInit()
 	ivec2 size = Renderer::Get().GetScreen();
 	buffer[0] = Renderer::Get().CreateTexture(size,PXF_A8R8G8B8, TEXTURE_2D);
 	buffer[1] = Renderer::Get().CreateTexture(size,PXF_A8R8G8B8, TEXTURE_2D);
-
-
-	use_buffer = buffer[1];
-	use_fbo = fbo[1];
-
 
 	testwindow = new AWindow();
 	testwindow->SetSize(200,200);
@@ -206,41 +183,17 @@ void App::OnInit()
 	physicsMgr.Add(enti);
 	Model* mod;
 
-	//_transfo = *(new ModelTransfo());
 	sphere = CreateBox(vec3(8.0f,2.0f,1.0f),"Texture/bw.png",PT_TRIANGLELIST);
-	//model_test = new Entities(1000.0f, new btSphereShape(5.0f),TO_PHYS(sphere->getPosition()),TYPE_OBJECT);
-	//physicsMgr.Add(model_test);
-	//DynamicCamera* cam = new DynamicCamera();
-	//cam->setLinkTransfo(&sphere->getPosition());
-	//camera = cam;
-	//m_Scene->AddModel(sphere);
-	/* mod= CreatePlane(ivec2(200),ivec2(100),"",PT_TRIANGLELIST);
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,1),0),TO_PHYS(mod->getPosition()),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	m_Scene->AddModel(mod);*/
-
-	/*for(int i = 0; i < 20; i++)
-	{
-		//for(int j = 0; j < i*2+1; j++)
-		//{
-			mod = CreateBox(vec3(5.0f,2.0f,0.5f),"Texture/herbe.32932.png",PT_TRIANGLELIST);
-			float offset = i*2 > 1 ? 2.5f : 0.0f;
-			mod->MoveTo(0.0f,0.0f,3.0f+i*0.70f);
-			enti = new Entities(10.0f,new btBoxShape(btVector3(3.0f,1.0f,0.250f)),TO_PHYS(mod->getPosition()),TYPE_OBJECT);
-			physicsMgr.Add(enti);
-			m_Scene->AddModel(mod);
-		//}
-	}*/
 
 	Renderer::Get().SetCullFace(1);
 }
 
 #define MODULO_FLOAT(a,x) ((a)-(x)*(int)((a)/(x)))
 #define ORIGIN -98.0f
+
 void App::OnUpdate(uint64 time_diff/*in ms*/)
 {
 	m_MatView3D = camera->look();
-	m_MatNormal = mat3(m_MatView3D);
 
 	m_light_angle += (float)M_PI*2*(time_diff/60000.0f);
 	m_light_angle = MODULO_FLOAT(m_light_angle,(float)M_PI);
@@ -262,7 +215,7 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
 			m_Scene->AddModel(p);
 
 			ModelTransfo& _transfo = (p->getPosition());
-			enti = new Entities(1.0f,new btBoxShape(btVector3(4.0f,1.0f,0.5f)),TO_PHYS(_transfo),TYPE_OBJECT);
+			enti = new Entities(20.0f,new btBoxShape(btVector3(4.0f,1.0f,0.5f)),TO_PHYS(_transfo),TYPE_OBJECT);
 			//enti->SetVelocity(ray);
 			PhysicsMgr::Instance().Add(enti);
 			
@@ -302,8 +255,8 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
 
 			for(int i = 0; i < 6; i++)
 			{
-			}
-			*/
+			}*/
+			
 			m_count++;
 			m_timer = 10;
 		}else m_timer -= time_diff;
@@ -320,22 +273,7 @@ void App::OnRender()
 	Renderer::Get().getPipeline()->SetParameter("light",m_light_dir);
 	Renderer::Get().getPipeline()->SetParameter("du",height);
 	
-	m_Scene->Draw(SC_DRAW_SKY | SC_DRAW_MODEL | SC_DRAW_SHADOW);
-
-	/*Renderer::Get().SetCurrentProgram(tesselation_shader);
-	tesselation_shader->SetParameter("TessLevelInner",m_tesslationInner);
-	tesselation_shader->SetParameter("TessLevelOuter",m_tesslationInner);
-	tesselation_shader->SetParameter("du",height);
-	
-	sphere[0]->Render();
-
-	Renderer::Get().SetCurrentProgram(NULL);*/
-
-	//Renderer::Get().SetCurrentProgram(simple_shader);
-	//sphere[1]->Render();
-
-	//Renderer::Get().SetCurrentProgram(NULL);
-
+	m_Scene->Draw(SC_DRAW_SKY | SC_DRAW_MODEL);
 
 	// 3D RENDER END
 
@@ -360,9 +298,6 @@ void App::OnRender()
 	//GUIMgr::Instance().DrawGUI();
 	// 2D RENDER END
 
-	Renderer::Get().getPipeline()->Use(false);
-	PhysicsMgr::Instance().DebugDraw();
-
 	
 
 }
@@ -381,7 +316,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		sphere->MoveTo(camera->getPosition());
 
 		ModelTransfo& _transfo = (sphere->getPosition());
-		enti = new Entities(100000.0f,new btSphereShape(0.5f),TO_PHYS(_transfo),TYPE_OBJECT);
+		enti = new Entities(0.5f,new btSphereShape(0.5f),TO_PHYS(_transfo),TYPE_OBJECT);
 		enti->SetVelocity(ray);
 		PhysicsMgr::Instance().Add(enti);
 	}
@@ -479,7 +414,7 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
 			vertex.color = -1;
 			vertex.normal = vec3(cos(i*angle/stack)*sin(j*M_PI/slice),sin(i*angle/stack)*sin(j*M_PI/slice), cos(j*M_PI/slice));
 			vertex.position = vec3(r*cos(i*angle/stack)*sin(j*M_PI/slice),r*sin(i*angle/stack)*sin(j*M_PI/slice), r*cos(j*M_PI/slice));
-			vertex.texCoords = vec2(i/stack,j/slice);
+			vertex.texCoords = vec2(i/stack*angle/(M_PI*2),j/slice);
 			vertex.boneCount = 0;
 			vertices.push_back(vertex);
 		}

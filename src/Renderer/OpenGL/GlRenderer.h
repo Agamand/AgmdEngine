@@ -40,13 +40,13 @@ namespace Agmd
 
         virtual void SetDeclaration(const Declaration* declaration);
 
-        virtual void DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count) const;
+        virtual void DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count);
 
-        virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count) const;
+        virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count);
 
         virtual uint32 ConvertColor(const Color& color) const;
 
-        virtual void SetTexture(unsigned int Unit, const TextureBase* texture, TTextureType type) const;
+        virtual void SetTexture(unsigned int Unit, const TextureBase* texture, TTextureType type);
 
         virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const;
 
@@ -68,11 +68,11 @@ namespace Agmd
 
 		virtual void setRenderMode(TRenderMode mode);
 
-		virtual BaseShaderProgram* getPipeline();
+		virtual const BaseShaderProgram* getPipeline();
 
 		virtual void ReloadPipeline();
 
-		virtual void SetCurrentProgram(BaseShaderProgram* prog);
+		virtual void SetCurrentProgram( const BaseShaderProgram* prog);
 
 		virtual void SetViewPort(ivec2 xy, ivec2 size);
 
@@ -80,6 +80,7 @@ namespace Agmd
 
     public :
 
+		static PFNGLGETSTRINGIPROC					glGetStringi;
         static PFNGLBINDBUFFERPROC					glBindBuffer;
         static PFNGLDELETEBUFFERSPROC				glDeleteBuffers;
         static PFNGLGENBUFFERSPROC					glGenBuffers;
@@ -111,6 +112,10 @@ namespace Agmd
         static PFNGLGETUNIFORMLOCATIONPROC			glGetUniformLocation;
 		static PFNGLGETACTIVEATTRIBPROC             glGetActiveAttrib;
 		static PFNGLGETATTRIBLOCATIONPROC           glGetAttribLocation;
+		static PFNGLGETACTIVEUNIFORMBLOCKIVPROC     glGetActiveUniformBlock;
+		static PFNGLGETUNIFORMBLOCKINDEXPROC		glGetUniformBlockIndex;
+		static PFNGLUNIFORMBLOCKBINDINGPROC		    glUniformBlockBinding;
+		static PFNGLBINDBUFFERBASEPROC              glBindBufferBase;
         static PFNGLUSEPROGRAMPROC					glUseProgram;
 		static PFNGLUNIFORM1IPROC					glUniform1i;
 		static PFNGLUNIFORM2IPROC					glUniform2i;
@@ -148,8 +153,6 @@ namespace Agmd
 		static PFNGLDELETEFRAMEBUFFERSPROC          glDeleteFramebuffers;
 			
 
-
-
 		static char VertexPipeline[];
 		static char FragmentPipeline[];
 
@@ -179,10 +182,32 @@ namespace Agmd
 
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat4& matrix)
 		{
+			switch(type)
+			{
+				case MAT_VIEW:
+					m_globalValue.m_MatView = matrix;
+					m_needUpdate = true;
+					return;
+				case MAT_PROJECTION:
+					m_globalValue.m_MatProjection = matrix;
+					m_needUpdate = true;
+					return;
+			}
 			if(m_CurrentProgram)
 				m_CurrentProgram->SetParameter(type,matrix);
 			else
 				m_Pipeline.SetParameter(type,matrix);
+		}
+
+		void updateGlobalBuffer()
+		{
+			if(!m_needUpdate)
+				return;
+			GlobalValue* _global = m_globalBuffer.Lock();
+			*_global = m_globalValue;
+			m_globalBuffer.Unlock();
+			
+			m_needUpdate = false;
 		}
 
         virtual void Setup(HWND Hwnd);
@@ -193,26 +218,31 @@ namespace Agmd
 
         virtual BaseBuffer* CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const;
 
+		virtual BaseBuffer* CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint) const;
+
+		virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const;
+
         virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const;
 
     private :
+
         GLRenderer();
         ~GLRenderer();
 
         bool CheckExtension(const std::string& Extension) const;
         void LoadExtensions();
 
-        HWND                   m_Hwnd;
-        HDC                    m_Handle;
-        HGLRC                  m_Context;
-        const GLDeclaration*   m_CurrentDeclaration;
-		unsigned long          m_IndexStride;
-        std::string            m_Extensions;
-		ShaderProgram          m_Pipeline;
-		BaseShaderProgram*	   m_CurrentProgram;
-		(const TextureBase*)   m_TextureBind[MAX_TEXTUREUNIT];
-		uint32				   m_RenderFlags;
-		bool				   m_Reload;
+        HWND						m_Hwnd;
+        HDC							m_Handle;
+        HGLRC						m_Context;
+        const GLDeclaration*		m_CurrentDeclaration;
+		unsigned long				m_IndexStride;
+        std::string					m_Extensions;
+		ShaderProgram				m_Pipeline;
+		const BaseShaderProgram*	m_CurrentProgram;
+		const TextureBase*			m_TextureBind[MAX_TEXTUREUNIT];
+		bool						m_Reload;
+		Buffer<GlobalValue>			m_globalBuffer;
     };
 
 }

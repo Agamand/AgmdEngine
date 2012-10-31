@@ -3,6 +3,7 @@
 
 #include <Config\Fwd.h>
 #include <Core\Shader/BaseShaderProgram.h>
+#include <Core/Buffer/BaseBuffer.h>
 #include <Renderer\OpenGL\GlShader.h>
 #include <Core\Enums.h>
 #include <AgmdDefines.h>
@@ -20,7 +21,8 @@ namespace Agmd
 		{
 			PARAMETER_NOFOUND,
 			PARAMETER_UNIFORM,
-			PARAMETER_ATTRIBUT
+			PARAMETER_ATTRIBUT,
+			PARAMETER_UNIFORM_BLOCK
 		};
 
 		struct Parameter
@@ -37,32 +39,34 @@ namespace Agmd
 		GLShaderProgram(uint32 id);
 		virtual ~GLShaderProgram();
 
-		virtual void SetParameter(std::string name, float value);
-		virtual void SetParameter(std::string name, vec2 value);
-		virtual void SetParameter(std::string name, vec3 value);
-		virtual void SetParameter(std::string name, vec4 value);
+		virtual void SetParameter(std::string name, float value) const;
+		virtual void SetParameter(std::string name, vec2 value) const;
+		virtual void SetParameter(std::string name, vec3 value) const;
+		virtual void SetParameter(std::string name, vec4 value) const;
 
-		virtual void SetParameter(std::string name, int value);
-		virtual void SetParameter(std::string name, ivec2 value);
-		virtual void SetParameter(std::string name, ivec3 value);
-		virtual void SetParameter(std::string name, ivec4 value);
+		virtual void SetParameter(std::string name, int value) const;
+		virtual void SetParameter(std::string name, ivec2 value) const;
+		virtual void SetParameter(std::string name, ivec3 value) const;
+		virtual void SetParameter(std::string name, ivec4 value) const;
 
-		virtual void SetParameter(std::string name, mat2 value);
-		virtual void SetParameter(std::string name, mat3 value);
-		virtual void SetParameter(std::string name, mat4 value);
+		virtual void SetParameter(std::string name, mat2 value) const;
+		virtual void SetParameter(std::string name, mat3 value) const;
+		virtual void SetParameter(std::string name, mat4 value) const;
 
-		virtual void SetParameter(std::string name,	float* value, uint32 count);
-		virtual void SetParameter(std::string name,	vec2* value, uint32 count);
-		virtual void SetParameter(std::string name,	vec3* value, uint32 count);
-		virtual void SetParameter(std::string name,	vec4* value, uint32 count);
-		virtual void SetParameter(std::string name, mat4* value, uint32 count);
+		virtual void SetParameter(std::string name,	float* value, uint32 count) const;
+		virtual void SetParameter(std::string name,	vec2* value, uint32 count) const;
+		virtual void SetParameter(std::string name,	vec3* value, uint32 count) const;
+		virtual void SetParameter(std::string name,	vec4* value, uint32 count) const;
+		virtual void SetParameter(std::string name, mat4* value, uint32 count) const;
 
-		virtual void SetParameter(TMatrixType type,mat4 value);
+		virtual void SetParameter(TMatrixType type,mat4 value) const;
 
-		virtual void Use(bool);
+		virtual void SetParameter(std::string name, const BaseBuffer* buf) const;
+
+		virtual void Use(bool) const;
 	private:
 		void SetupShader();
-		Parameter GetParameter(std::string name);
+		Parameter GetParameter(std::string name) const;
 
 		ParameterMap m_UniformMap;
 		ParameterMap m_AttributMap;

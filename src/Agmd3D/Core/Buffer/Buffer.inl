@@ -1,3 +1,4 @@
+#pragma warning(disable:4996)
 
 template <class T>
 inline Buffer<T>::Buffer(BaseBuffer* buffer) : m_Buffer(buffer)

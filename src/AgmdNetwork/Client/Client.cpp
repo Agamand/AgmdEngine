@@ -31,9 +31,7 @@ namespace AgmdNetwork
 	}
 
 	int Client::Start (){
-		SOCKADDR_IN                 ClientAddr;
 		HANDLE                      hProcessThread;
-		SOCKET                      NewConnection;
 		thread_param         *p;
 
 		if( ( m_ListeningSocket = socket( AF_INET, SOCK_STREAM, 0 ) ) == INVALID_SOCKET ){
@@ -63,7 +61,7 @@ namespace AgmdNetwork
 	void Client::SendPacket(Packet& packet)
 	{
 		ByteBuffer buffer;
-		buffer << (packet.size() + 2);
+		buffer << packet.size();
 		buffer << packet.GetOpcode();
 		buffer.append(packet);
 

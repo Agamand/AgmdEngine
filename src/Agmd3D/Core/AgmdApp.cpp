@@ -13,7 +13,7 @@ namespace Agmd
 	AgmdApp* AgmdApp::m_Application = NULL;
 	
 	AgmdApp::AgmdApp() : 
-	m_Instance (GetModuleHandle("AgmdEngine.dll")),
+	m_Instance (GetModuleHandle("Agmd3D.dll")),
 	m_Hwnd     (NULL),
 	m_IsRunning(true),
 	camera	   (new TPCamera()),

@@ -61,33 +61,30 @@ namespace Agmd
 		Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
 		for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
 			Logger::Log(LOGNORMAL,"%s : %s", CapToString(i->first).c_str(), (i->second ? "OK" : "NO"));
-		//Logger::Log(LOGNORMAL,"Fonctionnalités proposée :");
-		//Logger::Log(LOGNORMAL,"%s",GetExtension().c_str());
-		Logger::Log(LOGNORMAL,"Constante interface :");
-		Logger::Log(LOGNORMAL,"%s",GetConstant().c_str());
+		Logger::Log(LOGNORMAL,"Fonctionnalités proposée : \n");
+		//Logger::Log(LOGNORMAL,GetExtension().c_str());
 		Logger::Log(LOGNORMAL,"");
+		m_needUpdate = false;
 	}
 
 		mat4 Renderer::GetMatView() 
 		{
-			return m_MatView;
+			return m_globalValue.m_MatView;
 		}
 
 		mat4 Renderer::GetMatProjection() 
 		{
-			return m_MatProjection;
+			return m_globalValue.m_MatProjection;
 		}
 
 		void Renderer::SetMatView(mat4 _MatView) 
 		{
-			m_MatView = _MatView;
-			_LoadMatrix(MAT_VIEW, m_MatView);
+			_LoadMatrix(MAT_VIEW, _MatView);
 		}
 
 		void Renderer::SetMatProjection(mat4 _MatProjection)
 		{
-			m_MatProjection = _MatProjection;
-			_LoadMatrix(MAT_PROJECTION, m_MatProjection);
+			_LoadMatrix(MAT_PROJECTION, _MatProjection);
 		}
 
 		void Renderer::SetScreen(ivec2 _screen)
@@ -108,4 +105,25 @@ namespace Agmd
 		{
 			return m_Camera;
 		}
+
+		void Renderer::SetTextureFlag(uint32 flag)
+		{
+			m_TextureFlags = flag;
+		}
+
+		void Renderer::AddTextureFlag(uint32 flag)
+		{
+			m_TextureFlags |= flag;
+		}
+
+		void Renderer::RemoveTextureFlag(uint32 flag)
+		{
+			m_TextureFlags &= ~flag;
+		}
+
+		uint32 Renderer::GetTextureFlag()
+		{
+			return m_TextureFlags;
+		}
+
 }

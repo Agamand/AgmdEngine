@@ -1,6 +1,7 @@
 #include <Core\SkyBox.h>
 #include <Core\Renderer.h>
 #include <Core\MediaManager.h>
+#include <Core/MatStack.h>
 
 namespace Agmd
 {
@@ -20,27 +21,23 @@ namespace Agmd
 
 		mat4 modelMatrix = mat4(1.0f);
 
-
+		MatStack::push(modelMatrix);
 		Renderer::Get().SetCurrentProgram(m_Program);
 
-		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
+		
 		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0,m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-
+		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
 		for(int i = 0; i < 6; i++)
 		{
-			if(m_Texture[i].GetTexture())
-			{
-				Renderer::Get().Enable(TRenderParameter(RENDER_TEXTURE0),true);
-				Renderer::Get().SetTexture(0,m_Texture[i].GetTexture());
-			}
-			else Renderer::Get().Enable(TRenderParameter(RENDER_TEXTURE0),false);
-
+			
+			Renderer::Get().SetTexture(0,m_Texture[i].GetTexture());
 			Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,6*i,6);
 		}
 
 		Renderer::Get().SetCurrentProgram(NULL);
+		MatStack::pop();
 	}
 
 	void SkyBox::SetTexture(Texture tex, uint32 index)

@@ -128,7 +128,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;BulletPhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;BulletPhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -1,5 +1,6 @@
 #include <Core\GUI\AWindow.h>
 #include <Core\Renderer.h>
+#include <Core/MatStack.h>
 
 namespace Agmd
 {
@@ -82,39 +83,32 @@ namespace Agmd
 	{
 		Renderer::Get().SetCurrentProgram(m_Program);
 		mat4 modelMatrix = translate(mat4(1.0f),vec3(m_vAbsolutePosition,0.0f));
-		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
+		MatStack::push(modelMatrix);
 		Renderer::Get().SetDeclaration(m_Declaration);
-		Renderer::Get().Enable(RENDER_TEXTURE0,false);
 		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
 
-		Renderer::Get().Enable(RENDER_TEXTURE1, false);
-		Renderer::Get().Enable(RENDER_TEXTURE2, false);
-		Renderer::Get().Enable(RENDER_TEXTURE3, false);
-
 		Renderer::Get().SetTexture(0, m_Texture.GetTexture());
-		Renderer::Get().Enable(RENDER_TEXTURE0, true);
+		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 24);
-		Renderer::Get().Enable(RENDER_TEXTURE0, false);
 
 		Renderer::Get().SetTexture(1, m_Texture.GetTexture());
-		Renderer::Get().Enable(RENDER_TEXTURE1, true);
+		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_1);
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 24, 12);
-		Renderer::Get().Enable(RENDER_TEXTURE1, false);
 
 		Renderer::Get().SetTexture(2, m_Texture.GetTexture());
-		Renderer::Get().Enable(RENDER_TEXTURE2, true);
+		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_2);
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
-		Renderer::Get().Enable(RENDER_TEXTURE2, false);
+
 
 		//if(m_Font.GetTexture())
 		//{
 			Renderer::Get().SetTexture(3, m_Texture.GetTexture());
-			Renderer::Get().Enable(RENDER_TEXTURE3, true);
+			Renderer::Get().SetTextureFlag(TEXTURE_UNIT_3);
 		//}
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
-		Renderer::Get().Enable(RENDER_TEXTURE3, false);
 		Renderer::Get().SetCurrentProgram(NULL);
+		MatStack::pop();
 	}
 
 	

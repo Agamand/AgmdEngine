@@ -25,6 +25,26 @@
 		return buffer;
 	}
 
+		template <class T>
+	inline Buffer<T> Renderer::CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, const T* data) const
+	{
+		Buffer<T> buffer(CreateUB(size, sizeof(T), flags, bindPoint));
+		if (data)
+			buffer.Fill(data, size);
+
+		return buffer;
+	}
+
+	template <class T>
+	inline Buffer<T> Renderer::CreateTextureBuffer(unsigned long size, unsigned long flags, const T* data) const
+	{
+		Buffer<T> buffer(CreateTB(size, sizeof(T), flags));
+		if (data)
+			buffer.Fill(data, size);
+
+		return buffer;
+	}
+
 	template <class T>
 	inline void Renderer::SetVertexBuffer(unsigned int stream, const Buffer<T>& buffer, unsigned long minVertex, unsigned long maxVertex)
 	{

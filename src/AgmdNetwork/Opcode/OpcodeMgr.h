@@ -9,7 +9,6 @@ namespace AgmdNetwork
 {
 	class Packet;
 
-
 	template<class T>
 	struct OpcodeHandler
 	{

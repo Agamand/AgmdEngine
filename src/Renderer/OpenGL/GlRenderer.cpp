@@ -5,12 +5,12 @@
 #include <Renderer\OpenGL\GlEnums.h>
 #include <Renderer\OpenGL\GlFrameBuffer.h>
 #include <Renderer\OpenGL\GlRenderBuffer.h>
+#include <Core/MatStack.h>
 #include <Utilities\Color.h>
 #include <Utilities\PixelUtils.h>
 #include <Debug\Logger.h>
 #include <Matrix4.h>
 #include <gl\GLU.h>
-#include <Cg/cgGL.h>
 #include <Debug/New.h>
 
 SINGLETON_IMPL(Agmd::GLRenderer)
@@ -38,7 +38,7 @@ namespace Agmd
 
 	#define BUFFER_OFFSET(n) ((char*)NULL + (n))
 
-
+	PFNGLGETSTRINGIPROC				  GLRenderer::glGetStringi;
 	PFNGLBINDBUFFERPROC               GLRenderer::glBindBuffer;
 	PFNGLDELETEBUFFERSPROC            GLRenderer::glDeleteBuffers;
 	PFNGLGENBUFFERSPROC               GLRenderer::glGenBuffers;
@@ -70,6 +70,10 @@ namespace Agmd
 	PFNGLGETUNIFORMLOCATIONPROC       GLRenderer::glGetUniformLocation;
 	PFNGLGETACTIVEATTRIBPROC          GLRenderer::glGetActiveAttrib;
 	PFNGLGETATTRIBLOCATIONPROC        GLRenderer::glGetAttribLocation;
+	PFNGLGETACTIVEUNIFORMBLOCKIVPROC  GLRenderer::glGetActiveUniformBlock;
+	PFNGLGETUNIFORMBLOCKINDEXPROC	  GLRenderer::glGetUniformBlockIndex;
+	PFNGLUNIFORMBLOCKBINDINGPROC	  GLRenderer::glUniformBlockBinding;
+	PFNGLBINDBUFFERBASEPROC           GLRenderer::glBindBufferBase;
 	PFNGLUSEPROGRAMPROC               GLRenderer::glUseProgram;
 	PFNGLUNIFORM1IPROC				  GLRenderer::glUniform1i;
 	PFNGLUNIFORM2IPROC				  GLRenderer::glUniform2i;
@@ -226,11 +230,11 @@ namespace Agmd
 	m_Context           (NULL),
 	m_CurrentDeclaration(NULL),
 	m_Extensions        (""),
-	m_RenderFlags       (0),
 	m_Reload			(false),
-	m_CurrentProgram    (NULL)
+	m_CurrentProgram    (NULL),
+	m_globalBuffer(NULL)
 	{
-		std::memset(m_TextureBind,0,sizeof(void*)*MAX_TEXTUREUNIT);
+		std::memset(m_TextureBind,NULL,sizeof(void*)*MAX_TEXTUREUNIT);
 	}
 
 	GLRenderer::~GLRenderer()
@@ -252,7 +256,8 @@ namespace Agmd
 
 	std::string GLRenderer::GetRendererDesc() const
 	{
-		return std::string("OpenGL ") + reinterpret_cast<const char*>(glGetString(GL_VERSION));
+		
+		return std::string("OpenGL ") + reinterpret_cast<const char*>(glGetString(GL_VERSION)) + ", GLSL " + reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 	}
 
 	void GLRenderer::Setup(HWND Hwnd)
@@ -306,38 +311,43 @@ namespace Agmd
 		m_Context = wglCreateContext(m_Handle);
 		assert(wglMakeCurrent(m_Handle, m_Context));
 
-		// Récupération des extensions supportées
-		m_Extensions = reinterpret_cast<const char*>(glGetString(GL_EXTENSIONS));
-
 		// Chargement des extensions
 		LoadExtensions();
+
+		// Récupération des extensions supportées
+		int n;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &n);
+		for (int i = 0; i < n; i++)
+		{
+			m_Extensions += reinterpret_cast<const char*>(glGetStringi(GL_EXTENSIONS, i));
+			m_Extensions +="\n";
+		}
+
 
 		// States par défaut
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClearDepth(1.0f);
 		glDepthRange(1.0, 0.0);
 		glClearStencil(0x00);
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-		//glShadeModel(GL_SMOOTH);
+
 		glEnable(GL_DEPTH_TEST);
-		//glEnable(GL_CULL_FACE);
-		//glCullFace(GL_BACK);
 
-		//Initialise le shader pipeline
+		//init global buffer
 
-		/*BaseShader* vertex = CreateShader(VertexPipeline,SHADER_VERTEX);
-		BaseShader* fragment = CreateShader(FragmentPipeline,SHADER_PIXEL);
-		BaseShader* eval = CreateShader(tessEval,SHADER_TESS_EVALUATION);
-		BaseShader* control = CreateShader(tessControl,SHADER_TESS_CONTROL);
-		BaseShader* geo = CreateShader(geom,SHADER_GEOMETRY);
+		m_globalBuffer = CreateUB(sizeof(GlobalValue),1, BUF_DYNAMIC, 0);
+		GlobalValue* _global = (GlobalValue*)m_globalBuffer.Lock();
+		*_global = m_globalValue;
+		m_globalBuffer.Unlock();
 
-		m_Pipeline.Create(vertex, eval, control, geo, fragment);*/
+		//init default shader
+
 		m_Pipeline.LoadFromFile("Shader/classic_pipeline.glsl");
 		m_Pipeline.SetParameter("TessLevelInner",1.0f);
 		m_Pipeline.SetParameter("TessLevelOuter",1.0f);
+
 		glFrontFace(GL_CCW);
-		//delete vertex;
-		//delete fragment;
+
+
 	}
 
 	void GLRenderer::CheckCaps()
@@ -376,11 +386,13 @@ namespace Agmd
 
 	void GLRenderer::LoadExtensions()
 	{
+		LOAD_EXTENSION(glGetStringi);
 		LOAD_EXTENSION(glBindBuffer);
 		LOAD_EXTENSION(glDeleteBuffers);
 		LOAD_EXTENSION(glGenBuffers);
 		LOAD_EXTENSION(glBufferData);
 		LOAD_EXTENSION(glBufferSubData);
+		LOAD_EXTENSION(glBindBufferBase);
 		LOAD_EXTENSION(glGetBufferSubData);
 		LOAD_EXTENSION(glMapBuffer);
 		LOAD_EXTENSION(glUnmapBuffer);
@@ -407,6 +419,9 @@ namespace Agmd
 		LOAD_EXTENSION(glGetUniformLocation);
 		LOAD_EXTENSION(glGetActiveAttrib);
 		LOAD_EXTENSION(glGetAttribLocation);
+		LOAD_EXTENSION(glGetActiveUniformBlock);
+		LOAD_EXTENSION(glUniformBlockBinding);
+		LOAD_EXTENSION(glGetUniformBlockIndex);
 		LOAD_EXTENSION(glUseProgram);
 		LOAD_EXTENSION(glUniform1i);
 		LOAD_EXTENSION(glUniform2i);
@@ -485,6 +500,29 @@ namespace Agmd
 		glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
 
 		return new GLIndexBuffer(size, IndexBuffer);
+	}
+
+	BaseBuffer* GLRenderer::CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint) const
+	{
+		unsigned int uniformBuffer = 0;
+		glGenBuffers(1, &uniformBuffer);
+
+		glBindBuffer(GL_UNIFORM_BUFFER, uniformBuffer);
+		glBufferData(GL_UNIFORM_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+		glBindBufferBase(GL_UNIFORM_BUFFER,bindPoint,uniformBuffer);
+
+		return new GLUniformBuffer(size, uniformBuffer, bindPoint);
+	}
+
+	BaseBuffer* GLRenderer::CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const
+	{
+		unsigned int textureBuffer = 0;
+		glGenBuffers(1, &textureBuffer);
+
+		glBindBuffer(GL_TEXTURE_BUFFER, textureBuffer);
+		glBufferData(GL_TEXTURE_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+
+		return new GLTextureBuffer(size, textureBuffer);
 	}
 
 	Declaration* GLRenderer::CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const
@@ -602,17 +640,10 @@ namespace Agmd
 
 	void GLRenderer::SetDeclaration(const Declaration* declaration)
 	{
-		
-		/*for (int i = 0; i < 4; ++i)
-		{
-			glActiveTexture(GL_TEXTURE0 + i);
-			glDisable(GL_TEXTURE_2D);
-		}*/
-
 		m_CurrentDeclaration = static_cast<const GLDeclaration*>(declaration);
 	}
 
-	void GLRenderer::DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count) const
+	void GLRenderer::DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count)
 	{
 		switch (type)
 		{
@@ -625,12 +656,14 @@ namespace Agmd
 		}
 	}
 
-	void GLRenderer::DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count) const
+	void GLRenderer::DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count)
 	{
 		unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
 		const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
 		glPatchParameteri(GL_PATCH_VERTICES, 3);
-
+		LoadMatrix(MAT_MODEL,MatStack::get());
+		updateGlobalBuffer();
+		getPipeline()->SetParameter("u_textureFlags",(int)m_TextureFlags);
 		switch (type)
 		{
 			case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
@@ -657,14 +690,17 @@ namespace Agmd
 		return color.ToABGR();
 	}
 
-	void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture, TTextureType type) const
+	void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture, TTextureType type)
 	{
 
 		if(unit > MAX_TEXTUREUNIT)
 			return;
+		
+		if(m_TextureBind[unit] == texture)
+			return; // NO CHANGE? -> return!
 
 		const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
-
+		glActiveTexture(GL_TEXTURE0+unit);
 		if (texture)
 		{
 			glBindTexture(RGLEnum::Get(oGLTexture->GetType()), oGLTexture->GetGLTexture());
@@ -674,9 +710,7 @@ namespace Agmd
 			glBindTexture(RGLEnum::Get(m_TextureBind[unit]->GetType()), 0);
 		}
 
-		TextureBase* test = (TextureBase*)(NULL+(int)texture);
-
-		//m_TextureBind[unit] = (const TextureBase*)0;
+		m_TextureBind[unit] = texture;
 	}
 
 	TextureBase* GLRenderer::CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags) const
@@ -784,24 +818,6 @@ namespace Agmd
 				glAlphaFunc(GL_GEQUAL,0.7f);
 				break;
 			}
-			case RENDER_TEXTURE0:
-			case RENDER_TEXTURE1:
-			case RENDER_TEXTURE2:
-			case RENDER_TEXTURE3:
-			case RENDER_TEXTURE4:
-			case RENDER_TEXTURE5:
-				if(value)
-				{
-					if(!(m_RenderFlags & 1 << (param - RENDER_TEXTURE0 + 1)))
-						glActiveTexture(GL_TEXTURE0+(param - RENDER_TEXTURE0));
-					m_RenderFlags |= 1 << (param - RENDER_TEXTURE0 + 1);
-				}
-				else 
-					m_RenderFlags &= ~(1 << (param - RENDER_TEXTURE0 + 1));
-				if(m_CurrentProgram)
-					m_CurrentProgram->SetParameter("RenderFlags",(int)m_RenderFlags);
-				else m_Pipeline.SetParameter("RenderFlags",(int)m_RenderFlags);
-				break;
 			case RENDER_CLIP_PLANE0:
 			case RENDER_CLIP_PLANE1:
 			case RENDER_CLIP_PLANE2:
@@ -845,8 +861,43 @@ namespace Agmd
 
 	BaseShader* GLRenderer::CreateShader(std::string source,TShaderType type) const
 	{
-		uint32 shader = glCreateShader(RGLEnum::Get(type));
+		
+		int index;
+		index = source.find_first_of("\n");
+		std::string define = "";
+		switch(type)
+		{
+		case SHADER_VERTEX:
+			if(source.find("_VERTEX_") == std::string::npos)
+				return NULL;
+			define = "#define _VERTEX_\n";
+			break;
+		case SHADER_TESS_CONTROL:
+			if(source.find("_TESS_CONTROL_") == std::string::npos)
+				return NULL;
+			define = "#define _TESS_CONTROL_\n";
+			break;
+		case SHADER_TESS_EVALUATION:
+			if(source.find("_TESS_EVALUATION_") == std::string::npos)
+				return NULL;
+			define = "#define _TESS_EVALUATION_\n";
+			break;
+		case SHADER_GEOMETRY:
+			if(source.find("_GEOMETRY_") == std::string::npos)
+				return NULL;
+			define = "#define _GEOMETRY_\n";
+			break;
+		case SHADER_PIXEL:
+			if(source.find("_FRAGMENT_") == std::string::npos)
+				return NULL;
+			define = "#define _FRAGMENT_\n";
+			break;
+
+		}
+		if(index != std::string::npos)
+			source = source.substr(0,index+1)+define+source.substr(index+1,source.size()-1);
 		const char* src = source.c_str();
+		uint32 shader = glCreateShader(RGLEnum::Get(type));
 		glShaderSource(shader, 1, (const char**)&src, NULL);
     
 		glCompileShader(shader);
@@ -930,10 +981,12 @@ namespace Agmd
 			return NULL;
 		}
 
-		return new GLShaderProgram(id);
+		GLShaderProgram* program = new GLShaderProgram(id);
+		program->SetParameter("globalValue",m_globalBuffer.GetBuffer());
+		return program;
 	}
 
-	BaseShaderProgram* GLRenderer::getPipeline()
+	const BaseShaderProgram* GLRenderer::getPipeline()
 	{
 		if(m_CurrentProgram)
 			return m_CurrentProgram;
@@ -979,7 +1032,7 @@ namespace Agmd
 		m_Reload = true;
 	}
 
-	void GLRenderer::SetCurrentProgram(BaseShaderProgram* prog)
+	void GLRenderer::SetCurrentProgram(const BaseShaderProgram* prog)
 	{
 		m_CurrentProgram = prog;
 		if(m_CurrentProgram)
@@ -987,9 +1040,6 @@ namespace Agmd
 			m_CurrentProgram->Use(true);
 		}
 		else m_Pipeline.Enable();
-
-		_LoadMatrix(MAT_PROJECTION,m_MatProjection);
-		_LoadMatrix(MAT_VIEW,m_MatView);
 	}
 
 	void GLRenderer::SetViewPort(ivec2 xy, ivec2 size)

@@ -15,9 +15,9 @@ namespace Agmd
 
 	std::string  RGLEnum::MatrixName[] =
 	{
-		"modelMatrix",
-		"viewMatrix",
-		"projectionMatrix",
+		"u_matModel",
+		"u_matView",
+		"u_matProjection",
 		"texture0Matrix",
 		"texture1Matrix",
 		"texture2Matrix",

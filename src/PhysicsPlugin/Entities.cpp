@@ -30,7 +30,7 @@ namespace Agmd
 
 		m_Rigid = new btRigidBody(cInfo);
 		m_Rigid->setContactProcessingThreshold(BT_LARGE_FLOAT);
-		m_Rigid->setFriction(0.5f);
+		m_Rigid->setFriction(1.0f);
 	}
 
 	void Entities::Prepare()

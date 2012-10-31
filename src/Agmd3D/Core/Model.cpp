@@ -3,6 +3,7 @@
 #include <Core/Renderer.h>
 #include <Debug/Exception.h>
 #include <Debug/New.h>
+#include <Core/MatStack.h>
 
 
 namespace Agmd
@@ -65,30 +66,28 @@ namespace Agmd
 	void Model::Render() const
 	{
 		mat4 modelMatrix = m_transfo.ModelMatrix();
-		mat3 normalMatrix = mat3(modelMatrix);
-		Renderer::Get().LoadMatrix(MAT_MODEL,modelMatrix);
-		Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
-
+		MatStack::push(modelMatrix);
 		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
 
 		for(uint32 i = 0; i < m_RenderPass.size(); i++)
 		{
+			uint32 textureFlags = 0;
 			for(uint32 j = 0; j < MAX_TEXTUREUNIT; j++)
 			{
 				if(m_RenderPass[i].m_Textures[j].use)
 				{
-					Renderer::Get().Enable(TRenderParameter(RENDER_TEXTURE0+j),true);
 					Renderer::Get().SetTexture(j, m_RenderPass[i].m_Textures[j].tex.GetTexture());
-				}else Renderer::Get().Enable(TRenderParameter(RENDER_TEXTURE0+j),false);
+					textureFlags |= 1 << j;
+				}
 			}
-
+			Renderer::Get().SetTextureFlag(textureFlags);			
 			Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, m_RenderPass[i].indexStart, m_RenderPass[i].indexCount);
 		}
 
 
-
+		MatStack::pop();
 	}
 
 	void Model::Rotate(float angle, vec3 vector)

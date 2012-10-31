@@ -1,5 +1,9 @@
+
+
 #include <Renderer\OpenGL\GlShaderProgram.h>
+#include <Renderer\OpenGL\GlBuffer.h>
 #include <Renderer\OpenGL\GlRenderer.h>
+
 
 namespace Agmd
 {
@@ -42,6 +46,20 @@ namespace Agmd
 			var.type = PARAMETER_ATTRIBUT;
 			m_AttributMap[name] = var;
 		}
+
+		/*GLRenderer::glGetProgramiv( m_id, GL_ACTIVE_UNIFORM_BLOCKS, &n );
+
+		for( int i = 0 ; i < n ; i++ )
+		{
+			Parameter var;
+			char name[30] = "\0";
+			int32 length = 0;
+			GLRenderer::glGetActiveUniformBlock( m_id, i,GL_UNIFORM_BLOCK_NAME_LENGTH,&length);
+			var.loc = GLRenderer::glGetAttribLocation( m_id, name );
+			var.type = PARAMETER_UNIFORM_BLOCK;
+			m_AttributMap[name] = var;
+		}*/
+
 		Use(true);
 		SetParameter("texture0",0);
 		SetParameter("texture1",1);
@@ -54,30 +72,27 @@ namespace Agmd
 		for(int i = 0; i < MAX_APIMATRIX; i++)
 		{
 			Parameter par = GetParameter(RGLEnum::GetName((TMatrixType)(MAT_MODEL+i)));
-			if(par.type == PARAMETER_UNIFORM)
-			{
-				m_APIMatrix[i] = par;
-			}
+			m_APIMatrix[i] = par;
 		}
 	}
 
-	GLShaderProgram::Parameter GLShaderProgram::GetParameter(std::string name)
+	GLShaderProgram::Parameter GLShaderProgram::GetParameter(std::string name) const
 	{
 		Parameter var;
 		var.type = PARAMETER_NOFOUND;
-
-		if(m_UniformMap.find(name) != m_UniformMap.end())
+		ParameterMap::const_iterator itr;
+		if((itr = m_UniformMap.find(name)) != m_UniformMap.end())
 		{
-			return m_UniformMap[name];
+			return itr->second;
 		}
-		if(m_AttributMap.find(name) != m_AttributMap.end())
+		if((itr = m_AttributMap.find(name)) != m_AttributMap.end())
 		{
-			return m_AttributMap[name];
+			return itr->second;
 		}
 		return var;
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, float value)
+	void GLShaderProgram::SetParameter(std::string name, float value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -88,7 +103,7 @@ namespace Agmd
 
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec2 value)
+	void GLShaderProgram::SetParameter(std::string name, vec2 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -97,7 +112,7 @@ namespace Agmd
 			GLRenderer::glVertexAttrib2f(var.loc, value.x, value.y);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec3 value)
+	void GLShaderProgram::SetParameter(std::string name, vec3 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -106,7 +121,7 @@ namespace Agmd
 			GLRenderer::glVertexAttrib3f(var.loc, value.x, value.y, value.z);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec4 value)
+	void GLShaderProgram::SetParameter(std::string name, vec4 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -115,56 +130,56 @@ namespace Agmd
 			GLRenderer::glVertexAttrib4f(var.loc, value.x, value.y, value.z, value.w);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, int value)
+	void GLShaderProgram::SetParameter(std::string name, int value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniform1i(var.loc, value);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, ivec2 value)
+	void GLShaderProgram::SetParameter(std::string name, ivec2 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniform2i(var.loc, value.x, value.y);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, ivec3 value)
+	void GLShaderProgram::SetParameter(std::string name, ivec3 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniform3i(var.loc, value.x, value.y, value.z);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, ivec4 value)
+	void GLShaderProgram::SetParameter(std::string name, ivec4 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniform4i(var.loc, value.x, value.y, value.z, value.w);
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, mat2 value)
+	void GLShaderProgram::SetParameter(std::string name, mat2 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniformMatrix2fv(var.loc, 1, 0, value_ptr(value));
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, mat3 value)
+	void GLShaderProgram::SetParameter(std::string name, mat3 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniformMatrix3fv(var.loc, 1, 0, value_ptr(value));
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, mat4 value)
+	void GLShaderProgram::SetParameter(std::string name, mat4 value) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, float* value, uint32 count)
+	void GLShaderProgram::SetParameter(std::string name, float* value, uint32 count) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -177,7 +192,7 @@ namespace Agmd
 		}
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec2* value, uint32 count)
+	void GLShaderProgram::SetParameter(std::string name, vec2* value, uint32 count) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -190,7 +205,7 @@ namespace Agmd
 		}
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec3* value, uint32 count)
+	void GLShaderProgram::SetParameter(std::string name, vec3* value, uint32 count) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -203,7 +218,7 @@ namespace Agmd
 		}
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, vec4* value, uint32 count)
+	void GLShaderProgram::SetParameter(std::string name, vec4* value, uint32 count) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -216,7 +231,7 @@ namespace Agmd
 		}
 	}
 
-	void GLShaderProgram::SetParameter(std::string name, mat4* value, uint32 count)
+	void GLShaderProgram::SetParameter(std::string name, mat4* value, uint32 count) const
 	{
 		Parameter var = GetParameter(name);
 		if(var.type == PARAMETER_UNIFORM)
@@ -229,14 +244,21 @@ namespace Agmd
 		}
 	}
 
-	void GLShaderProgram::SetParameter(TMatrixType type,mat4 value)
+	void GLShaderProgram::SetParameter(TMatrixType type,mat4 value) const
 	{
 		Parameter var = m_APIMatrix[type];
 		if(var.type == PARAMETER_UNIFORM)
 			GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
 	}
 
-	void GLShaderProgram::Use(bool use)
+	void GLShaderProgram::SetParameter(std::string name, const BaseBuffer* buf) const
+	{
+		int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
+		if(index)
+			GLRenderer::glUniformBlockBinding(m_id,static_cast<const GLUniformBuffer*>(buf)->GetBindPoint(), index);
+	}
+
+	void GLShaderProgram::Use(bool use) const
 	{
  		GLRenderer::glUseProgram(use ? m_id : 0);
 	}

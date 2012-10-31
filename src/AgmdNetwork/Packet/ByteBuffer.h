@@ -18,22 +18,24 @@ namespace AgmdNetwork
 	
 
 	template<size_t T>
-		inline void convert(char *val)
+	inline void convert(char *val)
 	{
-		return;
 		std::swap(*val, *(val + T - 1));
 		convert<T - 2>(val + 1);
 	}
 
 	template<> inline void convert<0>(char *) {}
-	template<> inline void convert<1>(char *) {}            // ignore central byte
+	template<> inline void convert<1>(char *) {}
 
 	template<typename T> inline void apply(T *val)
 	{
 		convert<sizeof(T)>((char *)(val));
 	}
 
-
+	
+	#define AGMD_BIGENDIAN 1
+	#define AGMD_LITTLEENDIAN 0
+	#define AGMD_ENDIAN AGMD_LITTLEENDIAN
 	#if AGMD_ENDIAN == AGMD_BIGENDIAN
 	template<typename T> inline void EndianConvert(T& val) { apply<T>(&val); }
 	template<typename T> inline void EndianConvertReverse(T&) { }
@@ -182,7 +184,6 @@ namespace AgmdNetwork
 				return *this;
 			}
 
-			// floating points
 			ByteBuffer &operator<<(float value)
 			{
 				append<float>(value);
@@ -424,7 +425,6 @@ namespace AgmdNetwork
 					append(buffer.contents(), buffer.wpos());
 			}
 
-			// can be used in SMSG_MONSTER_MOVE opcode
 			void appendPackXYZ(float x, float y, float z)
 			{
 				uint32 packed = 0;
@@ -629,4 +629,4 @@ namespace AgmdNetwork
 	}
 }
 
-#endif //BYTEBUFFER_H
+#endif /*BYTEBUFFER_H*/

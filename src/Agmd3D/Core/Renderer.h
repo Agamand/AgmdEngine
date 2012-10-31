@@ -48,13 +48,13 @@ namespace Agmd
 
         virtual void SetDeclaration(const Declaration* declaration) = 0;
 
-        virtual void DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count) const = 0;
+        virtual void DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count) = 0;
 
-        virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count) const = 0;
+        virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count) = 0;
 
         virtual uint32 ConvertColor(const Color& color) const = 0;
 
-        virtual void SetTexture(unsigned int unit, const TextureBase* texture, TTextureType type = TEXTURE_2D) const = 0;
+        virtual void SetTexture(unsigned int unit, const TextureBase* texture, TTextureType type = TEXTURE_2D) = 0;
 
         virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const = 0;
 
@@ -76,11 +76,11 @@ namespace Agmd
 
 		virtual void setRenderMode(TRenderMode mode) = 0;
 
-		virtual BaseShaderProgram* getPipeline() = 0;
+		virtual const BaseShaderProgram* getPipeline() = 0;
 
 		virtual void ReloadPipeline() = 0;
 
-		virtual void SetCurrentProgram(BaseShaderProgram* prog) = 0;
+		virtual void SetCurrentProgram(const BaseShaderProgram* prog) = 0;
 
 		virtual void SetViewPort(ivec2 xy, ivec2 size) = 0;
 		
@@ -98,6 +98,10 @@ namespace Agmd
         template <class T> Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
         template <class T> Buffer<T> CreateIndexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
+
+        template <class T> Buffer<T> CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, const T* data = NULL) const;
+
+        template <class T> Buffer<T> CreateTextureBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
         template <class T> void SetVertexBuffer(unsigned int stream, const Buffer<T>& buffer, unsigned long minVertex = 0, unsigned long maxVertex = 0);
 
@@ -119,12 +123,24 @@ namespace Agmd
 		void SetCamera(Camera* cam);
 		Camera* getCamera();
 
+		void SetTextureFlag(uint32 flag);
+		void AddTextureFlag(uint32 flag);
+		void RemoveTextureFlag(uint32 flag);
+		uint32 GetTextureFlag();
+
+
 
 		void SetMatView(mat4 _MatView);
 		void SetMatProjection(mat4 _MatProjection);
 		void SetScreen(ivec2 _screen);
 
     protected :
+		struct GlobalValue
+		{
+			mat4 m_MatProjection;
+			mat4 m_MatView;
+			uint32 m_RenderFlags;
+		};
 
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat2& matrix) = 0;
 
@@ -140,13 +156,19 @@ namespace Agmd
 
         virtual BaseBuffer* CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
+		virtual BaseBuffer* CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint) const = 0;
+
+		virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
+
         virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const = 0;
 
         std::map<TCapability, bool> m_Capabilities;
 
-		mat4 m_MatView;
-		mat4 m_MatProjection;
+		GlobalValue m_globalValue;
+		uint32 m_TextureFlags;
+		bool m_needUpdate;
 		ivec2 m_Screen;
+
 
 		Camera* m_Camera;
 

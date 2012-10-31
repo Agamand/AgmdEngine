@@ -140,7 +140,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AgmdEngine.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Agmd3D.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
@@ -172,7 +172,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AgmdEngine.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Agmd3D.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -208,7 +208,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AgmdEngine.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Agmd3D.lib;AgmdMaths.lib;AgmdUtilities.lib;opengl32.lib;glu32.lib;cgGL.lib;cg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|x64'">

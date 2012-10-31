@@ -1,7 +1,8 @@
 template <int Type>
-inline GLBuffer<Type>::GLBuffer(unsigned long count, unsigned int buffer) :
-BaseBuffer(count),
-m_Buffer   (buffer)
+inline GLBuffer<Type>::GLBuffer(unsigned long count, unsigned int buffer, int bindPoint) :
+BaseBuffer	(count),
+m_Buffer	(buffer),
+m_bindPoint	(bindPoint)
 {}
 
 template <int Type>
@@ -15,6 +16,18 @@ template <int Type>
 inline unsigned int GLBuffer<Type>::GetBuffer() const
 {
     return m_Buffer;
+}
+
+template <int Type>
+inline int GLBuffer<Type>::GetBindPoint() const
+{
+    return -1;
+}
+
+template<>
+inline int GLBuffer<GL_UNIFORM_BUFFER>::GetBindPoint() const
+{
+	return m_bindPoint;
 }
 
 template <int Type>

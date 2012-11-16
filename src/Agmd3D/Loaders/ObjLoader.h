@@ -2,7 +2,7 @@
 #define OBJLOADER_H
 
 #include <Core/Loader.h>
-#include <Core/Model.h>
+#include <Core/SceneObject/Model.h>
 #include <Core/Enums.h>
 #include <istream>
 

@@ -1,0 +1,15 @@
+digraph "J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdPhysics/Core" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d1c48ba94c024ec0fa82e8ddbf62b59c {
+    graph [ bgcolor="#ddddee", pencolor="black", label="AgmdPhysics" fontname="Helvetica", fontsize="10", URL="dir_d1c48ba94c024ec0fa82e8ddbf62b59c.html"]
+  dir_d268f1ee48f6d35fb3e1a923d2af6660 [shape=box, label="Core", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_d268f1ee48f6d35fb3e1a923d2af6660.html"];
+  }
+  dir_682c3e1cede5bf550de955b8c1b8ffb3 [shape=box label="Maths" URL="dir_682c3e1cede5bf550de955b8c1b8ffb3.html"];
+  dir_881820c7d6a1c17ab020b6a1c0e22e58 [shape=box label="Config" URL="dir_881820c7d6a1c17ab020b6a1c0e22e58.html"];
+  dir_354bf06bb292f6b1bb56feb813a6a498 [shape=box label="Utilities" URL="dir_354bf06bb292f6b1bb56feb813a6a498.html"];
+  dir_d268f1ee48f6d35fb3e1a923d2af6660->dir_682c3e1cede5bf550de955b8c1b8ffb3 [headlabel="3", labeldistance=1.5 headhref="dir_000015_000014.html"];
+  dir_d268f1ee48f6d35fb3e1a923d2af6660->dir_881820c7d6a1c17ab020b6a1c0e22e58 [headlabel="8", labeldistance=1.5 headhref="dir_000015_000004.html"];
+  dir_d268f1ee48f6d35fb3e1a923d2af6660->dir_354bf06bb292f6b1bb56feb813a6a498 [headlabel="1", labeldistance=1.5 headhref="dir_000015_000022.html"];
+}

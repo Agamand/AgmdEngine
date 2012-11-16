@@ -101,11 +101,11 @@ namespace Agmd
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
 
 
-		//if(m_Font.GetTexture())
-		//{
-			Renderer::Get().SetTexture(3, m_Texture.GetTexture());
+		if(m_Font.GetTexture())
+		{
+			Renderer::Get().SetTexture(3, m_Font.GetTexture());
 			Renderer::Get().SetTextureFlag(TEXTURE_UNIT_3);
-		//}
+		}else Renderer::Get().SetTextureFlag(0);
 		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
 		Renderer::Get().SetCurrentProgram(NULL);
 		MatStack::pop();
@@ -216,8 +216,8 @@ namespace Agmd
 		indices.push_back(5);
 		indices.push_back(8);
 		indices.push_back(5);
-		indices.push_back(8);
 		indices.push_back(9);
+		indices.push_back(8);
 
 		indices.push_back(6);
 		indices.push_back(7);
@@ -237,8 +237,8 @@ namespace Agmd
 		indices.push_back(10);
 		indices.push_back(13);
 		indices.push_back(10);
-		indices.push_back(13);
 		indices.push_back(14);
+		indices.push_back(13);
 
 		indices.push_back(5);
 		indices.push_back(6);

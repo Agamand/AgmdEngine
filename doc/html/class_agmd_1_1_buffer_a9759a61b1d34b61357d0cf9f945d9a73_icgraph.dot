@@ -1,0 +1,17 @@
+digraph "Agmd::Buffer::Lock"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::Buffer::Lock",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::FontManager::\lDrawString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_font_manager.html#a3dd0d062b1b992e349faf5d8cf7a6f2b"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::AWindow::OnSizeChanged",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_a_window.html#a3350ddebc8fea2807968939d8a30b059"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Agmd::GLRenderer::Setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_renderer.html#a64fceaa45395a3a9a8fe6dd6217b5494"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Agmd::GLRenderer::update\lGlobalBuffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_renderer.html#af2d4d5e6c6ea157f36d7e098b351d059"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Agmd::GLRenderer::DrawIndexed\lPrimitives",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_renderer.html#a38a778524f313ae4e23b281fb22ea291"];
+}

@@ -1,8 +1,8 @@
 #include <Core/FontManager.h>
 #include <Core/GraphicString.h>
 #include <Core/Renderer.h>
-#include <Core/Texture.h>
-#include <Core/Image.h>
+#include <Core/Texture/Texture.h>
+#include <Core/Texture/Image.h>
 #include <Core/MatStack.h>
 #include <windows.h>
 #include <algorithm>
@@ -124,7 +124,7 @@ void FontManager::LoadFont(const std::string& FontName, int Quality)
             unsigned char* CurPixel = Data + (i + j * TexSize) * 3;
             ImgFont.SetPixel(i, j, Color(CurPixel[0], CurPixel[1], CurPixel[2], CurPixel[0]));
         }
-    ImgFont.Flip();
+    //ImgFont.Flip();
 
     // Destruction des ressources
     DeleteObject(FontHandle);
@@ -132,7 +132,7 @@ void FontManager::LoadFont(const std::string& FontName, int Quality)
     DeleteDC(Hdc);
 
     // Création de la texture
-    m_Fonts[FontName].Texture.CreateFromImage(ImgFont, PXF_A8L8, TEXTURE_2D, TEX_NOMIPMAP, FontName);
+    m_Fonts[FontName].Texture.CreateFromImage(ImgFont, PXF_A8L8, TEX_NOMIPMAP, FontName);
 
     std::copy(CharSize, CharSize + 256, m_Fonts[FontName].CharSize);
 

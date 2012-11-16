@@ -7,7 +7,8 @@
 #include <AgmdMaths\Vector3.h>
 #include <AgmdMaths\Matrix4.h>
 #include <AgmdUtilities\Utilities\Singleton.h>
-#include <Agmd3D\Core\Model.h>
+#include <Agmd3D\Core\SceneObject\Model.h>
+#include <Agmd3D\Core\SceneObject\Displayable.h>
 #include <Agmd3D\Core\Shader\ShaderProgram.h>
 #include <Agmd3D\Core\GUI\AWindow.h>
 
@@ -71,7 +72,7 @@ private :
 	Agmd::BaseShaderProgram* shader2D;
 	Agmd::GraphicString* m_fps;
 	Agmd::GraphicString* m_counter;
-	Agmd::ModelTransfo*	 m_sol[5];
+	Agmd::TransformPtr	 m_sol[5];
 
 
 
@@ -87,10 +88,11 @@ private :
 	
 
 	//TEST 2
-	Agmd::TextureBase* buffer[2];
+	Agmd::Texture buffer[2];
 	Agmd::FrameBuffer* fbo[2];
+	Agmd::RenderBuffer* rbo;
 
-	Agmd::TextureBase* use_buffer;
+	Agmd::Texture use_buffer;
 	Agmd::FrameBuffer* use_fbo;
 	Agmd::AWindow* testwindow;
 

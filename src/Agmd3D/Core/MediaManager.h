@@ -7,8 +7,8 @@
 #include <Utilities/StringUtils.h>
 #include <Utilities/SmartPtr.h>
 #include <Core/Loader.h>
-#include <Core/Model.h>
-#include <Core/Image.h>
+#include <Core/SceneObject/Model.h>
+#include <Core/Texture/Image.h>
 #include <Debug/Exception.h>
 #include <Debug/Logger.h>
 #include <algorithm>

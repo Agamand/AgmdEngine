@@ -1,0 +1,96 @@
+\hypertarget{_byte_buffer_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Byte\-Buffer.h File Reference}
+\label{_byte_buffer_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Byte\-Buffer.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Byte\-Buffer.\-h}}
+}
+{\ttfamily \#include $<$Agmd\-Defines.\-h$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_agmd_network_1_1_byte_buffer_exception}{Agmd\-Network\-::\-Byte\-Buffer\-Exception}
+\item 
+class \hyperlink{class_agmd_network_1_1_byte_buffer_position_exception}{Agmd\-Network\-::\-Byte\-Buffer\-Position\-Exception}
+\item 
+class \hyperlink{class_agmd_network_1_1_byte_buffer_source_exception}{Agmd\-Network\-::\-Byte\-Buffer\-Source\-Exception}
+\item 
+class \hyperlink{class_agmd_network_1_1_byte_buffer}{Agmd\-Network\-::\-Byte\-Buffer}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd_network}{Agmd\-Network}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_byte_buffer_8h_aa367b75c5aed883fef5befbdf04835a4}{snprintf}~sprintf\-\_\-s
+\item 
+\#define \hyperlink{_byte_buffer_8h_af0cc987a1e1bf279faf3f4fde4530875}{A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N}~1
+\item 
+\#define \hyperlink{_byte_buffer_8h_af8923d42550ab4721ecf8b60ee4d8b2d}{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}~0
+\item 
+\#define \hyperlink{_byte_buffer_8h_aaeabd54ffcf8fd003722cccf95534a1c}{A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N}~\hyperlink{_byte_buffer_8h_af8923d42550ab4721ecf8b60ee4d8b2d}{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$size\-\_\-t T$>$ }\\void \hyperlink{namespace_agmd_network_a256576565cd4e7c6af28dd6e748a9787}{Agmd\-Network\-::convert} (char $\ast$val)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{namespace_agmd_network_a01a9dc5fb0696e41129ce692c83e872a}{Agmd\-Network\-::convert$<$ 0 $>$} (char $\ast$)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{namespace_agmd_network_af66f7e3604a38446e4db9bb211e4190c}{Agmd\-Network\-::convert$<$ 1 $>$} (char $\ast$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespace_agmd_network_af608360b13f761af72d9164869912d06}{Agmd\-Network\-::apply} (T $\ast$val)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespace_agmd_network_a99165d18c9ba6f33bea3804804884645}{Agmd\-Network\-::\-Endian\-Convert} (T \&)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespace_agmd_network_a081d2d71e485ae0bf18aa0640fc021b1}{Agmd\-Network\-::\-Endian\-Convert\-Reverse} (T \&val)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespace_agmd_network_a7e4a8b775701d9d8014322307485094c}{Agmd\-Network\-::\-Endian\-Convert} (T $\ast$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespace_agmd_network_a4fbe4d8a3e7b7607fba261182b69189c}{Agmd\-Network\-::\-Endian\-Convert\-Reverse} (T $\ast$)
+\item 
+void \hyperlink{namespace_agmd_network_a0f5e8a38a134540f1926266094fa6590}{Agmd\-Network\-::\-Endian\-Convert} (\hyperlink{_agmd_defines_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8} \&)
+\item 
+void \hyperlink{namespace_agmd_network_ad016f12e306c7c11d3e61ec0a35f089f}{Agmd\-Network\-::\-Endian\-Convert} (\hyperlink{_agmd_defines_8h_ae47c588f3ab8c61121c1c7ab7edc47cd}{int8} \&)
+\item 
+void \hyperlink{namespace_agmd_network_a251f7e4a9248cc2c3d7ebc11fecdd29e}{Agmd\-Network\-::\-Endian\-Convert\-Reverse} (\hyperlink{_agmd_defines_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8} \&)
+\item 
+void \hyperlink{namespace_agmd_network_aa9c5b42b0d86e72d69b38ecabf8f40c7}{Agmd\-Network\-::\-Endian\-Convert\-Reverse} (\hyperlink{_agmd_defines_8h_ae47c588f3ab8c61121c1c7ab7edc47cd}{int8} \&)
+\item 
+{\footnotesize template$<$typename T $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_a1b6b414b745a2f95cbe6ed153ca9c968}{Agmd\-Network\-::operator$<$$<$} (Byte\-Buffer \&b, std\-::vector$<$ T $>$ v)
+\item 
+{\footnotesize template$<$typename T $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_aade20a128045f42c9b50ca9612149fef}{Agmd\-Network\-::operator$>$$>$} (Byte\-Buffer \&b, std\-::vector$<$ T $>$ \&v)
+\item 
+{\footnotesize template$<$typename T $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_a24e111d911861a44f287dce3abb79817}{Agmd\-Network\-::operator$<$$<$} (Byte\-Buffer \&b, std\-::list$<$ T $>$ v)
+\item 
+{\footnotesize template$<$typename T $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_a9a0459aae258ac47a2e9c2797eb308fd}{Agmd\-Network\-::operator$>$$>$} (Byte\-Buffer \&b, std\-::list$<$ T $>$ \&v)
+\item 
+{\footnotesize template$<$typename K , typename V $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_a30c0870f1dbd862f97442c4f0af81efa}{Agmd\-Network\-::operator$<$$<$} (Byte\-Buffer \&b, std\-::map$<$ K, V $>$ \&m)
+\item 
+{\footnotesize template$<$typename K , typename V $>$ }\\Byte\-Buffer \& \hyperlink{namespace_agmd_network_a2658160a681faa3a85e2dee26e138d4a}{Agmd\-Network\-::operator$>$$>$} (Byte\-Buffer \&b, std\-::map$<$ K, V $>$ \&m)
+\item 
+{\footnotesize template$<$$>$ }\\std\-::string \hyperlink{namespace_agmd_network_ae6866b9da4f774b45ca83c247aecd3f8}{Agmd\-Network\-::\-Byte\-Buffer\-::read$<$ std\-::string $>$} ()
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{namespace_agmd_network_a4b2514d172a6ea4aaf29538b9dd5858c}{Agmd\-Network\-::\-Byte\-Buffer\-::read\-\_\-skip$<$ std\-::string $>$} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_byte_buffer_8h_af0cc987a1e1bf279faf3f4fde4530875}{\index{Byte\-Buffer.\-h@{Byte\-Buffer.\-h}!A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N}}
+\index{A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N}!ByteBuffer.h@{Byte\-Buffer.\-h}}
+\subsubsection[{A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-G\-M\-D\-\_\-\-B\-I\-G\-E\-N\-D\-I\-A\-N~1}}\label{_byte_buffer_8h_af0cc987a1e1bf279faf3f4fde4530875}
+\hypertarget{_byte_buffer_8h_aaeabd54ffcf8fd003722cccf95534a1c}{\index{Byte\-Buffer.\-h@{Byte\-Buffer.\-h}!A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N}}
+\index{A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N}!ByteBuffer.h@{Byte\-Buffer.\-h}}
+\subsubsection[{A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-G\-M\-D\-\_\-\-E\-N\-D\-I\-A\-N~{\bf A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}}}\label{_byte_buffer_8h_aaeabd54ffcf8fd003722cccf95534a1c}
+\hypertarget{_byte_buffer_8h_af8923d42550ab4721ecf8b60ee4d8b2d}{\index{Byte\-Buffer.\-h@{Byte\-Buffer.\-h}!A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}}
+\index{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N@{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}!ByteBuffer.h@{Byte\-Buffer.\-h}}
+\subsubsection[{A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-G\-M\-D\-\_\-\-L\-I\-T\-T\-L\-E\-E\-N\-D\-I\-A\-N~0}}\label{_byte_buffer_8h_af8923d42550ab4721ecf8b60ee4d8b2d}
+\hypertarget{_byte_buffer_8h_aa367b75c5aed883fef5befbdf04835a4}{\index{Byte\-Buffer.\-h@{Byte\-Buffer.\-h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!ByteBuffer.h@{Byte\-Buffer.\-h}}
+\subsubsection[{snprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define snprintf~sprintf\-\_\-s}}\label{_byte_buffer_8h_aa367b75c5aed883fef5befbdf04835a4}

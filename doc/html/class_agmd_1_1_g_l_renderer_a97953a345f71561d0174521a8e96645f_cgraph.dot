@@ -1,0 +1,19 @@
+digraph "Agmd::GLRenderer::SetupTextureUnit"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::GLRenderer::SetupTextureUnit",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::RGLEnum::Get",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_r_g_l_enum.html#a068b1f934454cf573d301c7375b4e431"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AgmdUtilities::Color\l::ToFloat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#a1883c09568d27ee49a120c4e0dd44666"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="AgmdUtilities::Color\l::GetRed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#a40d77aafec227fe98e0efbbcf7c3922b"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="AgmdUtilities::Color\l::GetGreen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#a4a054190138513e2243be3ea4b0d58de"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="AgmdUtilities::Color\l::GetBlue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#aa04427de40c66eba4758f2432f4fe070"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="AgmdUtilities::Color\l::GetAlpha",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#a92247903675f8e49fee46a3da21919e4"];
+}

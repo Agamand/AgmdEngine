@@ -1,9 +1,7 @@
-
-
 #include <Renderer\OpenGL\GlShaderProgram.h>
 #include <Renderer\OpenGL\GlBuffer.h>
+#include <Renderer\OpenGL\GlUniformBuffer.h>
 #include <Renderer\OpenGL\GlRenderer.h>
-
 
 namespace Agmd
 {
@@ -67,6 +65,7 @@ namespace Agmd
 		SetParameter("texture3",3);
 		SetParameter("texture4",4);
 		SetParameter("texture5",5);
+		SetParameter("u_shadowMap",10);
 		Use(false);
 
 		for(int i = 0; i < MAX_APIMATRIX; i++)
@@ -255,7 +254,7 @@ namespace Agmd
 	{
 		int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
 		if(index)
-			GLRenderer::glUniformBlockBinding(m_id,static_cast<const GLUniformBuffer*>(buf)->GetBindPoint(), index);
+			GLRenderer::glUniformBlockBinding(m_id,static_cast<const GLUniformBuffer*>(buf)->getBindPoint(), index);
 	}
 
 	void GLShaderProgram::Use(bool use) const

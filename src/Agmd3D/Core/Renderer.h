@@ -56,7 +56,11 @@ namespace Agmd
 
         virtual void SetTexture(unsigned int unit, const TextureBase* texture, TTextureType type = TEXTURE_2D) = 0;
 
-        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const = 0;
+		virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const = 0;
+
+        virtual TextureBase* CreateTexture2D(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const = 0;
+
+		virtual TextureBase* CreateTextureCube(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const = 0;
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const = 0;
 
@@ -139,7 +143,7 @@ namespace Agmd
 		{
 			mat4 m_MatProjection;
 			mat4 m_MatView;
-			uint32 m_RenderFlags;
+			uint32 m_nlight;
 		};
 
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat2& matrix) = 0;

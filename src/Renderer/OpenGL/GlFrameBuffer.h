@@ -3,7 +3,7 @@
 
 #include <AgmdDefines.h>
 #include <Core/Buffer/FrameBuffer.h>
-#include <Core\TextureBase.h>
+#include <Core/Texture/TextureBase.h>
 
 namespace Agmd
 {
@@ -22,6 +22,9 @@ namespace Agmd
 		virtual void UnBind();
 
 		virtual void Clear();
+
+		virtual void DrawBuffer(uint32 flag);
+		virtual void ReadBuffer(uint32 flag);
 
 		uint32 GetID();
 

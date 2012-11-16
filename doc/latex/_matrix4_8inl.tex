@@ -1,0 +1,119 @@
+\hypertarget{_matrix4_8inl}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Matrix4.inl File Reference}
+\label{_matrix4_8inl}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Matrix4.\-inl@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Matrix4.\-inl}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+C\-Matrix4 \hyperlink{_matrix4_8inl_a879c368eb1f98ff3f0b8104e8e2ef6a1}{operator$\ast$} (const C\-Matrix4 \&m, float t)
+\item 
+C\-Matrix4 \hyperlink{_matrix4_8inl_a863b77127364a6108c33b7ceb5f39e83}{operator$\ast$} (float t, const C\-Matrix4 \&m)
+\item 
+C\-Matrix4 \hyperlink{_matrix4_8inl_a29bf030a50d90d7fbcbc89065b0210c8}{operator/} (const C\-Matrix4 \&m, float t)
+\item 
+std\-::istream \& \hyperlink{_matrix4_8inl_a5e3a138422f1830c84ad908e9a99142e}{operator$>$$>$} (std\-::istream \&Stream, C\-Matrix4 \&Mat)
+\item 
+std\-::ostream \& \hyperlink{_matrix4_8inl_a08b3ee5732f5485bbd3513e697de4117}{operator$<$$<$} (std\-::ostream \&Stream, const C\-Matrix4 \&Mat)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_matrix4_8inl_a879c368eb1f98ff3f0b8104e8e2ef6a1}{\index{Matrix4.\-inl@{Matrix4.\-inl}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix4.inl@{Matrix4.\-inl}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}C\-Matrix4 operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const C\-Matrix4 \&}]{m, }
+\item[{float}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_matrix4_8inl_a879c368eb1f98ff3f0b8104e8e2ef6a1}
+Surcharge de l'opérateur $\ast$ entre une matrice et un scalaire
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \-: Matrice \\
+\hline
+{\em t} & \-: Scalaire\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_matrix4_8inl_a863b77127364a6108c33b7ceb5f39e83}{\index{Matrix4.\-inl@{Matrix4.\-inl}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix4.inl@{Matrix4.\-inl}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}C\-Matrix4 operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{float}]{t, }
+\item[{const C\-Matrix4 \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_matrix4_8inl_a863b77127364a6108c33b7ceb5f39e83}
+Surcharge de l'opérateur $\ast$ entre un scalaire et une matrice
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \-: Scalaire \\
+\hline
+{\em m} & \-: Matrice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_matrix4_8inl_a29bf030a50d90d7fbcbc89065b0210c8}{\index{Matrix4.\-inl@{Matrix4.\-inl}!operator/@{operator/}}
+\index{operator/@{operator/}!Matrix4.inl@{Matrix4.\-inl}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}C\-Matrix4 operator/ (
+\begin{DoxyParamCaption}
+\item[{const C\-Matrix4 \&}]{m, }
+\item[{float}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_matrix4_8inl_a29bf030a50d90d7fbcbc89065b0210c8}
+Surcharge de l'opérateur / entre une matrice et un scalaire
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \-: Matrice \\
+\hline
+{\em t} & \-: Scalaire\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_matrix4_8inl_a08b3ee5732f5485bbd3513e697de4117}{\index{Matrix4.\-inl@{Matrix4.\-inl}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Matrix4.inl@{Matrix4.\-inl}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{Stream, }
+\item[{const C\-Matrix4 \&}]{Mat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_matrix4_8inl_a08b3ee5732f5485bbd3513e697de4117}
+Surcharge de l'opérateur $<$$<$ entre un flux et une matrice
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & \-: Flux de sortie \\
+\hline
+{\em Mat} & \-: Matrice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Référence sur le flux de sortie 
+\end{DoxyReturn}
+\hypertarget{_matrix4_8inl_a5e3a138422f1830c84ad908e9a99142e}{\index{Matrix4.\-inl@{Matrix4.\-inl}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Matrix4.inl@{Matrix4.\-inl}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\-::istream \&}]{Stream, }
+\item[{C\-Matrix4 \&}]{Mat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_matrix4_8inl_a5e3a138422f1830c84ad908e9a99142e}
+Surcharge de l'opérateur $>$$>$ entre un flux et une matrice
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & \-: Flux d'entrée \\
+\hline
+{\em Mat} & \-: Matrice\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Référence sur le flux d'entrée 
+\end{DoxyReturn}

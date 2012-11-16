@@ -1,7 +1,7 @@
 #include "ImagesLoader.h"
 #include <DevIL/il.h>
 #include <Vector2.h>
-#include <Core/Image.h>
+#include <Core/Texture/Image.h>
 #include <Utilities/PixelUtils.h>
 #include <algorithm>
 #include <AgmdDefines.h>
@@ -45,6 +45,8 @@ namespace Agmd
 		Image* image = new Image(Size, PXF_A8R8G8B8, Pixels);
 
 		ilDeleteImages(1, &texture);
+		
+		image->Flip();
 
 		return image;
 	}

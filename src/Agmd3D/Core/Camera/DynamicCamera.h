@@ -5,7 +5,6 @@
 
 namespace Agmd
 {
-	struct ModelTransfo;
 
 	class AGMD_EXPORT DynamicCamera : public Camera
 	{
@@ -23,14 +22,14 @@ namespace Agmd
 
 		virtual mat4 look();
 
-		void setLinkTransfo(ModelTransfo* _transfo);
+		void setLinkTransfo(TransformPtr _transfo);
 
 
 
 	protected:
 
 		virtual void VectorsFromAngles();
-		ModelTransfo* m_transfo;
+		TransformPtr m_transfo;
 	};
 }
 

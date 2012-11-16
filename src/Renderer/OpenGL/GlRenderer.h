@@ -48,7 +48,11 @@ namespace Agmd
 
         virtual void SetTexture(unsigned int Unit, const TextureBase* texture, TTextureType type);
 
-        virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const;
+		virtual TextureBase* CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags = 0) const;
+
+        virtual TextureBase* CreateTexture2D(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const;
+
+		virtual TextureBase* CreateTextureCube(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const;
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const;
 
@@ -239,10 +243,12 @@ namespace Agmd
 		unsigned long				m_IndexStride;
         std::string					m_Extensions;
 		ShaderProgram				m_Pipeline;
+		ShaderProgram				m_DebugPipeline[4];
 		const BaseShaderProgram*	m_CurrentProgram;
 		const TextureBase*			m_TextureBind[MAX_TEXTUREUNIT];
 		bool						m_Reload;
 		Buffer<GlobalValue>			m_globalBuffer;
+
     };
 
 }

@@ -198,11 +198,11 @@ namespace Agmd
 				camera->OnMouseWheel(GET_WHEEL_DELTA_WPARAM(WParam));
 				return 0;
 			case WM_MOUSEMOVE:
-				ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
+				ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam)-30);
 				if(mouseState == MOUSE_RIGHT)
 					camera->OnMouseMotion(posDiff.x, posDiff.y);
 				last_mouse_pos.x = GET_X_LPARAM(LParam);
-				last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
+				last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam)-30;
 				guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,last_mouse_pos,posDiff,mouseState,0));
 				return 0;
 		}

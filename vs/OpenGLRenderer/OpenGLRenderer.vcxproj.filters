@@ -7,8 +7,12 @@
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlShader.cpp" />
-    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTexture.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTextureCube.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTexture.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTexture2D.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlUniformBuffer.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlTextureBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderer.h" />
@@ -18,8 +22,12 @@
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlShader.h" />
-    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTexture.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlShaderProgram.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTextureCube.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTexture.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTexture2D.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlUniformBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlTextureBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Renderer\OpenGL\GlBuffer.inl" />

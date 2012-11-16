@@ -3,7 +3,7 @@
 
 #include <Utilities/Singleton.h>
 #include <Config/Export.h>
-#include <Core/Texture.h>
+#include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
 #include <Vector2.h>

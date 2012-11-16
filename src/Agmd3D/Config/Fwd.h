@@ -43,6 +43,8 @@ namespace Agmd
 	class Water;
 	class Sky;
 
+	struct Transform;
+
 	//GUI Class
 
 	class GUIMgr;

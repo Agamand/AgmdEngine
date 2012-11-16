@@ -8,6 +8,7 @@
 #include <Debug/Exception.h>
 #include <Utilities/SmartPtr.h>
 #include <algorithm>
+#include <assert.h>
 
 using namespace AgmdUtilities;
 

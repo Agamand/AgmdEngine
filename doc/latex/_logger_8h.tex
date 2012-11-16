@@ -1,0 +1,61 @@
+\hypertarget{_logger_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Debug/\-Logger.h File Reference}
+\label{_logger_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Debug/\-Logger.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Debug/\-Logger.\-h}}
+}
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$Utilities\textbackslash{}\-Singleton.\-h$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_agmd_utilities_1_1_logger}{Agmd\-Utilities\-::\-Logger}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd_utilities}{Agmd\-Utilities}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_logger_8h_ad285b8d43b6e90320e33e7438e3e171b}{L\-O\-G}(msg,...)~Logger\-::\-Log(L\-O\-G\-N\-O\-R\-M\-A\-L, msg, ...)
+\item 
+\#define \hyperlink{_logger_8h_a984d01ad7a624acae3bff210bda5d6d0}{E\-R\-R\-O\-R\-\_\-\-L\-O\-G}(msg,...)~Logger\-::\-Log(L\-O\-G\-E\-R\-R\-O\-R, msg, ...)
+\item 
+\#define \hyperlink{_logger_8h_abe6dde59d77f73cda314f91e5f2a5753}{D\-E\-B\-U\-G\-\_\-\-L\-O\-G}(msg,...)~Logger\-::\-Log(L\-O\-G\-D\-E\-B\-U\-G, msg, ...)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_agmd_utilities_a29e36cc332c9462e3dffc7c2e6b27645}{Agmd\-Utilities\-::\-Log\-Level} \{ \hyperlink{namespace_agmd_utilities_a29e36cc332c9462e3dffc7c2e6b27645a20f2a8aa55002a2f692bd497caa4aa22}{Agmd\-Utilities\-::\-L\-O\-G\-N\-O\-R\-M\-A\-L}, 
+\hyperlink{namespace_agmd_utilities_a29e36cc332c9462e3dffc7c2e6b27645af7b479769f1e0d08b34345455980d8a5}{Agmd\-Utilities\-::\-L\-O\-G\-E\-R\-R\-O\-R}, 
+\hyperlink{namespace_agmd_utilities_a29e36cc332c9462e3dffc7c2e6b27645a5ab099bdb80f5127aa2b9fdbcb2aeac3}{Agmd\-Utilities\-::\-L\-O\-G\-D\-E\-B\-U\-G}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_logger_8h_abe6dde59d77f73cda314f91e5f2a5753}{\index{Logger.\-h@{Logger.\-h}!D\-E\-B\-U\-G\-\_\-\-L\-O\-G@{D\-E\-B\-U\-G\-\_\-\-L\-O\-G}}
+\index{D\-E\-B\-U\-G\-\_\-\-L\-O\-G@{D\-E\-B\-U\-G\-\_\-\-L\-O\-G}!Logger.h@{Logger.\-h}}
+\subsubsection[{D\-E\-B\-U\-G\-\_\-\-L\-O\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-B\-U\-G\-\_\-\-L\-O\-G(
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~Logger\-::\-Log(L\-O\-G\-D\-E\-B\-U\-G, msg, ...)}}\label{_logger_8h_abe6dde59d77f73cda314f91e5f2a5753}
+\hypertarget{_logger_8h_a984d01ad7a624acae3bff210bda5d6d0}{\index{Logger.\-h@{Logger.\-h}!E\-R\-R\-O\-R\-\_\-\-L\-O\-G@{E\-R\-R\-O\-R\-\_\-\-L\-O\-G}}
+\index{E\-R\-R\-O\-R\-\_\-\-L\-O\-G@{E\-R\-R\-O\-R\-\_\-\-L\-O\-G}!Logger.h@{Logger.\-h}}
+\subsubsection[{E\-R\-R\-O\-R\-\_\-\-L\-O\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-R\-O\-R\-\_\-\-L\-O\-G(
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~Logger\-::\-Log(L\-O\-G\-E\-R\-R\-O\-R, msg, ...)}}\label{_logger_8h_a984d01ad7a624acae3bff210bda5d6d0}
+\hypertarget{_logger_8h_ad285b8d43b6e90320e33e7438e3e171b}{\index{Logger.\-h@{Logger.\-h}!L\-O\-G@{L\-O\-G}}
+\index{L\-O\-G@{L\-O\-G}!Logger.h@{Logger.\-h}}
+\subsubsection[{L\-O\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-O\-G(
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)~Logger\-::\-Log(L\-O\-G\-N\-O\-R\-M\-A\-L, msg, ...)}}\label{_logger_8h_ad285b8d43b6e90320e33e7438e3e171b}

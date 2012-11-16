@@ -1,26 +1,15 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
 
-#include <Core\Texture.h>
+#include <Core/Texture/Texture.h>
 #include <Core/Buffer/RenderBuffer.h>
-#include <Core\Enums.h>
-#include <Utilities\SmartPtr.h>
+#include <Core/Enums.h>
+#include <Utilities/SmartPtr.h>
 #include <map>
 //#include <vector>
 
 namespace Agmd
 {
-	/*typedef std::vector<BindTexture> TextureVector;
-	/struct BindTexture
-	{
-		BindTexture(TAttachment _attach, TextureBase* _tex) :
-		attach(_attach),
-		tex(_tex)
-		{}
-
-		TAttachment attach;
-		TextureBase* tex;
-	};*/
 
 	typedef std::map<TAttachment,Texture> TextureMap;
 	typedef std::map<TAttachment,RenderBuffer*> RenderBufferMap;
@@ -38,6 +27,9 @@ namespace Agmd
 		virtual void Bind() = 0;
 		virtual void UnBind() = 0;
 		virtual void Clear() = 0;
+
+		virtual void DrawBuffer(uint32 flag) = 0;
+		virtual void ReadBuffer(uint32 flag) = 0;
 
 	protected:
 		TextureMap		m_TextureMap;

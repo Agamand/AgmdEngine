@@ -1,0 +1,68 @@
+\hypertarget{_gl_renderer_8cpp}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Renderer/\-Open\-G\-L/\-Gl\-Renderer.cpp File Reference}
+\label{_gl_renderer_8cpp}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Renderer/\-Open\-G\-L/\-Gl\-Renderer.\-cpp@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Renderer/\-Open\-G\-L/\-Gl\-Renderer.\-cpp}}
+}
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Renderer.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Texture.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Shader.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Shader\-Program.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Enums.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Frame\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Renderer\textbackslash{}\-Open\-G\-L\textbackslash{}\-Gl\-Render\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Mat\-Stack.\-h$>$}\\*
+{\ttfamily \#include $<$Utilities\textbackslash{}\-Color.\-h$>$}\\*
+{\ttfamily \#include $<$Utilities\textbackslash{}\-Pixel\-Utils.\-h$>$}\\*
+{\ttfamily \#include $<$Debug\textbackslash{}\-Logger.\-h$>$}\\*
+{\ttfamily \#include $<$Matrix4.\-h$>$}\\*
+{\ttfamily \#include $<$gl\textbackslash{}\-G\-L\-U.\-h$>$}\\*
+{\ttfamily \#include $<$Debug/\-New.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_agmd_1_1vert}{Agmd\-::vert}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd}{Agmd}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_gl_renderer_8cpp_aad5cddbbdae681951ad00209dfe34fb2}{L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N}(Ext)~Load\-Extension(Ext, \#Ext)
+\item 
+\#define \hyperlink{_gl_renderer_8cpp_a093b4a29e45cb01ec5a996e880b040e3}{B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}(n)~((char$\ast$)N\-U\-L\-L + (n))
+\item 
+\#define \hyperlink{_gl_renderer_8cpp_ac25c6a324554f8ae267ad7c1638074a8}{F\-R\-O\-N\-T}~1
+\item 
+\#define \hyperlink{_gl_renderer_8cpp_ab303ee384877c80cb8855bf0113faf88}{B\-A\-C\-K}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_agmd_a3b939fa9e5da61131159e50948e7af69}{Agmd\-::\-\_\-\-\_\-declspec} (dllexport) void Load\-Plugin()
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespace_agmd_aac2d0067a0fd7c9d2bd40284bcba4f1d}{Agmd\-::\-Load\-Extension} (T \&Proc, const char $\ast$Name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_gl_renderer_8cpp_ab303ee384877c80cb8855bf0113faf88}{\index{Gl\-Renderer.\-cpp@{Gl\-Renderer.\-cpp}!B\-A\-C\-K@{B\-A\-C\-K}}
+\index{B\-A\-C\-K@{B\-A\-C\-K}!GlRenderer.cpp@{Gl\-Renderer.\-cpp}}
+\subsubsection[{B\-A\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-C\-K~2}}\label{_gl_renderer_8cpp_ab303ee384877c80cb8855bf0113faf88}
+\hypertarget{_gl_renderer_8cpp_a093b4a29e45cb01ec5a996e880b040e3}{\index{Gl\-Renderer.\-cpp@{Gl\-Renderer.\-cpp}!B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T@{B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}}
+\index{B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T@{B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}!GlRenderer.cpp@{Gl\-Renderer.\-cpp}}
+\subsubsection[{B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-U\-F\-F\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T(
+\begin{DoxyParamCaption}
+\item[{}]{n}
+\end{DoxyParamCaption}
+)~((char$\ast$)N\-U\-L\-L + (n))}}\label{_gl_renderer_8cpp_a093b4a29e45cb01ec5a996e880b040e3}
+\hypertarget{_gl_renderer_8cpp_ac25c6a324554f8ae267ad7c1638074a8}{\index{Gl\-Renderer.\-cpp@{Gl\-Renderer.\-cpp}!F\-R\-O\-N\-T@{F\-R\-O\-N\-T}}
+\index{F\-R\-O\-N\-T@{F\-R\-O\-N\-T}!GlRenderer.cpp@{Gl\-Renderer.\-cpp}}
+\subsubsection[{F\-R\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-R\-O\-N\-T~1}}\label{_gl_renderer_8cpp_ac25c6a324554f8ae267ad7c1638074a8}
+\hypertarget{_gl_renderer_8cpp_aad5cddbbdae681951ad00209dfe34fb2}{\index{Gl\-Renderer.\-cpp@{Gl\-Renderer.\-cpp}!L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N@{L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N}}
+\index{L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N@{L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N}!GlRenderer.cpp@{Gl\-Renderer.\-cpp}}
+\subsubsection[{L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-O\-A\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N(
+\begin{DoxyParamCaption}
+\item[{}]{Ext}
+\end{DoxyParamCaption}
+)~Load\-Extension(Ext, \#Ext)}}\label{_gl_renderer_8cpp_aad5cddbbdae681951ad00209dfe34fb2}

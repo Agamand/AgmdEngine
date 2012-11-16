@@ -23,6 +23,7 @@ inline void Buffer<T>::Fill(const T* data, std::size_t count)
 
     T* _data = Lock();
     std::copy(data, data + count, _data);
+	//std::memcpy(_data,data,count);
     Unlock();
 }
 

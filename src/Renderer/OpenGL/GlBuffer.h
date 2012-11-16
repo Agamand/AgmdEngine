@@ -12,12 +12,11 @@ namespace Agmd
     {
     public :
 
-        GLBuffer(unsigned long count, unsigned int buffer, int _bindPoint = -1);
+        GLBuffer(unsigned long count, unsigned int buffer);
 
         virtual ~GLBuffer();
 
         unsigned int GetBuffer() const;
-		int GetBindPoint() const;
 
     private :
 
@@ -26,13 +25,12 @@ namespace Agmd
         void Unlock();
 
         unsigned int m_Buffer;
-		int m_bindPoint;
     };
 
     typedef GLBuffer<GL_ARRAY_BUFFER>         GLVertexBuffer;
     typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER> GLIndexBuffer;
-	typedef GLBuffer<GL_UNIFORM_BUFFER>       GLUniformBuffer;
-	typedef GLBuffer<GL_TEXTURE_BUFFER>		  GLTextureBuffer;
+	/*typedef GLBuffer<GL_UNIFORM_BUFFER>       GLUniformBuffer;
+	typedef GLBuffer<GL_TEXTURE_BUFFER>		  GLTextureBuffer;*/
 
     #include "GLBuffer.inl"
 

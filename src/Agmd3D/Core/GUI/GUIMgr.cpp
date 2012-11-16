@@ -1,6 +1,7 @@
-#include <Core\GUI\GUIMgr.h>
-#include <Core\GUI\AWidget.h>
-#include <Core\Enums.h>
+#include <Core/GUI/GUIMgr.h>
+#include <Core/GUI/AWidget.h>
+#include <Core/Enums.h>
+#include <Core/Renderer.h>
 
 SINGLETON_IMPL(Agmd::GUIMgr);
 
@@ -37,10 +38,10 @@ namespace Agmd
 	{
 		if(m_vwWidget.empty())
 			return;
-
+		Renderer::Get().Enable(RENDER_ZWRITE, false);
 		for(int32 i = m_vwWidget.size()-1; i >= 0; i--)
 			m_vwWidget[i]->Draw();
-
+		Renderer::Get().Enable(RENDER_ZWRITE, true);
 	}
 
 	void GUIMgr::HandleEvent(EventEntry _event)

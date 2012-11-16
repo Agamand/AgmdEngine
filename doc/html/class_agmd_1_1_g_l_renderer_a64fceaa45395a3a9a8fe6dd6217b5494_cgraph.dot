@@ -1,0 +1,22 @@
+digraph "Agmd::GLRenderer::Setup"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::GLRenderer::Setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::GLRenderer::CreateUB",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_renderer.html#a294febc9485b02c338498aecd7274032"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::RGLEnum::BufferFlags",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_r_g_l_enum.html#a360b3e2470edec20e1844f544d6d8a21"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Agmd::Buffer::Lock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_buffer.html#a9759a61b1d34b61357d0cf9f945d9a73"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Agmd::Buffer::Unlock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_buffer.html#ab9cf19b2464346ce3b1d74d3c86588f9"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Agmd::ShaderProgram\l::LoadFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_shader_program.html#ad3acc3c0bf03b73ee16393cdc52cffc9"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Singleton\< ResourceManager\l \>::Instance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_singleton.html#a131e87528259529400d58b6df5d9743c"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Agmd::ShaderProgram\l::SetParameter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_shader_program.html#aa7090c08d1106a79d07019e5d9b6df73"];
+}

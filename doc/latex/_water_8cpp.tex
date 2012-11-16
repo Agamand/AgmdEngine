@@ -1,0 +1,33 @@
+\hypertarget{_water_8cpp}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Water.cpp File Reference}
+\label{_water_8cpp}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Water.\-cpp@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Water.\-cpp}}
+}
+{\ttfamily \#include $<$Core/\-Water.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Renderer.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Media\-Manager.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Scene.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Buffer/\-Frame\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Buffer/\-Render\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Shader/\-Base\-Shader\-Program.\-h$>$}\\*
+{\ttfamily \#include $<$Core/\-Mat\-Stack.\-h$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd}{Agmd}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_water_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{S\-E\-L\-E\-C\-T}(i, size)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_water_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{\index{Water.\-cpp@{Water.\-cpp}!S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}}
+\index{S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}!Water.cpp@{Water.\-cpp}}
+\subsubsection[{S\-E\-L\-E\-C\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-L\-E\-C\-T(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{size}
+\end{DoxyParamCaption}
+)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))}}\label{_water_8cpp_a8e1d08f59adf3a41959856f2084b15a2}

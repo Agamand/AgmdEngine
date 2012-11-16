@@ -1,0 +1,163 @@
+\hypertarget{_vector4_8inl}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Vector4.inl File Reference}
+\label{_vector4_8inl}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Vector4.\-inl@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Maths/\-Vector4.\-inl}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\C\-Vector4$<$ T $>$ \hyperlink{_vector4_8inl_ad9e28636d776ce5771c0b15cf743b812}{operator$\ast$} (const C\-Vector4$<$ T $>$ \&v, T t)
+\item 
+{\footnotesize template$<$class T $>$ }\\C\-Vector4$<$ T $>$ \hyperlink{_vector4_8inl_a5861e098840bfafad1ff3d32958c481f}{operator/} (const C\-Vector4$<$ T $>$ \&v, T t)
+\item 
+{\footnotesize template$<$class T $>$ }\\C\-Vector4$<$ T $>$ \hyperlink{_vector4_8inl_a3b78bda31cebd5ada1e12e39375da0d6}{operator$\ast$} (T t, const C\-Vector4$<$ T $>$ \&v)
+\item 
+{\footnotesize template$<$class T $>$ }\\T \hyperlink{_vector4_8inl_ad708cf87fd508fd049ad6391d754e539}{Vector\-Dot} (const C\-Vector4$<$ T $>$ \&v1, const C\-Vector4$<$ T $>$ \&v2)
+\item 
+{\footnotesize template$<$class T $>$ }\\C\-Vector4$<$ T $>$ \hyperlink{_vector4_8inl_a0c0b2f1763aeeb6fe905f03f597d45ce}{Vector\-Cross} (const C\-Vector4$<$ T $>$ \&v1, const C\-Vector4$<$ T $>$ \&v2)
+\item 
+{\footnotesize template$<$class T $>$ }\\std\-::istream \& \hyperlink{_vector4_8inl_af7d097f60a6dde691b00545765bf5b51}{operator$>$$>$} (std\-::istream \&Stream, C\-Vector4$<$ T $>$ \&Vector)
+\item 
+{\footnotesize template$<$class T $>$ }\\std\-::ostream \& \hyperlink{_vector4_8inl_a7b0f6084c30e8442b4b98b723bccf7b4}{operator$<$$<$} (std\-::ostream \&Stream, const C\-Vector4$<$ T $>$ \&Vector)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_vector4_8inl_ad9e28636d776ce5771c0b15cf743b812}{\index{Vector4.\-inl@{Vector4.\-inl}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ C\-Vector4$<$T$>$ operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const C\-Vector4$<$ T $>$ \&}]{v, }
+\item[{T}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_ad9e28636d776ce5771c0b15cf743b812}
+Opérateurs de multiplication avec un scalaire
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \-: Vecteur \\
+\hline
+{\em t} & \-: Scalaire\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_a3b78bda31cebd5ada1e12e39375da0d6}{\index{Vector4.\-inl@{Vector4.\-inl}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ C\-Vector4$<$T$>$ operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{T}]{t, }
+\item[{const C\-Vector4$<$ T $>$ \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_a3b78bda31cebd5ada1e12e39375da0d6}
+Opérateurs de multiplication avec un scalaire
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \-: Scalaire \\
+\hline
+{\em v} & \-: Vecteur\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_a5861e098840bfafad1ff3d32958c481f}{\index{Vector4.\-inl@{Vector4.\-inl}!operator/@{operator/}}
+\index{operator/@{operator/}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ C\-Vector4$<$T$>$ operator/ (
+\begin{DoxyParamCaption}
+\item[{const C\-Vector4$<$ T $>$ \&}]{v, }
+\item[{T}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_a5861e098840bfafad1ff3d32958c481f}
+Opérateurs de division par un scalaire
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \-: Vecteur \\
+\hline
+{\em t} & \-: Scalaire\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat de l'opération 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_a7b0f6084c30e8442b4b98b723bccf7b4}{\index{Vector4.\-inl@{Vector4.\-inl}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ std\-::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{Stream, }
+\item[{const C\-Vector4$<$ T $>$ \&}]{Vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_a7b0f6084c30e8442b4b98b723bccf7b4}
+Surcharge de l'opérateur $<$$<$ entre un flux et un vecteur
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & \-: Flux de sortie \\
+\hline
+{\em Vector} & \-: Vecteur\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Référence sur le flux de sortie 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_af7d097f60a6dde691b00545765bf5b51}{\index{Vector4.\-inl@{Vector4.\-inl}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ std\-::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\-::istream \&}]{Stream, }
+\item[{C\-Vector4$<$ T $>$ \&}]{Vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_af7d097f60a6dde691b00545765bf5b51}
+Surcharge de l'opérateur $>$$>$ entre un flux et un vecteur
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & \-: Flux d'entrée \\
+\hline
+{\em Vector} & \-: Vecteur\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Référence sur le flux d'entrée 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_a0c0b2f1763aeeb6fe905f03f597d45ce}{\index{Vector4.\-inl@{Vector4.\-inl}!Vector\-Cross@{Vector\-Cross}}
+\index{Vector\-Cross@{Vector\-Cross}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{Vector\-Cross}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ C\-Vector4$<$T$>$ Vector\-Cross (
+\begin{DoxyParamCaption}
+\item[{const C\-Vector4$<$ T $>$ \&}]{v1, }
+\item[{const C\-Vector4$<$ T $>$ \&}]{v2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_a0c0b2f1763aeeb6fe905f03f597d45ce}
+Effectue le produit vectoriel entre deux vecteurs
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & \-: Vecteur 1 \\
+\hline
+{\em v2} & \-: Vecteur 2\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat du produit vectoriel 
+\end{DoxyReturn}
+\hypertarget{_vector4_8inl_ad708cf87fd508fd049ad6391d754e539}{\index{Vector4.\-inl@{Vector4.\-inl}!Vector\-Dot@{Vector\-Dot}}
+\index{Vector\-Dot@{Vector\-Dot}!Vector4.inl@{Vector4.\-inl}}
+\subsubsection[{Vector\-Dot}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T Vector\-Dot (
+\begin{DoxyParamCaption}
+\item[{const C\-Vector4$<$ T $>$ \&}]{v1, }
+\item[{const C\-Vector4$<$ T $>$ \&}]{v2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{_vector4_8inl_ad708cf87fd508fd049ad6391d754e539}
+Effectue le produit scalaire entre deux vecteurs
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & \-: Vecteur 1 \\
+\hline
+{\em v2} & \-: Vecteur 2\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Résultat du produit scalaire 
+\end{DoxyReturn}

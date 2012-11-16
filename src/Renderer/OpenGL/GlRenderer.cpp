@@ -1,16 +1,19 @@
-#include <Renderer\OpenGL\GlRenderer.h>
-#include <Renderer\OpenGL\GlTexture.h>
-#include <Renderer\OpenGL\GlShader.h>
-#include <Renderer\OpenGL\GlShaderProgram.h>
-#include <Renderer\OpenGL\GlEnums.h>
-#include <Renderer\OpenGL\GlFrameBuffer.h>
-#include <Renderer\OpenGL\GlRenderBuffer.h>
+#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlTexture2D.h>
+#include <Renderer/OpenGL/GlTextureCube.h>
+#include <Renderer/OpenGL/GlShader.h>
+#include <Renderer/OpenGL/GlShaderProgram.h>
+#include <Renderer/OpenGL/GlEnums.h>
+#include <Renderer/OpenGL/GlFrameBuffer.h>
+#include <Renderer/OpenGL/GlRenderBuffer.h>
+#include <Renderer/OpenGL/GlUniformBuffer.h>
+#include <Renderer/OpenGL/GlTextureBuffer.h>
 #include <Core/MatStack.h>
-#include <Utilities\Color.h>
-#include <Utilities\PixelUtils.h>
-#include <Debug\Logger.h>
+#include <Utilities/Color.h>
+#include <Utilities/PixelUtils.h>
+#include <Debug/Logger.h>
 #include <Matrix4.h>
-#include <gl\GLU.h>
+#include <gl/GLU.h>
 #include <Debug/New.h>
 
 SINGLETON_IMPL(Agmd::GLRenderer)
@@ -345,6 +348,8 @@ namespace Agmd
 		m_Pipeline.SetParameter("TessLevelInner",1.0f);
 		m_Pipeline.SetParameter("TessLevelOuter",1.0f);
 
+		m_DebugPipeline[0].LoadFromFile("Shader/debug_cubemap.glsl");
+
 		glFrontFace(GL_CCW);
 
 
@@ -522,7 +527,9 @@ namespace Agmd
 		glBindBuffer(GL_TEXTURE_BUFFER, textureBuffer);
 		glBufferData(GL_TEXTURE_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
 
-		return new GLTextureBuffer(size, textureBuffer);
+
+
+		return new GLTextureBuffer(size, textureBuffer,NULL);
 	}
 
 	Declaration* GLRenderer::CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const
@@ -715,54 +722,85 @@ namespace Agmd
 
 	TextureBase* GLRenderer::CreateTexture(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags) const
 	{
+		switch(type)
+		{
+		case TEXTURE_2D:
+			return CreateTexture2D(size,format,flags);
+		case TEXTURE_CUBE:
+			return CreateTextureCube(size,format,flags);
+		default:
+			Logger::Log(LOGERROR,"Error on CreateTexture - unknown or unsupported TextureType : %d",(int)type);
+			return NULL;
+		}
+	}
+
+	TextureBase* GLRenderer::CreateTexture2D(const ivec2& size, TPixelFormat format, unsigned long flags) const
+	{
 		uint32 texture;
 		glGenTextures(1, &texture);
 		int width  = size.x;
 		int height = size.y;
 		int nbMipmaps = 0;
-		switch(type)
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+		if(format == PXF_DEPTH)
 		{
-		case TEXTURE_2D:
-			glBindTexture(GL_TEXTURE_2D, texture);
-
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-
-			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
-
-			if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
-				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
-
-
-			for (int i = 0; i <= nbMipmaps; ++i)
-			{
-				glTexImage2D(GL_TEXTURE_2D, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
-
-				if (width > 1)  width  /= 2;
-				if (height > 1) height /= 2;
-			}
-
-			glBindTexture(GL_TEXTURE_2D, 0);
-			break;
-		case TEXTURE_CUBE:
-
-			for (int i = 0; i < 6; i++)
-			{
-				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_S, GL_CLAMP);
-				glTexParameteri(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
-			}
-
-			break;
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+			glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE,   GL_LUMINANCE);
 		}
 
-		return new GLTexture(size, format, type, nbMipmaps > 0, HasCapability(CAP_HW_MIPMAPPING), texture);
+		nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
+
+		if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
+			glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
+
+
+		for (int i = 0; i <= nbMipmaps; ++i)
+		{
+			glTexImage2D(GL_TEXTURE_2D, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, format == PXF_DEPTH ? GL_FLOAT : GL_UNSIGNED_BYTE, NULL);
+
+			if (width > 1)  width  /= 2;
+			if (height > 1) height /= 2;
+		}
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		return new GLTexture2D(size, format, nbMipmaps > 0, HasCapability(CAP_HW_MIPMAPPING), texture);
+	}
+
+	TextureBase* GLRenderer::CreateTextureCube(const ivec2& size, TPixelFormat format, unsigned long flags) const
+	{
+		uint32 texture;
+		glGenTextures(1, &texture);
+		int width  = size.x;
+		int height = size.y;
+		glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
+
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+
+		for (int i = 0; i < 6; i++)
+		{
+
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, RGLEnum::Get(format).Internal, width, height, 0,  RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
+		}
+		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+
+		return new GLTextureCube(size,format,false,false,texture);
 	}
 
 	void GLRenderer::SetupAlphaBlending(TBlend src, TBlend dest) const
@@ -1009,6 +1047,8 @@ namespace Agmd
 			glDeleteFramebuffers(1,&id);
 			return NULL;
 		}*/
+		//glDrawBuffer(GL_NONE);
+		//glReadBuffer(GL_NONE);
 		glBindFramebuffer(GL_FRAMEBUFFER,0);
 
 		return new GLFrameBuffer(id);
@@ -1076,18 +1116,9 @@ namespace Agmd
 
 		std::vector<short> indices;
 
-
-
+		SetCurrentProgram(m_DebugPipeline[0].GetShaderProgram());
 		for(uint32 i = 0; i < 6; i++)
 		{
-//			glBindTexture(GL_TEXTURE_2D, texture);
-
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-		//	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,
-
 
 			glBegin(GL_TRIANGLES);
 			glTexCoord2fv((float*)&(vertex[1+i*4].tpos.x));
@@ -1107,8 +1138,7 @@ namespace Agmd
 			glVertex3fv((float*)&(vertex[2+i*4].pos.x));
 			glEnd();
 		}
-
-
+		SetCurrentProgram(NULL);
 	}
 
 	#define FRONT 1
@@ -1126,5 +1156,6 @@ namespace Agmd
 		else if(face & (FRONT | BACK))
 			glCullFace(GL_FRONT_AND_BACK);
 	}
+
 }
 

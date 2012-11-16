@@ -3,7 +3,7 @@
 
 #include <Config/Export.h>
 #include <Core/GUI/AWidget.h>
-#include <Core/Texture.h>
+#include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
 #include <Core/Shader/BaseShaderProgram.h>

@@ -3,6 +3,7 @@
 #include <Server\Server.h>
 #include <Packet\Packet.h>
 
+
 #define _MAX_HOST_LENGTH_ 100
 #define _MAX_SIZE 4096 // 4096 octet
 
@@ -43,11 +44,11 @@ namespace AgmdNetwork
 			return 1;
 		}
 
-		if( bind( m_ListeningSocket, (SOCKADDR *)&ServerAddr, sizeof( ServerAddr ) ) == SOCKET_ERROR ){
+		/*if( bind( m_ListeningSocket, (SOCKADDR *)&ServerAddr, sizeof( ServerAddr ) ) == SOCKET_ERROR ){
 			closesocket( m_ListeningSocket );
 			WSACleanup();
 			return 1;
-		}
+		}*/
 
 		if( listen( m_ListeningSocket, 5 ) == SOCKET_ERROR ){
 			closesocket( m_ListeningSocket );

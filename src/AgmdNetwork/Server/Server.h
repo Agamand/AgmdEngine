@@ -1,6 +1,7 @@
 #ifndef SERVER_H 
 #define SERVER_H 
 
+#include <thread>
 #include <WinSock2.h>
 #include <vector>
 

@@ -214,7 +214,6 @@
       <Filter>Core</Filter>
     </None>
     <None Include="ClassDiagram11.cd" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">

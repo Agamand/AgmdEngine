@@ -151,6 +151,12 @@ void App::OnInit()
 	m_tesslationInner = 1;
 	m_tesslationOuter = 1;
 	height = 0.0f;
+
+	/**/ 
+#ifdef 
+
+	void* machin = nullptr;
+#endif
 	fbo[0] = Renderer::Get().CreateFrameBuffer();
 	fbo[1] = Renderer::Get().CreateFrameBuffer();
 	ivec2 size = Renderer::Get().GetScreen();

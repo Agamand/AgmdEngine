@@ -114,7 +114,7 @@ namespace Agmd
 				if(fps_timer <= time_diff)
 				{
 					m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - fps_timer);
-					fps_timer = SECONDS_IN_MS-time_diff+fps_timer;
+					fps_timer = SECONDS_IN_MS;
 					frame = 0;
 				}else fps_timer -= time_diff;
 

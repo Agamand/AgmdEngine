@@ -81,33 +81,35 @@ namespace Agmd
 
 	void AWindow::Draw() const
 	{
-		Renderer::Get().SetCurrentProgram(m_Program);
+        Renderer &render = Renderer::Get();
+		render.SetCurrentProgram(m_Program);
 		mat4 modelMatrix = translate(mat4(1.0f),vec3(m_vAbsolutePosition,0.0f));
 		MatStack::push(modelMatrix);
-		Renderer::Get().SetDeclaration(m_Declaration);
-		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
-		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
+		render.SetDeclaration(m_Declaration);
+		render.SetVertexBuffer(0, m_VertexBuffer);
+		render.SetIndexBuffer(m_IndexBuffer);
 
-		Renderer::Get().SetTexture(0, m_Texture.GetTexture());
-		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 24);
+		render.SetTexture(0, m_Texture.GetTexture());
+		render.SetTextureFlag(TEXTURE_UNIT_0);
+		render.DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 24);
 
-		Renderer::Get().SetTexture(1, m_Texture.GetTexture());
-		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_1);
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 24, 12);
+		render.SetTexture(1, m_Texture.GetTexture());
+		render.SetTextureFlag(TEXTURE_UNIT_1);
+		render.DrawIndexedPrimitives(PT_TRIANGLELIST, 24, 12);
 
-		Renderer::Get().SetTexture(2, m_Texture.GetTexture());
-		Renderer::Get().SetTextureFlag(TEXTURE_UNIT_2);
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
+		render.SetTexture(2, m_Texture.GetTexture());
+		render.SetTextureFlag(TEXTURE_UNIT_2);
+		render.DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
 
 
 		if(m_Font.GetTexture())
 		{
-			Renderer::Get().SetTexture(3, m_Font.GetTexture());
-			Renderer::Get().SetTextureFlag(TEXTURE_UNIT_3);
-		}else Renderer::Get().SetTextureFlag(0);
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
-		Renderer::Get().SetCurrentProgram(NULL);
+            render.getPipeline()->SetParameter("u_size",(vec2)m_vSize);
+			render.SetTexture(3, m_Font.GetTexture());
+			render.SetTextureFlag(TEXTURE_UNIT_3);
+		}else render.SetTextureFlag(0);
+		render.DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
+		render.SetCurrentProgram(NULL);
 		MatStack::pop();
 	}
 

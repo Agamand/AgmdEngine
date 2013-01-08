@@ -46,27 +46,23 @@ uniform sampler2D texture3;
 
 void main()
 {
-	out_Color = color;
+	out_Color = vec4(1.0);
 	
 	if((u_textureFlags & 1 ) != 0)
 	{
-		out_Color = texture2D(texture0, texCoord0);
-		//out_Color = vec4(texCoord0,0.0,1.0);
+		out_Color = texture(texture0, texCoord0);
 	}
 	if((u_textureFlags & 2 ) != 0)
 	{
-		out_Color = texture2D(texture1, texCoord1);
-		//out_Color = vec4(texCoord1,0.0,1.0);
+		out_Color = texture(texture1, texCoord1);
 	}
 	if((u_textureFlags & 4 ) != 0)
 	{
-		out_Color = texture2D(texture2, texCoord2);
-		out_Color = vec4(texCoord3,0.0,1.0);
+		out_Color = texture(texture2, texCoord2);
 	}
 	if((u_textureFlags & 8 ) != 0)
 	{
-		out_Color = texture2D(texture3, texCoord3);
-		out_Color = vec4(texCoord2.x,texCoord2.y,0.0,1.0);
+		out_Color = texture(texture3, texCoord3);
 	}
 }
 #endif

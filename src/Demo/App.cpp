@@ -16,8 +16,15 @@
 #include <Agmd3D\Core\SceneObject\SkyBox.h>
 #include <Agmd3D\Core\GUI\GUIMgr.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
+#include <Agmd3D/Core/RenderingMode/RenderingMode.h>
+#include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
+#include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
+#include <Agmd3D/Core/Camera/FPCamera.h>
+#include <Agmd3D/Core/Camera/TPCamera.h>
 #include <AgmdNetwork\Client\Client.h>
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
+#include <AgmdUtilities/Utilities/Color.h>
+#include <AgmdUtilities/Debug/Profiler.h>
 
 #include <PhysicsPlugin\PhysicsMgr.h>
 
@@ -27,6 +34,7 @@
 
 using namespace Agmd;
 using namespace AgmdNetwork;
+using namespace AgmdUtilities;
 
 SINGLETON_IMPL(App)
 
@@ -91,211 +99,76 @@ void App::OnInit()
 {
 	pause = true;
 	MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
-	PhysicsMgr& physicsMgr = PhysicsMgr::Instance();
 
-	m_timer = 1000;
-	m_count = 0;
-	m_MatProj3D = glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 10000.0f);
-	m_MatView3D = camera->look();
+	m_MatProj3D = glm::perspective(90.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f); // glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 100.0f);
 
-	m_MatView2D = mat4(1.0f); // m4 identity
 	m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
 	shader2D = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/classic_pipeline_2D.glsl");
 
-	m_fps = new GraphicString(ivec2(50,650),"",Color::black);
-	m_text = new GraphicString(ivec2(50,600),"",Color::black);
-	m_counter = new GraphicString(ivec2(50,630),"",Color::black);
+    ForwardRendering* mode = new ForwardRendering(getScreen());
+    RenderingMode::SetRenderingMode(mode);
+
+    cam3D = new TPCamera(m_MatProj3D);
+    cam2D = new FPCamera(m_MatProj2D);
+    Camera::SetCurrent(cam3D);
+	m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
+	m_text = new GraphicString(ivec2(0,getScreen().y-30),"",Color::black);
 
 	m_Scene = new Scene();
-	Texture tex;
+    Model* model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST);
+    m_Scene->AddModel(model);
+    Color c = Color::blue;
+    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->Move(2.0f,0,0);
+    m_Scene->AddModel(model);
+    c = Color::green;
+    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->Move(-2.0f,0,0);
+    m_Scene->AddModel(model);
+    c = Color::red;
+    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->Move(0,2.0f,0);
+    m_Scene->AddModel(model);
+    c = Color::blue + Color::red;
+    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->Move(0,-2.0f,0);
+    m_Scene->AddModel(model);
 
+    AWindow* diffuseW = new AWindow();
+    diffuseW->SetFont(mode->GetDiffuseTexture());
+    AWindow* depthW = new AWindow();
+    depthW->SetFont(mode->GetDepthTexture());
+    AWindow* lightW = new AWindow();
+    lightW->SetFont(mode->GetLightingTexture());
+    GUIMgr::Instance().AddWidget(diffuseW);
+    GUIMgr::Instance().AddWidget(depthW);
+    GUIMgr::Instance().AddWidget(lightW);
 
-	SkyBox* sky = new SkyBox(200);
-	tex.Create(ivec2(512),PXF_A8R8G8B8,TEXTURE_CUBE);
-//	tex.SetPixel("Texture/x+.png",0);
-	//tex.SetPixel("Texture/x-.png",1);
-	//tex.SetPixel("Texture/y+.png",2);
-	//tex.SetPixel("Texture/y-.png",3);
-	//tex.SetPixel("Texture/z+.png",4);
-	//tex.SetPixel("Texture/z-.png",5);
-	sky->SetTexture(tex,0);
-	m_Scene->SetSky(sky);
-
-	Water* water = new Water(ivec2(100,100),ivec2(200,100));
-	m_Scene->AddWater(water);
-	water->SetScene(m_Scene);
-
-	/*tex.CreateFromFile("Texture/crate_n.jpg",PXF_A8R8G8B8);
-	Model* plane = CreatePlane(ivec2(100),ivec2(1),"",PT_TRIANGLELIST);
-	m_Scene->AddModel(plane);*/
-	
-	//plane->Move(0,0,-2.0f);
-
-	/*Model* cube = CreateBox(vec3(10),"Texture/crate_d.jpg",PT_TRIANGLELIST);
-	cube->MoveTo(0,0,3.0f);
-	//cube->SetTextureUnit(tex,4);
-	m_Scene->AddModel(cube);
-
-	cube = CreateBox(vec3(10),"Texture/crate_d.jpg",PT_TRIANGLELIST);
-	cube->MoveTo(20,0,3.0f);
-	//cube->SetTextureUnit(tex,4);
-	m_Scene->AddModel(cube);*/
-
-	Model* sphere = CreateSphere(5.0f,100.0,100.0,M_PI*2,"Texture/earth_d.png",PT_TRIANGLELIST);
-	m_Scene->AddModel(sphere);
-	m_testModel = sphere;
-
-	m_light_dir = vec3(1.0f,0.0,0.0f);
-	m_light_angle = 0.0f;
-	m_tesslationInner = 1;
-	m_tesslationOuter = 1;
-	height = 0.0f;
-	fbo[0] = Renderer::Get().CreateFrameBuffer();
-	fbo[1] = Renderer::Get().CreateFrameBuffer();
-	ivec2 size = Renderer::Get().GetScreen();
-	buffer[0].Create(size,PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
-	buffer[1].Create(size,PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
-	rbo = Renderer::Get().CreateRenderBuffer(size,PXF_DEPTH);
-
-	fbo[0]->setTexture(buffer[0],COLOR_ATTACHMENT);
-	use_buffer = buffer[1];
-	fbo[0]->setRender(rbo,DEPTH_ATTACHMENT);
-	//fbo[0]->setTexture(buffer[1],DEPTH_ATTACHMENT);
-	testwindow = new AWindow();
-	testwindow->SetSize(200,200);
-	testwindow->SetPosition(200,150);
-
-	testwindow->SetFont(m_Scene->getShadowMap());
-
-	GUIMgr::Instance().AddWidget(testwindow);
-	Entities* enti;
-	TransformPtr _transfo = (new Transform());
-	_transfo->m_position.z = -100.0f;
-	m_sol[0] = _transfo;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,1),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	_transfo = (new Transform());
-	_transfo->m_position.z = 100.0f;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,0,-1),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	_transfo = (new Transform());
-	m_sol[1] = _transfo;
-	_transfo->m_position.x = -100.0f;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(1,0,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	_transfo = (new Transform());
-	m_sol[2] = _transfo;
-	_transfo->m_position.x = 100.0f;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(-1,0,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	_transfo = (new Transform());
-	m_sol[3] = _transfo;
-	_transfo->m_position.y = 100.0f;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,-1,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	_transfo = (new Transform());
-	m_sol[4] = _transfo;
-	_transfo->m_position.y = -100.0f;
-	enti = new Entities(0.0f,new btStaticPlaneShape(btVector3(0,1,0),1),TO_PHYS(*_transfo),TYPE_OBJECT);
-	physicsMgr.Add(enti);
-	Model* mod;
-
-	sphere = CreateBox(vec3(8.0f,2.0f,1.0f),"Texture/bw.png",PT_TRIANGLELIST);
-
+    Renderer::Get().SetActiveScene(m_Scene);
 	Renderer::Get().SetCullFace(1);
-}
 
-#define MODULO_FLOAT(a,x) ((a)-(x)*(int)((a)/(x)))
-#define ORIGIN -98.0f
+    tex.CreateFromFile("Texture/bw.png",PXF_A8R8G8B8);
+
+
+}
 
 void App::OnUpdate(uint64 time_diff/*in ms*/)
 {
-	m_MatView3D = camera->look();
-
-	m_light_angle += (float)M_PI*2*(time_diff/10000.0f);
-	m_light_angle = MODULO_FLOAT(m_light_angle,(float)M_PI*2);
-	m_light_dir = vec3(cos(m_light_angle),sin(m_light_angle),sin(m_light_angle));
-
-	m_testModel->SetRotation(rotate(mat4(1.0f),(float)(m_light_angle*180/M_PI)*1.0f,vec3(0,0,1)));
-	if(!pause)
-		PhysicsMgr::Instance().Update(time_diff);
 
 	m_Scene->Update(time_diff);
 
-	if(!pause && m_count < 600)
-	{
-		if(m_timer <= time_diff)
-		{
-			vec3 ray = vec3(cos((float)time_diff),sin((float)time_diff),1);
-			ray = normalize(ray)*1000.0f;
-			Model* p = new Model(sphere);
-			Entities* enti;
-			m_Scene->AddModel(p);
-
-			Transform& _transfo = (p->getPosition());
-			enti = new Entities(20.0f,new btBoxShape(btVector3(4.0f,1.0f,0.5f)),TO_PHYS(_transfo),TYPE_OBJECT);
-			//enti->SetVelocity(ray);
-			PhysicsMgr::Instance().Add(enti);
-			
-			_transfo.m_position = vec3(15.0f*cos(m_count/5.0f*M_PI + (int)(m_count/10)%2*M_PI/10),15.0f*sin(m_count/5.0f*M_PI+ (int)(m_count/10)%2*M_PI/10),ORIGIN+(int)(m_count/10)*1.0f);
-			_transfo.m_rotation = quat(rotate(mat4(1.0f),m_count/5.0f*180+90+(int)(m_count/10)%2*90.0f/5,vec3(0,0,1)));
-
-			/*for(int j = 0; j < 5; j++)
-			{
-
-			Model* p = new Model(sphere);
-			Entities* enti;
-			m_Scene->AddModel(p);
-
-			TransformPtr _transfo = &(p->getPosition());
-			enti = new Entities(100.0f,new btBoxShape(btVector3(2.5f,2.5f,1.0f)),TO_PHYS(*_transfo),TYPE_OBJECT);
-			//enti->SetVelocity(ray);
-			PhysicsMgr::Instance().Add(enti);
-			
-			_transfo->m_position = vec3((6.0f*j)-3*5.0f-0.5f,-3*6.0f,ORIGIN+(int)(m_count)*2.0f);
-			_transfo->m_rotation = quat(rotate(mat4(1.0f),90.0f,vec3(0,0,1)));
-
-			
-
-			p = new Model(sphere);
-			enti;
-			m_Scene->AddModel(p);
-
-			 _transfo = &(p->getPosition());
-			enti = new Entities(100.0f,new btBoxShape(btVector3(2.50f,2.5f,1.0f)),TO_PHYS(*_transfo),TYPE_OBJECT);
-			//enti->SetVelocity(ray);
-			PhysicsMgr::Instance().Add(enti);
-			
-			_transfo->m_position = vec3(4.0f*j-3*4.0f,(3*6.0f),ORIGIN+(int)(m_count)*2.0f);
-			_transfo->m_rotation = quat(rotate(mat4(1.0f),90.0f,vec3(0,0,1)));
-
-			}
-
-			for(int i = 0; i < 6; i++)
-			{
-			}*/
-			
-			m_count++;
-			m_timer = 10;
-		}else m_timer -= time_diff;
-	}
 	
 }
 
 void App::OnRender()
 {
+    PROFILE_INIT()
+    PROFILE_START();
+    Renderer& render = Renderer::Get();
+    PROFILE_TIME(Renderer& render = Renderer::Get());
 	// 3D RENDER BEGIN
 	
-	Renderer::Get().SetMatView(m_MatView3D);
-	Renderer::Get().SetMatProjection(m_MatProj3D);
-
-	Renderer::Get().getPipeline()->SetParameter("du",height);
-	
-	m_Scene->Render(SC_DRAW_MODEL);
-
-
-
 	// 3D RENDER END
 
 	// POST EFFECT 3D BEGIN
@@ -303,139 +176,50 @@ void App::OnRender()
 	// POST EFFECT 3D END
 
 	// 2D RENDER BEGIN
+    render.Enable(RENDER_ZTEST,false);
+    PROFILE_TIME(render.Enable(RENDER_ZTEST,false));
+    //Texture::TextureRender(tex);
+    
 
-	Renderer::Get().SetCurrentProgram(shader2D);
+    Camera::SetCurrent(cam2D);
+    PROFILE_TIME(Camera::SetCurrent(cam2D));
+	render.SetCurrentProgram(shader2D);
+    PROFILE_TIME(render.SetCurrentProgram(shader2D));
+	int fps = getFps();
+    PROFILE_TIME(int fps = getFps());
+	m_fps->Text = StringBuilder(fps);
+	PROFILE_TIME(	m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms"));
+    m_fps->Draw();
+    PROFILE_TIME(m_fps->Draw());
+    /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
+    PROFILE_TIME(m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")"));
+    m_text->Draw();
+    PROFILE_TIME(m_text->Draw());*/
 
-	Renderer::Get().SetMatView(m_MatView2D);
-	Renderer::Get().SetMatProjection(m_MatProj2D);
-	float fps = getFps();
-	m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
-	m_fps->Draw();
-	m_counter->Text = StringBuilder("Sphere counter : ")(m_count);
-	m_counter->Draw();
+	render.SetCurrentProgram(NULL);
+    PROFILE_TIME(render.SetCurrentProgram(NULL));
 
-	Renderer::Get().SetCurrentProgram(NULL);
-	//testwindow->SetFont(use_buffer);
 	GUIMgr::Instance().DrawGUI();
-	// 2D RENDER END
-	/*
-		fbo[0]->setTexture(use_buffer,COLOR_ATTACHMENT);
-		use_buffer = use_buffer.GetTexture() == buffer[0].GetTexture() ? buffer[1] : buffer[0]; 
-		fbo[0]->Clear();
-		fbo[0]->Bind();
-		Renderer::Get().SetMatView(m_MatView3D);
-		Renderer::Get().SetMatProjection(m_MatProj3D);
-		m_Scene->Draw(SC_DRAW_MODEL);
-
-		Renderer::Get().SetCurrentProgram(shader2D);
-
-		Renderer::Get().SetMatView(m_MatView2D);
-		Renderer::Get().SetMatProjection(m_MatProj2D);
-		fps = getFps();
-		m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
-		m_fps->Draw();
-		m_counter->Text = StringBuilder("Sphere counter : ")(m_count);
-		m_counter->Draw();
-
-		Renderer::Get().SetCurrentProgram(NULL);
-	
-		testwindow->SetFont(use_buffer);
-		GUIMgr::Instance().DrawGUI();
-
-		fbo[0]->UnBind();
-	
-	*/
-
-	
+    PROFILE_TIME(GUIMgr::Instance().DrawGUI());
+    render.Enable(RENDER_ZTEST,true);
+    PROFILE_TIME(render.Enable(RENDER_ZTEST,true));
+    Camera::SetCurrent(cam3D);
+	PROFILE_TIME(Camera::SetCurrent(cam3D));
+    PROFILE_END();
 
 }
 
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
-/*	if(message == WM_LBUTTONDOWN)
-	{
-		vec3 ray = camera->getTarget() - camera->getPosition();
-		ray = normalize(ray)*50.0f;
-		Model* sphere = CreateSphere(0.5f,40.0,40.0,M_PI*2,"Texture/earth_d.png",PT_TRIANGLELIST);
-		Entities* enti;
-		m_Scene->AddModel(sphere);
-		sphere->MoveTo(camera->getPosition());
-
-		Transform& _transfo = (sphere->getPosition());
-		enti = new Entities(0.5f,new btSphereShape(0.5f),TO_PHYS(_transfo),TYPE_OBJECT);
-		enti->SetVelocity(ray);
-		PhysicsMgr::Instance().Add(enti);
-	}*/
-
 	if(message == WM_KEYDOWN)
 	{
 		switch(LOWORD(wParam))
 		{
-		case VK_ADD:
-			m_tesslationInner++;
-			break;
-		case VK_SUBTRACT:
-			if(m_tesslationInner > 1)
-				m_tesslationInner--;
-			else m_tesslationInner = 1;
-			break;
-		case VK_MULTIPLY:
-			m_tesslationOuter++;
-			break;
-		case VK_DIVIDE:
-			if(m_tesslationOuter > 1)
-				m_tesslationOuter--;
-			else m_tesslationOuter = 1;
-			break;
-		case VK_NUMPAD8:
-			height +=0.5f;
-			break;
-		case VK_NUMPAD2:
-			height -=0.5f;
-			break;
-		case VK_SPACE:
-			PhysicsMgr::Instance().SetGravity(vec3(0,0,10));/*
-			m_sol[0]->m_position.z = 0.0f;
-			m_sol[1]->m_position.x = -50.0f;
-			m_sol[2]->m_position.x = 50.0f;
-			m_sol[3]->m_position.y = 50.0f;
-			m_sol[4]->m_position.y = -50.0f;*/
-			break;
 		case 'P':
 			pause = !pause;
 			break;
-		case 'Z':
-			//model_test->SetVelocity(vec3(10,0,0));
-			break;
-		case 'S':
-			//model_test->SetVelocity(vec3(-10,0,0));
-			break;
-		case 'Q':
-			//model_test->SetVelocity(vec3(0,-10,0));
-			break;
-		case 'D':
-			//model_test->SetVelocity(vec3(0,10,0));
-			break;
-		case 'M':
-			PhysicsMgr::Instance().SetGravity(vec3(0));
 		break;
-		}
-	}
-	if(message == WM_KEYUP)
-	{
-		switch(LOWORD(wParam))
-		{
-			case VK_SPACE:
-				PhysicsMgr::Instance().SetGravity(vec3(0,0,-10));
-				/*
-				m_sol[0]->m_position.z = -100.0f;
-				m_sol[1]->m_position.x = -100.0f;
-				m_sol[2]->m_position.x = 100.0f;
-				m_sol[3]->m_position.y = 100.0f;
-				m_sol[4]->m_position.y = -100.0f;*/
-				break;
 		}
 	}
 
@@ -444,7 +228,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
-Model* App::CreateSphere(float r,float stack, float slice,float angle, std::string texture, TPrimitiveType type)
+Model* App::CreateSphere(float r,float stack, float slice,float angle, std::string texture, TPrimitiveType type, uint32 color)
 {
 	float cosa = 1.0f;
 	float sina = 0.0f;
@@ -459,7 +243,7 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
 		for(int j = 0; j <= slice; j++)
 		{
 			Model::TVertex vertex;
-			vertex.color = -1;
+			vertex.color = color;
 			vertex.normal = vec3(cos(i*angle/stack)*sin(j*M_PI/slice),sin(i*angle/stack)*sin(j*M_PI/slice), cos(j*M_PI/slice));
 			vertex.position = vec3(r*cos(i*angle/stack)*sin(j*M_PI/slice),r*sin(i*angle/stack)*sin(j*M_PI/slice), r*cos(j*M_PI/slice));
 			vertex.texCoords = vec2(i/stack*angle/(M_PI*2),1.0f-j/slice);
@@ -488,7 +272,7 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
 			index.push_back(i*((int)slice+1)+_j);
 		}
 	}
-	Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),NULL,0,type);
+	Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
 	Texture tex;
 	if(texture.length() != 0)
 		tex.CreateFromFile(texture,PXF_A8R8G8B8);
@@ -542,7 +326,7 @@ Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitive
 		}
 	}
 
-	Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),NULL,0,type);
+	Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
 	Texture tex;
 	if(texture.length() != 0)
 		tex.CreateFromFile(texture,PXF_A8R8G8B8);
@@ -599,7 +383,7 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
 		indices.push_back(3+i*4);
 		indices.push_back(2+i*4);
 	}
-	Model* m = new Model(vertex,4*6,&indices[0],indices.size(),NULL,0,type);
+	Model* m = new Model(vertex,4*6,&indices[0],indices.size(),type);
 	Texture tex;
 	if(texture.length() != 0)
 		tex.CreateFromFile(texture,PXF_A8R8G8B8);
@@ -627,7 +411,7 @@ Model* App::CreateTriangle(float size, TPrimitiveType type)
 	}
 
 
-	return new Model(&vertices[0],vertices.size(),&index[0],index.size(),NULL,0,type);
+	return new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
 }
 
 void AgmdClient::RecvPacket(Packet& packet)

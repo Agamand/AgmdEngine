@@ -33,6 +33,8 @@ namespace Agmd
 
         unsigned long GetCount() const;
 
+        void Bind(uint32 bindpoint);
+
     private :
 
         SmartPtr<BaseBuffer> m_Buffer;

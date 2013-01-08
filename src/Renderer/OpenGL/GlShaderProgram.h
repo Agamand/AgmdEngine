@@ -61,11 +61,18 @@ namespace Agmd
 
 		virtual void SetParameter(TMatrixType type,mat4 value) const;
 
-		virtual void SetParameter(std::string name, const BaseBuffer* buf) const;
+		virtual void SetParameter(std::string name, const uint32 bindPoint) const;
 
 		virtual void Use(bool) const;
+        void UniformShaderInfo();
+        static int getUniformByteSize(int uniSize, int uniType, int uniArrayStride, int uniMatStride);
+        static void Init();
 	private:
+        static std::map<int, std::string> GLShaderProgram::spGLSLType;
+        static std::map<int, int> GLShaderProgram::spGLSLTypeSize;
+        static bool s_init;
 		void SetupShader();
+        
 		Parameter GetParameter(std::string name) const;
 
 		ParameterMap m_UniformMap;

@@ -13,8 +13,8 @@
 #include <Utilities/PixelUtils.h>
 #include <Debug/Logger.h>
 #include <Matrix4.h>
-#include <gl/GLU.h>
 #include <Debug/New.h>
+
 
 SINGLETON_IMPL(Agmd::GLRenderer)
 
@@ -69,6 +69,11 @@ namespace Agmd
 	PFNGLLINKPROGRAMPROC              GLRenderer::glLinkProgram;
 	PFNGLGETPROGRAMIVPROC             GLRenderer::glGetProgramiv;
 	PFNGLGETPROGRAMINFOLOGPROC		  GLRenderer::glGetProgramInfoLog;
+    PFNGLGETACTIVEUNIFORMSIVPROC	  GLRenderer::glGetActiveUniformsiv;
+    PFNGLGETACTIVEUNIFORMNAMEPROC	  GLRenderer::glGetActiveUniformName;
+    PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC GLRenderer::glGetActiveUniformBlockName;
+    PFNGLGETACTIVEUNIFORMBLOCKIVPROC  GLRenderer::glGetActiveUniformBlockiv;
+    PFNGLGETINTEGERI_VPROC       	  GLRenderer::glGetIntegeri_v;
 	PFNGLGETACTIVEUNIFORMPROC         GLRenderer::glGetActiveUniform;
 	PFNGLGETUNIFORMLOCATIONPROC       GLRenderer::glGetUniformLocation;
 	PFNGLGETACTIVEATTRIBPROC          GLRenderer::glGetActiveAttrib;
@@ -107,11 +112,14 @@ namespace Agmd
 	PFNGLGENFRAMEBUFFERSPROC          GLRenderer::glGenFramebuffers;
 	PFNGLDELETEFRAMEBUFFERSPROC       GLRenderer::glDeleteFramebuffers;
 	PFNGLBINDFRAMEBUFFERPROC          GLRenderer::glBindFramebuffer;
+    PFNGLDRAWBUFFERSPROC              GLRenderer::glDrawBuffers;
 	PFNGLFRAMEBUFFERRENDERBUFFERPROC  GLRenderer::glFramebufferRenderbuffer;
 	PFNGLFRAMEBUFFERTEXTUREPROC       GLRenderer::glFramebufferTexture;
 	PFNGLFRAMEBUFFERTEXTURE2DPROC     GLRenderer::glFramebufferTexture2D;
 	PFNGLFRAMEBUFFERTEXTURE3DPROC     GLRenderer::glFramebufferTexture3D;
 	PFNGLCHECKFRAMEBUFFERSTATUSPROC   GLRenderer::glCheckFramebufferStatus;
+
+    PFNWGLCREATECONTEXTATTRIBSARBPROC GLRenderer::wglCreateContextAttribsARB;
 
 	char GLRenderer::VertexPipeline[]   = 
 		"\n \
@@ -235,7 +243,7 @@ namespace Agmd
 	m_Extensions        (""),
 	m_Reload			(false),
 	m_CurrentProgram    (NULL),
-	m_globalBuffer(NULL)
+    last_unit(TEXTURE_UNIT_0)
 	{
 		std::memset(m_TextureBind,NULL,sizeof(void*)*MAX_TEXTUREUNIT);
 	}
@@ -314,8 +322,25 @@ namespace Agmd
 		m_Context = wglCreateContext(m_Handle);
 		assert(wglMakeCurrent(m_Handle, m_Context));
 
+	    int attribs[] =
+	    {
+		    WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
+		    WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+		    WGL_CONTEXT_FLAGS_ARB, 0,
+		    0
+	    };
+
 		// Chargement des extensions
 		LoadExtensions();
+
+        if(wglCreateContextAttribsARB != NULL)
+        {
+            HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
+		    wglMakeCurrent(NULL,NULL);
+		    wglDeleteContext(m_Context);
+            m_Context = temp;
+		    wglMakeCurrent(m_Handle, m_Context);
+        }
 
 		// Récupération des extensions supportées
 		int n;
@@ -328,31 +353,21 @@ namespace Agmd
 
 
 		// States par défaut
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
 		glClearDepth(1.0f);
-		glDepthRange(1.0, 0.0);
+		glDepthFunc(GL_LESS);
+		glDepthRange(0.0, 1.0);
 		glClearStencil(0x00);
 
 		glEnable(GL_DEPTH_TEST);
 
-		//init global buffer
-
-		m_globalBuffer = CreateUB(sizeof(GlobalValue),1, BUF_DYNAMIC, 0);
-		GlobalValue* _global = (GlobalValue*)m_globalBuffer.Lock();
-		*_global = m_globalValue;
-		m_globalBuffer.Unlock();
-
 		//init default shader
 
 		m_Pipeline.LoadFromFile("Shader/classic_pipeline.glsl");
-		m_Pipeline.SetParameter("TessLevelInner",1.0f);
-		m_Pipeline.SetParameter("TessLevelOuter",1.0f);
 
 		m_DebugPipeline[0].LoadFromFile("Shader/debug_cubemap.glsl");
 
 		glFrontFace(GL_CCW);
-
-
 	}
 
 	void GLRenderer::CheckCaps()
@@ -420,6 +435,11 @@ namespace Agmd
 		LOAD_EXTENSION(glLinkProgram);
 		LOAD_EXTENSION(glGetProgramiv);
 		LOAD_EXTENSION(glGetProgramInfoLog);
+		LOAD_EXTENSION(glGetActiveUniformsiv);
+		LOAD_EXTENSION(glGetActiveUniformName);
+		LOAD_EXTENSION(glGetActiveUniformBlockName);
+		LOAD_EXTENSION(glGetActiveUniformBlockiv);
+		LOAD_EXTENSION(glGetIntegeri_v);
 		LOAD_EXTENSION(glGetActiveUniform);
 		LOAD_EXTENSION(glGetUniformLocation);
 		LOAD_EXTENSION(glGetActiveAttrib);
@@ -457,11 +477,14 @@ namespace Agmd
 		LOAD_EXTENSION(glGenFramebuffers);
 		LOAD_EXTENSION(glDeleteFramebuffers);
 		LOAD_EXTENSION(glBindFramebuffer);
+        LOAD_EXTENSION(glDrawBuffers);
 		LOAD_EXTENSION(glFramebufferRenderbuffer);
 		LOAD_EXTENSION(glFramebufferTexture);
 		LOAD_EXTENSION(glFramebufferTexture2D);
 		LOAD_EXTENSION(glFramebufferTexture3D);
 		LOAD_EXTENSION(glCheckFramebufferStatus);
+
+        LOAD_EXTENSION(wglCreateContextAttribsARB);
 	}
 
 	void GLRenderer::InitScene()
@@ -469,8 +492,6 @@ namespace Agmd
 		if(m_Reload)
 		{
 			m_Pipeline.ReloadFromFile("Shader/classic_pipeline.glsl");
-			m_Pipeline.SetParameter("TessLevelInner",1.0f);
-			m_Pipeline.SetParameter("TessLevelOuter",1.0f);
 			m_Reload = false;
 		}
 
@@ -480,6 +501,7 @@ namespace Agmd
 
 	void GLRenderer::EndScene()
 	{
+        glFinish();
 		m_Pipeline.Disable();
 		SwapBuffers(m_Handle); 
 	}
@@ -668,8 +690,8 @@ namespace Agmd
 		unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
 		const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
 		glPatchParameteri(GL_PATCH_VERTICES, 3);
-		LoadMatrix(MAT_MODEL,MatStack::get());
-		updateGlobalBuffer();
+		getPipeline()->SetParameter(MAT_MODEL,MatStack::get());
+		//updateGlobalBuffer();
 		getPipeline()->SetParameter("u_textureFlags",(int)m_TextureFlags);
 		switch (type)
 		{
@@ -707,7 +729,13 @@ namespace Agmd
 			return; // NO CHANGE? -> return!
 
 		const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
-		glActiveTexture(GL_TEXTURE0+unit);
+
+        if(last_unit != unit)
+        {
+		    glActiveTexture(GL_TEXTURE0+unit);
+            last_unit = unit;
+        }
+
 		if (texture)
 		{
 			glBindTexture(RGLEnum::Get(oGLTexture->GetType()), oGLTexture->GetGLTexture());
@@ -743,11 +771,6 @@ namespace Agmd
 		int nbMipmaps = 0;
 		glBindTexture(GL_TEXTURE_2D, texture);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
 		if(format == PXF_DEPTH)
 		{
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -756,15 +779,20 @@ namespace Agmd
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-			glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE,   GL_LUMINANCE);
+			nbMipmaps = 0;
+		}else
+		{
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
+
+			if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
+				glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
+
 		}
-
-		nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
-
-		if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
-			glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
-
 
 		for (int i = 0; i <= nbMipmaps; ++i)
 		{
@@ -808,10 +836,15 @@ namespace Agmd
 		glBlendFunc(RGLEnum::Get(src), RGLEnum::Get(dest));
 	}
 
+    void GLRenderer::SetupDepthTest(TDepth mode)
+    {
+        glDepthFunc(RGLEnum::Get(mode));
+    }
+
 	void GLRenderer::SetupTextureUnit(uint32 unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2, const Color& constant) const
 	{
 		glEnable(GL_TEXTURE_2D);
-		glActiveTexture(GL_TEXTURE0 + unit);
+        glActiveTexture(GL_TEXTURE0 + unit);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT);
 
 		if (op < TXO_ALPHA_FIRSTARG)
@@ -848,26 +881,19 @@ namespace Agmd
 				glDepthMask(value);
 				break;
 			}
-			case RENDER_TRANSPARENT:
-			{
-				if(value)
+			case RENDER_TRANSPARENT: /* DEPRECATED */
+			{ 
+                
+
+				/*if(value)
 					glEnable(GL_ALPHA_TEST);
 				else glDisable(GL_ALPHA_TEST);
 				glAlphaFunc(GL_GEQUAL,0.7f);
+                */
 				break;
 			}
-			case RENDER_CLIP_PLANE0:
-			case RENDER_CLIP_PLANE1:
-			case RENDER_CLIP_PLANE2:
-			case RENDER_CLIP_PLANE3:
-			case RENDER_CLIP_PLANE4:
-			case RENDER_CLIP_PLANE5:
-				if(value)
-					glEnable(GL_CLIP_PLANE0 + param - RENDER_CLIP_PLANE0);
-				else
-					glDisable(GL_CLIP_PLANE0 + param - RENDER_CLIP_PLANE0);
-
-				break;
+            case RENDER_RENDERING:
+                glDrawBuffer(value ? GL_BACK : GL_NONE);
 			default :
 			{
 				int _value = RGLEnum::Get(param);
@@ -1020,7 +1046,9 @@ namespace Agmd
 		}
 
 		GLShaderProgram* program = new GLShaderProgram(id);
-		program->SetParameter("globalValue",m_globalBuffer.GetBuffer());
+		program->SetParameter("cameraInfoBlock",(uint32)UNIFORM_CAMERA_BIND);
+        program->SetParameter("lightInfoBlock",(uint32)UNIFORM_LIGHT_BIND);
+        program->UniformShaderInfo();
 		return program;
 	}
 
@@ -1076,9 +1104,7 @@ namespace Agmd
 	{
 		m_CurrentProgram = prog;
 		if(m_CurrentProgram)
-		{
 			m_CurrentProgram->Use(true);
-		}
 		else m_Pipeline.Enable();
 	}
 

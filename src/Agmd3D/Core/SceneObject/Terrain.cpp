@@ -95,20 +95,11 @@ namespace Agmd
 		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(vertices.size(), 0, &vertices[0]);
 		m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(index.size(), 0, &index[0]);
 
-		m_RenderPass.resize(1);
-		// init default renderPass;
-		m_RenderPass[0].blendmode = 0;
-		m_RenderPass[0].indexCount = index.size();
-		m_RenderPass[0].indexStart = 0;
-		m_RenderPass[0].vertexStart = 0;
-		m_RenderPass[0].vertexEnd = vertices.size()-1;
-
-
 	}
 
 	void Terrain::Render() const
 	{
-		Model::Render();
+		//Model::Render();
 	}
 
 }

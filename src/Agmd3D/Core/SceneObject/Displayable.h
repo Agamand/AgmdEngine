@@ -40,8 +40,8 @@ namespace Agmd
 		Displayable();
 		virtual ~Displayable();
 
-        virtual void Render() const = 0;
-		virtual void Draw() const = 0;
+        virtual void Render(TRenderPass pass) const = 0;
+        virtual void Draw() const = 0;
 
 		void Rotate(float angle, vec3 vector);
 		void SetRotation(mat4 mat);
@@ -60,7 +60,7 @@ namespace Agmd
 
     protected:
 		Transform m_transform;
-
+        Material* m_material;
     };
 
 }

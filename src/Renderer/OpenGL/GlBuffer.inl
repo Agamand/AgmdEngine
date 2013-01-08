@@ -32,3 +32,7 @@ inline void GLBuffer<Type>::Unlock()
 {
     GLRenderer::glUnmapBuffer(Type);
 }
+
+template <int Type>
+inline void GLBuffer<Type>::Bind(uint32 /*bindpoint*/)
+{}

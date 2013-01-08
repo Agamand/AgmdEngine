@@ -1,15 +1,17 @@
 #include <Matrix4.h>
 #include <Core/SceneObject/Model.h>
+#include <Core/SceneObject/Material.h>
 #include <Core/Renderer.h>
 #include <Debug/Exception.h>
 #include <Debug/New.h>
 #include <Core/MatStack.h>
-
+#include <Core/ResourceManager.h>
 
 namespace Agmd
 {
-	Model::Model(Model::TVertex* Vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, ModelRenderPass* renderpass, uint32 passCount, TPrimitiveType type) :
-	m_PrimitiveType(type)
+	Model::Model(Model::TVertex* Vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, TPrimitiveType type) :
+	m_PrimitiveType(type),
+    Displayable()
 	{
 		Assert(Vertices != NULL);
 		Assert(Indices  != NULL);
@@ -31,29 +33,12 @@ namespace Agmd
 
 		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, Vertices);
 		m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(IndicesCount, 0, Indices);
-		m_RenderPass.resize(passCount);
-
-		if(renderpass != NULL)
-		{
-			std::memcpy(&m_RenderPass[0],renderpass,sizeof(ModelRenderPass)*passCount);
-		}
-		else
-		{
-			m_RenderPass.resize(1);
-			// init default renderPass;
-			m_RenderPass[0].blendmode = 0;
-			m_RenderPass[0].indexCount = IndicesCount;
-			m_RenderPass[0].indexStart = 0;
-			m_RenderPass[0].vertexStart = 0;
-			m_RenderPass[0].vertexEnd = VerticesCount-1;
-		}
-
+        m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
 	}
 
 	Model::Model(Model* m)
 	{
 		this->m_transform = m->m_transform;
-		this->m_RenderPass = m->m_RenderPass;
 		this->m_IndexBuffer = m->m_IndexBuffer;
 		this->m_VertexBuffer = m->m_VertexBuffer;
 		this->m_Declaration = m->m_Declaration;
@@ -63,12 +48,14 @@ namespace Agmd
 	Model::Model()
 	{}
 
-	void Model::Render() const
+	void Model::Render(TRenderPass pass) const
 	{
 
-		//SET CUSTOM SHADER
+        if(!m_material->Enable(pass))
+            return;
+
 		Draw();
-		//DISABLE CUSTOM SHADER
+        m_material->Disable();
 	}
 
 	void Model::Draw() const
@@ -78,24 +65,8 @@ namespace Agmd
 		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-
-		for(uint32 i = 0; i < m_RenderPass.size(); i++)
-		{
-			uint32 textureFlags = 0;
-			for(uint32 j = 0; j < MAX_TEXTUREUNIT; j++)
-			{
-				if(m_RenderPass[i].m_Textures[j].use)
-				{
-					Renderer::Get().SetTexture(j, m_RenderPass[i].m_Textures[j].tex.GetTexture());
-					textureFlags |= 1 << j;
-				}
-			}
-			Renderer::Get().SetTextureFlag(textureFlags);			
-			Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, m_RenderPass[i].indexStart, m_RenderPass[i].indexCount);
-		}
-
-
-		MatStack::pop();
+        Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
+        MatStack::pop();
 	}
 
 	void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
@@ -181,15 +152,16 @@ namespace Agmd
 	}
 	void Model::SetTextureUnit(Texture tex, uint32 unit, uint32 pass)
 	{
-		if(unit > MAX_TEXTUREUNIT || pass > m_RenderPass.size())
+		/*if(unit > MAX_TEXTUREUNIT || pass > m_RenderPass.size())
 			return;
-		m_RenderPass[pass].m_Textures[unit] = TextureUnit(tex);
+		m_RenderPass[pass].m_Textures[unit] = TextureUnit(tex);*/
 	}
 	void Model::DisableTextureUnit(uint32 unit, uint32 pass)
 	{
+        /*
 		if(unit > MAX_TEXTUREUNIT || pass > m_RenderPass.size())
 			return;
 
-		m_RenderPass[pass].m_Textures[unit] = TextureUnit();
+		m_RenderPass[pass].m_Textures[unit] = TextureUnit();*/
 	}
 }

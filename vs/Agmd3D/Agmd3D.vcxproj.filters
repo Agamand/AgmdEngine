@@ -22,14 +22,23 @@
     <Filter Include="Core\Effect">
       <UniqueIdentifier>{c99ef579-1871-4872-95d0-6350b6fbede7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\GUI">
-      <UniqueIdentifier>{ce8980ec-2125-498b-b7c2-64ee1546fd33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\SceneObject">
       <UniqueIdentifier>{ceafba63-901c-45df-8d0e-d32ebcd70444}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Texture">
       <UniqueIdentifier>{6ec37c22-5d25-44b8-84a8-b68b26eba808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools">
+      <UniqueIdentifier>{a60c3b0b-8d5b-44a5-be74-425aec6725c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader%28Built in%29">
+      <UniqueIdentifier>{3fca2a5c-8df8-4de0-b9b7-10796af5d085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\RenderingMode">
+      <UniqueIdentifier>{e02bfe57-92b5-41ea-b327-9782c7a68a32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI">
+      <UniqueIdentifier>{ce8980ec-2125-498b-b7c2-64ee1546fd33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,12 +69,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Camera\TPCamera.h">
       <Filter>Core\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect.h">
-      <Filter>Core\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.h">
-      <Filter>Core\Effect</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AButton.h">
       <Filter>Core\GUI</Filter>
@@ -196,6 +199,39 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Water.h">
       <Filter>Core\SceneObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Material.h">
+      <Filter>Core\SceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\BoundingBox.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Frustum.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Fast2DSurface.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Shader\ShaderPipeline.h">
+      <Filter>Core\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\ShaderPipelineLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\RenderingMode\DeferredRendering.h">
+      <Filter>Core\RenderingMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\RenderingMode\ForwardRendering.h">
+      <Filter>Core\RenderingMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\RenderingMode\RenderingMode.h">
+      <Filter>Core\RenderingMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\RenderingMode\VertexRendering.h">
+      <Filter>Core\RenderingMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\PostEffect.h">
+      <Filter>Core\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -215,6 +251,87 @@
     </None>
     <None Include="ClassDiagram11.cd" />
     <None Include="ClassDiagram.cd" />
+    <None Include="..\..\Shader\add_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\classic_pipeline.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\classic_pipeline_2D.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\debug_binormal.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\debug_cubemap.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\debug_normal.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\debug_tangent.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\DepthRTT.fragmentshader">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\DepthRTT.vertexshader">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\dir_light.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\global_input.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\global_light_uniform.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\global_uniform.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\model_pipeline.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\point_light.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\prod_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\render_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\Scene.frag">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\shadowmap.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\shadowmapping_OLD.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\skybox.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\skybox_old.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\spot_light.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\water.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\waterNormal.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\window.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Shader\rand_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">
@@ -234,12 +351,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Camera\TPCamera.cpp">
       <Filter>Core\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect.cpp">
-      <Filter>Core\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Effect_ShadowMap.cpp">
-      <Filter>Core\Effect</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AButton.cpp">
       <Filter>Core\GUI</Filter>
@@ -357,6 +468,36 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Water.cpp">
       <Filter>Core\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Material.cpp">
+      <Filter>Core\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\BoundingBox.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\Frustum.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\Fast2DSurface.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Shader\ShaderPipeline.cpp">
+      <Filter>Core\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\ShaderPipelineLoader.cpp">
+      <Filter>Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\RenderingMode\DeferredRendering.cpp">
+      <Filter>Core\RenderingMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\RenderingMode\ForwardRendering.cpp">
+      <Filter>Core\RenderingMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\RenderingMode\RenderingMode.cpp">
+      <Filter>Core\RenderingMode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\RenderingMode\VertexRendering.cpp">
+      <Filter>Core\RenderingMode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

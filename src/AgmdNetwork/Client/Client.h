@@ -22,6 +22,7 @@ namespace AgmdNetwork
 			int Pause();
 			bool isStarted() {return isRunning;}
 			void SendPacket(Packet& packet);
+            void Reconnect();
 			virtual void RecvPacket(Packet& packet) = 0;
 			static DWORD WINAPI ThreadLauncher(void *p)
 			{
@@ -29,15 +30,15 @@ namespace AgmdNetwork
 				Client *s = Obj->clt;
 				SOCKET socket = Obj->soc;
 				delete p;                       
-				return s->ClientThread(socket);       
+				return s->ClientThread();       
 			}
-		private: 
+    protected: 
 			int           m_port;
 			std::string   m_address;
 			SOCKET	      m_ListeningSocket;
 			bool          isRunning;  
 			SOCKADDR_IN   ServerAddr;   
-			DWORD         ClientThread(SOCKET);
+			DWORD         ClientThread();
 			SOCKET        m_serverSocket;
 	}; 
 }

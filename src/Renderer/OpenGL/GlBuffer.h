@@ -18,11 +18,13 @@ namespace Agmd
 
         unsigned int GetBuffer() const;
 
-    private :
+    protected:
 
         void* Lock(unsigned long offset, unsigned long size, unsigned long flags);
 
         void Unlock();
+
+        virtual void Bind(uint32 bindpoint);
 
         unsigned int m_Buffer;
     };

@@ -4,10 +4,10 @@
 
 namespace Agmd
 {
-	FPCamera::FPCamera(vec3 pos) :
+	FPCamera::FPCamera(mat4 projection, vec3 pos) :
 	_phi(0),
 	_theta(0),
-	Camera(pos)
+    Camera(projection,pos)
 	{
 		VectorsFromAngles();
 	}
@@ -97,5 +97,6 @@ namespace Agmd
 	{
 		_position += move*(_speed*time_diff)/1000.0f;
 		_target = _position + _forward;
+        UpdateBuffer(look());
 	}
 }

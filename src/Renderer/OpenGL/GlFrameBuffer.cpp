@@ -56,10 +56,12 @@ namespace Agmd
 		{
 			GLRenderer::glBindRenderbuffer(GL_RENDERBUFFER,static_cast<GLRenderBuffer*>(itr->second)->GetID());
 		}
+		//glDepthRange(0.0, 1.0);
 	}
 
 	void GLFrameBuffer::UnBind()
 	{
+		//glDepthRange(1.0, 0.0);
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		for(RenderBufferMap::iterator itr = m_RenderBufferMap.begin(); itr != m_RenderBufferMap.end(); itr++)
 		{
@@ -72,10 +74,21 @@ namespace Agmd
 		return m_Id;
 	}
 
-	void GLFrameBuffer::Clear()
+	void GLFrameBuffer::Clear(uint32 flags)
 	{
+        uint32 _flags = 0;
+
+        if(flags & CLEAR_COLOR)
+            _flags |= GL_COLOR_BUFFER_BIT;
+
+        if(flags & CLEAR_DEPTH)
+            _flags |= GL_DEPTH_BUFFER_BIT;
+
+        if(flags & CLEAR_STENCIL)
+            _flags |= GL_STENCIL_BUFFER_BIT;
+
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		glClear(_flags);
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
 	}
 
@@ -84,6 +97,17 @@ namespace Agmd
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
 		glDrawBuffer(flag);
 		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+	}
+
+	void GLFrameBuffer::DrawBuffers(uint32 nbuffer, uint32 flag[])
+	{
+        uint32* buffer = new uint32[nbuffer];
+        for(int i = 0; i < nbuffer; i++)
+            buffer[i] = RGLEnum::Get((TAttachment)flag[i]);
+		GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLRenderer::glDrawBuffers(nbuffer, buffer);
+        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        delete[] buffer;
 	}
 
 	void GLFrameBuffer::ReadBuffer(uint32 flag)

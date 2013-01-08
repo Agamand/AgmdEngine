@@ -1,10 +1,13 @@
 #include <Core/SceneObject/Displayable.h>
+#include <Core/SceneObject/Material.h>
 
 
 namespace Agmd
 {
 	Displayable::Displayable()
-	{}
+	{
+        m_material = NULL;
+    }
 
 	Displayable::~Displayable()
 	{}

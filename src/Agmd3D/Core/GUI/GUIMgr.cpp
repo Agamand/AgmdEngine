@@ -14,9 +14,11 @@ namespace Agmd
 	GUIMgr::~GUIMgr()
 	{}
 
-	void GUIMgr::SetSelected(AWidget* widget)
+	void GUIMgr::SetSelected(uint32 i)
 	{
-
+        AWidget* swapvalue = m_vwWidget[i];
+        m_vwWidget.erase(m_vwWidget.begin()+i);
+        m_vwWidget.push_back(swapvalue);
 	}
 
 	void GUIMgr::Update(uint64 t_diff)
@@ -38,10 +40,10 @@ namespace Agmd
 	{
 		if(m_vwWidget.empty())
 			return;
-		Renderer::Get().Enable(RENDER_ZWRITE, false);
-		for(int32 i = m_vwWidget.size()-1; i >= 0; i--)
+		//Renderer::Get().Enable(RENDER_ZWRITE, false);
+		for(int32 i = 0; i < m_vwWidget.size(); i++)
 			m_vwWidget[i]->Draw();
-		Renderer::Get().Enable(RENDER_ZWRITE, true);
+		//Renderer::Get().Enable(RENDER_ZWRITE, true);
 	}
 
 	void GUIMgr::HandleEvent(EventEntry _event)
@@ -54,7 +56,7 @@ namespace Agmd
 				{
 					if(!m_vwWidget[i]->OnClick(_event.mousePosition,_event.mouseState))
 						continue;
-
+                    SetSelected(i);
 					break;
 				}
 				return;

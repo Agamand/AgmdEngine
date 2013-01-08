@@ -11,9 +11,9 @@
 #include <Utilities/Singleton.h>
 #include <vector>
 #include <windows.h>
-#include <gl\GL.h>
-#include <gl\glext.h>
-
+#include <gl/GL.h>
+#include <gl/glext.h>
+#include <gl/wglew.h>
 
 
 namespace Agmd
@@ -55,6 +55,8 @@ namespace Agmd
 		virtual TextureBase* CreateTextureCube(const ivec2& size, TPixelFormat format, unsigned long flags = 0) const;
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const;
+
+        virtual void SetupDepthTest(TDepth mode);
 
         virtual void SetupTextureUnit(unsigned int Unit, TTextureOp Op, TTextureArg Arg1, TTextureArg Arg2 = TXA_DIFFUSE, const Color& constant = 0x00) const;
 
@@ -112,6 +114,11 @@ namespace Agmd
         static PFNGLLINKPROGRAMPROC					glLinkProgram;
         static PFNGLGETPROGRAMIVPROC				glGetProgramiv;
 		static PFNGLGETPROGRAMINFOLOGPROC			glGetProgramInfoLog;
+        static PFNGLGETACTIVEUNIFORMSIVPROC		    glGetActiveUniformsiv;
+        static PFNGLGETACTIVEUNIFORMNAMEPROC		glGetActiveUniformName;
+        static PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC	glGetActiveUniformBlockName;
+        static PFNGLGETACTIVEUNIFORMBLOCKIVPROC		glGetActiveUniformBlockiv;
+        static PFNGLGETINTEGERI_VPROC       	    glGetIntegeri_v;
         static PFNGLGETACTIVEUNIFORMPROC			glGetActiveUniform;
         static PFNGLGETUNIFORMLOCATIONPROC			glGetUniformLocation;
 		static PFNGLGETACTIVEATTRIBPROC             glGetActiveAttrib;
@@ -149,13 +156,18 @@ namespace Agmd
 		static PFNGLRENDERBUFFERSTORAGEPROC         glRenderbufferStorage;
 		static PFNGLGENFRAMEBUFFERSPROC             glGenFramebuffers;
 		static PFNGLBINDFRAMEBUFFERPROC             glBindFramebuffer;
+        static PFNGLDRAWBUFFERSPROC                 glDrawBuffers;
 		static PFNGLFRAMEBUFFERRENDERBUFFERPROC     glFramebufferRenderbuffer;
 		static PFNGLFRAMEBUFFERTEXTUREPROC          glFramebufferTexture;
 		static PFNGLFRAMEBUFFERTEXTURE2DPROC        glFramebufferTexture2D;
 		static PFNGLFRAMEBUFFERTEXTURE3DPROC        glFramebufferTexture3D;
 		static PFNGLCHECKFRAMEBUFFERSTATUSPROC      glCheckFramebufferStatus;
 		static PFNGLDELETEFRAMEBUFFERSPROC          glDeleteFramebuffers;
-			
+		
+        //CONTEXT
+
+        static PFNWGLCREATECONTEXTATTRIBSARBPROC    wglCreateContextAttribsARB;
+
 
 		static char VertexPipeline[];
 		static char FragmentPipeline[];
@@ -185,18 +197,7 @@ namespace Agmd
 		}
 
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat4& matrix)
-		{
-			switch(type)
-			{
-				case MAT_VIEW:
-					m_globalValue.m_MatView = matrix;
-					m_needUpdate = true;
-					return;
-				case MAT_PROJECTION:
-					m_globalValue.m_MatProjection = matrix;
-					m_needUpdate = true;
-					return;
-			}
+        {
 			if(m_CurrentProgram)
 				m_CurrentProgram->SetParameter(type,matrix);
 			else
@@ -207,9 +208,6 @@ namespace Agmd
 		{
 			if(!m_needUpdate)
 				return;
-			GlobalValue* _global = m_globalBuffer.Lock();
-			*_global = m_globalValue;
-			m_globalBuffer.Unlock();
 			
 			m_needUpdate = false;
 		}
@@ -247,7 +245,7 @@ namespace Agmd
 		const BaseShaderProgram*	m_CurrentProgram;
 		const TextureBase*			m_TextureBind[MAX_TEXTUREUNIT];
 		bool						m_Reload;
-		Buffer<GlobalValue>			m_globalBuffer;
+        uint32                      last_unit;
 
     };
 

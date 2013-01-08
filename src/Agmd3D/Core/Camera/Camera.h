@@ -3,10 +3,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <Config\Export.h>
+#include <Config/Export.h>
+#include <Core/Buffer/Buffer.h>
 #include <Vector3.h>
 #include <Matrix4.h>
-#include <Utilities\Singleton.h>
 #include <AgmdDefines.h>
 
 namespace Agmd
@@ -28,7 +28,7 @@ namespace Agmd
 	class AGMD_EXPORT Camera
 	{
 	public:
-		Camera(vec3 pos);
+		Camera(mat4 projection, vec3 pos);
 		virtual ~Camera() {}
 
 		virtual void OnUpdate(uint64 time_diff) = 0;
@@ -46,8 +46,19 @@ namespace Agmd
 
 		virtual mat4 look();
 
+        void SetActive();
+
+        static void SetCurrent(Camera* cam);
+        static Camera* GetCurrent();
+
 	protected:
+        struct CameraBuffer
+		{
+			mat4 m_MatProjection;
+			mat4 m_MatView;
+		};
 		virtual void VectorsFromAngles() = 0;
+        void UpdateBuffer(mat4 view);
 		float _speed;
 		float _sensivity;
 
@@ -60,6 +71,10 @@ namespace Agmd
 		glm::vec3 _left;
 		float _theta;
 		float _phi;
+
+        Buffer<CameraBuffer> m_cameraBuffer;
+    private:
+        static Camera* s_currentCamera;
 	};
 }
 #endif

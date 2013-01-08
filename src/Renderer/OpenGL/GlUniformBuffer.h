@@ -12,8 +12,11 @@ namespace Agmd
         GLUniformBuffer(unsigned long count, unsigned int buffer, unsigned int bindPoint);
         //virtual ~GLUniformeBuffer();
 
+        virtual void Bind(uint32 bindpoint);
+
 		unsigned int getBindPoint() const;
 
+    private:
         unsigned int m_bindPoint;
     };
 

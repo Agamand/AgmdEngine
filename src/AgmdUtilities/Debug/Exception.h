@@ -59,6 +59,7 @@ namespace AgmdUtilities
     {
         BadConversion(const std::string& error);
     };
+
 }
 
 #endif //EXCEPTION_H

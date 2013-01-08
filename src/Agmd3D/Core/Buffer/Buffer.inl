@@ -44,3 +44,9 @@ inline unsigned long Buffer<T>::GetCount() const
 {
     return m_Buffer->m_Count;
 }
+
+template <class T>
+inline void Buffer<T>::Bind(uint32 bindpoint)
+{
+    m_Buffer->Bind(bindpoint);
+}

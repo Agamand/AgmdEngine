@@ -51,6 +51,17 @@ namespace Agmd
 
         bool operator !=(const Texture& texture) const;
 
+		static void TextureAdd(Texture output, Texture input1, Texture input2);
+		static void TextureProd(Texture output, Texture input1, Texture input2);
+		static void TextureRender(Texture input);
+		static void TextureRandom();
+
+		static BaseShaderProgram* s_addTexture;
+		static BaseShaderProgram* s_prodTexture;
+		static BaseShaderProgram* s_renderTexture;
+		static BaseShaderProgram* s_randomTexture;
+		static FrameBuffer* s_framebuffer;
+
     private :
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);

@@ -30,6 +30,8 @@ namespace Agmd
 
         static GLenum Get(TBlend value);
 
+        static GLenum Get(TDepth value);
+
         static GLenum Get(TTextureOp value);
 
         static GLenum Get(TTextureArg value);
@@ -53,6 +55,7 @@ namespace Agmd
 		static std::string  MatrixName[];
         static TPixelFmt    PixelFormat[];
         static GLenum       Blend[];
+        static GLenum       Depth[];
         static GLenum       TextureOp[];
         static GLenum       TextureArg[];
         static GLenum       RenderParameter[];

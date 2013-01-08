@@ -29,55 +29,6 @@ namespace Agmd
 		G_ALL = G_NORMAL | G_TANGENT
 	};
 
-	struct AGMD_EXPORT TextureUnit
-	{
-		TextureUnit() :
-		use(false)
-		{}
-
-		TextureUnit(Texture _tex) : 
-		tex(_tex),
-		use(true)
-		{}
-
-		Texture tex;
-		bool use;
-	};
-
-	enum RenderFlags
-	{
-		RENDERFLAGS_NULL		= 0x00,
-		RENDERFLAGS_UNLIT		= 0x01,
-		RENDERFLAGS_UNFOGGED	= 0x02,
-		RENDERFLAGS_TWOSIDED	= 0x04,
-		RENDERFLAGS_BILLBOARD	= 0x08,
-		RENDERFLAGS_ZBUFFERED	= 0x10
-	};
-
-	struct ModelRenderPass {
-		uint32 indexStart, indexCount, vertexStart, vertexEnd;
-		TextureUnit m_Textures[MAX_TEXTUREUNIT];
-		int tex;
-		bool useTex2, useEnvMap, trans;
-		float p;
-	
-		int16 texanim, color, opacity, blendmode;
-
-		int geoset;
-
-		bool swrap, twrap;
-
-		bool init(Model *m);
-		void deinit();
-
-		bool operator< (const ModelRenderPass &m) const
-		{
-			return geoset < m.geoset;
-		}
-	};
-
-	typedef std::vector<ModelRenderPass> MRPvector;
-
     class AGMD_EXPORT Model : public Displayable, public Resource
     {
     public :
@@ -105,11 +56,11 @@ namespace Agmd
 		typedef std::vector<mat4> Mat4Vector;
         typedef unsigned short TIndex;
 
-        Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, ModelRenderPass* renderpass = NULL, uint32 passCount = 1, TPrimitiveType type = PT_TRIANGLELIST);
+        Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
 		Model(Model* m);
 
-        virtual void Render() const;
-		virtual void Draw() const;
+        virtual void Render(TRenderPass pass) const;
+        virtual void Draw() const;
 
 		void SetTextureUnit(Texture tex, uint32 unit, uint32 renderpass = 0);
 		void DisableTextureUnit(uint32 unit, uint32 renderpass = 0); 
@@ -124,12 +75,12 @@ namespace Agmd
         DeclarationPtr  m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
-		MRPvector       m_RenderPass;
 		TPrimitiveType  m_PrimitiveType;
 		JointVector     m_vJoints;
 		Mat4Vector		m_vmBindPose;
 		Mat4Vector		m_vmInversedBindPose;
 		bool			m_bHasBone;
+        
     };
 
     typedef SmartPtr<Model, ResourceCOM> TModelPtr;

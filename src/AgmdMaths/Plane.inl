@@ -34,6 +34,12 @@ inline float Plane::DistanceToPoint(const vec4& point) const
     return n.x * point.x + n.y * point.y + n.z * point.z + d * point.w;
 }
 
+inline void Plane::Normalize()
+{
+	d /= length(n);
+	n = normalize(n);
+}
+
 inline bool Plane::operator ==(const Plane& p) const
 {
     return ((n == p.n) && (fabs(d - p.d) <= std::numeric_limits<float>::epsilon()));

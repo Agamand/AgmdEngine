@@ -67,14 +67,21 @@ namespace Agmd
 		m_needUpdate = false;
 	}
 
+    void Renderer::OnUpdate(uint64 t_diff)
+    {
+         Camera* cam = Camera::GetCurrent();
+         if(cam)
+             cam->OnUpdate(t_diff);
+    }
+
 		mat4 Renderer::GetMatView() 
 		{
-			return m_globalValue.m_MatView;
+			return mat4(1.0f);
 		}
 
 		mat4 Renderer::GetMatProjection() 
 		{
-			return m_globalValue.m_MatProjection;
+			return mat4(1.0f);
 		}
 
 		void Renderer::SetMatView(mat4 _MatView) 
@@ -126,4 +133,13 @@ namespace Agmd
 			return m_TextureFlags;
 		}
 
+        void Renderer::SetActiveScene(Scene* sc)
+        {
+            m_ActiveScene = sc;
+        }
+
+        Scene* Renderer::GetActiveScene()
+        {
+            return m_ActiveScene;
+        }
 }

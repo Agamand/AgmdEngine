@@ -26,9 +26,10 @@ namespace Agmd
 	
 		virtual void Bind() = 0;
 		virtual void UnBind() = 0;
-		virtual void Clear() = 0;
+        virtual void Clear(uint32 flag = CLEAR_ALL) = 0;
 
 		virtual void DrawBuffer(uint32 flag) = 0;
+        virtual void DrawBuffers(uint32 nbuffer, uint32 flag[]) = 0;
 		virtual void ReadBuffer(uint32 flag) = 0;
 
 	protected:

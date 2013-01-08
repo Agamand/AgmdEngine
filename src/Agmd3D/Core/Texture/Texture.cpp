@@ -4,10 +4,14 @@
 #include <Core/ResourceManager.h>
 #include <Core/Renderer.h>
 #include <Core/Texture/Image.h>
+#include <Core/Shader/ShaderProgram.h>
+#include <Core/Tools/Fast2DSurface.h>
 #include <Utilities/PixelUtils.h>
 #include <Utilities/Util.h>
 #include <Debug/Logger.h>
 #include <Debug/New.h>
+
+#include <time.h>
 
 namespace Agmd
 {
@@ -210,6 +214,81 @@ namespace Agmd
 		m_Texture->m_CubeData[face] = image;
 		Update();
 	}*/
+	BaseShaderProgram* Texture::s_addTexture = NULL;
+	BaseShaderProgram* Texture::s_prodTexture = NULL;
+	BaseShaderProgram* Texture::s_renderTexture = NULL;
+	BaseShaderProgram* Texture::s_randomTexture = NULL;
+	FrameBuffer* Texture::s_framebuffer = NULL;
+
+	void Texture::TextureAdd(Texture output, Texture input1, Texture input2)
+	{
+		Renderer& render = Renderer::Get();
+		if(!s_addTexture)
+		{
+			s_addTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/add_tex.glsl");
+		}
+		if(!s_framebuffer)
+			s_framebuffer = render.CreateFrameBuffer();
+
+		s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+		render.SetTexture(0,input1.GetTexture());
+		render.SetTexture(1,input2.GetTexture());
+		s_framebuffer->Clear();
+		s_framebuffer->Bind();
+		render.SetCurrentProgram(s_addTexture);
+		Fast2DSurface::Instance().Draw();
+		render.SetCurrentProgram(nullptr);
+		s_framebuffer->UnBind();
+	}
+
+	void Texture::TextureProd(Texture output, Texture input1, Texture input2)
+	{
+		Renderer& render = Renderer::Get();
+		if(!s_prodTexture)
+		{
+			s_prodTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/prod_tex.glsl");
+		}
+		if(!s_framebuffer)
+			s_framebuffer = render.CreateFrameBuffer();
+
+		s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+		render.SetTexture(0,input1.GetTexture());
+		render.SetTexture(1,input2.GetTexture());
+		s_framebuffer->Clear();
+		s_framebuffer->Bind();
+		render.SetCurrentProgram(s_prodTexture);
+		Fast2DSurface::Instance().Draw();
+		render.SetCurrentProgram(nullptr);
+		s_framebuffer->UnBind();
+	}
+
+	void Texture::TextureRender(Texture input)
+	{
+		Renderer& render = Renderer::Get();
+
+		if(!s_renderTexture)
+			s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
+		
+		render.SetTexture(0,input.GetTexture());
+		render.SetCurrentProgram(s_renderTexture);
+		Fast2DSurface::Instance().Draw();
+		render.SetCurrentProgram(nullptr);
+	}
+
+	void Texture::TextureRandom()
+	{
+		Renderer& render = Renderer::Get();
+
+		if(!s_randomTexture)
+			s_randomTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/rand_tex.glsl");
+
+		int seed = clock();
+
+		render.SetCurrentProgram(s_randomTexture);
+		render.getPipeline()->SetParameter("seed",(float)seed);
+		Fast2DSurface::Instance().Draw();
+		render.SetCurrentProgram(nullptr);
+	}
 
 	TTextureType Texture::GetType() const
 	{

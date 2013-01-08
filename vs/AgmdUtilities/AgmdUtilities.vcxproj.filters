@@ -10,6 +10,9 @@
     <Filter Include="Debug\Log">
       <UniqueIdentifier>{9fd08ae7-c4ea-420a-9795-4e6b85e4997b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\TinyXml">
+      <UniqueIdentifier>{5c5ce992-dc9c-48ce-b478-5b39ccd740c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp">
@@ -29,6 +32,33 @@
     </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Plugin.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\echo.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxml.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlerror.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlparser.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\xmltest.cpp">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Timer.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgmdUtilities\Debug\Profiler.cpp">
+      <Filter>Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Util.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\XmlParser.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.h">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxml.h">
+      <Filter>Utilities\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Timer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h">
+      <Filter>Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

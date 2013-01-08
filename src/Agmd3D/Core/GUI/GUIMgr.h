@@ -55,7 +55,7 @@ namespace Agmd
 
 		void Update(uint64 t_diff);
 		void DrawGUI() const;
-		void SetSelected(AWidget* widget);
+		void SetSelected(uint32 i);
 		void HandleEvent(EventEntry _event);
 		void AddEvent(EventEntry _event);
 		void AddWidget(AWidget* widget);

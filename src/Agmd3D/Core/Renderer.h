@@ -64,6 +64,8 @@ namespace Agmd
 
         virtual void SetupAlphaBlending(TBlend src, TBlend dest) const = 0;
 
+        virtual void SetupDepthTest(TDepth mode) = 0;
+
         virtual void SetupTextureUnit(unsigned int unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2 = TXA_DIFFUSE, const Color& constant = 0x00) const = 0;
 
         virtual void Enable(TRenderParameter param, bool value) = 0;
@@ -132,19 +134,19 @@ namespace Agmd
 		void RemoveTextureFlag(uint32 flag);
 		uint32 GetTextureFlag();
 
+        virtual void OnUpdate(uint64 t_diff);
+
 
 
 		void SetMatView(mat4 _MatView);
 		void SetMatProjection(mat4 _MatProjection);
 		void SetScreen(ivec2 _screen);
 
+        void SetActiveScene(Scene* sc);
+        Scene* GetActiveScene();
+
     protected :
-		struct GlobalValue
-		{
-			mat4 m_MatProjection;
-			mat4 m_MatView;
-			uint32 m_nlight;
-		};
+
 
 		virtual void _LoadMatrix(TMatrixType type, const glm::mat2& matrix) = 0;
 
@@ -168,14 +170,12 @@ namespace Agmd
 
         std::map<TCapability, bool> m_Capabilities;
 
-		GlobalValue m_globalValue;
 		uint32 m_TextureFlags;
 		bool m_needUpdate;
 		ivec2 m_Screen;
 
-
+        Scene*  m_ActiveScene;
 		Camera* m_Camera;
-
     private :
 
         static Renderer* s_Instance;

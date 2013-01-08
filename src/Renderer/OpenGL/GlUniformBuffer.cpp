@@ -8,6 +8,12 @@ namespace Agmd
 	m_bindPoint(bindPoint)
 	{}
 
+    void GLUniformBuffer::Bind(uint32 bindpoint)
+    {
+        GLRenderer::glBindBufferBase(GL_UNIFORM_BUFFER,bindpoint,m_Buffer);
+        m_bindPoint = bindpoint;
+    }
+
 	unsigned int GLUniformBuffer::getBindPoint() const
 	{
 		return m_bindPoint;

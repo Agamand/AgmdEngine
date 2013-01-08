@@ -236,7 +236,7 @@ namespace Agmd
 			fbo[0]->Bind();
 			Renderer::Get().SetMatView(view);
 			if(scene)
-				scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_SKY);
+				//scene->Draw(SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_SKY);
 
 			fbo[0]->UnBind();
 		}

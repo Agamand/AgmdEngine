@@ -18,6 +18,7 @@ namespace Agmd
     class FontManager;
     class GraphicString;
 	class Scene;
+    class Material;
     struct DeclarationElement;
     template <class> class Loader;
 
@@ -28,6 +29,7 @@ namespace Agmd
     class Shader;
 	class BaseShaderProgram;
 	class ShaderProgram;
+	class ShaderPipeline;
 
 	//Buffer Class
 
@@ -54,6 +56,20 @@ namespace Agmd
 	class AWindow;
 	class ATextBox;
 	class AButton;
+
+    //Rendering Mode
+    class RenderingMode;
+    class ForwardRendering;
+    class VertexRendering;
+    class DeferredRendering;
+
+	//Tools Class
+
+	class Frustum;
+	class BoundingBox;
+    class Fast2DSurface;
+    class DeferredRendering;
+
 }
 
 

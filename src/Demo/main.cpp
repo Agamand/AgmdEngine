@@ -2,15 +2,15 @@
 #include <exception>
 #include "App.h"
 
+#include <AgmdUtilities/Utilities/TinyXml/tinyxml.h>
+
+#include <string>
+
+using namespace AgmdUtilities;
 int main(int argc, char** argv)
 {
-    try
-    {
-        App::Instance().Run(argc,argv);
-
-        App::Destroy();
-	}catch(std::exception E){}
-
+    App::Instance().Run(argc,argv);
+    App::Destroy();
 
 	return EXIT_SUCCESS;
 }

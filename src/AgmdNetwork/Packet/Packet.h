@@ -3,7 +3,7 @@
 
 #include <Packet\ByteBuffer.h>
 
-#define SIZE 4
+#define SIZE 2
 #define SIZE_OPCODE 2
 
 namespace AgmdNetwork

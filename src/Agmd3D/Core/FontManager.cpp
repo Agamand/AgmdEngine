@@ -234,11 +234,10 @@ void FontManager::DrawString(const GraphicString& str)
     // Paramètrage du rendu
 	MatStack::push(mat4(1.0f));
     Renderer::Get().SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-    Renderer::Get().SetupTextureUnit(0, TXO_COLOR_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
-    Renderer::Get().SetupTextureUnit(0, TXO_ALPHA_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
+    //Renderer::Get().SetupTextureUnit(0, TXO_COLOR_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
+    //Renderer::Get().SetupTextureUnit(0, TXO_ALPHA_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
     Renderer::Get().Enable(RENDER_ALPHABLEND, true);
-    Renderer::Get().Enable(RENDER_ZWRITE, false);
-	Renderer::Get().Enable(RENDER_TRANSPARENT, false);
+    Renderer::Get().Enable(RENDER_ZTEST, false);
 
     // Affichage du texte
     Renderer::Get().SetDeclaration(m_Declaration);
@@ -249,7 +248,7 @@ void FontManager::DrawString(const GraphicString& str)
     Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, NbChars * 2*3);
 
     // Rétablissement des options de rendu
-    Renderer::Get().Enable(RENDER_ZWRITE, true);
+    Renderer::Get().Enable(RENDER_ZTEST, true);
     Renderer::Get().Enable(RENDER_ALPHABLEND, false);
 	MatStack::pop();
 }

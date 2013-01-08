@@ -4,11 +4,11 @@
 
 namespace Agmd
 {
-	TPCamera::TPCamera(vec3 pos) :
+	TPCamera::TPCamera(mat4 projection, vec3 pos) :
 	_phi(0.0f),
 	_theta(0.0f),
 	distance(30.0f),
-    Camera(pos)
+    Camera(projection,pos)
 	{
 		VectorsFromAngles();
 	}
@@ -107,6 +107,7 @@ namespace Agmd
 
 		_target += move*(_speed*time_diff)/1000.0f;
 		_position = _target - distance*_forward;
+        UpdateBuffer(look());
 	}
 
 	
@@ -135,7 +136,7 @@ namespace Agmd
 
 	void TPCamera::OnMouseWheel(float delta)
 	{
-		distance += delta/30;
+		distance += delta/30*0.1;
 		VectorsFromAngles();
 	}
 

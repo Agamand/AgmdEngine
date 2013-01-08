@@ -3,7 +3,6 @@
 #include <Server\Server.h>
 #include <Packet\Packet.h>
 
-
 #define _MAX_HOST_LENGTH_ 100
 #define _MAX_SIZE 4096 // 4096 octet
 

@@ -66,7 +66,9 @@ namespace Agmd
         PXF_DXTC1,
         PXF_DXTC3,
         PXF_DXTC5,
-		PXF_DEPTH
+		PXF_DEPTH,
+        PXF_R16G16B16,
+        PXF_R32G32B32
     };
 
     enum
@@ -94,6 +96,26 @@ namespace Agmd
         BLEND_INVDESTCOLOR,
         BLEND_ONE,
         BLEND_ZERO
+    };
+
+    enum TDepth
+    {
+        DEPTH_NEVER,
+        DEPTH_LESS,
+        DEPTH_EQUAL,
+        DEPTH_LEQUAL,
+        DEPTH_GREATER,
+        DEPTH_NOTEQUAL,
+        DEPTH_GEQUAL,
+        DEPTH_ALWAYS
+    };
+
+    enum TClear
+    {
+        CLEAR_COLOR     = 0x01,
+        CLEAR_DEPTH     = 0x02,
+        CLEAR_STENCIL   = 0x04,
+        CLEAR_ALL       = CLEAR_COLOR | CLEAR_DEPTH | CLEAR_STENCIL
     };
 
     enum TTextureOp
@@ -127,14 +149,10 @@ namespace Agmd
     enum TRenderParameter
     {
         RENDER_ZWRITE,
-        RENDER_ALPHABLEND, 
+        RENDER_ALPHABLEND,
+        RENDER_ZTEST,
 		RENDER_TRANSPARENT,
-		RENDER_CLIP_PLANE0,
-		RENDER_CLIP_PLANE1,
-		RENDER_CLIP_PLANE2,
-		RENDER_CLIP_PLANE3,
-		RENDER_CLIP_PLANE4,
-		RENDER_CLIP_PLANE5,
+        RENDER_RENDERING
     };
 
     enum TShaderType
@@ -156,6 +174,10 @@ namespace Agmd
 	enum TAttachment
 	{
 		COLOR_ATTACHMENT,
+        COLOR_ATTACHMENT1,
+        COLOR_ATTACHMENT2,
+        COLOR_ATTACHMENT3,
+        COLOR_ATTACHMENT4,
 		DEPTH_ATTACHMENT = 16,
 		STENCIL_ATTACHEMENT = 17
 	};
@@ -195,6 +217,24 @@ namespace Agmd
 		TEXTURE_UNIT_30 = 1 << 30,
 		TEXTURE_UNIT_31 = 1 << 31
 	};
+
+	#define MAX_RENDERPASS 6
+
+	enum TRenderPass
+	{
+		RENDERPASS_ZBUFFER,
+		RENDERPASS_DIFFUSE,
+		RENDERPASS_LIGHTING,
+		RENDERPASS_SHADOW_CAST,
+		RENDERPASS_SHADOW,
+        RENDERPASS_DEFERRED
+	};
+
+    enum TUniformBind
+    {
+        UNIFORM_CAMERA_BIND,
+        UNIFORM_LIGHT_BIND
+    };
 
 	enum TComponent
 	{

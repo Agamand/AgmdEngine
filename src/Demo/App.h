@@ -12,19 +12,8 @@
 #include <Agmd3D\Core\Shader\ShaderProgram.h>
 #include <Agmd3D\Core\GUI\AWindow.h>
 
-
-
 #include <map>
 #include <vector>
-
-
-struct planete_info
-{
-	Agmd::Model* model;
-	dvec3 velocity;
-	double mass;
-	double size;
-};
 
 #include <PhysicsPlugin\Entities.h>
 
@@ -33,7 +22,7 @@ class App : public Agmd::AgmdApp, public Singleton<App>
 
 MAKE_SINGLETON(App)
 public:
-	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type);
+	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, uint32 color = -1);
 	static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
 	static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
 	static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
@@ -52,55 +41,23 @@ private :
     typedef std::map<std::string, std::string> TDescTable;
 	typedef std::vector<Agmd::TModelPtr> ModelVector;
 
-
-	
-    glm::mat4            m_MatView2D;
-    glm::mat4            m_MatView3D;
     glm::mat4		     m_MatProj2D;
     glm::mat4            m_MatProj3D;
 	glm::mat3			 m_MatNormal;
-	glm::vec3            m_light_pos;
-	glm::vec3            m_light_dir;
-	float				 m_light_angle;
-	float				 m_tesslationInner;
-	float				 m_tesslationOuter;
-	float				 height;
 
 	Agmd::Scene*		m_Scene;
-	Agmd::Model*		m_testModel;
 
 	Agmd::BaseShaderProgram* shader2D;
 	Agmd::GraphicString* m_fps;
-	Agmd::GraphicString* m_counter;
-	Agmd::TransformPtr	 m_sol[5];
 
-
-
-
-	//TESS TEST
-
-	Agmd::Buffer<float>	   m_vbuffer;
-	Agmd::Buffer<short>	   m_ibuffer;
-	Agmd::DeclarationPtr   m_d;
-
-	Agmd::BaseShaderProgram* tesselation_shader;
-	Agmd::BaseShaderProgram* simple_shader;
-	
+    Agmd::Camera*       cam3D;
+    Agmd::Camera*       cam2D;
 
 	//TEST 2
-	Agmd::Texture buffer[2];
-	Agmd::FrameBuffer* fbo[2];
-	Agmd::RenderBuffer* rbo;
-
-	Agmd::Texture use_buffer;
-	Agmd::FrameBuffer* use_fbo;
 	Agmd::AWindow* testwindow;
+    Agmd::Texture tex;
 
 	bool pause;
-	uint64 m_timer;
-	uint32 m_count;
-	Agmd::Entities* model_test;
-	Agmd::Model*	sphere;
 	
 
 };

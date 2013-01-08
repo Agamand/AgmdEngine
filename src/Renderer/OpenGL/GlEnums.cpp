@@ -38,7 +38,9 @@ namespace Agmd
 		{GL_BGR,             GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0,							  GL_RGBA},
 		{GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0,							  GL_RGBA},
 		{GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, 0,                             GL_RGBA},
-		{GL_BGRA,			 GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT}
+		{GL_BGRA,			 GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT},
+        {GL_BGR,             GL_RGB16F,                        GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_BGR,             GL_RGB32F,                        GL_UNSIGNED_BYTE,              GL_RGBA}
 	};
 
 	GLenum RGLEnum::Blend[] =
@@ -53,6 +55,18 @@ namespace Agmd
 		GL_ONE_MINUS_DST_COLOR,
 		GL_ONE,
 		GL_ZERO
+	};
+
+    GLenum RGLEnum::Depth[] =
+	{
+        GL_NEVER,
+        GL_LESS,
+        GL_EQUAL,
+        GL_LEQUAL,
+        GL_GREATER,
+        GL_NOTEQUAL,
+        GL_GEQUAL,
+        GL_ALWAYS
 	};
 
 	GLenum RGLEnum::TextureOp[] =
@@ -77,6 +91,7 @@ namespace Agmd
 	{
 		0,
 		GL_BLEND,
+        GL_DEPTH_TEST
 	};
 
 	GLenum RGLEnum::RenderMode[] =
@@ -156,6 +171,11 @@ namespace Agmd
 		return Blend[value];
 	}
 
+	GLenum RGLEnum::Get(TDepth value)
+	{
+		return Depth[value];
+	}
+
 	GLenum RGLEnum::Get(TTextureOp value)
 	{
 		return TextureOp[value];
@@ -168,7 +188,7 @@ namespace Agmd
 
 	GLenum RGLEnum::Get(TRenderParameter value)
 	{
-		if(value > 1)
+		if(value > 2)
 			return RenderParameter[0];
 		return RenderParameter[value];
 	}

@@ -24,7 +24,7 @@ const float Eta = 0.15; // Water
 const float PI = 3.141592654;
 const float G = 9.81;
 
-uniform float u_waterPlaneLength = 10.0;
+uniform float u_waterPlaneLength = 200.0;
 
 uniform float u_passedTime;
 
@@ -42,13 +42,13 @@ vec3 normalToTexture(vec3 orgNormal)
 
 void main(void)
 {
-	vec3 vertex = vec3(v_texCoord.x*u_waterPlaneLength-u_waterPlaneLength/2.0 + 0.5, 0.0, -v_texCoord.y*u_waterPlaneLength+u_waterPlaneLength/2.0 + 0.5);
+	vec3 vertex = vec3(v_texCoord.x*u_waterPlaneLength-u_waterPlaneLength/2.0 + 0.5, -v_texCoord.y*u_waterPlaneLength+u_waterPlaneLength/2.0 + 0.5, 0.0);
 
 	vec4 finalVertex;
 
 	finalVertex.x = vertex.x;
-	finalVertex.z = vertex.y;
-	finalVertex.y = vertex.z;
+	finalVertex.y = vertex.y;
+	finalVertex.z = vertex.z;
 	finalVertex.w = 1.0;
 
 	vec3 finalNormal;
@@ -57,11 +57,11 @@ void main(void)
 	finalNormal.y = 0;
 	finalNormal.z = 0;
 
-/*	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NUMBERWAVES; i++)
 	{
 		vec2 direction = normalize(u_waveDirections[i]);
 		float speed = u_waveParameters[i].x;
-		float amplitude = u_waveParameters[i].y*4;
+		float amplitude = u_waveParameters[i].y;
 		float wavelength = u_waveParameters[i].z;
 		float steepness = u_waveParameters[i].w;
 
@@ -74,11 +74,11 @@ void main(void)
 		finalVertex.z += amplitude*sin(alpha);
 	}
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NUMBERWAVES; i++)
 	{
 		vec2 direction = normalize(u_waveDirections[i]);
 		float speed = u_waveParameters[i].x;
-		float amplitude = u_waveParameters[i].y*4;
+		float amplitude = u_waveParameters[i].y;
 		float wavelength = u_waveParameters[i].z;
 		float steepness = u_waveParameters[i].w;
 
@@ -94,39 +94,6 @@ void main(void)
 	finalNormal.x = -finalNormal.x;
 	finalNormal.y = -finalNormal.y;
 	finalNormal.z = 1.0-finalNormal.z;
-	*/
-	
-	//V2
-	
-	/*for (int i = 0; i < 1; i++)
-	{
-		vec2 direction = normalize(u_waveDirections[i]);
-		float speed = u_waveParameters[i].x;
-		float amplitude = u_waveParameters[i].y*4;
-		float wavelength = u_waveParameters[i].z;
-		float steepness = u_waveParameters[i].w;
-
-		float frequency = sqrt(G*2.0*PI/wavelength);
-		float phase = speed*frequency*10.0f;
-		float alpha = frequency + phase*u_passedTime;
-		
-		+v_texCoord.x*phase
-				
-		finalNormal.x += direction.x * wavelength * amplitude * cos(alpha+v_texCoord.x*phase);
-		finalNormal.y += direction.y * wavelength * amplitude * cos(alpha+v_texCoord.y*phase);
-		finalNormal.z += steepness * wavelength * amplitude * sin(alpha);
-	}*/
-	
-	
-	//V3
-	
-	vec2 dir =  vec2(1.0,3.0);
-	dir = normalize(dir);
-	
-	finalNormal.x = sin(2*PI*u_passedTime/2.0f+PI*2*v_texCoord.x*dir.x+PI*2*v_texCoord.y*dir.y);
-	//finalNormal.y = sin(PI*u_passedTime+v_texCoord.x*direction.x);
-	
-	//finalNormal = normalize(finalNormal);
 	
 	out_Color = vec4(normalToTexture(finalNormal), 1.0);
 	

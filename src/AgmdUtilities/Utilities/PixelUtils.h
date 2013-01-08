@@ -24,6 +24,8 @@ namespace AgmdUtilities
             case PXF_DXTC3 :    return 2;
             case PXF_DXTC5 :    return 2;
 			case PXF_DEPTH :	return 4;
+            case PXF_R16G16B16: return 6;
+            case PXF_R32G32B32: return 12;
             default :           return 0;
         }
     }

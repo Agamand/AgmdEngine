@@ -9,8 +9,9 @@ layout(std140) uniform globalValue
 	int 				u_nlights;
 };
 
-uniform int  			u_textureFlags;
-uniform mat4 			u_matModel;
-uniform gsamplerBuffer  u_light
-
+uniform int  			u_textureFlags = 0;
+uniform mat4 			u_matModel = mat4(1.0);
+//uniform sampler2DShadow	u_shadowMap;
+//uniform samplerBuffer   u_light;
+uniform sampler2D u_shadowMap;
 #endif /* _GLOBAL_UNIFORM_GLSL_ */

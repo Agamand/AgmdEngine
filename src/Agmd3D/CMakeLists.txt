@@ -1,0 +1,16 @@
+PROJECT(Agmd3D)
+
+INCLUDE_DIRECTORIES(
+	${AGMDENGINE_SOURCE_DIR}/src/Agmd3D
+	${AGMDENGINE_SOURCE_DIR}/src/AgmdUtilities
+	${AGMDENGINE_SOURCE_DIR}/src
+	)
+
+FILE(
+	GLOB_RECURSE
+	*.cpp
+	*.h
+	*.hpp
+	)
+	
+	

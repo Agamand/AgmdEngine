@@ -35,7 +35,7 @@ namespace AgmdUtilities
 	
 	void Logger::Write(const std::string& msg)
 	{
-		m_File << CurrentDate() << CurrentTime() << " " << msg << "\n";
+		m_File << /*CurrentDate() << CurrentTime() << " " <<*/ msg << "\n";
 	}
 
 	void Logger::SetFilename(std::string name)

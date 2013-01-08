@@ -43,8 +43,8 @@ namespace Agmd
 
 		virtual void SetParameter(TMatrixType type,mat4 value) const = 0;
 
-		virtual void SetParameter(std::string name, const BaseBuffer* buf) const = 0;
-
+		virtual void SetParameter(std::string name, const uint32 bindpoint) const = 0;
+        
 		virtual void Use(bool) const = 0;
 
     protected :

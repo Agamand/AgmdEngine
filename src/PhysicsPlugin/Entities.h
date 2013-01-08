@@ -17,53 +17,53 @@
 namespace Agmd
 {
 
-	
+    
 
-	struct PhysicsTransfo
-	{
-		PhysicsTransfo(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
-		m_position(_position),
-		m_rotation(_rotation)
-		{}
+    struct PhysicsTransfo
+    {
+        PhysicsTransfo(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
+        m_position(_position),
+        m_rotation(_rotation)
+        {}
 
-		vec3 m_position;
-		quat m_rotation;
-	};
+        vec3 m_position;
+        quat m_rotation;
+    };
 
-	enum EntitiesType
-	{
-		TYPE_OBJECT,
-		TYPE_COLLISION
-	};
-
-
-	class Entities
-	{
-	public:
-		Entities(float _mass, btCollisionShape* _shape , PhysicsTransfo& _transfo,EntitiesType _type);
-		void Prepare();
-		void Update();
-
-		EntitiesType GetType(){ return m_Type; }
-
-		void SetMass(float _mass) { m_fMass = _mass; }
-		bool IsStatic() { return m_fMass == 0; }
-		void SetVelocity(vec3 _velocity); 
-
-		btRigidBody* GetBody() { return m_Rigid; }
+    enum EntitiesType
+    {
+        TYPE_OBJECT,
+        TYPE_COLLISION
+    };
 
 
-	private :
+    class Entities
+    {
+    public:
+        Entities(float _mass, btCollisionShape* _shape , PhysicsTransfo& _transfo,EntitiesType _type);
+        void Prepare();
+        void Update();
 
-		void Init();
+        EntitiesType GetType(){ return m_Type; }
 
-		btRigidBody* m_Rigid;
+        void SetMass(float _mass) { m_fMass = _mass; }
+        bool IsStatic() { return m_fMass == 0; }
+        void SetVelocity(vec3 _velocity); 
 
-		PhysicsTransfo &m_Tranfo;
-		EntitiesType m_Type;
-		float m_fMass;
-		btCollisionShape* m_Shape;
-	};
+        btRigidBody* GetBody() { return m_Rigid; }
+
+
+    private :
+
+        void Init();
+
+        btRigidBody* m_Rigid;
+
+        PhysicsTransfo &m_Tranfo;
+        EntitiesType m_Type;
+        float m_fMass;
+        btCollisionShape* m_Shape;
+    };
 
 }
 

@@ -17,13 +17,13 @@ namespace Agmd
         ~ObjLoader();
 
         virtual Model* LoadFromFile(const std::string& filename);
-		virtual void SaveToFile(const Model* object, const std::string& filename);
-		
+        virtual void SaveToFile(const Model* object, const std::string& filename);
+        
     private :
-		
-		bool skipCommentLine(std::istream& file);
-		void skipLine(std::istream& file);
-		bool processLine(std::vector<vec3>& position,std::vector<vec2>& texPos,std::vector<vec3>& normal,std::vector<Model::TIndex>& indices, std::istream& is);
+        
+        bool skipCommentLine(std::istream& file);
+        void skipLine(std::istream& file);
+        bool processLine(std::vector<vec3>& position,std::vector<vec2>& texPos,std::vector<vec3>& normal,std::vector<Model::TIndex>& indices, std::istream& is);
         static void OnError();
     };
 

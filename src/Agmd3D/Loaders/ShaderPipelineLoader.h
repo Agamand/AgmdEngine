@@ -25,7 +25,7 @@ namespace Agmd
         TOKEN_PASS,
     };
 
-	class ShaderPipelineLoader : public Loader<ShaderPipeline>
+    class ShaderPipelineLoader : public Loader<ShaderPipeline>
     {
     public :
 

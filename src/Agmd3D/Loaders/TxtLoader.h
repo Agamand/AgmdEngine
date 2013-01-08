@@ -6,7 +6,7 @@
 
 namespace Agmd
 {
-	class TxtLoader : public Loader<char>
+    class TxtLoader : public Loader<char>
     {
     public :
 

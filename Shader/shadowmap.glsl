@@ -8,7 +8,7 @@ in vec3 in_Vertex;
 uniform mat4 depthMVP;
 
 void main(){
-	gl_Position =  depthMVP * u_matModel *vec4(in_Vertex,1);
+    gl_Position =  depthMVP * u_matModel *vec4(in_Vertex,1);
 }
 #endif
 
@@ -18,6 +18,6 @@ out float out_depth;
 
 
 void main(){
-	out_depth = gl_FragCoord.z;
+    out_depth = gl_FragCoord.z;
 }
 #endif

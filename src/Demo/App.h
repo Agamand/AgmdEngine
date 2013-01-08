@@ -22,43 +22,43 @@ class App : public Agmd::AgmdApp, public Singleton<App>
 
 MAKE_SINGLETON(App)
 public:
-	static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, uint32 color = -1);
-	static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
-	static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
-	static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
-	Agmd::GraphicString* m_text;
+    static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, uint32 color = -1);
+    static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
+    static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
+    static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
+    Agmd::GraphicString* m_text;
 
-	void Run(int argc, char** argv);
+    void Run(int argc, char** argv);
 private :
 
     virtual void OnInit();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-	
+    
     virtual void OnUpdate(uint64 time_diff);
     virtual void OnRender();
 
     typedef std::map<std::string, std::string> TDescTable;
-	typedef std::vector<Agmd::TModelPtr> ModelVector;
+    typedef std::vector<Agmd::TModelPtr> ModelVector;
 
-    glm::mat4		     m_MatProj2D;
+    glm::mat4             m_MatProj2D;
     glm::mat4            m_MatProj3D;
-	glm::mat3			 m_MatNormal;
+    glm::mat3             m_MatNormal;
 
-	Agmd::Scene*		m_Scene;
+    Agmd::Scene*        m_Scene;
 
-	Agmd::BaseShaderProgram* shader2D;
-	Agmd::GraphicString* m_fps;
+    Agmd::BaseShaderProgram* shader2D;
+    Agmd::GraphicString* m_fps;
 
     Agmd::Camera*       cam3D;
     Agmd::Camera*       cam2D;
 
-	//TEST 2
-	Agmd::AWindow* testwindow;
+    //TEST 2
+    Agmd::AWindow* testwindow;
     Agmd::Texture tex;
 
-	bool pause;
-	
+    bool pause;
+    
 
 };
 

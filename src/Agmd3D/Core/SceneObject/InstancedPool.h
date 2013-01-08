@@ -8,16 +8,16 @@
 
 namespace Agmd
 {
-	class InstancedPool
-	{
-	public:
-		InstancedPool(Model* model = NULL);
-		InstancedPool(std::string name);
-		virtual InstancedMesh();
+    class InstancedPool
+    {
+    public:
+        InstancedPool(Model* model = NULL);
+        InstancedPool(std::string name);
+        virtual InstancedMesh();
 
-	private:
-		Model* model;
-	}
+    private:
+        Model* model;
+    }
 }
 
 #endif

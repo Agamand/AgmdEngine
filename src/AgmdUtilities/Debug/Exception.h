@@ -8,25 +8,25 @@
 
 namespace AgmdUtilities
 {
-	class Exception : public std::exception
-	{
-	public :
+    class Exception : public std::exception
+    {
+    public :
 
-		Exception(const std::string& msg = "");
+        Exception(const std::string& msg = "");
 
-		virtual ~Exception() throw();
+        virtual ~Exception() throw();
 
-		virtual const char* what() const throw();
+        virtual const char* what() const throw();
 
-	protected :
+    protected :
 
-		std::string m_Msg;
-	};
+        std::string m_Msg;
+    };
 
-	struct AssertException : public Exception
-	{
-		AssertException(const std::string& file, int line, const std::string& msg);
-	};
+    struct AssertException : public Exception
+    {
+        AssertException(const std::string& file, int line, const std::string& msg);
+    };
 
     #ifdef _DEBUG
     #   define Assert(condition) if (!(condition)) throw AssertException(__FILE__, __LINE__, "Condition error" #condition)
@@ -35,20 +35,20 @@ namespace AgmdUtilities
     #   define Assert(condition) DoNothing(!(condition))
     #endif
 
-	struct BadDelete : public Exception
-	{
-		BadDelete(const void* ptr, const std::string& file, int line, bool newArray);
-	};
+    struct BadDelete : public Exception
+    {
+        BadDelete(const void* ptr, const std::string& file, int line, bool newArray);
+    };
 
-	struct LoadingFailed : public Exception
-	{
-		LoadingFailed(const std::string& file, const std::string& msg);
-	};
+    struct LoadingFailed : public Exception
+    {
+        LoadingFailed(const std::string& file, const std::string& msg);
+    };
 
-	struct OutOfMemory : public Exception
-	{
-		OutOfMemory(const std::string& msg);
-	};
+    struct OutOfMemory : public Exception
+    {
+        OutOfMemory(const std::string& msg);
+    };
 
     struct Unsupported : public Exception
     {

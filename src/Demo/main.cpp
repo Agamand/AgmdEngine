@@ -12,5 +12,5 @@ int main(int argc, char** argv)
     App::Instance().Run(argc,argv);
     App::Destroy();
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

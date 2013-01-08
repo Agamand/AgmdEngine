@@ -3,26 +3,26 @@
 
 namespace Agmd
 {
-	ShaderPipeline::ShaderPipeline()
-	{
-	}
+    ShaderPipeline::ShaderPipeline()
+    {
+    }
 
-	ShaderPipeline::~ShaderPipeline()
-	{
-	}
+    ShaderPipeline::~ShaderPipeline()
+    {
+    }
 
-	bool ShaderPipeline::Enable(TRenderPass pass) const
-	{
+    bool ShaderPipeline::Enable(TRenderPass pass) const
+    {
         if(!m_pipeline[pass].GetShaderProgram())
             return false;
         Renderer::Get().SetCurrentProgram(m_pipeline[pass].GetShaderProgram());
         return true;
-	}
+    }
 
-	void ShaderPipeline::Disable() const
-	{
+    void ShaderPipeline::Disable() const
+    {
         Renderer::Get().SetCurrentProgram(NULL);
-	}
+    }
 
     ShaderPipeline* ShaderPipeline::s_defaultPipeline = NULL;
 

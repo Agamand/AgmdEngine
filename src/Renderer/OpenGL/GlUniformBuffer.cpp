@@ -3,10 +3,10 @@
 
 namespace Agmd
 {
-	GLUniformBuffer::GLUniformBuffer(unsigned long count, unsigned int buffer, unsigned int bindPoint) : 
-	GLBuffer(count,buffer),
-	m_bindPoint(bindPoint)
-	{}
+    GLUniformBuffer::GLUniformBuffer(unsigned long count, unsigned int buffer, unsigned int bindPoint) : 
+    GLBuffer(count,buffer),
+    m_bindPoint(bindPoint)
+    {}
 
     void GLUniformBuffer::Bind(uint32 bindpoint)
     {
@@ -14,8 +14,8 @@ namespace Agmd
         m_bindPoint = bindpoint;
     }
 
-	unsigned int GLUniformBuffer::getBindPoint() const
-	{
-		return m_bindPoint;
-	}
+    unsigned int GLUniformBuffer::getBindPoint() const
+    {
+        return m_bindPoint;
+    }
 }

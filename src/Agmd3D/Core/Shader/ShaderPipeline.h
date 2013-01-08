@@ -10,21 +10,21 @@
 
 namespace Agmd
 {
-	class ShaderPipeline
-	{
-	public:
+    class ShaderPipeline
+    {
+    public:
 
-		ShaderPipeline();
-		~ShaderPipeline();
+        ShaderPipeline();
+        ~ShaderPipeline();
 
-		bool Enable(TRenderPass pass) const;
-		void Disable() const;
+        bool Enable(TRenderPass pass) const;
+        void Disable() const;
 
         static ShaderPipeline* GetDefaultPipeline();
-	private:
-		ShaderProgram m_pipeline[MAX_RENDERPASS];
+    private:
+        ShaderProgram m_pipeline[MAX_RENDERPASS];
         static ShaderPipeline* s_defaultPipeline;
-	};
+    };
 }
 
 #endif /* _SHADERPIPELINE_H_ */

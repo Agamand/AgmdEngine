@@ -3,11 +3,11 @@
 namespace Agmd
 {
 
-	FrameBuffer::FrameBuffer()
-	{}
+    FrameBuffer::FrameBuffer()
+    {}
 
 
-	FrameBuffer::~FrameBuffer()
-	{}
+    FrameBuffer::~FrameBuffer()
+    {}
 
 }

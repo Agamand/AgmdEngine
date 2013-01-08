@@ -21,7 +21,7 @@ namespace AgmdMaths
     {
     public :
 
-		Rectangle(const ivec2& start = ivec2(0, 0), const ivec2& size = ivec2(0, 0));
+        Rectangle(const ivec2& start = ivec2(0, 0), const ivec2& size = ivec2(0, 0));
 
         Rectangle(int32 left, int32 top, int32 width, int32 height);
 

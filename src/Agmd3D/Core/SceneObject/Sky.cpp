@@ -3,11 +3,11 @@
 
 namespace Agmd
 {
-	Sky::Sky(float size) : 
-	m_fSize(size)
-	{}
+    Sky::Sky(float size) : 
+    m_fSize(size)
+    {}
 
-	Sky::~Sky()
-	{}
+    Sky::~Sky()
+    {}
 
 }

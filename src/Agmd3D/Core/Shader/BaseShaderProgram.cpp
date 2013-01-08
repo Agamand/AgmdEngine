@@ -3,10 +3,10 @@
 
 namespace Agmd
 {
-	BaseShaderProgram::BaseShaderProgram()
-	{}
+    BaseShaderProgram::BaseShaderProgram()
+    {}
 
-	BaseShaderProgram::~BaseShaderProgram()
-	{}
+    BaseShaderProgram::~BaseShaderProgram()
+    {}
 
 }

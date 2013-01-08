@@ -10,7 +10,7 @@ namespace Agmd
     {
     public :
         GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture);
-		~GLTexture();
+        ~GLTexture();
 
         uint32 GetGLTexture() const;
     protected :

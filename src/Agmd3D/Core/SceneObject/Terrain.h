@@ -8,23 +8,23 @@
 
 namespace Agmd
 {
-	
-	class AGMD_EXPORT Terrain : public Model
-	{
-	public:
-		Terrain(ivec2 _size, ivec2 _poly, std::string diffuse, std::string çheightmap);
-		~Terrain();
+    
+    class AGMD_EXPORT Terrain : public Model
+    {
+    public:
+        Terrain(ivec2 _size, ivec2 _poly, std::string diffuse, std::string çheightmap);
+        ~Terrain();
 
-		virtual void Render() const;
+        virtual void Render() const;
 
-	private:
+    private:
 
-		void generate();
+        void generate();
 
-		Texture heightmap;
-		ivec2 size;
-		ivec2 n_poly;
-	};
+        Texture heightmap;
+        ivec2 size;
+        ivec2 n_poly;
+    };
 
 }
 

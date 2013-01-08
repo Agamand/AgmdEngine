@@ -10,13 +10,13 @@
 // CONSTRUCTOR / DESTRUCTOR
 namespace Agmd
 {
-	Camera::Camera(mat4 projection, vec3 pos) :
-	move(0.0f),
-	moveFlags(MOVE_NONE),
-	_position(pos),
-	_speed(10.0f),
-	_sensivity(0.2f)
-	{
+    Camera::Camera(mat4 projection, vec3 pos) :
+    move(0.0f),
+    moveFlags(MOVE_NONE),
+    _position(pos),
+    _speed(10.0f),
+    _sensivity(0.2f)
+    {
         //this->VectorsFromAngles();
         CameraBuffer camBuf;
         camBuf.m_MatProjection = projection;
@@ -31,10 +31,10 @@ namespace Agmd
         m_cameraBuffer.Unlock();
     }
 
-	mat4 Camera::look()
-	{
-		return lookAt(_position,_target,vec3(0,0,1));
-	}
+    mat4 Camera::look()
+    {
+        return lookAt(_position,_target,vec3(0,0,1));
+    }
 
     void Camera::SetActive()
     {

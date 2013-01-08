@@ -36,8 +36,8 @@ inline float Plane::DistanceToPoint(const vec4& point) const
 
 inline void Plane::Normalize()
 {
-	d /= length(n);
-	n = normalize(n);
+    d /= length(n);
+    n = normalize(n);
 }
 
 inline bool Plane::operator ==(const Plane& p) const

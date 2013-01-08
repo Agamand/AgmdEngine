@@ -7,25 +7,25 @@
 
 namespace AgmdPhysics
 {
-	class PHYSICS_EXPORT Sphere : public Entities
-	{
-	public:
-		//friend Entities;
-		Sphere(PPositionPtr pos, float _fRayon);
+    class PHYSICS_EXPORT Sphere : public Entities
+    {
+    public:
+        //friend Entities;
+        Sphere(PPositionPtr pos, float _fRayon);
 
-		virtual bool Collision(Box* b);
-		virtual bool Collision(Plane* b);
-		virtual bool Collision(Sphere* b);
+        virtual bool Collision(Box* b);
+        virtual bool Collision(Plane* b);
+        virtual bool Collision(Sphere* b);
 
-		virtual bool GetIntersection(Box* b, Intersection &inter);
-		virtual bool GetIntersection(Plane* b, Intersection &inter);
-		virtual bool GetIntersection(Sphere* b, Intersection &inter);
+        virtual bool GetIntersection(Box* b, Intersection &inter);
+        virtual bool GetIntersection(Plane* b, Intersection &inter);
+        virtual bool GetIntersection(Sphere* b, Intersection &inter);
 
-		float GetRayon() {return m_fRayon;}
+        float GetRayon() {return m_fRayon;}
 
-	private:
-		float m_fRayon;
-	};
+    private:
+        float m_fRayon;
+    };
 }
 
 

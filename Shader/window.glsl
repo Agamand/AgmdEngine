@@ -18,15 +18,15 @@ out vec2 texCoord3;
 
 void main()
 {
-	vec3 vertex = in_Vertex;
-	
-	color = in_Color;
-	texCoord0 = in_TexCoord0;
-	texCoord1 = in_TexCoord1;
-	texCoord2 = in_TexCoord2;
-	texCoord3 = in_TexCoord3;
-	
-	gl_Position = u_matProjection * u_matView * u_matModel* vec4(vertex,1.0f);
+    vec3 vertex = in_Vertex;
+    
+    color = in_Color;
+    texCoord0 = in_TexCoord0;
+    texCoord1 = in_TexCoord1;
+    texCoord2 = in_TexCoord2;
+    texCoord3 = in_TexCoord3;
+    
+    gl_Position = u_matProjection * u_matView * u_matModel* vec4(vertex,1.0f);
 }
 #endif
 
@@ -46,23 +46,23 @@ uniform sampler2D texture3;
 
 void main()
 {
-	out_Color = vec4(1.0);
-	
-	if((u_textureFlags & 1 ) != 0)
-	{
-		out_Color = texture(texture0, texCoord0);
-	}
-	if((u_textureFlags & 2 ) != 0)
-	{
-		out_Color = texture(texture1, texCoord1);
-	}
-	if((u_textureFlags & 4 ) != 0)
-	{
-		out_Color = texture(texture2, texCoord2);
-	}
-	if((u_textureFlags & 8 ) != 0)
-	{
-		out_Color = texture(texture3, texCoord3);
-	}
+    out_Color = vec4(1.0);
+    
+    if((u_textureFlags & 1 ) != 0)
+    {
+        out_Color = texture(texture0, texCoord0);
+    }
+    if((u_textureFlags & 2 ) != 0)
+    {
+        out_Color = texture(texture1, texCoord1);
+    }
+    if((u_textureFlags & 4 ) != 0)
+    {
+        out_Color = texture(texture2, texCoord2);
+    }
+    if((u_textureFlags & 8 ) != 0)
+    {
+        out_Color = texture(texture3, texCoord3);
+    }
 }
 #endif

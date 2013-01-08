@@ -16,283 +16,283 @@
 namespace Agmd
 {
 
-	void Texture::Create(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
-	{
-		Image image[6] = {Image(size,format)};
-		switch(type)
-		{
-		case TEXTURE_2D:
-			CreateFromImage(image[0], format, flags, name);
-			break;
-		case TEXTURE_CUBE:
-			CreateFromImage(image,format,flags,name);
-			break;
-		}
-	}
+    void Texture::Create(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
+    {
+        Image image[6] = {Image(size,format)};
+        switch(type)
+        {
+        case TEXTURE_2D:
+            CreateFromImage(image[0], format, flags, name);
+            break;
+        case TEXTURE_CUBE:
+            CreateFromImage(image,format,flags,name);
+            break;
+        }
+    }
 
-	void Texture::CreateFromFile(const std::string& filename, TPixelFormat format, unsigned long flags)
-	{
-		m_Texture = ResourceManager::Instance().Get<TextureBase>(filename);
+    void Texture::CreateFromFile(const std::string& filename, TPixelFormat format, unsigned long flags)
+    {
+        m_Texture = ResourceManager::Instance().Get<TextureBase>(filename);
 
-		if (!m_Texture)
-		{
-			SmartPtr<Image> image = MediaManager::Instance().LoadMediaFromFile<Image>(filename);
+        if (!m_Texture)
+        {
+            SmartPtr<Image> image = MediaManager::Instance().LoadMediaFromFile<Image>(filename);
 
-			Load(*image, format, TEXTURE_2D, flags, filename);
-		}
-	}
+            Load(*image, format, TEXTURE_2D, flags, filename);
+        }
+    }
 
-	void Texture::CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name)
-	{
-		m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
+    void Texture::CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name)
+    {
+        m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
 
-		if (!m_Texture)
-			Load(image, format, TEXTURE_2D, flags, name);
-	}
+        if (!m_Texture)
+            Load(image, format, TEXTURE_2D, flags, name);
+    }
 
-	void Texture::CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags)
-	{
-		//m_Texture = ResourceManager::Instance().Get<TextureBase>(filename);
+    void Texture::CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags)
+    {
+        //m_Texture = ResourceManager::Instance().Get<TextureBase>(filename);
 
-		if (!m_Texture)
-		{
-			SmartPtr<Image> image[6];
-			for(int32 i = 0; i < 6; i++)
-				image[0] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
+        if (!m_Texture)
+        {
+            SmartPtr<Image> image[6];
+            for(int32 i = 0; i < 6; i++)
+                image[0] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
 
-			//Load(*image, format, TEXTURE_2D, flags, filename);
-		}
-	}
+            //Load(*image, format, TEXTURE_2D, flags, filename);
+        }
+    }
 
-	void Texture::CreateFromImage(const Image image[], TPixelFormat format, unsigned long flags, const std::string& name)
-	{
-		m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
+    void Texture::CreateFromImage(const Image image[], TPixelFormat format, unsigned long flags, const std::string& name)
+    {
+        m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
 
-		if (!m_Texture)
-			Load(image, format, TEXTURE_CUBE, flags, name);
-	}
+        if (!m_Texture)
+            Load(image, format, TEXTURE_CUBE, flags, name);
+    }
 
-	void Texture::Load(const Image& pixels, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
-	{
-		if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
-		{
-			format = PXF_A8R8G8B8;
-			Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
-		}
+    void Texture::Load(const Image& pixels, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
+    {
+        if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
+        {
+            format = PXF_A8R8G8B8;
+            Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
+        }
 
-		ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
-		if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
-		{
-			Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
-		}
-		else
-		{
-			size = pixels.GetSize();
-		}
+        ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
+        if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
+        {
+            Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
+        }
+        else
+        {
+            size = pixels.GetSize();
+        }
 
-		try
-		{
-			m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
-		}
-		catch (const std::exception& E)
-		{
-			throw LoadingFailed(name, E.what());
-		}
+        try
+        {
+            m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
+        }
+        catch (const std::exception& E)
+        {
+            throw LoadingFailed(name, E.what());
+        }
 
-		if (name != "")
-			ResourceManager::Instance().Add(name, m_Texture);
+        if (name != "")
+            ResourceManager::Instance().Add(name, m_Texture);
 
-		if (FormatCompressed(format))
-			GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
+        if (FormatCompressed(format))
+            GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
 
-		// Copie des pixels
-		GetPixels().CopyImage(pixels);
-		Update();
-	}
+        // Copie des pixels
+        GetPixels().CopyImage(pixels);
+        Update();
+    }
 
-	void Texture::Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
-	{
-		const Image &pixels = image[0];
-		if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
-		{
-			format = PXF_A8R8G8B8;
-			Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
-		}
+    void Texture::Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
+    {
+        const Image &pixels = image[0];
+        if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
+        {
+            format = PXF_A8R8G8B8;
+            Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
+        }
 
-		ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
-		if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
-		{
-			Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
-		}
-		else
-		{
-			size = pixels.GetSize();
-		}
+        ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
+        if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
+        {
+            Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
+        }
+        else
+        {
+            size = pixels.GetSize();
+        }
 
-		try
-		{
-			m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
-		}
-		catch (const std::exception& E)
-		{
-			throw LoadingFailed(name, E.what());
-		}
+        try
+        {
+            m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
+        }
+        catch (const std::exception& E)
+        {
+            throw LoadingFailed(name, E.what());
+        }
 
-		if (name != "")
-			ResourceManager::Instance().Add(name, m_Texture);
+        if (name != "")
+            ResourceManager::Instance().Add(name, m_Texture);
 
-		if (FormatCompressed(format))
-			GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
+        if (FormatCompressed(format))
+            GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
 
-		// Copie des pixels
-		GetPixels().CopyImage(pixels);
-		Update();
-	}
+        // Copie des pixels
+        GetPixels().CopyImage(pixels);
+        Update();
+    }
 
-	void Texture::SaveToFile(const std::string& filename) const
-	{
-		//MediaManager::Instance().SaveMediaToFile(&m_Texture->m_Data, filename);
-	}
+    void Texture::SaveToFile(const std::string& filename) const
+    {
+        //MediaManager::Instance().SaveMediaToFile(&m_Texture->m_Data, filename);
+    }
 
-	void Texture::Update(const AgmdMaths::Rectangle& rect)
-	{
-		if (rect.Width() == -1)
-			m_Texture->Update(AgmdMaths::Rectangle(0, 0, GetSize().x, GetSize().y));
-		else
-			m_Texture->Update(rect);
-	}
+    void Texture::Update(const AgmdMaths::Rectangle& rect)
+    {
+        if (rect.Width() == -1)
+            m_Texture->Update(AgmdMaths::Rectangle(0, 0, GetSize().x, GetSize().y));
+        else
+            m_Texture->Update(rect);
+    }
 
-	Image& Texture::GetPixels()
-	{
-		return *m_Texture->getPixels();
-	}
+    Image& Texture::GetPixels()
+    {
+        return *m_Texture->getPixels();
+    }
 
-	const ivec2& Texture::GetSize() const
-	{
-		return m_Texture->m_Size;
-	}
+    const ivec2& Texture::GetSize() const
+    {
+        return m_Texture->m_Size;
+    }
 
-	TPixelFormat Texture::GetFormat() const
-	{
-		return m_Texture->m_Format;
-	}
+    TPixelFormat Texture::GetFormat() const
+    {
+        return m_Texture->m_Format;
+    }
 
-	const std::string& Texture::GetName() const
-	{
-		return m_Texture->GetName();
-	}
+    const std::string& Texture::GetName() const
+    {
+        return m_Texture->GetName();
+    }
 
-	const TextureBase* Texture::GetTexture() const
-	{
-		return m_Texture;
-	}
+    const TextureBase* Texture::GetTexture() const
+    {
+        return m_Texture;
+    }
 
-	bool Texture::operator ==(const Texture& texture) const
-	{
-		return m_Texture == texture.m_Texture;
-	}
+    bool Texture::operator ==(const Texture& texture) const
+    {
+        return m_Texture == texture.m_Texture;
+    }
 
-	bool Texture::operator !=(const Texture& texture) const
-	{
-		return !(*this == texture);
-	}
-	
+    bool Texture::operator !=(const Texture& texture) const
+    {
+        return !(*this == texture);
+    }
+    
 
-	/*void Texture::SetPixel(const std::string& filename,uint32 face)
-	{
-		if(face > 5)
-			return;
+    /*void Texture::SetPixel(const std::string& filename,uint32 face)
+    {
+        if(face > 5)
+            return;
 
-		SmartPtr<Image> image = MediaManager::Instance().LoadMediaFromFile<Image>(filename);
-		SetPixel(*image,face);
-	}
+        SmartPtr<Image> image = MediaManager::Instance().LoadMediaFromFile<Image>(filename);
+        SetPixel(*image,face);
+    }
 
-	void Texture::SetPixel(const Image& image,uint32 face)
-	{
-		if(face > 5)
-			return;
-		m_Texture->m_CubeData[face] = image;
-		Update();
-	}*/
-	BaseShaderProgram* Texture::s_addTexture = NULL;
-	BaseShaderProgram* Texture::s_prodTexture = NULL;
-	BaseShaderProgram* Texture::s_renderTexture = NULL;
-	BaseShaderProgram* Texture::s_randomTexture = NULL;
-	FrameBuffer* Texture::s_framebuffer = NULL;
+    void Texture::SetPixel(const Image& image,uint32 face)
+    {
+        if(face > 5)
+            return;
+        m_Texture->m_CubeData[face] = image;
+        Update();
+    }*/
+    BaseShaderProgram* Texture::s_addTexture = NULL;
+    BaseShaderProgram* Texture::s_prodTexture = NULL;
+    BaseShaderProgram* Texture::s_renderTexture = NULL;
+    BaseShaderProgram* Texture::s_randomTexture = NULL;
+    FrameBuffer* Texture::s_framebuffer = NULL;
 
-	void Texture::TextureAdd(Texture output, Texture input1, Texture input2)
-	{
-		Renderer& render = Renderer::Get();
-		if(!s_addTexture)
-		{
-			s_addTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/add_tex.glsl");
-		}
-		if(!s_framebuffer)
-			s_framebuffer = render.CreateFrameBuffer();
+    void Texture::TextureAdd(Texture output, Texture input1, Texture input2)
+    {
+        Renderer& render = Renderer::Get();
+        if(!s_addTexture)
+        {
+            s_addTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/add_tex.glsl");
+        }
+        if(!s_framebuffer)
+            s_framebuffer = render.CreateFrameBuffer();
 
-		s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
-		render.SetTexture(0,input1.GetTexture());
-		render.SetTexture(1,input2.GetTexture());
-		s_framebuffer->Clear();
-		s_framebuffer->Bind();
-		render.SetCurrentProgram(s_addTexture);
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(nullptr);
-		s_framebuffer->UnBind();
-	}
+        s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+        render.SetTexture(0,input1.GetTexture());
+        render.SetTexture(1,input2.GetTexture());
+        s_framebuffer->Clear();
+        s_framebuffer->Bind();
+        render.SetCurrentProgram(s_addTexture);
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(nullptr);
+        s_framebuffer->UnBind();
+    }
 
-	void Texture::TextureProd(Texture output, Texture input1, Texture input2)
-	{
-		Renderer& render = Renderer::Get();
-		if(!s_prodTexture)
-		{
-			s_prodTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/prod_tex.glsl");
-		}
-		if(!s_framebuffer)
-			s_framebuffer = render.CreateFrameBuffer();
+    void Texture::TextureProd(Texture output, Texture input1, Texture input2)
+    {
+        Renderer& render = Renderer::Get();
+        if(!s_prodTexture)
+        {
+            s_prodTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/prod_tex.glsl");
+        }
+        if(!s_framebuffer)
+            s_framebuffer = render.CreateFrameBuffer();
 
-		s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
-		render.SetTexture(0,input1.GetTexture());
-		render.SetTexture(1,input2.GetTexture());
-		s_framebuffer->Clear();
-		s_framebuffer->Bind();
-		render.SetCurrentProgram(s_prodTexture);
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(nullptr);
-		s_framebuffer->UnBind();
-	}
+        s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+        render.SetTexture(0,input1.GetTexture());
+        render.SetTexture(1,input2.GetTexture());
+        s_framebuffer->Clear();
+        s_framebuffer->Bind();
+        render.SetCurrentProgram(s_prodTexture);
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(nullptr);
+        s_framebuffer->UnBind();
+    }
 
-	void Texture::TextureRender(Texture input)
-	{
-		Renderer& render = Renderer::Get();
+    void Texture::TextureRender(Texture input)
+    {
+        Renderer& render = Renderer::Get();
 
-		if(!s_renderTexture)
-			s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
-		
-		render.SetTexture(0,input.GetTexture());
-		render.SetCurrentProgram(s_renderTexture);
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(nullptr);
-	}
+        if(!s_renderTexture)
+            s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
+        
+        render.SetTexture(0,input.GetTexture());
+        render.SetCurrentProgram(s_renderTexture);
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(nullptr);
+    }
 
-	void Texture::TextureRandom()
-	{
-		Renderer& render = Renderer::Get();
+    void Texture::TextureRandom()
+    {
+        Renderer& render = Renderer::Get();
 
-		if(!s_randomTexture)
-			s_randomTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/rand_tex.glsl");
+        if(!s_randomTexture)
+            s_randomTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/rand_tex.glsl");
 
-		int seed = clock();
+        int seed = clock();
 
-		render.SetCurrentProgram(s_randomTexture);
-		render.getPipeline()->SetParameter("seed",(float)seed);
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(nullptr);
-	}
+        render.SetCurrentProgram(s_randomTexture);
+        render.getPipeline()->SetParameter("seed",(float)seed);
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(nullptr);
+    }
 
-	TTextureType Texture::GetType() const
-	{
-		return m_Texture->GetType();
-	}
+    TTextureType Texture::GetType() const
+    {
+        return m_Texture->GetType();
+    }
 
 }

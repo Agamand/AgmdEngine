@@ -14,14 +14,14 @@ namespace Agmd
 
         ~GLTexture2D();
 
-		virtual TTextureType GetType() const;
+        virtual TTextureType GetType() const;
 
-		virtual Image* getPixels();
+        virtual Image* getPixels();
     private :
 
         virtual void Update(const AgmdMaths::Rectangle& rect);
 
-		Image        m_Data;
+        Image        m_Data;
     };
 }
 

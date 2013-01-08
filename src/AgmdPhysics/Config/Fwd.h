@@ -4,14 +4,14 @@
 
 namespace AgmdPhysics
 {
-	class Entities;
-	class Box;
-	class Sphere;
-	class Plane;
-	class Force;
-	class PhysicsMgr;
+    class Entities;
+    class Box;
+    class Sphere;
+    class Plane;
+    class Force;
+    class PhysicsMgr;
 
-	struct Intersection;
+    struct Intersection;
 }
 
 #endif //FWD_PHYSICS_H

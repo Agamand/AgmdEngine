@@ -39,7 +39,7 @@ private :
 
 #define MAKE_SINGLETON(Class) \
     public : \
-		friend class Singleton<Class>; \
+        friend class Singleton<Class>; \
         static Class& Instance(); \
     private :
 

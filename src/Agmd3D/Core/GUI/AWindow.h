@@ -11,54 +11,54 @@
 
 namespace Agmd
 {
-	class AGMD_EXPORT AWindow : public AWidget
-	{
-	public:
-		AWindow(AWidget* parent = NULL);
-		virtual ~AWindow();
+    class AGMD_EXPORT AWindow : public AWidget
+    {
+    public:
+        AWindow(AWidget* parent = NULL);
+        virtual ~AWindow();
 
-		void SetFont(Texture font);
+        void SetFont(Texture font);
 
-		virtual uint32 OnClick(ivec2 pos_mouse, uint32 mouseState);
-		virtual uint32 OnMouseOver();
-		virtual uint32 OnMouseMove(ivec2 pos_diff, uint32 mouseState);
-		virtual uint32 OnKey(char key);
-		virtual void OnSizeChanged();
-		virtual void OnPosChanged();
+        virtual uint32 OnClick(ivec2 pos_mouse, uint32 mouseState);
+        virtual uint32 OnMouseOver();
+        virtual uint32 OnMouseMove(ivec2 pos_diff, uint32 mouseState);
+        virtual uint32 OnKey(char key);
+        virtual void OnSizeChanged();
+        virtual void OnPosChanged();
 
-		virtual void Draw() const;
+        virtual void Draw() const;
 
-		virtual bool In(ivec2 pos_mouse);
+        virtual bool In(ivec2 pos_mouse);
 
-		
+        
 
-	private:
+    private:
 
         struct TVertex
         {
             vec3     Position;
             uint32   Diffuse;
             vec2     TexCoords0; 
-			vec2     TexCoords1;
-			vec2     TexCoords2;
-			vec2     TexCoords3;
+            vec2     TexCoords1;
+            vec2     TexCoords2;
+            vec2     TexCoords3;
         };
 
         typedef unsigned short TIndex;
 
-		void BuildWindow();
-	
+        void BuildWindow();
+    
 
-		Buffer<TVertex>		m_VertexBuffer;
-        Buffer<TIndex>		m_IndexBuffer;
-        DeclarationPtr		m_Declaration;
-		Texture				m_Texture;
-		Texture		        m_Font;
-		BaseShaderProgram*	m_Program;
+        Buffer<TVertex>        m_VertexBuffer;
+        Buffer<TIndex>        m_IndexBuffer;
+        DeclarationPtr        m_Declaration;
+        Texture                m_Texture;
+        Texture                m_Font;
+        BaseShaderProgram*    m_Program;
 
-		bool hold;
-		bool extend;
-	};
+        bool hold;
+        bool extend;
+    };
 }
 
 #endif //AWINDOW_H

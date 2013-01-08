@@ -31,8 +31,8 @@ namespace Agmd
 
     typedef GLBuffer<GL_ARRAY_BUFFER>         GLVertexBuffer;
     typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER> GLIndexBuffer;
-	/*typedef GLBuffer<GL_UNIFORM_BUFFER>       GLUniformBuffer;
-	typedef GLBuffer<GL_TEXTURE_BUFFER>		  GLTextureBuffer;*/
+    /*typedef GLBuffer<GL_UNIFORM_BUFFER>       GLUniformBuffer;
+    typedef GLBuffer<GL_TEXTURE_BUFFER>          GLTextureBuffer;*/
 
     #include "GLBuffer.inl"
 

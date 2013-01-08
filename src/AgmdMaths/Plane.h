@@ -25,7 +25,7 @@ namespace AgmdMaths
         float DistanceToPoint(const vec3& point) const;
         float DistanceToPoint(const vec4& point) const;
 
-		void Normalize();
+        void Normalize();
 
         bool operator ==(const Plane& p) const;
         bool operator !=(const Plane& p) const;

@@ -11,68 +11,68 @@
 namespace Agmd
 {
 
-	ImagesLoader::ImagesLoader()
-	{
-		ilInit();
+    ImagesLoader::ImagesLoader()
+    {
+        ilInit();
 
-		ilOriginFunc(IL_ORIGIN_UPPER_LEFT);
-		ilEnable(IL_ORIGIN_SET);
+        ilOriginFunc(IL_ORIGIN_UPPER_LEFT);
+        ilEnable(IL_ORIGIN_SET);
 
-		ilEnable(IL_FILE_OVERWRITE);
+        ilEnable(IL_FILE_OVERWRITE);
 
-		ilSetInteger(IL_FORMAT_MODE, IL_BGRA);
-		ilEnable(IL_FORMAT_SET);
-	}
+        ilSetInteger(IL_FORMAT_MODE, IL_BGRA);
+        ilEnable(IL_FORMAT_SET);
+    }
 
-	ImagesLoader::~ImagesLoader()
-	{
-		ilShutDown();
-	}
+    ImagesLoader::~ImagesLoader()
+    {
+        ilShutDown();
+    }
 
-	Image* ImagesLoader::LoadFromFile(const std::string& filename)
-	{
-		uint32 texture;
-		ilGenImages(1, &texture);
-		ilBindImage(texture);
+    Image* ImagesLoader::LoadFromFile(const std::string& filename)
+    {
+        uint32 texture;
+        ilGenImages(1, &texture);
+        ilBindImage(texture);
 
-		if (!ilLoadImage(const_cast<ILstring>(filename.c_str())))
-			throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilLoadImage a échoué");
+        if (!ilLoadImage(const_cast<ILstring>(filename.c_str())))
+            throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilLoadImage a échoué");
 
-		ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
+        ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
 
-		unsigned char* Pixels = reinterpret_cast<unsigned char*>(ilGetData());
+        unsigned char* Pixels = reinterpret_cast<unsigned char*>(ilGetData());
 
-		Image* image = new Image(Size, PXF_A8R8G8B8, Pixels);
+        Image* image = new Image(Size, PXF_A8R8G8B8, Pixels);
 
-		ilDeleteImages(1, &texture);
-		
-		image->Flip();
+        ilDeleteImages(1, &texture);
+        
+        image->Flip();
 
-		return image;
-	}
+        return image;
+    }
 
-	void ImagesLoader::SaveToFile(const Image* object, const std::string& filename)
-	{
+    void ImagesLoader::SaveToFile(const Image* object, const std::string& filename)
+    {
 
-		Image image(object->GetSize(), PXF_A8R8G8B8);
-		image.CopyImage(*object);
+        Image image(object->GetSize(), PXF_A8R8G8B8);
+        image.CopyImage(*object);
 
-		image.Flip();
+        image.Flip();
 
-		uint32 texture;
-		ilGenImages(1, &texture);
-		ilBindImage(texture);
+        uint32 texture;
+        ilGenImages(1, &texture);
+        ilBindImage(texture);
 
-		const ivec2& size = image.GetSize();
+        const ivec2& size = image.GetSize();
 
 
-		if (!ilTexImage(size.x, size.y, 1, GetBytesPerPixel(image.GetFormat()), IL_BGRA, IL_UNSIGNED_BYTE, (void*)image.GetData()))
-			throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilTexImage a échoué");
+        if (!ilTexImage(size.x, size.y, 1, GetBytesPerPixel(image.GetFormat()), IL_BGRA, IL_UNSIGNED_BYTE, (void*)image.GetData()))
+            throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilTexImage a échoué");
 
-		if (!ilSaveImage(const_cast<ILstring>(filename.c_str())))
-			throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilSaveImage a échoué");
+        if (!ilSaveImage(const_cast<ILstring>(filename.c_str())))
+            throw LoadingFailed(filename, "Erreur DevIL : l'appel à ilSaveImage a échoué");
 
-		ilDeleteImages(1, &texture);
-	}
+        ilDeleteImages(1, &texture);
+    }
 
 } // namespace Agmd

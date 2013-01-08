@@ -8,37 +8,37 @@
 namespace Agmd
 {
 
-	TxtLoader::TxtLoader()
-	{}
+    TxtLoader::TxtLoader()
+    {}
 
-	TxtLoader::~TxtLoader()
-	{}
+    TxtLoader::~TxtLoader()
+    {}
 
-	char* TxtLoader::LoadFromFile(const std::string& filename)
-	{
-		char *src = NULL;
-		uint32 size;
-		std::ifstream file(filename, std::ios::in);
+    char* TxtLoader::LoadFromFile(const std::string& filename)
+    {
+        char *src = NULL;
+        uint32 size;
+        std::ifstream file(filename, std::ios::in);
     
-		if (!file)
-			throw LoadingFailed(filename,"Erreur lors du chargement du fichier (TxtLoader)");
+        if (!file)
+            throw LoadingFailed(filename,"Erreur lors du chargement du fichier (TxtLoader)");
 
-		file.seekg(0,std::ios_base::end);
-		size = (uint32)file.tellg();
-		file.seekg(0,std::ios_base::beg);
+        file.seekg(0,std::ios_base::end);
+        size = (uint32)file.tellg();
+        file.seekg(0,std::ios_base::beg);
 
-		src = new char[size+1];
-		file.read(src,size);
-		src[size] = '\0';
-		file.close();
+        src = new char[size+1];
+        file.read(src,size);
+        src[size] = '\0';
+        file.close();
     
-		return src;
-	}
+        return src;
+    }
 
-	void TxtLoader::OnError()
-	{
-		throw Exception("");
-	}
+    void TxtLoader::OnError()
+    {
+        throw Exception("");
+    }
 
 
 }

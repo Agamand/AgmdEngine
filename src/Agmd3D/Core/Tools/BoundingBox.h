@@ -5,20 +5,20 @@
 
 namespace Agmd
 {
-	class BoundingBox
-	{
-	public:
-		BoundingBox();
-		~BoundingBox();
+    class BoundingBox
+    {
+    public:
+        BoundingBox();
+        ~BoundingBox();
 
-		vec3 GetMin();
-		vec3 GetMax();
+        vec3 GetMin();
+        vec3 GetMax();
 
 
-	private:
-		vec3 m_max;
-		vec3 m_min;
-	}; 
+    private:
+        vec3 m_max;
+        vec3 m_min;
+    }; 
 }
 
 

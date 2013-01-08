@@ -11,16 +11,16 @@ using namespace AgmdUtilities;
 namespace Agmd
 {
 
-	class AGMD_EXPORT RenderBuffer
-	{
-	public:
-		RenderBuffer(ivec2 size);
-		virtual ~RenderBuffer();
-	protected:
-		ivec2 m_Size;
-	};
+    class AGMD_EXPORT RenderBuffer
+    {
+    public:
+        RenderBuffer(ivec2 size);
+        virtual ~RenderBuffer();
+    protected:
+        ivec2 m_Size;
+    };
 
-	typedef SmartPtr<RenderBuffer> RenderBufferPtr;
+    typedef SmartPtr<RenderBuffer> RenderBufferPtr;
 
 }
 

@@ -12,32 +12,32 @@ using namespace glm;
 #define VEC2TOSTREAM(X) X.x << " " <<X.y
 #define STREAMTOVEC2(X) X.x >> X.y
 #define VEC2SET(V,X,Y) V.x = X; \
-						V.y = Y; \
+                        V.y = Y; \
 
 namespace AgmdMaths
 {
 
-	// INT VECTOR
-	inline std::istream& operator >>(std::istream& stream, ivec2& vector)
-	{
-		return stream >> vector.x >> vector.y;
-	}
+    // INT VECTOR
+    inline std::istream& operator >>(std::istream& stream, ivec2& vector)
+    {
+        return stream >> vector.x >> vector.y;
+    }
 
-	inline std::ostream& operator <<(std::ostream& stream, const ivec2& vector)
-	{
-		return stream << vector.x << " " << vector.y;
-	}
+    inline std::ostream& operator <<(std::ostream& stream, const ivec2& vector)
+    {
+        return stream << vector.x << " " << vector.y;
+    }
 
-	// FLOAT VECTOR
-	inline std::istream& operator >>(std::istream& stream, vec2& vector)
-	{
-		return stream >> vector.x >> vector.y;
-	}
+    // FLOAT VECTOR
+    inline std::istream& operator >>(std::istream& stream, vec2& vector)
+    {
+        return stream >> vector.x >> vector.y;
+    }
 
-	inline std::ostream& operator <<(std::ostream& stream, const vec2& vector)
-	{
-		return stream << vector.x << " " << vector.y;
-	}
+    inline std::ostream& operator <<(std::ostream& stream, const vec2& vector)
+    {
+        return stream << vector.x << " " << vector.y;
+    }
 }
 
 #endif

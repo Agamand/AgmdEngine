@@ -4,7 +4,7 @@
 
 namespace Agmd
 {
-	//General Class
+    //General Class
 
     class MediaManager;
     class Renderer;
@@ -17,45 +17,45 @@ namespace Agmd
     class Image;
     class FontManager;
     class GraphicString;
-	class Scene;
+    class Scene;
     class Material;
     struct DeclarationElement;
     template <class> class Loader;
 
 
-	//Shader Class
+    //Shader Class
 
     class BaseShader;
     class Shader;
-	class BaseShaderProgram;
-	class ShaderProgram;
-	class ShaderPipeline;
+    class BaseShaderProgram;
+    class ShaderProgram;
+    class ShaderPipeline;
 
-	//Buffer Class
+    //Buffer Class
 
     class BaseBuffer;
-	template <class> class Buffer;
-	class FrameBuffer;
-	class RenderBuffer;
+    template <class> class Buffer;
+    class FrameBuffer;
+    class RenderBuffer;
 
-	//Model Class
+    //Model Class
 
-	class Model;
-	class Terrain;
-	class Water;
-	class Sky;
+    class Model;
+    class Terrain;
+    class Water;
+    class Sky;
 
-	struct Transform;
+    struct Transform;
 
-	//GUI Class
+    //GUI Class
 
-	class GUIMgr;
-	class EventMgr;
-	class AWidget;
-	class AContainer;
-	class AWindow;
-	class ATextBox;
-	class AButton;
+    class GUIMgr;
+    class EventMgr;
+    class AWidget;
+    class AContainer;
+    class AWindow;
+    class ATextBox;
+    class AButton;
 
     //Rendering Mode
     class RenderingMode;
@@ -63,10 +63,10 @@ namespace Agmd
     class VertexRendering;
     class DeferredRendering;
 
-	//Tools Class
+    //Tools Class
 
-	class Frustum;
-	class BoundingBox;
+    class Frustum;
+    class BoundingBox;
     class Fast2DSurface;
     class DeferredRendering;
 

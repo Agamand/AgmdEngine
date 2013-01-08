@@ -16,9 +16,9 @@ namespace Agmd
 
         virtual ~TextureBase();
 
-		virtual TTextureType GetType() const = 0;
-	
-		virtual Image* getPixels() = 0;
+        virtual TTextureType GetType() const = 0;
+    
+        virtual Image* getPixels() = 0;
 
     protected :
         friend class Texture;
@@ -28,7 +28,7 @@ namespace Agmd
         virtual void Update(const AgmdMaths::Rectangle& rect) = 0;
 
         TPixelFormat m_Format;
-        ivec2		 m_Size;
+        ivec2         m_Size;
         bool         m_HasMipmaps;
         bool         m_AutoMipmaps;
     };

@@ -9,18 +9,18 @@
 
 namespace Agmd
 {
-	class AGMD_EXPORT Sky : public Displayable
-	{
+    class AGMD_EXPORT Sky : public Displayable
+    {
 
-	public:
-		Sky(float size = 1.0f);
-		virtual ~Sky();
-		
+    public:
+        Sky(float size = 1.0f);
+        virtual ~Sky();
+        
 
 
-	protected:
-		float m_fSize;
-	};
+    protected:
+        float m_fSize;
+    };
 }
 
 #endif //SKY_H

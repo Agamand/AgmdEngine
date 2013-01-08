@@ -12,46 +12,46 @@
 
 namespace Agmd
 {
-	struct AGMD_EXPORT TextureUnit
-	{
-		TextureUnit() :
-		pass(0)
-		{}
+    struct AGMD_EXPORT TextureUnit
+    {
+        TextureUnit() :
+        pass(0)
+        {}
 
-		TextureUnit(Texture _tex, uint32 _pass = 0) : 
-		tex(_tex),
-		pass(_pass)
-		{}
+        TextureUnit(Texture _tex, uint32 _pass = 0) : 
+        tex(_tex),
+        pass(_pass)
+        {}
 
-		Texture tex;
-		uint32 pass;
+        Texture tex;
+        uint32 pass;
 
-	};
+    };
 
-	struct MaterialInfo
-	{
-		Color m_baseColor;
-		uint32 m_materialFlags;
-	};
+    struct MaterialInfo
+    {
+        Color m_baseColor;
+        uint32 m_materialFlags;
+    };
 
-	class AGMD_EXPORT Material : public Resource
-	{
-	public:
-		Material();
+    class AGMD_EXPORT Material : public Resource
+    {
+    public:
+        Material();
         Material(ShaderPipeline* pipeline);
-		~Material();
+        ~Material();
 
         bool Enable(TRenderPass pass) const;
-		void Disable() const;
+        void Disable() const;
 
         void SetTexture(Texture tex, uint32 unit, TRenderPass pass);
 
-	private:
+    private:
         ShaderPipeline* m_pipeline;
-		TextureUnit m_texture[MAX_TEXTUREUNIT];
-		MaterialInfo m_materialInfo;
-		Buffer<MaterialInfo> m_bufferMaterial;
-	}; 
+        TextureUnit m_texture[MAX_TEXTUREUNIT];
+        MaterialInfo m_materialInfo;
+        Buffer<MaterialInfo> m_bufferMaterial;
+    }; 
 }
 
 #endif /* _MATERIAL_H_ */

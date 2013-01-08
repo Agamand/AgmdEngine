@@ -10,14 +10,14 @@
 namespace Agmd
 {
 
-	ShaderPipelineLoader::ShaderPipelineLoader()
-	{}
+    ShaderPipelineLoader::ShaderPipelineLoader()
+    {}
 
-	ShaderPipelineLoader::~ShaderPipelineLoader()
-	{}
+    ShaderPipelineLoader::~ShaderPipelineLoader()
+    {}
 
-	ShaderPipeline* ShaderPipelineLoader::LoadFromFile(const std::string& filename)
-	{
+    ShaderPipeline* ShaderPipelineLoader::LoadFromFile(const std::string& filename)
+    {
         std::ifstream file;
         std::string str;
         try
@@ -39,7 +39,7 @@ namespace Agmd
 
 
         return nullptr;
-	}
+    }
 
     void ShaderPipelineLoader::Parse(std::string str)
     {
@@ -51,10 +51,10 @@ namespace Agmd
         return Token::TOKEN_PASS;
     }
 
-	void ShaderPipelineLoader::OnError()
-	{
-		throw Exception("");
-	}
+    void ShaderPipelineLoader::OnError()
+    {
+        throw Exception("");
+    }
 
 
 }

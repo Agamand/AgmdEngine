@@ -17,12 +17,12 @@ out vec2 texCoord0;
 
 void main()
 {
-	vec3 vertex = in_Vertex;
-	
-	color = in_Color;
-	texCoord0 = in_TexCoord0;
-	
-	gl_Position = u_matProjection* u_matView * u_matModel* vec4(vertex,1.0f);
+    vec3 vertex = in_Vertex;
+    
+    color = in_Color;
+    texCoord0 = in_TexCoord0;
+    
+    gl_Position = u_matProjection* u_matView * u_matModel* vec4(vertex,1.0f);
 }
 #endif
 
@@ -36,9 +36,9 @@ uniform sampler2D texture0;
 
 void main()
 {
-	out_Color = color;
-	
-	if((u_textureFlags & 1 ) != 0)
-		out_Color = texture2D(texture0, texCoord0);
+    out_Color = color;
+    
+    if((u_textureFlags & 1 ) != 0)
+        out_Color = texture2D(texture0, texCoord0);
 }
 #endif

@@ -3,13 +3,13 @@
 
 namespace Agmd
 {
-	enum TMouseState
-	{
-		MOUSE_NONE		= 0x0,
-		MOUSE_LEFT		= 0x1,
-		MOUSE_RIGHT		= 0x2,
-		MOUSE_MIDDLE	= 0x10
-	};
+    enum TMouseState
+    {
+        MOUSE_NONE        = 0x0,
+        MOUSE_LEFT        = 0x1,
+        MOUSE_RIGHT        = 0x2,
+        MOUSE_MIDDLE    = 0x10
+    };
 
     enum TPrimitiveType
     {
@@ -19,16 +19,16 @@ namespace Agmd
         PT_LINELIST, 
         PT_LINESTRIP,
         PT_POINTLIST,
-		PT_PATCHLIST
+        PT_PATCHLIST
     };
 
-	enum TTextureType
-	{
-		TEXTURE_2D,
-		TEXTURE_CUBE
-	};
+    enum TTextureType
+    {
+        TEXTURE_2D,
+        TEXTURE_CUBE
+    };
 
-	enum
+    enum
     {
         BUF_STATIC  = 1 << 0,
         BUF_DYNAMIC = 1 << 1
@@ -40,19 +40,19 @@ namespace Agmd
         LOCK_WRITEONLY = 1 << 1
     };
 
-	#define MAX_APIMATRIX 10
+    #define MAX_APIMATRIX 10
     enum TMatrixType
     {
         MAT_MODEL,
-		MAT_VIEW,
+        MAT_VIEW,
         MAT_PROJECTION,
         MAT_TEXTURE_0,
         MAT_TEXTURE_1,
         MAT_TEXTURE_2,
         MAT_TEXTURE_3,
-		MAT_NORMAL,
-		MAT_POSITION,
-		MAT_ROTATION
+        MAT_NORMAL,
+        MAT_POSITION,
+        MAT_ROTATION
     };
 
     enum TPixelFormat
@@ -60,13 +60,13 @@ namespace Agmd
         PXF_L8,
         PXF_A8L8,
         PXF_A1R5G5B5,
-	    PXF_A4R4G4B4,
-	    PXF_R8G8B8,
-	    PXF_A8R8G8B8,
+        PXF_A4R4G4B4,
+        PXF_R8G8B8,
+        PXF_A8R8G8B8,
         PXF_DXTC1,
         PXF_DXTC3,
         PXF_DXTC5,
-		PXF_DEPTH,
+        PXF_DEPTH,
         PXF_R16G16B16,
         PXF_R32G32B32
     };
@@ -81,7 +81,7 @@ namespace Agmd
         CAP_HW_MIPMAPPING,
         CAP_DXT_COMPRESSION,
         CAP_TEX_NON_POWER_2,
-		CAP_TESSELATION_SHADER
+        CAP_TESSELATION_SHADER
     };
 
     enum TBlend
@@ -151,84 +151,84 @@ namespace Agmd
         RENDER_ZWRITE,
         RENDER_ALPHABLEND,
         RENDER_ZTEST,
-		RENDER_TRANSPARENT,
+        RENDER_TRANSPARENT,
         RENDER_RENDERING
     };
 
     enum TShaderType
     {
         SHADER_VERTEX,
-		SHADER_TESS_CONTROL,
-		SHADER_TESS_EVALUATION,
-		SHADER_GEOMETRY,
+        SHADER_TESS_CONTROL,
+        SHADER_TESS_EVALUATION,
+        SHADER_GEOMETRY,
         SHADER_PIXEL
     };
 
-	enum TRenderMode
-	{
-		MODE_FILL,
-		MODE_LINE,
-		MODE_POINT
-	};
+    enum TRenderMode
+    {
+        MODE_FILL,
+        MODE_LINE,
+        MODE_POINT
+    };
 
-	enum TAttachment
-	{
-		COLOR_ATTACHMENT,
+    enum TAttachment
+    {
+        COLOR_ATTACHMENT,
         COLOR_ATTACHMENT1,
         COLOR_ATTACHMENT2,
         COLOR_ATTACHMENT3,
         COLOR_ATTACHMENT4,
-		DEPTH_ATTACHMENT = 16,
-		STENCIL_ATTACHEMENT = 17
-	};
+        DEPTH_ATTACHMENT = 16,
+        STENCIL_ATTACHEMENT = 17
+    };
 
-	enum TTextureUnit
-	{
-		TEXTURE_UNIT_0  = 1 << 0,
-		TEXTURE_UNIT_1  = 1 << 1,
-		TEXTURE_UNIT_2  = 1 << 2,
-		TEXTURE_UNIT_3  = 1 << 3,
-		TEXTURE_UNIT_4  = 1 << 4,
-		TEXTURE_UNIT_5  = 1 << 5,
-		TEXTURE_UNIT_6  = 1 << 6,
-		TEXTURE_UNIT_7  = 1 << 7,
-		TEXTURE_UNIT_8  = 1 << 8,
-		TEXTURE_UNIT_9  = 1 << 9,
-		TEXTURE_UNIT_10 = 1 << 10,
-		TEXTURE_UNIT_11 = 1 << 11,
-		TEXTURE_UNIT_12 = 1 << 12,
-		TEXTURE_UNIT_13 = 1 << 13,
-		TEXTURE_UNIT_14 = 1 << 14,
-		TEXTURE_UNIT_15 = 1 << 15,
-		TEXTURE_UNIT_16 = 1 << 16,
-		TEXTURE_UNIT_17 = 1 << 17,
-		TEXTURE_UNIT_18 = 1 << 18,
-		TEXTURE_UNIT_19 = 1 << 19,
-		TEXTURE_UNIT_20 = 1 << 20,
-		TEXTURE_UNIT_21 = 1 << 21,
-		TEXTURE_UNIT_22 = 1 << 22,
-		TEXTURE_UNIT_23 = 1 << 23,
-		TEXTURE_UNIT_24 = 1 << 24,
-		TEXTURE_UNIT_25 = 1 << 25,
-		TEXTURE_UNIT_26 = 1 << 26,
-		TEXTURE_UNIT_27 = 1 << 27,
-		TEXTURE_UNIT_28 = 1 << 28,
-		TEXTURE_UNIT_29 = 1 << 29,
-		TEXTURE_UNIT_30 = 1 << 30,
-		TEXTURE_UNIT_31 = 1 << 31
-	};
+    enum TTextureUnit
+    {
+        TEXTURE_UNIT_0  = 1 << 0,
+        TEXTURE_UNIT_1  = 1 << 1,
+        TEXTURE_UNIT_2  = 1 << 2,
+        TEXTURE_UNIT_3  = 1 << 3,
+        TEXTURE_UNIT_4  = 1 << 4,
+        TEXTURE_UNIT_5  = 1 << 5,
+        TEXTURE_UNIT_6  = 1 << 6,
+        TEXTURE_UNIT_7  = 1 << 7,
+        TEXTURE_UNIT_8  = 1 << 8,
+        TEXTURE_UNIT_9  = 1 << 9,
+        TEXTURE_UNIT_10 = 1 << 10,
+        TEXTURE_UNIT_11 = 1 << 11,
+        TEXTURE_UNIT_12 = 1 << 12,
+        TEXTURE_UNIT_13 = 1 << 13,
+        TEXTURE_UNIT_14 = 1 << 14,
+        TEXTURE_UNIT_15 = 1 << 15,
+        TEXTURE_UNIT_16 = 1 << 16,
+        TEXTURE_UNIT_17 = 1 << 17,
+        TEXTURE_UNIT_18 = 1 << 18,
+        TEXTURE_UNIT_19 = 1 << 19,
+        TEXTURE_UNIT_20 = 1 << 20,
+        TEXTURE_UNIT_21 = 1 << 21,
+        TEXTURE_UNIT_22 = 1 << 22,
+        TEXTURE_UNIT_23 = 1 << 23,
+        TEXTURE_UNIT_24 = 1 << 24,
+        TEXTURE_UNIT_25 = 1 << 25,
+        TEXTURE_UNIT_26 = 1 << 26,
+        TEXTURE_UNIT_27 = 1 << 27,
+        TEXTURE_UNIT_28 = 1 << 28,
+        TEXTURE_UNIT_29 = 1 << 29,
+        TEXTURE_UNIT_30 = 1 << 30,
+        TEXTURE_UNIT_31 = 1 << 31
+    };
 
-	#define MAX_RENDERPASS 6
+    #define MAX_RENDERPASS 6
 
-	enum TRenderPass
-	{
-		RENDERPASS_ZBUFFER,
-		RENDERPASS_DIFFUSE,
-		RENDERPASS_LIGHTING,
-		RENDERPASS_SHADOW_CAST,
-		RENDERPASS_SHADOW,
+    enum TRenderPass
+    {
+        RENDERPASS_ZBUFFER,
+        RENDERPASS_DIFFUSE,
+        RENDERPASS_LIGHTING,
+        RENDERPASS_SHADOW_CAST,
+        RENDERPASS_SHADOW,
         RENDERPASS_DEFERRED
-	};
+    };
 
     enum TUniformBind
     {
@@ -236,12 +236,12 @@ namespace Agmd
         UNIFORM_LIGHT_BIND
     };
 
-	enum TComponent
-	{
-	
-	};
+    enum TComponent
+    {
+    
+    };
 
-	#define MAX_TEXTUREUNIT 32
+    #define MAX_TEXTUREUNIT 32
 
 }
 

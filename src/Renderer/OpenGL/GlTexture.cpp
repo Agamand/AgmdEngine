@@ -10,20 +10,20 @@
 
 namespace Agmd
 {
-	GLTexture::GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
-	TextureBase(size,format, hasMipmaps,autoMipmaps),
-	m_Texture  (texture)
-	{
-	}
+    GLTexture::GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
+    TextureBase(size,format, hasMipmaps,autoMipmaps),
+    m_Texture  (texture)
+    {
+    }
 
-	GLTexture::~GLTexture()
-	{
-		if (m_Texture)
-			glDeleteTextures(1, &m_Texture);
-	}
+    GLTexture::~GLTexture()
+    {
+        if (m_Texture)
+            glDeleteTextures(1, &m_Texture);
+    }
 
-	uint32 GLTexture::GetGLTexture() const
-	{
-		return m_Texture;
-	}
+    uint32 GLTexture::GetGLTexture() const
+    {
+        return m_Texture;
+    }
 }

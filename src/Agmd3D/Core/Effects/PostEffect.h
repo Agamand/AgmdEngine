@@ -9,18 +9,18 @@
 namespace Agmd
 {
 
-	class PostEffect
-	{
-	public:
+    class PostEffect
+    {
+    public:
 
-		virtual void Init() = 0;
-		virtual void Update( uint64 /*t_diff*/) = 0;
+        virtual void Init() = 0;
+        virtual void Update( uint64 /*t_diff*/) = 0;
         virtual void ApplyEffect(Texture input, Texture output) = 0;
 
-	protected:
+    protected:
         ShaderProgram m_program;
 
-	}
+    }
 
 }
 

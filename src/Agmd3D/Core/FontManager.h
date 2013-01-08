@@ -51,7 +51,7 @@ namespace Agmd
         struct TFont
         {
             Texture  Texture;
-			ivec2    CharSize[256];
+            ivec2    CharSize[256];
         };
 
         typedef std::map<std::string, TFont> TFontsMap;

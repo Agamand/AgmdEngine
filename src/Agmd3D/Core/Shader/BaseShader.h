@@ -19,9 +19,9 @@ namespace Agmd
         TShaderType GetType() const;
 
     protected :
-		friend class Shader;
+        friend class Shader;
 
-		BaseShader(TShaderType Type);
+        BaseShader(TShaderType Type);
         TShaderType m_Type;
     };
 }

@@ -7,59 +7,59 @@ SINGLETON_IMPL(AgmdUtilities::XmlParser);
 namespace AgmdUtilities
 {
 
-	XmlNode::XmlNode(NodeType type) :
-	m_type(type)
-	{}
+    XmlNode::XmlNode(NodeType type) :
+    m_type(type)
+    {}
 
-	XmlNodePtr XmlNode::GetChild(NodeType type)
-	{
-		size_t size = m_childnode.size();
-		for(size_t i = 0; i < size; i++)
-		{
-			if(m_childnode[i]->GetType() == type)
-				return m_childnode[i];
-		}
-		return NULL;
-	}
+    XmlNodePtr XmlNode::GetChild(NodeType type)
+    {
+        size_t size = m_childnode.size();
+        for(size_t i = 0; i < size; i++)
+        {
+            if(m_childnode[i]->GetType() == type)
+                return m_childnode[i];
+        }
+        return NULL;
+    }
 
-	XmlNodePtr XmlNode::GetChild(string name)
-	{
-		size_t size = m_childnode.size();
-		for(size_t i = 0; i < size; i++)
-		{
-			if(m_childnode[i]->GetName() == name)
-				return m_childnode[i];
-		}
-		return NULL;
-	}
+    XmlNodePtr XmlNode::GetChild(string name)
+    {
+        size_t size = m_childnode.size();
+        for(size_t i = 0; i < size; i++)
+        {
+            if(m_childnode[i]->GetName() == name)
+                return m_childnode[i];
+        }
+        return NULL;
+    }
 
-	XmlNodePtr* XmlNode::GetChilds()
-	{
-		return m_childnode.size() > 0 ? &m_childnode[0] : NULL;
-	}
+    XmlNodePtr* XmlNode::GetChilds()
+    {
+        return m_childnode.size() > 0 ? &m_childnode[0] : NULL;
+    }
 
-	void XmlNode::AddChild(XmlNodePtr node)
-	{
-		m_childnode.push_back(node);
-	}
+    void XmlNode::AddChild(XmlNodePtr node)
+    {
+        m_childnode.push_back(node);
+    }
 
-	NodeType XmlNode::GetType()
-	{
-		return m_type;
-	}
+    NodeType XmlNode::GetType()
+    {
+        return m_type;
+    }
 
-	string XmlNode::GetTxT()
-	{
-		return "";
-	}
+    string XmlNode::GetTxT()
+    {
+        return "";
+    }
 
-	void XmlNode::SetArgs(Argument args)
-	{}
+    void XmlNode::SetArgs(Argument args)
+    {}
 
-	Argument XmlNode::GetArgs()
-	{
-		return Argument();
-	}
+    Argument XmlNode::GetArgs()
+    {
+        return Argument();
+    }
 
     XmlBaliseNode::XmlBaliseNode() :
     XmlNode(NODE_BALISE)
@@ -76,20 +76,20 @@ namespace AgmdUtilities
     m_name(name)
     {}
 
-	Argument XmlBaliseNode::GetArgs()
-	{
-		return m_args;
-	}
+    Argument XmlBaliseNode::GetArgs()
+    {
+        return m_args;
+    }
 
-	string XmlBaliseNode::GetName()
-	{
-		return m_name;
-	}
+    string XmlBaliseNode::GetName()
+    {
+        return m_name;
+    }
 
-	void XmlBaliseNode::SetArgs(Argument args)
-	{
-		m_args = args;
-	}
+    void XmlBaliseNode::SetArgs(Argument args)
+    {
+        m_args = args;
+    }
 
     string XmlBaliseNode::ToSTring()
     {
@@ -123,10 +123,10 @@ namespace AgmdUtilities
     m_txt(str)
     {}
 
-	string XmlTxtNode::GetName()
-	{
-		return "txt";
-	}
+    string XmlTxtNode::GetName()
+    {
+        return "txt";
+    }
 
     string XmlTxtNode::GetTxT()
     {
@@ -138,11 +138,11 @@ namespace AgmdUtilities
         return m_txt;
     }
     
-	XmlParser::XmlParser()
+    XmlParser::XmlParser()
     {}
 
-	XmlParser::~XmlParser()
-	{}
+    XmlParser::~XmlParser()
+    {}
 
     XmlNodePtr XmlParser::Parse(string str)
     {
@@ -211,27 +211,27 @@ namespace AgmdUtilities
 
     XmlParser::Element XmlParser::GetElement(stringstream& stream)
     {
-		char c;
-		std:: string str;
-		Element elt;
+        char c;
+        std:: string str;
+        Element elt;
         if(stream.read(&c,1) != stream)
               return elt;
-		//stream >> c;
+        //stream >> c;
         elt._type = ELEMENT_UNKNOWN;
         try
         {
-		    if(c == '<')
-		    {
-			    elt._type = ELEMENT_BALISE_BEGIN;
-			    if(stream.read(&c,1) != stream)
+            if(c == '<')
+            {
+                elt._type = ELEMENT_BALISE_BEGIN;
+                if(stream.read(&c,1) != stream)
                         return elt;
-			    while(IS_SPACER(c))
-				    if(stream.read(&c,1) != stream)
+                while(IS_SPACER(c))
+                    if(stream.read(&c,1) != stream)
                         return elt;
 
-			    if(c == '/')
+                if(c == '/')
                 {
-				    elt._type = ELEMENT_BALISE_END;
+                    elt._type = ELEMENT_BALISE_END;
                     if(stream.read(&c,1) != stream)
                         return elt;
                 }
@@ -244,9 +244,9 @@ namespace AgmdUtilities
 
                     if(IS_SPACER(c) && str.length())
                         break;
-				    if(stream.read(&c,1) != stream)
+                    if(stream.read(&c,1) != stream)
                         return elt;
-			    }
+                }
                 elt.name = str;
                 str = "";
 
@@ -309,13 +309,13 @@ namespace AgmdUtilities
                     str = "";
                 }
 
-		    }else
-		    {
+            }else
+            {
                 elt._type = ELEMENT_TXT;
-			    char c;
-			    if(stream.read(&c,1) != stream)
+                char c;
+                if(stream.read(&c,1) != stream)
                     return elt;
-			    while(c != '<')
+                while(c != '<')
                 {
                     str +=c;
                     if(stream.read(&c,1) != stream)
@@ -323,7 +323,7 @@ namespace AgmdUtilities
                 }
                 stream.seekg(-1,ios_base::cur);
                 elt.str = str;
-		    }
+            }
         }catch (exception e)
         {
                //

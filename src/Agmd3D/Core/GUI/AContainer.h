@@ -3,12 +3,12 @@
 
 namespace Agmd
 {
-	class AContainer
-	{
-	public:
-		AContainer();
-		~AContainer();
-	};
+    class AContainer
+    {
+    public:
+        AContainer();
+        ~AContainer();
+    };
 }
 
 #endif //ACONTAINER_H

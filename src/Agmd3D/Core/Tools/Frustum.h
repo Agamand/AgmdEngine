@@ -12,22 +12,22 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-	class Frustum : public Singleton<Frustum>
-	{
-		MAKE_SINGLETON(Frustum);
-	public:
-		Frustum();
-		~Frustum();
+    class Frustum : public Singleton<Frustum>
+    {
+        MAKE_SINGLETON(Frustum);
+    public:
+        Frustum();
+        ~Frustum();
 
-		void Setup(mat4& clipMatrix);
+        void Setup(mat4& clipMatrix);
 
-		bool IsIn(vec3& pos);
-		bool IsIn(BoundingBox& box);
+        bool IsIn(vec3& pos);
+        bool IsIn(BoundingBox& box);
 
-	private:
+    private:
 
-		Plane m_clipPlane[6];
-	};
+        Plane m_clipPlane[6];
+    };
 }
 
 #endif /* _FRUSTUM_H_ */

@@ -21,13 +21,13 @@ using namespace AgmdMaths;
 namespace Agmd
 {
 
-	enum GenerateType
-	{
-		G_NONE = 0x0,
-		G_NORMAL = 0x1,
-		G_TANGENT = 0x2,
-		G_ALL = G_NORMAL | G_TANGENT
-	};
+    enum GenerateType
+    {
+        G_NONE = 0x0,
+        G_NORMAL = 0x1,
+        G_TANGENT = 0x2,
+        G_ALL = G_NORMAL | G_TANGENT
+    };
 
     class AGMD_EXPORT Model : public Displayable, public Resource
     {
@@ -38,48 +38,48 @@ namespace Agmd
             vec3     normal;
             uint32   color;
             vec2     texCoords;
-			vec4	 tangent;
-			vec4     boneWeight;
-			vec4     boneIndices;
-			float    boneCount;
+            vec4     tangent;
+            vec4     boneWeight;
+            vec4     boneIndices;
+            float    boneCount;
         };
 
-		struct Joint
-		{
-			std::string     m_Name;
-			int32           m_ParentID;
-			vec3			m_Pos;
-			quat			m_Orient;
-		};
-		
-		typedef std::vector<Joint> JointVector;
-		typedef std::vector<mat4> Mat4Vector;
+        struct Joint
+        {
+            std::string     m_Name;
+            int32           m_ParentID;
+            vec3            m_Pos;
+            quat            m_Orient;
+        };
+        
+        typedef std::vector<Joint> JointVector;
+        typedef std::vector<mat4> Mat4Vector;
         typedef unsigned short TIndex;
 
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
-		Model(Model* m);
+        Model(Model* m);
 
         virtual void Render(TRenderPass pass) const;
         virtual void Draw() const;
 
-		void SetTextureUnit(Texture tex, uint32 unit, uint32 renderpass = 0);
-		void DisableTextureUnit(uint32 unit, uint32 renderpass = 0); 
+        void SetTextureUnit(Texture tex, uint32 unit, uint32 renderpass = 0);
+        void DisableTextureUnit(uint32 unit, uint32 renderpass = 0); 
 
 
     protected:
 
-		Model();
+        Model();
 
-		void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
+        void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
 
         DeclarationPtr  m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
-		TPrimitiveType  m_PrimitiveType;
-		JointVector     m_vJoints;
-		Mat4Vector		m_vmBindPose;
-		Mat4Vector		m_vmInversedBindPose;
-		bool			m_bHasBone;
+        TPrimitiveType  m_PrimitiveType;
+        JointVector     m_vJoints;
+        Mat4Vector        m_vmBindPose;
+        Mat4Vector        m_vmInversedBindPose;
+        bool            m_bHasBone;
         
     };
 

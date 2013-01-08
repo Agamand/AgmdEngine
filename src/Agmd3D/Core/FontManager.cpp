@@ -38,7 +38,7 @@ void FontManager::Initialize()
         {0, ELT_USAGE_DIFFUSE,   ELT_TYPE_COLOR},
         {0, ELT_USAGE_TEXCOORD0, ELT_TYPE_FLOAT2}
     };
-	m_Declaration = Renderer::Get().CreateVertexDeclaration(Decl);
+    m_Declaration = Renderer::Get().CreateVertexDeclaration(Decl);
 
     // Création du vertex buffer
     m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(NbCharMax * 4, BUF_DYNAMIC);
@@ -136,7 +136,7 @@ void FontManager::LoadFont(const std::string& FontName, int Quality)
 
     std::copy(CharSize, CharSize + 256, m_Fonts[FontName].CharSize);
 
-	Logger::Log(LOGNORMAL,"Chargement de la police : %s ",FontName.c_str());
+    Logger::Log(LOGNORMAL,"Chargement de la police : %s ",FontName.c_str());
 }
 
 void FontManager::DrawString(const GraphicString& str)
@@ -232,7 +232,7 @@ void FontManager::DrawString(const GraphicString& str)
     m_VertexBuffer.Unlock();
 
     // Paramètrage du rendu
-	MatStack::push(mat4(1.0f));
+    MatStack::push(mat4(1.0f));
     Renderer::Get().SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
     //Renderer::Get().SetupTextureUnit(0, TXO_COLOR_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
     //Renderer::Get().SetupTextureUnit(0, TXO_ALPHA_MODULATE, TXA_TEXTURE, TXA_DIFFUSE);
@@ -241,7 +241,7 @@ void FontManager::DrawString(const GraphicString& str)
 
     // Affichage du texte
     Renderer::Get().SetDeclaration(m_Declaration);
-	Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
+    Renderer::Get().SetTextureFlag(TEXTURE_UNIT_0);
     Renderer::Get().SetTexture(0, CurFont.Texture.GetTexture());
     Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
     Renderer::Get().SetIndexBuffer(m_IndexBuffer);
@@ -250,7 +250,7 @@ void FontManager::DrawString(const GraphicString& str)
     // Rétablissement des options de rendu
     Renderer::Get().Enable(RENDER_ZTEST, true);
     Renderer::Get().Enable(RENDER_ALPHABLEND, false);
-	MatStack::pop();
+    MatStack::pop();
 }
 
 

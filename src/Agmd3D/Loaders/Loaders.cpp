@@ -34,19 +34,19 @@
 namespace Agmd
 {
 
-	void RegisterLoaders()
-	{
-		MediaManager& mediaManager = MediaManager::Instance();
+    void RegisterLoaders()
+    {
+        MediaManager& mediaManager = MediaManager::Instance();
 
-		mediaManager.RegisterLoader(new ImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
-		mediaManager.RegisterLoader(new ShadersLoader(SHADER_VERTEX), "vert");
-		mediaManager.RegisterLoader(new ShadersLoader(SHADER_PIXEL),  "frag");
-		mediaManager.RegisterLoader(new ShadersLoader(SHADER_GEOMETRY),  "geom");
-		mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_CONTROL),  "tessc");
-		mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_EVALUATION),  "tesse");
-		mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl");
-		//mediaManager.RegisterLoader(new TxtLoader(),"txt");
-		mediaManager.RegisterLoader(new ObjLoader(), "obj");
-	}
+        mediaManager.RegisterLoader(new ImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
+        mediaManager.RegisterLoader(new ShadersLoader(SHADER_VERTEX), "vert");
+        mediaManager.RegisterLoader(new ShadersLoader(SHADER_PIXEL),  "frag");
+        mediaManager.RegisterLoader(new ShadersLoader(SHADER_GEOMETRY),  "geom");
+        mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_CONTROL),  "tessc");
+        mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_EVALUATION),  "tesse");
+        mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl");
+        //mediaManager.RegisterLoader(new TxtLoader(),"txt");
+        mediaManager.RegisterLoader(new ObjLoader(), "obj");
+    }
 
 } // namespace Agmd

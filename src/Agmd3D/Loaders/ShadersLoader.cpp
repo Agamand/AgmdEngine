@@ -8,41 +8,41 @@
 namespace Agmd
 {
 
-	ShadersLoader::ShadersLoader(TShaderType type) :
-	m_Type(type)
-	{}
+    ShadersLoader::ShadersLoader(TShaderType type) :
+    m_Type(type)
+    {}
 
-	ShadersLoader::~ShadersLoader()
-	{}
+    ShadersLoader::~ShadersLoader()
+    {}
 
-	BaseShader* ShadersLoader::LoadFromFile(const std::string& filename)
-	{
-		char *src = NULL;
-		uint32 size;
-		std::ifstream file(filename, std::ios::in);
+    BaseShader* ShadersLoader::LoadFromFile(const std::string& filename)
+    {
+        char *src = NULL;
+        uint32 size;
+        std::ifstream file(filename, std::ios::in);
     
-		if (!file)
-			throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ShadersLoader)");
+        if (!file)
+            throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ShadersLoader)");
 
-		file.seekg(0,std::ios_base::end);
-		size = (uint32)file.tellg();
-		file.seekg(0,std::ios_base::beg);
+        file.seekg(0,std::ios_base::end);
+        size = (uint32)file.tellg();
+        file.seekg(0,std::ios_base::beg);
 
-		src = new char[size+1];
+        src = new char[size+1];
     
-		file.read(src,size);
-		src[size] = '\0';
-		std::string _src(src);
-		delete src;
-		file.close();
+        file.read(src,size);
+        src[size] = '\0';
+        std::string _src(src);
+        delete src;
+        file.close();
     
-		return Renderer::Get().CreateShader(_src, m_Type);
-	}
+        return Renderer::Get().CreateShader(_src, m_Type);
+    }
 
-	void ShadersLoader::OnError()
-	{
-		throw Exception("");
-	}
+    void ShadersLoader::OnError()
+    {
+        throw Exception("");
+    }
 
 
 }

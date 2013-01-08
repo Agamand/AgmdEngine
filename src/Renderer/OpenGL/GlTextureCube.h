@@ -16,15 +16,15 @@ namespace Agmd
 
         ~GLTextureCube();
 
-		virtual TTextureType GetType() const;
+        virtual TTextureType GetType() const;
 
-		virtual Image* getPixels();
+        virtual Image* getPixels();
 
     private :
 
         virtual void Update(const AgmdMaths::Rectangle& rect);
 
-		Image m_Data[MAX_CUBEFACE];
+        Image m_Data[MAX_CUBEFACE];
 
     };
 }

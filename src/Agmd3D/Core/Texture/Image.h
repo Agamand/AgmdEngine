@@ -50,7 +50,7 @@ namespace Agmd
 
     private :
 
-        ivec2					   m_Size;
+        ivec2                       m_Size;
         TPixelFormat               m_Format;
         std::vector<unsigned char> m_Pixels;
     };

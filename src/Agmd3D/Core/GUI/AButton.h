@@ -3,12 +3,12 @@
 
 namespace Agmd
 {
-	class AButton
-	{
-	public:
-		AButton();
-		~AButton();
-	};
+    class AButton
+    {
+    public:
+        AButton();
+        ~AButton();
+    };
 }
 
 #endif //ABUTTON_H

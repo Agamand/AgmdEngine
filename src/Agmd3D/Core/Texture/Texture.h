@@ -25,8 +25,8 @@ namespace Agmd
 
         void CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags = 0, const std::string& name = "");
 
-		void CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags = 0);
-		void CreateFromImage(const Image image[], TPixelFormat format, unsigned long flags = 0, const std::string& name = "");
+        void CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags = 0);
+        void CreateFromImage(const Image image[], TPixelFormat format, unsigned long flags = 0, const std::string& name = "");
 
         void SaveToFile(const std::string& filename) const;
 
@@ -39,9 +39,9 @@ namespace Agmd
 
         TPixelFormat GetFormat() const;
 
-		TTextureType GetType() const;
-	
-		int GetActiveTexture() const;
+        TTextureType GetType() const;
+    
+        int GetActiveTexture() const;
 
         const std::string& GetName() const;
 
@@ -51,21 +51,21 @@ namespace Agmd
 
         bool operator !=(const Texture& texture) const;
 
-		static void TextureAdd(Texture output, Texture input1, Texture input2);
-		static void TextureProd(Texture output, Texture input1, Texture input2);
-		static void TextureRender(Texture input);
-		static void TextureRandom();
+        static void TextureAdd(Texture output, Texture input1, Texture input2);
+        static void TextureProd(Texture output, Texture input1, Texture input2);
+        static void TextureRender(Texture input);
+        static void TextureRandom();
 
-		static BaseShaderProgram* s_addTexture;
-		static BaseShaderProgram* s_prodTexture;
-		static BaseShaderProgram* s_renderTexture;
-		static BaseShaderProgram* s_randomTexture;
-		static FrameBuffer* s_framebuffer;
+        static BaseShaderProgram* s_addTexture;
+        static BaseShaderProgram* s_prodTexture;
+        static BaseShaderProgram* s_renderTexture;
+        static BaseShaderProgram* s_randomTexture;
+        static FrameBuffer* s_framebuffer;
 
     private :
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
-		void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
+        void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
         SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };
 

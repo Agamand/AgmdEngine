@@ -21,7 +21,7 @@ namespace Agmd
 
         void LoadFromFile(const std::string& filename);
 
-		void CreateFromSrc(const std::string& src, TShaderType type);
+        void CreateFromSrc(const std::string& src, TShaderType type);
 
         void Unload();
 

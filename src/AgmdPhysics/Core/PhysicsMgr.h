@@ -11,44 +11,44 @@
 
 namespace AgmdPhysics
 {
-	typedef std::vector<Entities*> EntitiesVector;
+    typedef std::vector<Entities*> EntitiesVector;
 
-	struct CollisionInfo
-	{
-		vec3 collisionVelocity;
-		vec3 collisionPos;
-		uint64 t;
-	};
+    struct CollisionInfo
+    {
+        vec3 collisionVelocity;
+        vec3 collisionPos;
+        uint64 t;
+    };
 
-	struct Intersection
-	{
-		Entities* entities_A;
-		Entities* entities_B;
-		CollisionInfo info_A;
-		CollisionInfo info_B;
-	};
+    struct Intersection
+    {
+        Entities* entities_A;
+        Entities* entities_B;
+        CollisionInfo info_A;
+        CollisionInfo info_B;
+    };
 
-	typedef std::vector<Intersection> IntersectionVector;
+    typedef std::vector<Intersection> IntersectionVector;
 
-	class PhysicsMgr : public Singleton<PhysicsMgr>
-	{
-	MAKE_SINGLETON(PhysicsMgr);
-	public:
-		PhysicsMgr();
+    class PhysicsMgr : public Singleton<PhysicsMgr>
+    {
+    MAKE_SINGLETON(PhysicsMgr);
+    public:
+        PhysicsMgr();
 
-		void Update(uint64 dt);
-		void TestCollision(Entities* ent);
-		void Add(Entities* _entities);
-		void Remove(Entities* _entities);
+        void Update(uint64 dt);
+        void TestCollision(Entities* ent);
+        void Add(Entities* _entities);
+        void Remove(Entities* _entities);
 
-		uint64 GetDT() { return m_uidt; }
+        uint64 GetDT() { return m_uidt; }
 
-	private:
-		EntitiesVector m_evEntities;
-		IntersectionVector m_ivIntersection;
-		Force m_fcGlobalForce;
-		uint64 m_uidt;
-	};
+    private:
+        EntitiesVector m_evEntities;
+        IntersectionVector m_ivIntersection;
+        Force m_fcGlobalForce;
+        uint64 m_uidt;
+    };
 
 }
 

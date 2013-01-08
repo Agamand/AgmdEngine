@@ -10,21 +10,21 @@
 
 namespace AgmdUtilities
 {
-	enum LogLevel
-	{
-		LOGNORMAL,
-		LOGERROR,
-		LOGDEBUG
-	};
+    enum LogLevel
+    {
+        LOGNORMAL,
+        LOGERROR,
+        LOGDEBUG
+    };
 
     class Logger : public Singleton<Logger>
     {
-	MAKE_SINGLETON(Logger);
+    MAKE_SINGLETON(Logger);
     public :
-		Logger();
+        Logger();
         ~Logger();
         static void Log(LogLevel loglevel,const char* format, ...);
-		void SetFilename(std::string name);
+        void SetFilename(std::string name);
 
     protected :
 
@@ -34,12 +34,12 @@ namespace AgmdUtilities
     private :
 
         void Write(const std::string& msg);
-		std::ofstream m_File;
+        std::ofstream m_File;
     };
 
-	#define LOG(msg, ...) Logger::Log(LOGNORMAL, msg, ...)
-	#define ERROR_LOG(msg, ...) Logger::Log(LOGERROR, msg, ...)
-	#define DEBUG_LOG(msg, ...) Logger::Log(LOGDEBUG, msg, ...)
+    #define LOG(msg, ...) Logger::Log(LOGNORMAL, msg, ...)
+    #define ERROR_LOG(msg, ...) Logger::Log(LOGERROR, msg, ...)
+    #define DEBUG_LOG(msg, ...) Logger::Log(LOGDEBUG, msg, ...)
 
 }
 

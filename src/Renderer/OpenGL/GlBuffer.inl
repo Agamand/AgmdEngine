@@ -1,7 +1,7 @@
 template <int Type>
 inline GLBuffer<Type>::GLBuffer(unsigned long count, unsigned int buffer) :
-BaseBuffer	(count),
-m_Buffer	(buffer)
+BaseBuffer    (count),
+m_Buffer    (buffer)
 {}
 
 template <int Type>

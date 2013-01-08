@@ -6,26 +6,26 @@
 namespace Agmd
 {
 
-	class AGMD_EXPORT FPCamera : public Camera
-	{
-	public:
-		FPCamera(mat4 projection, vec3 pos = vec3());
-		virtual ~FPCamera();
+    class AGMD_EXPORT FPCamera : public Camera
+    {
+    public:
+        FPCamera(mat4 projection, vec3 pos = vec3());
+        virtual ~FPCamera();
 
-		virtual void OnUpdate(uint64 time_diff);
+        virtual void OnUpdate(uint64 time_diff);
 
-		virtual void OnMouseMotion(int x, int y);
+        virtual void OnMouseMotion(int x, int y);
 
-		virtual void OnKeyboard(char key, bool up);
+        virtual void OnKeyboard(char key, bool up);
 
-		virtual void OnMouseWheel(float delta);
+        virtual void OnMouseWheel(float delta);
 
-	protected:
-		virtual void VectorsFromAngles();
+    protected:
+        virtual void VectorsFromAngles();
 
-		float _theta;
-		float _phi;
-	};
+        float _theta;
+        float _phi;
+    };
 }
 
 #endif //FPCAMERA_H

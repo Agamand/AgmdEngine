@@ -6,35 +6,35 @@
 namespace Agmd
 {
 
-	Resource::Resource() :
-	m_Name    (""),
-	m_RefCount(1)
-	{}
+    Resource::Resource() :
+    m_Name    (""),
+    m_RefCount(1)
+    {}
 
-	Resource::~Resource()
-	{
-		if (m_Name != "")
-			ResourceManager::Instance().Remove(m_Name);
-	}
+    Resource::~Resource()
+    {
+        if (m_Name != "")
+            ResourceManager::Instance().Remove(m_Name);
+    }
 
-	const std::string& Resource::GetName() const
-	{
-		return m_Name;
-	}
+    const std::string& Resource::GetName() const
+    {
+        return m_Name;
+    }
 
-	void Resource::AddRef()
-	{
-		++m_RefCount;
-	}
+    void Resource::AddRef()
+    {
+        ++m_RefCount;
+    }
 
-	int Resource::Release()
-	{
-		int RefCount = --m_RefCount;
+    int Resource::Release()
+    {
+        int RefCount = --m_RefCount;
 
-		if (RefCount == 0)
-			delete this;
+        if (RefCount == 0)
+            delete this;
 
-		return RefCount;
-	}
+        return RefCount;
+    }
 
 }

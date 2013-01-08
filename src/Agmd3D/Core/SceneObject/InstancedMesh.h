@@ -8,18 +8,18 @@
 
 namespace Agmd
 {
-	class InstancedMesh : public Displayable
-	{
-	public:
-		InstancedMesh(Model* model = NULL);
-		InstancedMesh(std::string name);
-		virtual ~InstancedMesh();
-		
-		virtual void Render() const;
+    class InstancedMesh : public Displayable
+    {
+    public:
+        InstancedMesh(Model* model = NULL);
+        InstancedMesh(std::string name);
+        virtual ~InstancedMesh();
+        
+        virtual void Render() const;
 
-	private:
-		Model* model;
-	}
+    private:
+        Model* model;
+    }
 }
 
 #endif

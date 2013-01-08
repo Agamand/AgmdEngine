@@ -14,7 +14,7 @@ namespace Agmd
 
         virtual void Bind(uint32 bindpoint);
 
-		unsigned int getBindPoint() const;
+        unsigned int getBindPoint() const;
 
     private:
         unsigned int m_bindPoint;

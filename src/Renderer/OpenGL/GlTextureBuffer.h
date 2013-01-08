@@ -13,9 +13,9 @@ namespace Agmd
         GLTextureBuffer(unsigned long count, unsigned int buffer, TextureBase* texture);
         //virtual ~GLTextureBuffer();
 
-		const TextureBase* getTexture() const;
+        const TextureBase* getTexture() const;
 
-	private:
+    private:
         TextureBase* m_textureBuffer;
     };
 

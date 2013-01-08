@@ -3,15 +3,15 @@
 
 namespace Agmd
 {
-	BaseShader::BaseShader(TShaderType type) :
-	m_Type(type)
-	{}
+    BaseShader::BaseShader(TShaderType type) :
+    m_Type(type)
+    {}
 
-	BaseShader::~BaseShader()
-	{}
+    BaseShader::~BaseShader()
+    {}
 
-	TShaderType BaseShader::GetType() const
-	{
-		return m_Type;
-	}
+    TShaderType BaseShader::GetType() const
+    {
+        return m_Type;
+    }
 }

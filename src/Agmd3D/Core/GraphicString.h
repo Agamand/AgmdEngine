@@ -27,7 +27,7 @@ namespace Agmd
         //----------------------------------------------------------
         // Modifie l'alignement du texte
         //----------------------------------------------------------
-		void Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect);
+        void Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect);
 
         //----------------------------------------------------------
         // Données membres

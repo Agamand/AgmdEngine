@@ -10,38 +10,38 @@
 
 
 namespace AgmdUtilities
-{	
-	class MemoryMgr
-	{
-	public:
-		void* Allocate(std::size_t size, File file, uint32 line, bool isArray);
-		void Free(void *ptr, bool isArray);
-		void NextDelete(File file, uint32 line);
+{    
+    class MemoryMgr
+    {
+    public:
+        void* Allocate(std::size_t size, File file, uint32 line, bool isArray);
+        void Free(void *ptr, bool isArray);
+        void NextDelete(File file, uint32 line);
 
-		static MemoryMgr& Instance();
+        static MemoryMgr& Instance();
 
-	private:
-		struct memBlock
-		{
-			memBlock() : size(0), line(0), isArray(false) {}
-			memBlock(std::size_t _size,File _file, uint32 _line, bool _isArray) : size(_size),file(_file), line(_line), isArray(_isArray) {}
-			memBlock(uint32 _line, bool _isArray) : size(0), line(_line), isArray(_isArray) {}
-			std::size_t size;
-			File file;
-			uint32 line;
-			bool isArray;
-		};
-		typedef std::map<void*, memBlock> memBlockMap;
+    private:
+        struct memBlock
+        {
+            memBlock() : size(0), line(0), isArray(false) {}
+            memBlock(std::size_t _size,File _file, uint32 _line, bool _isArray) : size(_size),file(_file), line(_line), isArray(_isArray) {}
+            memBlock(uint32 _line, bool _isArray) : size(0), line(_line), isArray(_isArray) {}
+            std::size_t size;
+            File file;
+            uint32 line;
+            bool isArray;
+        };
+        typedef std::map<void*, memBlock> memBlockMap;
 
-		MemoryMgr();
-		~MemoryMgr();
+        MemoryMgr();
+        ~MemoryMgr();
 
-		static MemoryMgr* _Instance;
-		std::map<void*,memBlock> m_memBlock;
-		std::ofstream m_File;
-		std::stack<memBlock> m_DeleteStack;
-	};
-	
+        static MemoryMgr* _Instance;
+        std::map<void*,memBlock> m_memBlock;
+        std::ofstream m_File;
+        std::stack<memBlock> m_DeleteStack;
+    };
+    
 }
 
 #endif

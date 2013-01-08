@@ -6,18 +6,18 @@
 namespace Agmd
 {
 
-	class GameObject
-	{
-	public:
-		GameObject();
-		GameObject(Model* _model);
+    class GameObject
+    {
+    public:
+        GameObject();
+        GameObject(Model* _model);
 
-		void setPhysicsModel();
-		void setPosition(vec3 _pos)
+        void setPhysicsModel();
+        void setPosition(vec3 _pos)
 
 
-		~GameObject();
-	};
+        ~GameObject();
+    };
 }
 
 #endif /*GAMEOBJECT_H*/

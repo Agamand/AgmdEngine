@@ -16,35 +16,35 @@
 
 namespace Agmd
 {
-	
-	class Entities;
+    
+    class Entities;
 
-	typedef std::vector<Entities*> EntitiesVector;
+    typedef std::vector<Entities*> EntitiesVector;
 
-	class PhysicsMgr : public Singleton<PhysicsMgr>
-	{
-	MAKE_SINGLETON(PhysicsMgr);
-	public:
-		PhysicsMgr();
+    class PhysicsMgr : public Singleton<PhysicsMgr>
+    {
+    MAKE_SINGLETON(PhysicsMgr);
+    public:
+        PhysicsMgr();
 
-		void Update(uint64 dt);
-		void Add(Entities* _entities);
-		void Remove(Entities* _entities);
+        void Update(uint64 dt);
+        void Add(Entities* _entities);
+        void Remove(Entities* _entities);
 
-		void SetGravity(vec3 g);
+        void SetGravity(vec3 g);
 
-		void DebugDraw();
+        void DebugDraw();
 
-		uint64 GetDT() { return m_uidt; }
+        uint64 GetDT() { return m_uidt; }
 
-		btRigidBody* createRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
+        btRigidBody* createRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
 
-	private:
-		EntitiesVector m_evEntities;
-		btDynamicsWorld* m_World;
-		btScalar m_defaultContactProcessingThreshold;
-		uint64 m_uidt;
-	};
+    private:
+        EntitiesVector m_evEntities;
+        btDynamicsWorld* m_World;
+        btScalar m_defaultContactProcessingThreshold;
+        uint64 m_uidt;
+    };
 
 }
 

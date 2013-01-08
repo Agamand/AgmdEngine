@@ -7,16 +7,16 @@
 
 namespace AgmdPhysics
 {
-	class PHYSICS_EXPORT Plane : public Entities
-	{
-	public:
-		Plane(PPositionPtr pos);
+    class PHYSICS_EXPORT Plane : public Entities
+    {
+    public:
+        Plane(PPositionPtr pos);
 
-		virtual bool Collision(Box* b);
-		virtual bool Collision(Plane* b);
-		virtual bool Collision(Sphere* b);
-	private:
-	};
+        virtual bool Collision(Box* b);
+        virtual bool Collision(Plane* b);
+        virtual bool Collision(Sphere* b);
+    private:
+    };
 }
 
 

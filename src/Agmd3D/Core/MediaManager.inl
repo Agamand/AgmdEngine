@@ -26,7 +26,7 @@ inline T* MediaManager::LoadMediaFromFile(const File& filename) const
 
     T* media = FindLoader<T>(mediaPath).LoadFromFile(mediaPath.Fullname());
 
-	Logger::Log(LOGNORMAL,"Ressource chargée : %s",mediaPath.Fullname().c_str());
+    Logger::Log(LOGNORMAL,"Ressource chargée : %s",mediaPath.Fullname().c_str());
 
     return media;
 }

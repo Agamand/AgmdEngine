@@ -3,12 +3,12 @@
 
 namespace Agmd
 {
-	class ATextBox
-	{
-	public:
-		ATextBox();
-		~ATextBox();
-	};
+    class ATextBox
+    {
+    public:
+        ATextBox();
+        ~ATextBox();
+    };
 }
 
 #endif //ATEXTBOX_H

@@ -168,3 +168,10 @@ Debug
 Release
 x64
 Release_No_Opti
+
+#exotic file
+*.log
+*.tlog
+*.lastbuildstate
+*.unsuccessfulbuild
+*.idb

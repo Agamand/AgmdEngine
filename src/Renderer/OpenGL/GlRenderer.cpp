@@ -119,7 +119,9 @@ namespace Agmd
     PFNGLFRAMEBUFFERTEXTURE3DPROC     GLRenderer::glFramebufferTexture3D;
     PFNGLCHECKFRAMEBUFFERSTATUSPROC   GLRenderer::glCheckFramebufferStatus;
 
+
     PFNWGLCREATECONTEXTATTRIBSARBPROC GLRenderer::wglCreateContextAttribsARB;
+    PFNWGLSWAPINTERVALEXTPROC         GLRenderer::wglSwapIntervalEXT;
 
     char GLRenderer::VertexPipeline[]   = 
         "\n \
@@ -358,6 +360,7 @@ namespace Agmd
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
         glClearStencil(0x00);
+        wglSwapIntervalEXT(0);
 
         glEnable(GL_DEPTH_TEST);
 
@@ -485,6 +488,7 @@ namespace Agmd
         LOAD_EXTENSION(glCheckFramebufferStatus);
 
         LOAD_EXTENSION(wglCreateContextAttribsARB);
+        LOAD_EXTENSION(wglSwapIntervalEXT);
     }
 
     void GLRenderer::InitScene()
@@ -501,7 +505,7 @@ namespace Agmd
 
     void GLRenderer::EndScene()
     {
-        glFinish();
+        //glFinish();
         m_Pipeline.Disable();
         SwapBuffers(m_Handle); 
     }

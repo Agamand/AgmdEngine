@@ -16,7 +16,7 @@ namespace Agmd
     };
 
 
-    class Light
+    class AGMD_EXPORT Light
     {
     public:
         Light(vec3 pos, vec3 dir, LightType type);
@@ -31,6 +31,9 @@ namespace Agmd
 
         void BeginApplyShadow() const;
         void EndApplyShadow() const;
+
+        void SetPosition(vec3 position);
+        vec3 GetPosition();
 
     private:
         struct LightBuffer 

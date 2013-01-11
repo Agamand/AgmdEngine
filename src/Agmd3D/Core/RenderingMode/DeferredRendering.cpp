@@ -44,8 +44,7 @@ namespace Agmd
         m_framebuffer->setTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
         m_framebuffer->setTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
         m_framebuffer->setTexture(m_textureBuffer[2], COLOR_ATTACHMENT2);
-        uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT1, COLOR_ATTACHMENT2};
-        m_framebuffer->DrawBuffers(3, buffer);
+        
     }
 
     void DeferredRendering::Compute()
@@ -53,7 +52,23 @@ namespace Agmd
         Renderer& render = Renderer::Get();
         Scene* sc = render.GetActiveScene();
         Start();
-        sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
+       render.Enable(RENDER_ZWRITE,true);
+        m_framebuffer->Clear(CLEAR_DEPTH);
+        m_framebuffer->DrawBuffer(0);
+        m_framebuffer->Bind();
+        render.Enable(RENDER_ZTEST,true);
+        render.SetupDepthTest(DEPTH_LESS);
+        sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
+
+        uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT1, COLOR_ATTACHMENT2};
+        m_framebuffer->DrawBuffers(3, buffer);
+        m_framebuffer->Clear(CLEAR_COLOR);
+        m_framebuffer->Bind();
+        render.SetupDepthTest(DEPTH_LEQUAL);
+        render.Enable(RENDER_ZWRITE,false);
+        sc->Render(TRenderPass::RENDERPASS_DEFERRED);
+        m_framebuffer->UnBind();
+        
         End();
     }
 

@@ -12,7 +12,7 @@ namespace Agmd
     #    define __DLL_EXPORT__    __attribute__((dllexport)) extern
     #endif 
 
-    #ifdef AGMDENGINE_EXPORTS
+    #ifdef Agmd3D_EXPORTS
     #   define AGMD_EXPORT __DLL_EXPORT__
     #else
     #   define AGMD_EXPORT __DLL_IMPORT__

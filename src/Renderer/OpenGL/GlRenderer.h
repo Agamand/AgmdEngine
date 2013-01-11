@@ -167,6 +167,7 @@ namespace Agmd
         //CONTEXT
 
         static PFNWGLCREATECONTEXTATTRIBSARBPROC    wglCreateContextAttribsARB;
+        static PFNWGLSWAPINTERVALEXTPROC            wglSwapIntervalEXT;
 
 
         static char VertexPipeline[];

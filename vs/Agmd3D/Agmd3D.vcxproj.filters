@@ -249,8 +249,6 @@
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="ClassDiagram11.cd" />
-    <None Include="ClassDiagram.cd" />
     <None Include="..\..\Shader\add_tex.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>

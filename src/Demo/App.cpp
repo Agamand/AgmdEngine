@@ -14,6 +14,7 @@
 #include <Agmd3D\Core\SceneObject\Scene.h>
 #include <Agmd3D\Core\SceneObject\Water.h>
 #include <Agmd3D\Core\SceneObject\SkyBox.h>
+#include <Agmd3D/Core/SceneObject/Light.h>
 #include <Agmd3D\Core\GUI\GUIMgr.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D/Core/RenderingMode/RenderingMode.h>
@@ -25,9 +26,6 @@
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
 #include <AgmdUtilities/Utilities/Color.h>
 #include <AgmdUtilities/Debug/Profiler.h>
-
-#include <PhysicsPlugin\PhysicsMgr.h>
-
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -107,6 +105,7 @@ void App::OnInit()
     shader2D = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/classic_pipeline_2D.glsl");
 
     ForwardRendering* mode = new ForwardRendering(getScreen());
+    //DeferredRendering* mode = new DeferredRendering(getScreen());
     RenderingMode::SetRenderingMode(mode);
 
     cam3D = new TPCamera(m_MatProj3D);
@@ -135,6 +134,9 @@ void App::OnInit()
     model->Move(0,-2.0f,0);
     m_Scene->AddModel(model);
 
+    /*Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
+    m_Scene->AddModel(model);*/
+
     AWindow* diffuseW = new AWindow();
     diffuseW->SetFont(mode->GetDiffuseTexture());
     AWindow* depthW = new AWindow();
@@ -144,29 +146,48 @@ void App::OnInit()
     GUIMgr::Instance().AddWidget(diffuseW);
     GUIMgr::Instance().AddWidget(depthW);
     GUIMgr::Instance().AddWidget(lightW);
+    
+    /*
+    AWindow* diffuseW = new AWindow();
+    diffuseW->SetFont(mode->GetDiffuseTexture());
+    AWindow* depthW = new AWindow();
+    //depthW->SetFont(mode->GetDepthTexture());
+    AWindow* normalW = new AWindow();
+    normalW->SetFont(mode->GetNormalTexture());
+    AWindow* positionW = new AWindow();
+    positionW->SetFont(mode->GetPositionTexture());
+    GUIMgr::Instance().AddWidget(diffuseW);
+    //GUIMgr::Instance().AddWidget(depthW);
+    GUIMgr::Instance().AddWidget(normalW);
+    GUIMgr::Instance().AddWidget(positionW);
+    */
 
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(1);
 
     tex.CreateFromFile("Texture/bw.png",PXF_A8R8G8B8);
 
-
+    m_light = new Light(vec3(4,0,0),vec3(0,1,0),LIGHT_POINT);
+    m_Scene->AddLight(m_light);
+    //m_Scene->AddLight(new Light(vec3(0),vec3(1,0,1),LIGHT_DIR));
+    m_timer = 2000;
 }
 
 void App::OnUpdate(uint64 time_diff/*in ms*/)
 {
-
     m_Scene->Update(time_diff);
-
-    
+    if(m_timer <= time_diff)
+    {
+        m_timer = 2000;
+    }else m_timer -= time_diff;
+    vec3 position = vec3(4*cos(m_timer/1000.0f*M_PI),4*sin(m_timer/1000.0f*M_PI),0);
+    m_light->SetPosition(position);
 }
 
 void App::OnRender()
 {
-    PROFILE_INIT()
-    PROFILE_START();
     Renderer& render = Renderer::Get();
-    PROFILE_TIME(Renderer& render = Renderer::Get());
+
     // 3D RENDER BEGIN
     
     // 3D RENDER END
@@ -177,36 +198,23 @@ void App::OnRender()
 
     // 2D RENDER BEGIN
     render.Enable(RENDER_ZTEST,false);
-    PROFILE_TIME(render.Enable(RENDER_ZTEST,false));
     //Texture::TextureRender(tex);
     
 
     Camera::SetCurrent(cam2D);
-    PROFILE_TIME(Camera::SetCurrent(cam2D));
     render.SetCurrentProgram(shader2D);
-    PROFILE_TIME(render.SetCurrentProgram(shader2D));
     int fps = getFps();
-    PROFILE_TIME(int fps = getFps());
     m_fps->Text = StringBuilder(fps);
-    PROFILE_TIME(    m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms"));
+   //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
     m_fps->Draw();
-    PROFILE_TIME(m_fps->Draw());
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
-    PROFILE_TIME(m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")"));
-    m_text->Draw();
-    PROFILE_TIME(m_text->Draw());*/
+    m_text->Draw();*/
 
     render.SetCurrentProgram(NULL);
-    PROFILE_TIME(render.SetCurrentProgram(NULL));
 
     GUIMgr::Instance().DrawGUI();
-    PROFILE_TIME(GUIMgr::Instance().DrawGUI());
     render.Enable(RENDER_ZTEST,true);
-    PROFILE_TIME(render.Enable(RENDER_ZTEST,true));
     Camera::SetCurrent(cam3D);
-    PROFILE_TIME(Camera::SetCurrent(cam3D));
-    PROFILE_END();
-
 }
 
 

@@ -55,6 +55,8 @@ namespace Agmd
         void AddTerrain(Terrain*);
         void AddWater(Water*);
 
+        void AddLight(Light*);
+
         void SetSky(Sky*);
         Sky* GetSky();
 

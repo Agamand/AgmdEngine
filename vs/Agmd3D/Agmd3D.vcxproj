@@ -222,8 +222,6 @@
     <None Include="..\..\src\Agmd3D\Core\Renderer.inl" />
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl" />
     <None Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.inl" />
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram11.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApp.cpp" />

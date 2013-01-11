@@ -83,7 +83,7 @@ namespace Agmd
         */
         std::vector<Light*> lights = sc->GetLights();
         uint32 maxLights = lights.size();
-        maxLights = 0;
+        //maxLights = 0;
         if(maxLights)
         {
             uint32 buffer2[] = {COLOR_ATTACHMENT1};

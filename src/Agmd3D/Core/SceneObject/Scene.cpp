@@ -37,11 +37,6 @@ namespace Agmd
         for(int i = 0; i < 4; i++)
             m_renderTexture[i].Create(Renderer::Get().GetScreen(),PXF_A8R8G8B8,TEXTURE_2D, TEX_NOMIPMAP);
         m_renderBuffer->setRender(depthBuffer, DEPTH_ATTACHMENT);
-        m_lights.push_back(new Light(vec3(1,1,0),vec3(0,1,0),LIGHT_POINT));
-        m_lights.push_back(new Light(vec3(-1,-1,0),vec3(0,1,0),LIGHT_POINT));
-        m_lights.push_back(new Light(vec3(0,0,2),vec3(0,1,0),LIGHT_POINT));
-        m_lights.push_back(new Light(vec3(0,0,-5),vec3(0,1,0),LIGHT_POINT));
-        //m_lights.push_back(new Light(vec3(-100,-100,20),vec3(0,-1,0),LIGHT_POINT));
     }
 
     Scene::~Scene()
@@ -178,6 +173,11 @@ namespace Agmd
     void Scene::AddWater(Water* w)
     {
         m_vWaters.push_back(w);
+    }
+
+    void Scene::AddLight(Light* l)
+    {
+        m_lights.push_back(l);
     }
 
     void Scene::SetSky(Sky* _Sky)

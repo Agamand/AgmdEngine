@@ -1,9 +1,10 @@
-PROJECT(Agmd3D)
+PROJECT(GLRender)
 
 INCLUDE_DIRECTORIES(
 	${AGMDENGINE_SOURCE_DIR}/src/Agmd3D
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdMaths
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdUtilities
+	${AGMDENGINE_SOURCE_DIR}/src/Renderer/OpenGL
 	${AGMDENGINE_SOURCE_DIR}/src
 	${AGMDENGINE_SOURCE_DIR}/dep
 	)
@@ -15,18 +16,17 @@ FILE(
 	*.h
 	*.inl
 	)
-
 	
 add_library(
-	Agmd3D
+	GLRender
 	SHARED
 	${source_files}
 )
 target_link_libraries(
-	Agmd3D 
-	AgmdMaths
-	AgmdUtilities
-	${AGMDENGINE_SOURCE_DIR}/lib/DevIL/DevIL.lib
-	${AGMDENGINE_SOURCE_DIR}/lib/DevIL/ILU.lib
-	${AGMDENGINE_SOURCE_DIR}/lib/DevIL/ILUT.lib
+	GLRender
+	Agmd3D
+	opengl32.lib
+	${AGMDENGINE_SOURCE_DIR}/lib/Cg/cgGL.lib
+	${AGMDENGINE_SOURCE_DIR}/lib/Cg/cg.lib
+	${AGMDENGINE_SOURCE_DIR}/lib/GLU/glu32.lib
 	)

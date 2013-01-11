@@ -44,6 +44,7 @@ namespace Agmd
     class Terrain;
     class Water;
     class Sky;
+    class Light;
 
     struct Transform;
 

@@ -15,8 +15,6 @@
 #include <map>
 #include <vector>
 
-#include <PhysicsPlugin\Entities.h>
-
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
 
@@ -57,6 +55,8 @@ private :
     Agmd::AWindow* testwindow;
     Agmd::Texture tex;
 
+    Agmd::Light* m_light;
+    uint64  m_timer;
     bool pause;
     
 

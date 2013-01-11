@@ -12,7 +12,7 @@
 #include <Core/RenderingMode/RenderingMode.h>
 #include <Core/SceneObject/Material.h>
 #include <Core/Shader/ShaderPipeline.h>
-#include <Utilities/Timer.h>
+#include <Debug/Profiler.h>
 
 #include <chrono>
 
@@ -49,7 +49,7 @@ namespace Agmd
 
     void AgmdApp::Run()
     {
-        m_Renderer = new Plugin("OpenGLRenderer.dll");
+        m_Renderer = new Plugin("GLRender.dll");
 
         MakeWindow();
 
@@ -76,7 +76,6 @@ namespace Agmd
         const int top    = (GetDeviceCaps(GetDC(NULL), VERTRES) - m_ScreenSize.y) / 2;
 
 
-        // Définition de la classe de la fenêtre
         WNDCLASSEX WindowClass;
         WindowClass.cbSize        = sizeof(WNDCLASSEX);
         WindowClass.style         = 0;
@@ -92,7 +91,6 @@ namespace Agmd
         WindowClass.hIconSm       = NULL;
         RegisterClassEx(&WindowClass);
 
-        // Création de la fenêtre
         m_Hwnd = CreateWindow(ENGINE_NAME, ENGINE_NAME, 0, left, top, m_ScreenSize.x, m_ScreenSize.y, NULL, NULL, m_Instance, NULL);
         assert(m_Hwnd != NULL);
         ShowWindow(m_Hwnd, SW_NORMAL);
@@ -109,16 +107,10 @@ namespace Agmd
     void AgmdApp::MainLoop()
     {
         MSG Message;
-#ifdef PROFILING_TIME
-            Timer timer;
-#endif
         while (m_IsRunning)
         {
-#ifdef PROFILING_TIME
-            timer.start();
-            double _timer = 0.0f;
-            double diff = 0.0f;
-#endif 
+            PROFILER_INIT();
+
             if (PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
             {
                 TranslateMessage(&Message);
@@ -127,74 +119,18 @@ namespace Agmd
             else
             {
                 uint32 time = clock();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at clock : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 clock_t time_diff = time - last_time;
                 last_time = time;
                 uint32 time_to_call = 0;
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time before Renderer::Get : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 Renderer& render =  Renderer::Get();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at Renderer::Get : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 render.OnUpdate(time_diff);
-#ifdef PROFILING_TIME
-                _timer = timer.getElapsedTimeInMicroSec();
-                printf("Time at render.OnUpdate : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 GUIMgr::Instance().Update(time_diff);
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at GUI::Update : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 OnUpdate(time_diff);
-#ifdef PROFILING_TIME
-                _timer = timer.getElapsedTimeInMicroSec();
-                printf("Time at OnUpdate : %f us, diff : %f us\n",_timer,diff);  
-#endif
                 RenderingMode* rendermode = RenderingMode::GetRenderingMode();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at RenderingMode::GetRenderingMode : %f us, diff : %f us\n",_timer,diff);  
-#endif
-                render.InitScene();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at render.InitScene() : %f us, diff : %f us\n",_timer,diff);  
-#endif
-                rendermode->Compute();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at rendermode->Compute() : %f us, diff : %f us\n",_timer,diff);  
-#endif
-                
-                
-                OnRender();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at OnRender : %f us, diff : %f us\n",_timer,diff);  
-#endif
-                render.EndScene();
-#ifdef PROFILING_TIME
-                diff = timer.getElapsedTimeInMicroSec() - _timer;
-                _timer += diff;
-                printf("Time at endScene : %f us, diff : %f us\n",_timer,diff);  
-#endif
-
+                PROFILER(render.InitScene());
+                PROFILER(rendermode->Compute());
+                //PROFILER(OnRender());
+                PROFILER(render.EndScene());
                 frame++;
 
                 if(fps_timer <= time_diff)
@@ -206,13 +142,7 @@ namespace Agmd
                 
                 
             }
-#ifdef PROFILING_TIME
-            timer.stop();
-            diff = timer.getElapsedTimeInMicroSec() - _timer;
-            _timer += diff;
-            printf("Main thread : %f us, diff : %f us\n",_timer,diff);
-            system("pause");
-#endif
+            PROFILER_INFO();
         }
     }
 

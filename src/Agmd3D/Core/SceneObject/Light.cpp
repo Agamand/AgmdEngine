@@ -59,4 +59,21 @@ namespace Agmd
     Light::~Light()
     {}
 
+    void Light::SetPosition(vec3 position)
+    {
+        if(position == m_position)
+            return;
+
+        m_position = position;
+        vec4 new_pos = vec4(m_position,1.0f);
+        LightBuffer* lightBuffer =  m_uniformLightBuffer.Lock(0);
+        lightBuffer->position = vec4(m_position,1.0f);
+        m_uniformLightBuffer.Unlock();
+    }
+    
+    vec3 Light::GetPosition()
+    {
+        return m_position;
+    }
+
 }

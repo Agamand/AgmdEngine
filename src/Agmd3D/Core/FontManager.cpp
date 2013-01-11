@@ -38,22 +38,39 @@ void FontManager::Initialize()
         {0, ELT_USAGE_DIFFUSE,   ELT_TYPE_COLOR},
         {0, ELT_USAGE_TEXCOORD0, ELT_TYPE_FLOAT2}
     };
+
     m_Declaration = Renderer::Get().CreateVertexDeclaration(Decl);
 
-    // Création du vertex buffer
-    m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(NbCharMax * 4, BUF_DYNAMIC);
+    m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(4, BUF_STATIC);
 
-    // Création de l'index buffer
+   /* TVertex* Vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
+
+    Vertices->Position = vec3(x,y,0);
+    VEC3SET(Vertices[NbChars * 4 + 1].Position, x + str.Size,    y,               0);
+    VEC3SET(Vertices[NbChars * 4 + 2].Position, x,               y + str.Size,    0);
+    VEC3SET(Vertices[NbChars * 4 + 3].Position, x + str.Size,    y + str.Size,    0);
+
+    // Couleur
+    Vertices[NbChars * 4 + 0].Diffuse = Color;
+    Vertices[NbChars * 4 + 1].Diffuse = Color;
+    Vertices[NbChars * 4 + 2].Diffuse = Color;
+    Vertices[NbChars * 4 + 3].Diffuse = Color;
+
+    // Coordonnées de texture
+    VEC2SET(Vertices[NbChars * 4 + 0].TexCoords, TexUnit * ((c % 16) + 0) + Offset, 1.0f - TexUnit * ((c / 16) + 1) - Offset);
+    VEC2SET(Vertices[NbChars * 4 + 1].TexCoords, TexUnit * ((c % 16) + 1) - Offset, 1.0f - TexUnit * ((c / 16) + 1) - Offset);
+    VEC2SET(Vertices[NbChars * 4 + 2].TexCoords, TexUnit * ((c % 16) + 0) + Offset, 1.0f - TexUnit * ((c / 16) + 0) + Offset);
+    VEC2SET(Vertices[NbChars * 4 + 3].TexCoords, TexUnit * ((c % 16) + 1) - Offset, 1.0f - TexUnit * ((c / 16) + 0) + Offset);
+        */
+
     std::vector<TIndex> Indices;
-    for (TIndex i = 0; i < NbCharMax; ++i)
-    {
-        Indices.push_back(i * 4 + 0);
-        Indices.push_back(i * 4 + 2);
-        Indices.push_back(i * 4 + 1);
-        Indices.push_back(i * 4 + 1);
-        Indices.push_back(i * 4 + 2);
-        Indices.push_back(i * 4 + 3);
-    }
+    Indices.push_back(0);
+    Indices.push_back(2);
+    Indices.push_back(1);
+    Indices.push_back(1);
+    Indices.push_back(2);
+    Indices.push_back(3);
+
     m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);
 }
 
@@ -165,9 +182,8 @@ void FontManager::DrawString(const GraphicString& str)
     unsigned long Color   = Renderer::Get().ConvertColor(str.color);
 
     // Verrouillage du vertex buffer
-    TVertex* Vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
+    //TVertex* Vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
 
-    // Parcours de la chaîne de caractères
     int NbChars = 0;
     for (std::string::const_iterator i = str.Text.begin(); (i != str.Text.end()) && (NbChars < NbCharMax); ++i)
     {
@@ -205,7 +221,7 @@ void FontManager::DrawString(const GraphicString& str)
                 continue;
         }
 
-        // Position
+        /*// Position
         VEC3SET(Vertices[NbChars * 4 + 0].Position, x,               y,               0);
         VEC3SET(Vertices[NbChars * 4 + 1].Position, x + str.Size,    y,               0);
         VEC3SET(Vertices[NbChars * 4 + 2].Position, x,               y + str.Size,    0);
@@ -222,14 +238,14 @@ void FontManager::DrawString(const GraphicString& str)
         VEC2SET(Vertices[NbChars * 4 + 1].TexCoords, TexUnit * ((c % 16) + 1) - Offset, 1.0f - TexUnit * ((c / 16) + 1) - Offset);
         VEC2SET(Vertices[NbChars * 4 + 2].TexCoords, TexUnit * ((c % 16) + 0) + Offset, 1.0f - TexUnit * ((c / 16) + 0) + Offset);
         VEC2SET(Vertices[NbChars * 4 + 3].TexCoords, TexUnit * ((c % 16) + 1) - Offset, 1.0f - TexUnit * ((c / 16) + 0) + Offset);
-
-        // Incrémentation de la position et du nombre de caractères
+        
+        */
         x += CurFont.CharSize[c].x * Ratio;
         ++NbChars;
     }
 
     // Déverrouillage du vertex buffer
-    m_VertexBuffer.Unlock();
+    //m_VertexBuffer.Unlock();
 
     // Paramètrage du rendu
     MatStack::push(mat4(1.0f));

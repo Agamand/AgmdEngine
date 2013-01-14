@@ -16,7 +16,7 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
-    class AGMD_EXPORT AgmdApp
+    class AGMD3D_EXPORT AgmdApp
     {
     public:
         void Run();

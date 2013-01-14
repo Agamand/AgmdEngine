@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _DISPLAYABLE_H_
 #define _DISPLAYABLE_H_
 
@@ -18,7 +26,7 @@ using namespace AgmdMaths;
 namespace Agmd
 {
 
-    struct AGMD_EXPORT Transform
+    struct AGMD3D_EXPORT Transform
     {
         Transform(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
         m_position(_position),
@@ -34,7 +42,7 @@ namespace Agmd
 
     typedef Transform* TransformPtr;
 
-    class AGMD_EXPORT Displayable
+    class AGMD3D_EXPORT Displayable
     {
     public :
         Displayable();

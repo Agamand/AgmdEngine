@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef GUIMGR_H
 #define GUIMGR_H
 
@@ -46,7 +54,7 @@ namespace Agmd
     typedef std::vector<EventEntry> VectorEvent;
     typedef std::vector<AWidget*> VectorWidget;
 
-    class AGMD_EXPORT GUIMgr : public Singleton<GUIMgr>
+    class AGMD3D_EXPORT GUIMgr : public Singleton<GUIMgr>
     {
 
     MAKE_SINGLETON(GUIMgr);

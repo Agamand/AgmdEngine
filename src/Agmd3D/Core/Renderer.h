@@ -1,5 +1,13 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _RENDERER_H_
+#define _RENDERER_H_
 
 #include <Utilities/Color.h>
 #include <Config/Export.h>
@@ -22,7 +30,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT Renderer
+    class AGMD3D_EXPORT Renderer
     {
     public :
 
@@ -78,28 +86,17 @@ namespace Agmd
         
         virtual RenderBuffer* CreateRenderBuffer(const ivec2& size, TPixelFormat format) const = 0;
 
-        virtual void setClipPlane(uint32 clipUnit, double* plane) = 0;
+        virtual void SetRenderMode(TRenderMode mode) = 0;
 
-        virtual void setRenderMode(TRenderMode mode) = 0;
-
-        virtual const BaseShaderProgram* getPipeline() = 0;
-
-        virtual void ReloadPipeline() = 0;
+        virtual const BaseShaderProgram* GetCurrentProgram() = 0;
 
         virtual void SetCurrentProgram(const BaseShaderProgram* prog) = 0;
 
         virtual void SetViewPort(ivec2 xy, ivec2 size) = 0;
-        
-        virtual void DrawSomething() = 0;
-
-        virtual void DebugCubeMap(const TextureBase* tex) = 0;
 
         virtual void SetCullFace(int face) = 0;
 
     public :
-
-
-        template <class T> void LoadMatrix(TMatrixType type, T& matrix);
 
         template <class T> Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
@@ -127,7 +124,7 @@ namespace Agmd
 
 
         void SetCamera(Camera* cam);
-        Camera* getCamera();
+        Camera* GetCamera();
 
         void SetTextureFlag(uint32 flag);
         void AddTextureFlag(uint32 flag);
@@ -135,8 +132,6 @@ namespace Agmd
         uint32 GetTextureFlag();
 
         virtual void OnUpdate(uint64 t_diff);
-
-
 
         void SetMatView(mat4 _MatView);
         void SetMatProjection(mat4 _MatProjection);
@@ -146,13 +141,6 @@ namespace Agmd
         Scene* GetActiveScene();
 
     protected :
-
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat2& matrix) = 0;
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat3& matrix) = 0;
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat4& matrix) = 0;
 
         virtual void Setup(HWND Hwnd) = 0;
 
@@ -171,7 +159,6 @@ namespace Agmd
         std::map<TCapability, bool> m_Capabilities;
 
         uint32 m_TextureFlags;
-        bool m_needUpdate;
         ivec2 m_Screen;
 
         Scene*  m_ActiveScene;
@@ -185,4 +172,4 @@ namespace Agmd
 }
 
 
-#endif //RENDERER_H
+#endif /* _RENDERER_H_ */

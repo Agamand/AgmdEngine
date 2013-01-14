@@ -1,3 +1,10 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 template <class T>
 inline Buffer<T>::Buffer(BaseBuffer* buffer) : m_Buffer(buffer)
@@ -22,7 +29,6 @@ inline void Buffer<T>::Fill(const T* data, std::size_t count)
 
     T* _data = Lock();
     std::copy(data, data + count, _data);
-    //std::memcpy(_data,data,count);
     Unlock();
 }
 

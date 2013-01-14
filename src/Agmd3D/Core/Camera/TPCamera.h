@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef TPCAMERA_H
 #define TPCAMERA_H
 
@@ -6,7 +14,7 @@
 namespace Agmd
 {
 
-    class AGMD_EXPORT TPCamera : public Camera
+    class AGMD3D_EXPORT TPCamera : public Camera
     {
     public:
         TPCamera(mat4 projection, vec3 pos = vec3());
@@ -23,7 +31,7 @@ namespace Agmd
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos); 
     protected:
-        virtual void VectorsFromAngles();
+        virtual void UpdateVector();
 
         float _theta;
         float _phi;

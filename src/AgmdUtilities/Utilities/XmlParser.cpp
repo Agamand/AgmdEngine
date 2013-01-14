@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Utilities/XmlParser.h>
 #include <AgmdDefines.h>
 
@@ -94,7 +102,7 @@ namespace AgmdUtilities
     string XmlBaliseNode::ToSTring()
     {
         string str = "";
-        str +='<';
+        str +="<";
         str += m_name;
         for(Argument::iterator itr = m_args.begin(); itr != m_args.end(); itr++)
         {
@@ -105,12 +113,12 @@ namespace AgmdUtilities
             str += "/>";
             return str;
         }
-        str +='>';
-        for(int i = 0; i < m_childnode.size(); i++)
+        str +=">";
+        for(uint32 i = 0; i < m_childnode.size(); i++)
             str += m_childnode[i]->ToSTring();
-        str +='</';
+        str +="</";
         str += m_name;
-        str += '>';
+        str += ">";
         return str;
     }
 
@@ -346,6 +354,7 @@ namespace AgmdUtilities
                 return c;
             c++;
         }
+        return 0;
     }
 
     bool XmlParser::isWhiteSpace(const char* c)

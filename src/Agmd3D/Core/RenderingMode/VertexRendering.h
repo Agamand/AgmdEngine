@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _VERTEXRENDERING_H_
 #define _VERTEXDRENDERING_H_
 
@@ -5,7 +13,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT VertexRendering : public RenderingMode
+    class AGMD3D_EXPORT VertexRendering : public RenderingMode
     {
     public:
         VertexRendering(int width, int height);

@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdEngine Define
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _AGMDDEFINES_H_
 #define _AGMDDEFINES_H_
 
@@ -24,9 +32,5 @@ typedef unsigned long long  uint64;
 typedef unsigned int        uint32;
 typedef unsigned short      uint16;
 typedef unsigned char       uint8;
-
-//typedef unsigned char     ubyte;
-//typedef char              byte;
-
 
 #endif /* _AGMDDEFINES_H_ */

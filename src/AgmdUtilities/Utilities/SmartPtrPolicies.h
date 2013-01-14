@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef SMARTPTRPOLICIES_H
 #define SMARTPTRPOLICIES_H
 

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef FONTMANAGER_H
 #define FONTMANAGER_H
 
@@ -17,7 +25,7 @@
 namespace Agmd
 {
 
-    class AGMD_EXPORT FontManager : public Singleton<FontManager>
+    class AGMD3D_EXPORT FontManager : public Singleton<FontManager>
     {
     MAKE_SINGLETON(FontManager)
 

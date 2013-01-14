@@ -1,5 +1,13 @@
-#ifndef GLSHADER_H
-#define GLSHADER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLSHADER_H_
+#define _GLSHADER_H_
 
 #include <AgmdDefines.h>
 #include <Core/Shader/BaseShader.h>
@@ -10,7 +18,7 @@ namespace Agmd
     class GLShader : public BaseShader
     {
     public:
-        GLShader(uint32 shaderEntry, TShaderType type);
+        GLShader(uint32 shaderid, TShaderType type);
         virtual ~GLShader();
 
         uint32 GetId() {return m_Shader;}
@@ -20,4 +28,4 @@ namespace Agmd
     };
 }
 
-#endif
+#endif /* _GLSHADER_H_ */

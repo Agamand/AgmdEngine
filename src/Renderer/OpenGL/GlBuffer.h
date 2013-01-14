@@ -1,9 +1,17 @@
-#ifndef GLBUFFER_H
-#define GLBUFFER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLBUFFER_H_
+#define _GLBUFFER_H_
 
 #include <Core/Buffer/BaseBuffer.h>
-#include <Renderer\OpenGL\GlEnums.h>
-#include <gl\glext.h>
+#include <Renderer/OpenGL/GlEnums.h>
+#include <gl/glext.h>
 
 namespace Agmd
 {
@@ -31,12 +39,10 @@ namespace Agmd
 
     typedef GLBuffer<GL_ARRAY_BUFFER>         GLVertexBuffer;
     typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER> GLIndexBuffer;
-    /*typedef GLBuffer<GL_UNIFORM_BUFFER>       GLUniformBuffer;
-    typedef GLBuffer<GL_TEXTURE_BUFFER>          GLTextureBuffer;*/
 
     #include "GLBuffer.inl"
 
 }
 
 
-#endif // GLBUFFER_H
+#endif /* _GLBUFFER_H_ */

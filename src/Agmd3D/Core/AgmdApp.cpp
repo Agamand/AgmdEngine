@@ -1,14 +1,22 @@
-#include <Core\AgmdApp.h>
-#include <Core\Renderer.h>
-#include <Core\Enums.h>
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#include <Core/AgmdApp.h>
+#include <Core/Renderer.h>
+#include <Core/Enums.h>
 #include <Core/MediaManager.h>
 #include <Core/ResourceManager.h>
 #include <Windowsx.h>
 #include <time.h>
-#include <Loaders\Loaders.h>
-#include <Core\Camera\FPCamera.h>
-#include <Core\Camera\TPCamera.h>
-#include <Core\GUI\GUIMgr.h>
+#include <Loaders/Loaders.h>
+#include <Core/Camera/FPCamera.h>
+#include <Core/Camera/TPCamera.h>
+#include <Core/GUI/GUIMgr.h>
 #include <Core/RenderingMode/RenderingMode.h>
 #include <Core/SceneObject/Material.h>
 #include <Core/Shader/ShaderPipeline.h>
@@ -49,6 +57,9 @@ namespace Agmd
 
     void AgmdApp::Run()
     {
+        //if(m_RendererType = RENDERER_DIRECTX)
+        //m_Renderer = new Plugin("DXRender.dll");
+        //else
         m_Renderer = new Plugin("GLRender.dll");
 
         MakeWindow();
@@ -109,8 +120,6 @@ namespace Agmd
         MSG Message;
         while (m_IsRunning)
         {
-            PROFILER_INIT();
-
             if (PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
             {
                 TranslateMessage(&Message);
@@ -119,18 +128,17 @@ namespace Agmd
             else
             {
                 uint32 time = clock();
-                clock_t time_diff = time - last_time;
+                uint32 time_diff = time - last_time;
                 last_time = time;
-                uint32 time_to_call = 0;
                 Renderer& render =  Renderer::Get();
                 render.OnUpdate(time_diff);
                 GUIMgr::Instance().Update(time_diff);
                 OnUpdate(time_diff);
-                RenderingMode* rendermode = RenderingMode::GetRenderingMode();
-                PROFILER(render.InitScene());
-                PROFILER(rendermode->Compute());
-                //PROFILER(OnRender());
-                PROFILER(render.EndScene());
+                render.InitScene();
+                RenderingMode::GetRenderingMode()->Compute();
+                GUIMgr::Instance().DrawGUI();
+                OnRender(); 
+                render.EndScene();
                 frame++;
 
                 if(fps_timer <= time_diff)
@@ -139,10 +147,7 @@ namespace Agmd
                     fps_timer = SECONDS_IN_MS;
                     frame = 0;
                 }else fps_timer -= time_diff;
-                
-                
             }
-            PROFILER_INFO();
         }
     }
 
@@ -162,7 +167,6 @@ namespace Agmd
         }
         switch (Message)
         {
-            // Destruction de la fenêtre = quitter
             case WM_DESTROY :
                 Exit();
                 return 0;
@@ -172,16 +176,13 @@ namespace Agmd
                 switch(LOWORD(WParam))
                 {
                 case VK_F1:
-                    Renderer::Get().setRenderMode(MODE_FILL);
+                    Renderer::Get().SetRenderMode(MODE_FILL);
                     return 0;
                 case VK_F2:
-                    Renderer::Get().setRenderMode(MODE_LINE);
+                    Renderer::Get().SetRenderMode(MODE_LINE);
                     return 0;
                 case VK_F3:
-                    Renderer::Get().setRenderMode(MODE_POINT);
-                    return 0;
-                case VK_F4:
-                    Renderer::Get().ReloadPipeline();
+                    Renderer::Get().SetRenderMode(MODE_POINT);
                     return 0;
                 }
                 return 0;

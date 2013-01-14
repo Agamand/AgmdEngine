@@ -1,3 +1,12 @@
+/*
+============================================================================
+AgmdServer - Test Server Application
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+status : in pause
+============================================================================
+*/
+
 
 
 #include <AgmdNetwork\Server\Server.h>
@@ -12,9 +21,6 @@ enum Opcode
     CMSG_SEND_MESSAGE = 0x1,
     SMSG_SEND_MESSAGE = 0x2
 };
-
-
-
 
 class OpServerMgr : public OpcodeMgr<OpServerMgr>
 {
@@ -69,18 +75,15 @@ int main(int argc, char** argv)
 
     OpServerMgr::Instance().SetReader(_opcode);
     HANDLE processThread = CreateThread(NULL, 0,&StartServer, server,0,NULL);
-    
-    
-    
+
     while(1)
     {
         Packet message;
-        OpServerMgr::Instance().BuildMessagePacket("lol\n",message);
+        OpServerMgr::Instance().BuildMessagePacket("TEST MESSAGE\n",message);
         server->SendPacket(message);
         printf("Envoie message\n");
         Sleep(2000);
     }
-
 
     return 0;
 }

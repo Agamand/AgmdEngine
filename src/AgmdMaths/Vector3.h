@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdMaths - Maths lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
@@ -19,23 +27,23 @@ namespace AgmdMaths
     // INT VECTOR
     inline std::istream& operator >>(std::istream& stream, ivec3& vector)
     {
-        return stream >> vector.x >> vector.y;
+        return stream >> vector.x >> vector.y >> vector.z;
     }
 
     inline std::ostream& operator <<(std::ostream& stream, const ivec3& vector)
     {
-        return stream << vector.x << " " << vector.y;
+        return stream << vector.x << " " << vector.y << " " << vector.z;
     }
 
     // FLOAT VECTOR
     inline std::istream& operator >>(std::istream& stream, vec3& vector)
     {
-        return stream >> vector.x >> vector.y;
+        return stream >> vector.x >> vector.y >> vector.z;
     }
 
     inline std::ostream& operator <<(std::ostream& stream, const vec3& vector)
     {
-        return stream << vector.x << " " << vector.y;
+        return stream << vector.x << " " << vector.y<< " " << vector.z;
     }
 }
 

@@ -64,7 +64,6 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\ATextBox.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWidget.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWindow.h" />
-    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\EventMgr.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Loader.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\MatStack.h" />
@@ -85,7 +84,6 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Scene.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Sky.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SkyBox.h" />
-    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SkyDome.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Terrain.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Water.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShader.h" />
@@ -238,7 +236,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ATextBox.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWidget.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWindow.cpp" />
-    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\EventMgr.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\GUIMgr.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\MatStack.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\MediaManager.cpp" />
@@ -258,7 +255,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Scene.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Sky.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SkyBox.cpp" />
-    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SkyDome.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Terrain.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Water.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShader.cpp" />
@@ -432,7 +428,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -450,7 +446,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;PROFILING_TIME;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AGMD3D_EXPORTS;PROFILING_TIME;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -498,7 +494,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -518,7 +514,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;PROFILING_TIME;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AGMD3D_EXPORTS;PROFILING_TIME;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -575,7 +571,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>

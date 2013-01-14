@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef MATRIXSTACK_H
 #define MATRIXSTACK_H
 
@@ -8,7 +16,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT MatStack
+    class AGMD3D_EXPORT MatStack
     {
     public:
         static void push(mat4 matrix);

@@ -53,9 +53,6 @@
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{501DBA9F-119E-4320-87F5-D695A3A7271F}</ProjectGuid>
     <RootNamespace>DemoApp</RootNamespace>
@@ -202,7 +199,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;BulletPhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;AgmdBullet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

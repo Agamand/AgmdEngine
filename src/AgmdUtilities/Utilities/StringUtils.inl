@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 inline void Split(const std::string& str, std::vector<std::string>& tokens, const std::string& delim)
 {
     tokens.clear();

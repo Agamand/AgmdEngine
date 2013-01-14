@@ -1,3 +1,17 @@
+/*
+============================================================================
+Demo - A test application !
+
+Author : 
+Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+Jean-Vincent Lamberti (https://github.com/Kinroux)
+
+https://github.com/Agamand/AgmdEngine
+status : in pause
+============================================================================
+*/
+
+
 #include "App.h"
 #include "M2Model.h"
 #include "M2Loader.h"
@@ -34,54 +48,8 @@ using namespace Agmd;
 using namespace AgmdNetwork;
 using namespace AgmdUtilities;
 
-SINGLETON_IMPL(App)
+SINGLETON_IMPL(App);
 
-#define EARTH_MOON_R 3.661786780f
-#define KM_MOON 0.0005760f
-
-
-enum Opcode
-{
-    MSG_NULL_ACTION = 0x0,
-    CMSG_SEND_MESSAGE = 0x1,
-    SMSG_SEND_MESSAGE = 0x2
-};
-
-class OpClientMgr : public AgmdNetwork::OpcodeMgr<OpClientMgr>
-{
-
-public:
-    friend class App;
-    void BuildMessagePacket(std::string message, AgmdNetwork::Packet& packet)
-    {
-        packet.SetOpcode(SMSG_SEND_MESSAGE);
-        packet << message;
-    }
-    
-    void HandleMessage(AgmdNetwork::Packet& packet);
-
-
-    void Handle_NULL(AgmdNetwork::Packet& packet) {}
-};
-
-AgmdNetwork::OpcodeHandler<OpClientMgr> _opcode[] = 
-{
-    {"MSG_NULL_ACTION",&OpClientMgr::Handle_NULL},
-    {"CMSG_SEND_MESSAGE",&OpClientMgr::Handle_NULL},
-    {"SMSG_SEND_MESSAGE",&OpClientMgr::HandleMessage},
-};
-
-class AgmdClient : public AgmdNetwork::Client
-{
-public:
-
-    AgmdClient(std::string ip, uint32 port) :
-    Client(ip,port)
-    {}
-
-    virtual void RecvPacket(AgmdNetwork::Packet& packet);
-
-};
 
 void App::Run(int argc, char** argv)
 {
@@ -112,7 +80,6 @@ void App::OnInit()
     cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
-    m_text = new GraphicString(ivec2(0,getScreen().y-30),"",Color::black);
 
     m_Scene = new Scene();
     Model* model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST);
@@ -147,21 +114,6 @@ void App::OnInit()
     GUIMgr::Instance().AddWidget(depthW);
     GUIMgr::Instance().AddWidget(lightW);
     
-    /*
-    AWindow* diffuseW = new AWindow();
-    diffuseW->SetFont(mode->GetDiffuseTexture());
-    AWindow* depthW = new AWindow();
-    //depthW->SetFont(mode->GetDepthTexture());
-    AWindow* normalW = new AWindow();
-    normalW->SetFont(mode->GetNormalTexture());
-    AWindow* positionW = new AWindow();
-    positionW->SetFont(mode->GetPositionTexture());
-    GUIMgr::Instance().AddWidget(diffuseW);
-    //GUIMgr::Instance().AddWidget(depthW);
-    GUIMgr::Instance().AddWidget(normalW);
-    GUIMgr::Instance().AddWidget(positionW);
-    */
-
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(1);
 
@@ -169,7 +121,6 @@ void App::OnInit()
 
     m_light = new Light(vec3(4,0,0),vec3(0,1,0),LIGHT_POINT);
     m_Scene->AddLight(m_light);
-    //m_Scene->AddLight(new Light(vec3(0),vec3(1,0,1),LIGHT_DIR));
     m_timer = 2000;
 }
 
@@ -188,13 +139,6 @@ void App::OnRender()
 {
     Renderer& render = Renderer::Get();
 
-    // 3D RENDER BEGIN
-    
-    // 3D RENDER END
-
-    // POST EFFECT 3D BEGIN
-
-    // POST EFFECT 3D END
 
     // 2D RENDER BEGIN
     render.Enable(RENDER_ZTEST,false);
@@ -202,18 +146,16 @@ void App::OnRender()
     
 
     Camera::SetCurrent(cam2D);
-    render.SetCurrentProgram(shader2D);
-    int fps = getFps();
-    m_fps->Text = StringBuilder(fps);
+    //render.SetCurrentProgram(shader2D);
+    //int fps = getFps();
+    //m_fps->Text = StringBuilder(fps);
    //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
-    m_fps->Draw();
+    //m_fps->Draw();
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
     m_text->Draw();*/
-
-    render.SetCurrentProgram(NULL);
+    //render.SetCurrentProgram(NULL);
 
     GUIMgr::Instance().DrawGUI();
-    render.Enable(RENDER_ZTEST,true);
     Camera::SetCurrent(cam3D);
 }
 

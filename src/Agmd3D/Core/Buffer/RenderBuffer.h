@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef RENDERBUFFER_H
 #define RENDERBUFFER_H
 
@@ -11,7 +19,7 @@ using namespace AgmdUtilities;
 namespace Agmd
 {
 
-    class AGMD_EXPORT RenderBuffer
+    class AGMD3D_EXPORT RenderBuffer
     {
     public:
         RenderBuffer(ivec2 size);

@@ -1,4 +1,10 @@
-
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 #ifndef CAMERA_H
 #define CAMERA_H
@@ -25,7 +31,7 @@ namespace Agmd
     };
 
 
-    class AGMD_EXPORT Camera
+    class AGMD3D_EXPORT Camera
     {
     public:
         Camera(mat4 projection, vec3 pos);
@@ -36,15 +42,15 @@ namespace Agmd
         virtual void OnKeyboard(char key, bool up) = 0;
         virtual void OnMouseWheel(float delta) = 0;
 
-        glm::vec3 getPosition() { return _position; }
-        virtual void setPosition(glm::vec3 pos) { _position = pos; } 
-        void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
-        void setPosition(float x, float y, float z) { setPosition(glm::vec3(x,y,z)); }
+        glm::vec3 GetPosition() { return _position; }
+        virtual void SetPosition(glm::vec3 pos) { _position = pos; } 
+        void GetPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
+        void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }
 
-        virtual void setTarget(glm::vec3 pos) { _target = pos; } 
-        glm::vec3 getTarget() {return _target;}
+        virtual void SetTarget(glm::vec3 pos) { _target = pos; } 
+        glm::vec3 GetTarget() {return _target;}
 
-        virtual mat4 look();
+        virtual mat4 Look();
 
         void SetActive();
 
@@ -57,7 +63,7 @@ namespace Agmd
             mat4 m_MatProjection;
             mat4 m_MatView;
         };
-        virtual void VectorsFromAngles() = 0;
+        virtual void UpdateVector() = 0;
         void UpdateBuffer(mat4 view);
         float _speed;
         float _sensivity;

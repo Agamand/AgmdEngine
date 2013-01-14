@@ -1,12 +1,18 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef BUFFER_H
 #define BUFFER_H
 
-//==========================================================
-// En-têtes
-//==========================================================
 #include <Core/Buffer/BaseBuffer.h>
-#include <Debug/Exception.h>
 #include <Utilities/SmartPtr.h>
+#include <Debug/Exception.h>
+
 #include <algorithm>
 #include <assert.h>
 

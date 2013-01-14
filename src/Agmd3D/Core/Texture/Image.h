@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef IMAGE_H
 #define IMAGE_H
 
@@ -14,7 +22,7 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-    class AGMD_EXPORT Image
+    class AGMD3D_EXPORT Image
     {
     public :
 

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/SceneObject/SkyBox.h>
 #include <Core/Renderer.h>
 #include <Core/MediaManager.h>
@@ -30,7 +38,7 @@ namespace Agmd
         proj = ortho(0.0f,1.0f,0.0f,1.0f);
 
         Renderer::Get().SetCurrentProgram(m_Program);
-        Renderer::Get().getPipeline()->SetParameter("u_matProjectionSkybox",proj);
+        Renderer::Get().GetCurrentProgram()->SetParameter("u_matProjectionSkybox",proj);
         Draw();
         Renderer::Get().SetCurrentProgram(NULL);
     }

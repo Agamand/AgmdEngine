@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/Renderer.h>
 #include <Matrix4.h>
 #include <Debug/Logger.h>
@@ -64,7 +72,6 @@ namespace Agmd
         Logger::Log(LOGNORMAL,"Fonctionnalités proposée : \n");
         //Logger::Log(LOGNORMAL,GetExtension().c_str());
         Logger::Log(LOGNORMAL,"");
-        m_needUpdate = false;
     }
 
     void Renderer::OnUpdate(uint64 t_diff)
@@ -86,12 +93,12 @@ namespace Agmd
 
         void Renderer::SetMatView(mat4 _MatView) 
         {
-            _LoadMatrix(MAT_VIEW, _MatView);
+            //Unused function !
         }
 
         void Renderer::SetMatProjection(mat4 _MatProjection)
         {
-            _LoadMatrix(MAT_PROJECTION, _MatProjection);
+            //Unused function !
         }
 
         void Renderer::SetScreen(ivec2 _screen)
@@ -108,7 +115,7 @@ namespace Agmd
         {
             m_Camera = cam;
         }
-        Camera* Renderer::getCamera()
+        Camera* Renderer::GetCamera()
         {
             return m_Camera;
         }

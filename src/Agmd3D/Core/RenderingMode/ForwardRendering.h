@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _FORWARDRENDERING_H_
 #define _FORWARDRENDERING_H_
 
@@ -9,7 +17,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT ForwardRendering : public RenderingMode
+    class AGMD3D_EXPORT ForwardRendering : public RenderingMode
     {
     public:
         ForwardRendering(int width, int height);

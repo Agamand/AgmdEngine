@@ -1,9 +1,14 @@
-#ifndef GLENUMS_H
-#define GLENUMS_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
-//==========================================================
-// En-têtes
-//==========================================================
+#ifndef _GLENUMS_H_
+#define _GLENUMS_H_
+
 #include <Core/Enums.h>
 #include <windows.h>
 #include <gl/gl.h>
@@ -68,4 +73,4 @@ namespace Agmd
 
 }
 
-#endif //GLENUMS_H
+#endif /* _GLENUMS_H_ */

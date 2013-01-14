@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _MATERIAL_H_
 #define _MATERIAL_H_
 
@@ -12,7 +20,7 @@
 
 namespace Agmd
 {
-    struct AGMD_EXPORT TextureUnit
+    struct AGMD3D_EXPORT TextureUnit
     {
         TextureUnit() :
         pass(0)
@@ -34,7 +42,7 @@ namespace Agmd
         uint32 m_materialFlags;
     };
 
-    class AGMD_EXPORT Material : public Resource
+    class AGMD3D_EXPORT Material : public Resource
     {
     public:
         Material();

@@ -34,10 +34,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdBullet\Entities.cpp" />
+    <ClCompile Include="..\..\src\AgmdBullet\PhysicsMgr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdBullet\Entities.h" />
+    <ClInclude Include="..\..\src\AgmdBullet\PhysicsMgr.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5CDBBA34-D688-45EF-9F08-0337473AA3A0}</ProjectGuid>
     <RootNamespace>BulletPhysics</RootNamespace>
-    <ProjectName>BulletPhysics</ProjectName>
+    <ProjectName>AgmdBullet</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -263,15 +271,6 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\PhysicsPlugin\Entities.h" />
-    <ClInclude Include="..\..\src\PhysicsPlugin\PhysicsMgr.h" />
-    <ClInclude Include="..\..\src\PhysicsPlugin\Shape.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\PhysicsPlugin\Entities.cpp" />
-    <ClCompile Include="..\..\src\PhysicsPlugin\PhysicsMgr.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

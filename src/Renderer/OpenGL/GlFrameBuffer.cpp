@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Renderer\OpenGL\GlFrameBuffer.h>
 #include <Renderer\OpenGL\GlRenderer.h>
 #include <Renderer\OpenGL\GlTexture.h>
@@ -16,11 +24,8 @@ namespace Agmd
         GLRenderer::glDeleteFramebuffers(1 ,&m_Id);
     }
 
-    void GLFrameBuffer::setTexture(Texture tex, TAttachment attach)
+    void GLFrameBuffer::SetTexture(Texture tex, TAttachment attach)
     {
-        //if(tex.GetType() != TEXTURE_2D)
-            //return;
-
         const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
         m_TextureMap[attach] = tex;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
@@ -28,7 +33,7 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::setTextureCube(Texture tex, TAttachment attach, int face)
+    void GLFrameBuffer::SetTextureCube(Texture tex, TAttachment attach, int face)
     {
         if(tex.GetType() != TEXTURE_CUBE)
             return;
@@ -41,7 +46,7 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::setRender(RenderBuffer* render, TAttachment attach)
+    void GLFrameBuffer::SetRender(RenderBuffer* render, TAttachment attach)
     {
         m_RenderBufferMap[attach] = render;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
@@ -101,9 +106,11 @@ namespace Agmd
 
     void GLFrameBuffer::DrawBuffers(uint32 nbuffer, uint32 flag[])
     {
+        /*<!> need improvement*/
         uint32* buffer = new uint32[nbuffer];
-        for(int i = 0; i < nbuffer; i++)
+        for(uint32 i = 0; i < nbuffer; i++)
             buffer[i] = RGLEnum::Get((TAttachment)flag[i]);
+        /*<!>*/
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         GLRenderer::glDrawBuffers(nbuffer, buffer);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);

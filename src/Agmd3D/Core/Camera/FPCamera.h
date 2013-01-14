@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef FPCAMERA_H
 #define FPCAMERA_H
 
@@ -6,7 +14,7 @@
 namespace Agmd
 {
 
-    class AGMD_EXPORT FPCamera : public Camera
+    class AGMD3D_EXPORT FPCamera : public Camera
     {
     public:
         FPCamera(mat4 projection, vec3 pos = vec3());
@@ -21,7 +29,7 @@ namespace Agmd
         virtual void OnMouseWheel(float delta);
 
     protected:
-        virtual void VectorsFromAngles();
+        virtual void UpdateVector();
 
         float _theta;
         float _phi;

@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _GLTEXTURE_H_
 #define _GLTEXTURE_H_
 
@@ -19,4 +27,4 @@ namespace Agmd
 }
 
 
-#endif //_GLTEXTURE_H_
+#endif /* _GLTEXTURE_H_ */

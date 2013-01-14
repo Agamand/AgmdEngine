@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core\Camera\TPCamera.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -10,13 +18,13 @@ namespace Agmd
     distance(30.0f),
     Camera(projection,pos)
     {
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     TPCamera::~TPCamera()
     {}
 
-    void TPCamera::VectorsFromAngles()
+    void TPCamera::UpdateVector()
     {
         glm::vec3 up(0.0f,0.0f,1.0f);
         float r_temp = cos(_phi*((float)M_PI)/180);
@@ -55,7 +63,7 @@ namespace Agmd
     {
         _theta += x*_sensivity;
         _phi += y*_sensivity;
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     void TPCamera::OnKeyboard(char key, bool up)
@@ -92,7 +100,7 @@ namespace Agmd
         if(!up)
             moveFlags |= tempFlags;
         else moveFlags &= ~tempFlags;
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     void TPCamera::OnUpdate(uint64 time_diff)
@@ -107,7 +115,7 @@ namespace Agmd
 
         _target += move*(_speed*time_diff)/1000.0f;
         _position = _target - distance*_forward;
-        UpdateBuffer(look());
+        UpdateBuffer(Look());
     }
 
     
@@ -130,19 +138,19 @@ namespace Agmd
         _phi *= 180/(float)M_PI;
         
 
-        VectorsFromAngles();
+        UpdateVector();
 
     }
 
     void TPCamera::OnMouseWheel(float delta)
     {
-        distance += delta/30*0.1;
-        VectorsFromAngles();
+        distance += delta/30*0.1f;
+        UpdateVector();
     }
 
     void TPCamera::setTarget(glm::vec3 pos)
     {
-        Camera::setTarget(pos);
+        Camera::SetTarget(pos);
         _position = _target - distance*_forward;
     }
 }

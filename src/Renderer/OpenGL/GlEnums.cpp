@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Renderer\OpenGL\GlEnums.h>
 #include <gl\glext.h>
 
@@ -35,10 +43,10 @@ namespace Agmd
         {GL_BGRA,            GL_RGBA4,                         GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_RGBA},
         {GL_BGR,             GL_RGB8,                          GL_UNSIGNED_BYTE,              GL_RGBA},
         {GL_BGRA,            GL_RGBA8,                         GL_UNSIGNED_BYTE,              GL_RGBA},
-        {GL_BGR,             GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0,                              GL_RGBA},
-        {GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0,                              GL_RGBA},
+        {GL_BGR,             GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0,                             GL_RGBA},
+        {GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0,                             GL_RGBA},
         {GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, 0,                             GL_RGBA},
-        {GL_BGRA,             GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT},
+        {GL_BGRA,            GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT},
         {GL_BGR,             GL_RGB16F,                        GL_UNSIGNED_BYTE,              GL_RGBA},
         {GL_BGR,             GL_RGB32F,                        GL_UNSIGNED_BYTE,              GL_RGBA}
     };

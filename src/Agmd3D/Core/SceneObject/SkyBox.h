@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef SKYBOX_H
 #define SKYBOX_H
 
@@ -19,7 +27,7 @@ namespace Agmd
 
 
 
-    class AGMD_EXPORT SkyBox : public Sky
+    class AGMD3D_EXPORT SkyBox : public Sky
     {
     public:
         SkyBox(float size = 1.0f);

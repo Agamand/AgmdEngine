@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 template <>
 inline void ConvertPixel<PXF_L8, PXF_L8>(const unsigned char* src, unsigned char* dest)
 {

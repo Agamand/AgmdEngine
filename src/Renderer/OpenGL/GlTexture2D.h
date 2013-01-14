@@ -1,5 +1,13 @@
-#ifndef OGLTEXTURE_H
-#define OGLTEXTURE_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLTEXTURE2D_H_
+#define _GLTEXTURE2D_H_
 
 #include <Renderer/OpenGL/GlTexture.h>
 #include <Core/Texture/Image.h>
@@ -26,4 +34,4 @@ namespace Agmd
 }
 
 
-#endif //OGLTEXTURE_H
+#endif /* _GLTEXTURE2D_H_ */

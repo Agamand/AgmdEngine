@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/Tools/Fast2DSurface.h>
 #include <Core/Renderer.h>
 #include <Core/Shader/ShaderProgram.h>
@@ -45,7 +53,7 @@ namespace Agmd
     void Fast2DSurface::Draw()
     {
         Renderer& render = Renderer::Get();
-        render.getPipeline()->SetParameter("u_matProjection",ortho<float>(0,1,0,1));
+        render.GetCurrentProgram()->SetParameter("u_matProjection",ortho<float>(0,1,0,1));
         render.SetDeclaration(m_Declaration);
         render.SetIndexBuffer(m_IndexBuffer);
         render.SetVertexBuffer(0, m_VertexBuffer);

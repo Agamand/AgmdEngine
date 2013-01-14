@@ -6,12 +6,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\PhysicsPlugin\PhysicsMgr.h" />
-    <ClInclude Include="..\..\src\PhysicsPlugin\Entities.h" />
-    <ClInclude Include="..\..\src\PhysicsPlugin\Shape.h" />
+    <ClCompile Include="..\..\src\AgmdBullet\Entities.cpp" />
+    <ClCompile Include="..\..\src\AgmdBullet\PhysicsMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\PhysicsPlugin\PhysicsMgr.cpp" />
-    <ClCompile Include="..\..\src\PhysicsPlugin\Entities.cpp" />
+    <ClInclude Include="..\..\src\AgmdBullet\Entities.h" />
+    <ClInclude Include="..\..\src\AgmdBullet\PhysicsMgr.h" />
   </ItemGroup>
 </Project>

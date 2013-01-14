@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _GLUNIFORMBUFFER_H_
 #define _GLUNIFORMBUFFER_H_
 
@@ -10,7 +18,6 @@ namespace Agmd
     {
     public :
         GLUniformBuffer(unsigned long count, unsigned int buffer, unsigned int bindPoint);
-        //virtual ~GLUniformeBuffer();
 
         virtual void Bind(uint32 bindpoint);
 

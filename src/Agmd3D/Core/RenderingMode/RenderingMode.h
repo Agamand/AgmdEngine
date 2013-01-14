@@ -1,13 +1,21 @@
 #ifndef _RENDERINGMODE_H_
 #define _RENDERINGMODE_H_
 
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Vector2.h>
 #include <Config/Export.h>
 #include <AgmdDefines.h>
 
 namespace Agmd
 {
-    class AGMD_EXPORT RenderingMode
+    class AGMD3D_EXPORT RenderingMode
     {
     public:
         RenderingMode(int32 width, int32 heigth);

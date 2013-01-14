@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/RenderingMode/DeferredRendering.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
@@ -36,14 +44,14 @@ namespace Agmd
         m_textureBuffer[1].Create(m_screen, PXF_R16G16B16, TEXTURE_2D);
         m_textureBuffer[2].Create(m_screen, PXF_R32G32B32, TEXTURE_2D);
 
-        m_framebuffer->setRender(m_depthbuffer, DEPTH_ATTACHMENT);
-        m_framebuffer->setRender(m_colorbuffer, COLOR_ATTACHMENT);
-        m_framebuffer->setRender(m_normalbuffer, COLOR_ATTACHMENT1);
-        m_framebuffer->setRender(m_positionbuffer, COLOR_ATTACHMENT2);
+        m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
+        m_framebuffer->SetRender(m_colorbuffer, COLOR_ATTACHMENT);
+        m_framebuffer->SetRender(m_normalbuffer, COLOR_ATTACHMENT1);
+        m_framebuffer->SetRender(m_positionbuffer, COLOR_ATTACHMENT2);
 
-        m_framebuffer->setTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-        m_framebuffer->setTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
-        m_framebuffer->setTexture(m_textureBuffer[2], COLOR_ATTACHMENT2);
+        m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
+        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
+        m_framebuffer->SetTexture(m_textureBuffer[2], COLOR_ATTACHMENT2);
         
     }
 

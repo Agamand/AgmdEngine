@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core\GUI\AWindow.h>
 #include <Core\Renderer.h>
 #include <Core/MatStack.h>
@@ -104,7 +112,7 @@ namespace Agmd
 
         if(m_Font.GetTexture())
         {
-            render.getPipeline()->SetParameter("u_size",(vec2)m_vSize);
+            render.GetCurrentProgram()->SetParameter("u_size",(vec2)m_vSize);
             render.SetTexture(3, m_Font.GetTexture());
             render.SetTextureFlag(TEXTURE_UNIT_3);
         }else render.SetTextureFlag(0);

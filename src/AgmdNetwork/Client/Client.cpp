@@ -61,10 +61,8 @@ namespace AgmdNetwork
     void Client::SendPacket(Packet& packet)
     {
         ByteBuffer buffer;
-        buffer <<(uint8)0;
-        buffer <<(uint8) packet.size();
+        buffer <<(uint16) packet.size();
         buffer << packet.GetOpcode();
-        buffer <<(uint16)0;
         buffer.append(packet.contents(),packet.size());
 
         if(send(m_ListeningSocket,(const int8*)buffer.contents(),buffer.size(), 0) == SOCKET_ERROR)

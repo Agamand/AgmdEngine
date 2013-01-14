@@ -1,5 +1,13 @@
-#ifndef FWD_H
-#define FWD_H
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _FWD_H_
+#define _FWD_H_
 
 
 namespace Agmd
@@ -74,4 +82,4 @@ namespace Agmd
 }
 
 
-#endif // FWD_H
+#endif /* _FWD_H_ */

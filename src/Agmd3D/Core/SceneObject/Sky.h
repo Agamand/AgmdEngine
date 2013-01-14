@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef SKY_H
 #define SKY_H
 
@@ -9,7 +17,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT Sky : public Displayable
+    class AGMD3D_EXPORT Sky : public Displayable
     {
 
     public:

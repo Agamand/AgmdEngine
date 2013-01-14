@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Config/Fwd.h>
 #include <Core/Shader/BaseShaderProgram.h>
 #include <Utilities/SmartPtr.h>
@@ -9,7 +17,7 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
-    class AGMD_EXPORT ShaderProgram
+    class AGMD3D_EXPORT ShaderProgram
     {
     public :
 

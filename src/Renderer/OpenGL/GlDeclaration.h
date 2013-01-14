@@ -1,5 +1,13 @@
-#ifndef GLDECLARATION_H
-#define GLDECLARATION_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLDECLARATION_H_
+#define _GLDECLARATION_H_
 
 #include <Core/Declaration.h>
 #include <vector>
@@ -36,4 +44,4 @@ namespace Agmd
 }
 
 
-#endif // GLDECLARATION_H
+#endif /* _GLDECLARATION_H_ */

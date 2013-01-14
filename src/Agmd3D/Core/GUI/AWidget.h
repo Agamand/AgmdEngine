@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef AWIDGET_H
 #define AWIDGET_H
 
@@ -13,7 +21,7 @@ namespace Agmd
     class AWidget;
     typedef std::vector<AWidget*> WidgetVector;
 
-    class AGMD_EXPORT AWidget
+    class AGMD3D_EXPORT AWidget
     {
     public:
         AWidget(AWidget* parent = NULL);

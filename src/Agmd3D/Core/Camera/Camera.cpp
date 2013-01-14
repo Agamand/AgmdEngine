@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
@@ -17,7 +25,6 @@ namespace Agmd
     _speed(10.0f),
     _sensivity(0.2f)
     {
-        //this->VectorsFromAngles();
         CameraBuffer camBuf;
         camBuf.m_MatProjection = projection;
         camBuf.m_MatView = mat4(1.0f);
@@ -31,7 +38,7 @@ namespace Agmd
         m_cameraBuffer.Unlock();
     }
 
-    mat4 Camera::look()
+    mat4 Camera::Look()
     {
         return lookAt(_position,_target,vec3(0,0,1));
     }

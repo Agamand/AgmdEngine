@@ -4,13 +4,21 @@
 #include <Config/Fwd.h>
 #include <Config/Export.h>
 
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/Texture/Texture.h>
 #include <Core/RenderingMode/RenderingMode.h>
 
 
 namespace Agmd
 {
-    class AGMD_EXPORT DeferredRendering : public RenderingMode
+    class AGMD3D_EXPORT DeferredRendering : public RenderingMode
     {
     public:
         DeferredRendering(int width, int height);

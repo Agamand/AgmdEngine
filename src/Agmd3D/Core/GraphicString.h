@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef GRAPHICSTRING_H
 #define GRAPHICSTRING_H
 
@@ -14,7 +22,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT GraphicString
+    class AGMD3D_EXPORT GraphicString
     {
     public :
 
@@ -24,22 +32,18 @@ namespace Agmd
 
         ivec2 GetPixelSize() const;
 
-        //----------------------------------------------------------
-        // Modifie l'alignement du texte
-        //----------------------------------------------------------
+
+
         void Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect);
 
-        //----------------------------------------------------------
-        // Données membres
-        //----------------------------------------------------------
-        ivec2   Position; ///< Position du texte à l'écran
-        std::string Text;     ///< Chaîne de caractères
-        Color      color;    ///< Couleur du texte
-        std::string Font;     ///< Police de caractères
-        int         Size;     ///< Taille du texte
+        ivec2   Position;
+        std::string Text;
+        Color      color;
+        std::string Font;
+        int         Size;
     };
 
-} // namespace Yes
+}
 
 
 #endif // GRAPHICSTRING_H

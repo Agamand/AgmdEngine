@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 
 #include <Core/SceneObject/Light.h>
 #include <Core/Buffer/Buffer.h>
@@ -35,8 +43,8 @@ namespace Agmd
 
         Renderer& render = Renderer::Get();
         render.SetCurrentProgram(m_program.GetShaderProgram());
-        render.getPipeline()->SetParameter("light_dir",m_dir);
-        render.getPipeline()->SetParameter("light_pos",m_position);
+        render.GetCurrentProgram()->SetParameter("light_dir",m_dir);
+        render.GetCurrentProgram()->SetParameter("light_pos",m_position);
     }
 
     void Light::EndPrepareShadow() const

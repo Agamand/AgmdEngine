@@ -45,6 +45,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{84EBD8A4-42F9-4F7F-98FC-56365A19BD38}</ProjectGuid>
     <RootNamespace>DirectXRenderer</RootNamespace>
+    <ProjectName>DXRender</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

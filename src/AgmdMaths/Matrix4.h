@@ -1,3 +1,11 @@
+/*
+============================================================================
+AgmdMaths - Maths lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef MATRIX4_H
 #define MATRIX4_H
 

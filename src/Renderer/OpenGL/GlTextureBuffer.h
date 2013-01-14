@@ -1,5 +1,13 @@
-#ifndef GLTEXTUREBUFFER_H
-#define GLTEXTUREBUFFER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLTEXTUREBUFFER_H_
+#define _GLTEXTUREBUFFER_H_
 
 #include <Renderer/OpenGL/GlBuffer.h>
 #include <Renderer/OpenGL/GlEnums.h>
@@ -11,7 +19,6 @@ namespace Agmd
     {
     public :
         GLTextureBuffer(unsigned long count, unsigned int buffer, TextureBase* texture);
-        //virtual ~GLTextureBuffer();
 
         const TextureBase* getTexture() const;
 

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 
@@ -12,7 +20,7 @@ using namespace AgmdUtilities;
 namespace Agmd
 {
 
-    class AGMD_EXPORT ResourceManager : public Singleton<ResourceManager>
+    class AGMD3D_EXPORT ResourceManager : public Singleton<ResourceManager>
     {
     MAKE_SINGLETON(ResourceManager)
 

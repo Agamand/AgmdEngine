@@ -1,5 +1,13 @@
-#ifndef GLRENDERBUFFER_H
-#define GLRENDERBUFFER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLRENDERBUFFER_H_
+#define _GLRENDERBUFFER_H_
 
 #include <Core/Buffer/RenderBuffer.h>
 namespace Agmd
@@ -19,4 +27,4 @@ namespace Agmd
 
 }
 
-#endif //GLRENDERBUFFER_H
+#endif /* _GLRENDERBUFFER_H_ */

@@ -85,9 +85,6 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\GUI\AWindow.h">
       <Filter>Core\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\GUI\EventMgr.h">
-      <Filter>Core\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\BaseShader.h">
       <Filter>Core\Shader</Filter>
     </ClInclude>
@@ -188,9 +185,6 @@
       <Filter>Core\SceneObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SkyBox.h">
-      <Filter>Core\SceneObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SkyDome.h">
       <Filter>Core\SceneObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Terrain.h">
@@ -365,9 +359,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\AWindow.cpp">
       <Filter>Core\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\EventMgr.cpp">
-      <Filter>Core\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShader.cpp">
       <Filter>Core\Shader</Filter>
     </ClCompile>
@@ -456,9 +447,6 @@
       <Filter>Core\SceneObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SkyBox.cpp">
-      <Filter>Core\SceneObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SkyDome.cpp">
       <Filter>Core\SceneObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Terrain.cpp">

@@ -1,5 +1,13 @@
-#include <Core\Camera\FPCamera.h>
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #define _USE_MATH_DEFINES
+#include <Core\Camera\FPCamera.h>
 #include <math.h>
 
 namespace Agmd
@@ -9,13 +17,13 @@ namespace Agmd
     _theta(0),
     Camera(projection,pos)
     {
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     FPCamera::~FPCamera()
     {}
 
-    void FPCamera::VectorsFromAngles()
+    void FPCamera::UpdateVector()
     {
         glm::vec3 up(0.0f,0.0f,1.0f);
         float r_temp = cos(_phi*((float)M_PI)/180);
@@ -53,7 +61,7 @@ namespace Agmd
     {
         _theta += x*_sensivity;
         _phi += y*_sensivity;
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     void FPCamera::OnKeyboard(char key, bool up)
@@ -84,7 +92,7 @@ namespace Agmd
         if(!up)
             moveFlags |= tempFlags;
         else moveFlags &= ~tempFlags;
-        VectorsFromAngles();
+        UpdateVector();
     }
 
     void FPCamera::OnMouseWheel(float delta)
@@ -97,6 +105,6 @@ namespace Agmd
     {
         _position += move*(_speed*time_diff)/1000.0f;
         _target = _position + _forward;
-        UpdateBuffer(look());
+        UpdateBuffer(Look());
     }
 }

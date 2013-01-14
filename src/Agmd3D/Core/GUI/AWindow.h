@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef AWINDOW_H
 #define AWINDOW_H
 
@@ -11,7 +19,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT AWindow : public AWidget
+    class AGMD3D_EXPORT AWindow : public AWidget
     {
     public:
         AWindow(AWidget* parent = NULL);

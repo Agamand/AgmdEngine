@@ -1,3 +1,17 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+/*
+
+STATUS : dev stopped
+
+*/
+
 #ifndef _XMLPARSER_H_
 #define _XMLPARSER_H_
 

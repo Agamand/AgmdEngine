@@ -1,9 +1,18 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/RenderingMode/ForwardRendering.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Renderer.h>
 #include <Core/SceneObject/Scene.h>
 #include <Utilities/Timer.h>
+
 namespace Agmd
 {
     ForwardRendering::ForwardRendering(int width, int height) :
@@ -19,8 +28,7 @@ namespace Agmd
     }
 
     ForwardRendering::~ForwardRendering()
-    {
-    }
+    {}
 
     void ForwardRendering::Init()
     {
@@ -32,11 +40,11 @@ namespace Agmd
         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
         m_textureBuffer[2].Create(m_screen, PXF_DEPTH, TEXTURE_2D,TEX_NOMIPMAP);
 
-        m_framebuffer->setRender(m_depthbuffer, DEPTH_ATTACHMENT);
+        m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
 
-        m_framebuffer->setTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-        m_framebuffer->setTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
-        m_framebuffer->setTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
+        m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
+        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
+        m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
     }
 
     void ForwardRendering::Compute()
@@ -46,12 +54,8 @@ namespace Agmd
         Start();
 
         /*
-           FirstPass, on génére ici uniquement le Buffer de profondeur (Zbuffer).
+           FirstPass, here is draw the ZBuffer(Only) (Zbuffer).
         */
-#ifdef PROFILING_TIME
-        Timer timer;
-        timer.start();  
-#endif 
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
         m_framebuffer->DrawBuffer(0);
@@ -83,7 +87,6 @@ namespace Agmd
         */
         std::vector<Light*> lights = sc->GetLights();
         uint32 maxLights = lights.size();
-        //maxLights = 0;
         if(maxLights)
         {
             uint32 buffer2[] = {COLOR_ATTACHMENT1};
@@ -117,11 +120,6 @@ namespace Agmd
             Texture::TextureRender(m_textureBuffer[1]);
             render.Enable(RENDER_ALPHABLEND, false);
         }
-#ifdef PROFILING_TIME
-        timer.stop();
-        double _timer = timer.getElapsedTimeInMicroSec();
-        printf("Rendering function : %f us\n",_timer);
-#endif
         End();
     }
 

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
 
@@ -5,8 +13,8 @@
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Enums.h>
 #include <Utilities/SmartPtr.h>
+
 #include <map>
-//#include <vector>
 
 namespace Agmd
 {
@@ -14,15 +22,15 @@ namespace Agmd
     typedef std::map<TAttachment,Texture> TextureMap;
     typedef std::map<TAttachment,RenderBuffer*> RenderBufferMap;
 
-    class AGMD_EXPORT FrameBuffer
+    class AGMD3D_EXPORT FrameBuffer
     {
     public:
         FrameBuffer();
         virtual ~FrameBuffer();
 
-        virtual void setTexture(Texture, TAttachment) = 0;
-        virtual void setTextureCube(Texture, TAttachment, int face) = 0;
-        virtual void setRender(RenderBuffer*, TAttachment) = 0;
+        virtual void SetTexture(Texture, TAttachment) = 0;
+        virtual void SetTextureCube(Texture, TAttachment, int face) = 0;
+        virtual void SetRender(RenderBuffer*, TAttachment) = 0;
     
         virtual void Bind() = 0;
         virtual void UnBind() = 0;
@@ -33,8 +41,8 @@ namespace Agmd
         virtual void ReadBuffer(uint32 flag) = 0;
 
     protected:
-        TextureMap        m_TextureMap;
-        RenderBufferMap    m_RenderBufferMap;
+        TextureMap          m_TextureMap;
+        RenderBufferMap     m_RenderBufferMap;
     };
 
     typedef SmartPtr<FrameBuffer> FrameBufferPtr;

@@ -33,6 +33,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdServer", "AgmdServer\Ag
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Agmd3D", "Agmd3D\Agmd3D.vcxproj", "{559D2DB9-42C9-40DA-A5DA-752F610DC378}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D9865307-6A96-4D5F-9896-5F3BD446DC3E} = {D9865307-6A96-4D5F-9896-5F3BD446DC3E}
+		{817B101F-A66F-4709-B9A6-7BE47A9D3648} = {817B101F-A66F-4709-B9A6-7BE47A9D3648}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdNetwork", "AgmdNetwork\AgmdNetwork.vcxproj", "{AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6}"
 EndProject
@@ -41,11 +45,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletPhysics", "BulletPhysics\BulletPhysics.vcxproj", "{5CDBBA34-D688-45EF-9F08-0337473AA3A0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{70DB65AB-2309-4BAB-AEED-061756092257}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Flood", "Projet1\Projet1.vcxproj", "{E5E28759-7242-4D5C-AF1A-0F0217CC3951}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6} = {AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -450,36 +449,6 @@ Global
 		{70DB65AB-2309-4BAB-AEED-061756092257}.Release|Win32.ActiveCfg = Release|Win32
 		{70DB65AB-2309-4BAB-AEED-061756092257}.Release|Win32.Build.0 = Release|Win32
 		{70DB65AB-2309-4BAB-AEED-061756092257}.Release|x64.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|Any CPU.ActiveCfg = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|Mixed Platforms.ActiveCfg = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|Mixed Platforms.Build.0 = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|Win32.ActiveCfg = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|Win32.Build.0 = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug_Profiling|x64.ActiveCfg = Debug_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|Win32.Build.0 = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Debug|x64.ActiveCfg = Debug|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|Any CPU.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|Mixed Platforms.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|Mixed Platforms.Build.0 = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|Win32.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|Win32.Build.0 = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_No_Opti|x64.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|Any CPU.ActiveCfg = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|Mixed Platforms.ActiveCfg = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|Mixed Platforms.Build.0 = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|Win32.ActiveCfg = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|Win32.Build.0 = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release_Profiling|x64.ActiveCfg = Release_Profiling|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|Any CPU.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|Win32.ActiveCfg = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|Win32.Build.0 = Release|Win32
-		{E5E28759-7242-4D5C-AF1A-0F0217CC3951}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\echo.cpp">
-      <Filter>Utilities\TinyXml</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.cpp">
       <Filter>Utilities\TinyXml</Filter>
     </ClCompile>
@@ -49,9 +46,6 @@
       <Filter>Utilities\TinyXml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlparser.cpp">
-      <Filter>Utilities\TinyXml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\xmltest.cpp">
       <Filter>Utilities\TinyXml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Timer.cpp">

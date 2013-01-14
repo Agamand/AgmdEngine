@@ -9,6 +9,13 @@
 namespace AgmdNetwork
 {
 
+    struct PacketHeader
+    {
+        uint16 size;
+        uint16 opcode;
+    };
+
+
     class Packet : public ByteBuffer
     {
         public:

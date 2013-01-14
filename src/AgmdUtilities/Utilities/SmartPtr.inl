@@ -1,3 +1,10 @@
+/*
+============================================================================
+AgmdUtilities - Utilities Lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 template <class T, template <class> class Ownership>
 T*& GetPtr(SmartPtr<T, Ownership>& sptr)

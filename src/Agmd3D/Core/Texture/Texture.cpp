@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/Texture/Texture.h>
 #include <Core/Texture/TextureBase.h>
 #include <Core/MediaManager.h>
@@ -230,7 +238,7 @@ namespace Agmd
         if(!s_framebuffer)
             s_framebuffer = render.CreateFrameBuffer();
 
-        s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+        s_framebuffer->SetTexture(output,COLOR_ATTACHMENT);
         render.SetTexture(0,input1.GetTexture());
         render.SetTexture(1,input2.GetTexture());
         s_framebuffer->Clear();
@@ -251,7 +259,7 @@ namespace Agmd
         if(!s_framebuffer)
             s_framebuffer = render.CreateFrameBuffer();
 
-        s_framebuffer->setTexture(output,COLOR_ATTACHMENT);
+        s_framebuffer->SetTexture(output,COLOR_ATTACHMENT);
         render.SetTexture(0,input1.GetTexture());
         render.SetTexture(1,input2.GetTexture());
         s_framebuffer->Clear();
@@ -285,7 +293,7 @@ namespace Agmd
         int seed = clock();
 
         render.SetCurrentProgram(s_randomTexture);
-        render.getPipeline()->SetParameter("seed",(float)seed);
+        render.GetCurrentProgram()->SetParameter("seed",(float)seed);
         Fast2DSurface::Instance().Draw();
         render.SetCurrentProgram(nullptr);
     }

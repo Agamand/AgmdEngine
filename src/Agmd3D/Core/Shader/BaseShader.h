@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef BASESHADER_H
 #define BASESHADER_H
 
@@ -10,7 +18,7 @@
 namespace Agmd
 {
 
-    class AGMD_EXPORT BaseShader : public Resource
+    class AGMD3D_EXPORT BaseShader : public Resource
     {
     public :
 

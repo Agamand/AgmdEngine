@@ -1,5 +1,10 @@
-//==========================================================
-//==========================================================
+/*
+============================================================================
+AgmdMaths - Maths lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 inline Plane::Plane(float a, float b, float c, float _d) :
 n(a, b, c),

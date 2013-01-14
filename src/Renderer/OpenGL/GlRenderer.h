@@ -1,5 +1,13 @@
-#ifndef GLRENDERER_H
-#define GLRENDERER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLRENDERER_H_
+#define _GLRENDERER_H_
 
 #include <Config\Fwd.h>
 #include <Core/Renderer.h>
@@ -70,13 +78,9 @@ namespace Agmd
         
         virtual RenderBuffer* CreateRenderBuffer(const ivec2& size, TPixelFormat format) const;
 
-        virtual void setClipPlane(uint32 clipUnit, double* plane);
+        virtual void SetRenderMode(TRenderMode mode);
 
-        virtual void setRenderMode(TRenderMode mode);
-
-        virtual const BaseShaderProgram* getPipeline();
-
-        virtual void ReloadPipeline();
+        virtual const BaseShaderProgram* GetCurrentProgram();
 
         virtual void SetCurrentProgram( const BaseShaderProgram* prog);
 
@@ -169,49 +173,7 @@ namespace Agmd
         static PFNWGLCREATECONTEXTATTRIBSARBPROC    wglCreateContextAttribsARB;
         static PFNWGLSWAPINTERVALEXTPROC            wglSwapIntervalEXT;
 
-
-        static char VertexPipeline[];
-        static char FragmentPipeline[];
-
-        virtual void DrawSomething();
-
-        virtual void DebugCubeMap(const TextureBase* tex);
-
-
-
     protected :
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat2& matrix)
-        {
-            if(m_CurrentProgram)
-                m_CurrentProgram->SetParameter(RGLEnum::GetName(type),matrix);
-            else
-                m_Pipeline.SetParameter(RGLEnum::GetName(type),matrix);
-        }
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat3& matrix)
-        {
-            if(m_CurrentProgram)
-                m_CurrentProgram->SetParameter(RGLEnum::GetName(type),matrix);
-            else
-                m_Pipeline.SetParameter(RGLEnum::GetName(type),matrix);
-        }
-
-        virtual void _LoadMatrix(TMatrixType type, const glm::mat4& matrix)
-        {
-            if(m_CurrentProgram)
-                m_CurrentProgram->SetParameter(type,matrix);
-            else
-                m_Pipeline.SetParameter(type,matrix);
-        }
-
-        void updateGlobalBuffer()
-        {
-            if(!m_needUpdate)
-                return;
-            
-            m_needUpdate = false;
-        }
 
         virtual void Setup(HWND Hwnd);
 
@@ -236,19 +198,17 @@ namespace Agmd
         void LoadExtensions();
 
         HWND                        m_Hwnd;
-        HDC                            m_Handle;
-        HGLRC                        m_Context;
+        HDC                         m_Handle;
+        HGLRC                       m_Context;
         const GLDeclaration*        m_CurrentDeclaration;
-        unsigned long                m_IndexStride;
-        std::string                    m_Extensions;
-        ShaderProgram                m_Pipeline;
-        ShaderProgram                m_DebugPipeline[4];
+        unsigned long               m_IndexStride;
+        std::string                 m_Extensions;
+        ShaderProgram               m_DebugPipeline[4];
         const BaseShaderProgram*    m_CurrentProgram;
-        const TextureBase*            m_TextureBind[MAX_TEXTUREUNIT];
-        bool                        m_Reload;
-        uint32                      last_unit;
+        const TextureBase*          m_TextureBind[MAX_TEXTUREUNIT];
+        uint32                      last_unit; // last used texture unit
 
     };
 
 }
-#endif //GLRENDERER_H
+#endif /* _GLRENDERER_H_ */

@@ -1,5 +1,13 @@
-#ifndef GLFRAMEBUFFER_H
-#define GLFRAMEBUFFER_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLFRAMEBUFFER_H_
+#define _GLFRAMEBUFFER_H_
 
 #include <AgmdDefines.h>
 #include <Core/Buffer/FrameBuffer.h>
@@ -14,9 +22,9 @@ namespace Agmd
         GLFrameBuffer(uint32 buff_id);
         ~GLFrameBuffer();
 
-        virtual void setTexture(Texture tex, TAttachment attach);
-        virtual void setTextureCube(Texture, TAttachment, int face);
-        virtual void setRender(RenderBuffer* render, TAttachment attach);
+        virtual void SetTexture(Texture tex, TAttachment attach);
+        virtual void SetTextureCube(Texture, TAttachment, int face);
+        virtual void SetRender(RenderBuffer* render, TAttachment attach);
 
         virtual void Bind();
         virtual void UnBind();
@@ -35,4 +43,4 @@ namespace Agmd
 
 }
 
-#endif //GLFRAMEBUFFER_H
+#endif /* _GLFRAMEBUFFER_H_ */

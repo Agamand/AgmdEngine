@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/GraphicString.h>
 #include <Core/FontManager.h>
 #include <Debug/New.h>
@@ -29,10 +37,8 @@ ivec2 GraphicString::GetPixelSize() const
 
 void GraphicString::Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect)
 {
-    // Calcul de la taille en pixels
     ivec2 PSize = GetPixelSize();
 
-    // Alignement horizontal
     if (Mode & ALIGN_RIGHT)
     {
         Position.x = Rect.Right() - PSize.x;
@@ -41,12 +47,11 @@ void GraphicString::Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect)
     {
         Position.x = Rect.Left() + (Rect.Width() - PSize.x) / 2;
     }
-    else // par défaut : ALIGN_LEFT
+    else
     {
         Position.x = Rect.Left();
     }
 
-    // Alignement vertical
     if (Mode & ALIGN_BOTTOM)
     {
         Position.y = Rect.Bottom() - PSize.y;
@@ -55,7 +60,7 @@ void GraphicString::Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect)
     {
         Position.y = Rect.Top() + (Rect.Height() - PSize.y) / 2;
     }
-    else // par défaut : ALIGN_TOP
+    else
     {
         Position.y = Rect.Top();
     }

@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef MEDIAMANAGER_H
 #define MEDIAMANAGER_H
 
@@ -30,7 +38,7 @@ namespace Agmd
         TLoadersMap m_Loaders;
     };
 
-    class AGMD_EXPORT MediaManager : public Singleton<MediaManager>, public ScatteredHierarchy<MediaList, MediaHolder>
+    class AGMD3D_EXPORT MediaManager : public Singleton<MediaManager>, public ScatteredHierarchy<MediaList, MediaHolder>
     {
 
     MAKE_SINGLETON(MediaManager)

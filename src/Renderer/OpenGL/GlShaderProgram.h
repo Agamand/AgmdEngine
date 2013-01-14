@@ -1,5 +1,13 @@
-#ifndef GLSHADERPROGRAM_H
-#define GLSHADERPROGRAM_H
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
+#ifndef _GLSHADERPROGRAM_H_
+#define _GLSHADERPROGRAM_H_
 
 #include <Config\Fwd.h>
 #include <Core\Shader/BaseShaderProgram.h>
@@ -82,4 +90,4 @@ namespace Agmd
     };
 }
 
-#endif
+#endif /* _GLSHADERPROGRAM_H_ */

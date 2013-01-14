@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _GLTEXTURECUBE_H_
 #define _GLTEXTURECUBE_H_
 

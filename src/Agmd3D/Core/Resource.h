@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
@@ -6,7 +14,7 @@
 
 namespace Agmd
 {
-    class AGMD_EXPORT Resource
+    class AGMD3D_EXPORT Resource
     {
     public :
 

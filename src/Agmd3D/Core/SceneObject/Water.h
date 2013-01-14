@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef WATER_H
 #define WATER_H
 
@@ -24,7 +32,7 @@ namespace Agmd
         float y;
     };
 
-    class AGMD_EXPORT Water : public Model
+    class AGMD3D_EXPORT Water : public Model
     {
     public:
         Water(ivec2 _size, ivec2 _poly);

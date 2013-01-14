@@ -1,5 +1,10 @@
-//==========================================================
-//==========================================================
+/*
+============================================================================
+AgmdMaths - Maths lib
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 #ifndef PLANE_H
 #define PLANE_H
@@ -30,8 +35,8 @@ namespace AgmdMaths
         bool operator ==(const Plane& p) const;
         bool operator !=(const Plane& p) const;
 
-        vec3 n; // Normal
-        float d; // Distance
+        vec3 n;
+        float d;
     };
 
     std::istream& operator >>(std::istream& stream, Plane& plane);

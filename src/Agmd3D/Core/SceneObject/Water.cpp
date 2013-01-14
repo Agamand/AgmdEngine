@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Core/SceneObject/Water.h>
 #include <Core/Renderer.h>
 #include <Core/MediaManager.h>
@@ -33,7 +41,7 @@ namespace Agmd
         m_WaterNormal.CreateFromFile("Texture/water_normal.png",PXF_A8R8G8B8);
         m_Depth = Renderer::Get().CreateRenderBuffer(ivec2(WATER_RESOLUTION),PXF_DEPTH);
 
-        fbo[1]->setTexture(m_WaterNormal,COLOR_ATTACHMENT);
+        fbo[1]->SetTexture(m_WaterNormal,COLOR_ATTACHMENT);
         //fbo[1]->setRender(m_Depth,DEPTH_ATTACHMENT);
 
         memset(m_PWave,0,sizeof(WaveParameters)*4);
@@ -157,8 +165,8 @@ namespace Agmd
         GenerateCubeMap();
         //GenerateNormal();
 
-        Camera* cam = Renderer::Get().getCamera();
-        vec3 dir = cam->getTarget() - cam->getPosition();
+        Camera* cam = Renderer::Get().GetCamera();
+        vec3 dir = cam->GetTarget() - cam->GetPosition();
         dir = normalize(dir);
 
         mat4 modelMatrix = m_transform.ModelMatrix();
@@ -166,7 +174,6 @@ namespace Agmd
         Renderer::Get().SetCurrentProgram(m_program);
 
         MatStack::push(modelMatrix);
-        Renderer::Get().LoadMatrix(MAT_NORMAL, normalMatrix);
 
         m_programWaterNormal->SetParameter("u_passedTime",m_timer);
         Renderer::Get().SetTexture(0,m_CubeMap.GetTexture(),TEXTURE_CUBE);
@@ -182,7 +189,6 @@ namespace Agmd
         Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType, 0, m_IndexBuffer.GetCount());
         Renderer::Get().SetCurrentProgram(NULL);
         MatStack::pop();
-        Renderer::Get().DebugCubeMap(m_CubeMap.GetTexture());
     }
 
     void Water::GenerateCubeMap() const
@@ -230,7 +236,7 @@ namespace Agmd
  
             view = lookAt(vEnvEyePt, vLookatPt, vUpVec);
             
-            fbo[0]->setTextureCube(m_CubeMap,COLOR_ATTACHMENT,nFace);
+            fbo[0]->SetTextureCube(m_CubeMap,COLOR_ATTACHMENT,nFace);
 
             //fbo[0]->Clear();
             fbo[0]->Bind();

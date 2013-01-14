@@ -1,10 +1,17 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _INSTANCEDPOOL_H_
 #define _INSTANCEDPOOL_H_
 
 #include <Config/Fwd.h>
 #include <Config/Export.h>
-#include <Core/InstancedMesh.h>
-#include
+#include <Core/SceneObject/InstancedMesh.h>
 
 namespace Agmd
 {
@@ -13,7 +20,7 @@ namespace Agmd
     public:
         InstancedPool(Model* model = NULL);
         InstancedPool(std::string name);
-        virtual InstancedMesh();
+        InstancedPool();
 
     private:
         Model* model;

@@ -6,6 +6,10 @@
 
 SINGLETON_IMPL(AgmdUtilities::Logger);
 
+#ifdef _MSC_VER
+#pragma warning(disable : 4996)
+#endif
+
 namespace AgmdUtilities
 {
     Logger::Logger() : m_File("agmd.log")

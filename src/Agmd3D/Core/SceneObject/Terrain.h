@@ -4,12 +4,20 @@
 #include <Vector2.h>
 #include <Core/SceneObject/Model.h>
 
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <string>
 
 namespace Agmd
 {
     
-    class AGMD_EXPORT Terrain : public Model
+    class AGMD3D_EXPORT Terrain : public Model
     {
     public:
         Terrain(ivec2 _size, ivec2 _poly, std::string diffuse, std::string çheightmap);

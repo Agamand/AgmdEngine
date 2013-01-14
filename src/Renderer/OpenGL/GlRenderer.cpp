@@ -1,3 +1,11 @@
+/*
+============================================================================
+GLRender - Opengl Renderer specialization
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #include <Renderer/OpenGL/GlRenderer.h>
 #include <Renderer/OpenGL/GlTexture2D.h>
 #include <Renderer/OpenGL/GlTextureCube.h>
@@ -39,7 +47,7 @@ namespace Agmd
     }
     #define LOAD_EXTENSION(Ext) LoadExtension(Ext, #Ext)
 
-    #define BUFFER_OFFSET(n) ((char*)NULL + (n))
+    #define BUFFER_OFFSET(n) ((byte*)NULL + (n))
 
     PFNGLGETSTRINGIPROC                  GLRenderer::glGetStringi;
     PFNGLBINDBUFFERPROC               GLRenderer::glBindBuffer;
@@ -123,127 +131,12 @@ namespace Agmd
     PFNWGLCREATECONTEXTATTRIBSARBPROC GLRenderer::wglCreateContextAttribsARB;
     PFNWGLSWAPINTERVALEXTPROC         GLRenderer::wglSwapIntervalEXT;
 
-    char GLRenderer::VertexPipeline[]   = 
-        "\n \
-        #version 400\n \
-        \n \
-        in vec3 in_Vertex;\n \
-        in vec3 in_Color;\n \
-        in vec2 in_TexCoord0;\n \
-        \n \
-        out vec3 vPosition; \n \
-        out vec3 color;\n \
-        out vec2 texCoord0;\n \
-        \n \
-        uniform mat4 projection;\n \
-        uniform mat4 modelview;\n \
-        \n \
-        void main() \n \
-        { \n \
-            vPosition = in_Vertex.xyz;\n \
-            gl_Position = projection * modelview * vec4(in_Vertex, 1.0); \n \
-            \n \
-            color = in_Color; \n \
-            texCoord0 = in_TexCoord0; \n \
-        } \n";
-    char GLRenderer::FragmentPipeline[] = 
-        "\n \
-        #version 400\n \
-         \n \
-        in vec3 color; \n \
-        \n \
-        in vec2 texCoord0; \n \
-         \n \
-        out vec4 out_Color; \n \
-         \n \
-        uniform sampler2D texture0; \n \
-         \n \
-        void main() \n \
-        { \n \
-            out_Color = texture2D(texture0, texCoord0); \n \
-        } \n";
-    static char tessEval[] = 
-        " \n \
-        #version 400\n \
-        layout(triangles, equal_spacing, cw) in; \n \
-        in vec3 tcPosition[]; \n \
-        out vec3 tePosition; \n \
-        out vec3 tePatchDistance; \n \
-        uniform mat4 projection; \n \
-        uniform mat4 modelview; \n \
-         \n \
-        void main() \n \
-        { \n \
-            vec3 p0 = gl_TessCoord.x * tcPosition[0]; \n \
-            vec3 p1 = gl_TessCoord.y * tcPosition[1]; \n \
-            vec3 p2 = gl_TessCoord.z * tcPosition[2]; \n \
-            tePatchDistance = gl_TessCoord; \n \
-            tePosition = normalize(p0 + p1 + p2); \n \
-            gl_Position = projection * modelview * vec4(tePosition, 1); \n \
-        } \n";
-
-    static char tessControl[] = 
-        " \n \
-        #version 400\n \
-        layout(vertices = 3) out;\n \
-        in vec3 vPosition[];\n \
-        out vec3 tcPosition[];\n \
-        uniform float TessLevelInner;\n \
-        uniform float TessLevelOuter;\n \
-        \n \
-        #define ID gl_InvocationID\n \
-        \n \
-        void main()\n \
-        {\n \
-            tcPosition[ID] = vPosition[ID];\n \
-            if (ID == 0) {\n \
-                gl_TessLevelInner[0] = TessLevelInner;\n \
-                gl_TessLevelOuter[0] = TessLevelOuter;\n \
-                gl_TessLevelOuter[1] = TessLevelOuter;\n \
-                gl_TessLevelOuter[2] = TessLevelOuter;\n \
-            }\n \
-        }";
-
-    static char geom[] = 
-        "\n \
-        #version 400\n \
-        uniform mat4 modelview; \n \
-        layout(triangles) in; \n \
-        layout(triangle_strip, max_vertices = 3) out; \n \
-        in vec3 tePosition[3]; \n \
-        in vec3 tePatchDistance[3]; \n \
-        out vec3 gFacetNormal; \n \
-        out vec3 gPatchDistance; \n \
-        out vec3 gTriDistance; \n \
-         \n \
-        void main() \n \
-        { \n \
-            mat3 NormalMatrix = mat3(modelview); \n \
-            vec3 A = tePosition[2] - tePosition[0]; \n \
-            vec3 B = tePosition[1] - tePosition[0]; \n \
-            gFacetNormal = NormalMatrix * normalize(cross(A, B)); \n \
-         \n \
-            gPatchDistance = tePatchDistance[0]; \n \
-            gTriDistance = vec3(1, 0, 0); \n \
-            gl_Position = gl_in[0].gl_Position; EmitVertex(); \n \
-             \n \
-            gPatchDistance = tePatchDistance[1]; \n \
-            gTriDistance = vec3(0, 1, 0); \n \
-            gl_Position = gl_in[1].gl_Position; EmitVertex(); \n \
-             \n \
-            gPatchDistance = tePatchDistance[2]; \n \
-            gTriDistance = vec3(0, 0, 1); \n \
-            gl_Position = gl_in[2].gl_Position; EmitVertex(); \n \
-             \n \
-            EndPrimitive(); \n \
-        }";
     GLRenderer::GLRenderer() :
     m_Hwnd              (NULL),
     m_Handle            (NULL),
     m_Context           (NULL),
     m_CurrentDeclaration(NULL),
     m_Extensions        (""),
-    m_Reload            (false),
     m_CurrentProgram    (NULL),
     last_unit(TEXTURE_UNIT_0)
     {
@@ -252,14 +145,12 @@ namespace Agmd
 
     GLRenderer::~GLRenderer()
     {
-        // Destruction du contexte
         if (m_Context)
         {
             wglMakeCurrent(NULL, NULL);
             wglDeleteContext(m_Context);
         }
 
-        // Libération du handle graphique de la fenêtre
         if (m_Hwnd && m_Handle)
         {
             ReleaseDC(m_Hwnd, m_Handle);
@@ -276,21 +167,7 @@ namespace Agmd
     void GLRenderer::Setup(HWND Hwnd)
     {
         Logger::Instance().SetFilename("OpenGL");
-        /*if (bFullscreen)
-        {
-            DEVMODE ScreenSettings;
-            memset(&ScreenSettings, 0, sizeof(DEVMODE));
-            ScreenSettings.dmSize       = sizeof(DEVMODE);
-            ScreenSettings.dmPelsWidth  = 1024;
-            ScreenSettings.dmPelsHeight = 768;
-            ScreenSettings.dmBitsPerPel = 32;
-            ScreenSettings.dmFields     = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-    
-            if (ChangeDisplaySettings(&ScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
-                throw COGLException("ChangeDisplaySettings", "Initialize");
-        }*/
 
-        // Paramètres de rendu
         PIXELFORMATDESCRIPTOR PixelDescriptor = 
         { 
             sizeof(PIXELFORMATDESCRIPTOR),   // size of this pfd 
@@ -313,14 +190,13 @@ namespace Agmd
             0, 0, 0                          // layer masks ignored 
         };
 
-        // Récupération du Hwnd et du HDC de la fenêtre de rendu
         m_Hwnd   = Hwnd;
         m_Handle = GetDC(Hwnd);
 
-        // Choix du meilleur format de pixel
+        // Get best pixel format
         assert(SetPixelFormat(m_Handle, ChoosePixelFormat(m_Handle, &PixelDescriptor), &PixelDescriptor));
 
-        // Création du contexte de rendu
+        // Create Temp Glcontext for loading extentions
         m_Context = wglCreateContext(m_Handle);
         assert(wglMakeCurrent(m_Handle, m_Context));
 
@@ -332,11 +208,13 @@ namespace Agmd
             0
         };
 
-        // Chargement des extensions
+        // Load extensions
         LoadExtensions();
 
+        //Recreate a real GlContext (if possible)
         if(wglCreateContextAttribsARB != NULL)
         {
+            
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
             wglMakeCurrent(NULL,NULL);
             wglDeleteContext(m_Context);
@@ -344,7 +222,7 @@ namespace Agmd
             wglMakeCurrent(m_Handle, m_Context);
         }
 
-        // Récupération des extensions supportées
+        // Get Supported extensions
         int n;
         glGetIntegerv(GL_NUM_EXTENSIONS, &n);
         for (int i = 0; i < n; i++)
@@ -354,7 +232,7 @@ namespace Agmd
         }
 
 
-        // States par défaut
+        // Default states
         glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
@@ -365,10 +243,6 @@ namespace Agmd
         glEnable(GL_DEPTH_TEST);
 
         //init default shader
-
-        m_Pipeline.LoadFromFile("Shader/classic_pipeline.glsl");
-
-        m_DebugPipeline[0].LoadFromFile("Shader/debug_cubemap.glsl");
 
         glFrontFace(GL_CCW);
     }
@@ -493,20 +367,12 @@ namespace Agmd
 
     void GLRenderer::InitScene()
     {
-        if(m_Reload)
-        {
-            m_Pipeline.ReloadFromFile("Shader/classic_pipeline.glsl");
-            m_Reload = false;
-        }
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-        m_Pipeline.Enable();
     }
 
     void GLRenderer::EndScene()
     {
         //glFinish();
-        m_Pipeline.Disable();
         SwapBuffers(m_Handle); 
     }
 
@@ -552,8 +418,6 @@ namespace Agmd
 
         glBindBuffer(GL_TEXTURE_BUFFER, textureBuffer);
         glBufferData(GL_TEXTURE_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
-
-
 
         return new GLTextureBuffer(size, textureBuffer,NULL);
     }
@@ -608,32 +472,21 @@ namespace Agmd
                     break;
 
                 case ELT_USAGE_TEXCOORD0 :
-                    //glActiveTexture(GL_TEXTURE0);
-                    //glEnable(GL_TEXTURE_2D);
-                    //glClientActiveTexture(GL_TEXTURE0);
                     glEnableVertexAttribArray(3);
                     glVertexAttribPointer(3, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
                     break;
 
                 case ELT_USAGE_TEXCOORD1 :
-                    //glActiveTexture(GL_TEXTURE0);
-                    //glEnable(GL_TEXTURE_2D);
-                    //glClientActiveTexture(GL_TEXTURE0);
                     glEnableVertexAttribArray(4);
                     glVertexAttribPointer(4, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
                     break;
 
                 case ELT_USAGE_TEXCOORD2 :
-                    //glActiveTexture(GL_TEXTURE0);
-                    //glEnable(GL_TEXTURE_2D);
-                    //glClientActiveTexture(GL_TEXTURE0);
                     glEnableVertexAttribArray(5);
                     glVertexAttribPointer(5, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
                     break;
 
                 case ELT_USAGE_TEXCOORD3 :
-                    //glActiveTexture(GL_TEXTURE0);
-                    //glEnable(GL_TEXTURE_2D);
                     glEnableVertexAttribArray(6);
                     glVertexAttribPointer(6, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
                     break;
@@ -678,6 +531,12 @@ namespace Agmd
 
     void GLRenderer::DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count)
     {
+        if(!m_CurrentProgram)
+            return;
+
+        m_CurrentProgram->SetParameter(MAT_MODEL,MatStack::get());
+        m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
+
         switch (type)
         {
             case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); break;
@@ -691,12 +550,15 @@ namespace Agmd
 
     void GLRenderer::DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count)
     {
+        if(!m_CurrentProgram)
+            return;
+
         unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
         const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
-        glPatchParameteri(GL_PATCH_VERTICES, 3);
-        getPipeline()->SetParameter(MAT_MODEL,MatStack::get());
-        //updateGlobalBuffer();
-        getPipeline()->SetParameter("u_textureFlags",(int)m_TextureFlags);
+
+        m_CurrentProgram->SetParameter(MAT_MODEL,MatStack::get());
+        m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
+
         switch (type)
         {
             case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
@@ -707,15 +569,6 @@ namespace Agmd
             case PT_POINTLIST :     glDrawElements(GL_POINTS,         count, indicesType, offset); break;
             case PT_PATCHLIST :     glDrawElements(GL_PATCHES,        count, indicesType, offset); break;
         }
-    }
-    void GLRenderer::DrawSomething()
-    {
-        glBegin(GL_POLYGON);
-        glColor3ub(125,125,125); glVertex3f(0,-1,-1);
-        glColor3ub(255,0,0); glVertex3f(0,-1,1);
-        glColor3ub(0,255,0); glVertex3f(0,1,1);
-        glColor3ub(0,0,255); glVertex3f(0,1,-1);
-        glEnd();
     }
 
     uint32 GLRenderer::ConvertColor(const Color& color) const
@@ -847,6 +700,8 @@ namespace Agmd
 
     void GLRenderer::SetupTextureUnit(uint32 unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2, const Color& constant) const
     {
+        /* <!> Deprecated feature <!> */
+
         glEnable(GL_TEXTURE_2D);
         glActiveTexture(GL_TEXTURE0 + unit);
         glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT);
@@ -885,10 +740,8 @@ namespace Agmd
                 glDepthMask(value);
                 break;
             }
-            case RENDER_TRANSPARENT: /* DEPRECATED */
+            case RENDER_TRANSPARENT: /* <!> Deprecated feature <!> */
             { 
-                
-
                 /*if(value)
                     glEnable(GL_ALPHA_TEST);
                 else glDisable(GL_ALPHA_TEST);
@@ -913,15 +766,7 @@ namespace Agmd
         }
     }
 
-    void GLRenderer::setClipPlane(uint32 clipUnit, double* plane)
-    {
-        if(clipUnit > 5)
-            return;
-
-        glClipPlane(GL_CLIP_PLANE0+clipUnit,plane);
-    }
-
-    void GLRenderer::setRenderMode(TRenderMode mode)
+    void GLRenderer::SetRenderMode(TRenderMode mode)
     {
 
         glPolygonMode(GL_FRONT_AND_BACK,RGLEnum::Get(mode));
@@ -984,7 +829,6 @@ namespace Agmd
         delete[] log;
         if(compile_status != GL_TRUE)
         {
-
             glDeleteShader(shader);
             return NULL;
         }
@@ -1011,7 +855,7 @@ namespace Agmd
             glAttachShader(id,static_cast<GLShader*>(frag)->GetId());
 
 
-        /* Bind engine var*/
+        /* Bind engine variable*/
         glBindAttribLocation(id, 0,  "in_Vertex");
         glBindAttribLocation(id, 1,  "in_Normal");
         glBindAttribLocation(id, 2,  "in_Color");
@@ -1056,33 +900,15 @@ namespace Agmd
         return program;
     }
 
-    const BaseShaderProgram* GLRenderer::getPipeline()
+    const BaseShaderProgram* GLRenderer::GetCurrentProgram()
     {
-        if(m_CurrentProgram)
-            return m_CurrentProgram;
-        else
-            return m_Pipeline.GetShaderProgram();
+        return m_CurrentProgram;
     }
 
     FrameBuffer* GLRenderer::CreateFrameBuffer() const
     {
         uint32 id = 0;
-
         glGenFramebuffers(1, &id);
-        glBindFramebuffer(GL_FRAMEBUFFER, id);
-
-        /*uint32 status = glCheckFrameBufferStatus(GL_FRAMEBUFFER);
-        if(status != GL_FRAMEBUFFER_COMPLETE)
-        {
-            // need log
-            glBindFrameBuffer(GL_FRAMEBUFFER,0);
-            glDeleteFramebuffers(1,&id);
-            return NULL;
-        }*/
-        //glDrawBuffer(GL_NONE);
-        //glReadBuffer(GL_NONE);
-        glBindFramebuffer(GL_FRAMEBUFFER,0);
-
         return new GLFrameBuffer(id);
     }
 
@@ -1099,76 +925,16 @@ namespace Agmd
         
     }
 
-    void GLRenderer::ReloadPipeline()
-    {
-        m_Reload = true;
-    }
-
     void GLRenderer::SetCurrentProgram(const BaseShaderProgram* prog)
     {
         m_CurrentProgram = prog;
         if(m_CurrentProgram)
             m_CurrentProgram->Use(true);
-        else m_Pipeline.Enable();
     }
 
     void GLRenderer::SetViewPort(ivec2 xy, ivec2 size)
     {
         glViewport(xy.x, xy.y, size.x, size.y);
-    }
-
-    struct vert
-    {
-        vec3 pos;
-        vec2 tpos;
-    };
-
-    void GLRenderer::DebugCubeMap(const TextureBase* tex)
-    {
-        if(tex->GetType() != TEXTURE_CUBE)
-            return;
-        float m_fSize = 1.0f;
-        vert vertex[] = 
-        {    
-            //X+
-            {vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},
-            //X-
-            {vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,1)},
-            //Y+
-            {vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,1)},
-            //Y-
-            {vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},
-            //Z+
-            {vec3(m_fSize/2,m_fSize/2,m_fSize/2),vec2(1,0)},{vec3(m_fSize/2,-m_fSize/2,m_fSize/2),vec2(1,1)},{vec3(-m_fSize/2,m_fSize/2,m_fSize/2),vec2(0,0)},{vec3(-m_fSize/2,-m_fSize/2,m_fSize/2),vec2(0,1)},
-            //Z-
-            {vec3(m_fSize/2,m_fSize/2,-m_fSize/2),vec2(1,1)},{vec3(m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(1,0)},{vec3(-m_fSize/2,m_fSize/2,-m_fSize/2),vec2(0,1)},{vec3(-m_fSize/2,-m_fSize/2,-m_fSize/2),vec2(0,0)}
-        };
-
-        std::vector<short> indices;
-
-        SetCurrentProgram(m_DebugPipeline[0].GetShaderProgram());
-        for(uint32 i = 0; i < 6; i++)
-        {
-
-            glBegin(GL_TRIANGLES);
-            glTexCoord2fv((float*)&(vertex[1+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[1+i*4].pos.x));
-            glTexCoord2fv((float*)&(vertex[2+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[2+i*4].pos.x));
-            glTexCoord2fv((float*)&(vertex[0+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[0+i*4].pos.x));
-            glEnd();
-
-            glBegin(GL_TRIANGLES);
-            glTexCoord2fv((float*)&(vertex[1+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[1+i*4].pos.x));
-            glTexCoord2fv((float*)&(vertex[3+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[3+i*4].pos.x));
-            glTexCoord2fv((float*)&(vertex[2+i*4].tpos.x));
-            glVertex3fv((float*)&(vertex[2+i*4].pos.x));
-            glEnd();
-        }
-        SetCurrentProgram(NULL);
     }
 
     #define FRONT 1

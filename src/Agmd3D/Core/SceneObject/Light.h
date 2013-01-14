@@ -1,3 +1,11 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
+
 #ifndef _LIGHT_H_
 #define _LIGHT_H_
 
@@ -16,7 +24,7 @@ namespace Agmd
     };
 
 
-    class AGMD_EXPORT Light
+    class AGMD3D_EXPORT Light
     {
     public:
         Light(vec3 pos, vec3 dir, LightType type);

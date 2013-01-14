@@ -51,18 +51,10 @@
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\File.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Plugin.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Timer.cpp" />
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\echo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxml.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlparser.cpp" />
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\xmltest.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -69,7 +69,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2598881A-F203-41D4-A95C-2957ED3295AD}</ProjectGuid>
     <RootNamespace>AgmdPhysics_EG</RootNamespace>
-    <ProjectName>AgmdPhysics_EG</ProjectName>
+    <ProjectName>AgmdPhysics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

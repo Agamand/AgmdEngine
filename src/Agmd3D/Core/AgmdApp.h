@@ -1,3 +1,10 @@
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+============================================================================
+*/
 
 #ifndef AGMDAPP_H
 #define AGMDAPP_H
@@ -16,7 +23,7 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
-    class AGMD_EXPORT AgmdApp
+    class AGMD3D_EXPORT AgmdApp
     {
     public:
         void Run();
@@ -35,9 +42,9 @@ namespace Agmd
         bool               m_IsRunning;
         static AgmdApp*       m_Application;
         SmartPtr<Plugin>   m_Renderer;
-        uint64 last_time;
+        uint32 last_time;
         uint32 frame;
-        uint64 fps_timer;
+        uint32 fps_timer;
 
         float m_fps;
 

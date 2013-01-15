@@ -20,27 +20,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector3.h>
 #include <Matrix4.h>
 #include <Quaternion.h>
+#include <Transform.h>
 
 using namespace AgmdMaths;
 
 namespace Agmd
 {
-
-    struct AGMD3D_EXPORT Transform
-    {
-        Transform(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
-        m_position(_position),
-        m_rotation(_rotation)
-        {}
-
-        mat4 ModelMatrix() const { return translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); }
-
-        vec3 m_position;
-        quat m_rotation;
-    };
-
-
-    typedef Transform* TransformPtr;
 
     class AGMD3D_EXPORT Displayable
     {

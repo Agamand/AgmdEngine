@@ -16,7 +16,6 @@ namespace AgmdMaths
     m_Origin(start),
     m_End   (start + size)
     {
-
     }
 
 

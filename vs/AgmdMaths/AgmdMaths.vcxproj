@@ -325,6 +325,7 @@
     <ClInclude Include="..\..\src\AgmdMaths\Plane.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Quaternion.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Rectangle.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Transform.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Vector2.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Vector3.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Vector4.h" />
@@ -334,6 +335,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\AgmdMaths\Plane.inl" />
+    <None Include="..\..\src\AgmdMaths\Transform.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

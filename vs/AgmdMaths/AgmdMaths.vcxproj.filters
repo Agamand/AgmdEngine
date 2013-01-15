@@ -8,11 +8,13 @@
     <ClInclude Include="..\..\src\AgmdMaths\Vector2.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Vector3.h" />
     <ClInclude Include="..\..\src\AgmdMaths\Vector4.h" />
+    <ClInclude Include="..\..\src\AgmdMaths\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AgmdMaths\Rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\AgmdMaths\Plane.inl" />
+    <None Include="..\..\src\AgmdMaths\Transform.inl" />
   </ItemGroup>
 </Project>

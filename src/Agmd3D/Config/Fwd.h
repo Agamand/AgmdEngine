@@ -54,8 +54,6 @@ namespace Agmd
     class Sky;
     class Light;
 
-    struct Transform;
-
     //GUI Class
 
     class GUIMgr;

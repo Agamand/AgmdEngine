@@ -11,9 +11,9 @@ out vec3 v_Normal;
 
 void main()
 {
-    v_Normal = mat3(u_matModel)*in_Normal;
-    vec4 pos = u_matProjection*u_matView*u_matModel*vec4(in_Vertex,1.0f);
-    gl_Position = pos; 
+	v_Normal = mat3(u_matModel)*in_Normal;
+	vec4 pos = u_matProjection*u_matView*u_matModel*vec4(in_Vertex,1.0f);
+	gl_Position = pos; 
 
 }
 
@@ -29,9 +29,9 @@ out vec4 out_Color;
 
 void main (void)
 {
-    out_Color = vec4(1.0);
-    float lambertTerm = dot(v_Normal,light_dir);
-    out_Color = vec4(out_Color.xyz*(lambertTerm),out_Color.w);
+	out_Color = vec4(1.0);
+	float lambertTerm = dot(v_Normal,light_dir);
+	out_Color = vec4(out_Color.xyz*(lambertTerm),out_Color.w);
 }
 
 #endif

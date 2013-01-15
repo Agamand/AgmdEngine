@@ -59,7 +59,6 @@ namespace Agmd
     //GUI Class
 
     class GUIMgr;
-    class EventMgr;
     class AWidget;
     class AContainer;
     class AWindow;

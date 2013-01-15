@@ -1,8 +1,9 @@
 #version 330
 
-#include "global_uniform.glsl"
+#include "global_2d_uniform.glsl"
 
 #ifdef _VERTEX_
+
 in vec3 in_Vertex;
 in vec4 in_Color;
 in vec2 in_TexCoord0;
@@ -26,7 +27,7 @@ void main()
     texCoord2 = in_TexCoord2;
     texCoord3 = in_TexCoord3;
     
-    gl_Position = u_matProjection * u_matView * u_matModel* vec4(vertex,1.0f);
+    gl_Position = u_matProjection * u_matModel * vec4(vertex,1.0f);
 }
 #endif
 
@@ -47,7 +48,6 @@ uniform sampler2D texture3;
 void main()
 {
     out_Color = vec4(1.0);
-    
     if((u_textureFlags & 1 ) != 0)
     {
         out_Color = texture(texture0, texCoord0);
@@ -64,5 +64,7 @@ void main()
     {
         out_Color = texture(texture3, texCoord3);
     }
+	if(out_Color.a < 1.0f)
+		discard; //avoid transparent or semi-transparent pixel
 }
 #endif

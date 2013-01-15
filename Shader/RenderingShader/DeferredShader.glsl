@@ -50,10 +50,16 @@ layout(location = 2) out vec3 out_Position;
 uniform sampler2D texture0;
 
 
+vec3 normalToTexture(vec3 normal)
+{
+	vec3 n = normalize(normal);
+	return vec3(0.5) + n/2;
+}
+
 void main()
 {
 	out_Color = vec4(1.0);
-	out_Normal = normal;
+	out_Normal = normalToTexture(normal);
 	out_Position = pos.xyz;
 }
 

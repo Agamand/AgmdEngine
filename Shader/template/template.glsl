@@ -2,22 +2,22 @@
 #include INCLUDE
 
 
-#ifdef    _VERTEX_
+#ifdef	_VERTEX_
 
 #endif
 
-#ifdef    _TESS_CONTROL_
+#ifdef	_TESS_CONTROL_
 
 #endif
 
-#ifdef    _TESS_EVAL_
+#ifdef	_TESS_EVAL_
 
 #endif
 
-#ifdef    _GEOMETRY_
+#ifdef	_GEOMETRY_
 
 #endif
 
-#ifdef    _FRAGMENT_
+#ifdef	_FRAGMENT_
 
 #endif

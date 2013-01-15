@@ -130,12 +130,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\GameEngine\AgmdApp.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameEngine.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\GameEngine\AgmdApp.h" />
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

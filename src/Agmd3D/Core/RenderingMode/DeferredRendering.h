@@ -44,6 +44,7 @@ namespace Agmd
         RenderBuffer* m_positionbuffer;
 
         Texture m_textureBuffer[3];
+        uint32* bufferFlags;
 
 
 

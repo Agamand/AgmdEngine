@@ -122,6 +122,9 @@ void App::OnInit()
     m_light = new Light(vec3(4,0,0),vec3(0,1,0),LIGHT_POINT);
     m_Scene->AddLight(m_light);
     m_timer = 2000;
+
+    Camera::SetCurrent(cam3D, CAMERA_3D);
+    Camera::SetCurrent(cam2D, CAMERA_2D);
 }
 
 void App::OnUpdate(uint64 time_diff/*in ms*/)
@@ -141,11 +144,8 @@ void App::OnRender()
 
 
     // 2D RENDER BEGIN
-    render.Enable(RENDER_ZTEST,false);
     //Texture::TextureRender(tex);
     
-
-    Camera::SetCurrent(cam2D);
     //render.SetCurrentProgram(shader2D);
     //int fps = getFps();
     //m_fps->Text = StringBuilder(fps);
@@ -155,8 +155,8 @@ void App::OnRender()
     m_text->Draw();*/
     //render.SetCurrentProgram(NULL);
 
-    GUIMgr::Instance().DrawGUI();
-    Camera::SetCurrent(cam3D);
+    
+    
 }
 
 
@@ -363,25 +363,3 @@ Model* App::CreateTriangle(float size, TPrimitiveType type)
 
     return new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
 }
-
-void AgmdClient::RecvPacket(Packet& packet)
-{
-    OpClientMgr::Instance().RecvPacket(packet);
-}
-
-void OpClientMgr::HandleMessage(Packet& packet)
-{
-    std::string message = "";
-    packet >> message;
-    App::Instance().m_text->Text += message;
-}
-
-
-
-
-
-
-
-
-
-

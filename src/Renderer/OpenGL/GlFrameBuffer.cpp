@@ -104,17 +104,21 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::DrawBuffers(uint32 nbuffer, uint32 flag[])
+    void GLFrameBuffer::DrawBuffers(uint32 nbuffer, uint32* flag)
     {
-        /*<!> need improvement*/
-        uint32* buffer = new uint32[nbuffer];
-        for(uint32 i = 0; i < nbuffer; i++)
-            buffer[i] = RGLEnum::Get((TAttachment)flag[i]);
-        /*<!>*/
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glDrawBuffers(nbuffer, buffer);
+        GLRenderer::glDrawBuffers(nbuffer, flag);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
-        delete[] buffer;
+    }
+
+    uint32* GLFrameBuffer::GenerateBufferFlags(uint32 count, uint32 flags[])
+    {
+        if(!count)
+            return NULL;
+        uint32* buffer = new uint32[count];
+        for(uint32 i = 0; i < count; i++)
+            buffer[i] = RGLEnum::Get((TAttachment)flags[i]);
+        return buffer;
     }
 
     void GLFrameBuffer::ReadBuffer(uint32 flag)

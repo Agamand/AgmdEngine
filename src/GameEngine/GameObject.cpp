@@ -1,17 +1,14 @@
-#include "GameObject.h"
+#include <GameObject.h>
 
-
-GameObject::GameObject()
+namespace Agmd
 {
+    GameObject::GameObject()
+    {
 
-}
+    }
 
-GameObject::GameObject(Model* _model)
-{
+    GameObject::~GameObject(void)
+    {
 
-}
-
-GameObject::~GameObject(void)
-{
-
+    }
 }

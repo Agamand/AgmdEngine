@@ -37,26 +37,13 @@ namespace Agmd
     }
 
     void Light::BeginPrepareShadow() const
-    {
-        if(m_Type != LIGHT_DIR)
-            return;
-
-        Renderer& render = Renderer::Get();
-        render.SetCurrentProgram(m_program.GetShaderProgram());
-        render.GetCurrentProgram()->SetParameter("light_dir",m_dir);
-        render.GetCurrentProgram()->SetParameter("light_pos",m_position);
-    }
+    {}
 
     void Light::EndPrepareShadow() const
-    {
-        Renderer::Get().SetCurrentProgram(nullptr);
-    }
+    {}
 
     void Light::BeginApplyShadow() const
-    {
-        if(m_Type != LIGHT_DIR)
-            return;
-    }
+    {}
 
     void Light::EndApplyShadow() const
     {

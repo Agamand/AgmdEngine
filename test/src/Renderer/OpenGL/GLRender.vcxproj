@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebProfile|Win32">
+      <Configuration>DebProfile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelProfile|Win32">
+      <Configuration>RelProfile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{36ED8B3A-D6AB-4DAF-A8AE-2448ADB04B93}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>GLRender</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GLRender.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GLRender</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GLRender.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GLRender</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\lib\DebProfile\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">GLRender.dir\DebProfile\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">GLRender</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\lib\RelProfile\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">GLRender.dir\RelProfile\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">GLRender</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR="Debug";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Debug/GLRender.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\..\lib\Debug\Agmd3D.lib;opengl32.lib;..\..\..\..\lib\Cg\cgGL.lib;..\..\..\..\lib\Cg\cg.lib;..\..\..\..\lib\GLU\glu32.lib;..\..\..\..\lib\Debug\AgmdMaths.lib;..\..\..\..\lib\Debug\AgmdUtilities.lib;..\..\..\..\lib\DevIL\DevIL.lib;..\..\..\..\lib\DevIL\ILU.lib;..\..\..\..\lib\DevIL\ILUT.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Debug/GLRender.lib</ImportLibrary>
+      <LinkIncremental>true</LinkIncremental>
+      <ProgramDataBaseFile>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Debug/GLRender.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+      <Profile>true</Profile>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Release/GLRender.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\..\lib\Release\Agmd3D.lib;opengl32.lib;..\..\..\..\lib\Cg\cgGL.lib;..\..\..\..\lib\Cg\cg.lib;..\..\..\..\lib\GLU\glu32.lib;..\..\..\..\lib\Release\AgmdMaths.lib;..\..\..\..\lib\Release\AgmdUtilities.lib;..\..\..\..\lib\DevIL\DevIL.lib;..\..\..\..\lib\DevIL\ILU.lib;..\..\..\..\lib\DevIL\ILUT.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Release/GLRender.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/Release/GLRender.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;PROFILING_TIME;CMAKE_INTDIR="DebProfile";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>DebProfile</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/DebProfile/GLRender.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;PROFILING_TIME;CMAKE_INTDIR=\"DebProfile\";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\..\lib\DebProfile\Agmd3D.lib;opengl32.lib;..\..\..\..\lib\Cg\cgGL.lib;..\..\..\..\lib\Cg\cg.lib;..\..\..\..\lib\GLU\glu32.lib;..\..\..\..\lib\DebProfile\AgmdMaths.lib;..\..\..\..\lib\DebProfile\AgmdUtilities.lib;..\..\..\..\lib\DevIL\DevIL.lib;..\..\..\..\lib\DevIL\ILU.lib;..\..\..\..\lib\DevIL\ILUT.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/DebProfile/GLRender.lib</ImportLibrary>
+      <LinkIncremental>true</LinkIncremental>
+      <ProgramDataBaseFile>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/DebProfile/GLRender.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm1000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;PROFILING_TIME;CMAKE_INTDIR="RelProfile";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>RelProfile</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/RelProfile/GLRender.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;PROFILING_TIME;CMAKE_INTDIR=\"RelProfile\";GLRender_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdMaths;J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdUtilities;J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL;J:/Projet Infographie/Moteur3D/AgmdEngine/src;J:/Projet Infographie/Moteur3D/AgmdEngine/dep;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\..\lib\RelProfile\Agmd3D.lib;opengl32.lib;..\..\..\..\lib\Cg\cgGL.lib;..\..\..\..\lib\Cg\cg.lib;..\..\..\..\lib\GLU\glu32.lib;..\..\..\..\lib\RelProfile\AgmdMaths.lib;..\..\..\..\lib\RelProfile\AgmdUtilities.lib;..\..\..\..\lib\DevIL\DevIL.lib;..\..\..\..\lib\DevIL\ILU.lib;..\..\..\..\lib\DevIL\ILUT.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/RelProfile/GLRender.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/Projet Infographie/Moteur3D/AgmdEngine/lib/RelProfile/GLRender.pdb</ProgramDataBaseFile>
+      <StackReserveSize>10000000</StackReserveSize>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\..\src\Renderer\OpenGL\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" "-HJ:/Projet Infographie/Moteur3D/AgmdEngine" "-BJ:/Projet Infographie/Moteur3D/AgmdEngine/test" --check-stamp-file "J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" "-HJ:/Projet Infographie/Moteur3D/AgmdEngine" "-BJ:/Projet Infographie/Moteur3D/AgmdEngine/test" --check-stamp-file "J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">Building Custom Rule J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" "-HJ:/Projet Infographie/Moteur3D/AgmdEngine" "-BJ:/Projet Infographie/Moteur3D/AgmdEngine/test" --check-stamp-file "J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebProfile|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">Building Custom Rule J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" "-HJ:/Projet Infographie/Moteur3D/AgmdEngine" "-BJ:/Projet Infographie/Moteur3D/AgmdEngine/test" --check-stamp-file "J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">J:/Projet Infographie/Moteur3D/AgmdEngine/src/Renderer/OpenGL/CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;J:\Projet Infographie\Moteur3D\AgmdEngine\src\Renderer\OpenGL\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelProfile|Win32'">J:\Projet Infographie\Moteur3D\AgmdEngine\test\src\Renderer\OpenGL\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlBuffer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlDeclaration.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlEnums.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlFrameBuffer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlRenderBuffer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlRenderer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlShader.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlShaderProgram.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlTexture.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlTexture2D.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlTextureBuffer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlTextureCube.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlUniformBuffer.h" />
+    <ClInclude Include="..\..\..\..\src\Renderer\OpenGL\GlBuffer.inl" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlDeclaration.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlEnums.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlFrameBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlRenderBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlShader.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlShaderProgram.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlTexture.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlTexture2D.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlTextureBuffer.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlTextureCube.cpp" />
+    <ClCompile Include="..\..\..\..\src\Renderer\OpenGL\GlUniformBuffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="J:/Projet Infographie/Moteur3D/AgmdEngine/test/src/Agmd3D/Agmd3D.vcxproj">
+      <Project>EB80560E-FD4B-4BB1-A1E5-CE29BAC7C268</Project>
+    </ProjectReference>
+    <ProjectReference Include="J:/Projet Infographie/Moteur3D/AgmdEngine/test/ZERO_CHECK.vcxproj">
+      <Project>39AF631C-67BD-47FC-AD10-998276D6214C</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

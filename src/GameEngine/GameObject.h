@@ -10,9 +10,7 @@ namespace Agmd
     {
     public:
         GameObject();
-        GameObject(Model* _model);
 
-        void setPhysicsModel();
         void setPosition(vec3 _pos)
 
 

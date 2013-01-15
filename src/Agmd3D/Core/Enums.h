@@ -240,8 +240,15 @@ namespace Agmd
 
     enum TUniformBind
     {
-        UNIFORM_CAMERA_BIND,
-        UNIFORM_LIGHT_BIND
+        UNIFORM_CAMERA3D_BIND,
+        UNIFORM_LIGHT_BIND,
+        UNIFORM_CAMERA2D_BIND
+    };
+
+    enum TCamera
+    {
+        CAMERA_3D,
+        CAMERA_2D
     };
 
     enum TComponent

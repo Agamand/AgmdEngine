@@ -13,9 +13,6 @@ SINGLETON_IMPL(Agmd::MediaManager);
 
 namespace Agmd
 {
-
-
-
     MediaManager::MediaManager()
     {
         m_Paths.insert("");

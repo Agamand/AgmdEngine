@@ -28,7 +28,13 @@ namespace Agmd
     }
 
     ForwardRendering::~ForwardRendering()
-    {}
+    {
+        if(bufferFlags[0])
+            delete bufferFlags[0];
+
+        if(bufferFlags[1])
+            delete bufferFlags[1];
+    }
 
     void ForwardRendering::Init()
     {
@@ -45,6 +51,12 @@ namespace Agmd
         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
+
+        uint32 buffer[] = {COLOR_ATTACHMENT};
+        bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
+        uint32 buffer2[] = {COLOR_ATTACHMENT1};
+        bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
+
     }
 
     void ForwardRendering::Compute()
@@ -54,7 +66,7 @@ namespace Agmd
         Start();
 
         /*
-           FirstPass, here is draw the ZBuffer(Only) (Zbuffer).
+           FirstPass, here is draw the ZBuffer(Only).
         */
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
@@ -73,8 +85,8 @@ namespace Agmd
         /*
             Render diffuse to color_attachment0
         */
-        uint32 buffer[] = {COLOR_ATTACHMENT};
-        m_framebuffer->DrawBuffers(1,buffer);
+
+        m_framebuffer->DrawBuffers(1,bufferFlags[0]);
         m_framebuffer->Clear(CLEAR_COLOR);
         m_framebuffer->Bind();
         render.SetupDepthTest(DEPTH_LEQUAL);
@@ -85,12 +97,12 @@ namespace Agmd
         /*
             Render lighting to color_attachment1
         */
+
         std::vector<Light*> lights = sc->GetLights();
         uint32 maxLights = lights.size();
         if(maxLights)
         {
-            uint32 buffer2[] = {COLOR_ATTACHMENT1};
-            m_framebuffer->DrawBuffers(1,buffer2);
+            m_framebuffer->DrawBuffers(1,bufferFlags[1]);
             m_framebuffer->Clear(CLEAR_COLOR);
             m_framebuffer->Bind();
             render.SetupDepthTest(DEPTH_LEQUAL);

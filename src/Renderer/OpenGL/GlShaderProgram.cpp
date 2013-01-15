@@ -432,7 +432,7 @@ namespace Agmd
     {
         int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
         if(index >= 0)
-            GLRenderer::glUniformBlockBinding(m_id, bindpoint, index);
+            GLRenderer::glUniformBlockBinding(m_id, index, bindpoint);
     }
 
     void GLShaderProgram::Use(bool use) const

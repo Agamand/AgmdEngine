@@ -70,8 +70,6 @@ namespace Agmd
         return 0;
     }
 
-    
-
     void AWindow::OnSizeChanged()
     {
         TVertex* vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);

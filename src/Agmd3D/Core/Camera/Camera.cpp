@@ -43,22 +43,31 @@ namespace Agmd
         return lookAt(_position,_target,vec3(0,0,1));
     }
 
-    void Camera::SetActive()
+    void Camera::SetActive(TCamera type)
     {
-        m_cameraBuffer.Bind(UNIFORM_CAMERA_BIND);
+        if(type == CAMERA_2D)
+            m_cameraBuffer.Bind(UNIFORM_CAMERA2D_BIND);
+        else
+            m_cameraBuffer.Bind(UNIFORM_CAMERA3D_BIND);   
     }
 
-    void Camera::SetCurrent(Camera* cam)
+    void Camera::SetCurrent(Camera* cam, TCamera type)
     {
-        s_currentCamera = cam;
+        if(type == CAMERA_2D)
+            s_currentCamera2D = cam;
+        else
+            s_currentCamera3D = cam;
         if(cam)
-            cam->SetActive();
+            cam->SetActive(type);
     }
 
-    Camera* Camera::GetCurrent()
+    Camera* Camera::GetCurrent(TCamera type)
     {
-        return s_currentCamera;
+        if(type == CAMERA_2D)
+            return s_currentCamera2D;
+        return s_currentCamera3D;
     }
 
-    Camera* Camera::s_currentCamera = NULL;
+    Camera* Camera::s_currentCamera2D = NULL;
+    Camera* Camera::s_currentCamera3D = NULL;
 }

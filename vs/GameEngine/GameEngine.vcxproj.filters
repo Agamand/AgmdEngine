@@ -3,10 +3,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\GameEngine\GameEngine.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameObject.cpp" />
-    <ClCompile Include="..\..\src\GameEngine\AgmdApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
-    <ClInclude Include="..\..\src\GameEngine\AgmdApp.h" />
   </ItemGroup>
 </Project>

@@ -49,48 +49,48 @@ namespace Agmd
 
     #define BUFFER_OFFSET(n) ((byte*)NULL + (n))
 
-    PFNGLGETSTRINGIPROC                  GLRenderer::glGetStringi;
-    PFNGLBINDBUFFERPROC               GLRenderer::glBindBuffer;
-    PFNGLDELETEBUFFERSPROC            GLRenderer::glDeleteBuffers;
-    PFNGLGENBUFFERSPROC               GLRenderer::glGenBuffers;
-    PFNGLBUFFERDATAPROC               GLRenderer::glBufferData;
-    PFNGLBUFFERSUBDATAPROC            GLRenderer::glBufferSubData;
-    PFNGLGETBUFFERSUBDATAPROC         GLRenderer::glGetBufferSubData;
-    PFNGLMAPBUFFERPROC                GLRenderer::glMapBuffer;
-    PFNGLUNMAPBUFFERPROC              GLRenderer::glUnmapBuffer;
-    PFNGLACTIVETEXTUREPROC            GLRenderer::glActiveTexture;
-    PFNGLCLIENTACTIVETEXTUREPROC      GLRenderer::glClientActiveTexture;
-    PFNGLCOMPRESSEDTEXIMAGE2DPROC     GLRenderer::glCompressedTexImage2D;
-    PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC  GLRenderer::glCompressedTexSubImage2D;
-    PFNGLPATCHPARAMETERIPROC          GLRenderer::glPatchParameteri;
-    PFNGLGENPROGRAMPIPELINESPROC      GLRenderer::glGenProgramPipelines;
-    PFNGLBINDPROGRAMPIPELINEPROC      GLRenderer::glBindProgramPipelines;
-    PFNGLCREATEPROGRAMPROC            GLRenderer::glCreateProgram;
-    PFNGLDELETEPROGRAMPROC            GLRenderer::glDeleteProgram;
-    PFNGLCREATESHADERPROC             GLRenderer::glCreateShader;
-    PFNGLDELETESHADERPROC             GLRenderer::glDeleteShader;
-    PFNGLSHADERSOURCEPROC             GLRenderer::glShaderSource;
-    PFNGLCOMPILESHADERPROC            GLRenderer::glCompileShader;
-    PFNGLGETSHADERIVPROC              GLRenderer::glGetShaderiv;
-    PFNGLGETSHADERINFOLOGPROC          GLRenderer::glGetShaderInfoLog;
-    PFNGLATTACHSHADERPROC             GLRenderer::glAttachShader;
-    PFNGLLINKPROGRAMPROC              GLRenderer::glLinkProgram;
-    PFNGLGETPROGRAMIVPROC             GLRenderer::glGetProgramiv;
+    PFNGLGETSTRINGIPROC                 GLRenderer::glGetStringi;
+    PFNGLBINDBUFFERPROC                 GLRenderer::glBindBuffer;
+    PFNGLDELETEBUFFERSPROC              GLRenderer::glDeleteBuffers;
+    PFNGLGENBUFFERSPROC                 GLRenderer::glGenBuffers;
+    PFNGLBUFFERDATAPROC                 GLRenderer::glBufferData;
+    PFNGLBUFFERSUBDATAPROC              GLRenderer::glBufferSubData;
+    PFNGLGETBUFFERSUBDATAPROC           GLRenderer::glGetBufferSubData;
+    PFNGLMAPBUFFERPROC                  GLRenderer::glMapBuffer;
+    PFNGLUNMAPBUFFERPROC                GLRenderer::glUnmapBuffer;
+    PFNGLACTIVETEXTUREPROC              GLRenderer::glActiveTexture;
+    PFNGLCLIENTACTIVETEXTUREPROC        GLRenderer::glClientActiveTexture;
+    PFNGLCOMPRESSEDTEXIMAGE2DPROC       GLRenderer::glCompressedTexImage2D;
+    PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC    GLRenderer::glCompressedTexSubImage2D;
+    PFNGLPATCHPARAMETERIPROC            GLRenderer::glPatchParameteri;
+    PFNGLGENPROGRAMPIPELINESPROC        GLRenderer::glGenProgramPipelines;
+    PFNGLBINDPROGRAMPIPELINEPROC        GLRenderer::glBindProgramPipelines;
+    PFNGLCREATEPROGRAMPROC              GLRenderer::glCreateProgram;
+    PFNGLDELETEPROGRAMPROC              GLRenderer::glDeleteProgram;
+    PFNGLCREATESHADERPROC               GLRenderer::glCreateShader;
+    PFNGLDELETESHADERPROC               GLRenderer::glDeleteShader;
+    PFNGLSHADERSOURCEPROC               GLRenderer::glShaderSource;
+    PFNGLCOMPILESHADERPROC              GLRenderer::glCompileShader;
+    PFNGLGETSHADERIVPROC                GLRenderer::glGetShaderiv;
+    PFNGLGETSHADERINFOLOGPROC           GLRenderer::glGetShaderInfoLog;
+    PFNGLATTACHSHADERPROC               GLRenderer::glAttachShader;
+    PFNGLLINKPROGRAMPROC                GLRenderer::glLinkProgram;
+    PFNGLGETPROGRAMIVPROC               GLRenderer::glGetProgramiv;
     PFNGLGETPROGRAMINFOLOGPROC          GLRenderer::glGetProgramInfoLog;
-    PFNGLGETACTIVEUNIFORMSIVPROC      GLRenderer::glGetActiveUniformsiv;
-    PFNGLGETACTIVEUNIFORMNAMEPROC      GLRenderer::glGetActiveUniformName;
-    PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC GLRenderer::glGetActiveUniformBlockName;
-    PFNGLGETACTIVEUNIFORMBLOCKIVPROC  GLRenderer::glGetActiveUniformBlockiv;
-    PFNGLGETINTEGERI_VPROC             GLRenderer::glGetIntegeri_v;
-    PFNGLGETACTIVEUNIFORMPROC         GLRenderer::glGetActiveUniform;
-    PFNGLGETUNIFORMLOCATIONPROC       GLRenderer::glGetUniformLocation;
-    PFNGLGETACTIVEATTRIBPROC          GLRenderer::glGetActiveAttrib;
-    PFNGLGETATTRIBLOCATIONPROC        GLRenderer::glGetAttribLocation;
-    PFNGLGETACTIVEUNIFORMBLOCKIVPROC  GLRenderer::glGetActiveUniformBlock;
-    PFNGLGETUNIFORMBLOCKINDEXPROC      GLRenderer::glGetUniformBlockIndex;
-    PFNGLUNIFORMBLOCKBINDINGPROC      GLRenderer::glUniformBlockBinding;
-    PFNGLBINDBUFFERBASEPROC           GLRenderer::glBindBufferBase;
-    PFNGLUSEPROGRAMPROC               GLRenderer::glUseProgram;
+    PFNGLGETACTIVEUNIFORMSIVPROC        GLRenderer::glGetActiveUniformsiv;
+    PFNGLGETACTIVEUNIFORMNAMEPROC       GLRenderer::glGetActiveUniformName;
+    PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC  GLRenderer::glGetActiveUniformBlockName;
+    PFNGLGETACTIVEUNIFORMBLOCKIVPROC    GLRenderer::glGetActiveUniformBlockiv;
+    PFNGLGETINTEGERI_VPROC              GLRenderer::glGetIntegeri_v;
+    PFNGLGETACTIVEUNIFORMPROC           GLRenderer::glGetActiveUniform;
+    PFNGLGETUNIFORMLOCATIONPROC         GLRenderer::glGetUniformLocation;
+    PFNGLGETACTIVEATTRIBPROC            GLRenderer::glGetActiveAttrib;
+    PFNGLGETATTRIBLOCATIONPROC          GLRenderer::glGetAttribLocation;
+    PFNGLGETACTIVEUNIFORMBLOCKIVPROC    GLRenderer::glGetActiveUniformBlock;
+    PFNGLGETUNIFORMBLOCKINDEXPROC       GLRenderer::glGetUniformBlockIndex;
+    PFNGLUNIFORMBLOCKBINDINGPROC        GLRenderer::glUniformBlockBinding;
+    PFNGLBINDBUFFERBASEPROC             GLRenderer::glBindBufferBase;
+    PFNGLUSEPROGRAMPROC                 GLRenderer::glUseProgram;
     PFNGLUNIFORM1IPROC                  GLRenderer::glUniform1i;
     PFNGLUNIFORM2IPROC                  GLRenderer::glUniform2i;
     PFNGLUNIFORM3IPROC                  GLRenderer::glUniform3i;
@@ -99,37 +99,37 @@ namespace Agmd
     PFNGLUNIFORM2FPROC                  GLRenderer::glUniform2f;
     PFNGLUNIFORM3FPROC                  GLRenderer::glUniform3f;
     PFNGLUNIFORM4FPROC                  GLRenderer::glUniform4f;
-    PFNGLUNIFORM4FVPROC                  GLRenderer::glUniform1fv;
-    PFNGLUNIFORM4FVPROC                  GLRenderer::glUniform2fv;
-    PFNGLUNIFORM4FVPROC                  GLRenderer::glUniform3fv;
-    PFNGLUNIFORM4FVPROC                  GLRenderer::glUniform4fv;
-    PFNGLUNIFORMMATRIX2FVPROC          GLRenderer::glUniformMatrix2fv;
-    PFNGLUNIFORMMATRIX3FVPROC          GLRenderer::glUniformMatrix3fv;
-    PFNGLUNIFORMMATRIX4FVPROC          GLRenderer::glUniformMatrix4fv;
-    PFNGLVERTEXATTRIB1FNVPROC          GLRenderer::glVertexAttrib1f;
-    PFNGLVERTEXATTRIB2FNVPROC          GLRenderer::glVertexAttrib2f;
-    PFNGLVERTEXATTRIB3FNVPROC          GLRenderer::glVertexAttrib3f;
-    PFNGLVERTEXATTRIB4FNVPROC          GLRenderer::glVertexAttrib4f;
-    PFNGLVERTEXATTRIBPOINTERPROC      GLRenderer::glVertexAttribPointer;
-    PFNGLENABLEVERTEXATTRIBARRAYPROC  GLRenderer::glEnableVertexAttribArray;
-    PFNGLBINDATTRIBLOCATIONPROC       GLRenderer::glBindAttribLocation;
-    PFNGLGENRENDERBUFFERSPROC         GLRenderer::glGenRenderbuffers;
-    PFNGLDELETERENDERBUFFERSPROC      GLRenderer::glDeleteRenderbuffers;
-    PFNGLBINDRENDERBUFFERPROC         GLRenderer::glBindRenderbuffer;
-    PFNGLRENDERBUFFERSTORAGEPROC      GLRenderer::glRenderbufferStorage;
-    PFNGLGENFRAMEBUFFERSPROC          GLRenderer::glGenFramebuffers;
-    PFNGLDELETEFRAMEBUFFERSPROC       GLRenderer::glDeleteFramebuffers;
-    PFNGLBINDFRAMEBUFFERPROC          GLRenderer::glBindFramebuffer;
-    PFNGLDRAWBUFFERSPROC              GLRenderer::glDrawBuffers;
-    PFNGLFRAMEBUFFERRENDERBUFFERPROC  GLRenderer::glFramebufferRenderbuffer;
-    PFNGLFRAMEBUFFERTEXTUREPROC       GLRenderer::glFramebufferTexture;
-    PFNGLFRAMEBUFFERTEXTURE2DPROC     GLRenderer::glFramebufferTexture2D;
-    PFNGLFRAMEBUFFERTEXTURE3DPROC     GLRenderer::glFramebufferTexture3D;
-    PFNGLCHECKFRAMEBUFFERSTATUSPROC   GLRenderer::glCheckFramebufferStatus;
+    PFNGLUNIFORM4FVPROC                 GLRenderer::glUniform1fv;
+    PFNGLUNIFORM4FVPROC                 GLRenderer::glUniform2fv;
+    PFNGLUNIFORM4FVPROC                 GLRenderer::glUniform3fv;
+    PFNGLUNIFORM4FVPROC                 GLRenderer::glUniform4fv;
+    PFNGLUNIFORMMATRIX2FVPROC           GLRenderer::glUniformMatrix2fv;
+    PFNGLUNIFORMMATRIX3FVPROC           GLRenderer::glUniformMatrix3fv;
+    PFNGLUNIFORMMATRIX4FVPROC           GLRenderer::glUniformMatrix4fv;
+    PFNGLVERTEXATTRIB1FNVPROC           GLRenderer::glVertexAttrib1f;
+    PFNGLVERTEXATTRIB2FNVPROC           GLRenderer::glVertexAttrib2f;
+    PFNGLVERTEXATTRIB3FNVPROC           GLRenderer::glVertexAttrib3f;
+    PFNGLVERTEXATTRIB4FNVPROC           GLRenderer::glVertexAttrib4f;
+    PFNGLVERTEXATTRIBPOINTERPROC        GLRenderer::glVertexAttribPointer;
+    PFNGLENABLEVERTEXATTRIBARRAYPROC    GLRenderer::glEnableVertexAttribArray;
+    PFNGLBINDATTRIBLOCATIONPROC         GLRenderer::glBindAttribLocation;
+    PFNGLGENRENDERBUFFERSPROC           GLRenderer::glGenRenderbuffers;
+    PFNGLDELETERENDERBUFFERSPROC        GLRenderer::glDeleteRenderbuffers;
+    PFNGLBINDRENDERBUFFERPROC           GLRenderer::glBindRenderbuffer;
+    PFNGLRENDERBUFFERSTORAGEPROC        GLRenderer::glRenderbufferStorage;
+    PFNGLGENFRAMEBUFFERSPROC            GLRenderer::glGenFramebuffers;
+    PFNGLDELETEFRAMEBUFFERSPROC         GLRenderer::glDeleteFramebuffers;
+    PFNGLBINDFRAMEBUFFERPROC            GLRenderer::glBindFramebuffer;
+    PFNGLDRAWBUFFERSPROC                GLRenderer::glDrawBuffers;
+    PFNGLFRAMEBUFFERRENDERBUFFERPROC    GLRenderer::glFramebufferRenderbuffer;
+    PFNGLFRAMEBUFFERTEXTUREPROC         GLRenderer::glFramebufferTexture;
+    PFNGLFRAMEBUFFERTEXTURE2DPROC       GLRenderer::glFramebufferTexture2D;
+    PFNGLFRAMEBUFFERTEXTURE3DPROC       GLRenderer::glFramebufferTexture3D;
+    PFNGLCHECKFRAMEBUFFERSTATUSPROC     GLRenderer::glCheckFramebufferStatus;
 
 
-    PFNWGLCREATECONTEXTATTRIBSARBPROC GLRenderer::wglCreateContextAttribsARB;
-    PFNWGLSWAPINTERVALEXTPROC         GLRenderer::wglSwapIntervalEXT;
+    PFNWGLCREATECONTEXTATTRIBSARBPROC   GLRenderer::wglCreateContextAttribsARB;
+    PFNWGLSWAPINTERVALEXTPROC           GLRenderer::wglSwapIntervalEXT;
 
     GLRenderer::GLRenderer() :
     m_Hwnd              (NULL),
@@ -138,7 +138,7 @@ namespace Agmd
     m_CurrentDeclaration(NULL),
     m_Extensions        (""),
     m_CurrentProgram    (NULL),
-    last_unit(TEXTURE_UNIT_0)
+    last_unit           (TEXTURE_UNIT_0)
     {
         std::memset(m_TextureBind,NULL,sizeof(void*)*MAX_TEXTUREUNIT);
     }
@@ -208,11 +208,11 @@ namespace Agmd
             0
         };
 
-        // Load extensions
-        LoadExtensions();
+        // Load CreateContext function
+        LOAD_EXTENSION(wglCreateContextAttribsARB);
 
         //Recreate a real GlContext (if possible)
-        if(wglCreateContextAttribsARB != NULL)
+        if(wglCreateContextAttribsARB != NULL && false)
         {
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
@@ -220,7 +220,11 @@ namespace Agmd
             wglDeleteContext(m_Context);
             m_Context = temp;
             wglMakeCurrent(m_Handle, m_Context);
+
         }
+
+        // Load extensions
+        LoadExtensions();
 
         // Get Supported extensions
         int n;
@@ -361,7 +365,7 @@ namespace Agmd
         LOAD_EXTENSION(glFramebufferTexture3D);
         LOAD_EXTENSION(glCheckFramebufferStatus);
 
-        LOAD_EXTENSION(wglCreateContextAttribsARB);
+        
         LOAD_EXTENSION(wglSwapIntervalEXT);
     }
 
@@ -894,8 +898,9 @@ namespace Agmd
         }
 
         GLShaderProgram* program = new GLShaderProgram(id);
-        program->SetParameter("cameraInfoBlock",(uint32)UNIFORM_CAMERA_BIND);
+        program->SetParameter("cameraInfoBlock",(uint32)UNIFORM_CAMERA3D_BIND);
         program->SetParameter("lightInfoBlock",(uint32)UNIFORM_LIGHT_BIND);
+        program->SetParameter("camera2DInfoBlock",(uint32)UNIFORM_CAMERA2D_BIND);
         program->UniformShaderInfo();
         return program;
     }

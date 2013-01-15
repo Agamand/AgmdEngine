@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\src\AgmdMaths\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\41b01367461d805acadb6cd847a6e910\ALL_BUILD.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\ALL_BUILD" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{EB25EE7B-A2EE-4DA0-A0DB-1F2BC231D639}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

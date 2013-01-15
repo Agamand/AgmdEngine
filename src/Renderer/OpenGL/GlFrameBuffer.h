@@ -32,7 +32,8 @@ namespace Agmd
         virtual void Clear(uint32 flags);
 
         virtual void DrawBuffer(uint32 flag);
-        virtual void DrawBuffers(uint32 nbuffer, uint32 flag[]);
+        virtual void DrawBuffers(uint32 nbuffer, uint32* flag);
+        virtual uint32* GenerateBufferFlags(uint32 count, uint32 flags[]);
         virtual void ReadBuffer(uint32 flag);
 
         uint32 GetID();

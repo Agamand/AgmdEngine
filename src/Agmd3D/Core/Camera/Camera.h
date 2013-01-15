@@ -11,6 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Config/Export.h>
 #include <Core/Buffer/Buffer.h>
+#include <Core/Enums.h>
 #include <Vector3.h>
 #include <Matrix4.h>
 #include <AgmdDefines.h>
@@ -52,10 +53,10 @@ namespace Agmd
 
         virtual mat4 Look();
 
-        void SetActive();
+        void SetActive(TCamera type = CAMERA_3D);
 
-        static void SetCurrent(Camera* cam);
-        static Camera* GetCurrent();
+        static void SetCurrent(Camera* cam, TCamera type = CAMERA_3D);
+        static Camera* GetCurrent(TCamera type = CAMERA_3D);
 
     protected:
         struct CameraBuffer
@@ -80,7 +81,8 @@ namespace Agmd
 
         Buffer<CameraBuffer> m_cameraBuffer;
     private:
-        static Camera* s_currentCamera;
+        static Camera* s_currentCamera3D;
+        static Camera* s_currentCamera2D;
     };
 }
 #endif

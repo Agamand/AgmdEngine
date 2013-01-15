@@ -48,10 +48,11 @@ namespace Agmd
     {
         if(m_vwWidget.empty())
             return;
-        //Renderer::Get().Enable(RENDER_ZWRITE, false);
+
+        Renderer::Get().Enable(RENDER_ZTEST,false);
+
         for(int32 i = 0; i < m_vwWidget.size(); i++)
             m_vwWidget[i]->Draw();
-        //Renderer::Get().Enable(RENDER_ZWRITE, true);
     }
 
     void GUIMgr::HandleEvent(EventEntry _event)

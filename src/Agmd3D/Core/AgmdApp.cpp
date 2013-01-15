@@ -135,7 +135,9 @@ namespace Agmd
                 GUIMgr::Instance().Update(time_diff);
                 OnUpdate(time_diff);
                 render.InitScene();
+                //Render 3D objects
                 RenderingMode::GetRenderingMode()->Compute();
+                //Render 2D GUI
                 GUIMgr::Instance().DrawGUI();
                 OnRender(); 
                 render.EndScene();

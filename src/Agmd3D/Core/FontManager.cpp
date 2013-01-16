@@ -207,15 +207,15 @@ namespace Agmd
                     continue;
             }
             
-
-            x += curFont.charSize[c].x * ratio;
-            ++nbChars;
             MatStack::push(translate(mat4(1.0f),vec3(x,y,0)));
             Renderer::Get().GetCurrentProgram()->SetParameter("u_char",(int)c);
             Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 6);
             MatStack::pop();
 
+            x += curFont.charSize[c].x * ratio;
+            ++nbChars;
         }
+
         Renderer::Get().SetCurrentProgram(NULL);
         //Renderer::Get().Enable(RENDER_ZTEST, true);
     }

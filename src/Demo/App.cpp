@@ -147,10 +147,9 @@ void App::OnRender()
     //Texture::TextureRender(tex);
     
     //render.SetCurrentProgram(shader2D);
-    //int fps = getFps();
-    //m_fps->Text = StringBuilder(fps);
+    m_fps->m_Text = StringBuilder(getFps());
    //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
-    //m_fps->Draw();
+    m_fps->Draw();
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
     m_text->Draw();*/
     //render.SetCurrentProgram(NULL);

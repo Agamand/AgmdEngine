@@ -51,7 +51,7 @@ namespace Agmd
 
         Renderer::Get().Enable(RENDER_ZTEST,false);
 
-        for(int32 i = 0; i < m_vwWidget.size(); i++)
+        for(uint32 i = 0; i < m_vwWidget.size(); i++)
             m_vwWidget[i]->Draw();
     }
 
@@ -61,9 +61,9 @@ namespace Agmd
         switch(_event.eventType)
         {
             case EV_ON_MOUSE_BUTTON:
-                for(int32 i = m_vwWidget.size()-1; i >= 0 ; i--)
+                for(uint32 i = 0; i < m_vwWidget.size() ; i++)
                 {
-                    if(!m_vwWidget[i]->OnClick(_event.mousePosition,_event.mouseState))
+                    if(!m_vwWidget[m_vwWidget.size()-i-1]->OnClick(_event.mousePosition,_event.mouseState))
                         continue;
                     SetSelected(i);
                     break;

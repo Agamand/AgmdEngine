@@ -26,21 +26,19 @@ namespace Agmd
     {
     public :
 
-        GraphicString(const ivec2 & StringPosition = ivec2(0), const std::string& StringText = "", const Color& StringColor = Color::white, const std::string& StringFont = "Arial", int StringSize = 16);
+        GraphicString(const ivec2 & stringPosition = ivec2(0), const std::string& stringText = "", const Color& stringColor = Color::white, const std::string& stringFont = "Arial", int stringSize = 16);
 
         void Draw() const;
 
         ivec2 GetPixelSize() const;
 
+        void Align(unsigned long mode, const AgmdMaths::Rectangle& rect);
 
-
-        void Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect);
-
-        ivec2   Position;
-        std::string Text;
-        Color      color;
-        std::string Font;
-        int         Size;
+        ivec2       m_Position;
+        std::string m_Text;
+        Color       m_color;
+        std::string m_Font;
+        int         m_Size;
     };
 
 }

@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #ifndef DECLARATIONELEMENT_H
 #define DECLARATIONELEMENT_H
-
+#include <AgmdDefines.h>
 
 namespace Agmd
 {
@@ -33,13 +33,14 @@ namespace Agmd
         ELT_TYPE_FLOAT2,
         ELT_TYPE_FLOAT3,
         ELT_TYPE_FLOAT4,
+        ELT_TYPE_INT,
         ELT_TYPE_COLOR
     };
 
     struct TDeclarationElement
     {
-        unsigned int  stream;
-        TElementUsage usage;
+        uint32 stream;
+        uint32 usage;
         TElementType  dataType;
     };
 

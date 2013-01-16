@@ -388,6 +388,7 @@ namespace Agmd
 
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         return new GLVertexBuffer(size, VertexBuffer);
     }
@@ -399,6 +400,7 @@ namespace Agmd
 
         glBindBuffer(GL_ARRAY_BUFFER, IndexBuffer);
         glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         return new GLIndexBuffer(size, IndexBuffer);
     }
@@ -411,6 +413,7 @@ namespace Agmd
         glBindBuffer(GL_UNIFORM_BUFFER, uniformBuffer);
         glBufferData(GL_UNIFORM_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
         glBindBufferBase(GL_UNIFORM_BUFFER,bindPoint,uniformBuffer);
+        glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
         return new GLUniformBuffer(size, uniformBuffer, bindPoint);
     }
@@ -422,6 +425,7 @@ namespace Agmd
 
         glBindBuffer(GL_TEXTURE_BUFFER, textureBuffer);
         glBufferData(GL_TEXTURE_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+        glBindBuffer(GL_TEXTURE_BUFFER, 0);
 
         return new GLTextureBuffer(size, textureBuffer,NULL);
     }
@@ -452,8 +456,8 @@ namespace Agmd
         const GLVertexBuffer* VertexBuffer = static_cast<const GLVertexBuffer*>(buffer);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer->GetBuffer());
 
-        static const unsigned int Size[] = {1, 2, 3, 4, 4};
-        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE};
+        static const unsigned int Size[] = {1, 2, 3, 4, 1, 4};
+        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_INT, GL_UNSIGNED_BYTE};
 
         const GLDeclaration::TElementArray& StreamDesc = m_CurrentDeclaration->GetStreamElements(stream);
         for (GLDeclaration::TElementArray::const_iterator i = StreamDesc.begin(); i != StreamDesc.end(); ++i)
@@ -514,6 +518,10 @@ namespace Agmd
                     glEnableVertexAttribArray(10);
                     glVertexAttribPointer(10, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
                     break;
+
+                default:
+                    glEnableVertexAttribArray(i->usage);
+                    glVertexAttribPointer(i->usage, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 
             }
         }

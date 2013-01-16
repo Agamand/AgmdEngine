@@ -12,58 +12,54 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+    GraphicString::GraphicString(const ivec2& stringPosition, const std::string& stringText, const Color& stringColor, const std::string& stringFont, int stringSize) :
+    m_Position(stringPosition),
+    m_Text    (stringText),
+    m_color   (stringColor),
+    m_Font    (stringFont),
+    m_Size    (stringSize)
+    {}
 
-
-GraphicString::GraphicString(const ivec2& StringPosition, const std::string& StringText, const Color& StringColor, const std::string& StringFont, int StringSize) :
-Position(StringPosition),
-Text    (StringText),
-color   (StringColor),
-Font    (StringFont),
-Size    (StringSize)
-{
-
-}
-
-void GraphicString::Draw() const
-{
-    FontManager::Instance().DrawString(*this);
-}
-
-ivec2 GraphicString::GetPixelSize() const
-{
-    return FontManager::Instance().GetStringPixelSize(*this);
-}
-
-
-void GraphicString::Align(unsigned long Mode, const AgmdMaths::Rectangle& Rect)
-{
-    ivec2 PSize = GetPixelSize();
-
-    if (Mode & ALIGN_RIGHT)
+    void GraphicString::Draw() const
     {
-        Position.x = Rect.Right() - PSize.x;
-    }
-    else if (Mode & ALIGN_HCENTER)
-    {
-        Position.x = Rect.Left() + (Rect.Width() - PSize.x) / 2;
-    }
-    else
-    {
-        Position.x = Rect.Left();
+        FontManager::Instance().DrawString(*this);
     }
 
-    if (Mode & ALIGN_BOTTOM)
+    ivec2 GraphicString::GetPixelSize() const
     {
-        Position.y = Rect.Bottom() - PSize.y;
+        return FontManager::Instance().GetStringPixelSize(*this);
     }
-    else if (Mode & ALIGN_VCENTER)
+
+
+    void GraphicString::Align(unsigned long mode, const AgmdMaths::Rectangle& rect)
     {
-        Position.y = Rect.Top() + (Rect.Height() - PSize.y) / 2;
+        ivec2 pSize = GetPixelSize();
+
+        if (mode & ALIGN_RIGHT)
+        {
+            m_Position.x = rect.Right() - pSize.x;
+        }
+        else if (mode & ALIGN_HCENTER)
+        {
+            m_Position.x = rect.Left() + (rect.Width() - pSize.x) / 2;
+        }
+        else
+        {
+            m_Position.x = rect.Left();
+        }
+
+        if (mode & ALIGN_BOTTOM)
+        {
+            m_Position.y = rect.Bottom() - pSize.y;
+        }
+        else if (mode & ALIGN_VCENTER)
+        {
+            m_Position.y = rect.Top() + (rect.Height() - pSize.y) / 2;
+        }
+        else
+        {
+            m_Position.y = rect.Top();
+        }
     }
-    else
-    {
-        Position.y = Rect.Top();
-    }
-}
 
 }

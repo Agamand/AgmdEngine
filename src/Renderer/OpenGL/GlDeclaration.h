@@ -12,6 +12,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Declaration.h>
 #include <vector>
 
+#include <AgmdDefines.h>
+
 
 namespace Agmd
 {
@@ -21,7 +23,7 @@ namespace Agmd
 
         struct TElement
         {
-            TElementUsage usage;
+            uint32 usage;
             TElementType  type;
             unsigned int  offset;
         };

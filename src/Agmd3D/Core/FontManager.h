@@ -11,6 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Utilities/Singleton.h>
 #include <Config/Export.h>
+#include <core/Shader/ShaderProgram.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
@@ -31,13 +32,13 @@ namespace Agmd
 
     public :
 
-        void LoadFont(const std::string& FontName, int Quality = 32);
+        void LoadFont(const std::string& fontName, int quality = 32);
 
         void UnloadFonts();
 
-        void DrawString(const GraphicString& String);
+        void DrawString(const GraphicString& string);
 
-        ivec2 GetStringPixelSize(const GraphicString& String);
+        ivec2 GetStringPixelSize(const GraphicString& string);
 
     private :
 
@@ -49,29 +50,26 @@ namespace Agmd
 
         struct TVertex
         {
-            vec3     Position;
-            uint32   Diffuse;
-            vec2     TexCoords; 
+            vec4     position;
+            int      vertexId;
         };
 
         typedef unsigned short TIndex;
 
         struct TFont
         {
-            Texture  Texture;
-            ivec2    CharSize[256];
+            Texture  texture;
+            ivec2    charSize[256];
         };
 
         typedef std::map<std::string, TFont> TFontsMap;
-        static const unsigned int NbCharMax = 512;
+        static const unsigned int nbCharMax = 512;
 
-        //----------------------------------------------------------
-        // Données membres
-        //----------------------------------------------------------
-        TFontsMap        m_Fonts;
+        TFontsMap       m_Fonts;
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
         DeclarationPtr  m_Declaration;
+        ShaderProgram   m_program;
     };
 
 }

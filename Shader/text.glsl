@@ -9,7 +9,6 @@ uniform int u_char;
 
 
 in vec4 in_Vertex;
-layout(location = 11) in int in_id;
 out vec4 color;
 out vec2 texCoord0;
 const float tex_unit = 1.0f / 16.0f;

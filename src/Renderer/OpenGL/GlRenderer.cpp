@@ -456,8 +456,8 @@ namespace Agmd
         const GLVertexBuffer* VertexBuffer = static_cast<const GLVertexBuffer*>(buffer);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer->GetBuffer());
 
-        static const unsigned int Size[] = {1, 2, 3, 4, 1, 4};
-        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_INT, GL_UNSIGNED_BYTE};
+        static const unsigned int Size[] = {1, 2, 3, 4, 4, 1};
+        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_INT};
 
         const GLDeclaration::TElementArray& StreamDesc = m_CurrentDeclaration->GetStreamElements(stream);
         for (GLDeclaration::TElementArray::const_iterator i = StreamDesc.begin(); i != StreamDesc.end(); ++i)

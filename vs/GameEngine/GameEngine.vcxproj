@@ -130,11 +130,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameEngine\Component.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameEngine.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameObject.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\GameScene.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\Script.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\Scripts\ObjectScript.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\Scripts\SceneScript.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\GameEngine\Component.h" />
+    <ClInclude Include="..\..\src\GameEngine\Dependancies\FwGameEngine.h" />
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
+    <ClInclude Include="..\..\src\GameEngine\GameScene.h" />
+    <ClInclude Include="..\..\src\GameEngine\Script.h" />
+    <ClInclude Include="..\..\src\GameEngine\Scripts\ObjectScript.h" />
+    <ClInclude Include="..\..\src\GameEngine\Scripts\SceneScript.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

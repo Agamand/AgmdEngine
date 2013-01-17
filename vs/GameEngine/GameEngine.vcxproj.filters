@@ -3,8 +3,41 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\GameEngine\GameEngine.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameObject.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\Component.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\GameScene.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\Scripts\ObjectScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameEngine\Scripts\SceneScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameEngine\Script.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
+    <ClInclude Include="..\..\src\GameEngine\Component.h" />
+    <ClInclude Include="..\..\src\GameEngine\GameScene.h" />
+    <ClInclude Include="..\..\src\GameEngine\Dependancies\FwGameEngine.h">
+      <Filter>GameEngineConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\Scripts\ObjectScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\Scripts\SceneScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\Script.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameEngineConfig">
+      <UniqueIdentifier>{2c57a99f-743d-4792-9d58-322b630f183d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{d6dae537-c16b-4fba-94b3-b9c68039a171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

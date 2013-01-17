@@ -17,12 +17,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoApp", "DemoApp\DemoApp.
 		{AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6} = {AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXRenderer", "DirectXRenderer\DirectXRenderer.vcxproj", "{84EBD8A4-42F9-4F7F-98FC-56365A19BD38}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DXRender", "DirectXRenderer\DirectXRenderer.vcxproj", "{84EBD8A4-42F9-4F7F-98FC-56365A19BD38}"
 	ProjectSection(ProjectDependencies) = postProject
 		{559D2DB9-42C9-40DA-A5DA-752F610DC378} = {559D2DB9-42C9-40DA-A5DA-752F610DC378}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLRenderer", "OpenGLRenderer\OpenGLRenderer.vcxproj", "{F8673B65-750A-4E24-A57F-157960E0D75A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLRender", "OpenGLRenderer\OpenGLRenderer.vcxproj", "{F8673B65-750A-4E24-A57F-157960E0D75A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{559D2DB9-42C9-40DA-A5DA-752F610DC378} = {559D2DB9-42C9-40DA-A5DA-752F610DC378}
 	EndProjectSection
@@ -40,9 +40,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Agmd3D", "Agmd3D\Agmd3D.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdNetwork", "AgmdNetwork\AgmdNetwork.vcxproj", "{AAE368E8-6DB7-4FEB-BF0E-1679BC7069A6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdPhysics_EG", "AgmdPhysics_EG\AgmdPhysics_EG.vcxproj", "{2598881A-F203-41D4-A95C-2957ED3295AD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdPhysics", "AgmdPhysics_EG\AgmdPhysics_EG.vcxproj", "{2598881A-F203-41D4-A95C-2957ED3295AD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletPhysics", "BulletPhysics\BulletPhysics.vcxproj", "{5CDBBA34-D688-45EF-9F08-0337473AA3A0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AgmdBullet", "BulletPhysics\BulletPhysics.vcxproj", "{5CDBBA34-D688-45EF-9F08-0337473AA3A0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{70DB65AB-2309-4BAB-AEED-061756092257}"
 EndProject
@@ -452,8 +452,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

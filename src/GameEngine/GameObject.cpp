@@ -3,9 +3,9 @@
 
 namespace Agmd
 {
-    GameObject::GameObject(std::string name)
+    GameObject::GameObject(const std::string& name)
     {
-		m_name = std::string(name);
+		m_Name = name;
     }
 
     GameObject::~GameObject()
@@ -13,12 +13,12 @@ namespace Agmd
 
     }
 
-	const std::vector<Component*>& GameObject::getComponents()
+	const std::vector<Component*>& GameObject::GetComponents()
 	{
 		return m_Components;
 	}	
 	
-	const std::vector<ObjectScript*>& GameObject::getObjectScripts()
+	const std::vector<ObjectScript*>& GameObject::GetObjectScripts()
 	{
 		return m_ObjectScripts;
 	}

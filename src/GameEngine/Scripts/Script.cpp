@@ -1,14 +1,13 @@
-#include <Script.h>
+#include <Scripts/Script.h>
 
 namespace Agmd
 {
-
     Script::Script()
     {
 
     }
 
-	Script::~Script(void)
+	Script::~Script()
     {
 
 	}

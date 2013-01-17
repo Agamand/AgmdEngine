@@ -11,7 +11,7 @@
     <ClCompile Include="..\..\src\GameEngine\Scripts\SceneScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameEngine\Script.cpp">
+    <ClCompile Include="..\..\src\GameEngine\Scripts\Script.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,7 +28,7 @@
     <ClInclude Include="..\..\src\GameEngine\Scripts\SceneScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameEngine\Script.h">
+    <ClInclude Include="..\..\src\GameEngine\Scripts\Script.h">
       <Filter>Scripts</Filter>
     </ClInclude>
   </ItemGroup>

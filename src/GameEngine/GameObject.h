@@ -12,13 +12,12 @@ namespace Agmd
     class GameObject
     {
     public:
-        GameObject(std::string = "GameObject");
+        GameObject(const std::string& name = "GameObject");
 	    ~GameObject();
-        void setPosition(vec3 _pos);
-		const std::vector<Component*>& getComponents();
-		const std::vector<ObjectScript*>& getObjectScripts();
+		const std::vector<Component*>& GetComponents();
+		const std::vector<ObjectScript*>& GetObjectScripts();
 	private: 
-		std::string m_name;
+		std::string m_Name;
 		std::vector<Component*> m_Components;
 		std::vector<ObjectScript*> m_ObjectScripts; 
     };

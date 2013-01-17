@@ -1,9 +1,8 @@
 #ifndef _SCENESCRIPT_H_
 #define _SCENESCRIPT_H_
 
-#include <GameEngineConfig\FwGameEngine.h>
-#include <Scripts\Script.h>
-
+#include <GameEngineConfig/FwGameEngine.h>
+#include <Scripts/Script.h>
 
 namespace Agmd
 {

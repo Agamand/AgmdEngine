@@ -8,7 +8,7 @@ namespace Agmd
 
     }
 
-	Component::~Component(void)
+	Component::~Component()
     {
 
 	}

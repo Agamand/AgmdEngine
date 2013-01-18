@@ -35,7 +35,7 @@ namespace Agmd
         LoadFromFile(filename);
     }
 
-    BaseShaderProgram* ShaderProgram::GetShaderProgram() const
+    const BaseShaderProgram* ShaderProgram::GetShaderProgram() const
     {
         return m_ShaderProgram;
     }

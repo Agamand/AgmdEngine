@@ -36,20 +36,7 @@ namespace Agmd
         virtual void Render(TRenderPass pass) const = 0;
         virtual void Draw() const = 0;
 
-        void Rotate(float angle, vec3 vector);
-        void SetRotation(mat4 mat);
-        
-        void Move(vec3 move);
-        void Move(float move_x, float move_y, float move_z);
-
-        void MoveTo(vec3 pos);
-        void MoveTo(float pos_x, float pos_y, float pos_z);
-
-        vec3 getTranslate();
-        mat4 getRotate();
-
-        Transform& getPosition();
-
+        Transform& GetTransform();
 
     protected:
         Transform m_transform;

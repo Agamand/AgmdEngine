@@ -15,7 +15,7 @@ namespace Agmd
     m_screen(width,height)
     {}
 
-    RenderingMode::RenderingMode(ivec2 screensize) :
+    RenderingMode::RenderingMode(ivec2& screensize) :
     m_screen(screensize)
     {}
 

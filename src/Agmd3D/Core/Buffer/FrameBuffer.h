@@ -14,13 +14,13 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 #include <Utilities/SmartPtr.h>
 
-#include <map>
+#include <vector>
 
 namespace Agmd
 {
 
-    typedef std::map<TAttachment,Texture> TextureMap;
-    typedef std::map<TAttachment,RenderBuffer*> RenderBufferMap;
+    typedef std::vector<const Texture> TextureMap;
+    typedef std::vector<RenderBuffer*> RenderBufferMap;
 
     class AGMD3D_EXPORT FrameBuffer
     {
@@ -28,9 +28,9 @@ namespace Agmd
         FrameBuffer();
         virtual ~FrameBuffer();
 
-        virtual void SetTexture(Texture, TAttachment) = 0;
-        virtual void SetTextureCube(Texture, TAttachment, int face) = 0;
-        virtual void SetRender(RenderBuffer*, TAttachment) = 0;
+        virtual void SetTexture(const Texture&, uint32) = 0;
+        virtual void SetTextureCube(const Texture&, uint32, int face) = 0;
+        virtual void SetRender(RenderBuffer*, uint32) = 0;
     
         virtual void Bind() = 0;
         virtual void UnBind() = 0;

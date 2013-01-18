@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    GLRenderBuffer::GLRenderBuffer(uint32 buff_id, ivec2 size) :
+    GLRenderBuffer::GLRenderBuffer(uint32 buff_id, const ivec2& size) :
     RenderBuffer(size),
     m_Id(buff_id)
     {}

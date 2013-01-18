@@ -17,7 +17,7 @@ namespace Agmd
     class AGMD3D_EXPORT TPCamera : public Camera
     {
     public:
-        TPCamera(mat4 projection, vec3 pos = vec3());
+        TPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~TPCamera();
 
         virtual void OnUpdate(uint64 time_diff);

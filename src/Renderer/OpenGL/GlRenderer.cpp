@@ -945,7 +945,7 @@ namespace Agmd
             m_CurrentProgram->Use(true);
     }
 
-    void GLRenderer::SetViewPort(ivec2 xy, ivec2 size)
+    void GLRenderer::SetViewPort(const ivec2& xy, const ivec2& size)
     {
         glViewport(xy.x, xy.y, size.x, size.y);
     }

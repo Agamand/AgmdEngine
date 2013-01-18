@@ -40,6 +40,9 @@
     <Filter Include="Core\GUI">
       <UniqueIdentifier>{ce8980ec-2125-498b-b7c2-64ee1546fd33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader%28Built in%29\RenderingShader">
+      <UniqueIdentifier>{1b38b4c9-c0b8-4524-aa95-9dbf2ba70e95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\AgmdDefines.h" />
@@ -243,85 +246,118 @@
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="..\..\Shader\add_tex.glsl">
+    <None Include="..\..\Ressources\Shader\RenderingShader\DeferredShader.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\DiffusePass.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\DiffuseShader.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\global_light_uniform.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\global_uniform.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\LightingShader.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\RenderingShader\ZPassShader.glsl">
+      <Filter>Shader%28Built in%29\RenderingShader</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\shadowmap.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\classic_pipeline.glsl">
+    <None Include="..\..\Ressources\Shader\shadowmapping_OLD.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\classic_pipeline_2D.glsl">
+    <None Include="..\..\Ressources\Shader\skybox.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\debug_binormal.glsl">
+    <None Include="..\..\Ressources\Shader\skybox_old.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\debug_cubemap.glsl">
+    <None Include="..\..\Ressources\Shader\spot_light.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\debug_normal.glsl">
+    <None Include="..\..\Ressources\Shader\text.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\debug_tangent.glsl">
+    <None Include="..\..\Ressources\Shader\water.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\DepthRTT.fragmentshader">
+    <None Include="..\..\Ressources\Shader\waterNormal.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\DepthRTT.vertexshader">
+    <None Include="..\..\Ressources\Shader\window.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\dir_light.glsl">
+    <None Include="..\..\Ressources\Shader\add_tex.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\global_input.glsl">
+    <None Include="..\..\Ressources\Shader\classic_pipeline.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\global_light_uniform.glsl">
+    <None Include="..\..\Ressources\Shader\classic_pipeline_2D.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\global_uniform.glsl">
+    <None Include="..\..\Ressources\Shader\debug_binormal.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\model_pipeline.glsl">
+    <None Include="..\..\Ressources\Shader\debug_cubemap.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\point_light.glsl">
+    <None Include="..\..\Ressources\Shader\debug_normal.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\prod_tex.glsl">
+    <None Include="..\..\Ressources\Shader\debug_tangent.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\render_tex.glsl">
+    <None Include="..\..\Ressources\Shader\defaultShader.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\Scene.frag">
+    <None Include="..\..\Ressources\Shader\deferred.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\shadowmap.glsl">
+    <None Include="..\..\Ressources\Shader\DepthRTT.fragmentshader">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\shadowmapping_OLD.glsl">
+    <None Include="..\..\Ressources\Shader\DepthRTT.vertexshader">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\skybox.glsl">
+    <None Include="..\..\Ressources\Shader\dir_light.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\skybox_old.glsl">
+    <None Include="..\..\Ressources\Shader\global_2d_uniform.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\spot_light.glsl">
+    <None Include="..\..\Ressources\Shader\global_input.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\water.glsl">
+    <None Include="..\..\Ressources\Shader\global_light_uniform.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\waterNormal.glsl">
+    <None Include="..\..\Ressources\Shader\global_uniform.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\window.glsl">
+    <None Include="..\..\Ressources\Shader\model_pipeline.glsl">
       <Filter>Shader%28Built in%29</Filter>
     </None>
-    <None Include="..\..\Shader\rand_tex.glsl">
+    <None Include="..\..\Ressources\Shader\point_light.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\prod_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\rand_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\render_tex.glsl">
+      <Filter>Shader%28Built in%29</Filter>
+    </None>
+    <None Include="..\..\Ressources\Shader\Scene.frag">
       <Filter>Shader%28Built in%29</Filter>
     </None>
   </ItemGroup>

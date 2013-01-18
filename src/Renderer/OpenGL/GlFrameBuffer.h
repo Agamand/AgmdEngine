@@ -22,9 +22,9 @@ namespace Agmd
         GLFrameBuffer(uint32 buff_id);
         ~GLFrameBuffer();
 
-        virtual void SetTexture(Texture tex, TAttachment attach);
-        virtual void SetTextureCube(Texture, TAttachment, int face);
-        virtual void SetRender(RenderBuffer* render, TAttachment attach);
+        virtual void SetTexture(const Texture& tex, uint32 attach);
+        virtual void SetTextureCube(const Texture& tes, uint32 attach, int32 face);
+        virtual void SetRender(RenderBuffer* render, uint32 attach);
 
         virtual void Bind();
         virtual void UnBind();

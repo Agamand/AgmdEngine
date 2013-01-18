@@ -21,17 +21,17 @@ namespace Agmd
     {}
 
 
-    ivec2 AWidget::GetAbsPostion()
+    const ivec2& AWidget::GetAbsPostion()
     {
         return m_vAbsolutePosition;
     }
 
-    ivec2 AWidget::GetPosition()
+    const ivec2& AWidget::GetPosition()
     {
         return m_vPosition;
     }
 
-    void AWidget::SetPosition(ivec2 pos)
+    void AWidget::SetPosition(ivec2& pos)
     {
         m_vPosition = pos;
         if(m_wParent)
@@ -45,7 +45,7 @@ namespace Agmd
         SetPosition(ivec2(x,y));
     }
 
-    void AWidget::SetSize(ivec2 size)
+    void AWidget::SetSize(ivec2& size)
     {
         if(size.x < 0)
             size.x = 0;
@@ -88,7 +88,7 @@ namespace Agmd
         }
     }
 
-    bool AWidget::In(ivec2 pos)
+    bool AWidget::In(ivec2& pos)
     {
 
         if(pos.x < m_vAbsolutePosition.x || pos.y < m_vAbsolutePosition.y || pos.x > (m_vAbsolutePosition.x+m_vSize.x) || pos.y > (m_vAbsolutePosition.y+m_vSize.y) )

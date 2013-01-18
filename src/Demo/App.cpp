@@ -82,23 +82,23 @@ void App::OnInit()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
 
     m_Scene = new Scene();
-    Model* model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST);
+    Model* model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST);
     m_Scene->AddModel(model);
     Color c = Color::blue;
-    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->Move(2.0f,0,0);
+    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->GetTransform().Translate(2.0f,0.0f,0.0f);
     m_Scene->AddModel(model);
     c = Color::green;
-    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->Move(-2.0f,0,0);
+    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->GetTransform().Translate(-2.0f,0,0);
     m_Scene->AddModel(model);
     c = Color::red;
-    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->Move(0,2.0f,0);
+    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->GetTransform().Translate(0,2.0f,0);
     m_Scene->AddModel(model);
     c = Color::blue + Color::red;
-    model = CreateSphere(1.0f,20,20,2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->Move(0,-2.0f,0);
+    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
+    model->GetTransform().Translate(0,-2.0f,0);
     m_Scene->AddModel(model);
 
     /*Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
@@ -147,7 +147,8 @@ void App::OnRender()
     //Texture::TextureRender(tex);
     
     //render.SetCurrentProgram(shader2D);
-    m_fps->m_Text = StringBuilder(getFps());
+    int fps = getFps();
+    m_fps->m_Text = StringBuilder(fps);//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
    //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
     m_fps->Draw();
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");

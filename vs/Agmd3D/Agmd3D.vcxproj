@@ -107,114 +107,44 @@
     <ClInclude Include="..\..\src\AgmdDefines.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Shader\add_tex.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\classic_pipeline.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\classic_pipeline_2D.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\debug_binormal.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\debug_cubemap.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\debug_normal.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\debug_tangent.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\DepthRTT.fragmentshader">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\DepthRTT.vertexshader">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\dir_light.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\global_input.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\global_light_uniform.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\global_uniform.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\model_pipeline.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\point_light.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\prod_tex.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\rand_tex.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\render_tex.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\Scene.frag">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\shadowmap.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\shadowmapping_OLD.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\skybox.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\skybox_old.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\spot_light.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\water.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\waterNormal.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="..\..\Shader\window.glsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">true</ExcludedFromBuild>
-    </None>
+    <None Include="..\..\Ressources\Shader\add_tex.glsl" />
+    <None Include="..\..\Ressources\Shader\classic_pipeline.glsl" />
+    <None Include="..\..\Ressources\Shader\classic_pipeline_2D.glsl" />
+    <None Include="..\..\Ressources\Shader\debug_binormal.glsl" />
+    <None Include="..\..\Ressources\Shader\debug_cubemap.glsl" />
+    <None Include="..\..\Ressources\Shader\debug_normal.glsl" />
+    <None Include="..\..\Ressources\Shader\debug_tangent.glsl" />
+    <None Include="..\..\Ressources\Shader\defaultShader.glsl" />
+    <None Include="..\..\Ressources\Shader\deferred.glsl" />
+    <None Include="..\..\Ressources\Shader\DepthRTT.fragmentshader" />
+    <None Include="..\..\Ressources\Shader\DepthRTT.vertexshader" />
+    <None Include="..\..\Ressources\Shader\dir_light.glsl" />
+    <None Include="..\..\Ressources\Shader\global_2d_uniform.glsl" />
+    <None Include="..\..\Ressources\Shader\global_input.glsl" />
+    <None Include="..\..\Ressources\Shader\global_light_uniform.glsl" />
+    <None Include="..\..\Ressources\Shader\global_uniform.glsl" />
+    <None Include="..\..\Ressources\Shader\model_pipeline.glsl" />
+    <None Include="..\..\Ressources\Shader\point_light.glsl" />
+    <None Include="..\..\Ressources\Shader\prod_tex.glsl" />
+    <None Include="..\..\Ressources\Shader\rand_tex.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\DeferredShader.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\DiffusePass.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\DiffuseShader.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\global_light_uniform.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\global_uniform.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\LightingShader.glsl" />
+    <None Include="..\..\Ressources\Shader\RenderingShader\ZPassShader.glsl" />
+    <None Include="..\..\Ressources\Shader\render_tex.glsl" />
+    <None Include="..\..\Ressources\Shader\Scene.frag" />
+    <None Include="..\..\Ressources\Shader\shadowmap.glsl" />
+    <None Include="..\..\Ressources\Shader\shadowmapping_OLD.glsl" />
+    <None Include="..\..\Ressources\Shader\skybox.glsl" />
+    <None Include="..\..\Ressources\Shader\skybox_old.glsl" />
+    <None Include="..\..\Ressources\Shader\spot_light.glsl" />
+    <None Include="..\..\Ressources\Shader\text.glsl" />
+    <None Include="..\..\Ressources\Shader\water.glsl" />
+    <None Include="..\..\Ressources\Shader\waterNormal.glsl" />
+    <None Include="..\..\Ressources\Shader\window.glsl" />
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl" />
     <None Include="..\..\src\Agmd3D\Core\MediaManager.inl" />
     <None Include="..\..\src\Agmd3D\Core\Renderer.inl" />

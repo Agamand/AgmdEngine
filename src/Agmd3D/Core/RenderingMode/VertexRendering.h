@@ -17,7 +17,7 @@ namespace Agmd
     {
     public:
         VertexRendering(int width, int height);
-        VertexRendering(ivec2 screen);
+        VertexRendering(ivec2& screen);
         ~VertexRendering();
 
         virtual void Compute();

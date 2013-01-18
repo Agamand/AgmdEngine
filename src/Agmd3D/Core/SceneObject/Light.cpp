@@ -54,7 +54,7 @@ namespace Agmd
     Light::~Light()
     {}
 
-    void Light::SetPosition(vec3 position)
+    void Light::SetPosition(vec3& position)
     {
         if(position == m_position)
             return;
@@ -66,9 +66,14 @@ namespace Agmd
         m_uniformLightBuffer.Unlock();
     }
     
-    vec3 Light::GetPosition()
+    const vec3& Light::GetPosition()
     {
         return m_position;
+    }
+
+    Transform& Light::GetTransform()
+    {
+        return m_Transform;
     }
 
 }

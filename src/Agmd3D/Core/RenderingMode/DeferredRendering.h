@@ -14,6 +14,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Texture/Texture.h>
 #include <Core/RenderingMode/RenderingMode.h>
+#include <Core/Shader/ShaderProgram.h>
 
 
 namespace Agmd
@@ -22,7 +23,7 @@ namespace Agmd
     {
     public:
         DeferredRendering(int width, int height);
-        DeferredRendering(ivec2 screen);
+        DeferredRendering(ivec2& screen);
         ~DeferredRendering();
 
         virtual void Compute();
@@ -45,6 +46,8 @@ namespace Agmd
 
         Texture m_textureBuffer[3];
         uint32* bufferFlags;
+        
+        ShaderProgram m_ligth_program;
 
 
 

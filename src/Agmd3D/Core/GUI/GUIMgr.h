@@ -36,7 +36,7 @@ namespace Agmd
         var(0)
         {}
 
-        EventEntry(EventType _event, ivec2 _mouse, ivec2 _mousediff, uint32 _mouseState, char _var) : 
+        EventEntry(EventType _event, ivec2& _mouse, ivec2& _mousediff, uint32 _mouseState, char _var) : 
         eventType(_event),
         mousePosition(_mouse),
         mouse_diff(_mousediff),
@@ -64,8 +64,8 @@ namespace Agmd
         void Update(uint64 t_diff);
         void DrawGUI() const;
         void SetSelected(uint32 i);
-        void HandleEvent(EventEntry _event);
-        void AddEvent(EventEntry _event);
+        void HandleEvent(EventEntry& _event);
+        void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);
 
     private:

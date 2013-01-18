@@ -21,7 +21,7 @@ namespace Agmd
     {
     public:
         ForwardRendering(int width, int height);
-        ForwardRendering(ivec2 screen);
+        ForwardRendering(ivec2& screen);
         ~ForwardRendering();
 
         virtual void Compute();

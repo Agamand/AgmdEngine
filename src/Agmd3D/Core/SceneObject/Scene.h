@@ -61,10 +61,8 @@ namespace Agmd
         void RemoveModel(Model*);
         void RemoveTerrain(Terrain*);
         void RemoveWater(Water*);
-        
-        Texture    getShadowMap();
 
-        std::vector<Light*> GetLights();
+        const std::vector<Light*>& GetLights();
 
         uint64 GetTime()
         {

@@ -74,7 +74,7 @@ Model* M2Loader::LoadFromFile(const std::string& filename)
     uint16* triangles = (uint16*)(buffer2+_header.ofsTriangles);
 
 
-    for(int i = 0; i < _header.nTriangles; i++)
+    for(uint32 i = 0; i < _header.nTriangles; i++)
         indices.push_back(indexlook[triangles[i]]);
 
     for(uint32 i = 0; i < header.nVertices; i++)

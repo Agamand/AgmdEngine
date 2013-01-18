@@ -10,8 +10,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Shader/BaseShaderProgram.h>
 #include <Utilities/SmartPtr.h>
 
-#ifndef SHADERPROGRAM_H
-#define SHADERPROGRAM_H
+#ifndef _SHADERPROGRAM_H_
+#define _SHADERPROGRAM_H_
 
 using namespace AgmdUtilities;
 
@@ -29,19 +29,18 @@ namespace Agmd
 
         void Unload();
 
-        BaseShaderProgram* GetShaderProgram() const;
+        const BaseShaderProgram* GetShaderProgram() const;
 
-        inline void Enable();
+        inline void Enable() const;
 
-        inline void Disable();
+        inline void Disable() const;
 
-        template <class T> inline void SetParameter(TMatrixType type, T value);
-        template <class T> inline void SetParameter(std::string name, T value);
-        template <class T> inline void SetParameter(std::string name, T value, uint32 size);
-        template <class T> inline void SetParameter(std::string name, Buffer<T> buf);
+        template <class T> inline void SetParameter(TMatrixType type, T value) const;
+        template <class T> inline void SetParameter(const std::string& name, T value) const;
+        template <class T> inline void SetParameter(const std::string& name, T value, uint32 size) const;
+        template <class T> inline void SetParameter(const std::string& name, Buffer<T> buf);
 
     private :
-
         SmartPtr<BaseShaderProgram, ResourceCOM> m_ShaderProgram;
     };
 
@@ -49,4 +48,4 @@ namespace Agmd
 
 }
 
-#endif //SHADERPROGRAM_H
+#endif /* _SHADERPROGRAM_H_ */

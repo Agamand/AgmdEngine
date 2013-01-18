@@ -11,8 +11,11 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Buffer/Buffer.h>
 #include <Core/Shader/ShaderProgram.h>
+#include <Transform.h>
 #include <Vector3.h>
 #include <Matrix4.h>
+
+using namespace AgmdMaths;
 
 namespace Agmd
 {
@@ -40,37 +43,37 @@ namespace Agmd
         void BeginApplyShadow() const;
         void EndApplyShadow() const;
 
-        void SetPosition(vec3 position);
-        vec3 GetPosition();
+        Transform& GetTransform();
+        void SetPosition(vec3& position);
+        const vec3& GetPosition();
 
     private:
         struct LightBuffer 
         {
-            vec4 position;
-            vec4 dir;
-            vec4 ambient;
-            vec4 diffuse;
-            vec4 specular;
-            float innerAngle;
-            float outerAngle;
-            float range;
-            int type;
+            vec4    position;
+            vec4    dir;
+            vec4    ambient;
+            vec4    diffuse;
+            vec4    specular;
+            float   innerAngle;
+            float   outerAngle;
+            float   range;
+            int     type;
         };
-
-        vec3 m_position;
-        vec3 m_dir;
-        vec3 m_ambient;
-        vec3 m_diffuse;
-        vec3 m_specular;
-        float m_innerAngle;
-        float m_outerAngle;
-        float m_range;
-        LightType m_Type;
         
+        vec3        m_position;
+        vec3        m_dir;
+        vec3        m_ambient;
+        vec3        m_diffuse;
+        vec3        m_specular;
+        float       m_innerAngle;
+        float       m_outerAngle;
+        float       m_range;
+        LightType   m_Type;
+
+        Transform m_Transform; //NOT IMPLEMENTED
+
         Buffer<LightBuffer> m_uniformLightBuffer;
-        ShaderProgram m_program;
-        ShaderProgram m_program_shadowCast;
-        ShaderProgram m_program_shadowUse;
     };
 }
 

@@ -21,7 +21,7 @@ namespace Agmd
         Init();
     }
 
-    ForwardRendering::ForwardRendering(ivec2 screen) :
+    ForwardRendering::ForwardRendering(ivec2& screen) :
     RenderingMode(screen)
     {
         Init();
@@ -49,12 +49,12 @@ namespace Agmd
         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
 
         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
+        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
 
         uint32 buffer[] = {COLOR_ATTACHMENT};
         bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
-        uint32 buffer2[] = {COLOR_ATTACHMENT1};
+        uint32 buffer2[] = {COLOR_ATTACHMENT+1};
         bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
 
     }
@@ -98,7 +98,7 @@ namespace Agmd
             Render lighting to color_attachment1
         */
 
-        std::vector<Light*> lights = sc->GetLights();
+        const std::vector<Light*>&  lights = sc->GetLights();
         uint32 maxLights = lights.size();
         if(maxLights)
         {

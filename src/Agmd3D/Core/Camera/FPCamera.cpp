@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    FPCamera::FPCamera(mat4 projection, vec3 pos) :
+    FPCamera::FPCamera(mat4& projection, vec3& pos) :
     _phi(0),
     _theta(0),
     Camera(projection,pos)

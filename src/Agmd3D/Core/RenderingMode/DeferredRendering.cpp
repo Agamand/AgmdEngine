@@ -24,7 +24,7 @@ namespace Agmd
         Init();
     }
 
-    DeferredRendering::DeferredRendering(ivec2 screen) :
+    DeferredRendering::DeferredRendering(ivec2& screen) :
     RenderingMode(screen)
     {
         Init();
@@ -51,15 +51,15 @@ namespace Agmd
 
         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
         m_framebuffer->SetRender(m_colorbuffer, COLOR_ATTACHMENT);
-        m_framebuffer->SetRender(m_normalbuffer, COLOR_ATTACHMENT1);
-        m_framebuffer->SetRender(m_positionbuffer, COLOR_ATTACHMENT2);
+        m_framebuffer->SetRender(m_normalbuffer, COLOR_ATTACHMENT+1);
+        m_framebuffer->SetRender(m_positionbuffer, COLOR_ATTACHMENT+2);
 
         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT1);
-        m_framebuffer->SetTexture(m_textureBuffer[2], COLOR_ATTACHMENT2);
-        uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT1, COLOR_ATTACHMENT2};
+        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
+        m_framebuffer->SetTexture(m_textureBuffer[2], COLOR_ATTACHMENT+2);
+        uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT+1, COLOR_ATTACHMENT+2};
         bufferFlags = m_framebuffer->GenerateBufferFlags(3,buffer);
-        
+        m_ligth_program.LoadFromFile("Shader/RenderingMode/");
     }
 
     void DeferredRendering::Compute()
@@ -83,6 +83,25 @@ namespace Agmd
         render.Enable(RENDER_ZWRITE,false);
         sc->Render(TRenderPass::RENDERPASS_DEFERRED);
         m_framebuffer->UnBind();
+
+        const std::vector<Light*>& lights = sc->GetLights();
+        uint32 maxLights = lights.size();
+
+        render.Enable(RENDER_ZTEST,false);
+        Texture::TextureRender(m_textureBuffer[0]);
+
+        if(maxLights)
+        {
+            render.Enable(RENDER_ALPHABLEND, true);
+            render.SetupAlphaBlending(BLEND_DESTCOLOR, BLEND_ZERO);
+            for(uint32 i = 0; i < maxLights; i++)
+            {
+                lights[i]->Bind();
+                Texture::TextureRender(m_textureBuffer[1]);
+            }
+            
+            render.Enable(RENDER_ALPHABLEND, false);
+        }
         End();
     }
 

@@ -13,12 +13,9 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Camera/Camera.h>
 #include <vector>
 
-
-
-// CONSTRUCTOR / DESTRUCTOR
 namespace Agmd
 {
-    Camera::Camera(mat4 projection, vec3 pos) :
+    Camera::Camera(mat4& projection, vec3& pos) :
     move(0.0f),
     moveFlags(MOVE_NONE),
     _position(pos),
@@ -31,7 +28,7 @@ namespace Agmd
         m_cameraBuffer = Renderer::Get().CreateUniformBuffer<CameraBuffer>(1,0,0,&camBuf);
     }
 
-    void Camera::UpdateBuffer(mat4 view)
+    void Camera::UpdateBuffer(mat4& view)
     {
         CameraBuffer* cambuf = m_cameraBuffer.Lock();
         cambuf->m_MatView = view;

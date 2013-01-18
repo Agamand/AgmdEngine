@@ -84,7 +84,7 @@ namespace Agmd
 
         virtual void SetCurrentProgram( const BaseShaderProgram* prog);
 
-        virtual void SetViewPort(ivec2 xy, ivec2 size);
+        virtual void SetViewPort(const ivec2& xy,const ivec2& size);
 
         virtual void SetCullFace(int face);
 

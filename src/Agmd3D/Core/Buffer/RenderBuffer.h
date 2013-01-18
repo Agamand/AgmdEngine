@@ -22,7 +22,7 @@ namespace Agmd
     class AGMD3D_EXPORT RenderBuffer
     {
     public:
-        RenderBuffer(ivec2 size);
+        RenderBuffer(const ivec2& size);
         virtual ~RenderBuffer();
     protected:
         ivec2 m_Size;

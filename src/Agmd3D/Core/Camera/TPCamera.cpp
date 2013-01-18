@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    TPCamera::TPCamera(mat4 projection, vec3 pos) :
+    TPCamera::TPCamera(mat4& projection, vec3& pos) :
     _phi(0.0f),
     _theta(0.0f),
     distance(30.0f),

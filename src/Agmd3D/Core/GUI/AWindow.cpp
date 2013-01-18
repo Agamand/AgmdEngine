@@ -27,7 +27,7 @@ namespace Agmd
     {}
 
 
-    uint32 AWindow::OnClick(ivec2 pos_mouse, uint32 mouseState)
+    uint32 AWindow::OnClick(ivec2& pos_mouse, uint32 mouseState)
     {
         if(!In(pos_mouse))
             return 0;
@@ -39,7 +39,7 @@ namespace Agmd
         return 1;
     }
 
-    void AWindow::SetFont(Texture font)
+    void AWindow::SetFont(Texture& font)
     {
         m_Font = font;
     }
@@ -49,7 +49,7 @@ namespace Agmd
         return 0;
     }
 
-    uint32 AWindow::OnMouseMove(ivec2 pos_diff, uint32 mouseState)
+    uint32 AWindow::OnMouseMove(ivec2& pos_diff, uint32 mouseState)
     {
         if(!hold)
             return 0;
@@ -260,7 +260,7 @@ namespace Agmd
 
     }
 
-    bool AWindow::In(ivec2 pos)
+    bool AWindow::In(ivec2& pos)
     {
 
         if(pos.x < (m_vAbsolutePosition.x) || pos.y < (m_vAbsolutePosition.y) || pos.x > (m_vAbsolutePosition.x+m_vSize.x+COIN*2) || pos.y > (m_vAbsolutePosition.y+m_vSize.y+COIN*2) )

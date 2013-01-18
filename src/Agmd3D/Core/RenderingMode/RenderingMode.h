@@ -19,7 +19,7 @@ namespace Agmd
     {
     public:
         RenderingMode(int32 width, int32 heigth);
-        RenderingMode(ivec2 screenSize);
+        RenderingMode(ivec2& screenSize);
         
         virtual void Compute() = 0;
 

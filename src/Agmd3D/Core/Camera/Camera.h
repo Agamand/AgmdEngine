@@ -35,7 +35,7 @@ namespace Agmd
     class AGMD3D_EXPORT Camera
     {
     public:
-        Camera(mat4 projection, vec3 pos);
+        Camera(mat4& projection, vec3& pos);
         virtual ~Camera() {}
 
         virtual void OnUpdate(uint64 time_diff) = 0;
@@ -43,13 +43,13 @@ namespace Agmd
         virtual void OnKeyboard(char key, bool up) = 0;
         virtual void OnMouseWheel(float delta) = 0;
 
-        glm::vec3 GetPosition() { return _position; }
-        virtual void SetPosition(glm::vec3 pos) { _position = pos; } 
+        const glm::vec3& GetPosition() { return _position; }
+        virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
         void GetPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
         void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }
 
-        virtual void SetTarget(glm::vec3 pos) { _target = pos; } 
-        glm::vec3 GetTarget() {return _target;}
+        virtual void SetTarget(glm::vec3& pos) { _target = pos; } 
+        const glm::vec3& GetTarget() {return _target;}
 
         virtual mat4 Look();
 
@@ -65,7 +65,7 @@ namespace Agmd
             mat4 m_MatView;
         };
         virtual void UpdateVector() = 0;
-        void UpdateBuffer(mat4 view);
+        void UpdateBuffer(mat4& view);
         float _speed;
         float _sensivity;
 

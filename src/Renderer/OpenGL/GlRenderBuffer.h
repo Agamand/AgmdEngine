@@ -16,7 +16,7 @@ namespace Agmd
     class GLRenderBuffer : public RenderBuffer
     {
     public:
-        GLRenderBuffer(uint32 buff_id, ivec2 size);
+        GLRenderBuffer(uint32 buff_id, const ivec2& size);
         ~GLRenderBuffer();
 
         uint32 GetID();

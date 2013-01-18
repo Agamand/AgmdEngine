@@ -24,16 +24,16 @@ namespace Agmd
         GLRenderer::glDeleteFramebuffers(1 ,&m_Id);
     }
 
-    void GLFrameBuffer::SetTexture(Texture tex, TAttachment attach)
+    void GLFrameBuffer::SetTexture(const Texture& tex, uint32 attach)
     {
         const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
         m_TextureMap[attach] = tex;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::Get(attach),gl_tex->GetGLTexture(),0);
+        GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),gl_tex->GetGLTexture(),0);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::SetTextureCube(Texture tex, TAttachment attach, int face)
+    void GLFrameBuffer::SetTextureCube(const Texture& tex, uint32 attach, int face)
     {
         if(tex.GetType() != TEXTURE_CUBE)
             return;
@@ -42,36 +42,26 @@ namespace Agmd
         m_TextureMap[attach] = tex;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         if(face >= 0 && face < 6)
-            GLRenderer::glFramebufferTexture2D(GL_FRAMEBUFFER,RGLEnum::Get(attach),GL_TEXTURE_CUBE_MAP_POSITIVE_X+face,gl_tex->GetGLTexture(),0);
+            GLRenderer::glFramebufferTexture2D(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),GL_TEXTURE_CUBE_MAP_POSITIVE_X+face,gl_tex->GetGLTexture(),0);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::SetRender(RenderBuffer* render, TAttachment attach)
+    void GLFrameBuffer::SetRender(RenderBuffer* render, uint32 attach)
     {
         m_RenderBufferMap[attach] = render;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glFramebufferRenderbuffer(GL_FRAMEBUFFER, RGLEnum::Get(attach), GL_RENDERBUFFER, static_cast<GLRenderBuffer*>(m_RenderBufferMap[attach])->GetID());
+        GLRenderer::glFramebufferRenderbuffer(GL_FRAMEBUFFER, RGLEnum::GetAttachment(attach), GL_RENDERBUFFER, static_cast<GLRenderBuffer*>(m_RenderBufferMap[attach])->GetID());
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::Bind()
     {
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, m_Id);
-        for(RenderBufferMap::iterator itr = m_RenderBufferMap.begin(); itr != m_RenderBufferMap.end(); itr++)
-        {
-            GLRenderer::glBindRenderbuffer(GL_RENDERBUFFER,static_cast<GLRenderBuffer*>(itr->second)->GetID());
-        }
-        //glDepthRange(0.0, 1.0);
     }
 
     void GLFrameBuffer::UnBind()
     {
-        //glDepthRange(1.0, 0.0);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        for(RenderBufferMap::iterator itr = m_RenderBufferMap.begin(); itr != m_RenderBufferMap.end(); itr++)
-        {
-            GLRenderer::glBindRenderbuffer(GL_RENDERBUFFER,0);
-        }
     }
 
     uint32 GLFrameBuffer::GetID()
@@ -117,7 +107,7 @@ namespace Agmd
             return NULL;
         uint32* buffer = new uint32[count];
         for(uint32 i = 0; i < count; i++)
-            buffer[i] = RGLEnum::Get((TAttachment)flags[i]);
+            buffer[i] = RGLEnum::GetAttachment(flags[i]);
         return buffer;
     }
 

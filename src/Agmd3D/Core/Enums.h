@@ -182,12 +182,9 @@ namespace Agmd
     enum TAttachment
     {
         COLOR_ATTACHMENT,
-        COLOR_ATTACHMENT1,
-        COLOR_ATTACHMENT2,
-        COLOR_ATTACHMENT3,
-        COLOR_ATTACHMENT4,
         DEPTH_ATTACHMENT = 16,
-        STENCIL_ATTACHEMENT = 17
+        STENCIL_ATTACHMENT = 17,
+        MAX_ATTACHMENT
     };
 
     enum TTextureUnit

@@ -17,7 +17,7 @@ namespace Agmd
     class AGMD3D_EXPORT FPCamera : public Camera
     {
     public:
-        FPCamera(mat4 projection, vec3 pos = vec3());
+        FPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~FPCamera();
 
         virtual void OnUpdate(uint64 time_diff);

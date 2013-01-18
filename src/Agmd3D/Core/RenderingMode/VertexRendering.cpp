@@ -19,7 +19,7 @@ namespace Agmd
     {
     }
 
-    VertexRendering::VertexRendering(ivec2 screen) :
+    VertexRendering::VertexRendering(ivec2& screen) :
     RenderingMode(screen)
     {
     }
@@ -34,15 +34,8 @@ namespace Agmd
         Scene* sc = render.GetActiveScene();
         Start();
 
-        /*
-           FirstPass, on génére ici uniquement le Buffer de profondeur (Zbuffer).
-        */
-
         sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
-        
-        /*
-            ZBUFFER TO EQUALS
-        */
+
         sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
         End();
     }

@@ -13,7 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #include <windows.h>
 #include <gl/gl.h>
 #include <string>
-
+#include <AgmdDefines.h>
 
 namespace Agmd
 {
@@ -47,7 +47,7 @@ namespace Agmd
 
         static GLenum Get(TShaderType value);
 
-        static GLenum Get(TAttachment value);
+        static GLenum GetAttachment(uint32 value);
 
         static GLenum Get(TComponent value);
 
@@ -67,8 +67,8 @@ namespace Agmd
         static GLenum       RenderMode[];
         static GLenum       ShaderType[];
         static GLenum       AttachmentType[];
-        static GLenum        ComponentType[];
-        static GLenum        TextureType[];
+        static GLenum       ComponentType[];
+        static GLenum       TextureType[];
     };
 
 }

@@ -146,7 +146,7 @@ namespace Agmd
     }
     */
 
-    std::vector<Light*> Scene::GetLights()
+    const std::vector<Light*>& Scene::GetLights()
     {
         return m_lights;
     }

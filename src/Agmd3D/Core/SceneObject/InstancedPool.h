@@ -19,7 +19,7 @@ namespace Agmd
     {
     public:
         InstancedPool(Model* model = NULL);
-        InstancedPool(std::string name);
+        InstancedPool(std::string& name);
         InstancedPool();
 
     private:

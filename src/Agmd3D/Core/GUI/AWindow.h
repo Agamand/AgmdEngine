@@ -25,18 +25,18 @@ namespace Agmd
         AWindow(AWidget* parent = NULL);
         virtual ~AWindow();
 
-        void SetFont(Texture font);
+        void SetFont(Texture& font);
 
-        virtual uint32 OnClick(ivec2 pos_mouse, uint32 mouseState);
+        virtual uint32 OnClick(ivec2& pos_mouse, uint32 mouseState);
         virtual uint32 OnMouseOver();
-        virtual uint32 OnMouseMove(ivec2 pos_diff, uint32 mouseState);
+        virtual uint32 OnMouseMove(ivec2& pos_diff, uint32 mouseState);
         virtual uint32 OnKey(char key);
         virtual void OnSizeChanged();
         virtual void OnPosChanged();
 
         virtual void Draw() const;
 
-        virtual bool In(ivec2 pos_mouse);
+        virtual bool In(ivec2& pos_mouse);
 
         
 
@@ -57,15 +57,15 @@ namespace Agmd
         void BuildWindow();
     
 
-        Buffer<TVertex>        m_VertexBuffer;
-        Buffer<TIndex>        m_IndexBuffer;
-        DeclarationPtr        m_Declaration;
-        Texture                m_Texture;
-        Texture                m_Font;
-        BaseShaderProgram*    m_Program;
+        Buffer<TVertex>     m_VertexBuffer;
+        Buffer<TIndex>      m_IndexBuffer;
+        DeclarationPtr      m_Declaration;
+        Texture             m_Texture;
+        Texture             m_Font;
+        BaseShaderProgram*  m_Program;
 
-        bool hold;
-        bool extend;
+        bool                hold;
+        bool                extend;
     };
 }
 

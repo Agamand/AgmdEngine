@@ -55,7 +55,7 @@ namespace Agmd
             m_vwWidget[i]->Draw();
     }
 
-    void GUIMgr::HandleEvent(EventEntry _event)
+    void GUIMgr::HandleEvent(EventEntry& _event)
     {
 
         switch(_event.eventType)
@@ -85,7 +85,7 @@ namespace Agmd
         }
     }
 
-    void GUIMgr::AddEvent(EventEntry _event)
+    void GUIMgr::AddEvent(EventEntry& _event)
     {
         m_veEvents.push_back(_event);
     }

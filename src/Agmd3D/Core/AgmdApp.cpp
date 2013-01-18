@@ -115,7 +115,6 @@ namespace Agmd
 
     void AgmdApp::MainLoop()
     {
-        bool renderGUI = false, render3D = false;
         MSG Message;
         while (m_IsRunning)
         {
@@ -131,16 +130,13 @@ namespace Agmd
                 last_time = time;
                 Renderer& render =  Renderer::Get();
                 render.OnUpdate(time_diff);
-                if(renderGUI)
-                    GUIMgr::Instance().Update(time_diff);
+                GUIMgr::Instance().Update(time_diff);
                 OnUpdate(time_diff);
                 render.InitScene();
                 //Render 3D objects
-                if(render3D)
-                    RenderingMode::GetRenderingMode()->Compute();
+                RenderingMode::GetRenderingMode()->Compute();
                 //Render 2D GUI
-                if(renderGUI)
-                    GUIMgr::Instance().DrawGUI();
+                GUIMgr::Instance().DrawGUI();
                 OnRender(); 
                 render.EndScene();
                 frame++;
@@ -240,20 +236,3 @@ namespace Agmd
     }
 
 }
-
-
-
-/*
-
-getPosition(float& x, float& y, float& z)
-{
-    x = this->x;
-}
-
-
-float x,y,z;
-getPosition(x,y,z);
-
-
-
-*/

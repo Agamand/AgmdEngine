@@ -19,7 +19,7 @@ namespace Agmd
     move(0.0f),
     moveFlags(MOVE_NONE),
     _position(pos),
-    _speed(10.0f),
+    _speed(100.0f),
     _sensivity(0.2f)
     {
         CameraBuffer camBuf;

@@ -64,6 +64,8 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastArray.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastList.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h" />
@@ -81,6 +83,8 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\XmlParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\AgmdUtilities\FastStl\FastArray.inl" />
+    <None Include="..\..\src\AgmdUtilities\FastStl\FastList.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\StringUtils.inl" />

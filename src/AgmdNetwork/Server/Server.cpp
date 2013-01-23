@@ -145,7 +145,7 @@ namespace AgmdNetwork
             RecvPacket(packet);
         }
 
-        printf("Close socket %d\d", socket);
+        printf("Close socket %d\n", socket);
         RemoveClient(soc);
         closesocket(soc);
 

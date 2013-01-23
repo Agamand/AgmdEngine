@@ -64,7 +64,6 @@ namespace Agmd
 
         Renderer::Get().Initialize(m_Hwnd);
         Renderer::Get().SetScreen(m_ScreenSize);
-        Renderer::Get().SetCamera(camera);
 
         Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
         ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);

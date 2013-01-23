@@ -22,8 +22,11 @@ status : in pause
 using namespace AgmdUtilities;
 int main(int argc, char** argv)
 {
-    App::Instance().Run(argc,argv);
-    App::Destroy();
-
+    try
+    {
+        App::Instance().Run(argc,argv);
+        App::Destroy();
+    }catch(std::exception e)
+    {}
     return EXIT_SUCCESS;
 }

@@ -59,11 +59,11 @@ namespace Agmd
 
         std::vector<TIndex> Indices;
         Indices.push_back(0);
-        Indices.push_back(2);
-        Indices.push_back(1);
         Indices.push_back(1);
         Indices.push_back(2);
+        Indices.push_back(1);
         Indices.push_back(3);
+        Indices.push_back(2);
 
         m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);
     }

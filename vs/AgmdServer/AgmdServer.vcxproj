@@ -159,6 +159,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|x64'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -169,7 +178,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;AgmdNetWork.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -186,7 +195,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;AgmdNetWork.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -234,6 +243,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">
@@ -252,6 +263,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -296,6 +309,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|x64'">

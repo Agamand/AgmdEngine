@@ -9,7 +9,13 @@
 namespace AgmdNetwork
 {
 
-    struct PacketHeader
+    struct ClientPacketHeader
+    {
+        uint16 size;
+        uint16 opcode;
+    };
+
+    struct ServerPacketHeader
     {
         uint16 size;
         uint16 opcode;

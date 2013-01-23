@@ -51,6 +51,9 @@ namespace AgmdUtilities
             case PXF_DXTC1 :    return "PXF_DXTC1";
             case PXF_DXTC3 :    return "PXF_DXTC3";
             case PXF_DXTC5 :    return "PXF_DXTC5";
+            case PXF_DEPTH :    return "PXF_DEPTH";
+            case PXF_R16G16B16: return "PXF_R16G16B16";
+            case PXF_R32G32B32: return "PXF_R32G32B32";
             default :           return "Format inconnu";
         }
     }

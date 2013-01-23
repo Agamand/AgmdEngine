@@ -19,12 +19,6 @@ namespace AgmdNetwork
                    SOCKET soc;
             };  
 
-            /*struct PacketHeader
-            {
-                uint32 size;
-                uint16 opcode;
-            };*/
-
             Server(int port);
             int Init();
             int Start();  

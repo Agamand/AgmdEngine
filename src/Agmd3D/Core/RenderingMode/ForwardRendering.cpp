@@ -110,10 +110,10 @@ namespace Agmd
             render.Enable(RENDER_ALPHABLEND, true);
             render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
         
-        
+            Light* const* _lights = &lights[0];
             for(uint32 i = 0; i < maxLights; i++)
             {
-                lights[i]->Bind();
+                _lights[i]->Bind();
                 sc->Render(RENDERPASS_LIGHTING);
             }
             m_framebuffer->UnBind();

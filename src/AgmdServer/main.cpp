@@ -13,7 +13,9 @@ status : in pause
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
 #include <AgmdNetwork\Packet\Packet.h>
 
+using namespace std;
 using namespace AgmdNetwork;
+
 Server* server = NULL;
 enum Opcode
 {

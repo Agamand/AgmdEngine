@@ -13,30 +13,46 @@ https://github.com/Agamand/AgmdEngine
 #include <Quaternion.h>
 #include <Matrix4.h>
 
+#include <vector>
+
 namespace AgmdMaths
 {
+    class Transform;
+    typedef Transform* TransformPtr;
+    typedef std::vector<TransformPtr> TransformVector;
+
     class Transform
     {
     public:
-        Transform(vec3& _position = vec3(0.0f), quat& _rotation = quat(1.0f,vec3(0.0f)));
+        Transform(const vec3& _position = vec3(0.0f), const quat& _rotation = quat(1.0f,vec3(0.0f)));
 
         mat4 ModelMatrix() const;
 
-        void Rotate(float angle, vec3 &vector);
-        void Translate(vec3 &move);
+        void Rotate(float angle, const vec3 &vector);
+        void Translate(const vec3 &move);
         void Translate(float move_x, float move_y, float move_z);
 
+        void SetPosition(const vec3& position);
+        void SetRotation(const quat& rotation);
+
         //Relative transformation
-        void Rotate(float angle, vec3 &vector, Transform& base);
-        void Translate(vec3 &move, Transform& base);
-        void Translate(float move_x, float move_y, float move_z, Transform& base);
+        void Rotate(float angle, const vec3 &vector, const Transform& base);
+        void Translate(const vec3 &move, const Transform& base);
+        void Translate(float move_x, float move_y, float move_z, const Transform& base);
 
-        vec3 m_position;
-        quat m_rotation;
+        const vec3&     position;
+        const quat&     rotation;
+
+    private:
+        bool            m_UpdateNeeded;
+        vec3            m_position;
+        quat            m_rotation;
+        mat4            m_MatModel;
+        TransformPtr    m_parent;
+        TransformVector m_childs;
     };
-    typedef Transform* TransformPtr;
 
-#include <Transform.inl>
+    #include <Transform.inl>
 }
 
 #endif /* _TRANSFORM_H_ */

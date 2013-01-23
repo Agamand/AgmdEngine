@@ -13,6 +13,9 @@
     <Filter Include="Utilities\TinyXml">
       <UniqueIdentifier>{5c5ce992-dc9c-48ce-b478-5b39ccd740c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FastStl">
+      <UniqueIdentifier>{78156720-6cb9-4ad8-be0a-da3c0f2487a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp">
@@ -119,6 +122,12 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h">
       <Filter>Debug</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastList.h">
+      <Filter>FastStl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastArray.h">
+      <Filter>FastStl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl">
@@ -132,6 +141,12 @@
     </None>
     <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl">
       <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\FastStl\FastList.inl">
+      <Filter>FastStl</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\FastStl\FastArray.inl">
+      <Filter>FastStl</Filter>
     </None>
   </ItemGroup>
 </Project>

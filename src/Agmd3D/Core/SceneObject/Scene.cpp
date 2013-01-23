@@ -41,9 +41,10 @@ namespace Agmd
 
     void Scene::Render(TRenderPass pass) const
     {
-        
-        for(uint32 i = 0; i < m_vModels.size(); i++)
-            m_vModels[i]->Render(pass);
+        Model* const* models = &m_vModels[0];
+        uint32 max = m_vModels.size();
+        for(uint32 i = 0; i < max; i++)
+            models[i]->Render(pass);
     }
 
     void Scene::Draw() const

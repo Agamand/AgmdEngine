@@ -71,12 +71,12 @@ namespace AgmdNetwork
 
     DWORD Client::ClientThread(){
 
-        uint8 firstSizeByte;
+        ServerPacketHeader _header;
         uint16 size = 0;
         uint16 opcode = 0;
         uint8 buffer[_MAX_SIZE];
         int32 error = 0;
-        while((error = recv(m_ListeningSocket,(int8*)&firstSizeByte,sizeof(firstSizeByte),MSG_WAITALL)) == sizeof(firstSizeByte))
+        while((error = recv(m_ListeningSocket,(int8*)&_header,sizeof(ServerPacketHeader),MSG_WAITALL)) == sizeof(ServerPacketHeader))
         {
             Packet packet;
             recv(m_ListeningSocket,(int8*)&size,sizeof(uint8),MSG_WAITALL);

@@ -45,13 +45,7 @@ namespace Agmd
     }
 
     Model::Model(Model* m)
-    {
-        this->m_transform = m->m_transform;
-        this->m_IndexBuffer = m->m_IndexBuffer;
-        this->m_VertexBuffer = m->m_VertexBuffer;
-        this->m_Declaration = m->m_Declaration;
-        this->m_PrimitiveType = m->m_PrimitiveType;
-    }
+    {}
     
     Model::Model()
     {}

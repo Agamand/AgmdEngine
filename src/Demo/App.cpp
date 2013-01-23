@@ -82,7 +82,7 @@ void App::OnInit()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
 
     m_Scene = new Scene();
-    Model* model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST);
+    /*Model* model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST);
     m_Scene->AddModel(model);
     Color c = Color::blue;
     model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
@@ -99,10 +99,10 @@ void App::OnInit()
     c = Color::blue + Color::red;
     model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
     model->GetTransform().Translate(0,-2.0f,0);
-    m_Scene->AddModel(model);
-
-    /*Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
     m_Scene->AddModel(model);*/
+
+    Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
+    m_Scene->AddModel(model);
 
     AWindow* diffuseW = new AWindow();
     diffuseW->SetFont(mode->GetDiffuseTexture());
@@ -115,7 +115,7 @@ void App::OnInit()
     GUIMgr::Instance().AddWidget(lightW);
     
     Renderer::Get().SetActiveScene(m_Scene);
-    Renderer::Get().SetCullFace(1);
+    Renderer::Get().SetCullFace(2);
 
     tex.CreateFromFile("Texture/bw.png",PXF_A8R8G8B8);
 
@@ -134,7 +134,7 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
     {
         m_timer = 2000;
     }else m_timer -= time_diff;
-    vec3 position = vec3(4*cos(m_timer/1000.0f*M_PI),4*sin(m_timer/1000.0f*M_PI),0);
+    vec3 position = vec3(200*cos(m_timer/1000.0f*M_PI),200*sin(m_timer/1000.0f*M_PI),0);
     m_light->SetPosition(position);
 }
 
@@ -148,7 +148,7 @@ void App::OnRender()
     
     //render.SetCurrentProgram(shader2D);
     int fps = getFps();
-    m_fps->m_Text = StringBuilder(fps);//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
+    m_fps->m_Text = StringBuilder(fps)(", ")(fps ? (int)(1000/fps) : 999999999)(" ms");//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
    //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
     m_fps->Draw();
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");

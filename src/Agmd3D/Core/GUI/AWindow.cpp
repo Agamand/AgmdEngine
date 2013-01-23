@@ -193,67 +193,67 @@ namespace Agmd
             }
 
         indices.push_back(0);
-        indices.push_back(1);
         indices.push_back(4);
         indices.push_back(1);
+        indices.push_back(1);
+        indices.push_back(4);
         indices.push_back(5);
-        indices.push_back(4);
 
         indices.push_back(8);
-        indices.push_back(9);
         indices.push_back(12);
         indices.push_back(9);
+        indices.push_back(9);
+        indices.push_back(12);
         indices.push_back(13);
-        indices.push_back(12);
 
         indices.push_back(2);
-        indices.push_back(3);
         indices.push_back(6);
         indices.push_back(3);
+        indices.push_back(3);
+        indices.push_back(6);
         indices.push_back(7);
-        indices.push_back(6);
 
         indices.push_back(10);
-        indices.push_back(11);
         indices.push_back(14);
         indices.push_back(11);
+        indices.push_back(11);
+        indices.push_back(14);
         indices.push_back(15);
-        indices.push_back(14);
 
         indices.push_back(4);
-        indices.push_back(5);
         indices.push_back(8);
         indices.push_back(5);
+        indices.push_back(5);
+        indices.push_back(8);
         indices.push_back(9);
-        indices.push_back(8);
 
         indices.push_back(6);
-        indices.push_back(7);
         indices.push_back(10);
         indices.push_back(7);
+        indices.push_back(7);
+        indices.push_back(10);
         indices.push_back(11);
-        indices.push_back(10);
 
         indices.push_back(1);
-        indices.push_back(2);
         indices.push_back(5);
         indices.push_back(2);
+        indices.push_back(2);
+        indices.push_back(5);
         indices.push_back(6);
-        indices.push_back(5);
 
         indices.push_back(9);
-        indices.push_back(10);
         indices.push_back(13);
         indices.push_back(10);
+        indices.push_back(10);
+        indices.push_back(13);
         indices.push_back(14);
-        indices.push_back(13);
 
         indices.push_back(5);
-        indices.push_back(6);
         indices.push_back(9);
         indices.push_back(6);
+        indices.push_back(6);
+        indices.push_back(9);
         indices.push_back(10);
-        indices.push_back(9);
 
         m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(vertices.size(), BUF_DYNAMIC,&vertices[0]);
         m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)indices.size(), 0, &indices[0]);

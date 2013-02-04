@@ -7,6 +7,15 @@ https://github.com/Agamand/AgmdEngine
 */
 
 inline Transform::Transform(const vec3& _position, const quat& _rotation) :
+m_parent(NULL),
+m_position(_position),
+m_rotation(_rotation),
+position(m_position),
+rotation(m_rotation)
+{}
+
+inline Transform::Transform(Transform* parent, const vec3& _position, const quat& _rotation) :
+m_parent(parent),
 m_position(_position),
 m_rotation(_rotation),
 position(m_position),

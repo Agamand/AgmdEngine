@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef ACONTAINER_H
-#define ACONTAINER_H
+#ifndef _ACONTAINER_H_
+#define _ACONTAINER_H_
 
 namespace Agmd
 {
@@ -19,4 +19,4 @@ namespace Agmd
     };
 }
 
-#endif //ACONTAINER_H
+#endif /* _ACONTAINER_H_ */

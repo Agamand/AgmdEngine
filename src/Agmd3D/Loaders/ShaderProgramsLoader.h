@@ -35,7 +35,7 @@ namespace Agmd
 
     private :
 
-        std::string LoadShader(const std::string& filename, const std::string parentdir = "");
+        std::string LoadShader(const std::string& filename, const std::string& parentdir = "");
 
         ShaderPreprocessor preprocessor(const std::string& instruction);
         static void OnError();

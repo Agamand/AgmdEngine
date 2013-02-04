@@ -40,6 +40,9 @@ status : in pause
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
 #include <AgmdUtilities/Utilities/Color.h>
 #include <AgmdUtilities/Debug/Profiler.h>
+#include <Agmd3D/Core/Effects/PostEffectMgr.h>
+#include <Agmd3D/Core/Effects/BlurEffect.h>
+#include <Agmd3D/Core/RenderObject/MeshRender.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -64,6 +67,7 @@ void App::Run(int argc, char** argv)
 void App::OnInit()
 {
     pause = true;
+    noise = 0.005;
     MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
 
     m_MatProj3D = glm::perspective(90.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f); // glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 100.0f);
@@ -72,9 +76,17 @@ void App::OnInit()
 
     shader2D = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/classic_pipeline_2D.glsl");
 
-    ForwardRendering* mode = new ForwardRendering(getScreen());
-    //DeferredRendering* mode = new DeferredRendering(getScreen());
+    //ForwardRendering* mode = new ForwardRendering(getScreen());
+    DeferredRendering* mode = new DeferredRendering(getScreen());
     RenderingMode::SetRenderingMode(mode);
+
+
+    m_motioneffect = NULL;
+    m_effect = NULL;
+
+    m_motioneffect = new BlurMotionEffect(getScreen());
+    m_effect = new BlurEffect(Texture());
+    PostEffectMgr::Instance().AddEffect(m_effect);
 
     cam3D = new TPCamera(m_MatProj3D);
     cam2D = new FPCamera(m_MatProj2D);
@@ -102,18 +114,18 @@ void App::OnInit()
     m_Scene->AddModel(model);*/
 
     Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
-    m_Scene->AddModel(model);
+    MeshRender* mesh = new MeshRender(model);
+    m_Scene->AddMesh(mesh);
 
     AWindow* diffuseW = new AWindow();
-    diffuseW->SetFont(mode->GetDiffuseTexture());
+    //diffuseW->SetFont(mode->GetDiffuseTexture());
     AWindow* depthW = new AWindow();
-    depthW->SetFont(mode->GetDepthTexture());
+    //depthW->SetFont(mode->GetDepthTexture());
     AWindow* lightW = new AWindow();
-    lightW->SetFont(mode->GetLightingTexture());
+    //lightW->SetFont(mode->GetLightingTexture());
     GUIMgr::Instance().AddWidget(diffuseW);
     GUIMgr::Instance().AddWidget(depthW);
-    GUIMgr::Instance().AddWidget(lightW);
-    
+    GUIMgr::Instance().AddWidget(lightW);   
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
@@ -169,7 +181,20 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         case 'P':
             pause = !pause;
             break;
-        break;
+        case VK_ADD:
+            noise += 0.001f;
+            if(m_motioneffect)
+                m_motioneffect->SetIntensity(noise);
+            if(m_effect)
+                m_effect->SetNoiseOffset(noise);
+            break;
+        case VK_SUBTRACT:
+            noise -= 0.001f;
+            if(m_motioneffect)
+                m_motioneffect->SetIntensity(noise);
+            if(m_effect)
+                m_effect->SetNoiseOffset(noise);
+            break;
         }
     }
 
@@ -197,7 +222,6 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
             vertex.normal = vec3(cos(i*angle/stack)*sin(j*M_PI/slice),sin(i*angle/stack)*sin(j*M_PI/slice), cos(j*M_PI/slice));
             vertex.position = vec3(r*cos(i*angle/stack)*sin(j*M_PI/slice),r*sin(i*angle/stack)*sin(j*M_PI/slice), r*cos(j*M_PI/slice));
             vertex.texCoords = vec2(i/stack*angle/(M_PI*2),1.0f-j/slice);
-            vertex.boneCount = 0;
             vertices.push_back(vertex);
         }
     }
@@ -226,8 +250,6 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
     Texture tex;
     if(texture.length() != 0)
         tex.CreateFromFile(texture,PXF_A8R8G8B8);
-    if(tex.GetTexture())
-        m->SetTextureUnit(tex,0);
 
     return m;
 }
@@ -253,7 +275,6 @@ Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitive
             vertex.normal = vec3(0.0f,0.0f,1.0f);
             vertex.position = vec3(i*polysize.x-x_2,j*polysize.y-y_2,0.0f);
             vertex.texCoords = vec2(i/((float)n_poly.x),j/((float)n_poly.y));
-            vertex.boneCount = 0;
             vertices.push_back(vertex);
         }
     }
@@ -280,8 +301,6 @@ Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitive
     Texture tex;
     if(texture.length() != 0)
         tex.CreateFromFile(texture,PXF_A8R8G8B8);
-    if(tex.GetTexture())
-        m->SetTextureUnit(tex,0);
 
     return m;
 }
@@ -337,8 +356,6 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
     Texture tex;
     if(texture.length() != 0)
         tex.CreateFromFile(texture,PXF_A8R8G8B8);
-    if(tex.GetTexture())
-        m->SetTextureUnit(tex,0);
 
     return m;
 }
@@ -355,7 +372,6 @@ Model* App::CreateTriangle(float size, TPrimitiveType type)
         vertex.normal = vec3(0.0f,0.0f,1.0f);
         vertex.position = size*vec3(cos(2*M_PI/3*i),sin(2*M_PI/3*i),0.0f);
         vertex.texCoords = vec2(cos(2*M_PI/3*i),sin(2*M_PI/3*i));
-        vertex.boneCount = 0;
         vertices.push_back(vertex);
         index.push_back(i);
     }

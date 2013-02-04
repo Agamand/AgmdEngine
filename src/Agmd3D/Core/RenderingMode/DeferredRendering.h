@@ -44,7 +44,7 @@ namespace Agmd
         RenderBuffer* m_normalbuffer;
         RenderBuffer* m_positionbuffer;
 
-        Texture m_textureBuffer[3];
+        Texture m_textureBuffer[5];
         uint32* bufferFlags;
         
         ShaderProgram m_ligth_program;

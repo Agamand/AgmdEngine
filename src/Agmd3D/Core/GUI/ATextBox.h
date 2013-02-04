@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef ATEXTBOX_H
-#define ATEXTBOX_H
+#ifndef _ATEXTBOX_H_
+#define _ATEXTBOX_H_
 
 namespace Agmd
 {
@@ -19,4 +19,4 @@ namespace Agmd
     };
 }
 
-#endif //ATEXTBOX_H
+#endif /* _ATEXTBOX_H_ */

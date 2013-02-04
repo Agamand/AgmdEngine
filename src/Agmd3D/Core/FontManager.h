@@ -17,6 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Declaration.h>
 #include <Vector2.h>
 #include <Vector3.h>
+#include <Transform.h>
 
 #include <AgmdDefines.h>
 
@@ -70,6 +71,7 @@ namespace Agmd
         Buffer<TIndex>  m_IndexBuffer;
         DeclarationPtr  m_Declaration;
         ShaderProgram   m_program;
+        Transform*      m_transform;
     };
 
 }

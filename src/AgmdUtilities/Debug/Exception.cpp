@@ -42,4 +42,7 @@ namespace AgmdUtilities
 
     BadConversion::BadConversion(const std::string& error) : Exception(error)
     {}
+
+    ParserFail::ParserFail(const std::string& filename, const std::string& error) : Exception(StringBuilder("Parser Fail at ")(error)(" on ")(filename))
+    {}
 }

@@ -22,6 +22,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector2.h>
 #include <Vector3.h>
 #include <Rectangle.h>
+#include <Transform.h>
 #include <string>
 #include <map>
 #include <vector>
@@ -92,6 +93,8 @@ namespace Agmd
 
         virtual void SetCurrentProgram(const BaseShaderProgram* prog) = 0;
 
+        void SetCurrentTransform(const Transform* transform);
+
         virtual void SetViewPort(const ivec2& xy, const ivec2& size) = 0;
 
         virtual void SetCullFace(int face) = 0;
@@ -158,14 +161,15 @@ namespace Agmd
 
         std::map<TCapability, bool> m_Capabilities;
 
-        uint32 m_TextureFlags;
-        ivec2 m_Screen;
+        uint32              m_TextureFlags;
+        ivec2               m_Screen;
+        const Transform*  m_CurrentTransform;
 
-        Scene*  m_ActiveScene;
-        Camera* m_Camera;
+        Scene*              m_ActiveScene;
+        Camera*             m_Camera;
     private :
 
-        static Renderer* s_Instance;
+        static Renderer*    s_Instance;
     };
     #include "Renderer.inl"
 

@@ -11,7 +11,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Renderer.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Texture/Image.h>
-#include <Core/MatStack.h>
 #include <windows.h>
 #include <algorithm>
 #include <vector>
@@ -21,7 +20,8 @@ SINGLETON_IMPL(Agmd::FontManager);
 
 namespace Agmd
 {
-    FontManager::FontManager()
+    FontManager::FontManager() :
+    m_transform(new Transform())
     {
         m_program.LoadFromFile("Shader/text.glsl");
     }
@@ -29,6 +29,7 @@ namespace Agmd
     FontManager::~FontManager()
     {
         UnloadFonts();
+        delete m_transform;
     }
 
     void FontManager::Initialize()
@@ -165,6 +166,7 @@ namespace Agmd
 
         
         Renderer::Get().Enable(RENDER_ZTEST, false);
+        Renderer::Get().SetCurrentTransform(m_transform);
         Renderer::Get().SetDeclaration(m_Declaration);
         Renderer::Get().SetTexture(0, curFont.texture.GetTexture());
         Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
@@ -172,6 +174,8 @@ namespace Agmd
         Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
         Renderer::Get().GetCurrentProgram()->SetParameter("u_size", str.m_Size);
         Renderer::Get().GetCurrentProgram()->SetParameter("u_offset", offset);
+
+
 
         int nbChars = 0;
         for (std::string::const_iterator i = str.m_Text.begin(); (i != str.m_Text.end()) && (nbChars < nbCharMax); ++i)
@@ -207,17 +211,15 @@ namespace Agmd
                     continue;
             }
             
-            MatStack::push(translate(mat4(1.0f),vec3(x,y,0)));
+            m_transform->SetPosition(vec3(x,y,0));
             Renderer::Get().GetCurrentProgram()->SetParameter("u_char",(int)c);
             Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 6);
-            MatStack::pop();
 
             x += curFont.charSize[c].x * ratio;
             ++nbChars;
         }
 
         Renderer::Get().SetCurrentProgram(NULL);
-        //Renderer::Get().Enable(RENDER_ZTEST, true);
     }
 
     ivec2 FontManager::GetStringPixelSize(const GraphicString& str)

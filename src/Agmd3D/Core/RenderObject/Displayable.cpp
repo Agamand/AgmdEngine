@@ -6,14 +6,15 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#include <Core/SceneObject/Displayable.h>
+#include <Core/RenderObject/Displayable.h>
 #include <Core/SceneObject/Material.h>
 
 
 namespace Agmd
 {
-    Displayable::Displayable() : 
-    m_material(NULL)
+    Displayable::Displayable(Transform* transform) : 
+    m_material(NULL),
+    m_transform(transform)
     {}
 
     Displayable::~Displayable()
@@ -21,7 +22,7 @@ namespace Agmd
 
     Transform& Displayable::GetTransform() 
     { 
-        return m_transform;
+        return *m_transform;
     }
 }
 

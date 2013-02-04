@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef AWIDGET_H
-#define AWIDGET_H
+#ifndef _AWIDGET_H_
+#define _AWIDGET_H_
 
 #include <Config/Export.h>
 
@@ -61,4 +61,4 @@ namespace Agmd
     };
 }
 
-#endif //AWIDGET_H
+#endif /* _AWIDGET_H_ */

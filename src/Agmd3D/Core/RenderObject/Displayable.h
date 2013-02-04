@@ -30,7 +30,7 @@ namespace Agmd
     class AGMD3D_EXPORT Displayable
     {
     public :
-        Displayable();
+        Displayable(Transform*);
         virtual ~Displayable();
 
         virtual void Render(TRenderPass pass) const = 0;
@@ -39,7 +39,8 @@ namespace Agmd
         Transform& GetTransform();
 
     protected:
-        Transform m_transform;
+
+        Transform* m_transform;
         Material* m_material;
     };
 

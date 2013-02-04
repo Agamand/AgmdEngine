@@ -14,23 +14,35 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 
 #include <map>
+#include <string>
+#include <vector>
 #include <sstream>
 
 namespace Agmd
 {
 
     #define STR_TOKEN_SHADERPIPELINE "shaderpipeline"
-    #define STR_TOKEN_SUBROUTINE "subshader"
-    #define STR_TOKEN_PASS "pass"
-    #define STR_TOKEN_GLSLBEGIN ""
-    #define STR_TOKEN_GLSLEND ""
+    #define STR_TOKEN_SUBROUTINE "subroutine"
+    #define STR_TOKEN_GLSLBEGIN "glslbegin"
+    #define STR_TOKEN_GLSLEND "glslend"
     #define STR_TOKEN_PROPERTIES "properties"
+    #define STR_TOKEN_PASS "pass"
+    #define STR_TOKEN_BRACE_OPEN "{"
+    #define STR_TOKEN_BRACE_CLOSE "}"
+    #define STR_TOKEN_INSTRUCTION_END ";"
 
     enum Token
     {
+        TOKEN_UNKNOWN,
         TOKEN_SHADERPIPELINE,
-        TOKEN_SUBSHADER,
+        TOKEN_SUBROUTINE,
+        TOKEN_PROPERTIES,
+        TOKEN_GLSLBEGIN,
+        TOKEN_GLSLEND,
         TOKEN_PASS,
+        TOKEN_BRACE_OPEN,
+        TOKEN_BRACE_CLOSE,
+        TOKEN_INSTRUCTION_END
     };
 
     class ShaderPipelineLoader : public Loader<ShaderPipeline>
@@ -43,9 +55,12 @@ namespace Agmd
 
     private :
         static void OnError();
-        Token GetToken(std::string str);
-        void Parse(std::string str);
+        Token GetToken(const std::string& str);
+        void ParseProperties(const std::string& str);
+        void ParseSubRoutine(const std::string& str);
 
+        std::vector<std::string> m_properties;
+        std::map<std::string,std::string> m_subroutine;
     };
 
 }

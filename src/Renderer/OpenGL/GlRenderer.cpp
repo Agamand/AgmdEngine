@@ -212,7 +212,7 @@ namespace Agmd
         LOAD_EXTENSION(wglCreateContextAttribsARB);
 
         //Recreate a real GlContext (if possible)
-        if(wglCreateContextAttribsARB != NULL && false)
+        if(wglCreateContextAttribsARB && false)
         {
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
@@ -237,7 +237,7 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -245,9 +245,6 @@ namespace Agmd
         wglSwapIntervalEXT(0);
 
         glEnable(GL_DEPTH_TEST);
-
-        //init default shader
-
         glFrontFace(GL_CCW);
     }
 
@@ -546,7 +543,7 @@ namespace Agmd
         if(!m_CurrentProgram)
             return;
 
-        m_CurrentProgram->SetParameter(MAT_MODEL,MatStack::get());
+        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
 
         switch (type)
@@ -568,7 +565,7 @@ namespace Agmd
         unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
         const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
 
-        m_CurrentProgram->SetParameter(MAT_MODEL,MatStack::get());
+        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
 
         switch (type)

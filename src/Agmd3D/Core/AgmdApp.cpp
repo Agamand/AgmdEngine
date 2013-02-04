@@ -27,16 +27,16 @@ namespace Agmd
     AgmdApp* AgmdApp::m_Application = NULL;
     
     AgmdApp::AgmdApp() : 
-    m_Instance (GetModuleHandle("Agmd3D.dll")),
-    m_Hwnd     (NULL),
-    m_IsRunning(true),
-    camera       (NULL),
-    last_mouse_pos(0,0),
-    mouseState(MOUSE_NONE),
-    last_time(0),
-    frame (0),
-    m_fps (0),
-    fps_timer(SECONDS_IN_MS)
+    m_Instance      (GetModuleHandle("Agmd3D.dll")),
+    m_Hwnd          (NULL),
+    m_IsRunning     (true),
+    camera          (NULL),
+    last_mouse_pos  (0,0),
+    mouseState      (MOUSE_NONE),
+    last_time       (0),
+    frame           (0),
+    m_fps           (0),
+    fps_timer       (SECONDS_IN_MS)
     {
         assert(m_Instance != NULL);
         m_Application = this;

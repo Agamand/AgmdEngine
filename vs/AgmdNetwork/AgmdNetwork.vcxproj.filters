@@ -13,6 +13,9 @@
     <Filter Include="Opcode">
       <UniqueIdentifier>{1e412cb2-d4d5-4efa-bdca-d28a4087fa19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{11722b8a-6c8a-4509-89d9-4de336420c93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\AgmdDefines.h" />

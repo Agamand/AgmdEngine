@@ -63,3 +63,8 @@ Declaration* Renderer::CreateVertexDeclaration(const TDeclarationElement (&elt)[
 {
     return CreateDeclaration(elt, N);
 }
+
+inline void Renderer::SetCurrentTransform(const Transform* transform)
+{
+    m_CurrentTransform = transform;
+}

@@ -64,6 +64,8 @@ namespace Agmd
         static void TextureRender(Texture input);
         static void TextureRandom();
 
+        static void BeginRenderToTexture(const Texture& texture);
+        static void EndRenderToTexture();
         static BaseShaderProgram* s_addTexture;
         static BaseShaderProgram* s_prodTexture;
         static BaseShaderProgram* s_renderTexture;

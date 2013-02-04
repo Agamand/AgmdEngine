@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/SceneObject/Model.h>
 #include <Core/SceneObject/Terrain.h>
 #include <Core/SceneObject/Water.h>
-#include <Core/SceneObject/Sky.h>
 #include <Core/Renderer.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
@@ -23,97 +22,53 @@ namespace Agmd
 
 
     Scene::Scene() : 
-    m_deltaTime(0),
-    m_Sky(NULL)    
+    m_SkyBox(NULL)    
     {}
 
     Scene::~Scene()
     {}
-    void Scene::Prepare()
-    {
-        // <!> unused <!>
-        /*for(uint32 i = 0; i < m_vWaters.size(); i++)
-            m_vWaters[i]->prepare();
-
-        */
-    }
 
 
     void Scene::Render(TRenderPass pass) const
     {
-        Model* const* models = &m_vModels[0];
-        uint32 max = m_vModels.size();
+        Displayable* const* mesh = &m_vMesh[0];
+        uint32 max = m_vMesh.size();
         for(uint32 i = 0; i < max; i++)
-            models[i]->Render(pass);
+            mesh[i]->Render(pass);
     }
 
-    void Scene::Draw() const
-    {}
 
     void Scene::Update(uint64 t_diff)
     {}
 
-    void Scene::AddModel(Model* m)
+    void Scene::AddMesh(Displayable* m)
     {
-        m_vModels.push_back(m);
+        m_vMesh.push_back(m);
     }
 
-    void Scene::AddTerrain(Terrain* t)
-    {
-        m_vMaps.push_back(t);
-    }
-
-    void Scene::AddWater(Water* w)
-    {
-        m_vWaters.push_back(w);
-    }
 
     void Scene::AddLight(Light* l)
     {
         m_lights.push_back(l);
     }
 
-    void Scene::SetSky(Sky* _Sky)
+    void Scene::SetSkyBox(SkyBox* _Sky)
     {
-        m_Sky = _Sky;
+        m_SkyBox = _Sky;
     }
 
-    Sky* Scene::GetSky()
+    SkyBox* Scene::GetSkyBox()
     {
-        return m_Sky;
+        return m_SkyBox;
     }
 
-    void Scene::RemoveModel(Model* m)
+    void Scene::RemoveMesh(Displayable* m)
     {
-        for(uint32 i = 0; i < m_vModels.size(); i++)
+        for(uint32 i = 0; i < m_vMesh.size(); i++)
         {
-            if(m_vModels[i] == m)
+            if(m_vMesh[i] == m)
             {
-                m_vModels.erase(m_vModels.begin()+i);
-                break;
-            }
-        }
-    }
-
-    void Scene::RemoveTerrain(Terrain* t)
-    {
-        for(uint32 i = 0; i < m_vMaps.size(); i++)
-        {
-            if(m_vMaps[i] == t)
-            {
-                m_vMaps.erase(m_vMaps.begin()+i);
-                break;
-            }
-        }
-    }
-
-    void Scene::RemoveWater(Water* w)
-    {
-        for(uint32 i = 0; i < m_vWaters.size(); i++)
-        {
-            if(m_vWaters[i] == w)
-            {
-                m_vWaters.erase(m_vWaters.begin()+i);
+                m_vMesh.erase(m_vMesh.begin()+i);
                 break;
             }
         }

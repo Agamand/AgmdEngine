@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef AWINDOW_H
-#define AWINDOW_H
+#ifndef _AWINDOW_H_
+#define _AWINDOW_H_
 
 #include <Config/Export.h>
 #include <Core/GUI/AWidget.h>
@@ -66,7 +66,8 @@ namespace Agmd
 
         bool                hold;
         bool                extend;
+        Transform*          m_transform;
     };
 }
 
-#endif //AWINDOW_H
+#endif /* _AWINDOW_H_ */

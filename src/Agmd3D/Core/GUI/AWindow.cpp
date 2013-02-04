@@ -16,7 +16,8 @@ namespace Agmd
 
     AWindow::AWindow( AWidget* parent) :
     AWidget(parent),
-    hold(false)
+    hold(false),
+    m_transform(new Transform())
     {
         BuildWindow();
         m_Texture.CreateFromFile("Texture/Gui.png",PXF_A8R8G8B8);
@@ -89,8 +90,8 @@ namespace Agmd
     {
         Renderer &render = Renderer::Get();
         render.SetCurrentProgram(m_Program);
-        mat4 modelMatrix = translate(mat4(1.0f),vec3(m_vAbsolutePosition,0.0f));
-        MatStack::push(modelMatrix);
+        render.SetCurrentTransform(m_transform);
+        m_transform->SetPosition(vec3(m_vAbsolutePosition,0));
         render.SetDeclaration(m_Declaration);
         render.SetVertexBuffer(0, m_VertexBuffer);
         render.SetIndexBuffer(m_IndexBuffer);
@@ -116,7 +117,6 @@ namespace Agmd
         }else render.SetTextureFlag(0);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
         render.SetCurrentProgram(NULL);
-        MatStack::pop();
     }
 
     

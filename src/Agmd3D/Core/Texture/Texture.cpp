@@ -298,6 +298,20 @@ namespace Agmd
         render.SetCurrentProgram(nullptr);
     }
 
+    void Texture::BeginRenderToTexture(const Texture& texture)
+    {
+        if(!s_framebuffer)
+            s_framebuffer = Renderer::Get().CreateFrameBuffer();
+        s_framebuffer->SetTexture(texture,COLOR_ATTACHMENT);
+        s_framebuffer->Clear(CLEAR_COLOR);
+        s_framebuffer->Bind();
+    }
+    void Texture::EndRenderToTexture()
+    {
+        if(s_framebuffer)
+            s_framebuffer->UnBind();
+    }
+
     TTextureType Texture::GetType() const
     {
         return m_Texture->GetType();

@@ -15,6 +15,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Renderer.h>
 #include <Core/SceneObject/Scene.h>
+#include <Core/Tools/Fast2DSurface.h>
+#include <Core/Effects/PostEffectMgr.h>
 
 namespace Agmd
 {
@@ -45,9 +47,11 @@ namespace Agmd
         m_normalbuffer = render.CreateRenderBuffer(m_screen, PXF_R16G16B16);
         m_positionbuffer = render.CreateRenderBuffer(m_screen, PXF_R32G32B32);
 
-        m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D);
-        m_textureBuffer[1].Create(m_screen, PXF_R16G16B16, TEXTURE_2D);
-        m_textureBuffer[2].Create(m_screen, PXF_R32G32B32, TEXTURE_2D);
+        m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
+        m_textureBuffer[1].Create(m_screen, PXF_R16G16B16, TEXTURE_2D, TEX_NOMIPMAP);
+        m_textureBuffer[2].Create(m_screen, PXF_R32G32B32, TEXTURE_2D, TEX_NOMIPMAP);
+        m_textureBuffer[3].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
+        m_textureBuffer[4].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
 
         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
         m_framebuffer->SetRender(m_colorbuffer, COLOR_ATTACHMENT);
@@ -59,7 +63,7 @@ namespace Agmd
         m_framebuffer->SetTexture(m_textureBuffer[2], COLOR_ATTACHMENT+2);
         uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT+1, COLOR_ATTACHMENT+2};
         bufferFlags = m_framebuffer->GenerateBufferFlags(3,buffer);
-        m_ligth_program.LoadFromFile("Shader/RenderingMode/");
+        m_ligth_program.LoadFromFile("Shader/RenderingShader/DeferredLighting.glsl");
     }
 
     void DeferredRendering::Compute()
@@ -83,25 +87,39 @@ namespace Agmd
         render.Enable(RENDER_ZWRITE,false);
         sc->Render(TRenderPass::RENDERPASS_DEFERRED);
         m_framebuffer->UnBind();
-
         const std::vector<Light*>& lights = sc->GetLights();
         uint32 maxLights = lights.size();
 
         render.Enable(RENDER_ZTEST,false);
-        Texture::TextureRender(m_textureBuffer[0]);
+        //Texture::TextureRender(m_textureBuffer[0]);
 
+
+        if(PostEffectMgr::Instance().HaveEffect())
+            Texture::BeginRenderToTexture(m_textureBuffer[3]);
         if(maxLights)
         {
-            render.Enable(RENDER_ALPHABLEND, true);
-            render.SetupAlphaBlending(BLEND_DESTCOLOR, BLEND_ZERO);
+            render.SetCurrentProgram(m_ligth_program.GetShaderProgram());
+            render.SetTexture(0,m_textureBuffer[0].GetTexture());
+            render.SetTexture(1,m_textureBuffer[1].GetTexture());
+            render.SetTexture(2,m_textureBuffer[2].GetTexture());
+            //render.Enable(RENDER_ALPHABLEND, true);
+            //render.SetupAlphaBlending(BLEND_SRCCOLOR, BLEND_DESTCOLOR);
             for(uint32 i = 0; i < maxLights; i++)
             {
                 lights[i]->Bind();
-                Texture::TextureRender(m_textureBuffer[1]);
+                Fast2DSurface::Instance().Draw();
             }
-            
+            render.SetCurrentProgram(NULL);
             render.Enable(RENDER_ALPHABLEND, false);
         }
+        if(PostEffectMgr::Instance().HaveEffect())
+        {
+            Texture::EndRenderToTexture();
+            PostEffectMgr::Instance().ApplyEffect(m_textureBuffer[3],m_textureBuffer[4]);
+            Texture::TextureRender(m_textureBuffer[4]);
+        }
+            
+
         End();
     }
 

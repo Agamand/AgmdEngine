@@ -82,9 +82,6 @@ Model* M2Loader::LoadFromFile(const std::string& filename)
         vertices[i].position = m2vertex[i].pos;
         vertices[i].normal = normalize(m2vertex[i].normal);
         vertices[i].texCoords = m2vertex[i].texcoords;
-        vertices[i].boneWeight = vec4(m2vertex[i].weights[0],m2vertex[i].weights[1],m2vertex[i].weights[2],m2vertex[i].weights[3]);
-        vertices[i].boneIndices = vec4(m2vertex[i].bones[0],m2vertex[i].bones[1],m2vertex[i].bones[2],m2vertex[i].bones[3]);
-        vertices[i].boneCount = 0;
         vertices[i].color = -1;
     }
     delete[] buffer;
@@ -95,8 +92,6 @@ Model* M2Loader::LoadFromFile(const std::string& filename)
     Model* model = new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
     Texture tex;
     tex.CreateFromFile(filename + ".png",PXF_A8R8G8B8);
-    if(tex.GetTexture())
-        model->SetTextureUnit(tex,0);
     return model;
 }
 

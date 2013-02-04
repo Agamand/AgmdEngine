@@ -67,6 +67,11 @@ namespace AgmdUtilities
         BadConversion(const std::string& error);
     };
 
+    struct ParserFail : public Exception
+    {
+        ParserFail(const std::string& filename, const std::string& error);
+    };
+
 }
 
 #endif //EXCEPTION_H

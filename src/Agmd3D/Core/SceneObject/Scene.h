@@ -13,6 +13,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Config/Fwd.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Shader/ShaderProgram.h>
+#include <Core/RenderObject/Displayable.h>
+#include <Core/SceneObject/SkyBox.h>
 #include <Core/SceneObject/Light.h>
 
 #include <AgmdDefines.h>
@@ -21,21 +23,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    enum SceneOption
-    {
-        SC_NOOPTION         = 0x00,
-        SC_DRAW_MODEL        = 0x01,
-        SC_DRAW_TERRAIN        = 0x02,
-        SC_DRAW_WATER        = 0x04,
-        SC_DRAW_SKY            = 0x08,
-        SC_APPLY_SHADOW        = 0x10,
-        SC_APPLY_LIGHTING    = 0x20,
-        SC_DRAW_ALL        = SC_DRAW_MODEL | SC_DRAW_TERRAIN | SC_DRAW_WATER | SC_DRAW_SKY,
-    };
-
-    typedef std::vector<Model*> vModel;
-    typedef std::vector<Terrain*> vMap;
-    typedef std::vector<Water*> vWater;
+    typedef std::vector<Displayable*> vDisplayable;
 
     class AGMD3D_EXPORT Scene
     {
@@ -43,41 +31,24 @@ namespace Agmd
         Scene();
         ~Scene();
         void Render(TRenderPass pass) const;
-        void Draw() const;
 
         void Update(uint64 t_diff);
 
-        void Prepare();
-
-        void AddModel(Model*);
-        void AddTerrain(Terrain*);
-        void AddWater(Water*);
+        void AddMesh(Displayable*);
 
         void AddLight(Light*);
 
-        void SetSky(Sky*);
-        Sky* GetSky();
+        void SetSkyBox(SkyBox*);
+        SkyBox* GetSkyBox();
 
-        void RemoveModel(Model*);
-        void RemoveTerrain(Terrain*);
-        void RemoveWater(Water*);
+        void RemoveMesh(Displayable*);
 
         const std::vector<Light*>& GetLights();
 
-        uint64 GetTime()
-        {
-            return m_deltaTime;
-        }
-
     private:
 
-        void RenderShadow() const;
-
-        vModel    m_vModels;
-        vMap    m_vMaps;
-        vWater    m_vWaters;
-        Sky*    m_Sky;
-        uint64    m_deltaTime;
+        vDisplayable        m_vMesh;
+        SkyBox*             m_SkyBox;
 
         std::vector<Light*> m_lights;
     };

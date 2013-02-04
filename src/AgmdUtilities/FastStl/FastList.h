@@ -192,3 +192,4 @@ template <class T> inline uint32 FastList::capacity() const
 
 }
 #endif /* _FASTLIST_H_ */
+ 

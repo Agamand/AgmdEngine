@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef GUIMGR_H
-#define GUIMGR_H
+#ifndef _GUIMGR_H_
+#define _GUIMGR_H_
 
 #include <Utilities\Singleton.h>
 #include <Config/Export.h>
@@ -57,8 +57,7 @@ namespace Agmd
     class AGMD3D_EXPORT GUIMgr : public Singleton<GUIMgr>
     {
 
-    MAKE_SINGLETON(GUIMgr);
-
+    MAKE_SINGLETON(GUIMgr); 
     public:
 
         void Update(uint64 t_diff);
@@ -78,4 +77,4 @@ namespace Agmd
     };
 }
 
-#endif //EVENTMGR_H
+#endif /* _GUIMGR_H_ */

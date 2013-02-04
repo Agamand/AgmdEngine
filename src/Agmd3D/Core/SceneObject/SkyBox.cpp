@@ -15,8 +15,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    SkyBox::SkyBox(float size) :
-    Sky(size)
+    SkyBox::SkyBox(float size)
     {
         Generate();
         m_Program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/skybox.glsl");

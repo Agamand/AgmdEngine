@@ -21,9 +21,11 @@ status : in pause
 #include <AgmdMaths\Matrix4.h>
 #include <AgmdUtilities\Utilities\Singleton.h>
 #include <Agmd3D\Core\SceneObject\Model.h>
-#include <Agmd3D\Core\SceneObject\Displayable.h>
 #include <Agmd3D\Core\Shader\ShaderProgram.h>
 #include <Agmd3D\Core\GUI\AWindow.h>
+#include <Agmd3D/Core/Effects/BlurEffect.h>
+#include <Agmd3D/Core/Effects/BlurMotionEffect.h>
+
 
 #include <map>
 #include <vector>
@@ -67,7 +69,9 @@ private :
     //TEST 2
     Agmd::AWindow* testwindow;
     Agmd::Texture tex;
-
+    Agmd::BlurEffect* m_effect;
+    Agmd::BlurMotionEffect* m_motioneffect;
+    float noise;
     Agmd::Light* m_light;
     uint64  m_timer;
     bool pause;

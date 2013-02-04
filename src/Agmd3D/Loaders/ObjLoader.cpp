@@ -51,7 +51,6 @@ namespace Agmd
             vertex.position = position[i];
             vertex.texCoords = texPos[i];
             vertex.normal = normal[i];
-            vertex.boneCount = 0;
             vertices.push_back(vertex);
         }
 

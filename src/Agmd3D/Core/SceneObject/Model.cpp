@@ -18,8 +18,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     Model::Model(Model::TVertex* Vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, TPrimitiveType type) :
-    m_PrimitiveType(type),
-    Displayable()
+    m_PrimitiveType(type)
     {
         Assert(Vertices != NULL);
         Assert(Indices  != NULL);
@@ -41,34 +40,16 @@ namespace Agmd
 
         m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, Vertices);
         m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(IndicesCount, 0, Indices);
-        m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
     }
 
-    Model::Model(Model* m)
-    {}
-    
-    Model::Model()
-    {}
 
-    void Model::Render(TRenderPass pass) const
+    void Model::Draw(const Transform* transform) const
     {
-
-        if(!m_material->Enable(pass))
-            return;
-
-        Draw();
-        m_material->Disable();
-    }
-
-    void Model::Draw() const
-    {
-        mat4 modelMatrix = m_transform.ModelMatrix();
-        MatStack::push(modelMatrix);
+        Renderer::Get().SetCurrentTransform(transform);
         Renderer::Get().SetDeclaration(m_Declaration);
         Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
         Renderer::Get().SetIndexBuffer(m_IndexBuffer);
         Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
-        MatStack::pop();
     }
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
@@ -81,7 +62,7 @@ namespace Agmd
         if(!type)
             return;
         int nFaces = indicesCount/3;
-        // For all face calc Normal & Tangent
+        // For all face calc Normal and Tangent
         for(int i = 0; i < nFaces; i++)
         {
             vec3 edge1(vertices[indices[i*3+1]].position-vertices[indices[i*3]].position);
@@ -151,19 +132,5 @@ namespace Agmd
             }
         }
 
-    }
-    void Model::SetTextureUnit(Texture tex, uint32 unit, uint32 pass)
-    {
-        /*if(unit > MAX_TEXTUREUNIT || pass > m_RenderPass.size())
-            return;
-        m_RenderPass[pass].m_Textures[unit] = TextureUnit(tex);*/
-    }
-    void Model::DisableTextureUnit(uint32 unit, uint32 pass)
-    {
-        /*
-        if(unit > MAX_TEXTUREUNIT || pass > m_RenderPass.size())
-            return;
-
-        m_RenderPass[pass].m_Textures[unit] = TextureUnit();*/
     }
 }

@@ -11,24 +11,28 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/Texture/Texture.h>
-
+#include <Core/Buffer/FrameBuffer.h>
+#include <Utilities/SmartPtr.h>
 #include <AgmdDefines.h>
 
 namespace Agmd
 {
 
-    class PostEffect
+    class AGMD3D_EXPORT PostEffect
     {
     public:
-
+        PostEffect();
+        virtual ~PostEffect();
         virtual void Init() = 0;
         virtual void Update( uint64 /*t_diff*/) = 0;
         virtual void ApplyEffect(Texture& input, Texture& output) = 0;
 
     protected:
         ShaderProgram m_program;
-
+        FrameBuffer* m_framebuffer;
     };
+
+    typedef AgmdUtilities::SmartPtr<PostEffect> PostEffectPtr;
 
 }
 

@@ -25,7 +25,7 @@ namespace AgmdMaths
     {
     public:
         Transform(const vec3& _position = vec3(0.0f), const quat& _rotation = quat(1.0f,vec3(0.0f)));
-
+        Transform(Transform* parent, const vec3& _position = vec3(0.0f), const quat& _rotation = quat(1.0f,vec3(0.0f)));
         mat4 ModelMatrix() const;
 
         void Rotate(float angle, const vec3 &vector);

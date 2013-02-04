@@ -2,7 +2,7 @@
 #ifndef _GLOBAL_LIGHT_UNIFORM_GLSL_
 #define _GLOBAL_LIGHT_UNIFORM_GLSL_
 
-uniform layout(std140) lightInfoBlock
+layout(std140) uniform lightInfoBlock
 {
 	vec4 l_position;
 	vec4 l_dir;

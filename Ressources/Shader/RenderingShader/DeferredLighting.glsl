@@ -1,16 +1,17 @@
 #version 330
 #ifdef _VERTEX_
-#include "global_uniform.glsl"
+
+
+uniform mat4 u_matProjection;
 
 in vec3 in_Vertex;
-in vec3 in_Normal;
-out vec3 v_Normal;
-out vec3 v_Position;
+in vec2 in_TexCoord0;
+
+out vec2 v_TexCoord0;
 
 void main(){
-	mat4 modelviewproj = u_matProjection * u_matView * u_matModel;
-	v_Normal = mat3(u_matModel) * in_Normal;
-	v_Position = (u_matModel * vec4(in_Vertex,1)).xyz;
+	mat4 modelviewproj = u_matProjection;
+	v_TexCoord0 = in_TexCoord0;
 	gl_Position = modelviewproj * vec4(in_Vertex,1);
 }
 #endif
@@ -18,20 +19,22 @@ void main(){
 #ifdef _FRAGMENT_
 
 #include "global_light_uniform.glsl"
+uniform sampler2D texture0;
+uniform sampler2D texture1;
+uniform sampler2D texture2;
 
-in vec3 v_Normal;
-in vec3 v_Position;
+in vec2 v_TexCoord0;
+
 out vec4 out_color;
 
-vec3 normalToTexture(vec3 normal)
+vec3 textureToNormal(vec3 tex)
 {
-	vec3 n = normalize(normal);
-	return vec3(0.5) + n/2;
+	return tex*2-vec3(0.5);
 }
 
 vec4 dir()
 {
-	vec3 N = normalize(v_Normal);
+	vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
 	vec3 L = normalize(l_dir.xyz);
 	float lambertTerm = max(dot(N,L),0.0);
 	return vec4(vec3(lambertTerm),1.0f);
@@ -39,8 +42,9 @@ vec4 dir()
 
 vec4 point()
 {
-	vec3 N = normalize(v_Normal);
-	vec3 L = l_position.xyz-v_Position;
+	vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
+	vec3 position = texture2D( texture2, v_TexCoord0 ).xyz;
+	vec3 L = l_position.xyz-position;
 	float dist = length(L);
 	L = normalize(L);
 	float lambertTerm = max(dot(N,L),0.0);
@@ -71,6 +75,10 @@ vec4 lighting()
 void main()
 {
 	out_color = lighting();
+	//alpha discard
+	float alpha  = texture( texture0, v_TexCoord0 ).a;
+	if(alpha < 1.0f)
+		discard;
 }
 
 #endif

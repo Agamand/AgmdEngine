@@ -1,26 +1,28 @@
 #version 330
 #ifdef _VERTEX_
-#include "global_uniform.glsl"
+
+uniform mat4 u_matProjection;
 
 in vec3 in_Vertex;
-in vec3 in_Normal;
-out vec3 v_Normal;
-out vec3 v_Position;
+in vec2 in_TexCoord0;
 
-void main(){
-	mat4 modelviewproj = u_matProjection * u_matView * u_matModel;
-	v_Normal = mat3(u_matModel) * in_Normal;
-	v_Position = (u_matModel * vec4(in_Vertex,1)).xyz;
-	gl_Position = modelviewproj * vec4(in_Vertex,1);
+out vec2 v_TexCoord;
+
+void main()
+{
+	v_TexCoord = in_TexCoord0;
+	gl_Position = u_matProjection*vec4(in_Vertex,1.0f);
 }
+
 #endif
-
 #ifdef _FRAGMENT_
-
 #include "global_light_uniform.glsl"
 
-in vec3 v_Normal;
-in vec3 v_Position;
+uniform sampler2D texture0; 
+uniform sampler2D texture1;
+uniform sampler2D texture2;
+
+in vec2 v_TexCoord;
 out vec4 out_color;
 
 vec3 normalToTexture(vec3 normal)
@@ -70,6 +72,9 @@ vec4 lighting()
 
 void main()
 {
+    vec4 diffuse = texture( texture0, gl_TexCoord[0].xy );
+    vec4 position = texture( texture1, gl_TexCoord[0].xy );
+    vec4 normal = texture( texture2, gl_TexCoord[0].xy );
 	out_color = lighting();
 }
 

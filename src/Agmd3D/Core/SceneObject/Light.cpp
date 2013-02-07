@@ -28,7 +28,7 @@ namespace Agmd
         lightBuffer.outerAngle = m_outerAngle;
         lightBuffer.range = m_range;
         lightBuffer.type = m_Type;
-        m_uniformLightBuffer = Renderer::Get().CreateUniformBuffer<LightBuffer>(1, 0, UNIFORM_LIGHT_BIND, &lightBuffer);
+        m_uniformLightBuffer = Renderer::Get().CreateUniformBuffer<LightBuffer>(1, BUF_STREAM, UNIFORM_LIGHT_BIND, &lightBuffer);
     }
 
     void Light::Bind()

@@ -14,14 +14,20 @@
     <ClCompile Include="..\..\src\GameEngine\Scripts\Script.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\PhysicsMgr.cpp">
+      <Filter>BulletPhysics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\RigidBody.cpp">
+      <Filter>BulletPhysics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\MotionState.cpp">
+      <Filter>BulletPhysics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
     <ClInclude Include="..\..\src\GameEngine\Component.h" />
     <ClInclude Include="..\..\src\GameEngine\GameScene.h" />
-    <ClInclude Include="..\..\src\GameEngine\Dependancies\FwGameEngine.h">
-      <Filter>GameEngineConfig</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameEngine\Scripts\ObjectScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -31,6 +37,21 @@
     <ClInclude Include="..\..\src\GameEngine\Scripts\Script.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\FwGameEngine.h">
+      <Filter>GameEngineConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\ExportGameEngine.h">
+      <Filter>GameEngineConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\PhysicsMgr.h">
+      <Filter>BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\RigidBody.h">
+      <Filter>BulletPhysics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\MotionState.h">
+      <Filter>BulletPhysics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngineConfig">
@@ -39,5 +60,11 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{d6dae537-c16b-4fba-94b3-b9c68039a171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BulletPhysics">
+      <UniqueIdentifier>{53be0ee3-e559-4516-a078-44c9ed810b87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\GameEngine\GameObject.inl" />
   </ItemGroup>
 </Project>

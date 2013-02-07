@@ -2,11 +2,12 @@
 #define _GAMESCENE_H_
 
 #include <GameEngineConfig/FwGameEngine.h>
+#include <GameEngineConfig/ExportGameEngine.h>
 #include <vector>
 
 namespace Agmd
 {
-	class GameScene
+	class GAMEENGINE_EXPORT GameScene
 	{
 	public: 
 		GameScene();

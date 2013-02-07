@@ -1,14 +1,17 @@
 #ifndef _COMPONENT_H_
 #define _COMPONENT_H_
 
+#include <GameEngineConfig/ExportGameEngine.h>
+
 namespace Agmd
 {
-	class Component
+    template <class T> class GAMEENGINE_EXPORT Component
 	{
 	public: 
 		Component();
 		~Component();
-	
+    private:
+        T* m_component;
 	};
 }
 

@@ -29,9 +29,7 @@ status : in pause
 #include <Agmd3D\Core\SceneObject\Water.h>
 #include <Agmd3D\Core\SceneObject\SkyBox.h>
 #include <Agmd3D/Core/SceneObject/Light.h>
-#include <Agmd3D\Core\GUI\GUIMgr.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
-#include <Agmd3D/Core/RenderingMode/RenderingMode.h>
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
 #include <Agmd3D/Core/Camera/FPCamera.h>
@@ -43,6 +41,7 @@ status : in pause
 #include <Agmd3D/Core/Effects/PostEffectMgr.h>
 #include <Agmd3D/Core/Effects/BlurEffect.h>
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
+#include <Agmd3D/Core/GUI/GUIMgr.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -86,7 +85,7 @@ void App::OnInit()
 
     m_motioneffect = new BlurMotionEffect(getScreen());
     m_effect = new BlurEffect(Texture());
-    PostEffectMgr::Instance().AddEffect(m_effect);
+    PostEffectMgr::Instance().AddEffect(m_motioneffect);
 
     cam3D = new TPCamera(m_MatProj3D);
     cam2D = new FPCamera(m_MatProj2D);

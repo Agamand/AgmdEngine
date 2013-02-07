@@ -46,6 +46,9 @@
     <Filter Include="Core\Model">
       <UniqueIdentifier>{ceafba63-901c-45df-8d0e-d32ebcd70444}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Model\SceneNode">
+      <UniqueIdentifier>{3d1e64aa-da6e-442c-9b4b-539a09199b5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\AgmdDefines.h" />

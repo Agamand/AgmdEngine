@@ -36,7 +36,7 @@
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
@@ -70,7 +70,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -84,7 +84,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -100,7 +100,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -117,7 +117,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -130,6 +130,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\MotionState.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\PhysicsMgr.cpp" />
+    <ClCompile Include="..\..\src\GameEngine\BulletPhysics\RigidBody.cpp" />
     <ClCompile Include="..\..\src\GameEngine\Component.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameEngine.cpp" />
     <ClCompile Include="..\..\src\GameEngine\GameObject.cpp" />
@@ -139,13 +142,20 @@
     <ClCompile Include="..\..\src\GameEngine\Scripts\Script.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\MotionState.h" />
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\PhysicsMgr.h" />
+    <ClInclude Include="..\..\src\GameEngine\BulletPhysics\RigidBody.h" />
     <ClInclude Include="..\..\src\GameEngine\Component.h" />
-    <ClInclude Include="..\..\src\GameEngine\Dependancies\FwGameEngine.h" />
+    <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\ExportGameEngine.h" />
+    <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\FwGameEngine.h" />
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />
     <ClInclude Include="..\..\src\GameEngine\GameScene.h" />
     <ClInclude Include="..\..\src\GameEngine\Scripts\ObjectScript.h" />
     <ClInclude Include="..\..\src\GameEngine\Scripts\SceneScript.h" />
     <ClInclude Include="..\..\src\GameEngine\Scripts\Script.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\GameEngine\GameObject.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

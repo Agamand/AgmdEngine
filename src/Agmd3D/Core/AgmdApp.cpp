@@ -26,7 +26,7 @@ namespace Agmd
 {
     AgmdApp* AgmdApp::m_Application = NULL;
     
-    AgmdApp::AgmdApp() : 
+    AgmdApp::AgmdApp(ivec2 screenSize) : 
     m_Instance      (GetModuleHandle("Agmd3D.dll")),
     m_Hwnd          (NULL),
     m_IsRunning     (true),
@@ -36,7 +36,8 @@ namespace Agmd
     last_time       (0),
     frame           (0),
     m_fps           (0),
-    fps_timer       (SECONDS_IN_MS)
+    fps_timer       (SECONDS_IN_MS),
+    m_ScreenSize    (screenSize)
     {
         assert(m_Instance != NULL);
         m_Application = this;
@@ -79,7 +80,7 @@ namespace Agmd
 
     void AgmdApp::MakeWindow()
     {
-        m_ScreenSize = ivec2(800,450);
+        
         const int left   = (GetDeviceCaps(GetDC(NULL), HORZRES) - m_ScreenSize.x)  / 2;
         const int top    = (GetDeviceCaps(GetDC(NULL), VERTRES) - m_ScreenSize.y) / 2;
 

@@ -30,9 +30,9 @@ namespace Agmd
 
     void Camera::UpdateBuffer(mat4& view)
     {
-        CameraBuffer* cambuf = m_cameraBuffer.Lock();
+        /*CameraBuffer* cambuf = m_cameraBuffer.Lock(0, 0, LOCK_WRITEONLY);
         cambuf->m_MatView = view;
-        m_cameraBuffer.Unlock();
+        m_cameraBuffer.Unlock();*/
     }
 
     mat4 Camera::Look()

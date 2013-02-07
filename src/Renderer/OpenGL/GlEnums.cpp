@@ -148,6 +148,9 @@ namespace Agmd
 
     unsigned long RGLEnum::BufferFlags(unsigned long flags)
     {
+        if(flags & BUF_STREAM)
+            return GL_STREAM_DRAW;
+
         return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
     }
 

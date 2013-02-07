@@ -39,7 +39,8 @@ namespace Agmd
     enum
     {
         BUF_STATIC  = 1 << 0,
-        BUF_DYNAMIC = 1 << 1
+        BUF_DYNAMIC = 1 << 1,
+        BUF_STREAM  = 1 << 2
     };
 
     enum

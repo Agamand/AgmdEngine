@@ -49,7 +49,7 @@ namespace Agmd
         float m_fps;
 
     protected:
-        AgmdApp();
+        AgmdApp(ivec2 screenSize = ivec2(800,450));
         ~AgmdApp();
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
         virtual void OnInit() = 0;

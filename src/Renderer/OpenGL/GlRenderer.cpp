@@ -237,7 +237,7 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -785,7 +785,7 @@ namespace Agmd
     {
         
         int index;
-        index = source.find_first_of("\n");
+        index = source.find("#ifdef");
         std::string define = "";
         switch(type)
         {
@@ -817,7 +817,8 @@ namespace Agmd
 
         }
         if(index != std::string::npos)
-            source = source.substr(0,index+1)+define+source.substr(index+1,source.size()-1);
+            source = source.substr(0,index)+define+source.substr(index,source.size()-1);
+        std::replace(source.begin(), source.end(), '\r','\n');
         const char* src = source.c_str();
         uint32 shader = glCreateShader(RGLEnum::Get(type));
         glShaderSource(shader, 1, (const char**)&src, NULL);

@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _AGMDDEFINES_H_
-#define _AGMDDEFINES_H_
+#ifndef _COMMONDEFINES_H_
+#define _COMMOMDEFINES_H_
 
 #define ENGINE_REV      3
 #define ENGINE_NAME     "AgmdEngine"
@@ -21,7 +21,15 @@ https://github.com/Agamand/AgmdEngine
 #define __WIN_PLATFORM__
 #endif
 
-    
+#ifdef _DISABLE_WARNING_
+_DEPRECATED_(name) name
+#else
+#ifdef GCC
+#define _DEPRECATED_(name) __attribute__((deprecated)) name
+#else
+#define _DEPRECATED_(name) _CRT_DEPRECATE_TEXT("This function \"" #name "\" is deprecated, you may not use it !") name
+#endif
+#endif
 
 
 typedef long long           int64;
@@ -33,4 +41,6 @@ typedef unsigned int        uint32;
 typedef unsigned short      uint16;
 typedef unsigned char       uint8;
 
-#endif /* _AGMDDEFINES_H_ */
+
+
+#endif /* _COMMOMDEFINES_H_ */

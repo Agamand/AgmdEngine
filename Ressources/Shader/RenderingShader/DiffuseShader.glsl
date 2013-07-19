@@ -11,7 +11,7 @@ out vec4 v_Color;
 void main(){
 	
 	v_Color = in_Color;
-	gl_Position =  u_matProjection * u_matView * u_matModel * vec4(in_Vertex,1);
+	gl_Position =  u_matViewProjection * u_matModel * vec4(in_Vertex,1);
 }
 #endif
 

@@ -23,8 +23,8 @@ in vec2 v_TexCoord;
 out vec4 out_Color;
 
 uniform float offset = 0.005;
-vec2 offsetTable[9] = 
-{
+vec2 offsetTable[9] = vec2[]
+(
 	vec2(0,0),
 	vec2(0,1),
 	vec2(-1,0),
@@ -34,7 +34,7 @@ vec2 offsetTable[9] =
 	vec2(1,1),
 	vec2(-1,1),
 	vec2(1,-1)
-};
+);
 
 vec4 blur()
 {

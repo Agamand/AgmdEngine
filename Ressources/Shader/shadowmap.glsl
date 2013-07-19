@@ -7,17 +7,21 @@ in vec3 in_Vertex;
 // Values that stay constant for the whole mesh.
 uniform mat4 depthMVP;
 
+out vec3 v_position;
 void main(){
+	v_position = (u_matModel *vec4(in_Vertex,1)).xyz;
 	gl_Position =  depthMVP * u_matModel *vec4(in_Vertex,1);
 }
 #endif
 
 #ifdef _FRAGMENT_
 // Ouput data
-out float out_depth;
+layout(location = 0) out vec4 out_Color;
 
+in vec3 v_position;
 
 void main(){
-	out_depth = gl_FragCoord.z;
+
+	out_Color = vec4(v_position,1.0f);
 }
 #endif

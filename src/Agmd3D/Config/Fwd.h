@@ -27,6 +27,7 @@ namespace Agmd
     class GraphicString;
     class Scene;
     class Material;
+    class Statistics;
     struct DeclarationElement;
     template <class> class Loader;
 

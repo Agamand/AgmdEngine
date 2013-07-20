@@ -16,7 +16,7 @@ status : in pause
 #include <AgmdPhysics\Maths\Matrix4.h>
 #include <AgmdPhysics\Core\Force.h>
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 

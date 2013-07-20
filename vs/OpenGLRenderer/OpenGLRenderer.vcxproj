@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlContext.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlDeclaration.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlEnums.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.h" />
@@ -73,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Renderer\OpenGL\GlBuffer.inl" />
+    <None Include="..\..\src\Renderer\OpenGL\GlContext.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F8673B65-750A-4E24-A57F-157960E0D75A}</ProjectGuid>

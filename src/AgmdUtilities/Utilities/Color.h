@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define COLOR_H
 
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <iostream>
 
 

@@ -77,7 +77,7 @@ namespace Agmd
 
         virtual void SetupTextureUnit(unsigned int unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2 = TXA_DIFFUSE, const Color& constant = 0x00) const = 0;
 
-        virtual void Enable(TRenderParameter param, bool value) = 0;
+        virtual void _DEPRECATED_(Enable)(TRenderParameter param, bool value) = 0;
 
         virtual BaseShader* CreateShader(std::string source, TShaderType type) const = 0;
 
@@ -105,7 +105,7 @@ namespace Agmd
 
         template <class T> Buffer<T> CreateIndexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
-        template <class T> Buffer<T> CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, const T* data = NULL) const;
+        template <class T> Buffer<T> CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags = 0, const T* data = NULL) const;
 
         template <class T> Buffer<T> CreateTextureBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
@@ -142,7 +142,7 @@ namespace Agmd
 
         void SetActiveScene(Scene* sc);
         Scene* GetActiveScene();
-
+        Statistics& GetStatistics();
     protected :
 
         virtual void Setup(HWND Hwnd) = 0;
@@ -153,7 +153,7 @@ namespace Agmd
 
         virtual BaseBuffer* CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
-        virtual BaseBuffer* CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint) const = 0;
+        virtual BaseBuffer* CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint, int ubflags) const = 0;
 
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
@@ -163,10 +163,11 @@ namespace Agmd
 
         uint32              m_TextureFlags;
         ivec2               m_Screen;
-        const Transform*  m_CurrentTransform;
+        const Transform*    m_CurrentTransform;
 
         Scene*              m_ActiveScene;
         Camera*             m_Camera;
+        Statistics*         m_stats;
     private :
 
         static Renderer*    s_Instance;

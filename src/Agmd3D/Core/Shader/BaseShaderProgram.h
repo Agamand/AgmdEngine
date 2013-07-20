@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Resource.h>
 #include <Matrix4.h>
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <map>
 

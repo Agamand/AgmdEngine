@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/Buffer.h>
 
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 

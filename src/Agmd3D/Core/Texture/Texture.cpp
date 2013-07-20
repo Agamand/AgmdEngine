@@ -66,7 +66,7 @@ namespace Agmd
         {
             SmartPtr<Image> image[6];
             for(int32 i = 0; i < 6; i++)
-                image[0] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
+                image[i] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
 
             //Load(*image, format, TEXTURE_2D, flags, filename);
         }
@@ -307,6 +307,22 @@ namespace Agmd
         s_framebuffer->Bind();
     }
     void Texture::EndRenderToTexture()
+    {
+        if(s_framebuffer)
+            s_framebuffer->UnBind();
+    }
+
+    void Texture::BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face)
+    {
+        if(!s_framebuffer)
+            s_framebuffer = Renderer::Get().CreateFrameBuffer();
+        if(face < 0)
+            s_framebuffer->SetTexture(texture,attachment);
+        else s_framebuffer->SetTextureCube(texture,attachment,face);
+        s_framebuffer->Clear(attachment == DEPTH_ATTACHMENT ? CLEAR_DEPTH : CLEAR_COLOR);
+        s_framebuffer->Bind();
+    }
+    void Texture::EndRenderToCubeMap()
     {
         if(s_framebuffer)
             s_framebuffer->UnBind();

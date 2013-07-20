@@ -13,7 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/Texture.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Utilities/SmartPtr.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {

@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #ifndef _GLFRAMEBUFFER_H_
 #define _GLFRAMEBUFFER_H_
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Texture/TextureBase.h>
 

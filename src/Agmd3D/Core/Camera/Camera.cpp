@@ -12,6 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Renderer.h>
 #include <Core/Camera/Camera.h>
 #include <vector>
+#include <Debug/Profiler.h>
 
 namespace Agmd
 {
@@ -20,19 +21,30 @@ namespace Agmd
     moveFlags(MOVE_NONE),
     _position(pos),
     _speed(100.0f),
-    _sensivity(0.2f)
+    _sensivity(0.2f),
+    map(NULL)
     {
-        CameraBuffer camBuf;
-        camBuf.m_MatProjection = projection;
-        camBuf.m_MatView = mat4(1.0f);
-        m_cameraBuffer = Renderer::Get().CreateUniformBuffer<CameraBuffer>(1,0,0,&camBuf);
+        m_transform.m_MatProjection = projection;
+        m_transform.m_MatView = mat4(1.0f);
+        m_cameraBuffer = Renderer::Get().CreateUniformBuffer<mat4>(1,BUF_DYNAMIC,0,1,NULL);
+        //m_cameraBuffer.SwapBuffers();
+        mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.Fill(&vp,1);
     }
 
     void Camera::UpdateBuffer(mat4& view)
     {
-        /*CameraBuffer* cambuf = m_cameraBuffer.Lock(0, 0, LOCK_WRITEONLY);
-        cambuf->m_MatView = view;
-        m_cameraBuffer.Unlock();*/
+        //m_cameraBuffer.WaitSync();
+        m_transform.m_MatView = view;
+        mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.FillByte(&vp,0,sizeof(mat4));
+        /*if(map == NULL)
+            map = m_cameraBuffer.LockBits<mat4>(0, sizeof(mat4),LOCK_WRITEONLY | LOCK_UNSYNCHRONOUS);
+        mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
+        *map = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.SwapBuffers();
+        map = NULL;*/
+        
     }
 
     mat4 Camera::Look()
@@ -65,6 +77,32 @@ namespace Agmd
         return s_currentCamera3D;
     }
 
+    bool Camera::UnProject(vec3& mouse)
+    {
+        mat4 viewprojection = m_transform.m_MatProjection*m_transform.m_MatView;
+        viewprojection = inverse(viewprojection);
+
+        /* Map x and y from window coordinates */
+        ivec2 screen = Renderer::Get().GetScreen();
+        mouse.x = mouse.x / screen.x;
+        mouse.y = mouse.y / screen.y;
+
+        /* Map to range -1 to 1 */
+        mouse.x = mouse.x * 2 - 1;
+        mouse.y = mouse.y * 2 - 1;
+
+        vec4 out = viewprojection*vec4(mouse,1.0f);
+
+        if (out.w == 0.0) return false;
+   
+        mouse = vec3(out);
+        mouse /= out.x;
+
+        mouse -= _position;
+        mouse = normalize(mouse);
+
+        return true;
+    }
     Camera* Camera::s_currentCamera2D = NULL;
     Camera* Camera::s_currentCamera3D = NULL;
 }

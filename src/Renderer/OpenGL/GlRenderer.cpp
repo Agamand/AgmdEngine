@@ -17,6 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Renderer/OpenGL/GlUniformBuffer.h>
 #include <Renderer/OpenGL/GlTextureBuffer.h>
 #include <Core/MatStack.h>
+#include <core/Tools/Statistics.h>
 #include <Utilities/Color.h>
 #include <Utilities/PixelUtils.h>
 #include <Debug/Logger.h>
@@ -57,7 +58,13 @@ namespace Agmd
     PFNGLBUFFERSUBDATAPROC              GLRenderer::glBufferSubData;
     PFNGLGETBUFFERSUBDATAPROC           GLRenderer::glGetBufferSubData;
     PFNGLMAPBUFFERPROC                  GLRenderer::glMapBuffer;
+    PFNGLMAPBUFFERRANGEPROC             GLRenderer::glMapBufferRange;
     PFNGLUNMAPBUFFERPROC                GLRenderer::glUnmapBuffer;
+    PFNGLDELETESYNCPROC                 GLRenderer::glDeleteSync;
+    PFNGLGETSYNCIVPROC                  GLRenderer::glGetSynciv;
+    PFNGLWAITSYNCPROC                   GLRenderer::glWaitSync;
+    PFNGLCLIENTWAITSYNCPROC             GLRenderer::glClientWaitSync;
+    PFNGLFENCESYNCPROC                  GLRenderer::glFenceSync;
     PFNGLACTIVETEXTUREPROC              GLRenderer::glActiveTexture;
     PFNGLCLIENTACTIVETEXTUREPROC        GLRenderer::glClientActiveTexture;
     PFNGLCOMPRESSEDTEXIMAGE2DPROC       GLRenderer::glCompressedTexImage2D;
@@ -237,7 +244,7 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+        glClearColor(1, 1, 1, 0.0f);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -293,7 +300,13 @@ namespace Agmd
         LOAD_EXTENSION(glBindBufferBase);
         LOAD_EXTENSION(glGetBufferSubData);
         LOAD_EXTENSION(glMapBuffer);
+        LOAD_EXTENSION(glMapBufferRange);
         LOAD_EXTENSION(glUnmapBuffer);
+        LOAD_EXTENSION(glDeleteSync);
+        LOAD_EXTENSION(glGetSynciv);
+        LOAD_EXTENSION(glWaitSync);
+        LOAD_EXTENSION(glClientWaitSync);
+        LOAD_EXTENSION(glFenceSync);
         LOAD_EXTENSION(glActiveTexture);
         LOAD_EXTENSION(glClientActiveTexture);
         LOAD_EXTENSION(glCompressedTexImage2D);
@@ -387,7 +400,8 @@ namespace Agmd
         glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        return new GLVertexBuffer(size, VertexBuffer);
+        BaseBuffer* buffer = new GLVertexBuffer(size, &VertexBuffer);
+        return buffer;
     }
 
     BaseBuffer* GLRenderer::CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const
@@ -399,20 +413,29 @@ namespace Agmd
         glBufferData(GL_ARRAY_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        return new GLIndexBuffer(size, IndexBuffer);
+        BaseBuffer* buffer = new GLIndexBuffer(size, &IndexBuffer);
+        return buffer;
     }
 
-    BaseBuffer* GLRenderer::CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint) const
+    BaseBuffer* GLRenderer::CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint, int ubflags) const
     {
-        unsigned int uniformBuffer = 0;
-        glGenBuffers(1, &uniformBuffer);
+        unsigned int uniformBuffer[3] = {0};
+        glGenBuffers(1+ubflags, uniformBuffer);
 
-        glBindBuffer(GL_UNIFORM_BUFFER, uniformBuffer);
-        glBufferData(GL_UNIFORM_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
-        glBindBufferBase(GL_UNIFORM_BUFFER,bindPoint,uniformBuffer);
+        for(int i = 0; i < ubflags+1; i++)
+        {
+            glBindBuffer(GL_UNIFORM_BUFFER, uniformBuffer[i]);
+            glBufferData(GL_UNIFORM_BUFFER, size * stride, NULL, RGLEnum::BufferFlags(flags));
+            glBindBufferBase(GL_UNIFORM_BUFFER,bindPoint,uniformBuffer[i]);
+        }
         glBindBuffer(GL_UNIFORM_BUFFER, 0);
-
-        return new GLUniformBuffer(size, uniformBuffer, bindPoint);
+        BaseBuffer* buffer = NULL;
+        if(ubflags == 1)
+            buffer = new GLUniformBuffer<2>(size, uniformBuffer, bindPoint);
+        else if(ubflags == 2)
+            buffer = new GLUniformBuffer<3>(size, uniformBuffer, bindPoint);
+        else buffer = new GLUniformBuffer<>(size, uniformBuffer, bindPoint);
+        return buffer;
     }
 
     BaseBuffer* GLRenderer::CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const
@@ -545,10 +568,13 @@ namespace Agmd
 
         m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
+        m_stats->IncrDrawCall();
+        m_stats->IncrTriangleCount(count);
+        
 
         switch (type)
         {
-            case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); break;
+        case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); m_stats->IncrVertexCount(count*3); break;
             case PT_TRIANGLESTRIP : glDrawArrays(GL_TRIANGLE_STRIP, firstVertex, count + 2); break;
             case PT_TRIANGLEFAN :   glDrawArrays(GL_TRIANGLE_FAN,   firstVertex, count + 1); break;
             case PT_LINELIST :      glDrawArrays(GL_LINES,          firstVertex, count * 2); break; 
@@ -567,10 +593,13 @@ namespace Agmd
 
         m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
+        m_stats->IncrDrawCall();
+        m_stats->IncrTriangleCount(count);
+        m_stats->IncrVertexCount(count*3);
 
         switch (type)
         {
-            case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
+        case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
             case PT_TRIANGLESTRIP : glDrawElements(GL_TRIANGLE_STRIP, count, indicesType, offset); break;
             case PT_TRIANGLEFAN :   glDrawElements(GL_TRIANGLE_FAN,   count, indicesType, offset); break;
             case PT_LINELIST :      glDrawElements(GL_LINES,          count, indicesType, offset); break; 
@@ -639,12 +668,12 @@ namespace Agmd
 
         if(format == PXF_DEPTH)
         {
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
             nbMipmaps = 0;
         }else
         {
@@ -739,7 +768,7 @@ namespace Agmd
             glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR,color);
         }
     }
-
+    
     void GLRenderer::Enable(TRenderParameter param, bool value)
     {
         switch (param)

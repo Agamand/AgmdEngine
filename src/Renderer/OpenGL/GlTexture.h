@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _GLTEXTURE_H_
 
 #include <Core/Texture/TextureBase.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {

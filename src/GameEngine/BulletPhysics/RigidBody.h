@@ -4,28 +4,22 @@
 
 
 #include <btBulletDynamicsCommon.h>
+#include <BulletPhysics/MotionState.h>
 
 
 using namespace AgmdMaths;
 
 namespace Agmd
 {
-    /*enum TRANSFORM_SYNC
-    {
-
-    };*/
     class RigidBody : public btRigidBody
     {
     public:
-        RigidBody(Transform* transform, btCollisionShape* collider);
+        RigidBody(TransformPtr transform, btCollisionShape* collider);
 
 
     private:
-        Transform* m_tranform;
+        TransformPtr m_transform;
     };
-
-    __forceinline void BulletToAgmd(Transform*, const btTransform*);
-    __forceinline void AgmdToBullet(btTransform*, const Transform*); 
 }
 
 

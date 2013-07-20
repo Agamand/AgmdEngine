@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {

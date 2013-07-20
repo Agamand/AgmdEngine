@@ -37,6 +37,13 @@ namespace Agmd
             mesh[i]->Render(pass);
     }
 
+    void Scene::Draw() const
+    {
+        Displayable* const* mesh = &m_vMesh[0];
+        uint32 max = m_vMesh.size();
+        for(uint32 i = 0; i < max; i++)
+            mesh[i]->Draw();
+    }
 
     void Scene::Update(uint64 t_diff)
     {}

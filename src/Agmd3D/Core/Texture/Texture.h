@@ -71,6 +71,8 @@ namespace Agmd
         static BaseShaderProgram* s_renderTexture;
         static BaseShaderProgram* s_randomTexture;
         static FrameBuffer* s_framebuffer;
+        static void BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face = -1);
+        static void EndRenderToCubeMap();
 
     private :
 

@@ -13,7 +13,7 @@ status : in pause
 #include <AgmdPhysics\Utilities\Singleton.h>
 #include <AgmdPhysics\Core\Entities.h>
 #include <AgmdPhysics\Core\Force.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 

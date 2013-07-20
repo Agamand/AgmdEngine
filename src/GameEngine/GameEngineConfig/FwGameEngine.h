@@ -3,15 +3,14 @@
 
 namespace Agmd
 {
-    //General Classes
+    //General Class
 
     class GameEngine;
 	class GameScene;
 	class GameObject;
-    class Component;
 
 
-	//Scripts
+	//Scripts Class
 	class Script;
 	class ObjectScript;
 	class SceneScript;

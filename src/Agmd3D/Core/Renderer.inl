@@ -27,9 +27,9 @@ inline Buffer<T> Renderer::CreateIndexBuffer(unsigned long size, unsigned long f
 }
 
     template <class T>
-inline Buffer<T> Renderer::CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, const T* data) const
+inline Buffer<T> Renderer::CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags, const T* data) const
 {
-    Buffer<T> buffer(CreateUB(size, sizeof(T), flags, bindPoint));
+    Buffer<T> buffer(CreateUB(size, sizeof(T), flags, bindPoint, ubflags));
     if (data)
         buffer.Fill(data, size);
 

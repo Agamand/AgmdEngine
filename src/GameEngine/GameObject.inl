@@ -1,3 +1,5 @@
-template <class T> void AddComponent();
+template <class T> void AddComponent()
 {}
-template <class T> const T* GetComponent();
+
+template <class T> const T* GetComponent()
+{}

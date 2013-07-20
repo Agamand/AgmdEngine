@@ -7,7 +7,8 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/FontManager.h>
-#include <Core/GraphicString.h>
+#include <Core/RenderObject/GraphicString.h>
+#include <Core/SceneObject/Model.h>
 #include <Core/Renderer.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Texture/Image.h>
@@ -36,13 +37,13 @@ namespace Agmd
     {
         TDeclarationElement decl[] =
         {
-            {0, ELT_USAGE_POSITION,  ELT_TYPE_FLOAT4},
-            {0, 11, ELT_TYPE_INT}
+            {0, ELT_USAGE_POSITION,  ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2}
         };
 
         m_Declaration = Renderer::Get().CreateVertexDeclaration(decl);
 
-        m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(4, BUF_STATIC);
+        /*m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(4, BUF_STATIC);
 
         TVertex* vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
 
@@ -66,7 +67,7 @@ namespace Agmd
         Indices.push_back(3);
         Indices.push_back(2);
 
-        m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);
+        m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);*/
     }
 
     void FontManager::UnloadFonts()
@@ -83,7 +84,7 @@ namespace Agmd
 
         HDC hdc = CreateCompatibleDC(NULL);
         if (!hdc)
-            throw LoadingFailed(fontName, "Impossible de charger la police (erreur dans CreateCompatibleDC)");
+            throw LoadingFailed(fontName, "Error : Load font fail (error in CreateCompatibleDC)");
 
         BITMAPINFO bitmapInfo;
         memset(&bitmapInfo, 0, sizeof(BITMAPINFO));
@@ -144,7 +145,8 @@ namespace Agmd
     }
 
     void FontManager::DrawString(const GraphicString& str)
-    {
+    {        
+        uint32 color = Renderer::Get().ConvertColor(str.m_color);
 
         if (str.m_Text == "")
             return;
@@ -156,27 +158,37 @@ namespace Agmd
             LoadFont(str.m_Font);
 
         const TFont& curFont = m_Fonts[str.m_Font];
-
-        float ratio = str.m_Size * 16.0f / curFont.texture.GetSize().x;
-        float offset  = 0.5f / curFont.texture.GetSize().x;
-        
-        float x = static_cast<float>(str.m_Position.x);
-        float y = static_cast<float>(str.m_Position.y);
-        uint32 color = Renderer::Get().ConvertColor(str.m_color);
-
         
         Renderer::Get().Enable(RENDER_ZTEST, false);
-        Renderer::Get().SetCurrentTransform(m_transform);
+        Renderer::Get().SetCurrentTransform(str.m_transform);
         Renderer::Get().SetDeclaration(m_Declaration);
         Renderer::Get().SetTexture(0, curFont.texture.GetTexture());
-        Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
-        Renderer::Get().SetIndexBuffer(m_IndexBuffer);
+        Renderer::Get().SetVertexBuffer(0, str.m_VertexBuffer);
+        Renderer::Get().SetIndexBuffer(str.m_IndexBuffer);
         Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Renderer::Get().GetCurrentProgram()->SetParameter("u_size", str.m_Size);
-        Renderer::Get().GetCurrentProgram()->SetParameter("u_offset", offset);
+        Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_IndexBuffer.GetCount());
+        Renderer::Get().SetCurrentProgram(NULL);
+    }
+
+    void FontManager::GenerateStringMesh(GraphicString& str)
+    {
+        if (str.m_Text == "")
+            return;
+
+        if (!m_Declaration)
+            Initialize();
+
+        if (m_Fonts.find(str.m_Font) == m_Fonts.end())
+            LoadFont(str.m_Font);
+
+        const TFont& curFont = m_Fonts[str.m_Font];
+        float texUnit = 1.0f / 16.0f;
+        float ratio = str.m_Size * 16.0f / curFont.texture.GetSize().x;
+        float offset  = 0.5f / curFont.texture.GetSize().x;
+        float x, y = x = 0.0f;
 
 
-
+        std::vector<TVertex> _vertex;
         int nbChars = 0;
         for (std::string::const_iterator i = str.m_Text.begin(); (i != str.m_Text.end()) && (nbChars < nbCharMax); ++i)
         {
@@ -186,13 +198,13 @@ namespace Agmd
             {
                 // Saut de ligne
                 case '\n' :
-                    x  = static_cast<float>(str.m_Position.x);
-                    y += curFont.charSize['\n'].y * ratio;
+                    x = 0.0f;
+                    y -= curFont.charSize['\n'].y * ratio;
                     continue;
 
                 // Retour au début de ligne
                 case '\r' :
-                    x = static_cast<float>(str.m_Position.x);
+                    x = 0.0f;
                     continue;
 
                 // Tabulation horizontale
@@ -202,7 +214,7 @@ namespace Agmd
 
                 // Tabulation verticale
                 case '\v' :
-                    y += 4 * curFont.charSize['\n'].y * ratio;
+                    y -= 4 * curFont.charSize['\n'].y * ratio;
                     continue;
 
                 // Espace
@@ -210,16 +222,60 @@ namespace Agmd
                     x += curFont.charSize[' '].x * ratio;
                     continue;
             }
-            
-            m_transform->SetPosition(vec3(x,y,0));
-            Renderer::Get().GetCurrentProgram()->SetParameter("u_char",(int)c);
-            Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 6);
+            /*
+			texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
+			break;
+		case 1:
+			texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
+			break;
+		case 2:
+			texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
+			break;
+		case 3:
+			texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
+            */
+
+            TVertex v[] = {
+                {vec3(x,y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
+                {vec3(str.m_Size+x,y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
+                {vec3(x,str.m_Size+y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset)},
+                {vec3(str.m_Size+x,str.m_Size+y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset)}
+            };
+            _vertex.push_back(v[0]);
+            _vertex.push_back(v[1]);
+            _vertex.push_back(v[2]);
+            _vertex.push_back(v[3]);
+            /*
+            for(uint32 i = 0, len = _vertex.size()/4; i < len; i++)
+            {
+                _indices.push_back(0+i*4);
+                _indices.push_back(1+i*4);
+                _indices.push_back(2+i*4);
+                _indices.push_back(1+i*4);
+                _indices.push_back(3+i*4);
+                _indices.push_back(2+i*4);
+            }*/
+            //m_transform->SetPosition(vec3(x,y,0));
+            //Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 6);
 
             x += curFont.charSize[c].x * ratio;
             ++nbChars;
         }
+        str.m_VertexBuffer.Release();
+        str.m_IndexBuffer.Release();
 
-        Renderer::Get().SetCurrentProgram(NULL);
+        std::vector<TIndex> _indices;
+        for(uint32 i = 0, len = _vertex.size()/4; i < len; i++)
+        {
+            _indices.push_back(0+i*4);
+            _indices.push_back(1+i*4);
+            _indices.push_back(2+i*4);
+            _indices.push_back(1+i*4);
+            _indices.push_back(3+i*4);
+            _indices.push_back(2+i*4);
+        }
+        str.m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
+        str.m_IndexBuffer = Renderer::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
     }
 
     ivec2 FontManager::GetStringPixelSize(const GraphicString& str)

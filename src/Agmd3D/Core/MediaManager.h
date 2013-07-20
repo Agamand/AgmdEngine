@@ -29,7 +29,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    typedef TYPELIST_4(Model, Image, BaseShader, BaseShaderProgram) MediaList;
+    typedef TYPELIST_5(Model, Image, BaseShader, BaseShaderProgram, ShaderPipeline) MediaList;
 
     template <class T>
     struct MediaHolder

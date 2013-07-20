@@ -1,6 +1,7 @@
 /*
 ============================================================================
-Agmd3D - 3D Engine
+Agmd3D - 3D Engine 
+2012 - 2013
 Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
 https://github.com/Agamand/AgmdEngine
 ============================================================================

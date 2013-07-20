@@ -14,10 +14,10 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    class GLUniformBuffer : public GLBuffer<GL_UNIFORM_BUFFER>
+    template <int bufferCount = 1> class GLUniformBuffer : public GLBuffer<GL_UNIFORM_BUFFER,bufferCount>
     {
     public :
-        GLUniformBuffer(unsigned long count, unsigned int buffer, unsigned int bindPoint);
+        GLUniformBuffer(unsigned long count, unsigned int* buffer, unsigned int bindPoint);
 
         virtual void Bind(uint32 bindpoint);
 
@@ -27,7 +27,30 @@ namespace Agmd
         unsigned int m_bindPoint;
     };
 
+    //#include <Renderer/OpenGL/GlRenderer.h>
+
+    template <int bufferCount>
+    GLUniformBuffer<bufferCount>::GLUniformBuffer(unsigned long count, unsigned int *buffer, unsigned int bindPoint) : 
+    GLBuffer(count,buffer),
+    m_bindPoint(bindPoint)
+    {}
+
+    template <int bufferCount>
+    void GLUniformBuffer<bufferCount>::Bind(uint32 bindpoint)
+    {
+        GLRenderer::glBindBuffer(GL_UNIFORM_BUFFER, m_Buffer[m_currentBuffer]);
+        GLRenderer::glBindBufferBase(GL_UNIFORM_BUFFER,bindpoint,m_Buffer[m_currentBuffer]);
+        GLRenderer::glBindBuffer(GL_UNIFORM_BUFFER, 0);
+        m_bindPoint = bindpoint;
+    }
+
+    template <int bufferCount>
+    unsigned int GLUniformBuffer<bufferCount>::getBindPoint() const
+    {
+        return m_bindPoint;
+    }
 }
+
 
 
 #endif /* _GLUNIFORMBUFFER_H_ */

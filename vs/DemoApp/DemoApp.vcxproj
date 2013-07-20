@@ -199,7 +199,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;AgmdBullet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

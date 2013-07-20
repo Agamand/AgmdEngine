@@ -11,6 +11,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Debug/Logger.h>
 #include <Debug/Exception.h>
 #include <Debug/New.h>
+#include <Core/Tools/Statistics.h>
 
 
 namespace Agmd
@@ -18,7 +19,9 @@ namespace Agmd
     Renderer* Renderer::s_Instance = NULL;
 
     Renderer::~Renderer()
-    {}
+    {
+        delete m_stats;
+    }
 
     void Renderer::Change(Renderer* newRenderer)
     {
@@ -64,6 +67,7 @@ namespace Agmd
         CheckCaps();
 
         Logger::Instance().SetFilename("Agmd3D");
+        m_stats = new Statistics();
 
         Logger::Log(LOGNORMAL,"Système de rendu : %s",GetRendererDesc().c_str());
         Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
@@ -148,5 +152,9 @@ namespace Agmd
         Scene* Renderer::GetActiveScene()
         {
             return m_ActiveScene;
+        }
+        Statistics& Renderer::GetStatistics()
+        {
+            return *m_stats;
         }
 }

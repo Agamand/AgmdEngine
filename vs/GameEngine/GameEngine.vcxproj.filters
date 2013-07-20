@@ -52,6 +52,7 @@
     <ClInclude Include="..\..\src\GameEngine\BulletPhysics\MotionState.h">
       <Filter>BulletPhysics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameEngine\GameEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngineConfig">

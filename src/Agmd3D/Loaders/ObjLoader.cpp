@@ -25,7 +25,7 @@ namespace Agmd
 
     Model* ObjLoader::LoadFromFile(const std::string& filename)
     {
-        std::ifstream file(filename,std::ios::in|std::ios::ate);
+        std::ifstream file(filename,std::ios::in);
         if (!file)
             throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ObjLoader)");
 
@@ -49,8 +49,8 @@ namespace Agmd
         {
             Model::TVertex vertex;
             vertex.position = position[i];
-            vertex.texCoords = texPos[i];
-            vertex.normal = normal[i];
+            vertex.texCoords = texPos.size() > i ? texPos[i] : vec2();
+            vertex.normal = normal.size() > i ? normal[i] : vec3();
             vertices.push_back(vertex);
         }
 

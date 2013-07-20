@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #ifndef _GLSHADER_H_
 #define _GLSHADER_H_
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <Core/Shader/BaseShader.h>
 #include <string>
 

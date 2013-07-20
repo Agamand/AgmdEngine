@@ -24,7 +24,7 @@ status : in pause
 #include <Agmd3D\Core\SceneObject\Terrain.h>
 #include <Agmd3D\Core\MediaManager.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
-#include <Agmd3D\Core\GraphicString.h>
+#include <Agmd3D\Core\RenderObject\GraphicString.h>
 #include <Agmd3D\Core\SceneObject\Scene.h>
 #include <Agmd3D\Core\SceneObject\Water.h>
 #include <Agmd3D\Core\SceneObject\SkyBox.h>
@@ -42,6 +42,10 @@ status : in pause
 #include <Agmd3D/Core/Effects/BlurEffect.h>
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
 #include <Agmd3D/Core/GUI/GUIMgr.h>
+#include <Agmd3D/Core/Shader/ShaderPipeline.h>
+#include <Agmd3D/Core/Tools/Statistics.h>
+#include <Agmd3D/Core/SceneObject/Material.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -51,6 +55,96 @@ using namespace AgmdNetwork;
 using namespace AgmdUtilities;
 
 SINGLETON_IMPL(App);
+
+
+class PathNode
+{
+public:
+    PathNode(vec3 pos) : position(pos)
+    {}
+
+    void AddNode(PathNode* node);
+private:
+    vec3 position;
+    std::vector<PathNode*> connected_node;
+};
+
+class Road;
+class Path
+{
+public:
+        friend class Road;
+        Path(std::vector<PathNode*> list, PathNode* _begin) : all_node(list), begin(_begin)
+        {}
+private:
+    std::vector<PathNode*> all_node;
+    PathNode* begin;
+};
+
+
+class Road : public MeshRender
+{
+public:
+    Road(std::vector<vec3> nodes ): MeshRender(NULL)
+    {
+        GenerateModelRoad(nodes);
+        Texture t;
+        t.CreateFromFile("Texture/roadV3.png",PXF_A8R8G8B8);
+        m_material->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
+    }
+
+    void GenerateModelRoad(const std::vector<vec3>& nodes)
+    {
+        if(nodes.size() < 2)
+            return;
+        
+        vec3 prev,n, dir, refnormal = vec3(0.0f,0.0f,1.0f);
+        std::vector<Model::TVertex> _vertex;
+        std::vector<Model::TIndex> _index;
+        Model::TVertex vertex;
+        for(int i = 0, len=nodes.size()-1;i < len;i++)
+        {
+            dir = nodes[i+1] - nodes[i];
+            dir = normalize(dir);
+            n = cross(dir,refnormal);
+            if(i != 0)
+            {
+                vec3 tmp = n;
+                n = n+prev;//normalize(n+prev);
+                prev = tmp;
+            }else prev = n;
+            vertex.position = nodes[i]+n*3.0f;
+            vertex.texCoords = vec2(0.5,0);
+            vertex.normal = refnormal;
+            _vertex.push_back(vertex);
+            
+            vertex.position = nodes[i]-n*3.0f;
+            vertex.texCoords = vec2(0.5,1);
+            _vertex.push_back(vertex);
+
+            _index.push_back(1+i*2);
+            _index.push_back(0+i*2);
+            _index.push_back(3+i*2);
+
+            _index.push_back(0+i*2);
+            _index.push_back(2+i*2);
+            _index.push_back(3+i*2);
+
+        }
+        vertex.position = nodes[nodes.size()-1]+prev*3.0f;
+        vertex.texCoords = vec2(0.5,0);
+        _vertex.push_back(vertex);
+        vertex.position = nodes[nodes.size()-1]-prev*3.0f;
+        vertex.texCoords = vec2(0.5,1);
+        _vertex.push_back(vertex);
+        m_baseModel = new Model(&(_vertex[0]), _vertex.size(),&(_index[0]),_index.size());
+    }
+
+
+private:
+    Path* path;
+
+};
 
 
 void App::Run(int argc, char** argv)
@@ -65,11 +159,13 @@ void App::Run(int argc, char** argv)
 
 void App::OnInit()
 {
+    ShaderPipeline* test =  MediaManager::Instance().LoadMediaFromFile<ShaderPipeline>("Shader/BuiltinShader/BumpMap.shader");
     pause = true;
     noise = 0.005;
+    m_timer = 1000;
     MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
 
-    m_MatProj3D = glm::perspective(90.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f); // glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 100.0f);
+    m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f); // glm::perspectiveFov(60.0f, (float)getScreen().x, (float)getScreen().y, 0.1f, 100.0f);
 
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
@@ -77,6 +173,7 @@ void App::OnInit()
 
     //ForwardRendering* mode = new ForwardRendering(getScreen());
     DeferredRendering* mode = new DeferredRendering(getScreen());
+    drend = mode;
     RenderingMode::SetRenderingMode(mode);
 
 
@@ -85,7 +182,7 @@ void App::OnInit()
 
     m_motioneffect = new BlurMotionEffect(getScreen());
     m_effect = new BlurEffect(Texture());
-    PostEffectMgr::Instance().AddEffect(m_motioneffect);
+    //PostEffectMgr::Instance().AddEffect(m_effect);
 
     cam3D = new TPCamera(m_MatProj3D);
     cam2D = new FPCamera(m_MatProj2D);
@@ -93,46 +190,56 @@ void App::OnInit()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
 
     m_Scene = new Scene();
-    /*Model* model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST);
-    m_Scene->AddModel(model);
-    Color c = Color::blue;
-    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->GetTransform().Translate(2.0f,0.0f,0.0f);
-    m_Scene->AddModel(model);
-    c = Color::green;
-    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->GetTransform().Translate(-2.0f,0,0);
-    m_Scene->AddModel(model);
-    c = Color::red;
-    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->GetTransform().Translate(0,2.0f,0);
-    m_Scene->AddModel(model);
-    c = Color::blue + Color::red;
-    model = CreateSphere(1.0f,20.0f,20.0f,(float)2*M_PI,"",PT_TRIANGLELIST,c.ToABGR());
-    model->GetTransform().Translate(0,-2.0f,0);
-    m_Scene->AddModel(model);*/
+    std::vector<vec3> nodes;
+    for(int i = 0; i < 1000; i++)
+    {
+        nodes.push_back(vec3(10*cos(i/200.0f*M_PI),50.0f-i/10.0f,10.0f));
+    }
+    /*nodes.push_back(vec3(50.0f,0.0f,10.0f));
+    nodes.push_back(vec3(100.0f,0.0f,10.0f));
+    nodes.push_back(vec3(100.0f,100.0f,10.0f));
+    nodes.push_back(vec3(0.0f,100.0f,10.0f));
+    nodes.push_back(vec3(0.0f,0.0f,10.0f));
+    nodes.push_back(vec3(50.0f,0.0f,10.0f));*/
 
-    Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/dragon.obj");
+    Road* r = new Road(nodes);
+    //m_Scene->AddMesh(r);
+
+	Model* model = CreateBox(vec3(1),"",PT_TRIANGLELIST);
     MeshRender* mesh = new MeshRender(model);
+    plane = mesh;
+    mesh->GetTransform().Rotate(90.0f, vec3(1,0,0));
+    mesh->GetTransform().Rotate(90.0f, vec3(0,-1,0));
+    mesh->GetTransform().Translate(0,0,10);
     m_Scene->AddMesh(mesh);
+    sphere = mesh;
+    model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
+    m_Scene->AddMesh(new MeshRender(model));
+
+    model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
+    MeshRender* me = new MeshRender(model);
+    me->GetTransform().Translate(1000,0,0);
+    me->GetTransform().Rotate(-90,vec3(0,1,0));
+    m_Scene->AddMesh(me);
+    
 
     AWindow* diffuseW = new AWindow();
     //diffuseW->SetFont(mode->GetDiffuseTexture());
     AWindow* depthW = new AWindow();
-    //depthW->SetFont(mode->GetDepthTexture());
+    depthW->SetFont(mode->GetShadowRenderer()->GetShadowDepth());
     AWindow* lightW = new AWindow();
     //lightW->SetFont(mode->GetLightingTexture());
-    GUIMgr::Instance().AddWidget(diffuseW);
+    //GUIMgr::Instance().AddWidget(diffuseW);
     GUIMgr::Instance().AddWidget(depthW);
-    GUIMgr::Instance().AddWidget(lightW);   
+    //GUIMgr::Instance().AddWidget(lightW);   
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
-    tex.CreateFromFile("Texture/bw.png",PXF_A8R8G8B8);
-
-    m_light = new Light(vec3(4,0,0),vec3(0,1,0),LIGHT_POINT);
+    m_light = new Light(vec3(0,0,10),-normalize(vec3(0,0.2,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
-    m_timer = 2000;
+    m_timer = 10000;
+
+    m_light->SetRange(2000.0f);
 
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
@@ -142,14 +249,23 @@ void App::OnUpdate(uint64 time_diff/*in ms*/)
 {
     m_Scene->Update(time_diff);
     if(m_timer <= time_diff)
-    {
-        m_timer = 2000;
+    { 
+        m_timer = 10000;
     }else m_timer -= time_diff;
-    vec3 position = vec3(200*cos(m_timer/1000.0f*M_PI),200*sin(m_timer/1000.0f*M_PI),0);
-    m_light->SetPosition(position);
+    vec3 position = vec3(100*cos(m_timer/5000.0f*M_PI),100*sin(m_timer/5000.0f*M_PI),20.0f);
+    //plane->GetTransform().SetPosition(position);
+    //plane->GetTransform().SetRotation(quat(90.0f,vec3(1,0,0))*quat(-90.0f+180*m_timer/5000.0f,vec3(0,1,0)));
+    
+    //m_light->SetDirection(normalize(position));
 }
 
-void App::OnRender()
+void App::OnRender3D()
+{
+
+
+}
+
+void App::OnRender2D()
 {
     Renderer& render = Renderer::Get();
 
@@ -158,9 +274,9 @@ void App::OnRender()
     //Texture::TextureRender(tex);
     
     //render.SetCurrentProgram(shader2D);
-    int fps = getFps();
-    m_fps->m_Text = StringBuilder(fps)(", ")(fps ? (int)(1000/fps) : 999999999)(" ms");//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
-   //m_fps->Text = StringBuilder((int)fps)(" fps,")(fps ? (int)(1000/fps) : 999999999)(" ms");
+    //int fps = getFps();
+    //m_fps->m_Text = StringBuilder(fps)(", ")(fps ? (int)(1000/fps) : 999999999)(" ms ")(cam3D->GetPosition().x)(" ")(cam3D->GetPosition().y)(" ")(cam3D->GetPosition().z)(" shadow offset : ")(noise);//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
+    *(m_fps) = render.GetStatistics().ToString();
     m_fps->Draw();
     /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
     m_text->Draw();*/
@@ -181,18 +297,42 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             pause = !pause;
             break;
         case VK_ADD:
-            noise += 0.001f;
+            noise += 0.1f;
             if(m_motioneffect)
                 m_motioneffect->SetIntensity(noise);
             if(m_effect)
                 m_effect->SetNoiseOffset(noise);
+            drend->GetShadowRenderer()->SetOffset(noise);
             break;
         case VK_SUBTRACT:
-            noise -= 0.001f;
+            noise -= 0.1f;
             if(m_motioneffect)
                 m_motioneffect->SetIntensity(noise);
             if(m_effect)
                 m_effect->SetNoiseOffset(noise);
+            drend->GetShadowRenderer()->SetOffset(noise);
+            break;
+        case 'O':
+            m_light->SetDirection(-normalize(cam3D->GetTarget() - cam3D->GetPosition()));
+            break;
+
+        case VK_NUMPAD8:
+            sphere->GetTransform().Translate(0,0,0.1f);
+            break;
+        case VK_NUMPAD2:
+            sphere->GetTransform().Translate(0,0,-0.1f);
+            break;
+        case VK_NUMPAD6:
+            sphere->GetTransform().Translate(-0.1f,0,0);
+            break;
+        case VK_NUMPAD4:
+            sphere->GetTransform().Translate(0.1f,0,0);
+            break;
+        case VK_NUMPAD7:
+            sphere->GetTransform().Translate(0,-0.1f,0);
+            break;
+        case VK_NUMPAD9:
+            sphere->GetTransform().Translate(0,0.1f,0);
             break;
         }
     }
@@ -236,13 +376,13 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
             */
             int _i = SELECT(i+1,stack+1), _j = SELECT(j+1,(slice+1));
 
-            index.push_back(i*((int)slice+1)+j);
             index.push_back(_i*((int)slice+1)+j);
+            index.push_back(i*((int)slice+1)+j);
             index.push_back(_i*((int)slice+1)+_j);
 
             index.push_back(i*((int)slice+1)+j);
-            index.push_back(_i*((int)slice+1)+_j);
             index.push_back(i*((int)slice+1)+_j);
+            index.push_back(_i*((int)slice+1)+_j);
         }
     }
     Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
@@ -287,12 +427,12 @@ Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitive
         {
             int _i = SELECT(i+1, n_poly.x+1), _j = SELECT(j+1, n_poly.y+1);
             index.push_back(i*(n_poly.y+1)+j);
-            index.push_back(_i*(n_poly.y+1)+_j);
             index.push_back(_i*(n_poly.y+1)+j);
+            index.push_back(_i*(n_poly.y+1)+_j);
 
             index.push_back(i*(n_poly.y+1)+j);
-            index.push_back(i*(n_poly.y+1)+_j);
             index.push_back(_i*(n_poly.y+1)+_j);
+            index.push_back(i*(n_poly.y+1)+_j);
         }
     }
 
@@ -343,13 +483,13 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
 
     for(uint32 i = 0; i < 6; i++)
     {
-        indices.push_back(1+i*4);
         indices.push_back(2+i*4);
+        indices.push_back(1+i*4);
         indices.push_back(0+i*4);
 
         indices.push_back(1+i*4);
-        indices.push_back(3+i*4);
         indices.push_back(2+i*4);
+        indices.push_back(3+i*4);
     }
     Model* m = new Model(vertex,4*6,&indices[0],indices.size(),type);
     Texture tex;
@@ -358,6 +498,33 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
 
     return m;
 }
+
+void makeFace(std::vector<Model::TVertex>& vertex, std::vector<Model::TIndex>& index, int k)
+{
+    
+}
+
+/*Model* App::CreateMetaSphere(float r, int stack, int slice)
+{
+    std::vector<Model::TVertex> vertices;
+    std::vector<Model::TIndex> index;
+    vec3 face[] = {vec3(1,1,0),vec3(-1,-1,0),vec3()};
+
+    for(int k = 0; k < 6; k++)
+    {
+
+    }
+    
+    for(int i = 0; i < stack; i++)
+    {
+        for(int j = 0; j < slice; j++)
+        {
+            Model::TVertex v;
+            v = {vec3(r*cos(-M_PI/4+M_PI*i),r*sin(-M_PI/4+M_PI*i),r*cos(-M_PI/4+M_PI*j)),vec3(0,0,1),-1,vec2(1,0)};
+        }
+    }
+
+}*/
 
 Model* App::CreateTriangle(float size, TPrimitiveType type)
 {

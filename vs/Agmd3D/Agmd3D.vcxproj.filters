@@ -46,12 +46,11 @@
     <Filter Include="Core\Model">
       <UniqueIdentifier>{ceafba63-901c-45df-8d0e-d32ebcd70444}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Model\SceneNode">
+    <Filter Include="Core\SceneNode">
       <UniqueIdentifier>{3d1e64aa-da6e-442c-9b4b-539a09199b5d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\AgmdDefines.h" />
     <ClInclude Include="..\..\src\Agmd3D\Config\Export.h">
       <Filter>Config</Filter>
     </ClInclude>
@@ -119,9 +118,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\FontManager.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\GraphicString.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Loader.h">
@@ -250,6 +246,31 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\RenderObject\Displayable.h">
       <Filter>Core\RenderObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\ShadowMapRenderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\CameraSceneNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\LightSceneNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\MeshSceneNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\SceneNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\SkinnedMeshSceneNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Statistics.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\RenderObject\GraphicString.h">
+      <Filter>Core\RenderObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\CommonDefines.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -434,9 +455,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\FontManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\GraphicString.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\MediaManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -549,6 +567,24 @@
       <Filter>Core\RenderObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\RenderObject\Displayable.cpp">
+      <Filter>Core\RenderObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\ShadowMapRenderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SceneNode.cpp">
+      <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\MeshSceneNode.cpp">
+      <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SkinnedMeshSceneNode.cpp">
+      <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\Statistics.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\RenderObject\GraphicString.cpp">
       <Filter>Core\RenderObject</Filter>
     </ClCompile>
   </ItemGroup>

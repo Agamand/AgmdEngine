@@ -7,7 +7,7 @@
 #include <Utilities/SmartPtr.h>
 #include <map>
 #include <assert.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
 
 #define SECONDS_IN_MS 1000

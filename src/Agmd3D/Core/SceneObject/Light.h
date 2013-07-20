@@ -44,8 +44,19 @@ namespace Agmd
         void EndApplyShadow() const;
 
         Transform& GetTransform();
+
         void SetPosition(vec3& position);
+        void SetDirection(vec3& direction);
+        void SetRange(float range);
+
         const vec3& GetPosition();
+        const vec3& GetDirection();
+
+        LightType GetType() const;
+
+        float GetRange() const;
+        float GetOuterAngle() const;
+        float GetInnerAngle() const;
 
     private:
         struct LightBuffer 

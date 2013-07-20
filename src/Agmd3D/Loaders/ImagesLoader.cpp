@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/Image.h>
 #include <Utilities/PixelUtils.h>
 #include <algorithm>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <Debug/New.h>
 
 

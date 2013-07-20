@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Utilities/XmlParser.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <stack>
 

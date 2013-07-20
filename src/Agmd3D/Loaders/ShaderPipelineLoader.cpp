@@ -8,7 +8,6 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Loaders/ShaderPipelineLoader.h>
 #include <Core/Renderer.h>
-#include <Debug/New.h>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -28,6 +27,7 @@ namespace Agmd
     {
         std::ifstream file;
         std::string str;
+        std::string shadername;
         try
         {
             file.open(filename,std::ios::in);
@@ -35,9 +35,35 @@ namespace Agmd
             file >> str;
 
             if(GetToken(str) != TOKEN_SHADERPIPELINE)
-                throw LoadingFailed(filename,"First Token must be ShaderPipeline");
+                throw ParserFail(filename,"First Token must be ShaderPipeline");
 
-
+            file >> shadername;
+            file >> str;
+            if(GetToken(str) != TOKEN_BRACE_OPEN)
+                throw ParserFail(filename,"");
+            bool endfile = false;
+            while(!endfile)
+            {
+                file >> str;
+                switch(GetToken(str))
+                {
+                case TOKEN_PROPERTIES:
+                    ParseProperties(file);
+                    break;
+                case TOKEN_UNIFORMINPUT:
+                    ParseUniform(file);
+                    break;
+                case TOKEN_SUBROUTINE:
+                    ParseSubRoutine(file);
+                    break;
+                case TOKEN_BRACE_CLOSE:
+                    endfile = true;
+                    break;
+                default:
+                    throw ParserFail(filename,"");
+                    break;
+                }
+            }
 
         }catch(ParserFail e)
         {
@@ -56,16 +82,84 @@ namespace Agmd
         return NULL;
     }
 
-    void ShaderPipelineLoader::ParseProperties(const std::string& str)
+    void ShaderPipelineLoader::ParseProperties(std::ifstream& stream)
     {
-        
+        std::string str;
+        stream >> str;
+
+        if(GetToken(str) != TOKEN_BRACE_OPEN)
+            throw ParserFail("","");
+
+        stream >> str;
+        Properties p;
+        Token t;
+        while( ( t = GetToken(str) ) != TOKEN_BRACE_CLOSE)
+        {
+            switch(GetToken(str))
+            {
+            case TOKEN_RENDERTYPE:
+                stream >> str;
+                p._type = TYPE_RENDER;
+                p.value = str;
+                m_properties.push_back(p);
+                break;
+            case TOKEN_USE:
+                stream >> str;
+                p._type = TYPE_USE;
+                p.value = str;
+                m_properties.push_back(p);
+                break;
+            default:
+                SkipLine(stream);
+            }
+            stream >> str;
+        }
     }
 
-    void ShaderPipelineLoader::ParseSubRoutine(const std::string& str)
+    void  ShaderPipelineLoader::ParseSubRoutine(std::ifstream& stream)
     {
-        
-    }
+        std::string str;
+        stream >> str;
+        std::string name = str;
 
+        stream >> str;
+
+        if(GetToken(str) != TOKEN_BRACE_OPEN)
+            throw ParserFail("","");
+        std::string subroutine = "";
+        while(GetToken(str) != TOKEN_BRACE_CLOSE)
+        {
+            subroutine += str;
+            stream >> str;
+        }
+
+        m_subroutine[name] = subroutine;
+    }
+    void ShaderPipelineLoader::ParseUniform(std::ifstream& stream)
+    {
+        std::string str;
+        stream >> str;
+
+        if(GetToken(str) != TOKEN_BRACE_OPEN)
+            throw ParserFail("","");
+
+        stream >> str;
+
+        while(GetToken(str) != TOKEN_BRACE_CLOSE)
+        {
+            std::string varname = str.substr(0, str.find_first_of('('));
+            std::string vartype = str.substr(str.find_first_of('(')+1,str.find_last_of(')')-1);
+            stream >> str;
+            std::string defaultvalue = "";
+            if(str.c_str()[0] == '=')
+            {
+                stream >> str;
+                defaultvalue = str;
+                stream >> str;
+            }
+            AddUniform(varname,vartype,defaultvalue);
+        }
+    }
     Token ShaderPipelineLoader::GetToken(const std::string& str)
     {
         std::string _str(str);
@@ -74,8 +168,14 @@ namespace Agmd
             return Token::TOKEN_SHADERPIPELINE;
         if(!_str.compare(STR_TOKEN_PROPERTIES))
             return Token::TOKEN_PROPERTIES;
+        if(!_str.compare(STR_TOKEN_USE))
+            return Token::TOKEN_USE;
+        if(!_str.compare(STR_TOKEN_RENDERTYPE))
+            return Token::TOKEN_RENDERTYPE;
         if(!_str.compare(STR_TOKEN_SUBROUTINE))
             return Token::TOKEN_SUBROUTINE;
+        if(!_str.compare(STR_TOKEN_UNIFORMINPUT))
+            return Token::TOKEN_UNIFORMINPUT;
         if(!_str.compare(STR_TOKEN_GLSLBEGIN))
             return Token::TOKEN_GLSLBEGIN;
         if(!_str.compare(STR_TOKEN_GLSLEND))
@@ -89,6 +189,42 @@ namespace Agmd
         if(!_str.compare(STR_TOKEN_INSTRUCTION_END))
             return Token::TOKEN_INSTRUCTION_END;
         return Token::TOKEN_UNKNOWN;
+    }
+
+    UniformType ShaderPipelineLoader::GetUniformType(const std::string& str )
+    {
+        std::string _str(str);
+        std::transform(_str.begin(),_str.end(),_str.begin(), ::tolower);
+
+        if(!_str.compare(TYPE_FLOAT))
+            return UniformType::UNIFORM_FLOAT;
+
+        if(!_str.compare(TYPE_TEXTURE2D))
+            return UniformType::UNIFORM_SAMPLER2D;
+        return UniformType::UNIFORM_UNKNOWN;
+    }
+
+    void ShaderPipelineLoader::AddUniform(const std::string& name, const std::string& type, const std::string& defaultvalue)
+    {
+        UniformType _type = GetUniformType(type);
+        Uniform uniform;
+        uniform._type = _type;
+        uniform.varname = name;
+        switch(_type)
+        {
+        case UNIFORM_FLOAT:
+            uniform._defaultvalue.fvalue[0] =  atof(defaultvalue.c_str());
+            break;
+        default:
+            std::strncpy(uniform._defaultvalue.svalue,defaultvalue.c_str(), 20);
+        }
+
+    }
+
+    void ShaderPipelineLoader::SkipLine(std::ifstream& stream)
+    {
+        char c;
+        while(stream.read(&c,1) && c != '\n');
     }
 
     void ShaderPipelineLoader::OnError()

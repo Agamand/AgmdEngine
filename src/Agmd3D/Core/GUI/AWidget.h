@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Config/Export.h>
 
 #include <Vector2.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 

@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     GLTextureBuffer::GLTextureBuffer(unsigned long count, unsigned int buffer, TextureBase* texture) : 
-    GLBuffer(count,buffer),
+    GLBuffer(count,&buffer),
     m_textureBuffer(texture)
     {}
 

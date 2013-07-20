@@ -16,6 +16,22 @@ inline T* Buffer<T>::Lock(unsigned long offset, unsigned long size, unsigned lon
     return reinterpret_cast<T*>(m_Buffer->Lock(offset * sizeof(T), size * sizeof(T), flags));
 }
 
+
+template <class T>
+template <class D>
+inline D* Buffer<T>::LockBits(unsigned long offset, unsigned long size, unsigned long flags)
+{
+    return reinterpret_cast<D*>(m_Buffer->LockBits(offset, size, flags));
+}
+
+
+template <class T>
+template <class D>
+inline void Buffer<T>::FillByte(D* data, unsigned long offset, unsigned long sizes)
+{
+    m_Buffer->FillByte(reinterpret_cast<unsigned char*>(data), offset, sizes);
+}
+
 template <class T>
 inline void Buffer<T>::Unlock()
 {
@@ -55,3 +71,22 @@ inline void Buffer<T>::Bind(uint32 bindpoint)
 {
     m_Buffer->Bind(bindpoint);
 }
+
+template <class T>
+inline void Buffer<T>::WaitSync()
+{
+    m_Buffer->WaitSync();
+}
+
+template <class T>
+inline void Buffer<T>::SwapBuffers()
+{
+    m_Buffer->SwapBuffers();
+}
+
+template <class T>
+inline void Buffer<T>::Flush()
+{
+    m_Buffer->Flush();
+}
+

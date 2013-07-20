@@ -1,5 +1,5 @@
 #include <Component.h>
-
+/*
 namespace Agmd
 {
 
@@ -12,4 +12,4 @@ namespace Agmd
     {
 
 	}
-}
+}*/

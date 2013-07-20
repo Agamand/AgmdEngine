@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/BaseBuffer.h>
 #include <Renderer\OpenGL\GlShader.h>
 #include <Core\Enums.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <string>
 #include <map>
 #include <vector>

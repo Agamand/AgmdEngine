@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/SmartPtr.h>
 #include <map>
 #include <assert.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
 
 #define SECONDS_IN_MS 1000
@@ -54,7 +54,8 @@ namespace Agmd
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
         virtual void OnInit() = 0;
         virtual void OnUpdate(uint64 time_diff) = 0;
-        virtual void OnRender() = 0;
+        virtual void OnRender3D() = 0;
+        virtual void OnRender2D() = 0;
         Camera*              camera;
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;

@@ -11,7 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Vector2.h>
 #include <iostream>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 enum TIntersection
 {

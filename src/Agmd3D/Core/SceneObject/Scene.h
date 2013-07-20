@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/SceneObject/SkyBox.h>
 #include <Core/SceneObject/Light.h>
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 
@@ -31,6 +31,8 @@ namespace Agmd
         Scene();
         ~Scene();
         void Render(TRenderPass pass) const;
+
+        void Draw() const;
 
         void Update(uint64 t_diff);
 

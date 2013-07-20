@@ -50,16 +50,16 @@ namespace Agmd
     template <class T> const T* GameObject::GetComponent()
     {}
 
-    template <Displayable> const T* GameObject::GetComponent()
-    {}
-
+    /*template <Displayable> const T* GameObject::GetComponent()
+    {}*/
+    /*
     template <Transform> const T* GameObject::GetComponent()
     {}
-
+    
     template <btRigidBody> void GameObject::AddComponent()
     {
-        delete m_rigidBody;
-        m_rigidBody = new btRigidBody();
+        //delete m_rigidBody;
+        //m_rigidBody = new btRigidBody();
     }
     template <btRigidBody> const T* GameObject::GetComponent()
     {}
@@ -67,7 +67,7 @@ namespace Agmd
     template <btCollisionShape> void GameObject::AddComponent()
     {}
     template <btCollisionShape> const T* GameObject::GetComponent()
-    {}
+    {}*/
 }
 
 #endif /* _GAMEOBJECT_H_ */

@@ -19,7 +19,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector3.h>
 #include <Transform.h>
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <map>
 
@@ -32,12 +32,14 @@ namespace Agmd
     MAKE_SINGLETON(FontManager)
 
     public :
-
+        friend class GraphicString;
         void LoadFont(const std::string& fontName, int quality = 32);
 
         void UnloadFonts();
 
         void DrawString(const GraphicString& string);
+
+        void GenerateStringMesh(GraphicString& string);
 
         ivec2 GetStringPixelSize(const GraphicString& string);
 
@@ -51,11 +53,11 @@ namespace Agmd
 
         struct TVertex
         {
-            vec4     position;
-            int      vertexId;
+            vec3     position;
+            vec2     texcoord;
         };
 
-        typedef unsigned short TIndex;
+        typedef uint16 TIndex;
 
         struct TFont
         {

@@ -17,8 +17,8 @@ namespace Agmd
         Displayable(transform),
         m_baseModel(basemodel)
         {
-            if(!transform)
-                transform = new Transform();
+            if(!m_transform)
+                m_transform = new Transform();
             m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
         }
 
@@ -38,6 +38,11 @@ namespace Agmd
         void MeshRender::Draw() const
         {
             m_baseModel->Draw(m_transform);
+        }
+
+        void MeshRender::SetModel(Model*model)
+        {
+            m_baseModel = model;
         }
 
 }

@@ -16,6 +16,9 @@
     <Filter Include="FastStl">
       <UniqueIdentifier>{78156720-6cb9-4ad8-be0a-da3c0f2487a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Allocator">
+      <UniqueIdentifier>{46945308-fddb-43f5-a097-6c22ea261c6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp">
@@ -122,11 +125,26 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastList.h">
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Queue.h">
       <Filter>FastStl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastArray.h">
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.h">
+      <Filter>Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.h">
+      <Filter>Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Array.h">
       <Filter>FastStl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\List.h">
+      <Filter>FastStl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\Allocator.h">
+      <Filter>Allocator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,10 +160,22 @@
     <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl">
       <Filter>Utilities</Filter>
     </None>
-    <None Include="..\..\src\AgmdUtilities\FastStl\FastList.inl">
+    <None Include="..\..\src\AgmdUtilities\FastStl\Queue.inl">
       <Filter>FastStl</Filter>
     </None>
-    <None Include="..\..\src\AgmdUtilities\FastStl\FastArray.inl">
+    <None Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.inl">
+      <Filter>Allocator</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.inl">
+      <Filter>Allocator</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.inl">
+      <Filter>Utilities</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\FastStl\Array.inl">
+      <Filter>FastStl</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\FastStl\List.inl">
       <Filter>FastStl</Filter>
     </None>
   </ItemGroup>

@@ -12,15 +12,16 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/BaseBuffer.h>
 #include <Renderer/OpenGL/GlEnums.h>
 #include <gl/glext.h>
+#include <Debug/Profiler.h>
 
 namespace Agmd
 {
-    template <int Type>
+    template <int Type, int bufferCount>
     class GLBuffer : public BaseBuffer
     {
     public :
 
-        GLBuffer(unsigned long count, unsigned int buffer);
+        GLBuffer(unsigned long count, unsigned int *buffer);
 
         virtual ~GLBuffer();
 
@@ -30,15 +31,27 @@ namespace Agmd
 
         void* Lock(unsigned long offset, unsigned long size, unsigned long flags);
 
+        void* LockBits(unsigned long offset, unsigned long size, unsigned long flags);
+
         void Unlock();
 
         virtual void Bind(uint32 bindpoint);
 
-        unsigned int m_Buffer;
+        void WaitSync();
+
+        void SwapBuffers();
+        
+        void FillByte(unsigned char* data, unsigned long offset, unsigned long size);
+        void Flush();
+
+        uint32 m_Buffer[bufferCount];
+        uint32 m_currentBuffer;
+        uint32 m_bufferCount;
+        GLsync m_sync;
     };
 
-    typedef GLBuffer<GL_ARRAY_BUFFER>         GLVertexBuffer;
-    typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER> GLIndexBuffer;
+    typedef GLBuffer<GL_ARRAY_BUFFER,1>         GLVertexBuffer;
+    typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER,1> GLIndexBuffer;
 
     #include "GLBuffer.inl"
 

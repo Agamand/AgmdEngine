@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 #include <Vector3.h>
 #include <Matrix4.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {
@@ -57,7 +57,7 @@ namespace Agmd
 
         static void SetCurrent(Camera* cam, TCamera type = CAMERA_3D);
         static Camera* GetCurrent(TCamera type = CAMERA_3D);
-
+        bool UnProject(vec3& mousepos);
     protected:
         struct CameraBuffer
         {
@@ -76,10 +76,12 @@ namespace Agmd
         glm::vec3 _target;
         glm::vec3 _forward;
         glm::vec3 _left;
+        CameraBuffer m_transform;
         float _theta;
         float _phi;
+        mat4* map;
 
-        Buffer<CameraBuffer> m_cameraBuffer;
+        Buffer<mat4> m_cameraBuffer;
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

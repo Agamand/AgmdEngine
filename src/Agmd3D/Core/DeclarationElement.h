@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #ifndef DECLARATIONELEMENT_H
 #define DECLARATIONELEMENT_H
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {

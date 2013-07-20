@@ -15,10 +15,22 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/Texture.h>
 #include <Core/RenderingMode/RenderingMode.h>
 #include <Core/Shader/ShaderProgram.h>
+#include <Core/ShadowMapRenderer.h>
 
 
 namespace Agmd
 {
+    enum TLightShader
+    {
+        DIRECTIONNAL,
+        POINT,
+        SPOT,
+        DIRECTIONNAL_WITH_SHADOW,
+        POINT_WITH_SHADOW,
+        SPOT_WITH_SHADOW
+    };
+    #define MAX_LIGHT_SHADER 6
+
     class AGMD3D_EXPORT DeferredRendering : public RenderingMode
     {
     public:
@@ -35,6 +47,8 @@ namespace Agmd
         Texture GetNormalTexture();
         Texture GetPositionTexture();
 
+        ShadowMapRenderer* GetShadowRenderer();
+
     private:
         void Init();
 
@@ -47,8 +61,10 @@ namespace Agmd
         Texture m_textureBuffer[5];
         uint32* bufferFlags;
         
-        ShaderProgram m_ligth_program;
+        ShaderProgram m_light_program[MAX_LIGHT_SHADER];
 
+        ShadowMapRenderer* m_shadowRender;
+        Texture m_depthCubemap;
 
 
     }; 

@@ -10,8 +10,9 @@ https://github.com/Agamand/AgmdEngine
 #define BUFFERBASE_H
 
 #include <Config/Export.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <cstdlib>
+
 
 
 namespace Agmd
@@ -29,10 +30,20 @@ namespace Agmd
         template <class T> friend class Buffer;
 
         virtual void* Lock(unsigned long offset, unsigned long size, unsigned long flags) = 0;
+        
+        virtual void* LockBits(unsigned long offset, unsigned long size, unsigned long flags) = 0;
+
+        virtual void FillByte(unsigned char* data, unsigned long offset, unsigned long size) = 0;
 
         virtual void Unlock() = 0;
 
         virtual void Bind(uint32 bindpoint) = 0;
+
+        virtual void WaitSync() = 0;
+
+        virtual void SwapBuffers() = 0;
+
+        virtual void Flush() = 0;
 
         unsigned long m_Count;
     };

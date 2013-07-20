@@ -29,9 +29,12 @@ namespace Agmd
 
         T* Lock(unsigned long offset = 0, unsigned long size = 0, unsigned long flags = 0);
 
+        template <class D> D* LockBits(unsigned long offset = 0, unsigned long size = sizeof(T), unsigned long flags = 0);
+
         void Unlock();
 
         void Fill(const T* data, std::size_t count);
+        template <class D> void FillByte(D* byte, unsigned long offset, unsigned long size);
 
         void Release();
 
@@ -41,9 +44,16 @@ namespace Agmd
 
         void Bind(uint32 bindpoint);
 
+        void WaitSync();
+
+        void SwapBuffers();
+
+        void Flush();
+
     private :
 
         SmartPtr<BaseBuffer> m_Buffer;
+        uint32 m_currentBuffer;
     };
     #include "Buffer.inl"
 }

@@ -58,19 +58,24 @@
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\Allocator.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Exception.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Logger.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastArray.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\FastList.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Array.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\List.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Queue.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\PixelUtils.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Plugin.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Singleton.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SmartPtrPolicies.h" />
@@ -83,9 +88,13 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\XmlParser.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\AgmdUtilities\FastStl\FastArray.inl" />
-    <None Include="..\..\src\AgmdUtilities\FastStl\FastList.inl" />
+    <None Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.inl" />
+    <None Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.inl" />
+    <None Include="..\..\src\AgmdUtilities\FastStl\Array.inl" />
+    <None Include="..\..\src\AgmdUtilities\FastStl\List.inl" />
+    <None Include="..\..\src\AgmdUtilities\FastStl\Queue.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl" />
+    <None Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\StringUtils.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl" />

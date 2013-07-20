@@ -22,9 +22,10 @@ status : in pause
 #include <AgmdUtilities\Utilities\Singleton.h>
 #include <Agmd3D\Core\SceneObject\Model.h>
 #include <Agmd3D\Core\Shader\ShaderProgram.h>
-#include <Agmd3D\Core\GUI\AWindow.h>
+#include <Agmd3D\Core/GUI\AWindow.h>
 #include <Agmd3D/Core/Effects/BlurEffect.h>
 #include <Agmd3D/Core/Effects/BlurMotionEffect.h>
+#include <Agmd3D/Core/RenderObject/MeshRender.h>
 
 
 #include <map>
@@ -32,13 +33,13 @@ status : in pause
 
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
-
-MAKE_SINGLETON(App)
+    MAKE_SINGLETON(App);
 public:
     static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, uint32 color = -1);
     static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
+    static Agmd::Model* CreateMetaSphere(float r, int stack, int slice);
     Agmd::GraphicString* m_text;
 
     void Run(int argc, char** argv);
@@ -49,16 +50,19 @@ private :
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
     
     virtual void OnUpdate(uint64 time_diff);
-    virtual void OnRender();
-
+    virtual void OnRender3D();
+    virtual void OnRender2D();
     typedef std::map<std::string, std::string> TDescTable;
     typedef std::vector<Agmd::TModelPtr> ModelVector;
 
+    Agmd::MeshRender* plane;
     glm::mat4             m_MatProj2D;
     glm::mat4            m_MatProj3D;
     glm::mat3             m_MatNormal;
 
     Agmd::Scene*        m_Scene;
+    Agmd::DeferredRendering* drend; 
+    Agmd::MeshRender* sphere;
 
     Agmd::BaseShaderProgram* shader2D;
     Agmd::GraphicString* m_fps;

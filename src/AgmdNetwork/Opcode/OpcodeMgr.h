@@ -3,7 +3,7 @@
 
 #include <AgmdUtilities\Utilities\Singleton.h>
 #include <Packet\Packet.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace AgmdNetwork
 {

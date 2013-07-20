@@ -15,10 +15,6 @@ status : in pause
 #include <exception>
 #include "App.h"
 
-#include <AgmdUtilities/Utilities/TinyXml/tinyxml.h>
-
-#include <string>
-
 using namespace AgmdUtilities;
 int main(int argc, char** argv)
 {

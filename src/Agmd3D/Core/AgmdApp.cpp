@@ -20,7 +20,10 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/RenderingMode/RenderingMode.h>
 #include <Core/SceneObject/Material.h>
 #include <Core/Shader/ShaderPipeline.h>
+#include <Core/Tools/Statistics.h>
 #include <Debug/Profiler.h>
+
+#include <chrono>
 
 namespace Agmd
 {
@@ -116,6 +119,8 @@ namespace Agmd
     void AgmdApp::MainLoop()
     {
         MSG Message;
+        Timer timer;
+        float renderTime = 0, guiTime = 0;
         while (m_IsRunning)
         {
             if (PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
@@ -129,24 +134,37 @@ namespace Agmd
                 uint32 time_diff = time - last_time;
                 last_time = time;
                 Renderer& render =  Renderer::Get();
+                render.GetStatistics().ResetStatistics();
                 render.OnUpdate(time_diff);
                 GUIMgr::Instance().Update(time_diff);
                 OnUpdate(time_diff);
                 render.InitScene();
                 //Render 3D objects
+                timer.start();
                 RenderingMode::GetRenderingMode()->Compute();
+                OnRender3D();
+                renderTime = timer.getElapsedTimeInMicroSec();
+                timer.stop();
+                timer.start();
                 //Render 2D GUI
                 GUIMgr::Instance().DrawGUI();
-                OnRender(); 
+                OnRender2D();
+                timer.stop();
+                guiTime = timer.getElapsedTimeInMicroSec();
                 render.EndScene();
                 frame++;
-
+				if(time_diff < 15)
+					Sleep(15-time_diff);
                 if(fps_timer <= time_diff)
                 {
                     m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - fps_timer);
                     fps_timer = SECONDS_IN_MS;
+                    render.GetStatistics().SetMainTime(time_diff);
+                    render.GetStatistics().SetRenderingTime(renderTime);
+                    render.GetStatistics().SetGuiTime(guiTime);
                     frame = 0;
                 }else fps_timer -= time_diff;
+                
             }
         }
     }
@@ -176,13 +194,13 @@ namespace Agmd
                 switch(LOWORD(WParam))
                 {
                 case VK_F1:
-                    Renderer::Get().SetRenderMode(MODE_FILL);
+                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_FILL);
                     return 0;
                 case VK_F2:
-                    Renderer::Get().SetRenderMode(MODE_LINE);
+                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_LINE);
                     return 0;
                 case VK_F3:
-                    Renderer::Get().SetRenderMode(MODE_POINT);
+                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_POINT);
                     return 0;
                 }
                 return 0;

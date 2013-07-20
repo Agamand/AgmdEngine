@@ -12,6 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Loaders/ShaderProgramsLoader.h>
 #include <Loaders/ObjLoader.h>
 #include <Loaders/TxtLoader.h>
+#include <Loaders/ShaderPipelineLoader.h>
 #include <Core/MediaManager.h>
 #include <Debug/New.h>
 
@@ -32,6 +33,7 @@ namespace Agmd
         mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl");
         //mediaManager.RegisterLoader(new TxtLoader(),"txt");
         mediaManager.RegisterLoader(new ObjLoader(), "obj");
+        mediaManager.RegisterLoader(new ShaderPipelineLoader(), "shader");
     }
 
 } // namespace Agmd

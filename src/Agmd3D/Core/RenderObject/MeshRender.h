@@ -21,7 +21,10 @@ namespace Agmd
 
         virtual void Render(TRenderPass pass) const;
         virtual void Draw() const;
-    private:
+
+        void SetModel(Model*);
+
+    protected:
         Model* m_baseModel;
     };
 }

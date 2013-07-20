@@ -69,13 +69,13 @@ namespace Agmd
            FirstPass, here is draw the ZBuffer(Only).
         */
         render.Enable(RENDER_ZWRITE,true);
-        m_framebuffer->Clear(CLEAR_DEPTH);
-        m_framebuffer->DrawBuffer(0);
-        m_framebuffer->Bind();
+        //m_framebuffer->Clear(CLEAR_DEPTH);
+        //m_framebuffer->DrawBuffer(0);
+        //m_framebuffer->Bind();
         render.Enable(RENDER_ZTEST,true);
         render.SetupDepthTest(DEPTH_LESS);
-        sc->Render(RENDERPASS_ZBUFFER);
-        m_framebuffer->UnBind();
+        //sc->Render(RENDERPASS_ZBUFFER);
+        //m_framebuffer->UnBind();
         /*
             <!> ZBUFFER MUST BE TO LESS OR EQUALS
             AND STOP WRITE IN Z BUFFER,
@@ -86,19 +86,19 @@ namespace Agmd
             Render diffuse to color_attachment0
         */
 
-        m_framebuffer->DrawBuffers(1,bufferFlags[0]);
-        m_framebuffer->Clear(CLEAR_COLOR);
-        m_framebuffer->Bind();
-        render.SetupDepthTest(DEPTH_LEQUAL);
-        render.Enable(RENDER_ZWRITE,false);
+        //m_framebuffer->DrawBuffers(1,bufferFlags[0]);
+        //m_framebuffer->Clear(CLEAR_COLOR);
+        //m_framebuffer->Bind();
+        //render.SetupDepthTest(DEPTH_LEQUAL);
+        //render.Enable(RENDER_ZWRITE,false);
         sc->Render(RENDERPASS_DIFFUSE);
-        m_framebuffer->UnBind();
+        //m_framebuffer->UnBind();
 
         /*
             Render lighting to color_attachment1
         */
 
-        const std::vector<Light*>&  lights = sc->GetLights();
+        /*const std::vector<Light*>&  lights = sc->GetLights();
         uint32 maxLights = lights.size();
         if(maxLights)
         {
@@ -114,24 +114,24 @@ namespace Agmd
             for(uint32 i = 0; i < maxLights; i++)
             {
                 _lights[i]->Bind();
-                sc->Render(RENDERPASS_LIGHTING);
+                //sc->Render(RENDERPASS_LIGHTING);
             }
             m_framebuffer->UnBind();
             render.Enable(RENDER_ALPHABLEND, false);
-        }
+        }*/
         /*
             Render to main framebuffer
         */
         render.Enable(RENDER_ZTEST,false);
-        Texture::TextureRender(m_textureBuffer[0]);
+        //Texture::TextureRender(m_textureBuffer[0]);
 
-        if(maxLights)
+        /*if(maxLights)
         {
             render.Enable(RENDER_ALPHABLEND, true);
             render.SetupAlphaBlending(BLEND_DESTCOLOR, BLEND_ZERO);
             Texture::TextureRender(m_textureBuffer[1]);
             render.Enable(RENDER_ALPHABLEND, false);
-        }
+        }*/
         End();
     }
 

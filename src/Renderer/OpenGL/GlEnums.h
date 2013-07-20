@@ -13,7 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #include <windows.h>
 #include <gl/gl.h>
 #include <string>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {
@@ -24,6 +24,8 @@ namespace Agmd
         struct TPixelFmt {GLenum Format, Internal, Type, _Format;};
         
         static unsigned long BufferFlags(unsigned long flags);
+
+        static unsigned long RGLEnum::LockBitsFlags(unsigned long flags);
 
         static unsigned long LockFlags(unsigned long flags);
 

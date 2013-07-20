@@ -24,13 +24,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
@@ -43,7 +43,7 @@
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
@@ -72,6 +72,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
+      <PreprocessorDefinitions>_WINDLL;GAMEENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -86,6 +87,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)\..\src\GameEngine</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
+      <PreprocessorDefinitions>_WINDLL;GAMEENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -104,6 +106,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <PreprocessorDefinitions>_WINDLL;GAMEENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,6 +125,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <PreprocessorDefinitions>_WINDLL;GAMEENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -146,6 +150,7 @@
     <ClInclude Include="..\..\src\GameEngine\BulletPhysics\PhysicsMgr.h" />
     <ClInclude Include="..\..\src\GameEngine\BulletPhysics\RigidBody.h" />
     <ClInclude Include="..\..\src\GameEngine\Component.h" />
+    <ClInclude Include="..\..\src\GameEngine\GameEngine.h" />
     <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\ExportGameEngine.h" />
     <ClInclude Include="..\..\src\GameEngine\GameEngineConfig\FwGameEngine.h" />
     <ClInclude Include="..\..\src\GameEngine\GameObject.h" />

@@ -1,7 +1,7 @@
 #ifndef BYTEBUFFER_H
 #define BYTEBUFFER_H
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <string>
 #include <sstream>

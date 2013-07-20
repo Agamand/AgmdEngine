@@ -5,14 +5,14 @@
 
 namespace Agmd
 {
-    template <class T> class GAMEENGINE_EXPORT Component
+    /*template <class T> class GAMEENGINE_EXPORT Component
 	{
 	public: 
 		Component();
 		~Component();
     private:
         T* m_component;
-	};
+	};*/
 }
 
 #endif /* _COMPONENT_H_ */

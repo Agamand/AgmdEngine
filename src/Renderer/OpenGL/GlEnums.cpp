@@ -99,7 +99,9 @@ namespace Agmd
     {
         0,
         GL_BLEND,
-        GL_DEPTH_TEST
+        GL_DEPTH_TEST,
+        GL_TEXTURE_COMPARE_MODE
+
     };
 
     GLenum RGLEnum::RenderMode[] =
@@ -154,6 +156,16 @@ namespace Agmd
         return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
     }
 
+    unsigned long RGLEnum::LockBitsFlags(unsigned long flags)
+    {
+        unsigned long lockFlags = 0;
+        if (flags & LOCK_READONLY)  lockFlags |= GL_MAP_READ_BIT;
+        if (flags & LOCK_WRITEONLY) lockFlags |= GL_MAP_WRITE_BIT;
+        if (flags & LOCK_UNSYNCHRONOUS) lockFlags |= GL_MAP_UNSYNCHRONIZED_BIT;
+        return lockFlags;
+    }
+
+
     unsigned long RGLEnum::LockFlags(unsigned long flags)
     {
         unsigned long lockFlags = GL_READ_WRITE;
@@ -162,6 +174,7 @@ namespace Agmd
 
         return lockFlags;
     }
+
     GLenum RGLEnum::Get(TMatrixType value)
     {
         return MatrixType[value];
@@ -199,7 +212,7 @@ namespace Agmd
 
     GLenum RGLEnum::Get(TRenderParameter value)
     {
-        if(value > 2)
+        if(value > 3)
             return RenderParameter[0];
         return RenderParameter[value];
     }

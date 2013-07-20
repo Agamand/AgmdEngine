@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #ifndef MEMORYMGR_H
 #define MEMORYMGR_H
 #include <Utilities\File.h>
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 #include <cstdlib>
 #include <map>
 #include <stack>

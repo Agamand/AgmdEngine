@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include "btBulletDynamicsCommon.h"
 #include "btBulletCollisionCommon.h"
 
-#include <AgmdDefines.h>
+#include <CommonDefines.h>
 
 #include <vector>
 

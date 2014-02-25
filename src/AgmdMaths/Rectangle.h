@@ -28,21 +28,21 @@ namespace AgmdMaths
 
         Rectangle(const ivec2& start = ivec2(0, 0), const ivec2& size = ivec2(0, 0));
 
-        Rectangle(int32 left, int32 top, int32 width, int32 height);
+        Rectangle(a_int32 left, a_int32 top, a_int32 width, a_int32 height);
 
-        void Set(int32 left, int32 top, int32 width, int32 height);
+        void Set(a_int32 left, a_int32 top, a_int32 width, a_int32 height);
 
-        int32 Left() const;
+        a_int32 Left() const;
 
-        int32 Right() const;
+        a_int32 Right() const;
 
-        int32 Top() const;
+        a_int32 Top() const;
 
-        int32 Bottom() const;
+        a_int32 Bottom() const;
 
-        int32 Width() const;
+        a_int32 Width() const;
 
-        int32 Height() const;
+        a_int32 Height() const;
 
         ivec2 Size() const;
 

@@ -18,7 +18,7 @@ namespace Agmd
         void AddRigidBody(RigidBody* rigidbody);
         void RemoveRigidBody(RigidBody* rigidbody);
 
-        void Update(uint64 time_diff);
+        void Update(a_uint64 time_diff);
     private:
         std::vector<RigidBody*> m_rigidBody;
     };

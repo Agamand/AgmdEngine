@@ -52,9 +52,9 @@ namespace Agmd
         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
 
-        uint32 buffer[] = {COLOR_ATTACHMENT};
+        a_uint32 buffer[] = {COLOR_ATTACHMENT};
         bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
-        uint32 buffer2[] = {COLOR_ATTACHMENT+1};
+        a_uint32 buffer2[] = {COLOR_ATTACHMENT+1};
         bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
 
     }
@@ -62,7 +62,7 @@ namespace Agmd
     void ForwardRendering::Compute()
     {
         Renderer& render = Renderer::Get();
-        Scene* sc = render.GetActiveScene();
+        SceneOld* sc = render.GetActiveScene();
         Start();
 
         /*

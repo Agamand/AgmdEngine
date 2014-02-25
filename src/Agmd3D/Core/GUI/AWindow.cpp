@@ -28,7 +28,7 @@ namespace Agmd
     {}
 
 
-    uint32 AWindow::OnClick(ivec2& pos_mouse, uint32 mouseState)
+    a_uint32 AWindow::OnClick(ivec2& pos_mouse, a_uint32 mouseState)
     {
         if(!In(pos_mouse))
             return 0;
@@ -40,17 +40,17 @@ namespace Agmd
         return 1;
     }
 
-    void AWindow::SetFont(Texture& font)
+    void AWindow::SetBackground(Texture& bg)
     {
-        m_Font = font;
+        m_Background = bg;
     }
 
-    uint32 AWindow::OnMouseOver()
+    a_uint32 AWindow::OnMouseOver()
     {
         return 0;
     }
 
-    uint32 AWindow::OnMouseMove(ivec2& pos_diff, uint32 mouseState)
+    a_uint32 AWindow::OnMouseMove(ivec2& pos_diff, a_uint32 mouseState)
     {
         if(!hold)
             return 0;
@@ -66,7 +66,7 @@ namespace Agmd
         return 1;
     }
 
-    uint32 AWindow::OnKey(char key)
+    a_uint32 AWindow::OnKey(char key)
     {
         return 0;
     }
@@ -75,8 +75,8 @@ namespace Agmd
     {
         TVertex* vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
 
-        for(uint32 i = 0; i < 4; i++)
-            for(uint32 j  = 0; j < 4; j++) 
+        for(a_uint32 i = 0; i < 4; i++)
+            for(a_uint32 j  = 0; j < 4; j++) 
                 vertices[i*4+j].Position = vec3(0.0f+COIN*((i+1)/2)+m_vSize.x*((i)/2),0.0f+COIN*((j+1)/2)+m_vSize.y*((j)/2),0.0f);
 
         m_VertexBuffer.Unlock();
@@ -109,10 +109,10 @@ namespace Agmd
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
 
 
-        if(m_Font.GetTexture())
+        if(m_Background.GetTexture())
         {
             render.GetCurrentProgram()->SetParameter("u_size",(vec2)m_vSize);
-            render.SetTexture(3, m_Font.GetTexture());
+            render.SetTexture(3, m_Background.GetTexture());
             render.SetTextureFlag(TEXTURE_UNIT_3);
         }else render.SetTextureFlag(0);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);
@@ -181,8 +181,8 @@ namespace Agmd
 
         vertex.Diffuse = -1;
         
-        for(uint32 i = 0; i < 4; i++)
-            for(uint32 j  = 0; j < 4; j++)
+        for(a_uint32 i = 0; i < 4; i++)
+            for(a_uint32 j  = 0; j < 4; j++)
             {
                 vertex.Position = vec3(0.0f+COIN*((i+1)/2)+m_vSize.x*((i)/2),0.0f+COIN*((j+1)/2)+m_vSize.y*((j)/2),0.0f);
                 vertex.TexCoords0 = texc[j+i*4].t0;

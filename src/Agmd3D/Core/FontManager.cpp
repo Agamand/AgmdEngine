@@ -146,7 +146,7 @@ namespace Agmd
 
     void FontManager::DrawString(const GraphicString& str)
     {        
-        uint32 color = Renderer::Get().ConvertColor(str.m_color);
+        a_uint32 color = Renderer::Get().ConvertColor(str.m_color);
 
         if (str.m_Text == "")
             return;
@@ -265,7 +265,7 @@ namespace Agmd
         str.m_IndexBuffer.Release();
 
         std::vector<TIndex> _indices;
-        for(uint32 i = 0, len = _vertex.size()/4; i < len; i++)
+        for(a_uint32 i = 0, len = _vertex.size()/4; i < len; i++)
         {
             _indices.push_back(0+i*4);
             _indices.push_back(1+i*4);

@@ -18,7 +18,7 @@ namespace Agmd
     class AGMD3D_EXPORT RenderingMode
     {
     public:
-        RenderingMode(int32 width, int32 heigth);
+        RenderingMode(a_int32 width, a_int32 heigth);
         RenderingMode(ivec2& screenSize);
         
         virtual void Compute() = 0;

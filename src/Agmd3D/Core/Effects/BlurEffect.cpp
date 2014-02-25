@@ -23,7 +23,7 @@ namespace Agmd
     void BlurEffect::Init()
     {}
 
-    void BlurEffect::Update(uint64 /*t_diff*/)
+    void BlurEffect::Update(a_uint64 /*t_diff*/)
     {}
 
     void BlurEffect::ApplyEffect(Texture& input, Texture& output)

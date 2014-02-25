@@ -17,12 +17,12 @@ namespace Agmd
     class GLTexture : public TextureBase
     {
     public :
-        GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture);
+        GLTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture);
         ~GLTexture();
 
-        uint32 GetGLTexture() const;
+        a_uint32 GetGLTexture() const;
     protected :
-        uint32 m_Texture;
+        a_uint32 m_Texture;
     };
 }
 

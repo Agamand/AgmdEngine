@@ -18,13 +18,13 @@ namespace Agmd
     class GLShader : public BaseShader
     {
     public:
-        GLShader(uint32 shaderid, TShaderType type);
+        GLShader(a_uint32 shaderid, TShaderType type);
         virtual ~GLShader();
 
-        uint32 GetId() {return m_Shader;}
+        a_uint32 GetId() {return m_Shader;}
 
     private:
-        uint32 m_Shader;
+        a_uint32 m_Shader;
     };
 }
 

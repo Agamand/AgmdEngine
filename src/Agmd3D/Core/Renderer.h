@@ -61,7 +61,7 @@ namespace Agmd
 
         virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count) = 0;
 
-        virtual uint32 ConvertColor(const Color& color) const = 0;
+        virtual a_uint32 ConvertColor(const Color& color) const = 0;
 
         virtual void SetTexture(unsigned int unit, const TextureBase* texture, TTextureType type = TEXTURE_2D) = 0;
 
@@ -129,19 +129,19 @@ namespace Agmd
         void SetCamera(Camera* cam);
         Camera* GetCamera();
 
-        void SetTextureFlag(uint32 flag);
-        void AddTextureFlag(uint32 flag);
-        void RemoveTextureFlag(uint32 flag);
-        uint32 GetTextureFlag();
+        void SetTextureFlag(a_uint32 flag);
+        void AddTextureFlag(a_uint32 flag);
+        void RemoveTextureFlag(a_uint32 flag);
+        a_uint32 GetTextureFlag();
 
-        virtual void OnUpdate(uint64 t_diff);
+        virtual void OnUpdate(a_uint64 t_diff);
 
         void SetMatView(mat4 _MatView);
         void SetMatProjection(mat4 _MatProjection);
         void SetScreen(ivec2 _screen);
 
-        void SetActiveScene(Scene* sc);
-        Scene* GetActiveScene();
+        void SetActiveScene(SceneOld* sc);
+        SceneOld* GetActiveScene();
         Statistics& GetStatistics();
     protected :
 
@@ -161,11 +161,11 @@ namespace Agmd
 
         std::map<TCapability, bool> m_Capabilities;
 
-        uint32              m_TextureFlags;
+        a_uint32              m_TextureFlags;
         ivec2               m_Screen;
         const Transform*    m_CurrentTransform;
 
-        Scene*              m_ActiveScene;
+        SceneOld*              m_ActiveScene;
         Camera*             m_Camera;
         Statistics*         m_stats;
     private :

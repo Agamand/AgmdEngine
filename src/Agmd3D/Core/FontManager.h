@@ -57,7 +57,7 @@ namespace Agmd
             vec2     texcoord;
         };
 
-        typedef uint16 TIndex;
+        typedef a_uint16 TIndex;
 
         struct TFont
         {

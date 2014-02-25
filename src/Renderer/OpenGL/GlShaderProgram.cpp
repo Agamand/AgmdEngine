@@ -181,7 +181,7 @@ namespace Agmd
         spGLSLType[GL_DOUBLE_MAT4x3] = "GL_DOUBLE_MAT4x3";
     }
 
-    GLShaderProgram::GLShaderProgram(uint32 id) :
+    GLShaderProgram::GLShaderProgram(a_uint32 id) :
     m_id(id)
     {
         m_defaultParameter.type = PARAMETER_NOFOUND;
@@ -196,7 +196,7 @@ namespace Agmd
     void GLShaderProgram::SetupShader()
     {
         Init();
-        int32 n = 0;
+        a_int32 n = 0;
         GLRenderer::glGetProgramiv( m_id, GL_ACTIVE_UNIFORMS, &n );
 
         for( int i = 0 ; i < n ; i++ )
@@ -355,7 +355,7 @@ namespace Agmd
             GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, float* value, uint32 count) const
+    void GLShaderProgram::SetParameter(const std::string& name, float* value, a_uint32 count) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
@@ -363,12 +363,12 @@ namespace Agmd
             if(var.size < count)
                 return;
 
-            for(uint32 i = 0; i < 1; i++)
+            for(a_uint32 i = 0; i < 1; i++)
                 GLRenderer::glUniform1fv(var.loc, count, (GLfloat*)value);
         }
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, vec2* value, uint32 count) const
+    void GLShaderProgram::SetParameter(const std::string& name, vec2* value, a_uint32 count) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
@@ -376,12 +376,12 @@ namespace Agmd
             if(var.size < count)
                 return;
 
-            for(uint32 i = 0; i < 1; i++)
+            for(a_uint32 i = 0; i < 1; i++)
                 GLRenderer::glUniform2fv(var.loc, count, (GLfloat*)value);
         }
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, vec3* value, uint32 count) const
+    void GLShaderProgram::SetParameter(const std::string& name, vec3* value, a_uint32 count) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
@@ -389,12 +389,12 @@ namespace Agmd
             if(var.size < count)
                 return;
 
-            for(uint32 i = 0; i < 1; i++)
+            for(a_uint32 i = 0; i < 1; i++)
                 GLRenderer::glUniform3fv(var.loc, count, (GLfloat*)value);
         }
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, vec4* value, uint32 count) const
+    void GLShaderProgram::SetParameter(const std::string& name, vec4* value, a_uint32 count) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
@@ -402,12 +402,12 @@ namespace Agmd
             if(var.size < count)
                 return;
 
-            for(uint32 i = 0; i < 1; i++)
+            for(a_uint32 i = 0; i < 1; i++)
                 GLRenderer::glUniform4fv(var.loc, count, (GLfloat*)value);
         }
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, mat4* value, uint32 count) const
+    void GLShaderProgram::SetParameter(const std::string& name, mat4* value, a_uint32 count) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
@@ -415,7 +415,7 @@ namespace Agmd
             if(var.size < count)
                 return;
 
-            for(uint32 i = 0; i < 1; i++)
+            for(a_uint32 i = 0; i < 1; i++)
                 GLRenderer::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
         }
     }
@@ -427,9 +427,9 @@ namespace Agmd
             GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
     }
 
-    void GLShaderProgram::SetParameter(const std::string& name, const uint32 bindpoint) const
+    void GLShaderProgram::SetParameter(const std::string& name, const a_uint32 bindpoint) const
     {
-        int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
+        a_int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
         if(index >= 0)
             GLRenderer::glUniformBlockBinding(m_id, index, bindpoint);
     }
@@ -493,7 +493,7 @@ namespace Agmd
         Logger::Log(LOGDEBUG,"Uniforms Info for program: %d",m_id);
         GLRenderer::glGetProgramiv(m_id, GL_ACTIVE_UNIFORMS, &activeUnif);
  
-        for (uint32 i = 0; i < (uint32)activeUnif; ++i) {
+        for (a_uint32 i = 0; i < (a_uint32)activeUnif; ++i) {
             GLRenderer::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_BLOCK_INDEX, &index);
             if (index == -1) {
                 GLRenderer::glGetActiveUniformName(m_id, i, 256, &actualLen, name);  

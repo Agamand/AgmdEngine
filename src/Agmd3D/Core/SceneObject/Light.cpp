@@ -73,7 +73,7 @@ namespace Agmd
             return;
 
         m_dir = direction;
-        vec3* new_dir =  m_uniformLightBuffer.LockBits<vec3>(sizeof(vec4),sizeof(vec3), LOCK_WRITEONLY | LOCK_READONLY);
+        vec3* new_dir =  m_uniformLightBuffer.LockBits<vec3>(sizeof(vec4),sizeof(vec3), LOCK_WRITEONLY);
         *new_dir = m_dir;
         m_uniformLightBuffer.Unlock();
     }

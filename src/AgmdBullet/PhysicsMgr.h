@@ -35,7 +35,7 @@ namespace Agmd
     public:
         PhysicsMgr();
 
-        void Update(uint64 dt);
+        void Update(a_uint64 dt);
         void Add(Entities* _entities);
         void Remove(Entities* _entities);
 
@@ -43,7 +43,7 @@ namespace Agmd
 
         void DebugDraw();
 
-        uint64 GetDT() { return m_uidt; }
+        a_uint64 GetDT() { return m_uidt; }
 
         btRigidBody* createRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
 
@@ -51,7 +51,7 @@ namespace Agmd
         EntitiesVector m_evEntities;
         btDynamicsWorld* m_World;
         btScalar m_defaultContactProcessingThreshold;
-        uint64 m_uidt;
+        a_uint64 m_uidt;
     };
 
 }

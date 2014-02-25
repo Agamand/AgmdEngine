@@ -46,6 +46,10 @@ namespace Agmd
         Texture GetDiffuseTexture();
         Texture GetNormalTexture();
         Texture GetPositionTexture();
+        inline Texture GetDepthTexture()
+        {
+            return m_textureBuffer[5];
+        }
 
         ShadowMapRenderer* GetShadowRenderer();
 
@@ -58,8 +62,8 @@ namespace Agmd
         RenderBuffer* m_normalbuffer;
         RenderBuffer* m_positionbuffer;
 
-        Texture m_textureBuffer[5];
-        uint32* bufferFlags;
+        Texture m_textureBuffer[6];
+        a_uint32* bufferFlags;
         
         ShaderProgram m_light_program[MAX_LIGHT_SHADER];
 

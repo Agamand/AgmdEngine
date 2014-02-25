@@ -16,9 +16,14 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
+	const char* _normal = "vec3 normal(){return vec3(1,0,0);}";
+	const char* _diffuse = "vec4 diffuse(){return vec4(1);}";
+	
     ShaderPipelineLoader::ShaderPipelineLoader()
-    {}
+    {
+		d_subroutine["diffuse"] = _diffuse;
+		d_subroutine["normal"] = _normal;
+	}
 
     ShaderPipelineLoader::~ShaderPipelineLoader()
     {}
@@ -30,7 +35,7 @@ namespace Agmd
         std::string shadername;
         try
         {
-            file.open(filename,std::ios::in);
+            file.open(filename,std::ios::in || std::ios::binary);
 
             file >> str;
 
@@ -76,10 +81,11 @@ namespace Agmd
             return NULL;
         }
 
+
         m_properties.clear();
         m_subroutine.clear();
 
-        return NULL;
+        return new ShaderPipeline();
     }
 
     void ShaderPipelineLoader::ParseProperties(std::ifstream& stream)
@@ -123,15 +129,28 @@ namespace Agmd
         std::string name = str;
 
         stream >> str;
-
         if(GetToken(str) != TOKEN_BRACE_OPEN)
             throw ParserFail("","");
-        std::string subroutine = "";
-        while(GetToken(str) != TOKEN_BRACE_CLOSE)
-        {
-            subroutine += str;
-            stream >> str;
-        }
+
+        stream >> str;
+        if(GetToken(str) != TOKEN_GLSLBEGIN)
+            throw ParserFail("","");
+
+        
+        int begin = stream.tellg(), end = 0;
+        while(stream >> str && GetToken(str) != TOKEN_GLSLEND);
+        end = -7+stream.tellg();
+        stream.seekg(begin,stream.beg);
+        char* _str = new char[end-begin+1];
+        int i =0;
+        std::memcpy(_str,&i,end-begin+1);
+        while(stream.tellg() < end)
+            _str[i++] = stream.get();
+        std::string subroutine(_str);
+        stream >> str;
+        stream >> str;
+        if(GetToken(str) != TOKEN_BRACE_CLOSE)
+            throw ParserFail("","");
 
         m_subroutine[name] = subroutine;
     }

@@ -23,13 +23,13 @@ inline SharedPtr<T>::~SharedPtr()
 {}
 
 template <typename T>
-inline T& SharedPtr<T>::operator * () const
+inline T& SharedPtr<T>::operator * ()
 {
     return **m_Data;
 }
 
 template <typename T>
-inline T* SharedPtr<T>::operator ->() const
+inline T* SharedPtr<T>::operator ->()
 {
     return *m_Data;
 }
@@ -46,4 +46,10 @@ inline const SharedPtr<T>& SharedPtr<T>::operator =(T* ptr)
 {
     *m_Data = ptr;
     return *this;
+}
+
+template <typename T>
+inline SharedPtr<T>::operator T*&()
+{
+    return *m_Data;
 }

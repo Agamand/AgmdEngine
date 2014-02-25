@@ -31,13 +31,13 @@ namespace Agmd
 
         virtual void* Lock(unsigned long offset, unsigned long size, unsigned long flags) = 0;
         
-        virtual void* LockBits(unsigned long offset, unsigned long size, unsigned long flags) = 0;
+        virtual void* LockByte(unsigned long offset, unsigned long size, unsigned long flags) = 0;
 
         virtual void FillByte(unsigned char* data, unsigned long offset, unsigned long size) = 0;
 
         virtual void Unlock() = 0;
 
-        virtual void Bind(uint32 bindpoint) = 0;
+        virtual void Bind(a_uint32 bindpoint) = 0;
 
         virtual void WaitSync() = 0;
 

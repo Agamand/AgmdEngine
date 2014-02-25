@@ -10,6 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _GLRENDERER_H_
 
 #include <Config\Fwd.h>
+#include <Renderer/OpenGL/Config.h>
 #include <Core/Renderer.h>
 #include <Renderer\OpenGL\GlBuffer.h>
 #include <Renderer\OpenGL\GlDeclaration.h>
@@ -53,7 +54,7 @@ namespace Agmd
 
         virtual void DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count);
 
-        virtual uint32 ConvertColor(const Color& color) const;
+        virtual a_uint32 ConvertColor(const Color& color) const;
 
         virtual void SetTexture(unsigned int Unit, const TextureBase* texture, TTextureType type);
 
@@ -91,89 +92,91 @@ namespace Agmd
 
     public :
 
-        static PFNGLGETSTRINGIPROC                      glGetStringi;
-        static PFNGLBINDBUFFERPROC                      glBindBuffer;
-        static PFNGLDELETEBUFFERSPROC                   glDeleteBuffers;
-        static PFNGLGENBUFFERSPROC                      glGenBuffers;
-        static PFNGLBUFFERDATAPROC                      glBufferData;
-        static PFNGLBUFFERSUBDATAPROC                   glBufferSubData;
-        static PFNGLGETBUFFERSUBDATAPROC                glGetBufferSubData;
-        static PFNGLMAPBUFFERPROC                       glMapBuffer;
-        static PFNGLMAPBUFFERRANGEPROC                  glMapBufferRange;
-        static PFNGLUNMAPBUFFERPROC                     glUnmapBuffer;
-        static PFNGLDELETESYNCPROC                      glDeleteSync;
-        static PFNGLGETSYNCIVPROC                       glGetSynciv;
-        static PFNGLWAITSYNCPROC                        glWaitSync;
-        static PFNGLCLIENTWAITSYNCPROC                  glClientWaitSync;
-        static PFNGLFENCESYNCPROC                       glFenceSync;
-        static PFNGLACTIVETEXTUREPROC                   glActiveTexture;
-        static PFNGLCLIENTACTIVETEXTUREPROC             glClientActiveTexture;
-        static PFNGLCOMPRESSEDTEXIMAGE2DPROC            glCompressedTexImage2D;
-        static PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC         glCompressedTexSubImage2D;
-        static PFNGLPATCHPARAMETERIPROC                 glPatchParameteri;
-        static PFNGLGENPROGRAMPIPELINESPROC             glGenProgramPipelines;
-        static PFNGLBINDPROGRAMPIPELINEPROC             glBindProgramPipelines;
-        static PFNGLCREATEPROGRAMPROC                   glCreateProgram;
-        static PFNGLDELETEPROGRAMPROC                   glDeleteProgram;
-        static PFNGLCREATESHADERPROC                    glCreateShader;
-        static PFNGLDELETESHADERPROC                    glDeleteShader;
-        static PFNGLSHADERSOURCEPROC                    glShaderSource;
-        static PFNGLCOMPILESHADERPROC                   glCompileShader;
-        static PFNGLGETSHADERIVPROC                     glGetShaderiv;
-        static PFNGLGETSHADERINFOLOGPROC                glGetShaderInfoLog;
-        static PFNGLATTACHSHADERPROC                    glAttachShader;
-        static PFNGLLINKPROGRAMPROC                     glLinkProgram;
-        static PFNGLGETPROGRAMIVPROC                    glGetProgramiv;
-        static PFNGLGETPROGRAMINFOLOGPROC               glGetProgramInfoLog;
-        static PFNGLGETACTIVEUNIFORMSIVPROC             glGetActiveUniformsiv;
-        static PFNGLGETACTIVEUNIFORMNAMEPROC            glGetActiveUniformName;
-        static PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC       glGetActiveUniformBlockName;
-        static PFNGLGETACTIVEUNIFORMBLOCKIVPROC         glGetActiveUniformBlockiv;
-        static PFNGLGETINTEGERI_VPROC                   glGetIntegeri_v;
-        static PFNGLGETACTIVEUNIFORMPROC                glGetActiveUniform;
-        static PFNGLGETUNIFORMLOCATIONPROC              glGetUniformLocation;
-        static PFNGLGETACTIVEATTRIBPROC                 glGetActiveAttrib;
-        static PFNGLGETATTRIBLOCATIONPROC               glGetAttribLocation;
-        static PFNGLGETACTIVEUNIFORMBLOCKIVPROC         glGetActiveUniformBlock;
-        static PFNGLGETUNIFORMBLOCKINDEXPROC            glGetUniformBlockIndex;
-        static PFNGLUNIFORMBLOCKBINDINGPROC             glUniformBlockBinding;
-        static PFNGLBINDBUFFERBASEPROC                  glBindBufferBase;
-        static PFNGLUSEPROGRAMPROC                      glUseProgram;
-        static PFNGLUNIFORM1IPROC                       glUniform1i;
-        static PFNGLUNIFORM2IPROC                       glUniform2i;
-        static PFNGLUNIFORM3IPROC                       glUniform3i;
-        static PFNGLUNIFORM4IPROC                       glUniform4i;
-        static PFNGLUNIFORM1FPROC                       glUniform1f;
-        static PFNGLUNIFORM2FPROC                       glUniform2f;
-        static PFNGLUNIFORM3FPROC                       glUniform3f;
-        static PFNGLUNIFORM4FPROC                       glUniform4f;
-        static PFNGLUNIFORM1FVPROC                      glUniform1fv;
-        static PFNGLUNIFORM2FVPROC                      glUniform2fv;
-        static PFNGLUNIFORM3FVPROC                      glUniform3fv;
-        static PFNGLUNIFORM4FVPROC                      glUniform4fv;
-        static PFNGLUNIFORMMATRIX2FVPROC                glUniformMatrix2fv;
-        static PFNGLUNIFORMMATRIX3FVPROC                glUniformMatrix3fv;
-        static PFNGLUNIFORMMATRIX4FVPROC                glUniformMatrix4fv;
-        static PFNGLVERTEXATTRIB1FNVPROC                glVertexAttrib1f;
-        static PFNGLVERTEXATTRIB2FNVPROC                glVertexAttrib2f;
-        static PFNGLVERTEXATTRIB3FNVPROC                glVertexAttrib3f;
-        static PFNGLVERTEXATTRIB4FNVPROC                glVertexAttrib4f;
-        static PFNGLVERTEXATTRIBPOINTERPROC             glVertexAttribPointer;
-        static PFNGLENABLEVERTEXATTRIBARRAYPROC         glEnableVertexAttribArray;
-        static PFNGLBINDATTRIBLOCATIONPROC              glBindAttribLocation;
-        static PFNGLGENRENDERBUFFERSPROC                glGenRenderbuffers;
-        static PFNGLDELETERENDERBUFFERSPROC             glDeleteRenderbuffers;
-        static PFNGLBINDRENDERBUFFERPROC                glBindRenderbuffer;
-        static PFNGLRENDERBUFFERSTORAGEPROC             glRenderbufferStorage;
-        static PFNGLGENFRAMEBUFFERSPROC                 glGenFramebuffers;
-        static PFNGLBINDFRAMEBUFFERPROC                 glBindFramebuffer;
-        static PFNGLDRAWBUFFERSPROC                     glDrawBuffers;
-        static PFNGLFRAMEBUFFERRENDERBUFFERPROC         glFramebufferRenderbuffer;
-        static PFNGLFRAMEBUFFERTEXTUREPROC              glFramebufferTexture;
-        static PFNGLFRAMEBUFFERTEXTURE2DPROC            glFramebufferTexture2D;
-        static PFNGLFRAMEBUFFERTEXTURE3DPROC            glFramebufferTexture3D;
-        static PFNGLCHECKFRAMEBUFFERSTATUSPROC          glCheckFramebufferStatus;
-        static PFNGLDELETEFRAMEBUFFERSPROC              glDeleteFramebuffers;
+        OPENGL_EXPORT static PFNGLGETSTRINGIPROC                      glGetStringi;
+        OPENGL_EXPORT static PFNGLBINDBUFFERPROC                      glBindBuffer;
+        OPENGL_EXPORT static PFNGLDELETEBUFFERSPROC                   glDeleteBuffers;
+        OPENGL_EXPORT static PFNGLGENBUFFERSPROC                      glGenBuffers;
+        OPENGL_EXPORT static PFNGLBUFFERDATAPROC                      glBufferData;
+        OPENGL_EXPORT static PFNGLBUFFERSUBDATAPROC                   glBufferSubData;
+        OPENGL_EXPORT static PFNGLGETBUFFERSUBDATAPROC                glGetBufferSubData;
+        OPENGL_EXPORT static PFNGLMAPBUFFERPROC                       glMapBuffer;
+        OPENGL_EXPORT static PFNGLMAPBUFFERRANGEPROC                  glMapBufferRange;
+        OPENGL_EXPORT static PFNGLUNMAPBUFFERPROC                     glUnmapBuffer;
+        OPENGL_EXPORT static PFNGLDELETESYNCPROC                      glDeleteSync;
+        OPENGL_EXPORT static PFNGLGETSYNCIVPROC                       glGetSynciv;
+        OPENGL_EXPORT static PFNGLWAITSYNCPROC                        glWaitSync;
+        OPENGL_EXPORT static PFNGLCLIENTWAITSYNCPROC                  glClientWaitSync;
+        OPENGL_EXPORT static PFNGLFENCESYNCPROC                       glFenceSync;
+        OPENGL_EXPORT static PFNGLACTIVETEXTUREPROC                   glActiveTexture;
+        OPENGL_EXPORT static PFNGLCLIENTACTIVETEXTUREPROC             glClientActiveTexture;
+        OPENGL_EXPORT static PFNGLCOMPRESSEDTEXIMAGE2DPROC            glCompressedTexImage2D;
+        OPENGL_EXPORT static PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC         glCompressedTexSubImage2D;
+        OPENGL_EXPORT static PFNGLPATCHPARAMETERIPROC                 glPatchParameteri;
+        OPENGL_EXPORT static PFNGLGENPROGRAMPIPELINESPROC             glGenProgramPipelines;
+        OPENGL_EXPORT static PFNGLBINDPROGRAMPIPELINEPROC             glBindProgramPipelines;
+        OPENGL_EXPORT static PFNGLCREATEPROGRAMPROC                   glCreateProgram;
+        OPENGL_EXPORT static PFNGLDELETEPROGRAMPROC                   glDeleteProgram;
+        OPENGL_EXPORT static PFNGLCREATESHADERPROC                    glCreateShader;
+        OPENGL_EXPORT static PFNGLDELETESHADERPROC                    glDeleteShader;
+        OPENGL_EXPORT static PFNGLSHADERSOURCEPROC                    glShaderSource;
+        OPENGL_EXPORT static PFNGLCOMPILESHADERPROC                   glCompileShader;
+        OPENGL_EXPORT static PFNGLGETSHADERIVPROC                     glGetShaderiv;
+        OPENGL_EXPORT static PFNGLGETSHADERINFOLOGPROC                glGetShaderInfoLog;
+        OPENGL_EXPORT static PFNGLATTACHSHADERPROC                    glAttachShader;
+        OPENGL_EXPORT static PFNGLLINKPROGRAMPROC                     glLinkProgram;
+		OPENGL_EXPORT static PFNGLVALIDATEPROGRAMPROC				  glValidateProgram;
+        OPENGL_EXPORT static PFNGLGETPROGRAMIVPROC                    glGetProgramiv;
+        OPENGL_EXPORT static PFNGLGETPROGRAMINFOLOGPROC               glGetProgramInfoLog;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMSIVPROC             glGetActiveUniformsiv;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMNAMEPROC            glGetActiveUniformName;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC       glGetActiveUniformBlockName;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMBLOCKIVPROC         glGetActiveUniformBlockiv;
+        OPENGL_EXPORT static PFNGLGETINTEGERI_VPROC                   glGetIntegeri_v;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMPROC                glGetActiveUniform;
+        OPENGL_EXPORT static PFNGLGETUNIFORMLOCATIONPROC              glGetUniformLocation;
+        OPENGL_EXPORT static PFNGLGETACTIVEATTRIBPROC                 glGetActiveAttrib;
+        OPENGL_EXPORT static PFNGLGETATTRIBLOCATIONPROC               glGetAttribLocation;
+        OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMBLOCKIVPROC         glGetActiveUniformBlock;
+        OPENGL_EXPORT static PFNGLGETUNIFORMBLOCKINDEXPROC            glGetUniformBlockIndex;
+        OPENGL_EXPORT static PFNGLUNIFORMBLOCKBINDINGPROC             glUniformBlockBinding;
+        OPENGL_EXPORT static PFNGLBINDBUFFERBASEPROC                  glBindBufferBase;
+        OPENGL_EXPORT static PFNGLUSEPROGRAMPROC                      glUseProgram;
+        OPENGL_EXPORT static PFNGLUNIFORM1IPROC                       glUniform1i;
+        OPENGL_EXPORT static PFNGLUNIFORM2IPROC                       glUniform2i;
+        OPENGL_EXPORT static PFNGLUNIFORM3IPROC                       glUniform3i;
+        OPENGL_EXPORT static PFNGLUNIFORM4IPROC                       glUniform4i;
+        OPENGL_EXPORT static PFNGLUNIFORM1FPROC                       glUniform1f;
+        OPENGL_EXPORT static PFNGLUNIFORM2FPROC                       glUniform2f;
+        OPENGL_EXPORT static PFNGLUNIFORM3FPROC                       glUniform3f;
+        OPENGL_EXPORT static PFNGLUNIFORM4FPROC                       glUniform4f;
+        OPENGL_EXPORT static PFNGLUNIFORM1FVPROC                      glUniform1fv;
+        OPENGL_EXPORT static PFNGLUNIFORM2FVPROC                      glUniform2fv;
+        OPENGL_EXPORT static PFNGLUNIFORM3FVPROC                      glUniform3fv;
+        OPENGL_EXPORT static PFNGLUNIFORM4FVPROC                      glUniform4fv;
+        OPENGL_EXPORT static PFNGLUNIFORMMATRIX2FVPROC                glUniformMatrix2fv;
+        OPENGL_EXPORT static PFNGLUNIFORMMATRIX3FVPROC                glUniformMatrix3fv;
+        OPENGL_EXPORT static PFNGLUNIFORMMATRIX4FVPROC                glUniformMatrix4fv;
+        OPENGL_EXPORT static PFNGLVERTEXATTRIB1FNVPROC                glVertexAttrib1f;
+        OPENGL_EXPORT static PFNGLVERTEXATTRIB2FNVPROC                glVertexAttrib2f;
+        OPENGL_EXPORT static PFNGLVERTEXATTRIB3FNVPROC                glVertexAttrib3f;
+        OPENGL_EXPORT static PFNGLVERTEXATTRIB4FNVPROC                glVertexAttrib4f;
+        OPENGL_EXPORT static PFNGLVERTEXATTRIBPOINTERPROC             glVertexAttribPointer;
+        OPENGL_EXPORT static PFNGLENABLEVERTEXATTRIBARRAYPROC         glEnableVertexAttribArray;
+        OPENGL_EXPORT static PFNGLBINDATTRIBLOCATIONPROC              glBindAttribLocation;
+        OPENGL_EXPORT static PFNGLGENRENDERBUFFERSPROC                glGenRenderbuffers;
+        OPENGL_EXPORT static PFNGLDELETERENDERBUFFERSPROC             glDeleteRenderbuffers;
+        OPENGL_EXPORT static PFNGLBINDRENDERBUFFERPROC                glBindRenderbuffer;
+        OPENGL_EXPORT static PFNGLRENDERBUFFERSTORAGEPROC             glRenderbufferStorage;
+        OPENGL_EXPORT static PFNGLGENFRAMEBUFFERSPROC                 glGenFramebuffers;
+        OPENGL_EXPORT static PFNGLBINDFRAMEBUFFERPROC                 glBindFramebuffer;
+        OPENGL_EXPORT static PFNGLDRAWBUFFERSPROC                     glDrawBuffers;
+        OPENGL_EXPORT static PFNGLDRAWARRAYSEXTPROC                   glDrawArrays;
+        OPENGL_EXPORT static PFNGLFRAMEBUFFERRENDERBUFFERPROC         glFramebufferRenderbuffer;
+        OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTUREPROC              glFramebufferTexture;
+        OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTURE2DPROC            glFramebufferTexture2D;
+        static PFNGLFRAMEBUFFERTEXTURE3DPROC						  glFramebufferTexture3D;
+        static PFNGLCHECKFRAMEBUFFERSTATUSPROC						  glCheckFramebufferStatus;
+        static PFNGLDELETEFRAMEBUFFERSPROC							  glDeleteFramebuffers;
         
         //CONTEXT
 
@@ -213,7 +216,7 @@ namespace Agmd
         ShaderProgram               m_DebugPipeline[4];
         const BaseShaderProgram*    m_CurrentProgram;
         const TextureBase*          m_TextureBind[MAX_TEXTUREUNIT];
-        uint32                      last_unit; // last used texture unit
+        a_uint32                      last_unit; // last used texture unit
 
     };
 

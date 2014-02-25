@@ -22,21 +22,21 @@ namespace Agmd
     GUIMgr::~GUIMgr()
     {}
 
-    void GUIMgr::SetSelected(uint32 i)
+    void GUIMgr::SetSelected(a_uint32 i)
     {
         AWidget* swapvalue = m_vwWidget[i];
         m_vwWidget.erase(m_vwWidget.begin()+i);
         m_vwWidget.push_back(swapvalue);
     }
 
-    void GUIMgr::Update(uint64 t_diff)
+    void GUIMgr::Update(a_uint64 t_diff)
     {
         /**/
 
         if(m_veEvents.empty() || m_vwWidget.empty())
             return;
         
-        for(uint32 i = 0; i < m_veEvents.size(); i++)
+        for(a_uint32 i = 0; i < m_veEvents.size(); i++)
         {
             HandleEvent(m_veEvents[i]);
         }
@@ -51,7 +51,7 @@ namespace Agmd
 
         Renderer::Get().Enable(RENDER_ZTEST,false);
 
-        for(uint32 i = 0; i < m_vwWidget.size(); i++)
+        for(a_uint32 i = 0; i < m_vwWidget.size(); i++)
             m_vwWidget[i]->Draw();
     }
 
@@ -61,7 +61,7 @@ namespace Agmd
         switch(_event.eventType)
         {
             case EV_ON_MOUSE_BUTTON:
-                for(uint32 i = 0; i < m_vwWidget.size() ; i++)
+                for(a_uint32 i = 0; i < m_vwWidget.size() ; i++)
                 {
                     if(!m_vwWidget[m_vwWidget.size()-i-1]->OnClick(_event.mousePosition,_event.mouseState))
                         continue;
@@ -72,7 +72,7 @@ namespace Agmd
             case EV_ON_KEY:
                 return;
             case EV_ON_MOUVE_MOVE:
-                for(int32 i = m_vwWidget.size()-1; i >= 0 ; i--)
+                for(a_int32 i = m_vwWidget.size()-1; i >= 0 ; i--)
                 {
                     if(!m_vwWidget[i]->OnMouseMove(_event.mouse_diff, _event.mouseState))
                         continue;

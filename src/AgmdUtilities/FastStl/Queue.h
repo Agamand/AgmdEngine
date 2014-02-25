@@ -25,7 +25,7 @@ namespace AgmdUtilities
             T data;
         };
         FastList();
-        FastList(bool with_sort, uint32 capacity = 10); //with_sort is used for function Push
+        FastList(bool with_sort, a_uint32 capacity = 10); //with_sort is used for function Push
         ~FastList();
 
         const Iterator& Begin() const;
@@ -40,8 +40,8 @@ namespace AgmdUtilities
         void pop_front();
         void pop_fack();
 
-        void resize(uint32);
-        uint32 size() const;
+        void resize(a_uint32);
+        a_uint32 size() const;
 
     private:
 
@@ -51,13 +51,13 @@ namespace AgmdUtilities
         NodePtr         m_begin;
         NodePtr         m_last;
         NodePtr         m_begin_garbage;
-        uint32          m_size;
-        uint32          m_capacity;
+        a_uint32          m_size;
+        a_uint32          m_capacity;
         NodePtr         m_storage; //MemPool
     };
 
 
-template <class T> inline FastList::FastList(uint32 capacity) :
+template <class T> inline FastList::FastList(a_uint32 capacity) :
 m_bSort(false), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
 m_begin(NULL), m_last(NULL), m_begin_garbage(m_storage)
 {
@@ -75,7 +75,7 @@ m_begin(NULL), m_last(NULL), m_begin_garbage(m_storage)
     }
 }
 
-template <class T> inline FastList::FastList(bool with_sort, uint32 capacity) :
+template <class T> inline FastList::FastList(bool with_sort, a_uint32 capacity) :
 m_bSort(with_sort), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
 m_begin(NULL), m_begin_garbage(m_storage)
 {
@@ -168,17 +168,17 @@ template <class T> inline void FastList::pop_back()
 
 }
 
-template <class T> inline void FastList::resize(uint32 size)
+template <class T> inline void FastList::resize(a_uint32 size)
 {
 
 }
 
-template <class T> inline uint32 FastList::size() const
+template <class T> inline a_uint32 FastList::size() const
 {
     return m_size;
 }
 
-template <class T> inline uint32 FastList::capacity() const
+template <class T> inline a_uint32 FastList::capacity() const
 {
     return m_capacity;
 }

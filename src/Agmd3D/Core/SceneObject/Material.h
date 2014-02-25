@@ -26,20 +26,20 @@ namespace Agmd
         pass(0)
         {}
 
-        TextureUnit(Texture _tex, uint32 _pass = 0) : 
+        TextureUnit(Texture _tex, a_uint32 _pass = 0) : 
         tex(_tex),
         pass(_pass)
         {}
 
         Texture tex;
-        uint32 pass;
+        a_uint32 pass;
 
     };
 
     struct MaterialInfo
     {
         Color m_baseColor;
-        uint32 m_materialFlags;
+        a_uint32 m_materialFlags;
     };
 
     class AGMD3D_EXPORT Material : public Resource
@@ -52,7 +52,7 @@ namespace Agmd
         bool Enable(TRenderPass pass) const;
         void Disable() const;
 
-        void SetTexture(Texture tex, uint32 unit, TRenderPass pass);
+        void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
 
     private:
         ShaderPipeline* m_pipeline;

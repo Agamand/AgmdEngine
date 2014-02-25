@@ -26,7 +26,7 @@ namespace AgmdPhysics
     {
         vec3 collisionVelocity;
         vec3 collisionPos;
-        uint64 t;
+        a_uint64 t;
     };
 
     struct Intersection
@@ -45,18 +45,18 @@ namespace AgmdPhysics
     public:
         PhysicsMgr();
 
-        void Update(uint64 dt);
+        void Update(a_uint64 dt);
         void TestCollision(Entities* ent);
         void Add(Entities* _entities);
         void Remove(Entities* _entities);
 
-        uint64 GetDT() { return m_uidt; }
+        a_uint64 GetDT() { return m_uidt; }
 
     private:
         EntitiesVector m_evEntities;
         IntersectionVector m_ivIntersection;
         Force m_fcGlobalForce;
-        uint64 m_uidt;
+        a_uint64 m_uidt;
     };
 
 }

@@ -40,7 +40,7 @@ namespace Agmd
         OnPosChanged();
     }
 
-    void AWidget::SetPosition(uint32 x, uint32 y)
+    void AWidget::SetPosition(a_uint32 x, a_uint32 y)
     {
         SetPosition(ivec2(x,y));
     }
@@ -60,7 +60,7 @@ namespace Agmd
         OnSizeChanged();
     }
 
-    void AWidget::SetSize(uint32 x, uint32 y)
+    void AWidget::SetSize(a_uint32 x, a_uint32 y)
     {
         SetSize(ivec2(x,y));
     }
@@ -76,7 +76,7 @@ namespace Agmd
         if(child == NULL)
             return;
 
-        for(uint32 i = 0; i < m_WidgetChild.size(); i++)
+        for(a_uint32 i = 0; i < m_WidgetChild.size(); i++)
         {
             if(m_WidgetChild[i] = child)
             {

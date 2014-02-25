@@ -1,62 +1,37 @@
-/*
-============================================================================
-Agmd3D - 3D Engine
-Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
-https://github.com/Agamand/AgmdEngine
-============================================================================
-*/
+#ifndef _SCENE_H_
+#define _SCENE_H_
 
-#ifndef SCENE_H
-#define SCENE_H
 
-#include <Config/Export.h>
-#include <Config/Fwd.h>
-#include <Core/Texture/Texture.h>
-#include <Core/Shader/ShaderProgram.h>
-#include <Core/RenderObject/Displayable.h>
-#include <Core/SceneObject/SkyBox.h>
+#include <Core/SceneNode/SceneNode.h>
 #include <Core/SceneObject/Light.h>
-
-#include <CommonDefines.h>
-
 #include <vector>
-
 namespace Agmd
 {
-    typedef std::vector<Displayable*> vDisplayable;
+	class Scene
+	{
+	public:
+		Scene();
 
-    class AGMD3D_EXPORT Scene
-    {
-    public:
-        Scene();
-        ~Scene();
-        void Render(TRenderPass pass) const;
+		void Render(TRenderPass pass) const;
 
-        void Draw() const;
+		void Draw() const;
+	
+		void Compute() const;
 
-        void Update(uint64 t_diff);
+		void AddNode(SceneNode *node); // add to root
 
-        void AddMesh(Displayable*);
-
-        void AddLight(Light*);
-
-        void SetSkyBox(SkyBox*);
-        SkyBox* GetSkyBox();
-
-        void RemoveMesh(Displayable*);
-
-        const std::vector<Light*>& GetLights();
-
-    private:
-
-        vDisplayable        m_vMesh;
-        SkyBox*             m_SkyBox;
-
-        std::vector<Light*> m_lights;
-    };
-
+	    const std::vector<Light*>& GetLights();
+		void AddLight(Light* l)
+		{
+			m_light.push_back(l);
+		}
+	private:
+		std::vector<Light*> m_light; // static light
+		std::vector<SceneNode*> m_displayable;
+		SceneNode* m_root;
+	};
 
 }
 
 
-#endif //SCENE_H
+#endif /* _SCENE_H_ */

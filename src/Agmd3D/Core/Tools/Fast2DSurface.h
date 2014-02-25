@@ -10,6 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _FAST2DSURFACE_H_
 
 #include <Config/Fwd.h>
+#include <Config/Export.h>
 
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
@@ -26,7 +27,7 @@ namespace Agmd
 
     
 
-    class Fast2DSurface : public Singleton<Fast2DSurface>
+    class AGMD3D_EXPORT Fast2DSurface : public Singleton<Fast2DSurface>
     {
         MAKE_SINGLETON(Fast2DSurface);
     public:

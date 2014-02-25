@@ -9,6 +9,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Shader/ShaderPipeline.h>
 #include <Core/Renderer.h>
 
+
+
 namespace Agmd
 {
     ShaderPipeline::ShaderPipeline()
@@ -38,6 +40,7 @@ namespace Agmd
     {
         if(!s_defaultPipeline)
         {
+            LoadDefaultFunction();
             s_defaultPipeline = new ShaderPipeline();
             ShaderProgram defaultShader;
             defaultShader.LoadFromFile("Shader/RenderingShader/ZPassShader.glsl");
@@ -56,4 +59,10 @@ namespace Agmd
 
         return s_defaultPipeline;
     }
+
+    void ShaderPipeline::LoadDefaultFunction()
+    {
+        
+    }
+
 }

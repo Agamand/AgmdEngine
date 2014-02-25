@@ -48,6 +48,10 @@ namespace Agmd
         return Renderer::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
     }
 
+	bool isPreprocessor(const std::string& line)
+	{
+		return false;
+	}
     std::string ShaderProgramsLoader::LoadShader(const std::string& filename, const std::string& parentdir)
     {
         

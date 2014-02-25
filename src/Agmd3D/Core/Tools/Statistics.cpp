@@ -39,12 +39,12 @@ namespace Agmd
             m_DrawCallCount++;
         }
 
-        void Statistics::IncrVertexCount(uint32 count)
+        void Statistics::IncrVertexCount(a_uint32 count)
         {
             m_VertexDrawCount += count;
         }
 
-        void Statistics::IncrTriangleCount(uint32 count)
+        void Statistics::IncrTriangleCount(a_uint32 count)
         {
             m_TriangleDrawCount += count;
         }
@@ -59,22 +59,22 @@ namespace Agmd
             return m_MainTime;
         }
 
-        uint32 Statistics::GetFps()
+        a_uint32 Statistics::GetFps()
         {
-            return (uint32)(1000.0f/(float)m_MainTime);
+            return (a_uint32)(1000.0f/(float)m_MainTime);
         }
 
-        uint32 Statistics::GetDrawCount()
+        a_uint32 Statistics::GetDrawCount()
         {
             return m_DrawCallCount;
         }
 
-        uint32 Statistics::GetVertexCount()
+        a_uint32 Statistics::GetVertexCount()
         {
             return m_VertexDrawCount;
         }
 
-        uint32 Statistics::GetTriangleCount()
+        a_uint32 Statistics::GetTriangleCount()
         {
             return m_TriangleDrawCount;
         }

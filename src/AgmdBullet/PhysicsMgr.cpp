@@ -36,7 +36,7 @@ namespace Agmd
         
     }
 
-    void PhysicsMgr::Update(uint64 dt)
+    void PhysicsMgr::Update(a_uint64 dt)
     {
         m_uidt = dt;
 

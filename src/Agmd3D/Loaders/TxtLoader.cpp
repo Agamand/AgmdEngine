@@ -25,14 +25,14 @@ namespace Agmd
     char* TxtLoader::LoadFromFile(const std::string& filename)
     {
         char *src = NULL;
-        uint32 size;
+        a_uint32 size;
         std::ifstream file(filename, std::ios::in);
     
         if (!file)
             throw LoadingFailed(filename,"Erreur lors du chargement du fichier (TxtLoader)");
 
         file.seekg(0,std::ios_base::end);
-        size = (uint32)file.tellg();
+        size = (a_uint32)file.tellg();
         file.seekg(0,std::ios_base::beg);
 
         src = new char[size+1];

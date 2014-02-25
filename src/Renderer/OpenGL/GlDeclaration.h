@@ -23,7 +23,7 @@ namespace Agmd
 
         struct TElement
         {
-            uint32 usage;
+            a_uint32 usage;
             TElementType  type;
             unsigned int  offset;
         };

@@ -38,11 +38,14 @@ namespace Agmd
 
         Transform& GetTransform();
 
+		Material* GetMaterial() const;
+		void SetMaterial(Material* val);
     protected:
 
         Transform* m_transform;
         Material* m_material;
-    };
+
+	};
 
 }
 

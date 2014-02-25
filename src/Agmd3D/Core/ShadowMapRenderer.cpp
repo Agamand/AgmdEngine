@@ -24,7 +24,8 @@ namespace Agmd
     m_currentDepth(0),
     m_shadowSize(size),
     m_currentLight(NULL),
-    m_offset(0.05f)
+    m_offset(0.05f),
+    m_bias(-0.005f)
     {
         for(int i = 0; i < 6; i++)
             m_depth[i].Create(m_shadowSize,PXF_DEPTH,TEXTURE_2D,TEX_NOMIPMAP);
@@ -75,7 +76,7 @@ namespace Agmd
             m_shadow_matrix[0] = proj*lookAt(l->GetPosition(),l->GetPosition()-l->GetDirection(),vec3(0,0,1));
         }
         Renderer::Get().GetCurrentProgram()->SetParameter("depthMVP",m_shadow_matrix[0]);
-        Renderer::Get().SetCullFace(1);
+        //Renderer::Get().SetCullFace(1);
     }
 
 
@@ -101,7 +102,7 @@ namespace Agmd
         Renderer::Get().SetViewPort(ivec2(0),Renderer::Get().GetScreen());
         Renderer::Get().SetCurrentProgram(NULL);
         m_framebuffer->UnBind();
-        Renderer::Get().SetCullFace(2);
+        //Renderer::Get().SetCullFace(2);
     }
 
     void ShadowMapRenderer::SetupForRendering()
@@ -124,11 +125,17 @@ namespace Agmd
             Renderer::Get().SetTexture(3,m_depth[0].GetTexture());
         }
         Renderer::Get().GetCurrentProgram()->SetParameter("u_offset", m_offset);
+        Renderer::Get().GetCurrentProgram()->SetParameter("u_bias", m_bias);
     }
 
     void ShadowMapRenderer::SetOffset(float offset)
     {
         m_offset = offset;
+    }
+
+    void ShadowMapRenderer::SetBias(float bias)
+    {
+        m_bias = bias;
     }
 
     Texture& ShadowMapRenderer::GetShadowDepth()

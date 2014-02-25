@@ -16,12 +16,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    enum ShaderPreprocessor
-    {
-        PREPROCESSOR_UNKNOW,
-        PREPROCESSOR_INCLUDE,
-        PREPROCESSOR_REVISION
-    };
+
+	enum ShaderPreprocessor
+	{
+		PREPROCESSOR_UNKNOW,
+		PREPROCESSOR_INCLUDE,
+		PREPROCESSOR_REVISION
+	};
 
     class ShaderProgramsLoader : public Loader<BaseShaderProgram>
     {
@@ -31,10 +32,9 @@ namespace Agmd
 
         ~ShaderProgramsLoader();
 
-        virtual BaseShaderProgram* LoadFromFile(const std::string& filename);
-
     private :
 
+		virtual BaseShaderProgram* LoadFromFile(const std::string& filename);
         std::string LoadShader(const std::string& filename, const std::string& parentdir = "");
 
         ShaderPreprocessor preprocessor(const std::string& instruction);

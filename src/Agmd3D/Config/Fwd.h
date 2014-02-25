@@ -25,7 +25,7 @@ namespace Agmd
     class Image;
     class FontManager;
     class GraphicString;
-    class Scene;
+    class SceneOld;
     class Material;
     class Statistics;
     struct DeclarationElement;

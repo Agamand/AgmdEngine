@@ -36,7 +36,7 @@ namespace Agmd
         var(0)
         {}
 
-        EventEntry(EventType _event, ivec2& _mouse, ivec2& _mousediff, uint32 _mouseState, char _var) : 
+        EventEntry(EventType _event, ivec2& _mouse, ivec2& _mousediff, a_uint32 _mouseState, char _var) : 
         eventType(_event),
         mousePosition(_mouse),
         mouse_diff(_mousediff),
@@ -47,7 +47,7 @@ namespace Agmd
         EventType eventType;
         ivec2 mousePosition;
         ivec2 mouse_diff;
-        uint32 mouseState;
+        a_uint32 mouseState;
         char var;
     };
 
@@ -60,9 +60,9 @@ namespace Agmd
     MAKE_SINGLETON(GUIMgr); 
     public:
 
-        void Update(uint64 t_diff);
+        void Update(a_uint64 t_diff);
         void DrawGUI() const;
-        void SetSelected(uint32 i);
+        void SetSelected(a_uint32 i);
         void HandleEvent(EventEntry& _event);
         void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);

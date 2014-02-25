@@ -114,7 +114,7 @@ namespace AgmdUtilities
             return str;
         }
         str +=">";
-        for(uint32 i = 0; i < m_childnode.size(); i++)
+        for(a_uint32 i = 0; i < m_childnode.size(); i++)
             str += m_childnode[i]->ToSTring();
         str +="</";
         str += m_name;

@@ -19,50 +19,50 @@ namespace AgmdMaths
     }
 
 
-    Rectangle::Rectangle(int32 left, int32 top, int32 width, int32 height) :
+    Rectangle::Rectangle(a_int32 left, a_int32 top, a_int32 width, a_int32 height) :
     m_Origin(left, top),
     m_End   (left + width, top + height)
     {}
 
 
-    void Rectangle::Set(int32 left, int32 top, int32 width, int32 height)
+    void Rectangle::Set(a_int32 left, a_int32 top, a_int32 width, a_int32 height)
     {
         VEC2SET(m_Origin,left,top);
         VEC2SET(m_End,left + width,top + height);
     }
 
 
-    int32 Rectangle::Left() const
+    a_int32 Rectangle::Left() const
     {
         return m_Origin.x;
     }
 
 
-    int32 Rectangle::Right() const
+    a_int32 Rectangle::Right() const
     {
         return m_End.x;
     }
 
 
-    int32 Rectangle::Top() const
+    a_int32 Rectangle::Top() const
     {
         return m_Origin.y;
     }
 
 
-    int32 Rectangle::Bottom() const
+    a_int32 Rectangle::Bottom() const
     {
         return m_End.y;
     }
 
 
-    int32 Rectangle::Width() const
+    a_int32 Rectangle::Width() const
     {
         return m_End.x - m_Origin.x;
     }
 
 
-    int32 Rectangle::Height() const
+    a_int32 Rectangle::Height() const
     {
         return m_End.y - m_Origin.y;
     }

@@ -19,7 +19,7 @@ namespace Agmd
         //~BlurEffect();
 
         virtual void Init();
-        virtual void Update( uint64 /*t_diff*/);
+        virtual void Update( a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
 
         void SetIntensity(float a);

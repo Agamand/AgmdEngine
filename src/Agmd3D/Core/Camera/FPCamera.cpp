@@ -25,15 +25,17 @@ namespace Agmd
 
     void FPCamera::UpdateVector()
     {
-        glm::vec3 up(0.0f,0.0f,1.0f);
-        float r_temp = cos(_phi*((float)M_PI)/180);
+        
+        
         if (_phi > 89)
             _phi = 89;
         else if (_phi < -89)
             _phi = -89;
-    
+        float r_temp = cos(_phi*((float)M_PI)/180);
+            
+        vec3 _up(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),sin(_phi*M_PI/180)*sin(_theta*M_PI/180),r_temp);
         _forward = glm::vec3(r_temp*cos(_theta*M_PI/180),r_temp*sin(_theta*M_PI/180),sin(_phi*M_PI/180));
-        _left = glm::cross(up,_forward);
+        _left = glm::cross(_up,_forward);
         glm::normalize(_left);
 
        _target = _position + _forward;
@@ -66,7 +68,7 @@ namespace Agmd
 
     void FPCamera::OnKeyboard(char key, bool up)
     {
-        uint32 tempFlags = MOVE_NONE;
+        a_uint32 tempFlags = MOVE_NONE;
         switch(key)
         {
         case 'Z':
@@ -101,7 +103,7 @@ namespace Agmd
     }
     
 
-    void FPCamera::OnUpdate(uint64 time_diff)
+    void FPCamera::OnUpdate(a_uint64 time_diff)
     {
         _position += move*(_speed*time_diff)/1000.0f;
         _target = _position + _forward;

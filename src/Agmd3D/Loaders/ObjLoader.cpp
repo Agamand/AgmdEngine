@@ -29,7 +29,7 @@ namespace Agmd
         if (!file)
             throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ObjLoader)");
 
-        uint32 size =  (uint32)file.tellg();
+        a_uint32 size =  (a_uint32)file.tellg();
         file.seekg(0, std::ios::beg);
 
         std::vector<vec3> position;
@@ -45,7 +45,7 @@ namespace Agmd
                 break;
         }
 
-        for(uint32 i = 0; i < position.size(); i++)
+        for(a_uint32 i = 0; i < position.size(); i++)
         {
             Model::TVertex vertex;
             vertex.position = position[i];
@@ -86,8 +86,8 @@ namespace Agmd
     bool ObjLoader::processLine(std::vector<vec3>& position,std::vector<vec2>& texPos,std::vector<vec3>& normal,std::vector<Model::TIndex>& indices, std::istream& is)
     {
         std::string value;
-        int32 index = 0;
-        int32 temp = 0;
+        a_int32 index = 0;
+        a_int32 temp = 0;
 
         if (!(is >> value))
             return false;

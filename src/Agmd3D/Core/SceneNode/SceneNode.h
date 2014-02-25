@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _DISPLAYABLE_H_
-#define _DISPLAYABLE_H_
+#ifndef _SCENENODE_H_
+#define _SCENENODE_H_
 
 #include <Config/Fwd.h>
 #include <Core/Resource.h>
@@ -15,27 +15,32 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/SmartPtr.h>
 #include <Transform.h>
 
+#include <vector>
 using namespace AgmdMaths;
 
 namespace Agmd
 {
+	enum NodeType
+	{
+		DISPLAYABLE_NODE,
+		LIGHT_NODE
+	};
 
     class AGMD3D_EXPORT SceneNode
     {
     public :
-        SceneNode(Transform*);
+        SceneNode(NodeType, Transform*);
         virtual ~SceneNode();
-
-        virtual void Render(TRenderPass pass) const = 0;
-        virtual void Draw() const = 0;
-
+		virtual bool IsVisible(BoundingBox& bbox) = 0;
         Transform& GetTransform();
-
+		void AddChild(SceneNode* node)	{ m_children.push_back(node);}
+		NodeType GetType() const {return m_type;}
     protected:
-
+		
         Transform* m_transform;
-        Material* m_material;
-    };
+		NodeType m_type;
+		std::vector<SceneNode*> m_children;
+	};
 
 }
 

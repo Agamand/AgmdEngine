@@ -227,7 +227,7 @@ namespace Agmd
         return ShaderType[value];
     }
 
-    GLenum RGLEnum::GetAttachment(uint32 value)
+    GLenum RGLEnum::GetAttachment(a_uint32 value)
     {
         return AttachmentType[value];
     }

@@ -37,7 +37,7 @@ namespace Agmd
 
         template <class T> inline void SetParameter(TMatrixType type, T value) const;
         template <class T> inline void SetParameter(const std::string& name, T value) const;
-        template <class T> inline void SetParameter(const std::string& name, T value, uint32 size) const;
+        template <class T> inline void SetParameter(const std::string& name, T value, a_uint32 size) const;
         template <class T> inline void SetParameter(const std::string& name, Buffer<T> buf);
 
     private :

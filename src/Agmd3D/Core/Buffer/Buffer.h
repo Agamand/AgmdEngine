@@ -42,7 +42,7 @@ namespace Agmd
 
         unsigned long GetCount() const;
 
-        void Bind(uint32 bindpoint);
+        void Bind(a_uint32 bindpoint);
 
         void WaitSync();
 
@@ -53,7 +53,7 @@ namespace Agmd
     private :
 
         SmartPtr<BaseBuffer> m_Buffer;
-        uint32 m_currentBuffer;
+        a_uint32 m_currentBuffer;
     };
     #include "Buffer.inl"
 }

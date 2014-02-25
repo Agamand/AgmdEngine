@@ -19,7 +19,7 @@ namespace Agmd
     void SetActiveScene(GameScene* gs);
 
     virtual void OnInit() {}
-    virtual void OnUpdate(uint64 time_diff) {}
+    virtual void OnUpdate(a_uint64 time_diff) {}
     virtual void OnRender() {}
 
     private:

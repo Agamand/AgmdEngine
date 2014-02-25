@@ -22,26 +22,26 @@ namespace AgmdUtilities
     class Array
     {
     public:
-        Array(uint32 capacity = DEFAULT_CAPACITY);
+        Array(a_uint32 capacity = DEFAULT_CAPACITY);
         ~Array();
 
         void push_back(T);
         void pop_back();
 
-        void resize(uint32 size);
-        uint32 size() const;
-        uint32 capacity() const;
+        void resize(a_uint32 size);
+        a_uint32 size() const;
+        a_uint32 capacity() const;
 
 
-        T& operator[](uint32 i);
-        const T& operator[](uint32 i) const;
+        T& operator[](a_uint32 i);
+        const T& operator[](a_uint32 i) const;
 
     private:
-        void resize_capacity(uint32 capacity);
+        void resize_capacity(a_uint32 capacity);
 
 
-        uint32          m_size;
-        uint32          m_capacity;
+        a_uint32          m_size;
+        a_uint32          m_capacity;
         T*              m_storage;
         Allocator<T>*   m_allocator;
     };

@@ -51,7 +51,7 @@ namespace AgmdPhysics
     {
     public:
         Entities(PPositionPtr pos, EntitieType _type);
-        void Update(uint64 dt);
+        void Update(a_uint64 dt);
         void AddForce(Force f);
         void ClearAllForces();
         PPositionPtr GetPosition() { return m_Position; }

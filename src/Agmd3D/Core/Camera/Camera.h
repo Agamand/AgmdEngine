@@ -38,11 +38,11 @@ namespace Agmd
         Camera(mat4& projection, vec3& pos);
         virtual ~Camera() {}
 
-        virtual void OnUpdate(uint64 time_diff) = 0;
+        virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnMouseMotion(int x, int y) = 0;
         virtual void OnKeyboard(char key, bool up) = 0;
         virtual void OnMouseWheel(float delta) = 0;
-
+        virtual void OnMouseWheel(bool up){};
         const glm::vec3& GetPosition() { return _position; }
         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
         void GetPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
@@ -70,7 +70,7 @@ namespace Agmd
         float _sensivity;
 
         vec3 move;
-        uint32 moveFlags;
+        a_uint32 moveFlags;
 
         glm::vec3 _position;
         glm::vec3 _target;

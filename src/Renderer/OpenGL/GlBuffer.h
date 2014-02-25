@@ -31,11 +31,11 @@ namespace Agmd
 
         void* Lock(unsigned long offset, unsigned long size, unsigned long flags);
 
-        void* LockBits(unsigned long offset, unsigned long size, unsigned long flags);
+        void* LockByte(unsigned long offset, unsigned long size, unsigned long flags);
 
         void Unlock();
 
-        virtual void Bind(uint32 bindpoint);
+        virtual void Bind(a_uint32 bindpoint);
 
         void WaitSync();
 
@@ -44,9 +44,9 @@ namespace Agmd
         void FillByte(unsigned char* data, unsigned long offset, unsigned long size);
         void Flush();
 
-        uint32 m_Buffer[bufferCount];
-        uint32 m_currentBuffer;
-        uint32 m_bufferCount;
+        a_uint32 m_Buffer[bufferCount];
+        a_uint32 m_currentBuffer;
+        a_uint32 m_bufferCount;
         GLsync m_sync;
     };
 

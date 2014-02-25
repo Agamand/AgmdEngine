@@ -31,7 +31,7 @@ namespace Agmd
     void VertexRendering::Compute()
     {
         Renderer& render = Renderer::Get();
-        Scene* sc = render.GetActiveScene();
+        SceneOld* sc = render.GetActiveScene();
         Start();
 
         sc->Render(TRenderPass::RENDERPASS_ZBUFFER);

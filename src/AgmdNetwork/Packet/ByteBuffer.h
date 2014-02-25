@@ -47,10 +47,10 @@ namespace AgmdNetwork
     template<typename T> void EndianConvert(T*);
     template<typename T> void EndianConvertReverse(T*);
 
-    inline void EndianConvert(uint8&) { }
-    inline void EndianConvert( int8&) { }
-    inline void EndianConvertReverse(uint8&) { }
-    inline void EndianConvertReverse( int8&) { }
+    inline void EndianConvert(a_uint8&) { }
+    inline void EndianConvert( a_int8&) { }
+    inline void EndianConvertReverse(a_uint8&) { }
+    inline void EndianConvertReverse( a_int8&) { }
 
     class ByteBufferException
     {
@@ -127,60 +127,60 @@ namespace AgmdNetwork
             template <typename T> void append(T value)
             {
                 EndianConvert(value);
-                append((uint8 *)&value, sizeof(value));
+                append((a_uint8 *)&value, sizeof(value));
             }
 
             template <typename T> void put(size_t pos, T value)
             {
                 EndianConvert(value);
-                put(pos, (uint8 *)&value, sizeof(value));
+                put(pos, (a_uint8 *)&value, sizeof(value));
             }
 
-            ByteBuffer &operator<<(uint8 value)
+            ByteBuffer &operator<<(a_uint8 value)
             {
-                append<uint8>(value);
+                append<a_uint8>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(uint16 value)
+            ByteBuffer &operator<<(a_uint16 value)
             {
-                append<uint16>(value);
+                append<a_uint16>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(uint32 value)
+            ByteBuffer &operator<<(a_uint32 value)
             {
-                append<uint32>(value);
+                append<a_uint32>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(uint64 value)
+            ByteBuffer &operator<<(a_uint64 value)
             {
-                append<uint64>(value);
+                append<a_uint64>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(int8 value)
+            ByteBuffer &operator<<(a_int8 value)
             {
-                append<int8>(value);
+                append<a_int8>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(int16 value)
+            ByteBuffer &operator<<(a_int16 value)
             {
-                append<int16>(value);
+                append<a_int16>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(int32 value)
+            ByteBuffer &operator<<(a_int32 value)
             {
-                append<int32>(value);
+                append<a_int32>(value);
                 return *this;
             }
 
-            ByteBuffer &operator<<(int64 value)
+            ByteBuffer &operator<<(a_int64 value)
             {
-                append<int64>(value);
+                append<a_int64>(value);
                 return *this;
             }
 
@@ -199,16 +199,16 @@ namespace AgmdNetwork
             ByteBuffer &operator<<(const std::string &value)
             {
                 if (size_t len = value.length())
-                    append((uint8 const*)value.c_str(), len);
-                append((uint8)0);
+                    append((a_uint8 const*)value.c_str(), len);
+                append((a_uint8)0);
                 return *this;
             }
 
             ByteBuffer &operator<<(const char *str)
             {
                 if (size_t len = (str ? strlen(str) : 0))
-                    append((uint8 const*)str, len);
-                append((uint8)0);
+                    append((a_uint8 const*)str, len);
+                append((a_uint8)0);
                 return *this;
             }
 
@@ -218,51 +218,51 @@ namespace AgmdNetwork
                 return *this;
             }
 
-            ByteBuffer &operator>>(uint8 &value)
+            ByteBuffer &operator>>(a_uint8 &value)
             {
-                value = read<uint8>();
+                value = read<a_uint8>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(uint16 &value)
+            ByteBuffer &operator>>(a_uint16 &value)
             {
-                value = read<uint16>();
+                value = read<a_uint16>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(uint32 &value)
+            ByteBuffer &operator>>(a_uint32 &value)
             {
-                value = read<uint32>();
+                value = read<a_uint32>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(uint64 &value)
+            ByteBuffer &operator>>(a_uint64 &value)
             {
-                value = read<uint64>();
+                value = read<a_uint64>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(int8 &value)
+            ByteBuffer &operator>>(a_int8 &value)
             {
-                value = read<int8>();
+                value = read<a_int8>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(int16 &value)
+            ByteBuffer &operator>>(a_int16 &value)
             {
-                value = read<int16>();
+                value = read<a_int16>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(int32 &value)
+            ByteBuffer &operator>>(a_int32 &value)
             {
-                value = read<int32>();
+                value = read<a_int32>();
                 return *this;
             }
 
-            ByteBuffer &operator>>(int64 &value)
+            ByteBuffer &operator>>(a_int64 &value)
             {
-                value = read<int64>();
+                value = read<a_int64>();
                 return *this;
             }
 
@@ -291,9 +291,9 @@ namespace AgmdNetwork
                 return *this;
             }
 
-            uint8 operator[](size_t pos) const
+            a_uint8 operator[](size_t pos) const
             {
-                return read<uint8>(pos);
+                return read<a_uint8>(pos);
             }
 
             size_t rpos() const { return _rpos; }
@@ -343,7 +343,7 @@ namespace AgmdNetwork
                 return val;
             }
 
-            void read(uint8 *dest, size_t len)
+            void read(a_uint8 *dest, size_t len)
             {
                 if (_rpos  + len > size())
                    throw ByteBufferPositionException(false, _rpos, len, size());
@@ -351,31 +351,31 @@ namespace AgmdNetwork
                 _rpos += len;
             }
 
-            void readPackGUID(uint64& guid)
+            void readPackGUID(a_uint64& guid)
             {
                 if (rpos() + 1 > size())
                     throw ByteBufferPositionException(false, _rpos, 1, size());
 
                 guid = 0;
 
-                uint8 guidmark = 0;
+                a_uint8 guidmark = 0;
                 (*this) >> guidmark;
 
                 for (int i = 0; i < 8; ++i)
                 {
-                    if (guidmark & (uint8(1) << i))
+                    if (guidmark & (a_uint8(1) << i))
                     {
                         if (rpos() + 1 > size())
                             throw ByteBufferPositionException(false, _rpos, 1, size());
 
-                        uint8 bit;
+                        a_uint8 bit;
                         (*this) >> bit;
-                        guid |= (uint64(bit) << (i * 8));
+                        guid |= (a_uint64(bit) << (i * 8));
                     }
                 }
             }
 
-            const uint8 *contents() const { return &_storage[0]; }
+            const a_uint8 *contents() const { return &_storage[0]; }
 
             size_t size() const { return _storage.size(); }
             bool empty() const { return _storage.empty(); }
@@ -395,15 +395,15 @@ namespace AgmdNetwork
 
             void append(const char *src, size_t cnt)
             {
-                return append((const uint8 *)src, cnt);
+                return append((const a_uint8 *)src, cnt);
             }
 
             template<class T> void append(const T *src, size_t cnt)
             {
-                return append((const uint8 *)src, cnt * sizeof(T));
+                return append((const a_uint8 *)src, cnt * sizeof(T));
             }
 
-            void append(const uint8 *src, size_t cnt)
+            void append(const a_uint8 *src, size_t cnt)
             {
                 if (!cnt)
                     throw ByteBufferSourceException(_wpos, size(), cnt);
@@ -427,24 +427,24 @@ namespace AgmdNetwork
 
             void appendPackXYZ(float x, float y, float z)
             {
-                uint32 packed = 0;
+                a_uint32 packed = 0;
                 packed |= ((int)(x / 0.25f) & 0x7FF);
                 packed |= ((int)(y / 0.25f) & 0x7FF) << 11;
                 packed |= ((int)(z / 0.25f) & 0x3FF) << 22;
                 *this << packed;
             }
 
-            void appendPackGUID(uint64 guid)
+            void appendPackGUID(a_uint64 guid)
             {
-                uint8 packGUID[8+1];
+                a_uint8 packGUID[8+1];
                 packGUID[0] = 0;
                 size_t size = 1;
-                for (uint8 i = 0;guid != 0;++i)
+                for (a_uint8 i = 0;guid != 0;++i)
                 {
                     if (guid & 0xFF)
                     {
-                        packGUID[0] |= uint8(1 << i);
-                        packGUID[size] =  uint8(guid & 0xFF);
+                        packGUID[0] |= a_uint8(1 << i);
+                        packGUID[size] =  a_uint8(guid & 0xFF);
                         ++size;
                     }
 
@@ -453,7 +453,7 @@ namespace AgmdNetwork
                 append(packGUID, size);
             }
 
-            void put(size_t pos, const uint8 *src, size_t cnt)
+            void put(size_t pos, const a_uint8 *src, size_t cnt)
             {
                 if (pos + cnt > size())
                     throw ByteBufferPositionException(true, pos, cnt, size());
@@ -469,8 +469,8 @@ namespace AgmdNetwork
 
                 std::ostringstream o;
                 o << "STORAGE_SIZE: " << size();
-                for (uint32 i = 0; i < size(); ++i)
-                    o << read<uint8>(i) << " - ";
+                for (a_uint32 i = 0; i < size(); ++i)
+                    o << read<a_uint8>(i) << " - ";
                 o << " ";
 
             }
@@ -480,11 +480,11 @@ namespace AgmdNetwork
 
                 std::ostringstream o;
                 o << "STORAGE_SIZE: " << size();
-                for (uint32 i = 0; i < size(); ++i)
+                for (a_uint32 i = 0; i < size(); ++i)
                 {
                     char buf[1];
                     
-                    snprintf(buf, 1, "%c", read<uint8>(i));
+                    snprintf(buf, 1, "%c", read<a_uint8>(i));
                     o << buf;
                 }
                 o << " ";
@@ -492,15 +492,15 @@ namespace AgmdNetwork
 
             void hexlike() const
             {
-                uint32 j = 1, k = 1;
+                a_uint32 j = 1, k = 1;
 
                 std::ostringstream o;
                 o << "STORAGE_SIZE: " << size();
 
-                for (uint32 i = 0; i < size(); ++i)
+                for (a_uint32 i = 0; i < size(); ++i)
                 {
                     char buf[3];
-                    snprintf(buf, 1, "%2X ", read<uint8>(i));
+                    snprintf(buf, 1, "%2X ", read<a_uint8>(i));
                     if ((i == (j * 8)) && ((i != (k * 16))))
                     {
                         o << "| ";
@@ -520,13 +520,13 @@ namespace AgmdNetwork
 
         protected:
             size_t _rpos, _wpos;
-            std::vector<uint8> _storage;
+            std::vector<a_uint8> _storage;
     };
 
     template <typename T>
     inline ByteBuffer &operator<<(ByteBuffer &b, std::vector<T> v)
     {
-        b << (uint32)v.size();
+        b << (a_uint32)v.size();
         for (typename std::vector<T>::iterator i = v.begin(); i != v.end(); ++i)
         {
             b << *i;
@@ -537,7 +537,7 @@ namespace AgmdNetwork
     template <typename T>
     inline ByteBuffer &operator>>(ByteBuffer &b, std::vector<T> &v)
     {
-        uint32 vsize;
+        a_uint32 vsize;
         b >> vsize;
         v.clear();
         while (vsize--)
@@ -552,7 +552,7 @@ namespace AgmdNetwork
     template <typename T>
     inline ByteBuffer &operator<<(ByteBuffer &b, std::list<T> v)
     {
-        b << (uint32)v.size();
+        b << (a_uint32)v.size();
         for (typename std::list<T>::iterator i = v.begin(); i != v.end(); ++i)
         {
             b << *i;
@@ -563,7 +563,7 @@ namespace AgmdNetwork
     template <typename T>
     inline ByteBuffer &operator>>(ByteBuffer &b, std::list<T> &v)
     {
-        uint32 vsize;
+        a_uint32 vsize;
         b >> vsize;
         v.clear();
         while (vsize--)
@@ -578,7 +578,7 @@ namespace AgmdNetwork
     template <typename K, typename V>
     inline ByteBuffer &operator<<(ByteBuffer &b, std::map<K, V> &m)
     {
-        b << (uint32)m.size();
+        b << (a_uint32)m.size();
         for (typename std::map<K, V>::iterator i = m.begin(); i != m.end(); ++i)
         {
             b << i->first << i->second;
@@ -589,7 +589,7 @@ namespace AgmdNetwork
     template <typename K, typename V>
     inline ByteBuffer &operator>>(ByteBuffer &b, std::map<K, V> &m)
     {
-        uint32 msize;
+        a_uint32 msize;
         b >> msize;
         m.clear();
         while (msize--)

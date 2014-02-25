@@ -20,29 +20,29 @@ namespace AgmdUtilities
     {
     public :
 
-        Color(uint32 Color = 0xFFFFFFFF);
+        Color(a_uint32 Color = 0xFFFFFFFF);
 
         Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 0xFF);
 
-        uint8 ToGrey() const;
+        a_uint8 ToGrey() const;
 
-        uint32 ToARGB() const;
+        a_uint32 ToARGB() const;
 
-        uint32 ToABGR() const;
+        a_uint32 ToABGR() const;
 
-        uint32 ToRGBA() const;
+        a_uint32 ToRGBA() const;
 
-        uint8 GetAlpha() const;
+        a_uint8 GetAlpha() const;
 
-        uint8 GetRed() const;
+        a_uint8 GetRed() const;
 
-        uint8 GetGreen() const;
+        a_uint8 GetGreen() const;
 
-        uint8 GetBlue() const;
+        a_uint8 GetBlue() const;
 
         void SetFloats(float r, float g, float b, float a = 1.0f);
  
-        void Set(uint8 r, uint8 g, uint8 b, uint8 a = 0xFF);
+        void Set(a_uint8 r, a_uint8 g, a_uint8 b, a_uint8 a = 0xFF);
 
         void ToFloat(float Dest[]) const;
 

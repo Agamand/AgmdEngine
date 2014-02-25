@@ -21,7 +21,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    GLTexture2D::GLTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
+    GLTexture2D::GLTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
     GLTexture(size, format, hasMipmaps, autoMipmaps, texture),
     m_Data(size,format)
     {}

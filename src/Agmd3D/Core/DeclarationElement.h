@@ -39,8 +39,8 @@ namespace Agmd
 
     struct TDeclarationElement
     {
-        uint32 stream;
-        uint32 usage;
+        a_uint32 stream;
+        a_uint32 usage;
         TElementType  dataType;
     };
 

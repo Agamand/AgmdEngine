@@ -61,41 +61,41 @@ namespace AgmdNetwork
     void Client::SendPacket(Packet& packet)
     {
         ByteBuffer buffer;
-        buffer <<(uint16) packet.size();
+        buffer <<(a_uint16) packet.size();
         buffer << packet.GetOpcode();
         buffer.append(packet.contents(),packet.size());
 
-        if(send(m_ListeningSocket,(const int8*)buffer.contents(),buffer.size(), 0) == SOCKET_ERROR)
+        if(send(m_ListeningSocket,(const a_int8*)buffer.contents(),buffer.size(), 0) == SOCKET_ERROR)
             printf("SOCKET ERROR ! \n");
     }
 
     DWORD Client::ClientThread(){
 
         ServerPacketHeader _header;
-        uint16 size = 0;
-        uint16 opcode = 0;
-        uint8 buffer[_MAX_SIZE];
-        int32 error = 0;
-        while((error = recv(m_ListeningSocket,(int8*)&_header,sizeof(ServerPacketHeader),MSG_WAITALL)) == sizeof(ServerPacketHeader))
+        a_uint16 size = 0;
+        a_uint16 opcode = 0;
+        a_uint8 buffer[_MAX_SIZE];
+        a_int32 error = 0;
+        while((error = recv(m_ListeningSocket,(a_int8*)&_header,sizeof(ServerPacketHeader),MSG_WAITALL)) == sizeof(ServerPacketHeader))
         {
             Packet packet;
-            recv(m_ListeningSocket,(int8*)&size,sizeof(uint8),MSG_WAITALL);
+            recv(m_ListeningSocket,(a_int8*)&size,sizeof(a_uint8),MSG_WAITALL);
 
             if(size < SIZE_OPCODE)
                 continue;
 
-            recv(m_ListeningSocket,(int8*)&opcode,SIZE_OPCODE,MSG_WAITALL);
+            recv(m_ListeningSocket,(a_int8*)&opcode,SIZE_OPCODE,MSG_WAITALL);
 
             size -=SIZE_OPCODE;
-            uint32 maxitr = size/_MAX_SIZE;
+            a_uint32 maxitr = size/_MAX_SIZE;
             
-            for(uint32 i = 0; i < maxitr; i++)
+            for(a_uint32 i = 0; i < maxitr; i++)
             {
-                recv(m_ListeningSocket,(int8*)buffer,_MAX_SIZE,MSG_WAITALL);
+                recv(m_ListeningSocket,(a_int8*)buffer,_MAX_SIZE,MSG_WAITALL);
                 packet.append(buffer, _MAX_SIZE);
             }
 
-            recv(m_ListeningSocket,(int8*)buffer,size%_MAX_SIZE,MSG_WAITALL);
+            recv(m_ListeningSocket,(a_int8*)buffer,size%_MAX_SIZE,MSG_WAITALL);
             packet.SetOpcode(opcode);
             packet.append(buffer, size%_MAX_SIZE);
 

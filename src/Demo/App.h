@@ -25,6 +25,8 @@ status : in pause
 #include <Agmd3D\Core/GUI\AWindow.h>
 #include <Agmd3D/Core/Effects/BlurEffect.h>
 #include <Agmd3D/Core/Effects/BlurMotionEffect.h>
+#include <Agmd3D/Core/Effects/AntiAliasing.h>
+#include <Agmd3D/Core/Effects/AsciEffect.h>
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
 
 
@@ -35,7 +37,7 @@ class App : public Agmd::AgmdApp, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
-    static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, uint32 color = -1);
+    static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, a_uint32 color = -1);
     static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
@@ -49,7 +51,7 @@ private :
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
     
-    virtual void OnUpdate(uint64 time_diff);
+    virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();
     typedef std::map<std::string, std::string> TDescTable;
@@ -60,11 +62,12 @@ private :
     glm::mat4            m_MatProj3D;
     glm::mat3             m_MatNormal;
 
-    Agmd::Scene*        m_Scene;
+    Agmd::SceneOld*        m_Scene;
     Agmd::DeferredRendering* drend; 
     Agmd::MeshRender* sphere;
 
     Agmd::BaseShaderProgram* shader2D;
+    Agmd::BaseShaderProgram* shaderTest;
     Agmd::GraphicString* m_fps;
 
     Agmd::Camera*       cam3D;
@@ -75,12 +78,22 @@ private :
     Agmd::Texture tex;
     Agmd::BlurEffect* m_effect;
     Agmd::BlurMotionEffect* m_motioneffect;
+    Agmd::AntiAliasing* m_fxaa;
     float noise;
+    float bias;
     Agmd::Light* m_light;
-    uint64  m_timer;
+    a_uint64  m_timer;
+    float current_time;
     bool pause;
+    bool fxaa;
+    Agmd::Model* m;
+    int count;
+    Agmd::AsciEffect* asci;
     
-
+	/*
+	*/
+	float g,l;
+	int o,seed;
 };
 
 #endif // APP_H

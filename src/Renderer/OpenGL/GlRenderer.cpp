@@ -20,9 +20,11 @@ https://github.com/Agamand/AgmdEngine
 #include <core/Tools/Statistics.h>
 #include <Utilities/Color.h>
 #include <Utilities/PixelUtils.h>
+#include <Utilities/StringUtils.h>
 #include <Debug/Logger.h>
 #include <Matrix4.h>
 #include <Debug/New.h>
+
 
 
 SINGLETON_IMPL(Agmd::GLRenderer)
@@ -82,6 +84,7 @@ namespace Agmd
     PFNGLGETSHADERINFOLOGPROC           GLRenderer::glGetShaderInfoLog;
     PFNGLATTACHSHADERPROC               GLRenderer::glAttachShader;
     PFNGLLINKPROGRAMPROC                GLRenderer::glLinkProgram;
+	PFNGLVALIDATEPROGRAMPROC			GLRenderer::glValidateProgram;
     PFNGLGETPROGRAMIVPROC               GLRenderer::glGetProgramiv;
     PFNGLGETPROGRAMINFOLOGPROC          GLRenderer::glGetProgramInfoLog;
     PFNGLGETACTIVEUNIFORMSIVPROC        GLRenderer::glGetActiveUniformsiv;
@@ -128,6 +131,7 @@ namespace Agmd
     PFNGLDELETEFRAMEBUFFERSPROC         GLRenderer::glDeleteFramebuffers;
     PFNGLBINDFRAMEBUFFERPROC            GLRenderer::glBindFramebuffer;
     PFNGLDRAWBUFFERSPROC                GLRenderer::glDrawBuffers;
+    PFNGLDRAWARRAYSEXTPROC              GLRenderer::glDrawArrays;
     PFNGLFRAMEBUFFERRENDERBUFFERPROC    GLRenderer::glFramebufferRenderbuffer;
     PFNGLFRAMEBUFFERTEXTUREPROC         GLRenderer::glFramebufferTexture;
     PFNGLFRAMEBUFFERTEXTURE2DPROC       GLRenderer::glFramebufferTexture2D;
@@ -167,8 +171,9 @@ namespace Agmd
 
     std::string GLRenderer::GetRendererDesc() const
     {
-        
-        return std::string("OpenGL ") + reinterpret_cast<const char*>(glGetString(GL_VERSION)) + ", GLSL " + reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		const char* gl_version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
+		const char* glsl_version = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+        return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version);
     }
 
     void GLRenderer::Setup(HWND Hwnd)
@@ -210,28 +215,32 @@ namespace Agmd
         int attribs[] =
         {
             WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
-            WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-            WGL_CONTEXT_FLAGS_ARB, 0,
-            0
+            WGL_CONTEXT_MINOR_VERSION_ARB, 2,	
+			WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_DEBUG_BIT_ARB | WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+			WGL_CONTEXT_PROFILE_MASK_ARB,WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
+			0
         };
 
         // Load CreateContext function
         LOAD_EXTENSION(wglCreateContextAttribsARB);
-
+		LoadExtensions();
         //Recreate a real GlContext (if possible)
-        if(wglCreateContextAttribsARB && false)
-        {
+        if(wglCreateContextAttribsARB)
+        { 
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
-            wglMakeCurrent(NULL,NULL);
-            wglDeleteContext(m_Context);
+			wglMakeCurrent(NULL, NULL);
+			wglDeleteContext(m_Context);
             m_Context = temp;
-            wglMakeCurrent(m_Handle, m_Context);
+			assert(wglMakeCurrent(m_Handle, m_Context));
 
         }
 
+		ShowWindow(m_Hwnd, SW_NORMAL);
+		UpdateWindow(m_Hwnd);
+		SetFocus(m_Hwnd);
         // Load extensions
-        LoadExtensions();
+        
 
         // Get Supported extensions
         int n;
@@ -244,12 +253,12 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(1, 1, 1, 0.0f);
+        glClearColor(0.5f,0.5f,0.5f,0);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
         glClearStencil(0x00);
-        wglSwapIntervalEXT(0);
+        //wglSwapIntervalEXT(0);
 
         glEnable(GL_DEPTH_TEST);
         glFrontFace(GL_CCW);
@@ -280,7 +289,7 @@ namespace Agmd
     const std::string GLRenderer::GetConstant() const
     {
         std::string str = "";
-        int32 value;
+        a_int32 value;
         glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &value);
         str += "Max vertex attrib : " + value;
 
@@ -324,6 +333,7 @@ namespace Agmd
         LOAD_EXTENSION(glGetShaderInfoLog);
         LOAD_EXTENSION(glAttachShader);
         LOAD_EXTENSION(glLinkProgram);
+		LOAD_EXTENSION(glValidateProgram);
         LOAD_EXTENSION(glGetProgramiv);
         LOAD_EXTENSION(glGetProgramInfoLog);
         LOAD_EXTENSION(glGetActiveUniformsiv);
@@ -369,6 +379,7 @@ namespace Agmd
         LOAD_EXTENSION(glDeleteFramebuffers);
         LOAD_EXTENSION(glBindFramebuffer);
         LOAD_EXTENSION(glDrawBuffers);
+        LOAD_EXTENSION(glDrawArrays);
         LOAD_EXTENSION(glFramebufferRenderbuffer);
         LOAD_EXTENSION(glFramebufferTexture);
         LOAD_EXTENSION(glFramebufferTexture2D);
@@ -609,12 +620,12 @@ namespace Agmd
         }
     }
 
-    uint32 GLRenderer::ConvertColor(const Color& color) const
+    a_uint32 GLRenderer::ConvertColor(const Color& color) const
     {
         return color.ToABGR();
     }
 
-    void GLRenderer::SetTexture(uint32 unit, const TextureBase* texture, TTextureType type)
+    void GLRenderer::SetTexture(a_uint32 unit, const TextureBase* texture, TTextureType type)
     {
 
         if(unit > MAX_TEXTUREUNIT)
@@ -659,7 +670,7 @@ namespace Agmd
 
     TextureBase* GLRenderer::CreateTexture2D(const ivec2& size, TPixelFormat format, unsigned long flags) const
     {
-        uint32 texture;
+        a_uint32 texture;
         glGenTextures(1, &texture);
         int width  = size.x;
         int height = size.y;
@@ -704,7 +715,7 @@ namespace Agmd
 
     TextureBase* GLRenderer::CreateTextureCube(const ivec2& size, TPixelFormat format, unsigned long flags) const
     {
-        uint32 texture;
+        a_uint32 texture;
         glGenTextures(1, &texture);
         int width  = size.x;
         int height = size.y;
@@ -736,7 +747,7 @@ namespace Agmd
         glDepthFunc(RGLEnum::Get(mode));
     }
 
-    void GLRenderer::SetupTextureUnit(uint32 unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2, const Color& constant) const
+    void GLRenderer::SetupTextureUnit(a_uint32 unit, TTextureOp op, TTextureArg arg1, TTextureArg arg2, const Color& constant) const
     {
         /* <!> Deprecated feature <!> */
 
@@ -849,14 +860,14 @@ namespace Agmd
             source = source.substr(0,index)+define+source.substr(index,source.size()-1);
         std::replace(source.begin(), source.end(), '\r','\n');
         const char* src = source.c_str();
-        uint32 shader = glCreateShader(RGLEnum::Get(type));
+        a_uint32 shader = glCreateShader(RGLEnum::Get(type));
         glShaderSource(shader, 1, (const char**)&src, NULL);
     
         glCompileShader(shader);
     
-        int32 compile_status;
+        a_int32 compile_status;
         glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_status);
-        int32 logsize;
+        a_int32 logsize;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logsize);
         
         char *log = new char[logsize+1];
@@ -865,19 +876,22 @@ namespace Agmd
         glGetShaderInfoLog(shader, logsize, &logsize, log);
         Logger::Log(LOGNORMAL, "%s", log);
        
-        delete[] log;
+        
         if(compile_status != GL_TRUE)
         {
+            printf("\n source :\n %s \n error : \n%s\n",src,log);
+            delete[] log;
             glDeleteShader(shader);
             return NULL;
         }
+        delete[] log;
     
         return new GLShader(shader,type);
     }
 
     BaseShaderProgram* GLRenderer::CreateShaderProgram(BaseShader* vertex, BaseShader* eval, BaseShader* control, BaseShader* geom, BaseShader* frag) const
     {
-        uint32 id = glCreateProgram();
+        a_uint32 id = glCreateProgram();
         if(vertex)
             glAttachShader(id,static_cast<GLShader*>(vertex)->GetId());
 
@@ -908,13 +922,17 @@ namespace Agmd
         glBindAttribLocation(id, 10, "in_BoneCount");
         /**/
 
+		glValidateProgram(id);
+		int valid = 0;
+		glGetProgramiv(id, GL_VALIDATE_STATUS, &valid);
+
         glLinkProgram(id);
 
-        int32 link;
+        a_int32 link;
 
         glGetProgramiv(id, GL_LINK_STATUS, &link);
 
-        int32 logsize;
+        a_int32 logsize;
         glGetProgramiv(id, GL_INFO_LOG_LENGTH, &logsize);
     
         char* log = new char[logsize + 1];
@@ -924,18 +942,20 @@ namespace Agmd
 
         Logger::Log(LOGNORMAL, "%s", log);
 
-        delete[] log;
-
+        
+		
         if(link != GL_TRUE)
         {
+            printf("error : \n%s",log);
+            delete[] log;
             glDeleteProgram(id);
             return NULL;
         }
-
+        delete[] log;
         GLShaderProgram* program = new GLShaderProgram(id);
-        program->SetParameter("cameraInfoBlock",(uint32)UNIFORM_CAMERA3D_BIND);
-        program->SetParameter("lightInfoBlock",(uint32)UNIFORM_LIGHT_BIND);
-        program->SetParameter("camera2DInfoBlock",(uint32)UNIFORM_CAMERA2D_BIND);
+        program->SetParameter("cameraInfoBlock",(a_uint32)UNIFORM_CAMERA3D_BIND);
+        program->SetParameter("lightInfoBlock",(a_uint32)UNIFORM_LIGHT_BIND);
+        program->SetParameter("camera2DInfoBlock",(a_uint32)UNIFORM_CAMERA2D_BIND);
         program->UniformShaderInfo();
         return program;
     }
@@ -947,14 +967,14 @@ namespace Agmd
 
     FrameBuffer* GLRenderer::CreateFrameBuffer() const
     {
-        uint32 id = 0;
+        a_uint32 id = 0;
         glGenFramebuffers(1, &id);
         return new GLFrameBuffer(id);
     }
 
     RenderBuffer* GLRenderer::CreateRenderBuffer(const ivec2& size, TPixelFormat format) const
     {
-        uint32 id = 0;
+        a_uint32 id = 0;
 
         glGenRenderbuffers(1, &id);
         glBindRenderbuffer(GL_RENDERBUFFER,id);
@@ -982,6 +1002,7 @@ namespace Agmd
 
     void GLRenderer::SetCullFace(int face)
     {
+			
         if(face)
             glEnable(GL_CULL_FACE);
         else glDisable(GL_CULL_FACE);

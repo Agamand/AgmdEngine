@@ -43,7 +43,7 @@ inline void* GLBuffer<Type, bufferCount>::Lock(unsigned long offset, unsigned lo
 }
 
 template <int Type, int bufferCount>
-inline void* GLBuffer<Type, bufferCount>::LockBits(unsigned long offset, unsigned long size, unsigned long flags)
+inline void* GLBuffer<Type, bufferCount>::LockByte(unsigned long offset, unsigned long size, unsigned long flags)
 {
     GLRenderer::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
     unsigned char* buffer = reinterpret_cast<unsigned char*>(GLRenderer::glMapBufferRange(Type, offset, size, RGLEnum::LockBitsFlags(flags) | GL_MAP_FLUSH_EXPLICIT_BIT | GL_MAP_INVALIDATE_RANGE_BIT));
@@ -73,7 +73,7 @@ inline void GLBuffer<Type, bufferCount>::Flush()
 }
 
 template <int Type, int bufferCount>
-inline void GLBuffer<Type, bufferCount>::Bind(uint32 /*bindpoint*/)
+inline void GLBuffer<Type, bufferCount>::Bind(a_uint32 /*bindpoint*/)
 {}
 
 #define TIMEOUT 100000

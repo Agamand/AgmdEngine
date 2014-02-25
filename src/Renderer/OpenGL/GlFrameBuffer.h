@@ -19,27 +19,27 @@ namespace Agmd
     class GLFrameBuffer : public FrameBuffer
     {
     public:
-        GLFrameBuffer(uint32 buff_id);
+        GLFrameBuffer(a_uint32 buff_id);
         ~GLFrameBuffer();
 
-        virtual void SetTexture(const Texture& tex, uint32 attach);
-        virtual void SetTextureCube(const Texture& tes, uint32 attach, int32 face);
-        virtual void SetRender(RenderBuffer* render, uint32 attach);
+        virtual void SetTexture(const Texture& tex, a_uint32 attach);
+        virtual void SetTextureCube(const Texture& tes, a_uint32 attach, a_int32 face);
+        virtual void SetRender(RenderBuffer* render, a_uint32 attach);
 
         virtual void Bind();
         virtual void UnBind();
 
-        virtual void Clear(uint32 flags);
+        virtual void Clear(a_uint32 flags);
 
-        virtual void DrawBuffer(uint32 flag);
-        virtual void DrawBuffers(uint32 nbuffer, uint32* flag);
-        virtual uint32* GenerateBufferFlags(uint32 count, uint32 flags[]);
-        virtual void ReadBuffer(uint32 flag);
+        virtual void DrawBuffer(a_uint32 flag);
+        virtual void DrawBuffers(a_uint32 nbuffer, a_uint32* flag);
+        virtual a_uint32* GenerateBufferFlags(a_uint32 count, a_uint32 flags[]);
+        virtual void ReadBuffer(a_uint32 flag);
 
-        uint32 GetID();
+        a_uint32 GetID();
 
     private:
-        uint32 m_Id;
+        a_uint32 m_Id;
     };
 
 }

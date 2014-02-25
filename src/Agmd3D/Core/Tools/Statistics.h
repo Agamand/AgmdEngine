@@ -27,14 +27,14 @@ namespace Agmd
         void SetMainTime(float time);
         void SetGuiTime(float time);
         void IncrDrawCall();
-        void IncrVertexCount(uint32 count);
-        void IncrTriangleCount(uint32 count);
+        void IncrVertexCount(a_uint32 count);
+        void IncrTriangleCount(a_uint32 count);
         float GetRenderingTime();
         float GetMainTime();
-        uint32 GetFps();
-        uint32 GetDrawCount();
-        uint32 GetVertexCount();
-        uint32 GetTriangleCount();
+        a_uint32 GetFps();
+        a_uint32 GetDrawCount();
+        a_uint32 GetVertexCount();
+        a_uint32 GetTriangleCount();
 
         void ResetStatistics();
         std::string ToString();
@@ -42,9 +42,9 @@ namespace Agmd
         float m_RenderingTime; // in Ms
         float m_MainTime; // global time for every frame, in Ms (include RenderingTime)
         float m_GuiTime;
-        uint32 m_DrawCallCount; // count of draw for one frame
-        uint32 m_VertexDrawCount; // count of vertex draw for oneframe
-        uint32 m_TriangleDrawCount; // count of triangles draw for one frame
+        a_uint32 m_DrawCallCount; // count of draw for one frame
+        a_uint32 m_VertexDrawCount; // count of vertex draw for oneframe
+        a_uint32 m_TriangleDrawCount; // count of triangles draw for one frame
     };
 }
 

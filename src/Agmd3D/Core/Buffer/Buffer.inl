@@ -21,7 +21,7 @@ template <class T>
 template <class D>
 inline D* Buffer<T>::LockBits(unsigned long offset, unsigned long size, unsigned long flags)
 {
-    return reinterpret_cast<D*>(m_Buffer->LockBits(offset, size, flags));
+    return reinterpret_cast<D*>(m_Buffer->LockByte(offset, size, flags));
 }
 
 
@@ -67,7 +67,7 @@ inline unsigned long Buffer<T>::GetCount() const
 }
 
 template <class T>
-inline void Buffer<T>::Bind(uint32 bindpoint)
+inline void Buffer<T>::Bind(a_uint32 bindpoint)
 {
     m_Buffer->Bind(bindpoint);
 }

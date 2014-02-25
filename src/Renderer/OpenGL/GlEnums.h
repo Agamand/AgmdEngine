@@ -49,7 +49,7 @@ namespace Agmd
 
         static GLenum Get(TShaderType value);
 
-        static GLenum GetAttachment(uint32 value);
+        static GLenum GetAttachment(a_uint32 value);
 
         static GLenum Get(TComponent value);
 

@@ -42,24 +42,24 @@ namespace Agmd
         bool               m_IsRunning;
         static AgmdApp*       m_Application;
         SmartPtr<Plugin>   m_Renderer;
-        uint32 last_time;
-        uint32 frame;
-        uint32 fps_timer;
+        a_uint32 last_time;
+        a_uint32 frame;
+        a_uint32 fps_timer;
 
         float m_fps;
 
     protected:
-        AgmdApp(ivec2 screenSize = ivec2(800,450));
+        AgmdApp(ivec2 screenSize = ivec2(1280,720));
         ~AgmdApp();
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
         virtual void OnInit() = 0;
-        virtual void OnUpdate(uint64 time_diff) = 0;
+        virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;
         virtual void OnRender2D() = 0;
         Camera*              camera;
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;
-        uint32 mouseState;
+        a_uint32 mouseState;
 
     };
     

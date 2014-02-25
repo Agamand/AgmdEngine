@@ -24,5 +24,17 @@ namespace Agmd
     { 
         return *m_transform;
     }
+
+	Material* Displayable::GetMaterial() const
+	{
+		return m_material;
+	}
+
+	void Displayable::SetMaterial( Material* val )
+	{
+		m_material = val;
+	}
+
+
 }
 

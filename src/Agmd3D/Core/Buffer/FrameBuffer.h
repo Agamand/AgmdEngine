@@ -28,18 +28,18 @@ namespace Agmd
         FrameBuffer();
         virtual ~FrameBuffer();
 
-        virtual void SetTexture(const Texture&, uint32) = 0;
-        virtual void SetTextureCube(const Texture&, uint32, int face) = 0;
-        virtual void SetRender(RenderBuffer*, uint32) = 0;
+        virtual void SetTexture(const Texture&, a_uint32) = 0;
+        virtual void SetTextureCube(const Texture&, a_uint32, int face) = 0;
+        virtual void SetRender(RenderBuffer*, a_uint32) = 0;
     
         virtual void Bind() = 0;
         virtual void UnBind() = 0;
-        virtual void Clear(uint32 flag = CLEAR_ALL) = 0;
+        virtual void Clear(a_uint32 flag = CLEAR_ALL) = 0;
 
-        virtual void DrawBuffer(uint32 flag) = 0;
-        virtual void DrawBuffers(uint32 nbuffer, uint32 flag[]) = 0;
-        virtual uint32* GenerateBufferFlags(uint32 count, uint32 flags[]) = 0;
-        virtual void ReadBuffer(uint32 flag) = 0;
+        virtual void DrawBuffer(a_uint32 flag) = 0;
+        virtual void DrawBuffers(a_uint32 nbuffer, a_uint32 flag[]) = 0;
+        virtual a_uint32* GenerateBufferFlags(a_uint32 count, a_uint32 flags[]) = 0;
+        virtual void ReadBuffer(a_uint32 flag) = 0;
 
     protected:
         TextureMap          m_TextureMap;

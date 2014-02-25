@@ -43,15 +43,15 @@ namespace Agmd
         virtual void SetParameter(const std::string& name, const mat3& value) const = 0;
         virtual void SetParameter(const std::string& name, const mat4& value) const = 0;
 
-        virtual void SetParameter(const std::string& name, float* value, uint32 count) const = 0;
-        virtual void SetParameter(const std::string& name, vec2* value,  uint32 count) const = 0;
-        virtual void SetParameter(const std::string& name, vec3* value,  uint32 count) const = 0;
-        virtual void SetParameter(const std::string& name, vec4* value,  uint32 count) const = 0;
-        virtual void SetParameter(const std::string& name, mat4* value,  uint32 count) const = 0;
+        virtual void SetParameter(const std::string& name, float* value, a_uint32 count) const = 0;
+        virtual void SetParameter(const std::string& name, vec2* value,  a_uint32 count) const = 0;
+        virtual void SetParameter(const std::string& name, vec3* value,  a_uint32 count) const = 0;
+        virtual void SetParameter(const std::string& name, vec4* value,  a_uint32 count) const = 0;
+        virtual void SetParameter(const std::string& name, mat4* value,  a_uint32 count) const = 0;
 
         virtual void SetParameter(TMatrixType type, const mat4& value) const = 0;
 
-        virtual void SetParameter(const std::string& name, const uint32 bindpoint) const = 0;
+        virtual void SetParameter(const std::string& name, const a_uint32 bindpoint) const = 0;
         
         virtual void Use(bool) const = 0;
 

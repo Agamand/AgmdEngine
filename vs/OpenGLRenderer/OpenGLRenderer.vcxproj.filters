@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlUniformBuffer.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlTextureBuffer.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlContext.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\Config.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Renderer\OpenGL\GlBuffer.inl" />

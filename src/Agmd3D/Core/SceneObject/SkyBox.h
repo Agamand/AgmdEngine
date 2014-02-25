@@ -34,7 +34,7 @@ namespace Agmd
 
         void Render() const;
         void Draw() const;
-        void SetTexture(Texture tex, uint32 index);
+        void SetTexture(Texture tex, a_uint32 index);
 
     private:
 

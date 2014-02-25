@@ -70,6 +70,11 @@ namespace Agmd
         Renderer::Get().SetScreen(m_ScreenSize);
 
         Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
+        Image img = Image();    
+        img.Fill(Color::white);
+        Texture t = Texture();
+        t.CreateFromImage(img,PXF_A8R8G8B8);
+        mat->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
         ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);
         OnInit();
 
@@ -105,7 +110,7 @@ namespace Agmd
 
         m_Hwnd = CreateWindow(ENGINE_NAME, ENGINE_NAME, 0, left, top, m_ScreenSize.x, m_ScreenSize.y, NULL, NULL, m_Instance, NULL);
         assert(m_Hwnd != NULL);
-        ShowWindow(m_Hwnd, SW_NORMAL);
+        //ShowWindow(m_Hwnd, SW_NORMAL);
         LONG lStyle = GetWindowLong(m_Hwnd, GWL_STYLE);
         lStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU);
         SetWindowLong(m_Hwnd, GWL_STYLE, lStyle);
@@ -130,8 +135,8 @@ namespace Agmd
             }
             else
             {
-                uint32 time = clock();
-                uint32 time_diff = time - last_time;
+                a_uint32 time = clock();
+                a_uint32 time_diff = time - last_time;
                 last_time = time;
                 Renderer& render =  Renderer::Get();
                 render.GetStatistics().ResetStatistics();
@@ -141,7 +146,9 @@ namespace Agmd
                 render.InitScene();
                 //Render 3D objects
                 timer.start();
-                RenderingMode::GetRenderingMode()->Compute();
+                RenderingMode* current = RenderingMode::GetRenderingMode();
+                if(current != NULL)
+                    current->Compute();
                 OnRender3D();
                 renderTime = timer.getElapsedTimeInMicroSec();
                 timer.stop();
@@ -151,10 +158,11 @@ namespace Agmd
                 OnRender2D();
                 timer.stop();
                 guiTime = timer.getElapsedTimeInMicroSec();
-                render.EndScene();
+                
                 frame++;
-				if(time_diff < 15)
-					Sleep(15-time_diff);
+				//if(time_diff < 15)
+					//Sleep(15-time_diff);
+                render.EndScene();
                 if(fps_timer <= time_diff)
                 {
                     m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - fps_timer);
@@ -215,6 +223,7 @@ namespace Agmd
                 return 0;
             case WM_MBUTTONDOWN:
                 mouseState |= MOUSE_MIDDLE;
+                camera->OnMouseWheel(true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONDOWN:
@@ -232,6 +241,7 @@ namespace Agmd
                 return 0;
             case WM_MBUTTONUP:
                 mouseState &= ~MOUSE_MIDDLE;
+                camera->OnMouseWheel(false);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONUP:
@@ -239,12 +249,13 @@ namespace Agmd
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MOUSEWHEEL:
-                camera->OnMouseWheel(GET_WHEEL_DELTA_WPARAM(WParam));
+                camera->OnMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
                 return 0;
             case WM_MOUSEMOVE:
                 ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
-                if(mouseState == MOUSE_RIGHT)
+                if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
                     camera->OnMouseMotion(posDiff.x, posDiff.y);
+                    
                 last_mouse_pos.x = GET_X_LPARAM(LParam);
                 last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,last_mouse_pos,posDiff,mouseState,0));

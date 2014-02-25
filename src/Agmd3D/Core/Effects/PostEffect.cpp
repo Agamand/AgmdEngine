@@ -13,4 +13,11 @@ namespace Agmd
         delete m_framebuffer;
     }
 
+    void PostEffect::SetEnable(bool enable)
+    {
+        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        m_program.SetParameter("u_enable",(int)enable);
+        Renderer::Get().SetCurrentProgram(NULL);
+    }
+
 }

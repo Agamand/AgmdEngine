@@ -39,7 +39,7 @@ namespace Agmd
 
     Image* ImagesLoader::LoadFromFile(const std::string& filename)
     {
-        uint32 texture;
+        a_uint32 texture;
         ilGenImages(1, &texture);
         ilBindImage(texture);
 
@@ -67,7 +67,7 @@ namespace Agmd
 
         image.Flip();
 
-        uint32 texture;
+        a_uint32 texture;
         ilGenImages(1, &texture);
         ilBindImage(texture);
 

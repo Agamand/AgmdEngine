@@ -21,10 +21,10 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    GLTextureCube::GLTextureCube(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture) :
+    GLTextureCube::GLTextureCube(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
     GLTexture(size, format, hasMipmaps, autoMipmaps, texture)
     {
-        for(int32 i = 0; i < MAX_CUBEFACE; i++)
+        for(a_int32 i = 0; i < MAX_CUBEFACE; i++)
             m_Data[i] = Image(size,format);
     }
 

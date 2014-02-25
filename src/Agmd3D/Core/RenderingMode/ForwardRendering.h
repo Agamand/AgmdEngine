@@ -37,7 +37,7 @@ namespace Agmd
         FrameBuffer* m_framebuffer;
         RenderBuffer* m_depthbuffer;
         Texture m_textureBuffer[3];
-        uint32* bufferFlags[2];
+        a_uint32* bufferFlags[2];
 
     };
 }

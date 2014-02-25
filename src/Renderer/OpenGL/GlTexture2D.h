@@ -18,7 +18,7 @@ namespace Agmd
     {
     public :
 
-        GLTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, uint32 texture);
+        GLTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture);
 
         ~GLTexture2D();
 

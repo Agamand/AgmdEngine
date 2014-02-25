@@ -20,7 +20,7 @@ namespace Agmd
         FPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~FPCamera();
 
-        virtual void OnUpdate(uint64 time_diff);
+        virtual void OnUpdate(a_uint64 time_diff);
 
         virtual void OnMouseMotion(int x, int y);
 

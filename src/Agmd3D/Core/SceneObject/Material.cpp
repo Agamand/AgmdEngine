@@ -45,12 +45,12 @@ namespace Agmd
     bool Material::Enable(TRenderPass pass) const
     {
         Renderer& render = Renderer::Get();
-        uint32 textureFlags = 0;
+        a_uint32 textureFlags = 0;
 
         if(!m_pipeline->Enable(pass))
             return false;
 
-        for(uint32 i = 0; i < MAX_TEXTUREUNIT; i++)
+        for(a_uint32 i = 0; i < MAX_TEXTUREUNIT; i++)
         {
             if(m_texture[i].pass & pass)
             {
@@ -67,7 +67,7 @@ namespace Agmd
         m_pipeline->Disable();
     }
 
-    void Material::SetTexture(Texture tex, uint32 unit, TRenderPass pass)
+    void Material::SetTexture(Texture tex, a_uint32 unit, TRenderPass pass)
     {
         m_texture[unit] = TextureUnit(tex,pass);
     }

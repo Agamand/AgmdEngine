@@ -19,7 +19,7 @@ namespace Agmd
     public :
         GLUniformBuffer(unsigned long count, unsigned int* buffer, unsigned int bindPoint);
 
-        virtual void Bind(uint32 bindpoint);
+        virtual void Bind(a_uint32 bindpoint);
 
         unsigned int getBindPoint() const;
 
@@ -36,7 +36,7 @@ namespace Agmd
     {}
 
     template <int bufferCount>
-    void GLUniformBuffer<bufferCount>::Bind(uint32 bindpoint)
+    void GLUniformBuffer<bufferCount>::Bind(a_uint32 bindpoint)
     {
         GLRenderer::glBindBuffer(GL_UNIFORM_BUFFER, m_Buffer[m_currentBuffer]);
         GLRenderer::glBindBufferBase(GL_UNIFORM_BUFFER,bindpoint,m_Buffer[m_currentBuffer]);

@@ -21,6 +21,7 @@ namespace Agmd
         void EndLight();
         void SetupForRendering();
         void SetOffset(float offset);
+        void SetBias(float bias);
         Texture& GetShadowDepth();
         static mat4 bias;
     private:
@@ -28,13 +29,14 @@ namespace Agmd
         Texture m_depth[6];
         FrameBuffer* m_framebuffer;
         mat4 m_shadow_matrix[6];
-        uint32 m_currentDepth;
+        a_uint32 m_currentDepth;
         ivec2 m_shadowSize;
         LightType m_currentLightType;
         Light* m_currentLight;
         ShaderProgram m_shadowcast;
         static mat4 s_lookupMatrix[6];
         float m_offset;
+        float m_bias;
     };
 }
 

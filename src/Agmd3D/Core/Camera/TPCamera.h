@@ -20,13 +20,14 @@ namespace Agmd
         TPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~TPCamera();
 
-        virtual void OnUpdate(uint64 time_diff);
+        virtual void OnUpdate(a_uint64 time_diff);
 
         virtual void OnMouseMotion(int x, int y);
 
         virtual void OnKeyboard(char key, bool up);
 
         virtual void OnMouseWheel(float delta);
+        virtual void OnMouseWheel(bool up);
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos); 
@@ -35,7 +36,9 @@ namespace Agmd
 
         float _theta;
         float _phi;
+        vec3 _up;
         float distance;
+        bool  m_mousewheel;
     };
 }
 

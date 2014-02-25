@@ -21,9 +21,9 @@ namespace AgmdUtilities
     class MemoryMgr
     {
     public:
-        void* Allocate(std::size_t size, File file, uint32 line, bool isArray);
+        void* Allocate(std::size_t size, File file, a_uint32 line, bool isArray);
         void Free(void *ptr, bool isArray);
-        void NextDelete(File file, uint32 line);
+        void NextDelete(File file, a_uint32 line);
 
         static MemoryMgr& Instance();
 
@@ -31,11 +31,11 @@ namespace AgmdUtilities
         struct memBlock
         {
             memBlock() : size(0), line(0), isArray(false) {}
-            memBlock(std::size_t _size,File _file, uint32 _line, bool _isArray) : size(_size),file(_file), line(_line), isArray(_isArray) {}
-            memBlock(uint32 _line, bool _isArray) : size(0), line(_line), isArray(_isArray) {}
+            memBlock(std::size_t _size,File _file, a_uint32 _line, bool _isArray) : size(_size),file(_file), line(_line), isArray(_isArray) {}
+            memBlock(a_uint32 _line, bool _isArray) : size(0), line(_line), isArray(_isArray) {}
             std::size_t size;
             File file;
-            uint32 line;
+            a_uint32 line;
             bool isArray;
         };
         typedef std::map<void*, memBlock> memBlockMap;

@@ -65,7 +65,7 @@ namespace Agmd
         if (!m_Texture)
         {
             SmartPtr<Image> image[6];
-            for(int32 i = 0; i < 6; i++)
+            for(a_int32 i = 0; i < 6; i++)
                 image[i] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
 
             //Load(*image, format, TEXTURE_2D, flags, filename);

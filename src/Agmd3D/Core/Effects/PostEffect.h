@@ -24,9 +24,9 @@ namespace Agmd
         PostEffect();
         virtual ~PostEffect();
         virtual void Init() = 0;
-        virtual void Update( uint64 /*t_diff*/) = 0;
+        virtual void Update( a_uint64 /*t_diff*/) = 0;
         virtual void ApplyEffect(Texture& input, Texture& output) = 0;
-
+        virtual void SetEnable(bool enable);
     protected:
         ShaderProgram m_program;
         FrameBuffer* m_framebuffer;

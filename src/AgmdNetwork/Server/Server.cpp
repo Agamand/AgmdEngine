@@ -93,10 +93,10 @@ namespace AgmdNetwork
         buffer << packet.GetOpcode();
         buffer.append(packet.contents(),packet.size());
         printf("Send packet to %d clients\n",m_clientSocket.size());
-        for(uint32 i = 0; i < m_clientSocket.size(); i++)
+        for(a_uint32 i = 0; i < m_clientSocket.size(); i++)
         {
-            int32 error = 0;
-            send(m_clientSocket[i],(int8*)buffer.contents(),buffer.size(), 0);
+            a_int32 error = 0;
+            send(m_clientSocket[i],(a_int8*)buffer.contents(),buffer.size(), 0);
             if(error < 0)
                 printf("Error on send packet to socket %d\n",m_clientSocket[i]);
             else printf("Send packet to socket %d\n",m_clientSocket[i]);
@@ -105,7 +105,7 @@ namespace AgmdNetwork
 
     void Server::RemoveClient(SOCKET sock)
     {
-        for(uint32 i = 0; i < m_clientSocket.size(); i++)
+        for(a_uint32 i = 0; i < m_clientSocket.size(); i++)
         {
             if(m_clientSocket[i] == sock)
             {
@@ -117,28 +117,28 @@ namespace AgmdNetwork
 
     DWORD Server::ClientThread(SOCKET soc){
 
-        uint32 size;
-        uint16 opcode;
+        a_uint32 size;
+        a_uint16 opcode;
         Packet packet;
-        uint8 buffer[_MAX_SIZE];
-        while(recv(soc,(int8*)&size,sizeof(uint32),MSG_WAITALL) == sizeof(uint32))
+        a_uint8 buffer[_MAX_SIZE];
+        while(recv(soc,(a_int8*)&size,sizeof(a_uint32),MSG_WAITALL) == sizeof(a_uint32))
         {
             
             if(size < SIZE_OPCODE)
                 continue;
 
-            recv(soc,(int8*)&opcode,SIZE_OPCODE,MSG_WAITALL);
+            recv(soc,(a_int8*)&opcode,SIZE_OPCODE,MSG_WAITALL);
 
             size -= SIZE_OPCODE;
-            uint32 maxitr = size/_MAX_SIZE;
+            a_uint32 maxitr = size/_MAX_SIZE;
 
-            for(uint32 i = 0; i < maxitr; i++)
+            for(a_uint32 i = 0; i < maxitr; i++)
             {
-                recv(soc,(int8*)buffer,_MAX_SIZE,MSG_WAITALL);
+                recv(soc,(a_int8*)buffer,_MAX_SIZE,MSG_WAITALL);
                 packet.append(buffer, _MAX_SIZE);
             }
 
-            recv(soc,(int8*)buffer,size%_MAX_SIZE,MSG_WAITALL);
+            recv(soc,(a_int8*)buffer,size%_MAX_SIZE,MSG_WAITALL);
             packet.SetOpcode(opcode);
             packet.append(buffer, size%_MAX_SIZE);
 

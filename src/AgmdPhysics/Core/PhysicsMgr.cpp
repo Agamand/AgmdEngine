@@ -39,7 +39,7 @@ namespace AgmdPhysics
         
     }
 
-    void PhysicsMgr::Update(uint64 dt)
+    void PhysicsMgr::Update(a_uint64 dt)
     {
         m_uidt = dt;
         std::size_t size = m_evEntities.size();

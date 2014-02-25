@@ -5,10 +5,55 @@
     <ClCompile Include="..\..\src\Demo\M2Loader.cpp" />
     <ClCompile Include="..\..\src\Demo\M2Model.cpp" />
     <ClCompile Include="..\..\src\Demo\main.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\list.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Loader\obj_parser.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Loader\objLoader.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Loader\string_extra.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Loader\MeshLoader.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Demo\App.h" />
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\list.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Loader\obj_parser.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Loader\objLoader.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Loader\string_extra.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Loader\MeshLoader.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Test">
+      <UniqueIdentifier>{9c2329a7-d37f-4282-9d4e-2608aba5ea00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Loader">
+      <UniqueIdentifier>{f508311c-bdc3-414a-b744-18b0e6ea42d0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Demo\Loader\objTester.cpp">
+      <Filter>Loader</Filter>
+    </None>
   </ItemGroup>
 </Project>

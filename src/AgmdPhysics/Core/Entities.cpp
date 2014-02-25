@@ -22,7 +22,7 @@ namespace AgmdPhysics
     m_bIsStatic(false)
     {}
 
-    void Entities::Update(uint64 dt)
+    void Entities::Update(a_uint64 dt)
     {
         m_vOldAcceleration    = m_vAcceleration;
         m_vOldVelocity        = m_vVelocity;

@@ -44,16 +44,18 @@ namespace Agmd
         {
             vec3     position;
             vec3     normal;
-            uint32   color;
+            a_uint32   color;
             vec2     texCoords;
             vec4     tangent;
         };
         typedef unsigned short TIndex;
 
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
+		Model(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
 
         void Draw(const Transform* transform) const;
 
+        void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
 
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
@@ -62,6 +64,7 @@ namespace Agmd
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
         TPrimitiveType  m_PrimitiveType;
+		bool			m_indexed;
         
     };
 

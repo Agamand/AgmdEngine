@@ -68,7 +68,8 @@ namespace Agmd
 
         Logger::Instance().SetFilename("Agmd3D");
         m_stats = new Statistics();
-
+	
+		std::cout << "Système de rendu : "<< GetRendererDesc().c_str()<< std::endl;
         Logger::Log(LOGNORMAL,"Système de rendu : %s",GetRendererDesc().c_str());
         Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
         for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
@@ -78,7 +79,7 @@ namespace Agmd
         Logger::Log(LOGNORMAL,"");
     }
 
-    void Renderer::OnUpdate(uint64 t_diff)
+    void Renderer::OnUpdate(a_uint64 t_diff)
     {
          Camera* cam = Camera::GetCurrent();
          if(cam)
@@ -124,32 +125,32 @@ namespace Agmd
             return m_Camera;
         }
 
-        void Renderer::SetTextureFlag(uint32 flag)
+        void Renderer::SetTextureFlag(a_uint32 flag)
         {
             m_TextureFlags = flag;
         }
 
-        void Renderer::AddTextureFlag(uint32 flag)
+        void Renderer::AddTextureFlag(a_uint32 flag)
         {
             m_TextureFlags |= flag;
         }
 
-        void Renderer::RemoveTextureFlag(uint32 flag)
+        void Renderer::RemoveTextureFlag(a_uint32 flag)
         {
             m_TextureFlags &= ~flag;
         }
 
-        uint32 Renderer::GetTextureFlag()
+        a_uint32 Renderer::GetTextureFlag()
         {
             return m_TextureFlags;
         }
 
-        void Renderer::SetActiveScene(Scene* sc)
+        void Renderer::SetActiveScene(SceneOld* sc)
         {
             m_ActiveScene = sc;
         }
 
-        Scene* Renderer::GetActiveScene()
+        SceneOld* Renderer::GetActiveScene()
         {
             return m_ActiveScene;
         }

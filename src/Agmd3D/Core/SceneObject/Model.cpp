@@ -17,19 +17,19 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Model::Model(Model::TVertex* Vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, TPrimitiveType type) :
-    m_PrimitiveType(type)
+    Model::Model(Model::TVertex* vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, TPrimitiveType type) :
+    m_PrimitiveType(type),m_indexed(true)
     {
-        Assert(Vertices != NULL);
+        Assert(vertices != NULL);
         Assert(Indices  != NULL);
 
-        Generate(G_TANGENT, Vertices, VerticesCount, Indices, IndicesCount);
+        Generate(G_TANGENT, vertices, VerticesCount, Indices, IndicesCount);
 
         TDeclarationElement Elements[] =
         {
-            {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_NORMAL,        ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_DIFFUSE,        ELT_TYPE_COLOR},
+            {0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
             {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
             {0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
             {0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
@@ -38,9 +38,32 @@ namespace Agmd
         };
         m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
 
-        m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, Vertices);
+        m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, vertices);
         m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(IndicesCount, 0, Indices);
     }
+
+	Model::Model( TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type/*= PT_TRIANGLELIST*/ ) : m_PrimitiveType(type),m_indexed(false)
+	{
+		Assert(vertices != NULL);
+
+		//Generate(G_TANGENT, Vertices, VerticesCount, Indices, IndicesCount);
+
+		TDeclarationElement Elements[] =
+		{
+			{0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
+			{0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
+			{0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
+			{0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
+			{0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
+			{0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
+			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
+
+		};
+		m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
+
+		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+	}
+
 
 
     void Model::Draw(const Transform* transform) const
@@ -48,8 +71,12 @@ namespace Agmd
         Renderer::Get().SetCurrentTransform(transform);
         Renderer::Get().SetDeclaration(m_Declaration);
         Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
-        Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-        Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
+		if(m_indexed)
+		{
+			Renderer::Get().SetIndexBuffer(m_IndexBuffer);
+			Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
+		}else
+			Renderer::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
     }
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
@@ -118,7 +145,7 @@ namespace Agmd
             }
         }
 
-        for(uint32 i = 0; i < normal.size(); i++)
+        for(a_uint32 i = 0; i < normal.size(); i++)
         {
             if(type & G_NORMAL)
             {
@@ -133,4 +160,19 @@ namespace Agmd
         }
 
     }
+
+    void Model::Export( TVertex*& vertices,TIndex*& index,int& vcount, int& icount)
+    {
+        vcount = m_VertexBuffer.GetCount();
+        icount = m_IndexBuffer.GetCount();
+        vertices = new TVertex[vcount];
+        index = new TIndex[icount];
+        TVertex* v = m_VertexBuffer.Lock();
+        std::memcpy(vertices,v,vcount*sizeof(TVertex));
+        m_VertexBuffer.Release();
+        TIndex* i = m_IndexBuffer.Lock();
+        std::memcpy(index,i,icount*sizeof(TIndex));
+        m_IndexBuffer.Release();
+    }
+
 }

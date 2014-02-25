@@ -39,10 +39,10 @@ namespace AgmdUtilities
 
 		    Iterator& operator ++()    { current = current->next; return *this; }
 		    Iterator& operator --()    { current = current->prev; return *this; }
-		    Iterator  operator ++(int32) { Iterator tmp = *this; current = current->next; return tmp; }
-		    Iterator  operator --(int32) { Iterator tmp = *this; current = current->prev; return tmp; }
+		    Iterator  operator ++(a_int32) { Iterator tmp = *this; current = current->next; return tmp; }
+		    Iterator  operator --(a_int32) { Iterator tmp = *this; current = current->prev; return tmp; }
 
-		    Iterator& operator +=(int32 num)
+		    Iterator& operator +=(a_int32 num)
 		    {
 			    if(num > 0)
 			    {
@@ -83,10 +83,10 @@ namespace AgmdUtilities
 
 		    ConstIterator& operator ++()    { current = current->next; return *this; }
 		    ConstIterator& operator --()    { current = current->prev; return *this; }
-		    ConstIterator  operator ++(int32) { ConstIterator tmp = *this; current = current->next; return tmp; }
-		    ConstIterator  operator --(int32) { ConstIterator tmp = *this; current = current->prev; return tmp; }
+		    ConstIterator  operator ++(a_int32) { ConstIterator tmp = *this; current = current->next; return tmp; }
+		    ConstIterator  operator --(a_int32) { ConstIterator tmp = *this; current = current->prev; return tmp; }
 
-		    ConstIterator& operator +=(int32 num)
+		    ConstIterator& operator +=(a_int32 num)
 		    {
 			    if(num > 0)
 			    {
@@ -140,7 +140,7 @@ namespace AgmdUtilities
         void pop_front();
         void pop_fack();
 
-        uint32 size() const;
+        a_uint32 size() const;
 
     private:
 
@@ -243,7 +243,7 @@ template <class T, template <class> A> inline void List<T,A>::pop_back()
 }
 
 
-template <class T, template <class> A> inline uint32 List<T,A>::size() const
+template <class T, template <class> A> inline a_uint32 List<T,A>::size() const
 {
     return m_size;
 }

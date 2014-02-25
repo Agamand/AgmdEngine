@@ -14,6 +14,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Debug/New.h>
 #include <Utilities/SmartPtr.h>
 
+#include <ostream>
+
 namespace AgmdUtilities
 {
     template <class T>
@@ -28,20 +30,22 @@ namespace AgmdUtilities
 
         ~SharedPtr();
 
-        T& operator * () const;
-        T* operator ->() const;
-
+        T& operator * ();
+        T* operator ->();
         const SharedPtr& operator =(const SharedPtr& sptr);
 
         const SharedPtr& operator =(T* ptr);
 
 
 
-        operator T*() const;
+        operator T*&();
 
     private :
         SmartPtr<T*> m_Data;
     };
+
+    template<typename T>
+    std::ostream operator<<(std::ostream, SharedPtr<T> ptr);
 
     #include "SharedPtr.inl"
     #include <Debug/NewOff.h>

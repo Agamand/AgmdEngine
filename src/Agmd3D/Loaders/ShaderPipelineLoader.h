@@ -116,6 +116,7 @@ namespace Agmd
 
         std::vector<Properties> m_properties;
         std::map<std::string,std::string> m_subroutine;
+		std::map<std::string,const char*> d_subroutine;
     };
 
 }

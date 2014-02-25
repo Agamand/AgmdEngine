@@ -20,7 +20,7 @@ inline void ShaderProgram::SetParameter(const std::string& name, T value) const
 }
 
 template <class T>
-inline void ShaderProgram::SetParameter(const std::string& name, T value, uint32 count) const
+inline void ShaderProgram::SetParameter(const std::string& name, T value, a_uint32 count) const
 {
     m_ShaderProgram->SetParameter(name,value,count);
 }

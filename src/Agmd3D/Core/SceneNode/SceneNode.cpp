@@ -12,10 +12,12 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    SceneNode::SceneNode(Transform* transform) : 
-    m_material(NULL),
-    m_transform(transform)
-    {}
+
+    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type)
+    {
+		if(!m_transform)
+			m_transform = new Transform();
+	}
 
     SceneNode::~SceneNode()
     {}

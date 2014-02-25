@@ -35,16 +35,16 @@ namespace Agmd
 
         struct Parameter
         {
-            uint32 loc;
-            uint32 size;
-            uint32 typeValue;
+            a_uint32 loc;
+            a_uint32 size;
+            a_uint32 typeValue;
             ParameterType type;
         };
 
         typedef std::map<std::string,Parameter> ParameterMap; 
         typedef std::vector<Parameter> APIMatrix;
 
-        GLShaderProgram(uint32 id);
+        GLShaderProgram(a_uint32 id);
         virtual ~GLShaderProgram();
 
         virtual void SetParameter(const std::string& name, float value) const;
@@ -61,15 +61,15 @@ namespace Agmd
         virtual void SetParameter(const std::string& name, const mat3& value) const;
         virtual void SetParameter(const std::string& name, const mat4& value) const;
 
-        virtual void SetParameter(const std::string& name, float* value, uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec2* value,  uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec3* value,  uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec4* value,  uint32 count) const;
-        virtual void SetParameter(const std::string& name, mat4* value,  uint32 count) const;
+        virtual void SetParameter(const std::string& name, float* value, a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec2* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec3* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec4* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, mat4* value,  a_uint32 count) const;
 
         virtual void SetParameter(TMatrixType type, const mat4& value) const;
 
-        virtual void SetParameter(const std::string& name, const uint32 bindPoint) const;
+        virtual void SetParameter(const std::string& name, const a_uint32 bindPoint) const;
 
         virtual void Use(bool) const;
         void UniformShaderInfo();
@@ -87,7 +87,7 @@ namespace Agmd
         ParameterMap m_AttributMap;
         Parameter    m_APIMatrix[MAX_APIMATRIX];
         Parameter    m_defaultParameter;
-        uint32 m_id;
+        a_uint32 m_id;
     };
 }
 

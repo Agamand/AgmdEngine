@@ -25,12 +25,12 @@ namespace Agmd
         AWindow(AWidget* parent = NULL);
         virtual ~AWindow();
 
-        void SetFont(Texture& font);
+        void SetBackground(Texture& font);
 
-        virtual uint32 OnClick(ivec2& pos_mouse, uint32 mouseState);
-        virtual uint32 OnMouseOver();
-        virtual uint32 OnMouseMove(ivec2& pos_diff, uint32 mouseState);
-        virtual uint32 OnKey(char key);
+        virtual a_uint32 OnClick(ivec2& pos_mouse, a_uint32 mouseState);
+        virtual a_uint32 OnMouseOver();
+        virtual a_uint32 OnMouseMove(ivec2& pos_diff, a_uint32 mouseState);
+        virtual a_uint32 OnKey(char key);
         virtual void OnSizeChanged();
         virtual void OnPosChanged();
 
@@ -45,7 +45,7 @@ namespace Agmd
         struct TVertex
         {
             vec3     Position;
-            uint32   Diffuse;
+            a_uint32   Diffuse;
             vec2     TexCoords0; 
             vec2     TexCoords1;
             vec2     TexCoords2;
@@ -61,7 +61,7 @@ namespace Agmd
         Buffer<TIndex>      m_IndexBuffer;
         DeclarationPtr      m_Declaration;
         Texture             m_Texture;
-        Texture             m_Font;
+        Texture             m_Background;
         BaseShaderProgram*  m_Program;
 
         bool                hold;

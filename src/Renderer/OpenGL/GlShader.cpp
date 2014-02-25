@@ -11,7 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    GLShader::GLShader(uint32 shaderid, TShaderType type):
+    GLShader::GLShader(a_uint32 shaderid, TShaderType type):
     BaseShader(type),
     m_Shader(shaderid)
     {}

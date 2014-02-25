@@ -11,7 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    RenderingMode::RenderingMode(int32 width, int32 height) :
+    RenderingMode::RenderingMode(a_int32 width, a_int32 height) :
     m_screen(width,height),m_mode(MODE_FILL)
     {}
 

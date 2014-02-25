@@ -44,14 +44,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Demo\App.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\list.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\MeshLoader.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\objLoader.cpp" />
+    <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
+    <None Include="..\..\src\Demo\Loader\objTester.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\obj_parser.cpp" />
+    <ClCompile Include="..\..\src\Demo\Loader\string_extra.cpp" />
     <ClCompile Include="..\..\src\Demo\M2Loader.cpp" />
     <ClCompile Include="..\..\src\Demo\M2Model.cpp" />
     <ClCompile Include="..\..\src\Demo\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Demo\App.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\list.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\MeshLoader.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\objLoader.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\obj_parser.h" />
+    <ClInclude Include="..\..\src\Demo\Loader\string_extra.h" />
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
+    <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{501DBA9F-119E-4320-87F5-D695A3A7271F}</ProjectGuid>
@@ -159,7 +172,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <OutDir>..\..\bin\$(Configuration)_$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
@@ -199,7 +212,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

@@ -22,7 +22,7 @@ namespace Agmd
     void BlurMotionEffect::Init()
     {}
 
-    void BlurMotionEffect::Update(uint64 /*t_diff*/)
+    void BlurMotionEffect::Update(a_uint64 /*t_diff*/)
     {}
 
     void BlurMotionEffect::ApplyEffect(Texture& input, Texture& output)

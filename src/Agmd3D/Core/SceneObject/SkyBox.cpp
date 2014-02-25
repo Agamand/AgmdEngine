@@ -64,7 +64,7 @@ namespace Agmd
         MatStack::pop();
     }
 
-    void SkyBox::SetTexture(Texture tex, uint32 index)
+    void SkyBox::SetTexture(Texture tex, a_uint32 index)
     {
         m_Texture = tex;
         //m_Texture[index] = tex;

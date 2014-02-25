@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    GLFrameBuffer::GLFrameBuffer(uint32 buff_id) : 
+    GLFrameBuffer::GLFrameBuffer(a_uint32 buff_id) : 
     m_Id(buff_id)
     {}
 
@@ -24,7 +24,7 @@ namespace Agmd
         GLRenderer::glDeleteFramebuffers(1 ,&m_Id);
     }
 
-    void GLFrameBuffer::SetTexture(const Texture& tex, uint32 attach)
+    void GLFrameBuffer::SetTexture(const Texture& tex, a_uint32 attach)
     {
         const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
         m_TextureMap[attach] = tex;
@@ -33,7 +33,7 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::SetTextureCube(const Texture& tex, uint32 attach, int face)
+    void GLFrameBuffer::SetTextureCube(const Texture& tex, a_uint32 attach, int face)
     {
         if(tex.GetType() != TEXTURE_CUBE)
             return;
@@ -46,7 +46,7 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::SetRender(RenderBuffer* render, uint32 attach)
+    void GLFrameBuffer::SetRender(RenderBuffer* render, a_uint32 attach)
     {
         m_RenderBufferMap[attach] = render;
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
@@ -64,14 +64,14 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
-    uint32 GLFrameBuffer::GetID()
+    a_uint32 GLFrameBuffer::GetID()
     {
         return m_Id;
     }
 
-    void GLFrameBuffer::Clear(uint32 flags)
+    void GLFrameBuffer::Clear(a_uint32 flags)
     {
-        uint32 _flags = 0;
+        a_uint32 _flags = 0;
 
         if(flags & CLEAR_COLOR)
             _flags |= GL_COLOR_BUFFER_BIT;
@@ -87,31 +87,31 @@ namespace Agmd
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::DrawBuffer(uint32 flag)
+    void GLFrameBuffer::DrawBuffer(a_uint32 flag)
     {
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         glDrawBuffer(flag);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    void GLFrameBuffer::DrawBuffers(uint32 nbuffer, uint32* flag)
+    void GLFrameBuffer::DrawBuffers(a_uint32 nbuffer, a_uint32* flag)
     {
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         GLRenderer::glDrawBuffers(nbuffer, flag);
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
-    uint32* GLFrameBuffer::GenerateBufferFlags(uint32 count, uint32 flags[])
+    a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32 count, a_uint32 flags[])
     {
         if(!count)
             return NULL;
-        uint32* buffer = new uint32[count];
-        for(uint32 i = 0; i < count; i++)
+        a_uint32* buffer = new a_uint32[count];
+        for(a_uint32 i = 0; i < count; i++)
             buffer[i] = RGLEnum::GetAttachment(flags[i]);
         return buffer;
     }
 
-    void GLFrameBuffer::ReadBuffer(uint32 flag)
+    void GLFrameBuffer::ReadBuffer(a_uint32 flag)
     {
         GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         glReadBuffer(flag);

@@ -15,7 +15,9 @@ namespace Agmd
     TPCamera::TPCamera(mat4& projection, vec3& pos) :
     _phi(0.0f),
     _theta(0.0f),
+    _up(0,0,1),
     distance(30.0f),
+    m_mousewheel(false),
     Camera(projection,pos)
     {
         UpdateVector();
@@ -26,15 +28,15 @@ namespace Agmd
 
     void TPCamera::UpdateVector()
     {
-        glm::vec3 up(0.0f,0.0f,1.0f);
-        float r_temp = cos(_phi*((float)M_PI)/180);
+        
         if (_phi > 89)
             _phi = 89;
         else if (_phi < -89)
             _phi = -89;
-    
+        float r_temp = cos(_phi*((float)M_PI)/180);
+        _up = vec3(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),sin(_phi*M_PI/180)*sin(_theta*M_PI/180),r_temp);
         _forward = glm::vec3(r_temp*cos(_theta*M_PI/180),r_temp*sin(_theta*M_PI/180),sin(_phi*M_PI/180));
-        _left = glm::cross(up,_forward);
+        _left = glm::cross(_up,_forward);
         glm::normalize(_left);
 
       _position  =  _target - distance*_forward;
@@ -61,14 +63,23 @@ namespace Agmd
     }
     void TPCamera::OnMouseMotion(int x, int y)
     {
-        _theta += x*_sensivity;
-        _phi += y*_sensivity;
+        if(m_mousewheel)
+        {
+            _target += -_left*(float)x*0.1f;
+            _target += _up*(float)y*0.1f;
+        }
+        else
+        {
+            _theta += x*_sensivity;
+            _phi += y*_sensivity;
+        
+        }
         UpdateVector();
     }
 
     void TPCamera::OnKeyboard(char key, bool up)
     {
-        uint32 tempFlags = MOVE_NONE;
+        a_uint32 tempFlags = MOVE_NONE;
         switch(key)
         {
         case 'Z':
@@ -103,7 +114,7 @@ namespace Agmd
         UpdateVector();
     }
 
-    void TPCamera::OnUpdate(uint64 time_diff)
+    void TPCamera::OnUpdate(a_uint64 time_diff)
     {
         if(moveFlags & ZOOM_IN)
             distance -= _speed*time_diff/1000.0f;
@@ -146,6 +157,10 @@ namespace Agmd
     {
         distance += delta/30*0.1f;
         UpdateVector();
+    }
+    void TPCamera::OnMouseWheel(bool up)
+    {
+        m_mousewheel = up;
     }
 
     void TPCamera::setTarget(glm::vec3 pos)

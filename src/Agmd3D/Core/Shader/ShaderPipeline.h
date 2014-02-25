@@ -15,10 +15,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Shader/ShaderProgram.h>
 
 #include <string>
+#include <map>
+#include <fstream>
 
 namespace Agmd
 {
-    class ShaderPipeline
+    class AGMD3D_EXPORT ShaderPipeline
     {
     public:
 
@@ -32,7 +34,15 @@ namespace Agmd
     private:
         ShaderProgram m_pipeline[MAX_RENDERPASS];
         static ShaderPipeline* s_defaultPipeline;
+        static void LoadDefaultFunction();
+        static std::map<std::string,std::string> m_defaultFunction;
+
     };
+    inline std::string LoadFromFile(std::string path)
+    {
+        std::ifstream stream(path);
+        return std::string((std::istreambuf_iterator<char>(stream)), std::istreambuf_iterator<char>());
+    }
 }
 
 #endif /* _SHADERPIPELINE_H_ */

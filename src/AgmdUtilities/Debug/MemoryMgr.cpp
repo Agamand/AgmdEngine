@@ -50,7 +50,7 @@ namespace AgmdUtilities
         assert(_Instance != NULL);
         return *_Instance;
     }
-    void* MemoryMgr::Allocate(std::size_t size, File file, uint32 line, bool isArray)
+    void* MemoryMgr::Allocate(std::size_t size, File file, a_uint32 line, bool isArray)
     {
         void *ptr = malloc(size);
         assert(ptr != NULL);
@@ -84,7 +84,7 @@ namespace AgmdUtilities
 
         free(ptr);
     }
-    void MemoryMgr::NextDelete(File file, uint32 line)
+    void MemoryMgr::NextDelete(File file, a_uint32 line)
     {
         memBlock _delete;
         _delete.file = file;

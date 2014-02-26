@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/RenderingMode/VertexRendering.h>
 #include <Core/Renderer.h>
-#include <Core/SceneObject/Scene.h>
+#include <Core/SceneObject/SceneMgr.h>
 
 namespace Agmd
 {
@@ -31,7 +31,7 @@ namespace Agmd
     void VertexRendering::Compute()
     {
         Renderer& render = Renderer::Get();
-        SceneOld* sc = render.GetActiveScene();
+        SceneMgr* sc = render.GetActiveScene();
         Start();
 
         sc->Render(TRenderPass::RENDERPASS_ZBUFFER);

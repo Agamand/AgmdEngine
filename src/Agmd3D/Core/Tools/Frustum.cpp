@@ -56,9 +56,9 @@ namespace Agmd
     bool Frustum::IsIn(BoundingBox& box)
     {
         vec3 max,min;
-        const std::pair<vec3,vec3> trbox = box.GetTransformedBoundingBox();
-        max = trbox.first;
-        min = trbox.second;
+        BoundingBox trbox = box.GetTransformedBoundingBox(NULL);
+        max = trbox.GetMin();
+        min = trbox.GetMax();
 
         if( IsIn( vec3(min.x, min.y, min.z)) )
             return true;

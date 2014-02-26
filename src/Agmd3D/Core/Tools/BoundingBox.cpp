@@ -10,14 +10,14 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    BoundingBox::BoundingBox(const std::vector<vec3>& vertex_pos, TransformPtr transform)
-    {
+    BoundingBox::BoundingBox(const std::vector<vec3>& vertex_pos)
+    {}
 
-    }
+	BoundingBox::BoundingBox(const vec3 min, const vec3 max) : m_min(min),m_max(max)
+	{}
 
-    BoundingBox::~BoundingBox()
-    {
-    }
+    BoundingBox::BoundingBox(): m_min(0),m_max(0)
+    {}
 
     vec3 BoundingBox::GetMin()
     {
@@ -29,12 +29,12 @@ namespace Agmd
         return m_max;
     }
 
-    const std::pair<vec3,vec3> BoundingBox::GetTransformedBoundingBox()
+    BoundingBox BoundingBox::GetTransformedBoundingBox(Transform* transform)
     {
         vec4 min = vec4(m_min,1);
         vec4 max = vec4(m_max,1);
-        min = m_transform->ModelMatrix()*min;
-        max = m_transform->ModelMatrix()*max;
+        min = transform->ModelMatrix()*min;
+        max = transform->ModelMatrix()*max;
 
         if(min.x > max.x)
             std::swap(min.x,max.x);
@@ -43,6 +43,6 @@ namespace Agmd
         if(min.z > max.z)
             std::swap(min.y,max.y);
 
-        return std::pair<vec3,vec3>(vec3(min),vec3(max));
+        return BoundingBox(vec3(min),vec3(max));
     }
 }

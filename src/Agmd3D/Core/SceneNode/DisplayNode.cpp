@@ -1,6 +1,8 @@
 
 #include <Core/SceneNode/DisplayNode.h>
+#include <Core/SceneObject/Material.h>
 #include <Core/ResourceManager.h>
+
 namespace Agmd
 {
 
@@ -8,6 +10,20 @@ namespace Agmd
 	{
 		if(!mat)
 			m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
+		else
+			m_material = mat;
 	}	
+
+	bool DisplayNode::IsVisible( BoundingBox& bbox )
+	{
+		return true;
+	}
+
+	void DisplayNode::FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light)
+	{
+		display.push_back(this);
+		SceneNode::FindVisible(cam,display,light);
+	}
+
 }
 

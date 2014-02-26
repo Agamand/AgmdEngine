@@ -6,8 +6,9 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-inline Transform::Transform(const vec3& _position, const quat& _rotation) :
+inline Transform::Transform(const vec3& _position, const quat& _rotation, const vec3& scale) :
 m_parent(NULL),
+m_scale(scale),
 m_position(_position),
 m_rotation(_rotation),
 position(m_position),
@@ -24,7 +25,17 @@ rotation(m_rotation)
 
 inline mat4 Transform::ModelMatrix() const
 {
-    return translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); 
+    return m_globalMatrix;//translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); 
+}
+
+inline mat4 Transform::LocalModelMatrix() const
+{
+	return translate(mat4(1.0f),m_position)*mat4_cast(m_rotation);//*scale(mat4(1),m_scale);
+}
+
+inline void Transform::Update(Transform* t)
+{
+	m_globalMatrix = t ? t->ModelMatrix()*LocalModelMatrix(): LocalModelMatrix();
 }
 
 inline void Transform::Rotate(float angle, const vec3& vector)

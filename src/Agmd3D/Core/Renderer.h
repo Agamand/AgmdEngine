@@ -34,7 +34,6 @@ namespace Agmd
     class AGMD3D_EXPORT Renderer
     {
     public :
-
         virtual ~Renderer();
         static void Change(Renderer* newRenderer);
 
@@ -140,8 +139,8 @@ namespace Agmd
         void SetMatProjection(mat4 _MatProjection);
         void SetScreen(ivec2 _screen);
 
-        void SetActiveScene(SceneOld* sc);
-        SceneOld* GetActiveScene();
+		void SetActiveScene(SceneMgr* sc);
+		SceneMgr* GetActiveScene();
         Statistics& GetStatistics();
     protected :
 
@@ -161,11 +160,11 @@ namespace Agmd
 
         std::map<TCapability, bool> m_Capabilities;
 
-        a_uint32              m_TextureFlags;
+        a_uint32            m_TextureFlags;
         ivec2               m_Screen;
         const Transform*    m_CurrentTransform;
 
-        SceneOld*              m_ActiveScene;
+        SceneMgr*           m_ActiveScene;
         Camera*             m_Camera;
         Statistics*         m_stats;
     private :

@@ -21,18 +21,28 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-
+	class LightNode;
 	class AGMD3D_EXPORT DisplayNode : public SceneNode
 	{
 	public :
 		DisplayNode(Transform* t,Material*mat);
-		virtual ~DisplayNode();
+		virtual ~DisplayNode(){};
 
 		virtual void Render(TRenderPass pass) const = 0;
 		virtual void Draw() const = 0;
+
+		virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light);
+
 		const Material& GetMaterial() const { return *m_material;}
-		const BoundingBox& GetBoundingBox() const;
+		const BoundingBox& GetBoundingBox() const { return m_localBBox;};
+		const BoundingBox& GetGlobalBoundingBox() const { return m_globalBbox;};
+
+		virtual bool IsVisible( BoundingBox& bbox );
+
 	protected:
+		BoundingBox m_baseBbox;
+		BoundingBox m_localBBox;
+		BoundingBox m_globalBbox;
 		Material* m_material;
 	};
 

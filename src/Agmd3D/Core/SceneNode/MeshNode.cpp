@@ -9,7 +9,9 @@ namespace Agmd
     MeshNode::MeshNode(Model* basemodel, TransformPtr transform) :
     DisplayNode(transform,NULL),
     m_baseModel(basemodel)
-    {}
+    {
+		
+	}
     MeshNode::~MeshNode()
     {}
 
@@ -25,7 +27,8 @@ namespace Agmd
 
     void MeshNode::Render(TRenderPass pass) const
     {
-        if(!m_material->Enable(pass))
+		
+        if(!m_material || !m_material->Enable(pass))
             return;
 
         Draw();

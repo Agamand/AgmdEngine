@@ -46,6 +46,7 @@ status : in pause
 #include <Agmd3D/Core/Shader/ShaderPipeline.h>
 #include <Agmd3D/Core/Tools/Statistics.h>
 #include <Agmd3D/Core/SceneObject/Material.h>
+#include <Agmd3D/Core/SceneNode/MeshNode.h>
 #include <Renderer/OpenGL/GlRenderer.h>
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include "btBulletDynamicsCommon.h"
@@ -95,108 +96,37 @@ void App::Run(int argc, char** argv)
     AgmdApp::Run();
 }
 
+#include "Planet/Planet.h"
+
 void App::OnInit()
-{
-    fxaa = true;
-    default_program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/default_shader.glsl");
-    ShaderPipeline* test =  MediaManager::Instance().LoadMediaFromFile<ShaderPipeline>("Shader/BuiltinShader/BumpMap.shader");
-    
+{  
     pause = true;
-    count = 1;
-    noise = 0.005;
-    bias = -0.005f;
     m_timer = 1000;
-    MediaManager::Instance().RegisterLoader(new M2Loader(),"m2");
-	MediaManager::Instance().RegisterLoader(new MeshLoader(),"mesh");
+
     m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
-    shader2D = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/classic_pipeline_2D.glsl");
-	default_program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/noise_test.glsl");
-    //ForwardRendering* mode = new ForwardRendering(getScreen());
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    drend = mode;
-    //RenderingMode::SetRenderingMode(mode);
-	string file = "/RenderingShader/DeferredDirLightShader.glsl";
-	string shader = ShaderPreCompiler::Instance().LoadAndCompileShader(file,NULL);
-
-	g = 1;
-	l = 0.1;
-	o = 6;
-	seed = clock();
-
-    m_motioneffect = NULL;
-    m_effect = NULL;
-
-    m_motioneffect = new BlurMotionEffect(getScreen());
-    //PostEffectMgr::Instance().AddEffect(m_motioneffect);
-    asci = new AsciEffect();
-    //PostEffectMgr::Instance().AddEffect(asci);
-    m_effect = new BlurEffect(Texture());
-    //PostEffectMgr::Instance().AddEffect(m_effect);
+    RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
-    PostEffectMgr::Instance().AddEffect(m_fxaa);
-    cam3D = new TPCamera(m_MatProj3D);
-    cam2D = new FPCamera(m_MatProj2D);
-    Camera::SetCurrent(cam3D);
+    //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
-
-    m_Scene = new SceneOld();
-    /*nodes.push_back(vec3(50.0f,0.0f,10.0f));
-    nodes.push_back(vec3(100.0f,0.0f,10.0f));
-    nodes.push_back(vec3(100.0f,100.0f,10.0f));
-    nodes.push_back(vec3(0.0f,100.0f,10.0f));
-    nodes.push_back(vec3(0.0f,0.0f,10.0f));
-    nodes.push_back(vec3(50.0f,0.0f,10.0f));*/
-
-    //m_Scene->AddMesh(r);
-	
-    Model* model = /*CreatePlane(ivec2(5),ivec2(1),"",TPrimitiveType::PT_TRIANGLELIST);*/CreateMetaSphere(1.0f,0,0);//CreateSphere(1.0f,20,20,2*M_PI,"",TPrimitiveType::PT_TRIANGLELIST);//CreateBox(vec3(1),"",PT_TRIANGLELIST);
-    MeshRender* mesh = new MeshRender(model);
-	Texture tex;
-	uint32 *img;
-/*	generateNoise(img,1024,(uint32)8716);
-	tex.CreateFromImage(Agmd::Image(ivec2(1024),PXF_A8R8G8B8,(const unsigned char*)img),PXF_A8R8G8B8);
-	delete[] img;	
-	tex.CreateFromFile("/Texture/heightmap.png",PXF_A8R8G8B8);
-	Material* m = new Material(ShaderPipeline::GetDefaultPipeline());
-	m->SetTexture(tex,0,TRenderPass::RENDERPASS_DEFERRED);
-	mesh->SetMaterial(m);*/
-	//mesh->SetTexture(tex,0,TRenderPass::RENDERPASS_DIFFUSE);
-    plane = mesh;
-    mesh->GetTransform().Translate(0,0,0);
-    m_Scene->AddMesh(mesh);
-    sphere = mesh;
-    model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
-    //m_Scene->AddMesh(new MeshRender(model));
-		
-    MeshRender* me = new MeshRender(model);
-    me->GetTransform().Translate(1000,0,0);
-    me->GetTransform().Rotate(-90,vec3(0,1,0));
-//    m_Scene->AddMesh(me);
-
-
-    AWindow* diffuseW = new AWindow();
-    diffuseW->SetBackground(mode->GetDiffuseTexture());
-    AWindow* depthW = new AWindow();
-    depthW->SetBackground(mode->GetDepthTexture());//GetShadowRenderer()->GetShadowDepth());
-    AWindow* lightW = new AWindow();
-    lightW->SetBackground(mode->GetNormalTexture());
-    AWindow* posW =  new AWindow();
-    posW->SetBackground(mode->GetPositionTexture());
-    GUIMgr::Instance().AddWidget(diffuseW);
-    GUIMgr::Instance().AddWidget(depthW);
-    GUIMgr::Instance().AddWidget(lightW);   
-    GUIMgr::Instance().AddWidget(posW);
+    m_Scene = new SceneMgr();
+	Planet* p = new Planet();
+    Model* model = CreateMetaSphere(1.0f,0,0);
+    MeshNode* mesh = new MeshNode(CreateSphere(1.f,20,20,2*M_PI,"",PT_TRIANGLELIST));
+    m_Scene->AddNode(p->GetRoot());
+    //m_Scene->AddNode(mesh);
+	model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_SPOT);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
-    m_timer = 10000;
-
     m_light->SetRange(2000.0f);
 
+	cam3D = new TPCamera(m_MatProj3D);
+	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
 }
@@ -205,19 +135,6 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
     if(pause)
         return;
-    m_Scene->Update(time_diff);
-    asci->Update(time_diff);/*
-    if(m_timer <= time_diff)
-    { 
-        m_timer = 1000;
-    }else m_timer -= time_diff;*/
-	m_timer++;
-    vec3 position = vec3(2*cos(m_timer/500.0f*M_PI),2*sin(m_timer/500.0f*M_PI),2.0f);
-	m_light->SetDirection(-normalize(vec3(2*cos(m_timer/500.0f*M_PI),2*sin(m_timer/500.0f*M_PI),-1)));
-    //plane->GetTransform().SetPosition(position);
-    //plane->GetTransform().SetRotation(quat(90.0f,vec3(1,0,0))*quat(-90.0f+180*m_timer/5000.0f,vec3(0,1,0)));
-    sphere->GetTransform().SetPosition(position);
-    //m_light->SetDirection(normalize(position));
 }
 static const GLfloat vertices[] = 
 {
@@ -237,14 +154,14 @@ void App::OnRender3D()
     glDrawArrays(GL_TRIANGLE_FAN, 0, 3);
     default_program->Use(false);*/
     //GLRenderer::glDisableVertexAttribArray(0);
-    Renderer::Get().SetCurrentProgram(default_program);
-    Renderer::Get().SetCurrentTransform(NULL);
-    default_program->SetParameter("u_time",(float)m_timer/1000);
-	default_program->SetParameter("u_g",g);
-	default_program->SetParameter("u_l",l);
-	default_program->SetParameter("u_g",o);
-	default_program->SetParameter("u_l",(int)(seed+m_timer));
-    Fast2DSurface::Instance().Draw();
+ //   Renderer::Get().SetCurrentProgram(default_program);
+ //   Renderer::Get().SetCurrentTransform(NULL);
+ //   default_program->SetParameter("u_time",(float)m_timer/1000);
+	//default_program->SetParameter("u_g",g);
+	//default_program->SetParameter("u_l",l);
+	//default_program->SetParameter("u_g",o);
+	//default_program->SetParameter("u_l",(int)(seed+m_timer));
+ //   Fast2DSurface::Instance().Draw();
 
 
 }
@@ -252,23 +169,10 @@ void App::OnRender3D()
 void App::OnRender2D()
 {
     Renderer& render = Renderer::Get();
-
-    // 2D RENDER BEGIN
-    //Texture::TextureRender(tex);
-
-    //render.SetCurrentProgram(shader2D);
-    //int fps = getFps();
-    //m_fps->m_Text = StringBuilder(fps)(", ")(fps ? (int)(1000/fps) : 999999999)(" ms ")(cam3D->GetPosition().x)(" ")(cam3D->GetPosition().y)(" ")(cam3D->GetPosition().z)(" shadow offset : ")(noise);//(" fps,")(fps ? (int)(1000/(float)fps) : 999999999)(" ms");
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\n bias : ")(bias)("\nTimer : ")(m_timer)("\nSample Count : ")(count)("\nnoise\n persistence : ")(g)("\n frequency : ")(l)
-	("\n octave : ")(o)("\n seed : ")(seed+m_timer);
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer);
     m_fps->Draw();
-    /*m_text->Text = StringBuilder("Mouse coord (x : ")(last_mouse_pos.x)(", y :")(last_mouse_pos.y)(")");
-    m_text->Draw();*/
-    //render.SetCurrentProgram(NULL);
-
-
-
 }
+
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     if(message == WM_KEYDOWN)
@@ -278,86 +182,10 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         case 'P':
             pause = !pause;
             break;
-        case VK_ADD:
-            noise += 0.1f;
-            if(m_motioneffect)
-                m_motioneffect->SetIntensity(noise);
-            if(m_effect)
-                m_effect->SetNoiseOffset(noise);
-            drend->GetShadowRenderer()->SetOffset(noise);
-            break;
-        case VK_SUBTRACT:
-            noise -= 0.1f;
-            if(m_motioneffect)
-                m_motioneffect->SetIntensity(noise);
-            if(m_effect)
-                m_effect->SetNoiseOffset(noise);
-            drend->GetShadowRenderer()->SetOffset(noise);
-            break;
         case 'O':
             m_light->SetDirection(-normalize(cam3D->GetTarget() - cam3D->GetPosition()));
             break;
-
-        case VK_NUMPAD8:
-            sphere->GetTransform().Translate(0,0,0.1f);
-            break;
-        case VK_NUMPAD2:
-            sphere->GetTransform().Translate(0,0,-0.1f);
-            break;
-        case VK_NUMPAD6:
-            sphere->GetTransform().Translate(-0.1f,0,0);
-            break;
-        case VK_NUMPAD4:
-            sphere->GetTransform().Translate(0.1f,0,0);
-            break;
-        case VK_NUMPAD7:
-            sphere->GetTransform().Translate(0,-0.1f,0);
-            break;
-        case VK_NUMPAD9:
-            sphere->GetTransform().Translate(0,0.1f,0);
-            break;
-        case VK_MULTIPLY:
-            bias += 0.001f; 
-            drend->GetShadowRenderer()->SetBias(bias);
-            break;
-        case VK_DIVIDE:
-            bias -= 0.001f; 
-            drend->GetShadowRenderer()->SetBias(bias);
-            break;
-        case 'K':
-            m_fxaa->SetEnable(fxaa = !fxaa);
-            break;
-        case 'L':
-            m_fxaa->SetItrCount(++count);
-            break;
-        case 'M':
-            m_fxaa->SetItrCount(--count);
-            break;
-		case 'T':
-			g+=0.1;
-			break;
-		case 'G':
-			g-=0.1;
-			break;
-		case 'Y':
-			l+=0.1;
-			break;
-		case 'H':
-			l-=0.1;
-			break;
-		case 'R':
-			o+=1;
-			break;
-		case 'F':
-			o-=1;
-			break;
-		case 'E':
-			seed = clock();
-			break;
-	
-
-
-        }
+		}
     }
 
     return AgmdApp::WindowProc(hwnd,message,wParam,lParam);

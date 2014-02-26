@@ -25,7 +25,7 @@ namespace Agmd
     class Image;
     class FontManager;
     class GraphicString;
-    class SceneOld;
+    class Scene;
     class Material;
     class Statistics;
     struct DeclarationElement;
@@ -76,6 +76,14 @@ namespace Agmd
     class BoundingBox;
     class Fast2DSurface;
     class DeferredRendering;
+
+	//Scene Class
+
+	class SceneMgr;
+	class SceneNode;
+	class DisplayNode;
+	class LightNode;
+	class MeshNode;
 
 }
 

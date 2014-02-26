@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Renderer.h>
-#include <Core/SceneObject/Scene.h>
+#include <Core/SceneObject/SceneMgr.h>
 #include <Core/Tools/Fast2DSurface.h>
 #include <Core/Effects/PostEffectMgr.h>
 
@@ -76,7 +76,9 @@ namespace Agmd
     void DeferredRendering::Compute()
     {
         Renderer& render = Renderer::Get();
-        SceneOld* sc = render.GetActiveScene();
+        SceneMgr* sc = render.GetActiveScene();
+		sc->Update();
+		sc->Compute();
         const std::vector<Light*>& lights = sc->GetLights();
 
         const Light*const*  t = &lights[0];

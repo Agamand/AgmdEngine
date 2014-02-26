@@ -20,19 +20,19 @@ namespace Agmd
     class BoundingBox
     {
     public:
-        BoundingBox(const std::vector<vec3>& vertex_pos, TransformPtr transform);
-        ~BoundingBox();
+        BoundingBox(const std::vector<vec3>& vertex_pos);
+		BoundingBox(const vec3, const vec3);
+        BoundingBox();
 
         vec3 GetMin();
         vec3 GetMax();
 
-        const std::pair<vec3,vec3> GetTransformedBoundingBox();
+        BoundingBox GetTransformedBoundingBox(Transform*);
 
 
     private:
         vec3 m_max;
         vec3 m_min;
-        TransformPtr m_transform;
     }; 
 }
 

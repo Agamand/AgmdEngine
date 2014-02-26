@@ -68,7 +68,7 @@ namespace Agmd
 
         Logger::Instance().SetFilename("Agmd3D");
         m_stats = new Statistics();
-	
+		m_CurrentTransform = NULL;
 		std::cout << "Système de rendu : "<< GetRendererDesc().c_str()<< std::endl;
         Logger::Log(LOGNORMAL,"Système de rendu : %s",GetRendererDesc().c_str());
         Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
@@ -145,13 +145,13 @@ namespace Agmd
             return m_TextureFlags;
         }
 
-        void Renderer::SetActiveScene(SceneOld* sc)
-        {
+		void Renderer::SetActiveScene( SceneMgr* sc )
+		{
             m_ActiveScene = sc;
         }
 
-        SceneOld* Renderer::GetActiveScene()
-        {
+		SceneMgr* Renderer::GetActiveScene()
+		{
             return m_ActiveScene;
         }
         Statistics& Renderer::GetStatistics()

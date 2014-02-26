@@ -49,10 +49,12 @@ namespace Agmd
             vec4     tangent;
         };
         typedef unsigned short TIndex;
-
+		Model();
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
 		Model(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
 
+		void GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
+		void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
         void Draw(const Transform* transform) const;
 
         void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);

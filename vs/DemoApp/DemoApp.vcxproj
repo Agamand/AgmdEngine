@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\src\Demo\Loader\MeshLoader.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\objLoader.cpp" />
     <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
+    <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp" />
+    <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp" />
+    <ClCompile Include="..\..\src\Demo\Planet\QuadTreeNode.cpp" />
     <None Include="..\..\src\Demo\Loader\objTester.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\obj_parser.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\string_extra.cpp" />
@@ -65,6 +68,9 @@
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
     <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
+    <ClInclude Include="..\..\src\Demo\Planet\Planet.h" />
+    <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h" />
+    <ClInclude Include="..\..\src\Demo\Planet\QuadTreeNode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{501DBA9F-119E-4320-87F5-D695A3A7271F}</ProjectGuid>

@@ -277,14 +277,17 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\MeshNode.h">
       <Filter>Core\SceneNode</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SceneOld.h">
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\LightNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\SceneMgr.h">
       <Filter>Core\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Scene.h">
       <Filter>Core\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\LightNode.h">
-      <Filter>Core\SceneNode</Filter>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\QuadTree.h">
+      <Filter>Core\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -611,11 +614,14 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\MeshNode.cpp">
       <Filter>Core\SceneNode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SceneOld.cpp">
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SceneMgr.cpp">
       <Filter>Core\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Scene.cpp">
       <Filter>Core\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\QuadTree.cpp">
+      <Filter>Core\Tools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

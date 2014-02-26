@@ -13,10 +13,11 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type)
+    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type), m_parent(NULL)
     {
-		if(!m_transform)
+		if(!transform)
 			m_transform = new Transform();
+		else m_transform = transform;
 	}
 
     SceneNode::~SceneNode()
@@ -26,5 +27,16 @@ namespace Agmd
     { 
         return *m_transform;
     }
+
+	void SceneNode::Update(Transform* transform, bool updateChildren )
+	{
+		m_transform->Update(transform);
+		if(updateChildren && !m_children.empty())
+		{
+			for(std::vector<SceneNode*>::iterator itr = m_children.begin(); itr != m_children.end(); itr++)
+				(*itr)->Update(m_transform,updateChildren);
+		}
+	}
+
 }
 

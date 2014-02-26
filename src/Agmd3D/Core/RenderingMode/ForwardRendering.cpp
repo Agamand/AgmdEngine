@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Renderer.h>
-#include <Core/SceneObject/Scene.h>
+#include <Core/SceneObject/SceneMgr.h>
 #include <Utilities/Timer.h>
 
 namespace Agmd
@@ -62,7 +62,7 @@ namespace Agmd
     void ForwardRendering::Compute()
     {
         Renderer& render = Renderer::Get();
-        SceneOld* sc = render.GetActiveScene();
+        SceneMgr* sc = render.GetActiveScene();
         Start();
 
         /*

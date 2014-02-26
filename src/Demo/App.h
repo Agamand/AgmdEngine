@@ -21,6 +21,7 @@ status : in pause
 #include <AgmdMaths\Matrix4.h>
 #include <AgmdUtilities\Utilities\Singleton.h>
 #include <Agmd3D\Core\SceneObject\Model.h>
+#include <Agmd3D\Core\SceneObject\SceneMgr.h>
 #include <Agmd3D\Core\Shader\ShaderProgram.h>
 #include <Agmd3D\Core/GUI\AWindow.h>
 #include <Agmd3D/Core/Effects/BlurEffect.h>
@@ -57,43 +58,23 @@ private :
     typedef std::map<std::string, std::string> TDescTable;
     typedef std::vector<Agmd::TModelPtr> ModelVector;
 
-    Agmd::MeshRender* plane;
     glm::mat4             m_MatProj2D;
-    glm::mat4            m_MatProj3D;
+    glm::mat4             m_MatProj3D;
     glm::mat3             m_MatNormal;
 
-    Agmd::SceneOld*        m_Scene;
-    Agmd::DeferredRendering* drend; 
-    Agmd::MeshRender* sphere;
+    Agmd::SceneMgr*        m_Scene;
 
-    Agmd::BaseShaderProgram* shader2D;
-    Agmd::BaseShaderProgram* shaderTest;
     Agmd::GraphicString* m_fps;
 
     Agmd::Camera*       cam3D;
     Agmd::Camera*       cam2D;
 
     //TEST 2
-    Agmd::AWindow* testwindow;
-    Agmd::Texture tex;
-    Agmd::BlurEffect* m_effect;
-    Agmd::BlurMotionEffect* m_motioneffect;
     Agmd::AntiAliasing* m_fxaa;
-    float noise;
-    float bias;
     Agmd::Light* m_light;
     a_uint64  m_timer;
-    float current_time;
     bool pause;
     bool fxaa;
-    Agmd::Model* m;
-    int count;
-    Agmd::AsciEffect* asci;
-    
-	/*
-	*/
-	float g,l;
-	int o,seed;
 };
 
 #endif // APP_H

@@ -17,35 +17,48 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Model::Model(Model::TVertex* vertices, unsigned long VerticesCount, Model::TIndex* Indices, unsigned long IndicesCount, TPrimitiveType type) :
+	Model::Model()
+	{}
+	Model::Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type) :
     m_PrimitiveType(type),m_indexed(true)
     {
-        Assert(vertices != NULL);
-        Assert(Indices  != NULL);
-
-        Generate(G_TANGENT, vertices, VerticesCount, Indices, IndicesCount);
-
-        TDeclarationElement Elements[] =
-        {
-            {0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
-            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
-            {0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
-            {0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
-            {0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
-
-        };
-        m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
-
-        m_VertexBuffer = Renderer::Get().CreateVertexBuffer(VerticesCount, 0, vertices);
-        m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(IndicesCount, 0, Indices);
+		GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }
+
 
 	Model::Model( TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type/*= PT_TRIANGLELIST*/ ) : m_PrimitiveType(type),m_indexed(false)
 	{
+		GenerateBuffer(vertices,verticesCount,type);
+	}
+	void Model::GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type)
+	{
+		m_PrimitiveType = type ,m_indexed =true;
 		Assert(vertices != NULL);
+		Assert(indices  != NULL);
 
+		//Generate(G_TANGENT, vertices, verticesCount, indices, indicesCount);
+
+		TDeclarationElement Elements[] =
+		{
+			{0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
+			{0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
+			{0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
+			{0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
+			{0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
+			{0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
+			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
+
+		};
+		m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
+
+		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+		m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(indicesCount, 0, indices);
+	
+	}
+	void Model::GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type)
+	{
+		Assert(vertices != NULL);
+		m_PrimitiveType = type ,m_indexed =false;
 		//Generate(G_TANGENT, Vertices, VerticesCount, Indices, IndicesCount);
 
 		TDeclarationElement Elements[] =
@@ -63,6 +76,8 @@ namespace Agmd
 
 		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(verticesCount, 0, vertices);
 	}
+
+
 
 
 

@@ -31,6 +31,12 @@ vec3 textureToNormal(vec3 tex)
 	return tex*2-vec3(0.5);
 }
 
+float PI = 3.14159265359;
+
+vec3 getColor(float a)
+{
+	return vec3(abs(cos(PI*a)),abs(cos(PI*a+PI/3)),abs(cos(PI*a+2/3*PI)));
+}
 
 void main()
 {
@@ -61,7 +67,7 @@ void main()
 	vec4 color = texture(texture0, v_TexCoord0);
 	if(color.a < 1.0f)
 		discard;
-	out_color = vec4(vec3(lighting),color.a);
+	out_color = vec4(color);
 }
 
 #endif

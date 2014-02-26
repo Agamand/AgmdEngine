@@ -12,6 +12,7 @@ out vec4 color;
 out vec2 texCoord0;
 out vec3 normal;
 out vec4 pos;
+out vec4 comp_pos;
 
 void main()
 {
@@ -20,10 +21,11 @@ void main()
 	
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = mat3(u_matModel) * in_Normal;
-	pos = u_matModel * vec4(in_Vertex, 1.0f);
+	normal = normalize(mat3(u_matModel) * in_Normal);
+	pos = vec4(normalize((u_matModel * vec4(in_Vertex,1)).xyz),1.0f);
 
-	gl_Position = u_matViewProjection *  u_matModel * vec4(vertex,1.0f);
+	comp_pos = u_matViewProjection *  pos;
+	gl_Position = comp_pos;
 }
 #endif
 
@@ -34,6 +36,7 @@ in vec4 color;
 in vec2 texCoord0;
 in vec3 normal;
 in vec4 pos;
+in vec4 comp_pos;
 
 layout(location = 0) out vec4 out_Color;
 layout(location = 1) out vec3 out_Normal;
@@ -42,6 +45,7 @@ uniform sampler2D texture0;
 
 void main()
 {
+
 	out_Color = texture(texture0,texCoord0);
 	out_Normal = normal;
 	out_Position = pos.xyz;

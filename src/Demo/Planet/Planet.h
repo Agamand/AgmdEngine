@@ -4,12 +4,15 @@
 
 #include <core/SceneNode/SceneNode.h>
 #include "QuadTreeNode.h"
+#include <map>
+#include <string>
 using namespace Agmd;
-#define MAX_PLANET_FACE 1
+#define MAX_PLANET_FACE 6
+
 class Planet
 {
 public:
-	Planet();
+	Planet(Material*mat);
 
 	SceneNode* GetRoot()
 	{

@@ -33,7 +33,7 @@ status : in pause
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
 #include <Agmd3D/Core/Camera/FPCamera.h>
-#include <Agmd3D/Core/Camera/TPCamera.h>
+#include <Agmd3D/Core/Camera/FollowCamera.h>
 #include <AgmdNetwork\Client\Client.h>
 #include <AgmdNetwork\Opcode\OpcodeMgr.h>
 #include <AgmdUtilities/Utilities/Color.h>
@@ -103,7 +103,7 @@ void App::OnInit()
     pause = true;
     m_timer = 1000;
 
-    m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.1f, 10000.f);
+    m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
     DeferredRendering* mode = new DeferredRendering(getScreen());
@@ -125,7 +125,7 @@ void App::OnInit()
     m_Scene->AddLight(m_light);
     m_light->SetRange(2000.0f);
 
-	cam3D = new TPCamera(m_MatProj3D);
+	cam3D = new FollowCamera(m_MatProj3D);
 	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);

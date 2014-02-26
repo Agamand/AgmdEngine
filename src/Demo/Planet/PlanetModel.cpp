@@ -20,7 +20,7 @@ void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& verti
 			Model::TVertex vertex;
 			vertex.color = -1;
 			vertex.normal = orientation;
-			vertex.position = orientation/2.f+vec3(o.x+offset*i,o.y+offset*j,0.f);
+			vertex.position = vec3(o.x+offset*i,o.y+offset*j,0.f);
 			vertex.texCoords = vec2(i*offset,j*offset);
 			vertices.push_back(vertex);
 		}
@@ -47,8 +47,8 @@ void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& verti
 void CreateFaceMetaSphere(std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& indices,int layer)
 {
 	_CreatePlane(20,0,vertices,indices);
-	for(std::vector<Model::TVertex>::iterator itr = vertices.begin(); itr != vertices.end(); itr++)
-		(*itr).position= normalize((*itr).position);
+	/*for(std::vector<Model::TVertex>::iterator itr = vertices.begin(); itr != vertices.end(); itr++)
+		(*itr).position= normalize((*itr).position);*/
 }
 
 PlanetModel::PlanetModel( int layer, int x, int y ) : Model()

@@ -29,6 +29,8 @@ namespace AgmdMaths
         mat4 ModelMatrix() const;
 		mat4 LocalModelMatrix() const;
 
+
+		void SetLocalModelMatrix(const mat4& matrix);
         void Rotate(float angle, const vec3 &vector);
         void Translate(const vec3 &move);
         void Translate(float move_x, float move_y, float move_z);
@@ -47,7 +49,7 @@ namespace AgmdMaths
 
         //Relative transformation
         void Rotate(float angle, const vec3 &vector, const Transform& base);
-        
+        void Rotate(quat q, const Transform& base);
 		void Translate(const vec3 &move, const Transform& base);
         
 		void Translate(float move_x, float move_y, float move_z, const Transform& base);
@@ -63,7 +65,7 @@ namespace AgmdMaths
         vec3			m_scale;
 		quat            m_rotation;
 
-        mat4            m_MatModel;
+        mat4            m_localMatrix;
 		mat4			m_globalMatrix;
         TransformPtr    m_parent;
         TransformVector m_childs;

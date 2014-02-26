@@ -11,14 +11,21 @@ ivec2 order[]=
 
 quat GetRotationFor(int divisor, int face)
 {
-	return quat(glm::rotate(mat4(1),order[face].x*45.f/divisor,vec3(1,0,0))*glm::rotate(mat4(1),order[face].y*45.0f/divisor,vec3(0,1,0)));
+	return quat(glm::rotate(mat4(1),order[face].x*45.f,vec3(1,0,0))/*glm::rotate(mat4(1),order[face].y*45.0f/divisor,vec3(0,1,0))*/);
+}
+vec3 GetTranslation(int divisor, int face)
+{
+	return vec3(order[face].x*0.25f,order[face].y*0.25f,0);
 }
 
 void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light )
 {
-	vec4 point(0);
+	vec4 point(0,0,0,1);
 	point = m_transform->ModelMatrix()*point;
-	float distance = (vec3(point)-cam->GetPosition()).length();
+	vec3 real_point = normalize(vec3(point));
+	vec3 dist = real_point-cam->GetPosition();
+	float distance = length(dist);
+
 	if(m_lod >= MAX_LOD)
 	{
 		display.push_back(this);
@@ -31,7 +38,12 @@ void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,s
 		for(int i = 0; i < MAX_FACE; i++)
 		{
 			if(!face[i])
-				face[i] = new QuadTreeNode(Planet::s_plane,new Transform(vec3(0,0,0),GetRotationFor(m_divisor,i)),m_lod+1);
+			{
+				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
+				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
+				face[i] = new QuadTreeNode(Planet::s_plane,t,m_lod+1);
+				face[i]->Update(m_transform,false);
+			}
 			face[i]->FindVisible(cam,display,light);
 		}
 	}

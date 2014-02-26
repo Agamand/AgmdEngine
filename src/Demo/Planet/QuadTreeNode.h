@@ -7,8 +7,8 @@
 using namespace Agmd;
 
 #define MAX_FACE 4
-#define MAX_LOD 4
-#define CONST_DISTANCE 1.0f
+#define MAX_LOD 14
+#define CONST_DISTANCE 4.0f
 class QuadTreeNode : public MeshNode
 {
 public:

@@ -8,7 +8,7 @@ uniform mat4 depthMVP;
 
 void main(){
 
-	gl_Position =  u_matViewProjection* u_matModel * vec4(in_Vertex,1);
+	gl_Position =  u_matViewProjection* vec4(normalize((u_matModel * vec4(in_Vertex,1)).xyz),1.0f);
 }
 #endif
 

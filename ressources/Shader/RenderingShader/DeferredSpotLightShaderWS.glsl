@@ -31,7 +31,10 @@ in vec2 v_TexCoord0;
 out vec4 out_color;
 
 #define PI 3.14159265359
-uniform float u_offset = 0.4;
+uniform float u_offset = 0.4f;
+uniform float u_bias = -0.005f;
+
+
 vec2 offsetTable[13] = vec2[]
 (
 	vec2(0,0),
@@ -54,35 +57,45 @@ vec3 textureToNormal(vec3 tex)
 	return tex*2-vec3(0.5);
 }
 
+vec3 getColor(float a)
+{
+	return vec3(clamp(cos(4*PI/3*a-4/3*PI),0,1),clamp(cos(4*PI/3*a-2*PI/3),0,1),clamp(cos(4*PI/3*a),0,1));
+	//return vec3(clamp(cos(4*PI/3*a),0,1),clamp(cos(4*PI/3*a+2*PI/3),0,1),clamp(cos(4*PI/3*a+4/3*PI),0,1));
+}
 
 void main()
 {
 	vec4 shadowCoord = depthVPBias*vec4(texture(texture2,v_TexCoord0).rgb,1.0);
 
-	float offset = -0.005f;
-	
-    float shadow = textureProj(texture3, shadowCoord + vec4(0.0f, 0.0f, offset, 0.0));
-	float visibility = 0.0;//= shadow;
-	for(int j = 1; j < 4; j++)
+	float offset = u_bias;//0.005f;
+	shadowCoord.z += offset;
+    float shadow = textureProj(texture3, shadowCoord,0);
+	float visibility = shadow;
+	if(visibility < 1.0f)
 	{
-		for(int i = 1; i < 5; i++)
+		for(int j = 0; j < 4; j++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, offset, 0.0f));
-			visibility += shadow;
+			for(int i = 0; i < 5; i++)
+			{
+				shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, 0, 0.0f));
+				visibility += shadow;
+			}
+			for(int i = 5; i < 9; i++)
+			{
+				shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, 0, 0.0f));
+				visibility += shadow;
+			}
+			
+			for(int i = 9; i < 13; i++)
+			{
+				shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, 0, 0.0f));
+				visibility += shadow;
+			}
+			
 		}
-		for(int i = 5; i < 9; i++)
-		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, offset, 0.0f));
-			visibility += shadow;
-		}
-		
-		for(int i = 9; i < 13; i++)
-		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w, offset, 0.0f));
-			visibility += shadow;
-		}
-		visibility /=13.0f;
+		visibility /=13*4+1;
 	}
+	
 	
 	vec3 N = normalize(texture( texture1, v_TexCoord0 ).xyz);
 	vec3 position = texture2D( texture2, v_TexCoord0 ).xyz;
@@ -91,7 +104,7 @@ void main()
 	L = normalize(L);
 	float lambertTerm = max(dot(N,L),0.0);
 	float lighting = 0.0f;
-	if( lambertTerm > 0.0f && visibility > 0.0f)
+	if( lambertTerm > 0.0f)
 	{
 		float spotEffect = dot(normalize(l_dir.xyz),L);
 		float Att = 1.0f;// - dist/(l_range);
@@ -110,11 +123,10 @@ void main()
 	}
 	
 	
-	//alpha discard
 	vec4 color = texture(texture0, v_TexCoord0);
 	if(color.a < 1.0f)
 		discard;
-	out_color = vec4(vec3(lighting*visibility),color.a);
+	out_color =  vec4(color);//vec4(vec3(lighting*visibility),color.a);
 }
 
 #endif

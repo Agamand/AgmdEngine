@@ -28,10 +28,10 @@ uniform mat4 depthVPBias;
 in vec2 v_TexCoord0;
 
 out vec4 out_color;
-
-float offset = 0.2;
+uniform float u_bias = -0.005f;
+uniform float u_offset = 0.4f;
 #define PI 3.14159265359
-vec2 offsetTable[13] = vec2[] 
+vec2 offsetTable[13] = vec2[]
 (
 	vec2(0,0),
 	vec2(0,1),
@@ -60,27 +60,31 @@ void main()
 	shadowCoord = shadowCoord/shadowCoord.w;
 	
 	float bias = 0.000005;
-	shadowCoord.z += bias;
+	shadowCoord.z += u_bias;
+    float shadow = textureProj(texture3, shadowCoord,0);
+	float visibility = shadow;
+	for(int j = 0; j < 4; j++)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			visibility += shadow;	
+		}
+		for(int i = 5; i < 9; i++)
+		{
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			visibility += shadow;
+		}
+		
+		for(int i = 9; i < 13; i++)
+		{
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			visibility += shadow;
+		}
+		
+	}	
 
-    float shadow = texture(texture3,shadowCoord.xyz);
-	float visibility = shadow;//(shadow < 1.0f ? 0.5f : 1.0f);//*0.25f;
-	/*for(int i = 1; i < 5; i++)
-	{
-		shadow = texture(texture3,vec3(shadowCoord.xy + offsetTable[i]*offset/700.0f, shadowCoord.z));
-		visibility += shadow;
-	}
-	for(int i = 5; i < 9; i++)
-	{
-		shadow = texture(texture3,vec3(shadowCoord.xy + offsetTable[i]*offset/700.0f, shadowCoord.z));
-		visibility += shadow;
-	}
-	
-	for(int i = 9; i < 13; i++)
-	{
-		shadow = texture(texture3,vec3(shadowCoord.xy + offsetTable[i]*offset/700.0f, shadowCoord.z));
-		visibility += shadow;
-	}*/
-	
+	visibility /=13*4+1;
 	//visibility /=13.0f;
 	float lighting = 0.0f;
 	if(visibility > 0.0f)

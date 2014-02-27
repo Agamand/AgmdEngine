@@ -1,7 +1,0 @@
-ShaderPipeline test
-{
-	Properties
-	{
-	
-	}
-}

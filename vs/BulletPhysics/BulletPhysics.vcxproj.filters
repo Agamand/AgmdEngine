@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="BulletPhysics">
+      <UniqueIdentifier>{7c33d6bc-3a67-416a-b83d-c84a104c7f55}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AgmdBullet\Entities.cpp" />
+    <ClCompile Include="..\..\src\AgmdBullet\PhysicsMgr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\AgmdBullet\Entities.h" />
+    <ClInclude Include="..\..\src\AgmdBullet\PhysicsMgr.h" />
+  </ItemGroup>
+</Project>

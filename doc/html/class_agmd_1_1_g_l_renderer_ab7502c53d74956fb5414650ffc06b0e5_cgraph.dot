@@ -1,0 +1,13 @@
+digraph "Agmd::GLRenderer::CreateTexture"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::GLRenderer::Create\lTexture",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AgmdUtilities::GetNbMipLevels",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_utilities.html#abbfb5d5d6e22b6414f443cfffd0307ce"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::Renderer::HasCapability",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_renderer.html#a3ef3fa0a003ceb0bf22bf1b46e4d01a8"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Agmd::RGLEnum::Get",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_r_g_l_enum.html#a068b1f934454cf573d301c7375b4e431"];
+}

@@ -1,0 +1,13 @@
+BulletCollision_win32.lib
+BulletCollision_win32d.lib
+BulletDynamics_win32.lib
+BulletDynamics_win32d.lib
+BulletSoftBody_win32.lib
+BulletSoftBody_win32d.lib
+ConvexDecomposition_win32.lib
+ConvexDecomposition_win32d.lib
+HACD_win32.lib
+HACD_win32d.lib
+LinearMath_win32.lib
+LinearMath_win32d.lib
+list

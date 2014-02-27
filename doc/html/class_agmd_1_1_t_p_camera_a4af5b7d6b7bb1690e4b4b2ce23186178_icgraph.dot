@@ -1,0 +1,17 @@
+digraph "Agmd::TPCamera::VectorsFromAngles"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::TPCamera::VectorsFrom\lAngles",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::TPCamera::TPCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a87d575669d37a5b051c157f86fc3962d"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::TPCamera::OnMouseMotion",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a4dbea84224b73affc7c9f3c91578029b"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Agmd::TPCamera::OnKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a5bc7943c0ecb39b33891aa8dc5842a2a"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Agmd::TPCamera::setPosition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a74f9fc32896db29d618cf34c8b71d315"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Agmd::TPCamera::OnMouseWheel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a54c0a18c85bf4af4f0641334503ae4d9"];
+}

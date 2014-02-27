@@ -1,0 +1,70 @@
+\hypertarget{_pixel_utils_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Utilities/\-Pixel\-Utils.h File Reference}
+\label{_pixel_utils_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Utilities/\-Pixel\-Utils.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Utilities/\-Utilities/\-Pixel\-Utils.\-h}}
+}
+{\ttfamily \#include $<$Agmd3\-D/\-Core/\-Enums.\-h$>$}\\*
+{\ttfamily \#include $<$Debug/\-Exception.\-h$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$Utilities/\-Convert\-Pixel.\-inl$>$}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd_utilities}{Agmd\-Utilities}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_pixel_utils_8h_a7120fd6e7697d4891c01155123d443c8}{C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R}(Fmt)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{namespace_agmd_utilities_a2652f08860fb5eb126af8afd4245b96a}{Agmd\-Utilities\-::\-Get\-Bytes\-Per\-Pixel} (\hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\-Pixel\-Format} format)
+\item 
+std\-::string \hyperlink{namespace_agmd_utilities_af4b737723de85a01ece1c8132702c087}{Agmd\-Utilities\-::\-Format\-To\-String} (\hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\-Pixel\-Format} format)
+\item 
+bool \hyperlink{namespace_agmd_utilities_a0ef9d8cf9651a97a42326edc2f6e1c52}{Agmd\-Utilities\-::\-Format\-Compressed} (\hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\-Pixel\-Format} format)
+\item 
+int \hyperlink{namespace_agmd_utilities_abbfb5d5d6e22b6414f443cfffd0307ce}{Agmd\-Utilities\-::\-Get\-Nb\-Mip\-Levels} (int width, int height)
+\item 
+{\footnotesize template$<$T\-Pixel\-Format src\-Fmt, T\-Pixel\-Format dest\-Fmt$>$ }\\void \hyperlink{namespace_agmd_utilities_a869c26bd9d35ce976f114f571ef0b8a4}{Agmd\-Utilities\-::\-Convert\-Pixel} (const unsigned char $\ast$src, unsigned char $\ast$dest)
+\item 
+void \hyperlink{namespace_agmd_utilities_a61d9139cffabff4f575d8c84db52cf60}{Agmd\-Utilities\-::\-Convert\-Pixel} (\hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\-Pixel\-Format} src\-Fmt, const unsigned char $\ast$src, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\-Pixel\-Format} dest\-Fmt, unsigned char $\ast$dest)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_pixel_utils_8h_a7120fd6e7697d4891c01155123d443c8}{\index{Pixel\-Utils.\-h@{Pixel\-Utils.\-h}!C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R@{C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R}}
+\index{C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R@{C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R}!PixelUtils.h@{Pixel\-Utils.\-h}}
+\subsubsection[{C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-N\-V\-E\-R\-S\-I\-O\-N\-S\-\_\-\-F\-O\-R(
+\begin{DoxyParamCaption}
+\item[{}]{Fmt}
+\end{DoxyParamCaption}
+)}}\label{_pixel_utils_8h_a7120fd6e7697d4891c01155123d443c8}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{case} Fmt : \(\backslash\)
+            \{ \(\backslash\)
+                switch (destFmt) \(\backslash\)
+                \{ \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca0bc6fc5afdf33f2137ae0ef93f8cbf96}{PXF\_L8} :       ConvertPixel<Fmt, PXF\_L8>(src, 
+      dest);       \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ecaf9b46b35ac8cfb971f18c2875a2d28d7}{PXF\_A8L8} :     ConvertPixel<Fmt, PXF\_A8L8>(src
+      , dest);     \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca87532df4e2ffdc7864c171eaa3472575}{PXF\_A1R5G5B5} : ConvertPixel<Fmt,
+       PXF\_A1R5G5B5>(src, dest); \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca233c19bebce0d2f037e8429601d005f1}{PXF\_A4R4G4B4} : ConvertPixel<Fmt,
+       PXF\_A4R4G4B4>(src, dest); \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca7998de1814ee6d46f4dd84a1ee1dc8da}{PXF\_R8G8B8} :   ConvertPixel<Fmt, PXF\_R8G8B8>
+      (src, dest);   \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca6e22395d14266dc18deb4187d49cd358}{PXF\_A8R8G8B8} : ConvertPixel<Fmt,
+       PXF\_A8R8G8B8>(src, dest); \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca38ef7ac1c2ecf7b585a18ebf8a06dae3}{PXF\_DXTC1} :    ConvertPixel<Fmt, PXF\_DXTC1>(
+      src, dest);    \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7eca3a98313855273532958104124895e636}{PXF\_DXTC3} :    ConvertPixel<Fmt, PXF\_DXTC3>(
+      src, dest);    \textcolor{keywordflow}{break}; \(\backslash\)
+                    case \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ecac886013678584408f395f42d6fd72337}{PXF\_DXTC5} :    ConvertPixel<Fmt, PXF\_DXTC5>(
+      src, dest);    \textcolor{keywordflow}{break}; \(\backslash\)
+                \} \(\backslash\)
+                break; \(\backslash\)
+            \}
+\end{DoxyCode}

@@ -1,0 +1,63 @@
+\hypertarget{_agmd_physics_2_maths_2_vector2_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Physics/\-Maths/\-Vector2.h File Reference}
+\label{_agmd_physics_2_maths_2_vector2_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Physics/\-Maths/\-Vector2.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Physics/\-Maths/\-Vector2.\-h}}
+}
+{\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$glm/glm.\-hpp$>$}\\*
+{\ttfamily \#include $<$glm/gtc/type\-\_\-ptr.\-hpp$>$}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_agmd}{Agmd}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_agmd_physics_2_maths_2_vector2_8h_aa60a82e670d88c166bcebae651cab9c0}{V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M}(X)~X.\-x $<$$<$ \char`\"{} \char`\"{} $<$$<$X.\-y
+\item 
+\#define \hyperlink{_agmd_physics_2_maths_2_vector2_8h_aa85ece5370f17bba148d29588c11526c}{S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2}(X)~X.\-x $>$$>$ X.\-y
+\item 
+\#define \hyperlink{_agmd_physics_2_maths_2_vector2_8h_ac40648ec75f91ea467820cd6bf7af138}{V\-E\-C2\-S\-E\-T}(V, X, Y)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\-::istream \& \hyperlink{namespace_agmd_aeeec45b06912e22b3c3f1981c5aaf4db}{Agmd\-::operator$>$$>$} (std\-::istream \&stream, ivec2 \&vector)
+\item 
+std\-::ostream \& \hyperlink{namespace_agmd_a98b7420452435c6e7dd4dd7b1481a973}{Agmd\-::operator$<$$<$} (std\-::ostream \&stream, const ivec2 \&vector)
+\item 
+std\-::istream \& \hyperlink{namespace_agmd_a5a57a5df242a704e9a78f4d89c0be4f0}{Agmd\-::operator$>$$>$} (std\-::istream \&stream, vec2 \&vector)
+\item 
+std\-::ostream \& \hyperlink{namespace_agmd_a1a06dd8be22a12c353b9b4386d59afb8}{Agmd\-::operator$<$$<$} (std\-::ostream \&stream, const vec2 \&vector)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_agmd_physics_2_maths_2_vector2_8h_aa85ece5370f17bba148d29588c11526c}{\index{Agmd\-Physics/\-Maths/\-Vector2.\-h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}!S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2@{S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2}}
+\index{S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2@{S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2}!AgmdPhysics/Maths/Vector2.h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}}
+\subsubsection[{S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-T\-R\-E\-A\-M\-T\-O\-V\-E\-C2(
+\begin{DoxyParamCaption}
+\item[{}]{X}
+\end{DoxyParamCaption}
+)~X.\-x $>$$>$ X.\-y}}\label{_agmd_physics_2_maths_2_vector2_8h_aa85ece5370f17bba148d29588c11526c}
+\hypertarget{_agmd_physics_2_maths_2_vector2_8h_ac40648ec75f91ea467820cd6bf7af138}{\index{Agmd\-Physics/\-Maths/\-Vector2.\-h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}!V\-E\-C2\-S\-E\-T@{V\-E\-C2\-S\-E\-T}}
+\index{V\-E\-C2\-S\-E\-T@{V\-E\-C2\-S\-E\-T}!AgmdPhysics/Maths/Vector2.h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}}
+\subsubsection[{V\-E\-C2\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-C2\-S\-E\-T(
+\begin{DoxyParamCaption}
+\item[{}]{V, }
+\item[{}]{X, }
+\item[{}]{Y}
+\end{DoxyParamCaption}
+)}}\label{_agmd_physics_2_maths_2_vector2_8h_ac40648ec75f91ea467820cd6bf7af138}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+V.x = X; \(\backslash\)
+                        V.y = Y; \(\backslash\)
+\end{DoxyCode}
+\hypertarget{_agmd_physics_2_maths_2_vector2_8h_aa60a82e670d88c166bcebae651cab9c0}{\index{Agmd\-Physics/\-Maths/\-Vector2.\-h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}!V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M@{V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M}}
+\index{V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M@{V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M}!AgmdPhysics/Maths/Vector2.h@{Agmd\-Physics/\-Maths/\-Vector2.\-h}}
+\subsubsection[{V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-C2\-T\-O\-S\-T\-R\-E\-A\-M(
+\begin{DoxyParamCaption}
+\item[{}]{X}
+\end{DoxyParamCaption}
+)~X.\-x $<$$<$ \char`\"{} \char`\"{} $<$$<$X.\-y}}\label{_agmd_physics_2_maths_2_vector2_8h_aa60a82e670d88c166bcebae651cab9c0}

@@ -1,0 +1,145 @@
+\hypertarget{_demo_2_app_8cpp}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.cpp File Reference}
+\label{_demo_2_app_8cpp}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.\-cpp@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}App.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}M2\-Model.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}M2\-Loader.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Media\-Manager.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Renderer.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Enums.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Declaration.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Declaration\-Element.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Resource\-Manager.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Terrain.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Buffer\textbackslash{}\-Frame\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Graphic\-String.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Scene.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Water.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Sky\-Box.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-G\-U\-I\textbackslash{}\-G\-U\-I\-Mgr.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd\-Network\textbackslash{}\-Client\textbackslash{}\-Client.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd\-Network\textbackslash{}\-Opcode\textbackslash{}\-Opcode\-Mgr.\-h$>$}\\*
+{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Camera\textbackslash{}\-Dynamic\-Camera.\-h$>$}\\*
+{\ttfamily \#include $<$Physics\-Plugin\textbackslash{}\-Physics\-Mgr.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_op_client_mgr}{Op\-Client\-Mgr}
+\item 
+class \hyperlink{class_agmd_client}{Agmd\-Client}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}~3.\-661786780f
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}{K\-M\-\_\-\-M\-O\-O\-N}~0.\-0005760f
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}{T\-O\-\_\-\-P\-H\-Y\-S}(a)~$\ast$((\hyperlink{struct_agmd_1_1_physics_transfo}{Physics\-Transfo}$\ast$)\&a)
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}(a, x)~((a)-\/(x)$\ast$(int)((a)/(x)))
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}{O\-R\-I\-G\-I\-N}~-\/98.\-0f
+\item 
+\#define \hyperlink{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{S\-E\-L\-E\-C\-T}(i, size)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}{Opcode} \{ \\*
+\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N} = 0x0, 
+\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x1, 
+\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x2, 
+\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N} = 0x0, 
+\\*
+\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x1, 
+\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x2
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_agmd_network_1_1_opcode_handler}{Agmd\-Network\-::\-Opcode\-Handler}\\*
+$<$ \hyperlink{class_op_client_mgr}{Op\-Client\-Mgr} $>$ \hyperlink{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}{\-\_\-opcode} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S@{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}}
+\index{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S@{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}}\label{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}
+\hypertarget{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R@{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}}
+\index{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R@{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R~3.\-661786780f}}\label{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}
+\hypertarget{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!K\-M\-\_\-\-M\-O\-O\-N@{K\-M\-\_\-\-M\-O\-O\-N}}
+\index{K\-M\-\_\-\-M\-O\-O\-N@{K\-M\-\_\-\-M\-O\-O\-N}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{K\-M\-\_\-\-M\-O\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\-M\-\_\-\-M\-O\-O\-N~0.\-0005760f}}\label{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}
+\hypertarget{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T@{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}}
+\index{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T@{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((a)-\/(x)$\ast$(int)((a)/(x)))}}\label{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}
+\hypertarget{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!O\-R\-I\-G\-I\-N@{O\-R\-I\-G\-I\-N}}
+\index{O\-R\-I\-G\-I\-N@{O\-R\-I\-G\-I\-N}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{O\-R\-I\-G\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-R\-I\-G\-I\-N~-\/98.\-0f}}\label{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}
+\hypertarget{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}}
+\index{S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{S\-E\-L\-E\-C\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-L\-E\-C\-T(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{size}
+\end{DoxyParamCaption}
+)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))}}\label{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}
+\hypertarget{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!T\-O\-\_\-\-P\-H\-Y\-S@{T\-O\-\_\-\-P\-H\-Y\-S}}
+\index{T\-O\-\_\-\-P\-H\-Y\-S@{T\-O\-\_\-\-P\-H\-Y\-S}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{T\-O\-\_\-\-P\-H\-Y\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-O\-\_\-\-P\-H\-Y\-S(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~$\ast$(({\bf Physics\-Transfo}$\ast$)\&a)}}\label{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!Opcode@{Opcode}}
+\index{Opcode@{Opcode}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{Opcode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Opcode}}}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}
+}]\index{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}
+}]\index{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}
+}]\index{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}
+}]\index{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}
+}]\index{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
+\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}
+}]\end{description}
+\end{Desc}
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!\-\_\-opcode@{\-\_\-opcode}}
+\index{\-\_\-opcode@{\-\_\-opcode}!Demo/App.cpp@{Demo/\-App.\-cpp}}
+\subsubsection[{\-\_\-opcode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agmd\-Network\-::\-Opcode\-Handler}$<${\bf Op\-Client\-Mgr}$>$ \-\_\-opcode\mbox{[}$\,$\mbox{]}}}\label{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= 
+\{
+    \{\textcolor{stringliteral}{"MSG\_NULL\_ACTION"},&\hyperlink{class_op_client_mgr_a0ab5f6d4d5d1d556f3b65a10c645d5ca}{OpClientMgr::Handle\_NULL}\},
+    \{\textcolor{stringliteral}{"CMSG\_SEND\_MESSAGE"},&\hyperlink{class_op_client_mgr_a0ab5f6d4d5d1d556f3b65a10c645d5ca}{OpClientMgr::Handle\_NULL}\},
+    \{\textcolor{stringliteral}{"SMSG\_SEND\_MESSAGE"},&\hyperlink{class_op_client_mgr_a957a649ffae63dd4b92c4fff260b1487}{OpClientMgr::HandleMessage}\}
+      ,
+\}
+\end{DoxyCode}

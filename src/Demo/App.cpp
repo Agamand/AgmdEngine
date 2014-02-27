@@ -55,10 +55,11 @@ status : in pause
 #include <Demo/Loader/MeshLoader.h>
 #include <glm/ext.hpp>
 #include "PerlinNoise.h"
+#include <libnoise/noise.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
-
+#include <random>
 
 using namespace Agmd;
 using namespace AgmdNetwork;
@@ -71,19 +72,55 @@ BaseShaderProgram* default_program;
 void generateNoise(uint32*& img,int size,int seed)
 {
 	img = new uint32[size*size];
-	PerlinNoise p(1,0.1,1,6,seed);
+	//PerlinNoise p(1,0.1,1,6,seed);
+	noise::module::Perlin _perlin;
+	_perlin.SetOctaveCount(15.f);
+	_perlin.SetFrequency(1.f);
+	_perlin.SetPersistence(0.5f);
+	_perlin.SetSeed(seed);
 	for(int i = 0; i < size; i++)
 	{
 		for(int j = 0; j < size; j++)	
 		{
-			int c =  (int)(255*p.GetHeight((double)i*0.01,(double)j*0.01));//(0.5+glm::noise1(0.5f)+(1+glm::noise1(1.f))/2+(2+glm::noise1(2.f))/4)/3*255;
+			int c =  (int)(255*_perlin.GetValue((double)i*0.01,(double)j*0.01,0));//(0.5+glm::noise1(0.5f)+(1+glm::noise1(1.f))/2+(2+glm::noise1(2.f))/4)/3*255;
 			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
 			color[0] =  c; color[1] = c; color[2] =c;
 			color[3] = 255;
 			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
+		}
 	}
+}
+void generateNoise3d(Texture& t,int size,int seed)
+{
+	a_uint32* img = new uint32[size*size];
+	//PerlinNoise p(1,0.1,1,6,seed);
+	noise::module::Perlin _perlin;
+	_perlin.SetOctaveCount(8.f);
+	_perlin.SetFrequency(2.f);
+	_perlin.SetPersistence(0.5f);
+	_perlin.SetSeed(seed);
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)	
+		{
+			int c =  (int)(255*_perlin.GetValue((double)i*0.01,(double)j*0.01,0));//(0.5+glm::noise1(0.5f)+(1+glm::noise1(1.f))/2+(2+glm::noise1(2.f))/4)/3*255;
+			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
+			color[0] =  c; color[1] = c; color[2] =c;
+			color[3] = 255;
+			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
+		}
 	}
+	Image _img[6];
+	//Image __img[6];
+	_img[0].LoadFromFile(StringBuilder("Texture/debug.png"));
+	for(int i = 0; i< 6; i++)
+	{
+		_img[i] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+	}
+	delete img;
 
+	t.CreateFromImage(_img,PXF_A8R8G8B8);
+//	t.Create(ivec2(1),PXF_A8R8G8B8,TEXTURE_CUBE);
 }
 void App::Run(int argc, char** argv)
 {
@@ -102,8 +139,8 @@ void App::OnInit()
 {  
     pause = true;
     m_timer = 1000;
-
-    m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
+	
+	m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
     DeferredRendering* mode = new DeferredRendering(getScreen());
@@ -112,16 +149,24 @@ void App::OnInit()
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
-	Planet* p = new Planet();
+	Texture t;
+	generateNoise3d(t,1024,rand());
+
+	Material* mat = new Material();
+	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+	//mat->SetTexture(t,0,RENDERPASS_ZBUFFER);
+	Planet* p = new Planet(mat);
     Model* model = CreateMetaSphere(1.0f,0,0);
     MeshNode* mesh = new MeshNode(CreateSphere(1.f,20,20,2*M_PI,"",PT_TRIANGLELIST));
     m_Scene->AddNode(p->GetRoot());
+	//uint32 *i = new uint32(256*256);
+
     //m_Scene->AddNode(mesh);
 	model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
-    m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_SPOT);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
+    m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
     m_light->SetRange(2000.0f);
 

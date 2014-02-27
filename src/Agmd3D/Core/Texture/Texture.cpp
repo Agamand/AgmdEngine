@@ -153,7 +153,9 @@ namespace Agmd
             GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
 
         // Copie des pixels
-        GetPixels().CopyImage(pixels);
+			Image * img = &GetPixels();
+			for(int i = 0; i < 6; i++)
+				img[i].CopyImage(image[i]);
         Update();
     }
 

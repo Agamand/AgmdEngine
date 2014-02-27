@@ -21,10 +21,11 @@ vec3 GetTranslation(int divisor, int face)
 void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light )
 {
 	vec4 point(0,0,0,1);
+	mat4 view = cam->GetView();
 	point = m_transform->ModelMatrix()*point;
 	vec3 real_point = normalize(vec3(point));
-	vec3 dist = real_point-cam->GetPosition();
-	float distance = length(dist);
+	point = view*vec4(real_point,1.0f);
+	float distance = length(vec3(point));
 
 	if(m_lod >= MAX_LOD)
 	{
@@ -47,5 +48,16 @@ void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,s
 			face[i]->FindVisible(cam,display,light);
 		}
 	}
+}
+
+QuadTreeNode::QuadTreeNode( PlanetModel* model,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod)
+{
+	if(Planet::s_mat)
+		m_material = Planet::s_mat;
+	face = new QuadTreeNode*[4];
+	std::memset(face,0,16);
+	m_divisor = 1;
+	for(int i = 0; i < lod; i++)
+		m_divisor *=2;
 }
 

@@ -52,7 +52,7 @@ namespace Agmd
 
         for(a_uint32 i = 0; i < MAX_TEXTUREUNIT; i++)
         {
-            if(m_texture[i].pass & pass)
+            if(m_texture[i].pass & (1<<pass))
             {
                 render.SetTexture(i,m_texture[i].tex.GetTexture());
                 textureFlags |= 1<<i;

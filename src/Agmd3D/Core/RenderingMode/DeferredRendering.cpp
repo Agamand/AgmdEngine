@@ -54,7 +54,7 @@ namespace Agmd
         m_textureBuffer[3].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[4].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[5].Create(m_screen,PXF_DEPTH,TEXTURE_2D,TEX_NOMIPMAP);
-        m_depthCubemap.Create(ivec2(1024),PXF_R32G32B32,TEXTURE_CUBE,TEX_NOMIPMAP,"depth_cubemap");
+        //m_depthCubemap.Create(ivec2(1024),PXF_R32G32B32,TEXTURE_CUBE,TEX_NOMIPMAP,"depth_cubemap");
         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
         m_framebuffer->SetRender(m_colorbuffer, COLOR_ATTACHMENT);
         m_framebuffer->SetRender(m_normalbuffer, COLOR_ATTACHMENT+1);
@@ -139,7 +139,7 @@ namespace Agmd
                 render.SetTexture(0,m_textureBuffer[0].GetTexture());
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
-                render.SetCurrentProgram(m_light_program[lights[i]->GetType()+3/*+3 for use with SHADOW*/].GetShaderProgram());
+                render.SetCurrentProgram(m_light_program[lights[i]->GetType()/*+3 for use with SHADOW*/].GetShaderProgram());
                 m_shadowRender->SetupForRendering();
                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
                 Fast2DSurface::Instance().Draw();

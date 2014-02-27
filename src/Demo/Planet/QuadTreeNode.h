@@ -7,7 +7,7 @@
 using namespace Agmd;
 
 #define MAX_FACE 4
-#define MAX_LOD 14
+#define MAX_LOD 15
 #define CONST_DISTANCE 4.0f
 class QuadTreeNode : public MeshNode
 {
@@ -19,14 +19,7 @@ public:
 		BOTTOM_LEFT,
 		BOTTOM_RIGHT
 	};
-	QuadTreeNode(PlanetModel* model,Transform* transform = NULL,int lod = 0) : MeshNode(model,transform), m_lod(lod)
-	{
-		face = new QuadTreeNode*[4];
-		std::memset(face,0,16);
-		m_divisor = 1;
-		for(int i = 0; i < lod; i++)
-			m_divisor *=2;
-	}
+	QuadTreeNode(PlanetModel* model,Transform* transform = NULL,int lod = 0);
 
 	virtual void Update(Transform* transform, bool updateChildren)
 	{

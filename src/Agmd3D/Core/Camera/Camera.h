@@ -58,6 +58,7 @@ namespace Agmd
         static void SetCurrent(Camera* cam, TCamera type = CAMERA_3D);
         static Camera* GetCurrent(TCamera type = CAMERA_3D);
         bool UnProject(vec3& mousepos);
+		const mat4& GetView() { return m_transform.m_MatView;} 
     protected:
         struct CameraBuffer
         {

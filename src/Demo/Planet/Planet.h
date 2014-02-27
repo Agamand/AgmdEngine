@@ -12,7 +12,7 @@ using namespace Agmd;
 class Planet
 {
 public:
-	Planet(Material*mat);
+	Planet(Material*mat = NULL);
 
 	SceneNode* GetRoot()
 	{
@@ -20,7 +20,7 @@ public:
 	}
 
 	static PlanetModel* s_plane;
-
+	static Material* s_mat;
 private:
 	SceneNode* m_root;
 

@@ -217,8 +217,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

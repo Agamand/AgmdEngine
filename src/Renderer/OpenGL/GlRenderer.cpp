@@ -173,7 +173,11 @@ namespace Agmd
     {
 		const char* gl_version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
 		const char* glsl_version = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-        return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version);
+		if(!gl_version)
+			gl_version ="GL version not found";
+		if(!glsl_version)
+			glsl_version = "GLSL version not found";
+		return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version);
     }
 
     void GLRenderer::Setup(HWND Hwnd)

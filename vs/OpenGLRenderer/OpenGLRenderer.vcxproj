@@ -285,7 +285,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;OPENGL</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AGMDENGINE_EXPORTS;OPENGL_EXPORTS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>

@@ -149,7 +149,9 @@ namespace Agmd
 
     void FollowCamera::OnMouseWheel(float delta)
     {
-        distance += delta/pow(2,4/distance)*0.005f;
+		float f = pow(2,4/distance);
+		printf("factor %f",f);
+        distance += delta/f*0.001f;
 		if(distance < 1.05f)
 			distance = 1.05f;
         UpdateVector();

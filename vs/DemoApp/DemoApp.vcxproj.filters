@@ -30,6 +30,12 @@
     <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp">
       <Filter>Planet</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Demo\noiseutils.cpp">
+      <Filter>Noiseutils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\simplexnoise.cpp">
+      <Filter>Noiseutils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Demo\App.h" />
@@ -60,6 +66,12 @@
     <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h">
       <Filter>Planet</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Demo\noiseutils.h">
+      <Filter>Noiseutils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\simplexnoise.h">
+      <Filter>Noiseutils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Test">
@@ -70,6 +82,9 @@
     </Filter>
     <Filter Include="Planet">
       <UniqueIdentifier>{90394e38-f90e-4d75-ba73-423dc6db964d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Noiseutils">
+      <UniqueIdentifier>{c2cd4a81-22c0-4b5a-8f0d-7d6bf9048784}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

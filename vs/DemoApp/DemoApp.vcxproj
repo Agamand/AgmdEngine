@@ -47,10 +47,12 @@
     <ClCompile Include="..\..\src\Demo\Loader\list.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\MeshLoader.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\objLoader.cpp" />
+    <ClCompile Include="..\..\src\Demo\noiseutils.cpp" />
     <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
     <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp" />
     <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp" />
     <ClCompile Include="..\..\src\Demo\Planet\QuadTreeNode.cpp" />
+    <ClCompile Include="..\..\src\Demo\simplexnoise.cpp" />
     <None Include="..\..\src\Demo\Loader\objTester.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\obj_parser.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\string_extra.cpp" />
@@ -67,10 +69,12 @@
     <ClInclude Include="..\..\src\Demo\Loader\string_extra.h" />
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
+    <ClInclude Include="..\..\src\Demo\noiseutils.h" />
     <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
     <ClInclude Include="..\..\src\Demo\Planet\Planet.h" />
     <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h" />
     <ClInclude Include="..\..\src\Demo\Planet\QuadTreeNode.h" />
+    <ClInclude Include="..\..\src\Demo\simplexnoise.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{501DBA9F-119E-4320-87F5-D695A3A7271F}</ProjectGuid>
@@ -283,8 +287,9 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">

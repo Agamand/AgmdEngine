@@ -89,7 +89,7 @@ namespace Agmd
 
         std::string Statistics::ToString()
         {
-            return StringBuilder("- Agmd 3D Statistics - \nMainTime : ") (m_MainTime)( " ms, RenderingTime : ")(m_RenderingTime)(" ms, GuiTime : ")(m_GuiTime)(" ms, fps : ")(GetFps())("\nDraw Call : ")(m_DrawCallCount)(", Vertex : ")(m_VertexDrawCount)(", Triangle :")(m_TriangleDrawCount);
+            return StringBuilder("- Agmd 3D Statistics - \nMainTime : ") (m_MainTime)( " ms, RenderingTime : ")(m_RenderingTime)(" us, GuiTime : ")(m_GuiTime)(" us, fps : ")(GetFps())("\nDraw Call : ")(m_DrawCallCount)(", Vertex : ")(m_VertexDrawCount)(", Triangle :")(m_TriangleDrawCount);
         }
 
 }

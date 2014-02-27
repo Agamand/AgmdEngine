@@ -60,7 +60,8 @@ status : in pause
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
 #include <random>
-
+#include "simplexnoise.h"
+#include "noiseutils.h"
 using namespace Agmd;
 using namespace AgmdNetwork;
 using namespace AgmdUtilities;
@@ -92,36 +93,105 @@ void generateNoise(uint32*& img,int size,int seed)
 }
 void generateNoise3d(Texture& t,int size,int seed)
 {
-	a_uint32* img = new uint32[size*size];
+	
 	//PerlinNoise p(1,0.1,1,6,seed);
 	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(8.f);
+	_perlin.SetOctaveCount(16.f);
 	_perlin.SetFrequency(2.f);
 	_perlin.SetPersistence(0.5f);
 	_perlin.SetSeed(seed);
+	noise::utils::NoiseMap heightMap;
+	noise::utils::NoiseMapBuilderPlane heightMapBuilder;
+	heightMapBuilder.SetSourceModule (_perlin);
+	heightMapBuilder.SetDestSize (size, size);
+	heightMapBuilder.SetDestNoiseMap (heightMap);
+	heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
+	heightMapBuilder.Build ();
+
+
+	noise::utils::RendererImage renderer;
+	noise::utils::Image image;
+	renderer.SetSourceNoiseMap (heightMap);
+	renderer.SetDestImage (image);
+	renderer.Render ();
+	//image.GetValue()
+	Image _img[6];
+	uint32 * img = new uint32[size*size];
+	float max,min = max = 0;
 	for(int i = 0; i < size; i++)
 	{
 		for(int j = 0; j < size; j++)	
 		{
-			int c =  (int)(255*_perlin.GetValue((double)i*0.01,(double)j*0.01,0));//(0.5+glm::noise1(0.5f)+(1+glm::noise1(1.f))/2+(2+glm::noise1(2.f))/4)/3*255;
+			noise::utils::Color a= image.GetValue(i,j);
 			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-			color[0] =  c; color[1] = c; color[2] =c;
+			color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
 			color[3] = 255;
 			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
 		}
 	}
-	Image _img[6];
-	//Image __img[6];
-	_img[0].LoadFromFile(StringBuilder("Texture/debug.png"));
+	/*int iHSize = size/2 // half the size of the cube
+	,aa = 123
+	,bb = 231
+	,cc = 321;
+	
+	for (int j=0;j<6;j++) {
+		
+		for (int i=0,l=size*size;i<l;i++) {
+			int  x = i%size		// x position in image
+			,y = (i/size);	// y position in image
+			float a = -iHSize + x+.5	// x position on the cube plane, the added .5 is to get the center of the pixel
+			,b = -iHSize + y+.5 // y position on the cube plane
+			,c = -iHSize		// z position of the cube plane
+			,fDistanceAB = sqrt(a*a+b*b) // to calculate the vectors length we use Pythagoras twice
+			,fDistanceABC = sqrt(fDistanceAB*fDistanceAB+c*c)
+			,fDrds = .5*fDistanceABC // adjust the distance a bit to get a better radius in the noise field
+			,v = 1
+			;
+			a /= fDrds; // normalize the vector
+			b /= fDrds; // normalize the vector
+			c /= fDrds; // normalize the vector
+			//
+			// since we now know the spherical position for one plane we can derive the positions for the other five planes simply by switching the x, y and z values (the a, b and c variables)
+			float aNoisePositions[][3]={
+				{a,b,c}	// back
+				,{-c,b,a}	// right
+				,{-a,b,-c}	// front
+				,{c,b,-a}	// left
+				,{a,c,-b}	// top
+				,{a,-c,b}	// bottom
+			};
+			v = _perlin.GetValue(
+			aa + aNoisePositions[j][0]
+			,bb + aNoisePositions[j][1]
+			,cc + aNoisePositions[j][2]
+			);
+			int pos = (y*size+x); // the final position of the rgba pixel
+			uint8 * color = (uint8 *)&img[pos];
+			color[0] = color[1] = color[2] = (int)(v*255);
+			color[3] = 255;
+		}
+		_img[j] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+		
+	}*/
+	
+	
+	
+	/*Image _img[6];
+	//Image __img[6];*/
+	//SmartPtr<Image> __img  = MediaManager::Instance().LoadMediaFromFile<Image>("Texture/debug.png");
 	for(int i = 0; i< 6; i++)
 	{
-		_img[i] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+		_img[i] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);//*MediaManager::Instance().LoadMediaFromFile<Image>(File(StringBuilder("Texture/")(i)(".png")));/*Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);*/
 	}
 	delete img;
 
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 //	t.Create(ivec2(1),PXF_A8R8G8B8,TEXTURE_CUBE);
 }
+
+const char* gradient ="Texture/gradient.png";
+const char* seed = NULL;
+
 void App::Run(int argc, char** argv)
 {
     if(argc > 0)
@@ -130,6 +200,10 @@ void App::Run(int argc, char** argv)
         MediaManager::Instance().AddSearchPath(main.Path());
 		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
 	}
+	if(argc > 1)
+		gradient = argv[1];
+	if(argc > 2)
+		seed = argv[2];
     AgmdApp::Run();
 }
 
@@ -139,8 +213,8 @@ void App::OnInit()
 {  
     pause = true;
     m_timer = 1000;
-	
-	m_MatProj3D = glm::perspective(60.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
+	printf("Loading...");
+	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 
     DeferredRendering* mode = new DeferredRendering(getScreen());
@@ -150,13 +224,28 @@ void App::OnInit()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
 	Texture t;
-	generateNoise3d(t,1024,rand());
+	Texture color_gradiant;
+	if(gradient)
+		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8);
+	else
+		color_gradiant.CreateFromFile("Texture/gradient2.png",PXF_A8R8G8B8);
+
+	int _seed;
+	if(seed)
+		_seed = std::atoi(seed);
+	else _seed = rand();
+
+
+	generateNoise3d(t,1024,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
+
 	//mat->SetTexture(t,0,RENDERPASS_ZBUFFER);
 	Planet* p = new Planet(mat);
     Model* model = CreateMetaSphere(1.0f,0,0);
+
     MeshNode* mesh = new MeshNode(CreateSphere(1.f,20,20,2*M_PI,"",PT_TRIANGLELIST));
     m_Scene->AddNode(p->GetRoot());
 	//uint32 *i = new uint32(256*256);
@@ -174,6 +263,7 @@ void App::OnInit()
 	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
+	printf("Loading end");
 }
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)

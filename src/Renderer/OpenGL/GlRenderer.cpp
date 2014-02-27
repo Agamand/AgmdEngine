@@ -257,7 +257,7 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(0.5f,0.5f,0.5f,0);
+        glClearColor(0.0f,0.0f,0.0f,0);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);

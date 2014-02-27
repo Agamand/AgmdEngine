@@ -15,18 +15,24 @@ out vec4 pos;
 out vec4 comp_pos;
 uniform samplerCube texture0;
 
+float rgb2grayscale(vec3 color)
+{
+	return 0.299*color.r + 0.58*color.g + 0.114*color.b;
+}
+
 void main()
 {
 	vec3 vertex = in_Vertex;
 
 	
-	
+	float scale = 1.f;
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = ((u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
-	pos = vec4(normal,1.0f);
-	float displacement = texture(texture0,pos.xyz).r;
-	pos += vec4(normal*displacement*0.005,0);
+	normal = normalize((u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
+	pos = vec4(normal*scale,1.0f);
+	float displacement = rgb2grayscale(texture(texture0,pos.xyz).rgb);
+	displacement = clamp(displacement,0.5f,1.f);
+	pos += vec4(scale*normal*displacement*0.05,0);
 	comp_pos = u_matViewProjection *  pos;
 	gl_Position = comp_pos;
 }
@@ -45,11 +51,17 @@ layout(location = 0) out vec4 out_Color;
 layout(location = 1) out vec3 out_Normal;
 layout(location = 2) out vec3 out_Position;
 uniform samplerCube texture0;
+uniform sampler2D texture1;
+
+float rgb2grayscale(vec3 color)
+{
+	return 0.299*color.r + 0.58*color.g + 0.114*color.b;
+}
 
 void main()
 {
-
-	out_Color = vec4(texture(texture0,vec3(texCoord0,1.0f)).rgb,1.0f);
+	float offset = rgb2grayscale(texture(texture0,pos.xyz).rgb);
+	out_Color = vec4(texture(texture1,vec2(offset,0)).rgb,1.0f);
 	out_Normal = normal;
 	out_Position = pos.xyz;
 }

@@ -69,12 +69,12 @@ namespace Agmd
         Logger::Instance().SetFilename("Agmd3D");
         m_stats = new Statistics();
 		m_CurrentTransform = NULL;
-		std::cout << "Système de rendu : "<< GetRendererDesc().c_str()<< std::endl;
-        Logger::Log(LOGNORMAL,"Système de rendu : %s",GetRendererDesc().c_str());
-        Logger::Log(LOGNORMAL,"Fonctionnalités supportées :");
+		std::cout << "Renderer : "<< GetRendererDesc().c_str()<< std::endl;
+        Logger::Log(LOGNORMAL,"Renderer : %s",GetRendererDesc().c_str());
+        Logger::Log(LOGNORMAL,"Support function :");
         for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
             Logger::Log(LOGNORMAL,"%s : %s", CapToString(i->first).c_str(), (i->second ? "OK" : "NO"));
-        Logger::Log(LOGNORMAL,"Fonctionnalités proposée : \n");
+        Logger::Log(LOGNORMAL,"Function : \n");
         //Logger::Log(LOGNORMAL,GetExtension().c_str());
         Logger::Log(LOGNORMAL,"");
     }

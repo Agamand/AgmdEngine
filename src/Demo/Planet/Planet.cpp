@@ -25,7 +25,7 @@ Planet::Planet(Material* mat)
 	s_plane = new PlanetModel(0,0,0);
 	m_root = new SceneNode(ROOT_NODE,new Transform(vec3(0),quat(),vec3(2)));
 	for(int i = 0; i < MAX_PLANET_FACE; i++ )
-		m_root->AddChild(new QuadTreeNode(s_plane,new Transform(0.5f*face[i],sRot[i])));
+		m_root->AddChild(new PlanetTreeNode(s_plane,new Transform(0.5f*face[i],sRot[i])));
 	
 }
 PlanetModel* Planet::s_plane = NULL;

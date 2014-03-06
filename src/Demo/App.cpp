@@ -93,7 +93,10 @@ void generateNoise(uint32*& img,int size,int seed)
 }
 void generateNoise3d(Texture& t,int size,int seed)
 {
-	
+	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+	vec4 bounds[] = {
+		
+	}
 	//PerlinNoise p(1,0.1,1,6,seed);
 	noise::module::Perlin _perlin;
 	_perlin.SetOctaveCount(16.f);
@@ -101,12 +104,12 @@ void generateNoise3d(Texture& t,int size,int seed)
 	_perlin.SetPersistence(0.5f);
 	_perlin.SetSeed(seed);
 	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderPlane heightMapBuilder;
+	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
 	heightMapBuilder.SetSourceModule (_perlin);
 	heightMapBuilder.SetDestSize (size, size);
 	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
-	heightMapBuilder.Build ();
+	//heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
+	//heightMapBuilder.Build ();
 
 
 	noise::utils::RendererImage renderer;
@@ -118,6 +121,11 @@ void generateNoise3d(Texture& t,int size,int seed)
 	Image _img[6];
 	uint32 * img = new uint32[size*size];
 	float max,min = max = 0;
+	for(int face = 0; face < 6; face++)
+	{
+		heightMapBuilder.Build(face);
+		renderer.Render ();
+	
 	for(int i = 0; i < size; i++)
 	{
 		for(int j = 0; j < size; j++)	
@@ -128,6 +136,7 @@ void generateNoise3d(Texture& t,int size,int seed)
 			color[3] = 255;
 			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
 		}
+	}
 	}
 	/*int iHSize = size/2 // half the size of the cube
 	,aa = 123

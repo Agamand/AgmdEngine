@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp">
       <Filter>Planet</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Demo\Planet\QuadTreeNode.cpp">
-      <Filter>Planet</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp">
       <Filter>Planet</Filter>
     </ClCompile>
@@ -35,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Demo\simplexnoise.cpp">
       <Filter>Noiseutils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Planet\PlanetTreeNode.cpp">
+      <Filter>Planet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +60,6 @@
     <ClInclude Include="..\..\src\Demo\Planet\Planet.h">
       <Filter>Planet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Demo\Planet\QuadTreeNode.h">
-      <Filter>Planet</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h">
       <Filter>Planet</Filter>
     </ClInclude>
@@ -71,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Demo\simplexnoise.h">
       <Filter>Noiseutils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Planet\PlanetTreeNode.h">
+      <Filter>Planet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,9 @@
 // off every 'zig'.)
 //
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include <fstream>
 
 #include <libnoise/interp.h>
@@ -938,6 +941,106 @@ void NoiseMapBuilderSphere::Build ()
       m_pCallback (y);
     }
   }
+}
+
+
+void NoiseMapBuilderSphere::Build (int face)
+{
+
+	/*
+	x+ 0
+	y+ ..
+	x-
+	y-
+	z+
+	z- 5
+	*/
+	float a=1,b,c=b=0;
+	float aNoisePositions[][3]={
+		{a,0,0}	// back
+		,{0,a,0}	// right
+		,{-a,0,0}	// front
+		,{0,-a,0}	// left
+		,{0,0,a}	// top
+		,{0,0,-a}	// bottom
+	};
+
+	if ( m_eastLonBound <= m_westLonBound
+		|| m_northLatBound <= m_southLatBound
+		|| m_destWidth <= 0
+		|| m_destHeight <= 0
+		|| m_pSourceModule == NULL
+		|| m_pDestNoiseMap == NULL) {
+			throw noise::ExceptionInvalidParam ();
+	}
+
+	// Resize the destination noise map so that it can store the new output
+	// values from the source model.
+	m_pDestNoiseMap->SetSize (m_destWidth, m_destHeight);
+
+	// Create the plane model.
+	model::Sphere sphereModel;
+	sphereModel.SetModule (*m_pSourceModule);
+	/*
+	double lonExtent = m_eastLonBound  - m_westLonBound ;
+	double latExtent = m_northLatBound - m_southLatBound;
+	double xDelta = lonExtent / (double)m_destWidth ;
+	double yDelta = latExtent / (double)m_destHeight;
+	double curLon = m_westLonBound ;
+	double curLat = m_southLatBound;
+	*/
+	// Fill every point in the noise map with the output values from the model.
+	float _x,_y;
+	for (int y = 0; y < m_destHeight; y++) {
+		float* pDest = m_pDestNoiseMap->GetSlabPtr (y);
+		_y = ((float)(y))/m_destHeight;
+		for (int x = 0; x < m_destWidth; x++) {
+			_x = ((float)(x))/m_destWidth;
+		
+			float n = _x*_x+_y*_y+1;
+			n = sqrtf(n);
+
+			float _z = 1/n;
+			_x /=n;
+			_y /=n;
+
+			if(face%2 == 1)
+				_z = -_z;
+
+
+			float point[3];
+			if(face < 2)
+			{
+				point[0] = _z;
+				point[1] = _x;
+				point[2] = _y;
+			}else if(face < 2)
+			{
+				point[0] = _x;
+				point[1] = _z;
+				point[2] = _y;
+			}else
+			{
+				point[0] = _x;
+				point[1] = _y;
+				point[2] = _z;
+			}
+
+			float a1 = asinf(point[2]);
+			if(point[2] < 0)
+				a1 = -a1;
+			float cosA = point[0]/cos(a1),sinA = point[2]/cos(a1);
+			float a21 = acosf(cosA), a22 = asinf(sinA);
+
+			float a2 = a22 > 0 ? a21 : -a21;
+			float curValue = (float)sphereModel.GetValue (a2, a1);
+			*pDest++ = curValue;
+			//curLon += xDelta;
+		}
+		if (m_pCallback != NULL) {
+			m_pCallback (y);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////

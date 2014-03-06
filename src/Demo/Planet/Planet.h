@@ -3,7 +3,7 @@
 #define _PLANET_H_
 
 #include <core/SceneNode/SceneNode.h>
-#include "QuadTreeNode.h"
+#include "PlanetTreeNode.h"
 #include <map>
 #include <string>
 using namespace Agmd;

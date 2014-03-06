@@ -1,4 +1,4 @@
-#include "QuadTreeNode.h"
+#include "PlanetTreeNode.h"
 #include "Planet.h"
 
 ivec2 order[]=
@@ -18,7 +18,7 @@ vec3 GetTranslation(int divisor, int face)
 	return vec3(order[face].x*0.25f,order[face].y*0.25f,0);
 }
 
-void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light )
+void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light )
 {
 	vec4 point(0,0,0,1);
 	mat4 view = cam->GetView();
@@ -41,8 +41,8 @@ void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,s
 			if(!face[i])
 			{
 				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
-				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
-				face[i] = new QuadTreeNode(Planet::s_plane,t,m_lod+1);
+				t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
+				face[i] = new PlanetTreeNode(Planet::s_plane,t,m_lod+1);
 				face[i]->Update(m_transform,false);
 			}
 			face[i]->FindVisible(cam,display,light);
@@ -50,11 +50,11 @@ void QuadTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,s
 	}
 }
 
-QuadTreeNode::QuadTreeNode( PlanetModel* model,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod)
+PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod)
 {
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
-	face = new QuadTreeNode*[4];
+	face = new PlanetTreeNode*[4];
 	std::memset(face,0,16);
 	m_divisor = 1;
 	for(int i = 0; i < lod; i++)

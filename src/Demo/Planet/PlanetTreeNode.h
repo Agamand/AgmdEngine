@@ -9,7 +9,7 @@ using namespace Agmd;
 #define MAX_FACE 4
 #define MAX_LOD 15
 #define CONST_DISTANCE 4.0f
-class QuadTreeNode : public MeshNode
+class PlanetTreeNode : public MeshNode
 {
 public:
 	enum Face
@@ -19,7 +19,7 @@ public:
 		BOTTOM_LEFT,
 		BOTTOM_RIGHT
 	};
-	QuadTreeNode(PlanetModel* model,Transform* transform = NULL,int lod = 0);
+	PlanetTreeNode(PlanetModel* model,Transform* transform = NULL,int lod = 0);
 
 	virtual void Update(Transform* transform, bool updateChildren)
 	{
@@ -37,7 +37,7 @@ private:
 	int m_lod;
 	int m_divisor;
 	int x,y;
-	QuadTreeNode** face;
+	PlanetTreeNode** face;
 };
 
 #endif /* _QUADTREENODE_H_ */

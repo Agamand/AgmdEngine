@@ -990,19 +990,20 @@ void NoiseMapBuilderSphere::Build (int face)
 	double curLat = m_southLatBound;
 	*/
 	// Fill every point in the noise map with the output values from the model.
-	float _x,_y;
+	float __x,__y,_x,_y;
 	for (int y = 0; y < m_destHeight; y++) {
 		float* pDest = m_pDestNoiseMap->GetSlabPtr (y);
-		_y = (((float)(y))/m_destHeight-0.5f)*2;
-		for (int x = 0; x < m_destWidth; x++) {
-			_x = (((float)(x))/m_destWidth-0.5f)*2;
 		
-			float n = _x*_x+_y*_y+1;
+		for (int x = 0; x < m_destWidth; x++) {
+			__x = (((float)(x))/m_destWidth-0.5f)*2;
+			__y = (((float)(y))/m_destHeight-0.5f)*2;
+			//printf("p %f %f \n",__x,__y);
+			float n = __x*__x+__y*__y+1;
 			n = sqrtf(n);
 
 			float _z = 1/n;
-			_x /=n;
-			_y /=n;
+			_x = __x/n;
+			_y =__y/n;
 
 			if(face%2 == 1)
 				_z = -_z;
@@ -1014,26 +1015,32 @@ void NoiseMapBuilderSphere::Build (int face)
 				point[0] = _z;
 				point[1] = _x;
 				point[2] = _y;
-			}else if(face < 2)
+			}else if(face < 4)
 			{
 				point[0] = _x;
 				point[1] = _z;
 				point[2] = _y;
 			}else
 			{
-				point[0] = _x;
-				point[1] = _y;
+				point[0] = _y;
+				point[1] = _x;
 				point[2] = _z;
 			}
 
-			float a1 = asinf(point[2]);
-			if(point[2] < 0)
-				a1 = -a1;
-			float cosA = point[0]/cos(a1),sinA = point[1]/cos(a1);
-			float a21 = acosf(cosA), a22 = asinf(sinA);
+			/*
+			float b=asinf(o.z);
+			float cosA = o.x/cosf(b), sinA = o.y/cosf(b);
+			float a = atan2f(sinA,cosA);
+			*/
 
-			float a2 = a22 > 0 ? a21 : -a21;
-			float curValue = (float)sphereModel.GetValue (a2, a1);
+			float a2 = asinf(point[2]);
+			float cosA = point[0]/cosf(a2),sinA = point[1]/cosf(a2);
+			float a1 = atan2f(sinA,cosA);
+
+
+			//printf("p %f %f %f, angles lat:%f lng:%f\n",point[0],point[1],point[2],a2/M_PI*180, a1/M_PI*180);
+			
+			float curValue = (float)sphereModel.GetValue (a2/M_PI*180, a1/M_PI*180);
 			*pDest++ = curValue;
 			//curLon += xDelta;
 		}

@@ -199,8 +199,28 @@ void generateNoise3d(Texture& t,int size,int seed)
 const char* gradient ="Texture/gradient.png";
 const char* seed = NULL;
 
+void test()
+{
+	for(int i = 0; i < 20;i++)
+		for (int j = 0; j <20;j++)
+		{
+			float _alpha = M_PI*i/10.0f,_beta = -M_PI_2+j*M_PI/20.f;
+			vec3 o = vec3(cosf(_alpha)*cosf(_beta),sinf(_alpha)*cosf(_beta),sinf(_beta));
+			float b=asinf(o.z);
+			float cosA = o.x/cosf(b), sinA = o.y/cosf(b);
+			float a = atan2f(sinA,cosA);
+			vec3 d = vec3(cosf(a)*cosf(b),sinf(a)*cosf(b),sinf(b));
+			vec3 diff = o-d;
+			float l = length(diff);
+			if(l > 0.001f)
+				printf("FAIL");
+		}
+
+}
+
 void App::Run(int argc, char** argv)
 {
+	test();
     if(argc > 0)
 	{
 		File main(argv[0]);

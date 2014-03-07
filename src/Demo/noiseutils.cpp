@@ -993,9 +993,9 @@ void NoiseMapBuilderSphere::Build (int face)
 	float _x,_y;
 	for (int y = 0; y < m_destHeight; y++) {
 		float* pDest = m_pDestNoiseMap->GetSlabPtr (y);
-		_y = ((float)(y))/m_destHeight;
+		_y = (((float)(y))/m_destHeight-0.5f)*2;
 		for (int x = 0; x < m_destWidth; x++) {
-			_x = ((float)(x))/m_destWidth;
+			_x = (((float)(x))/m_destWidth-0.5f)*2;
 		
 			float n = _x*_x+_y*_y+1;
 			n = sqrtf(n);
@@ -1029,7 +1029,7 @@ void NoiseMapBuilderSphere::Build (int face)
 			float a1 = asinf(point[2]);
 			if(point[2] < 0)
 				a1 = -a1;
-			float cosA = point[0]/cos(a1),sinA = point[2]/cos(a1);
+			float cosA = point[0]/cos(a1),sinA = point[1]/cos(a1);
 			float a21 = acosf(cosA), a22 = asinf(sinA);
 
 			float a2 = a22 > 0 ? a21 : -a21;

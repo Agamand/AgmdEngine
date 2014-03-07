@@ -41,7 +41,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 			if(!face[i])
 			{
 				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
-				t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
+				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
 				face[i] = new PlanetTreeNode(Planet::s_plane,t,m_lod+1);
 				face[i]->Update(m_transform,false);
 			}

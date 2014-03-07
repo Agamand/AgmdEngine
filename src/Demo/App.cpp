@@ -94,9 +94,7 @@ void generateNoise(uint32*& img,int size,int seed)
 void generateNoise3d(Texture& t,int size,int seed)
 {
 	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
-	vec4 bounds[] = {
-		
-	}
+
 	//PerlinNoise p(1,0.1,1,6,seed);
 	noise::module::Perlin _perlin;
 	_perlin.SetOctaveCount(16.f);
@@ -108,15 +106,14 @@ void generateNoise3d(Texture& t,int size,int seed)
 	heightMapBuilder.SetSourceModule (_perlin);
 	heightMapBuilder.SetDestSize (size, size);
 	heightMapBuilder.SetDestNoiseMap (heightMap);
-	//heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
+	heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
 	//heightMapBuilder.Build ();
 
 
 	noise::utils::RendererImage renderer;
-	noise::utils::Image image;
+	noise::utils::Image image(size,size);
 	renderer.SetSourceNoiseMap (heightMap);
 	renderer.SetDestImage (image);
-	renderer.Render ();
 	//image.GetValue()
 	Image _img[6];
 	uint32 * img = new uint32[size*size];
@@ -137,6 +134,7 @@ void generateNoise3d(Texture& t,int size,int seed)
 			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
 		}
 	}
+		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
 	}
 	/*int iHSize = size/2 // half the size of the cube
 	,aa = 123
@@ -188,10 +186,10 @@ void generateNoise3d(Texture& t,int size,int seed)
 	/*Image _img[6];
 	//Image __img[6];*/
 	//SmartPtr<Image> __img  = MediaManager::Instance().LoadMediaFromFile<Image>("Texture/debug.png");
-	for(int i = 0; i< 6; i++)
+	/*for(int i = 0; i< 6; i++)
 	{
 		_img[i] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);//*MediaManager::Instance().LoadMediaFromFile<Image>(File(StringBuilder("Texture/")(i)(".png")));/*Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);*/
-	}
+	//}*/
 	delete img;
 
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
@@ -245,7 +243,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,1024,_seed);
+	generateNoise3d(t,256,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));

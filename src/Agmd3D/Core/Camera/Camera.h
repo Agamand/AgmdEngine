@@ -62,8 +62,9 @@ namespace Agmd
     protected:
         struct CameraBuffer
         {
-            mat4 m_MatProjection;
+            mat4 m_MatProjectionView;
             mat4 m_MatView;
+			mat4 m_MatProjection;
         };
         virtual void UpdateVector() = 0;
         void UpdateBuffer(mat4& view);
@@ -82,7 +83,7 @@ namespace Agmd
         float _phi;
         mat4* map;
 
-        Buffer<mat4> m_cameraBuffer;
+        Buffer<CameraBuffer> m_cameraBuffer;
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

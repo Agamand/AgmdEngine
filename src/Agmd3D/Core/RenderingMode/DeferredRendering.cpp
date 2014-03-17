@@ -76,6 +76,7 @@ namespace Agmd
     void DeferredRendering::Compute()
     {
         Renderer& render = Renderer::Get();
+		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
 		sc->Update();
 		sc->Compute();
@@ -90,6 +91,14 @@ namespace Agmd
 
         Start();
         render.SetRenderMode(m_mode);
+		SkyBox* box = sc->GetSkyBox();
+
+		if(box)
+		{
+			render.Enable(RENDER_ZWRITE,false);
+			box->Render();
+		}
+
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
         m_framebuffer->DrawBuffer(0);

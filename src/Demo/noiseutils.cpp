@@ -1014,16 +1014,16 @@ void NoiseMapBuilderSphere::Build (int face)
 			{
 				point[0] = _z;
 				point[1] = _x;
-				point[2] = _y;
+				point[2] = face%2 ? _y : -_y;
 			}else if(face < 4)
 			{
-				point[0] = _x;
-				point[1] = _z;
-				point[2] = _y;
+				point[0] =  _y;
+				point[1] = -_z;
+				point[2] =  face%2 ? -_x :_x;
 			}else
 			{
-				point[0] = _y;
-				point[1] = _x;
+				point[0] = face%2 ? -_y : _y;
+				point[1] = face%2 ? _x : _x;
 				point[2] = _z;
 			}
 

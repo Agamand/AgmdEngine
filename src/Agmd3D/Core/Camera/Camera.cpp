@@ -26,18 +26,18 @@ namespace Agmd
     {
         m_transform.m_MatProjection = projection;
         m_transform.m_MatView = mat4(1.0f);
-        m_cameraBuffer = Renderer::Get().CreateUniformBuffer<mat4>(1,BUF_DYNAMIC,0,1,NULL);
+        m_cameraBuffer = Renderer::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
         //m_cameraBuffer.SwapBuffers();
-        mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.Fill(&vp,1);
+        m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.Fill(&m_transform,1);
     }
 
     void Camera::UpdateBuffer(mat4& view)
     {
         //m_cameraBuffer.WaitSync();
         m_transform.m_MatView = view;
-        mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.FillByte(&vp,0,sizeof(mat4));
+        m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*2);
         /*if(map == NULL)
             map = m_cameraBuffer.LockBits<mat4>(0, sizeof(mat4),LOCK_WRITEONLY | LOCK_UNSYNCHRONOUS);
         mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;

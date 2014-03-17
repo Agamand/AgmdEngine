@@ -160,8 +160,8 @@ namespace Agmd
                 guiTime = timer.getElapsedTimeInMicroSec();
                 
                 frame++;
-				//if(time_diff < 15)
-					//Sleep(15-time_diff);
+				if(time_diff < 15)
+					Sleep(15-time_diff);
                 render.EndScene();
                 if(fps_timer <= time_diff)
                 {
@@ -219,6 +219,7 @@ namespace Agmd
                 return 0;
             case WM_RBUTTONDOWN:
                 mouseState |= MOUSE_RIGHT;
+				OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MBUTTONDOWN:
@@ -228,6 +229,7 @@ namespace Agmd
                 return 0;
             case WM_LBUTTONDOWN:
                 mouseState |= MOUSE_LEFT;
+				OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
 
@@ -255,9 +257,12 @@ namespace Agmd
                 ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
                 if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
                     camera->OnMouseMotion(posDiff.x, posDiff.y);
-                    
+                
+
+				
                 last_mouse_pos.x = GET_X_LPARAM(LParam);
                 last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
+				OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,last_mouse_pos,posDiff,mouseState,0));
                 return 0;
         }

@@ -17,7 +17,7 @@ void main(){
 	vec3 normal = normalize((u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
 	vec4 pos = vec4(normal*scale,1.0f);
 	float displacement = rgb2grayscale(texture(texture0,pos.xyz).rgb);
-	displacement = clamp(displacement,0.5f,1.f);
+	displacement = clamp(displacement,0.0f,1.f);
 	pos += vec4(normal*displacement*0.05*scale,0);
 	gl_Position =  u_matViewProjection* pos;
 }

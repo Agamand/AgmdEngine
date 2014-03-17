@@ -163,8 +163,11 @@ namespace Agmd
         RENDER_ALPHABLEND,
         RENDER_ZTEST,
         RENDER_COMPARE_MODE,
+		RENDER_POINTSIZE_SHADER,
+		RENDER_POINTSPRITE,
         RENDER_TRANSPARENT,
         RENDER_RENDERING
+		
     };
 
     enum TShaderType

@@ -158,4 +158,10 @@ namespace Agmd
         {
             return *m_stats;
         }
+
+		float Renderer::GetAspectRatio()
+		{
+			return ((float)m_Screen.x)/m_Screen.y;
+		}
+
 }

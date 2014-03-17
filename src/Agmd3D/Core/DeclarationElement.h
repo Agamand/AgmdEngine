@@ -34,7 +34,7 @@ namespace Agmd
         ELT_TYPE_FLOAT3,
         ELT_TYPE_FLOAT4,
         ELT_TYPE_COLOR,
-        ELT_TYPE_INT,
+        ELT_TYPE_SHORT,
     };
 
     struct TDeclarationElement

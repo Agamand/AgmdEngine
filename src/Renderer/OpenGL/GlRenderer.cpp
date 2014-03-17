@@ -492,7 +492,7 @@ namespace Agmd
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer->GetBuffer());
 
         static const unsigned int Size[] = {1, 2, 3, 4, 4, 1};
-        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_INT};
+        static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_SHORT};
 
         const GLDeclaration::TElementArray& StreamDesc = m_CurrentDeclaration->GetStreamElements(stream);
         for (GLDeclaration::TElementArray::const_iterator i = StreamDesc.begin(); i != StreamDesc.end(); ++i)

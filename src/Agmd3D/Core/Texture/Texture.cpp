@@ -64,11 +64,11 @@ namespace Agmd
 
         if (!m_Texture)
         {
-            SmartPtr<Image> image[6];
+            Image image[6];
             for(a_int32 i = 0; i < 6; i++)
-                image[i] = MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
+                image[i] = *MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
 
-            //Load(*image, format, TEXTURE_2D, flags, filename);
+           Load(image,format,TEXTURE_CUBE,flags,filename[0]);
         }
     }
 
@@ -278,7 +278,7 @@ namespace Agmd
 
         if(!s_renderTexture)
             s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
-        
+        render.SetViewPort(ivec2(),render.GetScreen());
         render.SetTexture(0,input.GetTexture());
         render.SetCurrentProgram(s_renderTexture);
         Fast2DSurface::Instance().Draw();

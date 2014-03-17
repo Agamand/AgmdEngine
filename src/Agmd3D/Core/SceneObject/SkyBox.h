@@ -29,12 +29,12 @@ namespace Agmd
     class AGMD3D_EXPORT SkyBox
     {
     public:
-        SkyBox(float size = 1.0f);
+        SkyBox();
         ~SkyBox();
 
         void Render() const;
         void Draw() const;
-        void SetTexture(Texture tex, a_uint32 index);
+        void SetTexture(Texture tex);
 
     private:
 

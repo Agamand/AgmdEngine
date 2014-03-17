@@ -40,7 +40,7 @@ namespace Agmd
 			PREPROCESSOR_REVISION
 		};
 
-		const string LoadAndCompileShader(string& current_file, string const* current_dir);
+		const string LoadAndCompileShader(const string& current_file, string const* current_dir=NULL);
 
 		void AddSearchPath( std::string path);
 	private:

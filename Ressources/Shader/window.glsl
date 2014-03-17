@@ -42,29 +42,27 @@ in vec2 texCoord3;
 out vec4 out_Color;
 uniform sampler2D texture0;
 uniform sampler2D texture1;
-uniform sampler2D texture2;
-uniform sampler2D texture3;
 
 void main()
 {
     out_Color = vec4(1.0);
-    if((u_textureFlags & 1 ) != 0)
+     if((u_textureFlags & 1 ) != 0)
     {
         out_Color = texture(texture0, texCoord0);
     }
     if((u_textureFlags & 2 ) != 0)
     {
-        out_Color = texture(texture1, texCoord1);
+        out_Color = texture(texture0, texCoord1);
     }
     if((u_textureFlags & 4 ) != 0)
     {
-        out_Color = texture(texture2, texCoord2);
+        out_Color = texture(texture0, texCoord2);
     }
     if((u_textureFlags & 8 ) != 0)
     {
-        out_Color = texture(texture3, texCoord3);
+        out_Color = texture(texture1, texCoord3);
     }
-	if(out_Color.a < 1.0f)
-		discard; //avoid transparent or semi-transparent pixel
+	//if(out_Color.a < 1.0f)
+		//discard; //avoid transparent or semi-transparent pixel
 }
 #endif

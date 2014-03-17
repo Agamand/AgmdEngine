@@ -48,6 +48,7 @@
     <ClCompile Include="..\..\src\Demo\Loader\MeshLoader.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\objLoader.cpp" />
     <ClCompile Include="..\..\src\Demo\noiseutils.cpp" />
+    <ClCompile Include="..\..\src\Demo\Particles\ParticlesEmitter.cpp" />
     <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
     <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp" />
     <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="..\..\src\Demo\M2Loader.h" />
     <ClInclude Include="..\..\src\Demo\M2Model.h" />
     <ClInclude Include="..\..\src\Demo\noiseutils.h" />
+    <ClInclude Include="..\..\src\Demo\Particles\ParticlesEmitter.h" />
     <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
     <ClInclude Include="..\..\src\Demo\Planet\Planet.h" />
     <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h" />

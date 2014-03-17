@@ -123,6 +123,8 @@ namespace Agmd
         mat4 GetMatView();
         mat4 GetMatProjection();
         ivec2 GetScreen();
+		float GetAspectRatio();
+
 
 
         void SetCamera(Camera* cam);

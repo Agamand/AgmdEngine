@@ -10,6 +10,7 @@ in vec2 in_TexCoord0;
 
 out vec4 color;
 out vec2 texCoord0;
+out vec3 texCoord1;
 out vec3 normal;
 out vec4 pos;
 out vec4 comp_pos;
@@ -28,10 +29,10 @@ void main()
 	float scale = 1.f;
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = normalize((u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
+	normal = normalize(texCoord1 = (u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
 	pos = vec4(normal*scale,1.0f);
 	float displacement = rgb2grayscale(texture(texture0,pos.xyz).rgb);
-	displacement = clamp(displacement,0.5f,1.f);
+	displacement = clamp(displacement,0.0f,1.f);
 	pos += vec4(scale*normal*displacement*0.05,0);
 	comp_pos = u_matViewProjection *  pos;
 	gl_Position = comp_pos;

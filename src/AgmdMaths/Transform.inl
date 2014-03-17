@@ -88,7 +88,7 @@ inline void Transform::Translate(float move_x, float move_y, float move_z, const
 
 inline void Transform::SetPosition(const vec3& position)
 {
-    m_position = position;
+    m_localMatrix = translate(mat4(1),position);
 }
 
 inline void Transform::SetRotation(const quat& rotation)

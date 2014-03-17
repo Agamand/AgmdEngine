@@ -62,6 +62,7 @@ status : in pause
 #include <random>
 #include "simplexnoise.h"
 #include "noiseutils.h"
+
 using namespace Agmd;
 using namespace AgmdNetwork;
 using namespace AgmdUtilities;
@@ -76,7 +77,7 @@ void generateNoise(uint32*& img,int size,int seed)
 	//PerlinNoise p(1,0.1,1,6,seed);
 	noise::module::Perlin _perlin;
 	_perlin.SetOctaveCount(15.f);
-	_perlin.SetFrequency(1.f);
+	_perlin.SetFrequency(4.f);
 	_perlin.SetPersistence(0.5f);
 	_perlin.SetSeed(seed);
 	for(int i = 0; i < size; i++)
@@ -97,8 +98,8 @@ void generateNoise3d(Texture& t,int size,int seed)
 
 	//PerlinNoise p(1,0.1,1,6,seed);
 	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(16.f);
-	_perlin.SetFrequency(2.f);
+	_perlin.SetOctaveCount(8.f);
+	_perlin.SetFrequency(4.f);
 	_perlin.SetPersistence(0.5f);
 	_perlin.SetSeed(seed);
 	noise::utils::NoiseMap heightMap;
@@ -196,7 +197,7 @@ void generateNoise3d(Texture& t,int size,int seed)
 //	t.Create(ivec2(1),PXF_A8R8G8B8,TEXTURE_CUBE);
 }
 
-const char* gradient ="Texture/gradient.png";
+const char* gradient ="Texture/gradient_mars.png";
 const char* seed = NULL;
 
 void test()
@@ -220,7 +221,6 @@ void test()
 
 void App::Run(int argc, char** argv)
 {
-	test();
     if(argc > 0)
 	{
 		File main(argv[0]);
@@ -235,7 +235,7 @@ void App::Run(int argc, char** argv)
 }
 
 #include "Planet/Planet.h"
-
+SkyBox* boox;
 void App::OnInit()
 {  
     pause = true;
@@ -243,9 +243,9 @@ void App::OnInit()
 	printf("Loading...");
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
-
+	draw =true;
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    RenderingMode::SetRenderingMode(mode);
+    //RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -263,29 +263,44 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,256,_seed);
+	//generateNoise3d(t,1024,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
-
-	//mat->SetTexture(t,0,RENDERPASS_ZBUFFER);
 	Planet* p = new Planet(mat);
-    Model* model = CreateMetaSphere(1.0f,0,0);
-
-    MeshNode* mesh = new MeshNode(CreateSphere(1.f,20,20,2*M_PI,"",PT_TRIANGLELIST));
     m_Scene->AddNode(p->GetRoot());
-	//uint32 *i = new uint32(256*256);
-
-    //m_Scene->AddNode(mesh);
-	model = CreatePlane(ivec2(20000),ivec2(1),"",PT_TRIANGLELIST);
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
     m_light->SetRange(2000.0f);
-
+	ShaderProgram prog;
+	ShaderProgram prog2;
+	/*particles1 = new ParticlesEmitter("Shader/particle_1.glsl",250,new Transform(vec3(-6,0,0)));
+	particles2 = new ParticlesEmitter("Shader/particle_2.glsl",250,new Transform(vec3(6,0,0)));*/
+	/*AWindow* position =new AWindow();
+	AWindow* velocity = new AWindow();
+	AWindow* life = new AWindow();
+	position->SetBackground(particles->position_buffer[0]);
+	velocity->SetBackground(particles->velocity_buffer[0]);//particles->velocity_buffer[1]);
+	life->SetBackground(particles->extra_buffer[0]);
+	GUIMgr::Instance().AddWidget(position);
+	GUIMgr::Instance().AddWidget(velocity);
+	GUIMgr::Instance().AddWidget(life);*/
+	string cubemap[6];
+	for(int i = 0; i < 6; i++)
+	{
+		cubemap[i] = StringBuilder("Texture/background/")(i+1)(".png");
+	}
+	Texture tex_cubemap;
+	tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
+	
+	SkyBox* box = new SkyBox();
+	box->SetTexture(tex_cubemap);
+	m_Scene->SetSkybox(box);
+	boox = box;
 	cam3D = new FollowCamera(m_MatProj3D);
 	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
@@ -295,37 +310,16 @@ void App::OnInit()
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
+	for(int i = 0; i < m_particles.size(); i++)
+		m_particles[i]->Update(time_diff);
     if(pause)
         return;
 }
-static const GLfloat vertices[] = 
-{
-	-0.8f, -0.8f, 0.0f,	// vertex bas-gauche
-	0.8f, -0.8f, 0.0f,	// vertex bas-droit
-	0.0f, 0.8f, 0.0f	// vertex haut
-};
+
 void App::OnRender3D()
 {
-    GLRenderer* renderer = reinterpret_cast<GLRenderer*>(&Renderer::Get());
-    /*Renderer::Get().SetCullFace(0);
-    default_program->Use(true);
-    GLRenderer::glBindBuffer(gl_verte
-    GLRenderer::glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    GLRenderer::glEnableVertexAttribArray(0);
-
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 3);
-    default_program->Use(false);*/
-    //GLRenderer::glDisableVertexAttribArray(0);
- //   Renderer::Get().SetCurrentProgram(default_program);
- //   Renderer::Get().SetCurrentTransform(NULL);
- //   default_program->SetParameter("u_time",(float)m_timer/1000);
-	//default_program->SetParameter("u_g",g);
-	//default_program->SetParameter("u_l",l);
-	//default_program->SetParameter("u_g",o);
-	//default_program->SetParameter("u_l",(int)(seed+m_timer));
- //   Fast2DSurface::Instance().Draw();
-
-
+	for(int i = 0; i < m_particles.size(); i++)
+		m_particles[i]->Draw();
 }
 
 void App::OnRender2D()
@@ -333,6 +327,7 @@ void App::OnRender2D()
     Renderer& render = Renderer::Get();
     *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer);
     m_fps->Draw();
+
 }
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -344,14 +339,51 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         case 'P':
             pause = !pause;
             break;
-        case 'O':
-            m_light->SetDirection(-normalize(cam3D->GetTarget() - cam3D->GetPosition()));
-            break;
+		case 'C':
+			for(int i =0; i< m_particles.size(); i++)
+				delete m_particles[i];
+			m_particles.clear();
+			break;
+		case 'M':
+			draw = !draw;
+			break;
 		}
     }
 
     return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
 }
+
+void App::OnClick( int click, vec2 pos )
+{
+	printf("click %i at pos (%f,%f)\n",click,pos.x,pos.y);
+	float f = Renderer::Get().GetAspectRatio();
+	if(!draw)
+		return;
+	if(click == 1)
+	{
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_1.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+	}
+	if(click == 2)
+	{
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_2.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+	}
+}
+
+void App::OnMove(vec2 pos)
+{
+
+	if(!m_particles.size())
+		return;
+	float f = Renderer::Get().GetAspectRatio();
+	m_particles[m_particles.size()-1]->GetTransform()->SetPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
+	m_particles[m_particles.size()-1]->GetTransform()->Update(NULL);
+}	
+
+
+
+
+
+
 
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
@@ -624,6 +656,8 @@ Model* App::CreateTriangle(float size, TPrimitiveType type)
 
     return new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
 }
+
+
 
 
 

@@ -84,6 +84,8 @@ namespace Agmd
 
     void AWindow::OnPosChanged()
     {
+		m_transform->SetPosition(vec3(m_vAbsolutePosition,0));
+		m_transform->Update(NULL);
     }
 
     void AWindow::Draw() const
@@ -91,7 +93,7 @@ namespace Agmd
         Renderer &render = Renderer::Get();
         render.SetCurrentProgram(m_Program);
         render.SetCurrentTransform(m_transform);
-        m_transform->SetPosition(vec3(m_vAbsolutePosition,0));
+        
         render.SetDeclaration(m_Declaration);
         render.SetVertexBuffer(0, m_VertexBuffer);
         render.SetIndexBuffer(m_IndexBuffer);
@@ -100,19 +102,16 @@ namespace Agmd
         render.SetTextureFlag(TEXTURE_UNIT_0);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 24);
 
-        render.SetTexture(1, m_Texture.GetTexture());
         render.SetTextureFlag(TEXTURE_UNIT_1);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 24, 12);
 
-        render.SetTexture(2, m_Texture.GetTexture());
         render.SetTextureFlag(TEXTURE_UNIT_2);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 36, 12);
-
 
         if(m_Background.GetTexture())
         {
             render.GetCurrentProgram()->SetParameter("u_size",(vec2)m_vSize);
-            render.SetTexture(3, m_Background.GetTexture());
+            render.SetTexture(1, m_Background.GetTexture());
             render.SetTextureFlag(TEXTURE_UNIT_3);
         }else render.SetTextureFlag(0);
         render.DrawIndexedPrimitives(PT_TRIANGLELIST, 48, 6);

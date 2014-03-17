@@ -13,8 +13,9 @@ https://github.com/Agamand/AgmdEngine
 #include <string>
 #include <fstream>
 
-#include <Utilities\File.h>
-#include <Debug\Logger.h>
+#include <Utilities/File.h>
+#include <Debug/Logger.h>
+#include <Core/Shader/ShaderPreCompiler.h>
 
 namespace Agmd
 {
@@ -27,7 +28,8 @@ namespace Agmd
 
     BaseShaderProgram* ShaderProgramsLoader::LoadFromFile(const std::string& filename)
     {
-        std::string buffer = LoadShader(filename);
+		ShaderPreCompiler& compiler = ShaderPreCompiler::Instance();
+        std::string buffer = compiler.LoadAndCompileShader(filename);//LoadShader(filename);
         BaseShader* shader[5];
 		Logger::Log(LOGDEBUG,"load shader program : %s",filename.c_str());
         shader[0] = Renderer::Get().CreateShader(buffer, SHADER_VERTEX);
@@ -44,7 +46,7 @@ namespace Agmd
 			Logger::Log(LOGDEBUG,"load Geometry shader");
         shader[4] = Renderer::Get().CreateShader(buffer, SHADER_PIXEL);
 		if(shader[4])
-			Logger::Log(LOGDEBUG,"load Pixel shader");
+			Logger::Log(LOGDEBUG,"load Frag shader");
         return Renderer::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
     }
 

@@ -29,7 +29,7 @@ status : in pause
 #include <Agmd3D/Core/Effects/AntiAliasing.h>
 #include <Agmd3D/Core/Effects/AsciEffect.h>
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
-
+#include "Particles/ParticlesEmitter.h"
 
 #include <map>
 #include <vector>
@@ -51,7 +51,8 @@ private :
     virtual void OnInit();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-    
+    void OnClick(int click, vec2 pos);
+	void OnMove(vec2 pos);
     virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();
@@ -73,6 +74,8 @@ private :
     Agmd::AntiAliasing* m_fxaa;
     Agmd::Light* m_light;
     a_uint64  m_timer;
+	bool draw;
+	std::vector<ParticlesEmitter*> m_particles;
     bool pause;
     bool fxaa;
 };

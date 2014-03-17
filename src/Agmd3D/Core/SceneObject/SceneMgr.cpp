@@ -52,4 +52,19 @@ namespace Agmd
 		return m_light;
 	}
 
+	void SceneMgr::AddLight( Light* l )
+	{
+		m_light.push_back(l);
+	}
+
+	void SceneMgr::SetSkybox( SkyBox* skybox )
+	{
+		m_skybox = skybox;
+	}
+
+	SkyBox* SceneMgr::GetSkyBox()
+	{
+		return m_skybox;
+	}
+
 }

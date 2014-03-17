@@ -36,6 +36,9 @@
     <ClCompile Include="..\..\src\Demo\Planet\PlanetTreeNode.cpp">
       <Filter>Planet</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Demo\Particles\ParticlesEmitter.cpp">
+      <Filter>Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Demo\App.h" />
@@ -72,6 +75,9 @@
     <ClInclude Include="..\..\src\Demo\Planet\PlanetTreeNode.h">
       <Filter>Planet</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Demo\Particles\ParticlesEmitter.h">
+      <Filter>Particle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Test">
@@ -85,6 +91,9 @@
     </Filter>
     <Filter Include="Noiseutils">
       <UniqueIdentifier>{c2cd4a81-22c0-4b5a-8f0d-7d6bf9048784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle">
+      <UniqueIdentifier>{90039a76-7fcd-4ce5-a105-a1ff362f3b2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

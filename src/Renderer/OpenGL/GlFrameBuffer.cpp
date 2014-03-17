@@ -110,6 +110,14 @@ namespace Agmd
             buffer[i] = RGLEnum::GetAttachment(flags[i]);
         return buffer;
     }
+	a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32* buffer,a_uint32 count, a_uint32 flags[])
+	{
+		if(!count)
+			return NULL;
+		for(a_uint32 i = 0; i < count; i++)
+			buffer[i] = RGLEnum::GetAttachment(flags[i]);
+		return buffer;
+	}
 
     void GLFrameBuffer::ReadBuffer(a_uint32 flag)
     {

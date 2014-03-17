@@ -7,6 +7,7 @@
 #include <Core/SceneNode/DisplayNode.h>
 #include <Core/SceneNode/LightNode.h>
 #include <Core/SceneObject/Light.h>
+#include <Core/SceneObject/SkyBox.h>
 #include <vector>
 #include <queue>
 namespace Agmd
@@ -26,14 +27,17 @@ namespace Agmd
 		void AddNode(SceneNode *node); // add to root
 
 	    const std::vector<Light*>& GetLights();
-		void AddLight(Light* l)
-		{
-			m_light.push_back(l);
-		}
+		void AddLight(Light* l);
+
+		void SetSkybox(SkyBox* skybox);
+
+		SkyBox* GetSkyBox();
+
 	private:
 		std::vector<Light*> m_light; // static light
 		std::vector<DisplayNode*> m_displayable;
 		SceneNode* m_root;
+		SkyBox* m_skybox;
 	};
 
 }

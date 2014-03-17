@@ -25,6 +25,8 @@ out vec4 out_Color;
 void main (void)
 {
 	vec4 input1 = texture(texture0, v_TexCoord);
+	if(input1.a < 1.0f)
+		discard;
 	out_Color = input1;
 }
 

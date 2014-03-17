@@ -52,6 +52,8 @@ namespace Agmd
         AgmdApp(ivec2 screenSize = ivec2(1280,720));
         ~AgmdApp();
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
+		virtual void OnClick(int click, vec2 pos) = 0;
+		virtual void OnMove(vec2 pos) = 0;
         virtual void OnInit() = 0;
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;

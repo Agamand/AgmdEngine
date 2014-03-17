@@ -100,8 +100,9 @@ namespace Agmd
         0,
         GL_BLEND,
         GL_DEPTH_TEST,
-        GL_TEXTURE_COMPARE_MODE
-
+        GL_TEXTURE_COMPARE_MODE,
+		GL_VERTEX_PROGRAM_POINT_SIZE,
+		GL_POINT_SPRITE
     };
 
     GLenum RGLEnum::RenderMode[] =
@@ -212,7 +213,7 @@ namespace Agmd
 
     GLenum RGLEnum::Get(TRenderParameter value)
     {
-        if(value > 3)
+        if(value > 5)
             return RenderParameter[0];
         return RenderParameter[value];
     }

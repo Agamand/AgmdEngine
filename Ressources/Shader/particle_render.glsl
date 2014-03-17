@@ -15,13 +15,13 @@ in float in_Vertex;
 out float v_life;
 out float v_color;
 
-
+const float size = 20.0f;
 void main()
 {
 	float offset = in_Vertex/float(u_particleCount);
 	vec4 pos = vec4(texture(texture0,vec2(offset,u_yoffset)).rgb,1);
 	vec4 extra = vec4(texture(texture1,vec2(offset,u_yoffset)).rgb,1);
-	gl_PointSize = clamp(40.f*extra.x,0,40.0f);
+	gl_PointSize = clamp(size*extra.x,0,size);
 	v_life = clamp(extra.x,0.f,1.f);
 	v_color = extra.y;
 	gl_Position = u_matProjectionPlane*pos;

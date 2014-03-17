@@ -24,6 +24,7 @@ void ParticlesEmitter::Update(a_uint32 time)
 	renderer.SetCurrentTransform(m_transform);
 	m_program.SetParameter("u_time_diff",time);
 	m_program.SetParameter("u_matProjectionPlane",ortho<float>(0,1,0,1));
+	m_program.SetParameter("u_colorIndex",color);
 	int i = rand();
 	m_program.SetParameter("u_seed",i);
 	renderer.SetTexture(0,position_buffer[1].GetTexture());
@@ -113,6 +114,7 @@ void ParticlesEmitter::Init(int particlesCount)
 	m_fbo =  renderer.CreateFrameBuffer();
 	m_particleCount = particlesCount;
 	//velocity_buffer[0].CreateFromFile("Texture/roadV3.png",PXF_A8R8G8B8);
+	color = static_cast<float>(rand())/static_cast<float>(RAND_MAX);
 	delete[] buffer;
 	delete[] ibuffer;
 }

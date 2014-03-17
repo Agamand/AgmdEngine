@@ -243,9 +243,11 @@ void App::OnInit()
 	printf("Loading...");
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
-	draw =true;
+	drawMouse = false;
+	draw = true;
+	pause = false;
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    //RenderingMode::SetRenderingMode(mode);
+    RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -263,7 +265,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	//generateNoise3d(t,1024,_seed);
+	generateNoise3d(t,256,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
@@ -280,15 +282,7 @@ void App::OnInit()
 	ShaderProgram prog2;
 	/*particles1 = new ParticlesEmitter("Shader/particle_1.glsl",250,new Transform(vec3(-6,0,0)));
 	particles2 = new ParticlesEmitter("Shader/particle_2.glsl",250,new Transform(vec3(6,0,0)));*/
-	/*AWindow* position =new AWindow();
-	AWindow* velocity = new AWindow();
-	AWindow* life = new AWindow();
-	position->SetBackground(particles->position_buffer[0]);
-	velocity->SetBackground(particles->velocity_buffer[0]);//particles->velocity_buffer[1]);
-	life->SetBackground(particles->extra_buffer[0]);
-	GUIMgr::Instance().AddWidget(position);
-	GUIMgr::Instance().AddWidget(velocity);
-	GUIMgr::Instance().AddWidget(life);*/
+	
 	string cubemap[6];
 	for(int i = 0; i < 6; i++)
 	{
@@ -296,12 +290,21 @@ void App::OnInit()
 	}
 	Texture tex_cubemap;
 	tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
-	
+	mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"),5,new Transform());
+	AWindow* position =new AWindow();
+	AWindow* velocity = new AWindow();
+	AWindow* life = new AWindow();
+	position->SetBackground(mouse_emitter->position_buffer[0]);
+	velocity->SetBackground(mouse_emitter->velocity_buffer[0]);//particles->velocity_buffer[1]);
+	life->SetBackground(mouse_emitter->extra_buffer[0]);
+	GUIMgr::Instance().AddWidget(position);
+	GUIMgr::Instance().AddWidget(velocity);
+	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
 	box->SetTexture(tex_cubemap);
 	m_Scene->SetSkybox(box);
 	boox = box;
-	cam3D = new FollowCamera(m_MatProj3D);
+	cam3D = new FollowCamera(m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
@@ -310,16 +313,26 @@ void App::OnInit()
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
+	
+	if(pause)
+		return;
+
 	for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Update(time_diff);
-    if(pause)
-        return;
+
+	if(drawMouse)
+		mouse_emitter->Update(time_diff);
+
+    
+	//printf(Camera::GetCurrent(CAMERA_3D)->ToString().c_str());
 }
 
 void App::OnRender3D()
 {
 	for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Draw();
+	if(drawMouse)
+		mouse_emitter->Draw();
 }
 
 void App::OnRender2D()
@@ -347,7 +360,11 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		case 'M':
 			draw = !draw;
 			break;
+		case 'L':
+			drawMouse = !drawMouse;
+			break;
 		}
+		
     }
 
     return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
@@ -372,11 +389,9 @@ void App::OnClick( int click, vec2 pos )
 void App::OnMove(vec2 pos)
 {
 
-	if(!m_particles.size())
-		return;
 	float f = Renderer::Get().GetAspectRatio();
-	m_particles[m_particles.size()-1]->GetTransform()->SetPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
-	m_particles[m_particles.size()-1]->GetTransform()->Update(NULL);
+	mouse_emitter->GetTransform()->SetPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
+	mouse_emitter->GetTransform()->Update(NULL);
 }	
 
 

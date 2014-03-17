@@ -6,7 +6,6 @@
 #ifdef _VERTEX_
 
 uniform mat4 u_matProjectionPlane;
-
 in vec3 in_Vertex;
 in vec2 in_TexCoord0;
 
@@ -20,11 +19,11 @@ void main()
 }
 #endif
 
+
 #ifdef _FRAGMENT_
 
 uniform int u_time_diff=1;
 uniform int u_seed;
-uniform float u_colorIndex;
 
 uniform sampler2D texture0;
 uniform sampler2D texture1;
@@ -32,7 +31,7 @@ uniform sampler2D texture2;
 
 in vec2 v_TexCoord;
 in vec4 v_emitter_pos;
-in float v_color;
+
 layout(location = 0) out vec3 out_Position;
 layout(location = 1) out vec3 out_Velocity;
 layout(location = 2) out vec3 out_Extra;
@@ -46,25 +45,26 @@ void main()
 	float rand = rand1f(v_TexCoord,u_seed); //104
 	float rand2 = rand1f(v_TexCoord,u_seed+585764);
 	float rand3 = rand1f(v_TexCoord,u_seed-654558);
+	float rand4 = rand1f(v_TexCoord,u_seed+56554);
 	vec4 extra = texture(texture2,vec2(v_TexCoord.x,v_TexCoord.y));
 	vec3 velocity = texture(texture1,vec2(v_TexCoord.x,v_TexCoord.y)).rgb;
 	vec3 position = texture(texture0,vec2(v_TexCoord.x,v_TexCoord.y)).rgb;
 	if(extra.x <= 0)	
 	{
 		float speed = 0.04f+0.06f*rand2;
-		speed *=2;
-		float angle = M_PI/2 + (rand-0.5f)*M_PI/4;
+		speed /=2;
+		float angle = -M_PI/2 + (rand-0.5f)*M_2PI;
 		extra.x = 0.1f+rand3*4.f;
 		extra.x /=3.f;
-		extra.y = u_colorIndex;
-		out_Extra = vec3(extra.x,extra.y,0);
+		extra.y=0.f;//1.0f-(rand4/4)/1.0f;
+		out_Extra = extra.xyz;
 		out_Position = v_emitter_pos.xyz;
 		out_Velocity = vec3(speed*cos(angle),speed*sin(angle),0);
 
 	}else
 	{
 		out_Extra =  vec3(extra.x-0.01f,extra.yz);
-		velocity -= vec3(0,0.005f*time/2,0);
+		//velocity -= vec3(0,0.005f*time/2,0);
 		out_Velocity = velocity;// - vec3(0,0.01,0)*time;//vec3(velocity);
 		out_Position = position+ velocity*time;
 	}

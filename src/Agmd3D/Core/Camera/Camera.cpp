@@ -103,6 +103,12 @@ namespace Agmd
 
         return true;
     }
-    Camera* Camera::s_currentCamera2D = NULL;
+
+	const std::string Camera::ToString()
+	{
+		return "Camera(Abstract)";
+	}
+
+	Camera* Camera::s_currentCamera2D = NULL;
     Camera* Camera::s_currentCamera3D = NULL;
 }

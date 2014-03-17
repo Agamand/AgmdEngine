@@ -75,7 +75,9 @@ private :
     Agmd::Light* m_light;
     a_uint64  m_timer;
 	bool draw;
+	bool drawMouse;
 	std::vector<ParticlesEmitter*> m_particles;
+	ParticlesEmitter* mouse_emitter;
     bool pause;
     bool fxaa;
 };

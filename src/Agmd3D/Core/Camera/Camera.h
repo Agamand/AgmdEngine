@@ -59,6 +59,7 @@ namespace Agmd
         static Camera* GetCurrent(TCamera type = CAMERA_3D);
         bool UnProject(vec3& mousepos);
 		const mat4& GetView() { return m_transform.m_MatView;} 
+		virtual const std::string ToString();
     protected:
         struct CameraBuffer
         {
@@ -84,6 +85,7 @@ namespace Agmd
         mat4* map;
 
         Buffer<CameraBuffer> m_cameraBuffer;
+		
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

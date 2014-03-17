@@ -38,6 +38,7 @@ private:
 	FrameBuffer* m_fbo;
 	int m_particleCount;
 	int draw_count;
+	float color;
 
 	/*need to be in sceneNode*/
 	Transform* m_transform;

@@ -35,13 +35,13 @@ namespace Agmd
     {
 		Renderer& render = Renderer::Get();
 		render.SetCurrentProgram(m_Program);
-		render.SetCullFace(0);
+		//render.SetCullFace(0);
 		render.SetCurrentTransform(NULL);
 		Renderer::Get().SetDeclaration(m_Declaration);
 		Renderer::Get().SetVertexBuffer(0,m_VertexBuffer);
 		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
 		Renderer::Get().SetTexture(0,m_Texture.GetTexture());
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,36,6);
+		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0,36);
 		render.SetCurrentProgram(NULL);
     }
 

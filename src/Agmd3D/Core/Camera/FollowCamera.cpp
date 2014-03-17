@@ -26,6 +26,20 @@ namespace Agmd
 		_theta = 0;
     }
 
+	FollowCamera::FollowCamera( mat4& projection, float a, float b, vec2 angle,float dist ) :
+		_up(0,0,1),
+		distance(dist),
+		m_mousewheel(false),
+		angles(angle),
+		Camera(projection,vec3())
+	{
+		//UpdateVector();
+		_forward = vec3(1,0,0);
+		_left = vec3(0,-1,0);
+		_phi = b;
+		_theta = a;
+	}
+
     FollowCamera::~FollowCamera()
     {}
 
@@ -166,4 +180,10 @@ namespace Agmd
         Camera::SetTarget(pos);
         _position = _target - distance*_forward;
     }
+
+	const std::string FollowCamera::ToString()
+	{
+		return StringBuilder("Follow Camera Theta(")(_theta)(") _phi(")(_phi)(") angles(")(angles.x)(",")(angles.y)(") distance(")(distance)(")\n");
+	}
+
 }

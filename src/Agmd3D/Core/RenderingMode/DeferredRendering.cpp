@@ -92,13 +92,13 @@ namespace Agmd
         Start();
         render.SetRenderMode(m_mode);
 		SkyBox* box = sc->GetSkyBox();
-
+		render.SetCullFace(1);
 		if(box)
 		{
 			render.Enable(RENDER_ZWRITE,false);
 			box->Render();
 		}
-
+		render.SetCullFace(2);
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
         m_framebuffer->DrawBuffer(0);

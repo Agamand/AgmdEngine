@@ -247,7 +247,7 @@ void App::OnInit()
 	draw = true;
 	pause = false;
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    RenderingMode::SetRenderingMode(mode);
+    //RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -271,7 +271,7 @@ void App::OnInit()
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
 	Planet* p = new Planet(mat);
-    m_Scene->AddNode(p->GetRoot());
+   // m_Scene->AddNode(p->GetRoot());
     Renderer::Get().SetActiveScene(m_Scene);
     Renderer::Get().SetCullFace(2);
 
@@ -290,7 +290,7 @@ void App::OnInit()
 	}
 	Texture tex_cubemap;
 	tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
-	mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"),5,new Transform());
+	mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"),2,new Transform());
 	AWindow* position =new AWindow();
 	AWindow* velocity = new AWindow();
 	AWindow* life = new AWindow();
@@ -304,13 +304,13 @@ void App::OnInit()
 	box->SetTexture(tex_cubemap);
 	m_Scene->SetSkybox(box);
 	boox = box;
-	cam3D = new FollowCamera(m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam2D = new FPCamera(m_MatProj2D);
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
 	printf("Loading end");
 }
-
+float timespeed= 1.0f;
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
 	
@@ -318,12 +318,14 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 		return;
 
 	for(int i = 0; i < m_particles.size(); i++)
-		m_particles[i]->Update(time_diff);
+		m_particles[i]->Update(time_diff*timespeed);
 
 	if(drawMouse)
 		mouse_emitter->Update(time_diff);
 
-    
+	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
+    const vec2& angles = cam->GetAngles();
+	//cam->SetAngles(vec2(angles.x,angles.y+0.001f*time_diff));
 	//printf(Camera::GetCurrent(CAMERA_3D)->ToString().c_str());
 }
 
@@ -338,7 +340,7 @@ void App::OnRender3D()
 void App::OnRender2D()
 {
     Renderer& render = Renderer::Get();
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer);
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	);
     m_fps->Draw();
 
 }
@@ -347,10 +349,12 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 {
     if(message == WM_KEYDOWN)
     {
+		char c = LOWORD(wParam);
         switch(LOWORD(wParam))
         {
         case 'P':
             pause = !pause;
+			//cam3D->SetRecvInput(pause);
             break;
 		case 'C':
 			for(int i =0; i< m_particles.size(); i++)
@@ -363,6 +367,11 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		case 'L':
 			drawMouse = !drawMouse;
 			break;
+		case 107:
+			timespeed *=2.f;
+			break;
+		case 109:
+			timespeed /=2.f;
 		}
 		
     }
@@ -378,7 +387,7 @@ void App::OnClick( int click, vec2 pos )
 		return;
 	if(click == 1)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_1.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),6000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
 	if(click == 2)
 	{

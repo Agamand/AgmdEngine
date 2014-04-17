@@ -73,13 +73,13 @@ namespace Agmd
         m_shadowRender = new ShadowMapRenderer(ivec2(2048));
     }
 
+
     void DeferredRendering::Compute()
     {
         Renderer& render = Renderer::Get();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		sc->Update();
-		sc->Compute();
+		
         const std::vector<Light*>& lights = sc->GetLights();
 
         const Light*const*  t = &lights[0];
@@ -98,6 +98,13 @@ namespace Agmd
 			render.Enable(RENDER_ZWRITE,false);
 			box->Render();
 		}
+		sc->Update();
+		sc->Compute();
+		/*if(sc->isEmpty())
+		{
+			End();
+			return;
+		}*/
 		render.SetCullFace(2);
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);

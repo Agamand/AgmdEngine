@@ -18,13 +18,16 @@ out float v_color;
 const float size = 20.0f;
 void main()
 {
-	float offset = in_Vertex/float(u_particleCount);
-	vec4 pos = vec4(texture(texture0,vec2(offset,u_yoffset)).rgb,1);
+	float offset = (1+in_Vertex)*1/float(u_particleCount);
+	vec4 pos = vec4(texture(texture0,vec2(offset,u_yoffset)).rgb/1000.f,1);
 	vec4 extra = vec4(texture(texture1,vec2(offset,u_yoffset)).rgb,1);
-	gl_PointSize = clamp(size*extra.x,0,size);
-	v_life = clamp(extra.x,0.f,1.f);
+	
+	v_life =1.0f; clamp(extra.x*1000,20.f,1000.f);
 	v_color = extra.y;
-	gl_Position = u_matProjectionPlane*pos;
+	vec4 viewPos = u_matView*pos;
+	float dist = length(viewPos);
+	gl_PointSize = clamp(extra.z*200,20,100)*8/dist;
+	gl_Position = u_matProjection*vec4(viewPos.xyz,1);
 }
 #endif
 

@@ -66,6 +66,8 @@ namespace Agmd
     }
     void FollowCamera::OnMouseMotion(int x, int y)
     {
+		if(!recvInput)
+			return;
         if(m_mousewheel)
         {
             _target += -_left*(float)x*0.1f;
@@ -82,6 +84,8 @@ namespace Agmd
 
     void FollowCamera::OnKeyboard(char key, bool up)
     {
+		if(!recvInput)
+			return;
         a_uint32 tempFlags = MOVE_NONE;
         switch(key)
         {
@@ -163,6 +167,8 @@ namespace Agmd
 
     void FollowCamera::OnMouseWheel(float delta)
     {
+		if(!recvInput)
+			return;
 		float f = pow(2,4/distance);
 		printf("factor %f",f);
         distance += delta/f*0.001f;
@@ -172,6 +178,8 @@ namespace Agmd
     }
     void FollowCamera::OnMouseWheel(bool up)
     {
+		if(!recvInput)
+			return;
         m_mousewheel = up;
     }
 

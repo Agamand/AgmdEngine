@@ -18,6 +18,10 @@ float rand1f(vec2 x, int _seed)
 }
 
 
+bool near3f(vec3 a ,vec3 b)
+{
+	return length(a-b) < 0.001f;
+}
 
 int vec2ToInt(vec2 value)
 {

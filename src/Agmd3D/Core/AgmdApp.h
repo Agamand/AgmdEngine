@@ -49,7 +49,7 @@ namespace Agmd
         float m_fps;
 
     protected:
-        AgmdApp(ivec2 screenSize = ivec2(1280,720));
+        AgmdApp(ivec2 screenSize = ivec2(1600,900));
         ~AgmdApp();
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		virtual void OnClick(int click, vec2 pos) = 0;

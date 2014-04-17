@@ -60,6 +60,10 @@ namespace Agmd
         bool UnProject(vec3& mousepos);
 		const mat4& GetView() { return m_transform.m_MatView;} 
 		virtual const std::string ToString();
+		void SetRecvInput(bool active = true)
+		{
+			recvInput = active;
+		}
     protected:
         struct CameraBuffer
         {
@@ -83,7 +87,7 @@ namespace Agmd
         float _theta;
         float _phi;
         mat4* map;
-
+		bool recvInput;
         Buffer<CameraBuffer> m_cameraBuffer;
 		
     private:

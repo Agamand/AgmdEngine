@@ -22,6 +22,7 @@ namespace Agmd
     _position(pos),
     _speed(100.0f),
     _sensivity(0.2f),
+	recvInput(true),
     map(NULL)
     {
         m_transform.m_MatProjection = projection;

@@ -33,6 +33,14 @@ namespace Agmd
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos); 
+		void SetAngles(vec2 _angles)
+		{
+			angles = _angles;
+		}
+		const vec2& GetAngles()
+		{
+			return angles;
+		}
 		mat4 Look();
 		const std::string ToString();
     protected:

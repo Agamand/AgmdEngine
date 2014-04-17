@@ -41,7 +41,7 @@ namespace Agmd
 
     void DeferredRendering::Init()
    {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         m_framebuffer = render.CreateFrameBuffer();
         m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
         m_colorbuffer = render.CreateRenderBuffer(m_screen, PXF_A8R8G8B8);
@@ -75,7 +75,7 @@ namespace Agmd
 
     void DeferredRendering::Compute()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
 		sc->Update();

@@ -82,14 +82,14 @@ namespace Agmd
 
     void Texture::Load(const Image& pixels, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
     {
-        if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
+        if (FormatCompressed(format) && !Driver::Get().HasCapability(CAP_DXT_COMPRESSION))
         {
             format = PXF_A8R8G8B8;
             Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
         }
 
         ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
-        if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
+        if ((size != pixels.GetSize()) && !Driver::Get().HasCapability(CAP_TEX_NON_POWER_2))
         {
             Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
         }
@@ -100,7 +100,7 @@ namespace Agmd
 
         try
         {
-            m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
+            m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
         }
         catch (const std::exception& E)
         {
@@ -121,14 +121,14 @@ namespace Agmd
     void Texture::Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
     {
         const Image &pixels = image[0];
-        if (FormatCompressed(format) && !Renderer::Get().HasCapability(CAP_DXT_COMPRESSION))
+        if (FormatCompressed(format) && !Driver::Get().HasCapability(CAP_DXT_COMPRESSION))
         {
             format = PXF_A8R8G8B8;
             Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
         }
 
         ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
-        if ((size != pixels.GetSize()) && !Renderer::Get().HasCapability(CAP_TEX_NON_POWER_2))
+        if ((size != pixels.GetSize()) && !Driver::Get().HasCapability(CAP_TEX_NON_POWER_2))
         {
             Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
         }
@@ -139,7 +139,7 @@ namespace Agmd
 
         try
         {
-            m_Texture = Renderer::Get().CreateTexture(size, format, type, flags);
+            m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
         }
         catch (const std::exception& E)
         {
@@ -232,7 +232,7 @@ namespace Agmd
 
     void Texture::TextureAdd(Texture output, Texture input1, Texture input2)
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         if(!s_addTexture)
         {
             s_addTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/add_tex.glsl");
@@ -253,7 +253,7 @@ namespace Agmd
 
     void Texture::TextureProd(Texture output, Texture input1, Texture input2)
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         if(!s_prodTexture)
         {
             s_prodTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/prod_tex.glsl");
@@ -274,7 +274,7 @@ namespace Agmd
 
     void Texture::TextureRender(Texture input)
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
 
         if(!s_renderTexture)
             s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
@@ -287,7 +287,7 @@ namespace Agmd
 
     void Texture::TextureRandom()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
 
         if(!s_randomTexture)
             s_randomTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/rand_tex.glsl");
@@ -303,7 +303,7 @@ namespace Agmd
     void Texture::BeginRenderToTexture(const Texture& texture)
     {
         if(!s_framebuffer)
-            s_framebuffer = Renderer::Get().CreateFrameBuffer();
+            s_framebuffer = Driver::Get().CreateFrameBuffer();
         s_framebuffer->SetTexture(texture,COLOR_ATTACHMENT);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();
@@ -317,7 +317,7 @@ namespace Agmd
     void Texture::BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face)
     {
         if(!s_framebuffer)
-            s_framebuffer = Renderer::Get().CreateFrameBuffer();
+            s_framebuffer = Driver::Get().CreateFrameBuffer();
         if(face < 0)
             s_framebuffer->SetTexture(texture,attachment);
         else s_framebuffer->SetTextureCube(texture,attachment,face);

@@ -31,15 +31,15 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    class AGMD3D_EXPORT Renderer
+    class AGMD3D_EXPORT Driver
     {
     public :
-        virtual ~Renderer();
-        static void Change(Renderer* newRenderer);
+        virtual ~Driver();
+        static void Change(Driver* newRenderer);
 
         static void Destroy();
 
-        static Renderer& Get();
+        static Driver& Get();
 
         virtual std::string GetRendererDesc() const = 0;
 
@@ -171,7 +171,7 @@ namespace Agmd
         Statistics*         m_stats;
     private :
 
-        static Renderer*    s_Instance;
+        static Driver*    s_Instance;
     };
     #include "Renderer.inl"
 

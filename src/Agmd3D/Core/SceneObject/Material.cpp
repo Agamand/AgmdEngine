@@ -16,7 +16,7 @@ namespace Agmd
     Material::Material() : 
     m_pipeline(ShaderPipeline::GetDefaultPipeline())
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         m_bufferMaterial = render.CreateUniformBuffer<MaterialInfo>(1,0,0);
         m_materialInfo.m_baseColor = Color::white;
         m_materialInfo.m_materialFlags = 0;
@@ -28,7 +28,7 @@ namespace Agmd
     Material::Material(ShaderPipeline* pipeline) :
     m_pipeline(pipeline)
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         m_bufferMaterial = render.CreateUniformBuffer<MaterialInfo>(1,0,0);
         m_materialInfo.m_baseColor = Color::white;
         m_materialInfo.m_materialFlags = 0;
@@ -44,7 +44,7 @@ namespace Agmd
 
     bool Material::Enable(TRenderPass pass) const
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         a_uint32 textureFlags = 0;
 
         if(!m_pipeline->Enable(pass))

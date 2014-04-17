@@ -21,16 +21,16 @@ namespace Agmd
 
     GLFrameBuffer::~GLFrameBuffer()
     {
-        GLRenderer::glDeleteFramebuffers(1 ,&m_Id);
+        GLDriver::glDeleteFramebuffers(1 ,&m_Id);
     }
 
     void GLFrameBuffer::SetTexture(const Texture& tex, a_uint32 attach)
     {
         const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
         m_TextureMap[attach] = tex;
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),gl_tex->GetGLTexture(),0);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glFramebufferTexture(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),gl_tex->GetGLTexture(),0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::SetTextureCube(const Texture& tex, a_uint32 attach, int face)
@@ -40,28 +40,28 @@ namespace Agmd
 
         const GLTexture* gl_tex = static_cast<const GLTexture*>(tex.GetTexture());
         m_TextureMap[attach] = tex;
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         if(face >= 0 && face < 6)
-            GLRenderer::glFramebufferTexture2D(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),GL_TEXTURE_CUBE_MAP_POSITIVE_X+face,gl_tex->GetGLTexture(),0);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+            GLDriver::glFramebufferTexture2D(GL_FRAMEBUFFER,RGLEnum::GetAttachment(attach),GL_TEXTURE_CUBE_MAP_POSITIVE_X+face,gl_tex->GetGLTexture(),0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::SetRender(RenderBuffer* render, a_uint32 attach)
     {
         m_RenderBufferMap[attach] = render;
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glFramebufferRenderbuffer(GL_FRAMEBUFFER, RGLEnum::GetAttachment(attach), GL_RENDERBUFFER, static_cast<GLRenderBuffer*>(m_RenderBufferMap[attach])->GetID());
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glFramebufferRenderbuffer(GL_FRAMEBUFFER, RGLEnum::GetAttachment(attach), GL_RENDERBUFFER, static_cast<GLRenderBuffer*>(m_RenderBufferMap[attach])->GetID());
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::Bind()
     {
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, m_Id);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER, m_Id);
     }
 
     void GLFrameBuffer::UnBind()
     {
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
     a_uint32 GLFrameBuffer::GetID()
@@ -82,23 +82,23 @@ namespace Agmd
         if(flags & CLEAR_STENCIL)
             _flags |= GL_STENCIL_BUFFER_BIT;
 
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         glClear(_flags);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::DrawBuffer(a_uint32 flag)
     {
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         glDrawBuffer(flag);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::DrawBuffers(a_uint32 nbuffer, a_uint32* flag)
     {
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        GLRenderer::glDrawBuffers(nbuffer, flag);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glDrawBuffers(nbuffer, flag);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32 count, a_uint32 flags[])
@@ -121,8 +121,8 @@ namespace Agmd
 
     void GLFrameBuffer::ReadBuffer(a_uint32 flag)
     {
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         glReadBuffer(flag);
-        GLRenderer::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 }

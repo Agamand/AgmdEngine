@@ -26,7 +26,7 @@ namespace Agmd
 
     void Shader::CreateFromSrc(const std::string& src, TShaderType type)
     {
-        m_Shader = Renderer::Get().CreateShader(src,type);
+        m_Shader = Driver::Get().CreateShader(src,type);
     }
 
     void Shader::Unload()

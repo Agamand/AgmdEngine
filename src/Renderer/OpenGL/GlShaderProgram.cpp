@@ -190,35 +190,35 @@ namespace Agmd
 
     GLShaderProgram::~GLShaderProgram()
     {
-        GLRenderer::glDeleteProgram(m_id);
+        GLDriver::glDeleteProgram(m_id);
     }
 
     void GLShaderProgram::SetupShader()
     {
         Init();
         a_int32 n = 0;
-        GLRenderer::glGetProgramiv( m_id, GL_ACTIVE_UNIFORMS, &n );
+        GLDriver::glGetProgramiv( m_id, GL_ACTIVE_UNIFORMS, &n );
 
         for( int i = 0 ; i < n ; i++ )
         {
             Parameter var;
             char name[30] = "\0";
             size_t length = 0;
-            GLRenderer::glGetActiveUniform( m_id, i, sizeof(name), (GLsizei*)&length, (GLint*)&var.size, &var.typeValue, name );
-            var.loc = GLRenderer::glGetUniformLocation( m_id, name );
+            GLDriver::glGetActiveUniform( m_id, i, sizeof(name), (GLsizei*)&length, (GLint*)&var.size, &var.typeValue, name );
+            var.loc = GLDriver::glGetUniformLocation( m_id, name );
             var.type = PARAMETER_UNIFORM;
             m_UniformMap[name] = var;
         }
 
-        GLRenderer::glGetProgramiv( m_id, GL_ACTIVE_ATTRIBUTES, &n );
+        GLDriver::glGetProgramiv( m_id, GL_ACTIVE_ATTRIBUTES, &n );
 
         for( int i = 0 ; i < n ; i++ )
         {
             Parameter var;
             char name[30] = "\0";
             size_t length = 0;
-            GLRenderer::glGetActiveAttrib( m_id, i, sizeof(name), (GLsizei*)&length, (GLint*)&var.size, &var.typeValue, name );
-            var.loc = GLRenderer::glGetAttribLocation( m_id, name );
+            GLDriver::glGetActiveAttrib( m_id, i, sizeof(name), (GLsizei*)&length, (GLint*)&var.size, &var.typeValue, name );
+            var.loc = GLDriver::glGetAttribLocation( m_id, name );
             var.type = PARAMETER_ATTRIBUT;
             m_AttributMap[name] = var;
         }
@@ -272,9 +272,9 @@ namespace Agmd
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform1f(var.loc, value);
+            GLDriver::glUniform1f(var.loc, value);
         else if(var.type == PARAMETER_ATTRIBUT)
-            GLRenderer::glVertexAttrib1f(var.loc, value);
+            GLDriver::glVertexAttrib1f(var.loc, value);
 
 
     }
@@ -283,76 +283,76 @@ namespace Agmd
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform2f(var.loc, value.x, value.y);
+            GLDriver::glUniform2f(var.loc, value.x, value.y);
         else if(var.type == PARAMETER_ATTRIBUT)
-            GLRenderer::glVertexAttrib2f(var.loc, value.x, value.y);
+            GLDriver::glVertexAttrib2f(var.loc, value.x, value.y);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const vec3& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform3f(var.loc, value.x, value.y, value.z);
+            GLDriver::glUniform3f(var.loc, value.x, value.y, value.z);
         else if(var.type == PARAMETER_ATTRIBUT)
-            GLRenderer::glVertexAttrib3f(var.loc, value.x, value.y, value.z);
+            GLDriver::glVertexAttrib3f(var.loc, value.x, value.y, value.z);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const vec4& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform4f(var.loc, value.x, value.y, value.z, value.w);
+            GLDriver::glUniform4f(var.loc, value.x, value.y, value.z, value.w);
         else if(var.type == PARAMETER_ATTRIBUT)
-            GLRenderer::glVertexAttrib4f(var.loc, value.x, value.y, value.z, value.w);
+            GLDriver::glVertexAttrib4f(var.loc, value.x, value.y, value.z, value.w);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, int value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform1i(var.loc, value);
+            GLDriver::glUniform1i(var.loc, value);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const ivec2& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform2i(var.loc, value.x, value.y);
+            GLDriver::glUniform2i(var.loc, value.x, value.y);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const ivec3& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform3i(var.loc, value.x, value.y, value.z);
+            GLDriver::glUniform3i(var.loc, value.x, value.y, value.z);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const ivec4& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniform4i(var.loc, value.x, value.y, value.z, value.w);
+            GLDriver::glUniform4i(var.loc, value.x, value.y, value.z, value.w);
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const mat2& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniformMatrix2fv(var.loc, 1, 0, value_ptr(value));
+            GLDriver::glUniformMatrix2fv(var.loc, 1, 0, value_ptr(value));
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const mat3& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniformMatrix3fv(var.loc, 1, 0, value_ptr(value));
+            GLDriver::glUniformMatrix3fv(var.loc, 1, 0, value_ptr(value));
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const mat4& value) const
     {
         const Parameter& var = GetParameter(name);
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
+            GLDriver::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, float* value, a_uint32 count) const
@@ -364,7 +364,7 @@ namespace Agmd
                 return;
 
             for(a_uint32 i = 0; i < 1; i++)
-                GLRenderer::glUniform1fv(var.loc, count, (GLfloat*)value);
+                GLDriver::glUniform1fv(var.loc, count, (GLfloat*)value);
         }
     }
 
@@ -377,7 +377,7 @@ namespace Agmd
                 return;
 
             for(a_uint32 i = 0; i < 1; i++)
-                GLRenderer::glUniform2fv(var.loc, count, (GLfloat*)value);
+                GLDriver::glUniform2fv(var.loc, count, (GLfloat*)value);
         }
     }
 
@@ -390,7 +390,7 @@ namespace Agmd
                 return;
 
             for(a_uint32 i = 0; i < 1; i++)
-                GLRenderer::glUniform3fv(var.loc, count, (GLfloat*)value);
+                GLDriver::glUniform3fv(var.loc, count, (GLfloat*)value);
         }
     }
 
@@ -403,7 +403,7 @@ namespace Agmd
                 return;
 
             for(a_uint32 i = 0; i < 1; i++)
-                GLRenderer::glUniform4fv(var.loc, count, (GLfloat*)value);
+                GLDriver::glUniform4fv(var.loc, count, (GLfloat*)value);
         }
     }
 
@@ -416,7 +416,7 @@ namespace Agmd
                 return;
 
             for(a_uint32 i = 0; i < 1; i++)
-                GLRenderer::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
+                GLDriver::glUniformMatrix4fv(var.loc, count, 0, (GLfloat*)value);
         }
     }
 
@@ -424,19 +424,19 @@ namespace Agmd
     {
         const Parameter& var = m_APIMatrix[type];
         if(var.type == PARAMETER_UNIFORM)
-            GLRenderer::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
+            GLDriver::glUniformMatrix4fv(var.loc, 1, 0, value_ptr(value));
     }
 
     void GLShaderProgram::SetParameter(const std::string& name, const a_uint32 bindpoint) const
     {
-        a_int32 index = GLRenderer::glGetUniformBlockIndex(m_id,name.c_str());
+        a_int32 index = GLDriver::glGetUniformBlockIndex(m_id,name.c_str());
         if(index >= 0)
-            GLRenderer::glUniformBlockBinding(m_id, index, bindpoint);
+            GLDriver::glUniformBlockBinding(m_id, index, bindpoint);
     }
 
     void GLShaderProgram::Use(bool use) const
     {
-         GLRenderer::glUseProgram(use ? m_id : 0);
+         GLDriver::glUseProgram(use ? m_id : 0);
     }
 
     int GLShaderProgram::getUniformByteSize(int uniSize, int uniType, int uniArrayStride, int uniMatStride) 
@@ -491,19 +491,19 @@ namespace Agmd
  
         // Get uniforms info (not in named blocks)
         Logger::Log(LOGDEBUG,"Uniforms Info for program: %d",m_id);
-        GLRenderer::glGetProgramiv(m_id, GL_ACTIVE_UNIFORMS, &activeUnif);
+        GLDriver::glGetProgramiv(m_id, GL_ACTIVE_UNIFORMS, &activeUnif);
  
         for (a_uint32 i = 0; i < (a_uint32)activeUnif; ++i) {
-            GLRenderer::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_BLOCK_INDEX, &index);
+            GLDriver::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_BLOCK_INDEX, &index);
             if (index == -1) {
-                GLRenderer::glGetActiveUniformName(m_id, i, 256, &actualLen, name);  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_TYPE, &uniType);
+                GLDriver::glGetActiveUniformName(m_id, i, 256, &actualLen, name);  
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_TYPE, &uniType);
                 Logger::Log(LOGDEBUG,name);
                 Logger::Log(LOGDEBUG,spGLSLType[uniType].c_str());
                 Logger::Log(LOGDEBUG,"location: %d", i );
  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_SIZE, &uniSize);
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_ARRAY_STRIDE, &uniArrayStride);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_SIZE, &uniSize);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &i, GL_UNIFORM_ARRAY_STRIDE, &uniArrayStride);
  
                 int auxSize;
                 if (uniArrayStride > 0)
@@ -518,40 +518,40 @@ namespace Agmd
         }
         // Get named blocks info
         int count, dataSize, info;
-        GLRenderer::glGetProgramiv(m_id, GL_ACTIVE_UNIFORM_BLOCKS, &count);
+        GLDriver::glGetProgramiv(m_id, GL_ACTIVE_UNIFORM_BLOCKS, &count);
  
         for (int i = 0; i < count; ++i) {
             // Get buffers name
-            GLRenderer::glGetActiveUniformBlockName(m_id, i, 256, NULL, name);
-            GLRenderer::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_DATA_SIZE, &dataSize);
+            GLDriver::glGetActiveUniformBlockName(m_id, i, 256, NULL, name);
+            GLDriver::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_DATA_SIZE, &dataSize);
             Logger::Log(LOGDEBUG,"%s\n  Size %d", name, dataSize);
  
-            GLRenderer::glGetActiveUniformBlockiv(m_id, i,  GL_UNIFORM_BLOCK_BINDING, &index);
+            GLDriver::glGetActiveUniformBlockiv(m_id, i,  GL_UNIFORM_BLOCK_BINDING, &index);
             Logger::Log(LOGDEBUG,"  Block binding point: %d", index);
-            GLRenderer::glGetIntegeri_v(GL_UNIFORM_BUFFER_BINDING, index, &info);
+            GLDriver::glGetIntegeri_v(GL_UNIFORM_BUFFER_BINDING, index, &info);
             Logger::Log(LOGDEBUG,"  Buffer bound to binding point: %d {", info);
  
  
-            GLRenderer::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &activeUnif);
+            GLDriver::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &activeUnif);
  
             unsigned int *indices;
             indices = (unsigned int *)malloc(sizeof(unsigned int) * activeUnif);
-            GLRenderer::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, (int *)indices);
+            GLDriver::glGetActiveUniformBlockiv(m_id, i, GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, (int *)indices);
              
             for (int k = 0; k < activeUnif; ++k) {
          
-                GLRenderer::glGetActiveUniformName(m_id, indices[k], 256, &actualLen, name);
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_TYPE, &uniType);
+                GLDriver::glGetActiveUniformName(m_id, indices[k], 256, &actualLen, name);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_TYPE, &uniType);
                 Logger::Log(LOGDEBUG,"\t%s\n\t    %s", name, spGLSLType[uniType].c_str());
  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_OFFSET, &uniOffset);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_OFFSET, &uniOffset);
                 Logger::Log(LOGDEBUG,"\t    offset: %d", uniOffset);
  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_SIZE, &uniSize);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_SIZE, &uniSize);
  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_ARRAY_STRIDE, &uniArrayStride);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_ARRAY_STRIDE, &uniArrayStride);
  
-                GLRenderer::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_MATRIX_STRIDE, &uniMatStride);
+                GLDriver::glGetActiveUniformsiv(m_id, 1, &indices[k], GL_UNIFORM_MATRIX_STRIDE, &uniMatStride);
  
                 int auxSize;
                 if (uniArrayStride > 0)

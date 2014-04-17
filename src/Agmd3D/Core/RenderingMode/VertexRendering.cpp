@@ -30,7 +30,7 @@ namespace Agmd
 
     void VertexRendering::Compute()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         SceneMgr* sc = render.GetActiveScene();
         Start();
 

@@ -26,7 +26,7 @@ namespace Agmd
     {
         m_transform.m_MatProjection = projection;
         m_transform.m_MatView = mat4(1.0f);
-        m_cameraBuffer = Renderer::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
+        m_cameraBuffer = Driver::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
         //m_cameraBuffer.SwapBuffers();
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
         m_cameraBuffer.Fill(&m_transform,1);
@@ -83,7 +83,7 @@ namespace Agmd
         viewprojection = inverse(viewprojection);
 
         /* Map x and y from window coordinates */
-        ivec2 screen = Renderer::Get().GetScreen();
+        ivec2 screen = Driver::Get().GetScreen();
         mouse.x = mouse.x / screen.x;
         mouse.y = mouse.y / screen.y;
 

@@ -5,7 +5,7 @@ namespace Agmd
 {
     PostEffect::PostEffect()
     {
-        m_framebuffer = Renderer::Get().CreateFrameBuffer();
+        m_framebuffer = Driver::Get().CreateFrameBuffer();
     }
     
     PostEffect::~PostEffect()
@@ -15,9 +15,9 @@ namespace Agmd
 
     void PostEffect::SetEnable(bool enable)
     {
-        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
         m_program.SetParameter("u_enable",(int)enable);
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetCurrentProgram(NULL);
     }
 
 }

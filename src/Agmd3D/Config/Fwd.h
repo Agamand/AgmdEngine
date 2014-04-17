@@ -15,7 +15,7 @@ namespace Agmd
     //General Class
 
     class MediaManager;
-    class Renderer;
+    class Driver;
     class Resource;
     class ResourceManager;
     class Declaration;

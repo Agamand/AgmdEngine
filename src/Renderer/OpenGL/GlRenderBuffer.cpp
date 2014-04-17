@@ -20,7 +20,7 @@ namespace Agmd
 
     GLRenderBuffer::~GLRenderBuffer()
     {
-        GLRenderer::glDeleteRenderbuffers(1,&m_Id);
+        GLDriver::glDeleteRenderbuffers(1,&m_Id);
     }
 
     a_uint32 GLRenderBuffer::GetID()

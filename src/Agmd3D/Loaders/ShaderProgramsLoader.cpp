@@ -32,22 +32,22 @@ namespace Agmd
         std::string buffer = compiler.LoadAndCompileShader(filename);//LoadShader(filename);
         BaseShader* shader[5];
 		Logger::Log(LOGDEBUG,"load shader program : %s",filename.c_str());
-        shader[0] = Renderer::Get().CreateShader(buffer, SHADER_VERTEX);
+        shader[0] = Driver::Get().CreateShader(buffer, SHADER_VERTEX);
 		if(shader[0])
 			Logger::Log(LOGDEBUG,"load Vertex shader");
-        shader[1] = Renderer::Get().CreateShader(buffer, SHADER_TESS_CONTROL);
+        shader[1] = Driver::Get().CreateShader(buffer, SHADER_TESS_CONTROL);
 		if(shader[1])
 			Logger::Log(LOGDEBUG,"load TessControl shader");
-        shader[2] = Renderer::Get().CreateShader(buffer, SHADER_TESS_EVALUATION);
+        shader[2] = Driver::Get().CreateShader(buffer, SHADER_TESS_EVALUATION);
 		if(shader[2])
 			Logger::Log(LOGDEBUG,"load TessEval shader");
-        shader[3] = Renderer::Get().CreateShader(buffer, SHADER_GEOMETRY);
+        shader[3] = Driver::Get().CreateShader(buffer, SHADER_GEOMETRY);
 		if(shader[3])
 			Logger::Log(LOGDEBUG,"load Geometry shader");
-        shader[4] = Renderer::Get().CreateShader(buffer, SHADER_PIXEL);
+        shader[4] = Driver::Get().CreateShader(buffer, SHADER_PIXEL);
 		if(shader[4])
 			Logger::Log(LOGDEBUG,"load Frag shader");
-        return Renderer::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
+        return Driver::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
     }
 
 	bool isPreprocessor(const std::string& line)

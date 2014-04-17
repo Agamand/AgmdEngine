@@ -28,9 +28,9 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    class GLRenderer : public Renderer, public Singleton<GLRenderer>
+    class GLDriver : public Driver, public Singleton<GLDriver>
     {
-    MAKE_SINGLETON(GLRenderer)
+    MAKE_SINGLETON(GLDriver)
 
     public :
 
@@ -201,8 +201,8 @@ namespace Agmd
 
     private :
 
-        GLRenderer();
-        ~GLRenderer();
+        GLDriver();
+        ~GLDriver();
 
         bool CheckExtension(const std::string& Extension) const;
         void LoadExtensions();

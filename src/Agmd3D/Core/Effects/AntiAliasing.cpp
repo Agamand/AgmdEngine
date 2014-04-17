@@ -27,12 +27,12 @@ namespace Agmd
 
     void AntiAliasing::ApplyFxaa(Texture& input, Texture& output)
     {
-        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Renderer::Get().SetTexture(0,input.GetTexture());
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().SetTexture(0,input.GetTexture());
         Texture::BeginRenderToTexture(output);
         Fast2DSurface::Instance().Draw();
         Texture::EndRenderToTexture();
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetCurrentProgram(NULL);
     }
 
     void AntiAliasing::ApplyEffect(Texture& input, Texture& output)

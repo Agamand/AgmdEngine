@@ -270,8 +270,8 @@ void App::OnInit()
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
 	Planet* p = new Planet(mat);
     m_Scene->AddNode(p->GetRoot());
-    Renderer::Get().SetActiveScene(m_Scene);
-    Renderer::Get().SetCullFace(2);
+    Driver::Get().SetActiveScene(m_Scene);
+    Driver::Get().SetCullFace(2);
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
@@ -324,7 +324,7 @@ void App::OnRender3D()
 
 void App::OnRender2D()
 {
-    Renderer& render = Renderer::Get();
+    Driver& render = Driver::Get();
     *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer);
     m_fps->Draw();
 
@@ -356,12 +356,12 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 void App::OnClick( int click, vec2 pos )
 {
 	printf("click %i at pos (%f,%f)\n",click,pos.x,pos.y);
-	float f = Renderer::Get().GetAspectRatio();
+	float f = Driver::Get().GetAspectRatio();
 	if(!draw)
 		return;
 	if(click == 1)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_1.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),20 ,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
 	if(click == 2)
 	{
@@ -374,7 +374,7 @@ void App::OnMove(vec2 pos)
 
 	if(!m_particles.size())
 		return;
-	float f = Renderer::Get().GetAspectRatio();
+	float f = Driver::Get().GetAspectRatio();
 	m_particles[m_particles.size()-1]->GetTransform()->SetPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
 	m_particles[m_particles.size()-1]->GetTransform()->Update(NULL);
 }	

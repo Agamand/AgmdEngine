@@ -33,15 +33,15 @@ namespace Agmd
 
     void SkyBox::Draw() const
     {
-		Renderer& render = Renderer::Get();
+		Driver& render = Driver::Get();
 		render.SetCurrentProgram(m_Program);
 		render.SetCullFace(0);
 		render.SetCurrentTransform(NULL);
-		Renderer::Get().SetDeclaration(m_Declaration);
-		Renderer::Get().SetVertexBuffer(0,m_VertexBuffer);
-		Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-		Renderer::Get().SetTexture(0,m_Texture.GetTexture());
-		Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,36,6);
+		Driver::Get().SetDeclaration(m_Declaration);
+		Driver::Get().SetVertexBuffer(0,m_VertexBuffer);
+		Driver::Get().SetIndexBuffer(m_IndexBuffer);
+		Driver::Get().SetTexture(0,m_Texture.GetTexture());
+		Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,36,6);
 		render.SetCurrentProgram(NULL);
     }
 
@@ -86,10 +86,10 @@ namespace Agmd
 			{0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3}
 		};
 
-		m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
+		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
-		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(4*6,0,vertex);
-		m_IndexBuffer = Renderer::Get().CreateIndexBuffer(6*6,0,&indices[0]);
+		m_VertexBuffer = Driver::Get().CreateVertexBuffer(4*6,0,vertex);
+		m_IndexBuffer = Driver::Get().CreateIndexBuffer(6*6,0,&indices[0]);
 	}
 
 }

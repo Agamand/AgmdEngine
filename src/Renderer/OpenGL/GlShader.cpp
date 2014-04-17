@@ -18,6 +18,6 @@ namespace Agmd
 
     GLShader::~GLShader()
     {
-        GLRenderer::glDeleteShader(m_Shader);
+        GLDriver::glDeleteShader(m_Shader);
     }
 }

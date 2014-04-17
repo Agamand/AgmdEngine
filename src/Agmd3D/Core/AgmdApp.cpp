@@ -66,8 +66,8 @@ namespace Agmd
 
         MakeWindow();
 
-        Renderer::Get().Initialize(m_Hwnd);
-        Renderer::Get().SetScreen(m_ScreenSize);
+        Driver::Get().Initialize(m_Hwnd);
+        Driver::Get().SetScreen(m_ScreenSize);
 
         Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
         Image img = Image();    
@@ -138,7 +138,7 @@ namespace Agmd
                 a_uint32 time = clock();
                 a_uint32 time_diff = time - last_time;
                 last_time = time;
-                Renderer& render =  Renderer::Get();
+                Driver& render =  Driver::Get();
                 render.GetStatistics().ResetStatistics();
                 render.OnUpdate(time_diff);
                 GUIMgr::Instance().Update(time_diff);

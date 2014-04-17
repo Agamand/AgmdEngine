@@ -37,7 +37,7 @@ namespace Agmd
             0,3,2
         };
 
-        Renderer& render =  Renderer::Get();
+        Driver& render =  Driver::Get();
 
         TDeclarationElement Elements[] =
         {
@@ -52,7 +52,7 @@ namespace Agmd
 
     void Fast2DSurface::Draw()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         render.GetCurrentProgram()->SetParameter("u_matProjection",ortho<float>(0,1,0,1));
         render.SetDeclaration(m_Declaration);
         render.SetIndexBuffer(m_IndexBuffer);

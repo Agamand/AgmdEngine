@@ -16,41 +16,41 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Renderer* Renderer::s_Instance = NULL;
+    Driver* Driver::s_Instance = NULL;
 
-    Renderer::~Renderer()
+    Driver::~Driver()
     {
         delete m_stats;
     }
 
-    void Renderer::Change(Renderer* newRenderer)
+    void Driver::Change(Driver* newRenderer)
     {
         Destroy();
 
         s_Instance = newRenderer;
     }
 
-    void Renderer::Destroy()
+    void Driver::Destroy()
     {
         delete s_Instance;
         s_Instance = NULL;
     }
 
-    Renderer& Renderer::Get()
+    Driver& Driver::Get()
     {
         Assert(s_Instance != NULL);
 
         return *s_Instance;
     }
 
-    bool Renderer::HasCapability(TCapability cap) const
+    bool Driver::HasCapability(TCapability cap) const
     {
         Assert(m_Capabilities.find(cap) != m_Capabilities.end());
 
         return m_Capabilities.find(cap)->second;
     }
 
-    std::string Renderer::CapToString(TCapability cap) const
+    std::string Driver::CapToString(TCapability cap) const
     {
         switch (cap)
         {
@@ -61,7 +61,7 @@ namespace Agmd
         }
     }
 
-    void Renderer::Initialize(HWND Hwnd)
+    void Driver::Initialize(HWND Hwnd)
     {
         Setup(Hwnd);
         CheckCaps();
@@ -79,87 +79,87 @@ namespace Agmd
         Logger::Log(LOGNORMAL,"");
     }
 
-    void Renderer::OnUpdate(a_uint64 t_diff)
+    void Driver::OnUpdate(a_uint64 t_diff)
     {
          Camera* cam = Camera::GetCurrent();
          if(cam)
              cam->OnUpdate(t_diff);
     }
 
-        mat4 Renderer::GetMatView() 
+        mat4 Driver::GetMatView() 
         {
             return mat4(1.0f);
         }
 
-        mat4 Renderer::GetMatProjection() 
+        mat4 Driver::GetMatProjection() 
         {
             return mat4(1.0f);
         }
 
-        void Renderer::SetMatView(mat4 _MatView) 
+        void Driver::SetMatView(mat4 _MatView) 
         {
             //Unused function !
         }
 
-        void Renderer::SetMatProjection(mat4 _MatProjection)
+        void Driver::SetMatProjection(mat4 _MatProjection)
         {
             //Unused function !
         }
 
-        void Renderer::SetScreen(ivec2 _screen)
+        void Driver::SetScreen(ivec2 _screen)
         {
             m_Screen = _screen;
         }
 
-        ivec2 Renderer::GetScreen()
+        ivec2 Driver::GetScreen()
         {
             return m_Screen;
         }
 
-        void Renderer::SetCamera(Camera* cam)
+        void Driver::SetCamera(Camera* cam)
         {
             m_Camera = cam;
         }
-        Camera* Renderer::GetCamera()
+        Camera* Driver::GetCamera()
         {
             return m_Camera;
         }
 
-        void Renderer::SetTextureFlag(a_uint32 flag)
+        void Driver::SetTextureFlag(a_uint32 flag)
         {
             m_TextureFlags = flag;
         }
 
-        void Renderer::AddTextureFlag(a_uint32 flag)
+        void Driver::AddTextureFlag(a_uint32 flag)
         {
             m_TextureFlags |= flag;
         }
 
-        void Renderer::RemoveTextureFlag(a_uint32 flag)
+        void Driver::RemoveTextureFlag(a_uint32 flag)
         {
             m_TextureFlags &= ~flag;
         }
 
-        a_uint32 Renderer::GetTextureFlag()
+        a_uint32 Driver::GetTextureFlag()
         {
             return m_TextureFlags;
         }
 
-		void Renderer::SetActiveScene( SceneMgr* sc )
+		void Driver::SetActiveScene( SceneMgr* sc )
 		{
             m_ActiveScene = sc;
         }
 
-		SceneMgr* Renderer::GetActiveScene()
+		SceneMgr* Driver::GetActiveScene()
 		{
             return m_ActiveScene;
         }
-        Statistics& Renderer::GetStatistics()
+        Statistics& Driver::GetStatistics()
         {
             return *m_stats;
         }
 
-		float Renderer::GetAspectRatio()
+		float Driver::GetAspectRatio()
 		{
 			return ((float)m_Screen.x)/m_Screen.y;
 		}

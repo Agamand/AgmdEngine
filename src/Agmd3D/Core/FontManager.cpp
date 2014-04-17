@@ -41,7 +41,7 @@ namespace Agmd
             {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2}
         };
 
-        m_Declaration = Renderer::Get().CreateVertexDeclaration(decl);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(decl);
 
         /*m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(4, BUF_STATIC);
 
@@ -146,7 +146,7 @@ namespace Agmd
 
     void FontManager::DrawString(const GraphicString& str)
     {        
-        a_uint32 color = Renderer::Get().ConvertColor(str.m_color);
+        a_uint32 color = Driver::Get().ConvertColor(str.m_color);
 
         if (str.m_Text == "")
             return;
@@ -159,15 +159,15 @@ namespace Agmd
 
         const TFont& curFont = m_Fonts[str.m_Font];
         
-        Renderer::Get().Enable(RENDER_ZTEST, false);
-        Renderer::Get().SetCurrentTransform(str.m_transform);
-        Renderer::Get().SetDeclaration(m_Declaration);
-        Renderer::Get().SetTexture(0, curFont.texture.GetTexture());
-        Renderer::Get().SetVertexBuffer(0, str.m_VertexBuffer);
-        Renderer::Get().SetIndexBuffer(str.m_IndexBuffer);
-        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Renderer::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_IndexBuffer.GetCount());
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().Enable(RENDER_ZTEST, false);
+        Driver::Get().SetCurrentTransform(str.m_transform);
+        Driver::Get().SetDeclaration(m_Declaration);
+        Driver::Get().SetTexture(0, curFont.texture.GetTexture());
+        Driver::Get().SetVertexBuffer(0, str.m_VertexBuffer);
+        Driver::Get().SetIndexBuffer(str.m_IndexBuffer);
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_IndexBuffer.GetCount());
+        Driver::Get().SetCurrentProgram(NULL);
     }
 
     void FontManager::GenerateStringMesh(GraphicString& str)
@@ -274,8 +274,8 @@ namespace Agmd
             _indices.push_back(3+i*4);
             _indices.push_back(2+i*4);
         }
-        str.m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
-        str.m_IndexBuffer = Renderer::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
+        str.m_VertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
+        str.m_IndexBuffer = Driver::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
     }
 
     ivec2 FontManager::GetStringPixelSize(const GraphicString& str)

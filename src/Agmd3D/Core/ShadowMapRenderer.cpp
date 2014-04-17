@@ -29,8 +29,8 @@ namespace Agmd
     {
         for(int i = 0; i < 6; i++)
             m_depth[i].Create(m_shadowSize,PXF_DEPTH,TEXTURE_2D,TEX_NOMIPMAP);
-        m_framebuffer = Renderer::Get().CreateFrameBuffer();
-        RenderBuffer* color_test = Renderer::Get().CreateRenderBuffer(m_shadowSize,PXF_R16G16B16);
+        m_framebuffer = Driver::Get().CreateFrameBuffer();
+        RenderBuffer* color_test = Driver::Get().CreateRenderBuffer(m_shadowSize,PXF_R16G16B16);
         m_framebuffer->SetTexture(m_depth[0],DEPTH_ATTACHMENT);
         m_framebuffer->SetRender(color_test,COLOR_ATTACHMENT);
         //m_framebuffer->DrawBuffer(0);
@@ -49,12 +49,12 @@ namespace Agmd
 
     void ShadowMapRenderer::BeginLight(Light* l)
     {
-        Renderer::Get().SetCurrentProgram(m_shadowcast.GetShaderProgram());
+        Driver::Get().SetCurrentProgram(m_shadowcast.GetShaderProgram());
         m_currentLightType = l->GetType();
         if(m_currentDepth)
             SetDepth(0);
         m_framebuffer->Bind();
-        Renderer::Get().SetViewPort(ivec2(0),ivec2(m_shadowSize));
+        Driver::Get().SetViewPort(ivec2(0),ivec2(m_shadowSize));
         if(m_currentLightType == LightType::LIGHT_DIR)
         {
             mat4 proj = ortho<float>(-1000,1000,-1000,1000,-100,5000);
@@ -63,19 +63,19 @@ namespace Agmd
 
         }else if(m_currentLightType == LightType::LIGHT_POINT)
         {
-            ivec2 screen = Renderer::Get().GetScreen();
+            ivec2 screen = Driver::Get().GetScreen();
             float aspect = screen.x/((float)screen.y);
             mat4 proj = perspective(90.0f,aspect,1.0f,l->GetRange());
             m_shadow_matrix[0] = proj*lookAt(l->GetPosition(),vec3(1,0,0),vec3(0,0,1));
 
         }else
         {
-            ivec2 screen = Renderer::Get().GetScreen();
+            ivec2 screen = Driver::Get().GetScreen();
             float aspect = screen.x/((float)screen.y);
             mat4 proj = perspective(acos(l->GetOuterAngle())*180.0f/(float)M_PI*2.0f,aspect,1.0f,l->GetRange());
             m_shadow_matrix[0] = proj*lookAt(l->GetPosition(),l->GetPosition()-l->GetDirection(),vec3(0,0,1));
         }
-        Renderer::Get().GetCurrentProgram()->SetParameter("depthMVP",m_shadow_matrix[0]);
+        Driver::Get().GetCurrentProgram()->SetParameter("depthMVP",m_shadow_matrix[0]);
         //Renderer::Get().SetCullFace(1);
     }
 
@@ -92,15 +92,15 @@ namespace Agmd
         m_currentDepth = face;
         m_framebuffer->SetTexture(m_depth[face],DEPTH_ATTACHMENT);
         m_framebuffer->Bind();
-        ivec2 screen = Renderer::Get().GetScreen();
+        ivec2 screen = Driver::Get().GetScreen();
         float aspect = screen.x/((float)screen.y);
         mat4 proj = perspective(90.0f,aspect,1.0f,m_currentLight->GetRange());
     }
 
     void ShadowMapRenderer::EndLight()
     {
-        Renderer::Get().SetViewPort(ivec2(0),Renderer::Get().GetScreen());
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetViewPort(ivec2(0),Driver::Get().GetScreen());
+        Driver::Get().SetCurrentProgram(NULL);
         m_framebuffer->UnBind();
         //Renderer::Get().SetCullFace(2);
     }
@@ -114,18 +114,18 @@ namespace Agmd
             for(int i = 0; i < 6; i++)
             {
                 VPB[i] = bias*m_shadow_matrix[i];
-                Renderer::Get().SetTexture(3+i,m_depth[i].GetTexture());
+                Driver::Get().SetTexture(3+i,m_depth[i].GetTexture());
             }
-            Renderer::Get().GetCurrentProgram()->SetParameter("depthVPBias",VPB,6);
+            Driver::Get().GetCurrentProgram()->SetParameter("depthVPBias",VPB,6);
 
         }else
         {
             mat4 VPB = bias*m_shadow_matrix[0];
-            Renderer::Get().GetCurrentProgram()->SetParameter("depthVPBias",VPB);
-            Renderer::Get().SetTexture(3,m_depth[0].GetTexture());
+            Driver::Get().GetCurrentProgram()->SetParameter("depthVPBias",VPB);
+            Driver::Get().SetTexture(3,m_depth[0].GetTexture());
         }
-        Renderer::Get().GetCurrentProgram()->SetParameter("u_offset", m_offset);
-        Renderer::Get().GetCurrentProgram()->SetParameter("u_bias", m_bias);
+        Driver::Get().GetCurrentProgram()->SetParameter("u_offset", m_offset);
+        Driver::Get().GetCurrentProgram()->SetParameter("u_bias", m_bias);
     }
 
     void ShadowMapRenderer::SetOffset(float offset)

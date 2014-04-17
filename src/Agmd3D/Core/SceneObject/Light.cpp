@@ -30,7 +30,7 @@ namespace Agmd
         lightBuffer.outerAngle = m_outerAngle;
         lightBuffer.range = m_range;
         lightBuffer.type = m_Type;
-        m_uniformLightBuffer = Renderer::Get().CreateUniformBuffer<LightBuffer>(1, BUF_DYNAMIC, UNIFORM_LIGHT_BIND, 0, &lightBuffer);
+        m_uniformLightBuffer = Driver::Get().CreateUniformBuffer<LightBuffer>(1, BUF_DYNAMIC, UNIFORM_LIGHT_BIND, 0, &lightBuffer);
     }
 
     void Light::Bind()
@@ -50,7 +50,7 @@ namespace Agmd
     void Light::EndApplyShadow() const
     {
         
-        Renderer::Get().SetCurrentProgram(nullptr);
+        Driver::Get().SetCurrentProgram(nullptr);
     }
 
     Light::~Light()

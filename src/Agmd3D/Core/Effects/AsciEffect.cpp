@@ -34,12 +34,12 @@ namespace Agmd
     void AsciEffect::ApplyEffect(Texture& input, Texture& output)
     {
         Texture::BeginRenderToTexture(output);
-        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Renderer::Get().SetTexture(0,input.GetTexture());
-        Renderer::Get().SetTexture(1,m_asciTable.GetTexture());
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().SetTexture(0,input.GetTexture());
+        Driver::Get().SetTexture(1,m_asciTable.GetTexture());
         m_program.SetParameter("u_time",(float)m_time/1000*m_speed);
         Fast2DSurface::Instance().Draw();
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetCurrentProgram(NULL);
         Texture::EndRenderToTexture();
     }
 

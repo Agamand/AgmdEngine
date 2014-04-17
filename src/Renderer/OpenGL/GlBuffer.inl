@@ -22,9 +22,9 @@ template <int Type, int bufferCount>
 inline GLBuffer<Type, bufferCount>::~GLBuffer()
 {
     if (m_Buffer)
-        GLRenderer::glDeleteBuffers(m_bufferCount, m_Buffer);
+        GLDriver::glDeleteBuffers(m_bufferCount, m_Buffer);
     if(m_sync)
-        GLRenderer::glDeleteSync(m_sync);
+        GLDriver::glDeleteSync(m_sync);
 }
 
 template <int Type, int bufferCount>
@@ -36,8 +36,8 @@ inline unsigned int GLBuffer<Type, bufferCount>::GetBuffer() const
 template <int Type, int bufferCount>
 inline void* GLBuffer<Type, bufferCount>::Lock(unsigned long offset, unsigned long size, unsigned long flags)
 {
-    GLRenderer::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
-    unsigned char* buffer = reinterpret_cast<unsigned char*>(GLRenderer::glMapBuffer(Type, RGLEnum::LockFlags(flags)));
+    GLDriver::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
+    unsigned char* buffer = reinterpret_cast<unsigned char*>(GLDriver::glMapBuffer(Type, RGLEnum::LockFlags(flags)));
 
     return buffer + offset;
 }
@@ -45,24 +45,24 @@ inline void* GLBuffer<Type, bufferCount>::Lock(unsigned long offset, unsigned lo
 template <int Type, int bufferCount>
 inline void* GLBuffer<Type, bufferCount>::LockByte(unsigned long offset, unsigned long size, unsigned long flags)
 {
-    GLRenderer::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
-    unsigned char* buffer = reinterpret_cast<unsigned char*>(GLRenderer::glMapBufferRange(Type, offset, size, RGLEnum::LockBitsFlags(flags) | GL_MAP_FLUSH_EXPLICIT_BIT | GL_MAP_INVALIDATE_RANGE_BIT));
+    GLDriver::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
+    unsigned char* buffer = reinterpret_cast<unsigned char*>(GLDriver::glMapBufferRange(Type, offset, size, RGLEnum::LockBitsFlags(flags) | GL_MAP_FLUSH_EXPLICIT_BIT | GL_MAP_INVALIDATE_RANGE_BIT));
     if(flags & LOCK_SYNC_WAIT)
-        m_sync = GLRenderer::glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+        m_sync = GLDriver::glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
     return buffer;
 }
 
 template <int Type, int bufferCount>
 inline void GLBuffer<Type, bufferCount>::FillByte(unsigned char* data, unsigned long offset, unsigned long size)
 {
-    GLRenderer::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
-    GLRenderer::glBufferSubData(Type,offset,size,data);
+    GLDriver::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
+    GLDriver::glBufferSubData(Type,offset,size,data);
 }
 
 template <int Type, int bufferCount>
 inline void GLBuffer<Type, bufferCount>::Unlock()
 {
-    GLRenderer::glUnmapBuffer(Type);
+    GLDriver::glUnmapBuffer(Type);
 }
 
 
@@ -80,8 +80,8 @@ inline void GLBuffer<Type, bufferCount>::Bind(a_uint32 /*bindpoint*/)
 template <int Type, int bufferCount>
 void GLBuffer<Type, bufferCount>::WaitSync()
 {
-    GLRenderer::glClientWaitSync(m_sync,0,TIMEOUT);
-    GLRenderer::glDeleteSync(m_sync);
+    GLDriver::glClientWaitSync(m_sync,0,TIMEOUT);
+    GLDriver::glDeleteSync(m_sync);
     m_sync = NULL;
 }
 #undef TIMEOUT

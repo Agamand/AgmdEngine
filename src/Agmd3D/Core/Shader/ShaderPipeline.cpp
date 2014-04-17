@@ -25,13 +25,13 @@ namespace Agmd
     {
         if(!m_pipeline[pass].GetShaderProgram())
             return false;
-        Renderer::Get().SetCurrentProgram(m_pipeline[pass].GetShaderProgram());
+        Driver::Get().SetCurrentProgram(m_pipeline[pass].GetShaderProgram());
         return true;
     }
 
     void ShaderPipeline::Disable() const
     {
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetCurrentProgram(NULL);
     }
 
     ShaderPipeline* ShaderPipeline::s_defaultPipeline = NULL;

@@ -38,9 +38,9 @@ namespace Agmd
     template <int bufferCount>
     void GLUniformBuffer<bufferCount>::Bind(a_uint32 bindpoint)
     {
-        GLRenderer::glBindBuffer(GL_UNIFORM_BUFFER, m_Buffer[m_currentBuffer]);
-        GLRenderer::glBindBufferBase(GL_UNIFORM_BUFFER,bindpoint,m_Buffer[m_currentBuffer]);
-        GLRenderer::glBindBuffer(GL_UNIFORM_BUFFER, 0);
+        GLDriver::glBindBuffer(GL_UNIFORM_BUFFER, m_Buffer[m_currentBuffer]);
+        GLDriver::glBindBufferBase(GL_UNIFORM_BUFFER,bindpoint,m_Buffer[m_currentBuffer]);
+        GLDriver::glBindBuffer(GL_UNIFORM_BUFFER, 0);
         m_bindPoint = bindpoint;
     }
 

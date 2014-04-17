@@ -28,11 +28,11 @@ namespace Agmd
     void BlurMotionEffect::ApplyEffect(Texture& input, Texture& output)
     {
         Texture::BeginRenderToTexture(output);
-        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Renderer::Get().SetTexture(0,input.GetTexture());
-        Renderer::Get().SetTexture(1,m_accumulate.GetTexture());
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().SetTexture(0,input.GetTexture());
+        Driver::Get().SetTexture(1,m_accumulate.GetTexture());
         Fast2DSurface::Instance().Draw();
-        Renderer::Get().SetCurrentProgram(NULL);
+        Driver::Get().SetCurrentProgram(NULL);
         Texture::EndRenderToTexture();
 
         //save new accumulate buffer !

@@ -90,7 +90,7 @@ namespace Agmd
 
     void AWindow::Draw() const
     {
-        Renderer &render = Renderer::Get();
+        Driver &render = Driver::Get();
         render.SetCurrentProgram(m_Program);
         render.SetCurrentTransform(m_transform);
         
@@ -171,7 +171,7 @@ namespace Agmd
             {vec2(1.0f,0.75f),    vec2(0.0f,0.0f),  vec2(0.0f,0.0f),  vec2(0.0f,0.0f)}
         };
 
-        m_Declaration = Renderer::Get().CreateVertexDeclaration(Decl);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(Decl);
 
         std::vector<TVertex> vertices;
         std::vector<TIndex> indices;
@@ -254,8 +254,8 @@ namespace Agmd
         indices.push_back(9);
         indices.push_back(10);
 
-        m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(vertices.size(), BUF_DYNAMIC,&vertices[0]);
-        m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)indices.size(), 0, &indices[0]);
+        m_VertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(vertices.size(), BUF_DYNAMIC,&vertices[0]);
+        m_IndexBuffer = Driver::Get().CreateIndexBuffer((int)indices.size(), 0, &indices[0]);
 
     }
 

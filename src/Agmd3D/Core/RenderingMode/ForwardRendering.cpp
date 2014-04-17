@@ -38,7 +38,7 @@ namespace Agmd
 
     void ForwardRendering::Init()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         m_framebuffer = render.CreateFrameBuffer();
         m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
 
@@ -61,7 +61,7 @@ namespace Agmd
 
     void ForwardRendering::Compute()
     {
-        Renderer& render = Renderer::Get();
+        Driver& render = Driver::Get();
         SceneMgr* sc = render.GetActiveScene();
         Start();
 

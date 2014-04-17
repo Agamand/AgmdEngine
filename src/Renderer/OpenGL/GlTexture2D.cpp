@@ -48,12 +48,12 @@ namespace Agmd
         {
             if (rect.Width() == m_Size.x && rect.Height() == m_Size.y)
             {
-                GLRenderer::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, m_Data.GetData());
+                GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, m_Data.GetData());
             }
             else
             {
                 Image subData = m_Data.SubImage(rect);
-                GLRenderer::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, subData.GetData());
+                GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, subData.GetData());
             }
         }
         else

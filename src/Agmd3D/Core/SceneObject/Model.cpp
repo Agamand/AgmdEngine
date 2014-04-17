@@ -49,10 +49,10 @@ namespace Agmd
 			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
 
 		};
-		m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
+		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
-		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(verticesCount, 0, vertices);
-		m_IndexBuffer  = Renderer::Get().CreateIndexBuffer(indicesCount, 0, indices);
+		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+		m_IndexBuffer  = Driver::Get().CreateIndexBuffer(indicesCount, 0, indices);
 	
 	}
 	void Model::GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type)
@@ -72,9 +72,9 @@ namespace Agmd
 			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
 
 		};
-		m_Declaration = Renderer::Get().CreateVertexDeclaration(Elements);
+		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
-		m_VertexBuffer = Renderer::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
 	}
 
 
@@ -83,15 +83,15 @@ namespace Agmd
 
     void Model::Draw(const Transform* transform) const
     {
-        Renderer::Get().SetCurrentTransform(transform);
-        Renderer::Get().SetDeclaration(m_Declaration);
-        Renderer::Get().SetVertexBuffer(0, m_VertexBuffer);
+        Driver::Get().SetCurrentTransform(transform);
+        Driver::Get().SetDeclaration(m_Declaration);
+        Driver::Get().SetVertexBuffer(0, m_VertexBuffer);
 		if(m_indexed)
 		{
-			Renderer::Get().SetIndexBuffer(m_IndexBuffer);
-			Renderer::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
+			Driver::Get().SetIndexBuffer(m_IndexBuffer);
+			Driver::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
 		}else
-			Renderer::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
+			Driver::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
     }
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)

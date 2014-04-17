@@ -42,6 +42,6 @@ namespace Agmd
 
     void ShaderProgram::Create(BaseShader* vertex, BaseShader* eval, BaseShader* control, BaseShader* geom, BaseShader* frag)
     {
-        m_ShaderProgram = Renderer::Get().CreateShaderProgram(vertex, eval, control, geom, frag);
+        m_ShaderProgram = Driver::Get().CreateShaderProgram(vertex, eval, control, geom, frag);
     }
 }

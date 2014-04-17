@@ -49,7 +49,7 @@ namespace Agmd
         if(m_vwWidget.empty())
             return;
 
-        Renderer::Get().Enable(RENDER_ZTEST,false);
+        Driver::Get().Enable(RENDER_ZTEST,false);
 
         for(a_uint32 i = 0; i < m_vwWidget.size(); i++)
             m_vwWidget[i]->Draw();

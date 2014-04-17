@@ -38,5 +38,11 @@ namespace Agmd
 		}
 	}
 
+	bool SceneNode::isEmpty()
+	{
+		return m_children.empty();
+	}
+
+
 }
 

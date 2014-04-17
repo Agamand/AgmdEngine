@@ -10,6 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _FOLLOWCAMERA_H_
 
 #include <Core\Camera\Camera.h>
+#include <Utilities/StringUtils.h>
 
 namespace Agmd
 {
@@ -18,6 +19,7 @@ namespace Agmd
     {
     public:
         FollowCamera(mat4& projection, vec3& pos = vec3());
+		FollowCamera(mat4& projection, float a, float b, vec2 angle,float dist);
         virtual ~FollowCamera();
 
         virtual void OnUpdate(a_uint64 time_diff);
@@ -31,7 +33,16 @@ namespace Agmd
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos); 
+		void SetAngles(vec2 _angles)
+		{
+			angles = _angles;
+		}
+		const vec2& GetAngles()
+		{
+			return angles;
+		}
 		mat4 Look();
+		const std::string ToString();
     protected:
         virtual void UpdateVector();
 

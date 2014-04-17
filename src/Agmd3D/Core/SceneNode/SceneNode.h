@@ -45,7 +45,8 @@ namespace Agmd
         Transform& GetTransform();
 		void AddChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this;}
 		NodeType GetType() const {return m_type;}
-    protected:
+		bool isEmpty();
+	protected:
 		
 
         Transform* m_transform;

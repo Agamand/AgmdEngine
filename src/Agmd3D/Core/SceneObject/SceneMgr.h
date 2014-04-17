@@ -32,7 +32,10 @@ namespace Agmd
 		void SetSkybox(SkyBox* skybox);
 
 		SkyBox* GetSkyBox();
-
+		bool isEmpty() const
+		{
+			return !m_root || m_root->isEmpty();
+		}
 	private:
 		std::vector<Light*> m_light; // static light
 		std::vector<DisplayNode*> m_displayable;

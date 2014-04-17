@@ -15,7 +15,7 @@ class ParticlesEmitter
 public:
 	ParticlesEmitter(std::string &shaderpath, int particlesCount = 250, Transform* tr = NULL);
 	ParticlesEmitter(ShaderProgram& program, int particlesCount = 250, Transform* tr = NULL);
-	
+	~ParticlesEmitter();
 	void Draw() const;
 	void Update(a_uint32 time);
 	Texture position_buffer[2];
@@ -38,6 +38,7 @@ private:
 	FrameBuffer* m_fbo;
 	int m_particleCount;
 	int draw_count;
+	float color;
 
 	/*need to be in sceneNode*/
 	Transform* m_transform;

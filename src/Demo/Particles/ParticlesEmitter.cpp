@@ -22,9 +22,10 @@ void ParticlesEmitter::Update(a_uint32 time)
 	driver.SetViewPort(ivec2(),position_buffer[1].GetSize());
 	driver.SetCurrentProgram(m_program.GetShaderProgram());
 	driver.SetCurrentTransform(m_transform);
-	m_program.SetParameter("u_time_diff",time);
+	m_program.SetParameter("u_time_diff",(float)time);
 	m_program.SetParameter("u_matProjectionPlane",ortho<float>(0,1,0,1));
 	m_program.SetParameter("u_particleCount",draw_count > 1 ? MAX_PER_BUFFER : m_particleCount);
+	m_program.SetParameter("u_colorIndex",color);
 	int i = rand();
 	m_program.SetParameter("u_seed",i);
 	driver.SetTexture(0,position_buffer[1].GetTexture());
@@ -49,7 +50,8 @@ void ParticlesEmitter::Draw() const
 	
 	driver.SetIndexBuffer(m_index);
 	driver.SetCurrentProgram(m_diffuse.GetShaderProgram());
-	m_diffuse.SetParameter("u_matProjectionPlane",ortho<float>(-15*ar,15*ar,-15,15));
+	float offset = 60*5*4;
+	m_diffuse.SetParameter("u_matProjectionPlane",ortho<float>(-offset*ar,offset*ar,-offset,offset));
 	m_diffuse.SetParameter("u_particleCount",draw_count > 1 ? MAX_PER_BUFFER : m_particleCount);
 	driver.SetTexture(0,position_buffer[1].GetTexture());
 	driver.SetTexture(1,extra_buffer[1].GetTexture());
@@ -114,7 +116,13 @@ void ParticlesEmitter::Init(int particlesCount)
 	m_fbo =  driver.CreateFrameBuffer();
 	m_particleCount = particlesCount;
 	//velocity_buffer[0].CreateFromFile("Texture/roadV3.png",PXF_A8R8G8B8);
+	color = static_cast<float>(rand())/static_cast<float>(RAND_MAX);
 	delete[] buffer;
 	delete[] ibuffer;
+}
+
+ParticlesEmitter::~ParticlesEmitter()
+{
+	delete m_fbo;
 }
 

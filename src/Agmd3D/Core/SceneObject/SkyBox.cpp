@@ -35,13 +35,14 @@ namespace Agmd
     {
 		Driver& render = Driver::Get();
 		render.SetCurrentProgram(m_Program);
-		render.SetCullFace(0);
+		//render.SetCullFace(0);
 		render.SetCurrentTransform(NULL);
 		Driver::Get().SetDeclaration(m_Declaration);
 		Driver::Get().SetVertexBuffer(0,m_VertexBuffer);
 		Driver::Get().SetIndexBuffer(m_IndexBuffer);
 		Driver::Get().SetTexture(0,m_Texture.GetTexture());
-		Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,36,6);
+		Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0,36);
+
 		render.SetCurrentProgram(NULL);
     }
 

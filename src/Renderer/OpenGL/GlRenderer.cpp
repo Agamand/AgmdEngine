@@ -589,11 +589,11 @@ namespace Agmd
 
         switch (type)
         {
-        case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); m_stats->IncrVertexCount(count*3); break;
+            case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); m_stats->IncrVertexCount(count*3); break;
             case PT_TRIANGLESTRIP : glDrawArrays(GL_TRIANGLE_STRIP, firstVertex, count + 2); break;
             case PT_TRIANGLEFAN :   glDrawArrays(GL_TRIANGLE_FAN,   firstVertex, count + 1); break;
             case PT_LINELIST :      glDrawArrays(GL_LINES,          firstVertex, count * 2); break; 
-            case PT_LINESTRIP :     glDrawArrays(GL_LINE_STRIP,     firstVertex, count + 1); break;
+            case PT_LINESTRIP :     glDrawArrays(GL_LINE_STRIP,     firstVertex, count);     break;
             case PT_POINTLIST :     glDrawArrays(GL_POINTS,         firstVertex, count);     break;
         }
     }

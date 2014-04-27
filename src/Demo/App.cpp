@@ -63,6 +63,7 @@ status : in pause
 #include "simplexnoise.h"
 #include "noiseutils.h"
 
+
 using namespace Agmd;
 using namespace AgmdNetwork;
 using namespace AgmdUtilities;
@@ -265,7 +266,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,256,_seed);
+	//generateNoise3d(t,256,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
@@ -284,12 +285,12 @@ void App::OnInit()
 	particles2 = new ParticlesEmitter("Shader/particle_2.glsl",250,new Transform(vec3(6,0,0)));*/
 	
 	string cubemap[6];
-	for(int i = 0; i < 6; i++)
+	/*for(int i = 0; i < 6; i++)
 	{
 		cubemap[i] = StringBuilder("Texture/background/")(i+1)(".png");
-	}
-	Texture tex_cubemap;
-	tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
+	}*/
+	//Texture tex_cubemap;
+	//tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
 	mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"),2,new Transform());
 	AWindow* position =new AWindow();
 	AWindow* velocity = new AWindow();
@@ -301,11 +302,26 @@ void App::OnInit()
 	GUIMgr::Instance().AddWidget(velocity);
 	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
-	box->SetTexture(tex_cubemap);
-	m_Scene->SetSkybox(box);
+	//box->SetTexture(tex_cubemap);
+	//m_Scene->SetSkybox(box);
 	boox = box;
 	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam2D = new FPCamera(m_MatProj2D);
+
+
+
+	/*
+		Bezier
+	*/
+
+	m_plane = new DrawablePlane(getScreen(),vec2(100,100));
+	vec2 points[] = {vec2(-50,-50), vec2(-50,50), vec2(50,50)};
+	BaseSpline* spline = new BaseSpline(points,3);
+	Bezier* bezier = new Bezier(points,3);
+	LineRenderer* renderer = new LineRenderer(bezier);
+	m_plane->addSpline(renderer);
+	addInputListener(m_plane);
+
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
 	printf("Loading end");
@@ -317,11 +333,11 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 	if(pause)
 		return;
 
-	for(int i = 0; i < m_particles.size(); i++)
+	/*for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Update(time_diff*timespeed);
 
 	if(drawMouse)
-		mouse_emitter->Update(time_diff);
+		mouse_emitter->Update(time_diff);*/
 
 	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
     const vec2& angles = cam->GetAngles();
@@ -331,10 +347,13 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 void App::OnRender3D()
 {
-	for(int i = 0; i < m_particles.size(); i++)
+	/*for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Draw();
 	if(drawMouse)
-		mouse_emitter->Draw();
+		mouse_emitter->Draw();*/
+	m_plane->render();
+	Texture::TextureRender(m_plane->getTexture());
+
 }
 
 void App::OnRender2D()
@@ -387,7 +406,7 @@ void App::OnClick( int click, vec2 pos )
 		return;
 	if(click == 1)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),6000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),16000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
 	if(click == 2)
 	{

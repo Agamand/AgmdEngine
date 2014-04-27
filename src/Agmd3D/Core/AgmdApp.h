@@ -17,6 +17,8 @@ https://github.com/Agamand/AgmdEngine
 #include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
 
+#include <vector>
+
 #define SECONDS_IN_MS 1000
 
 using namespace AgmdUtilities;
@@ -26,10 +28,23 @@ namespace Agmd
     class AGMD3D_EXPORT AgmdApp
     {
     public:
+
+
+
+
+		class InputListener
+		{
+		public:
+			virtual void OnClick(int click,int state, const vec2& pos, bool up) = 0;
+			virtual void OnKey(char key, bool up) = 0;
+			virtual void OnMouseMotion(const vec2& pos) = 0;
+		};
+
         void Run();
         void Exit();
         ivec2 getScreen() {return m_ScreenSize;}
-        float getFps() { if(m_fps < 1) return 0.0f; return m_fps;} 
+        float getFps() { if(m_fps < 1) return 0.0f; return m_fps;}
+		void addInputListener(InputListener* listener){m_inputListener.push_back(listener);};
     private:
 
         void MakeWindow();
@@ -62,7 +77,7 @@ namespace Agmd
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;
         a_uint32 mouseState;
-
+		std::vector<InputListener*> m_inputListener;
     };
     
 }

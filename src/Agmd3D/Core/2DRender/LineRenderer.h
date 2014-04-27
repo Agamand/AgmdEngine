@@ -1,0 +1,34 @@
+#ifndef _LINERENDERER_H_
+#define _LINERENDERER_H_
+
+#include <Core/2DRender/BaseSpline.h>
+#include <core/Shader/ShaderProgram.h>
+#include <Core/Buffer/Buffer.h>
+#include <Core/Declaration.h>
+#include <Core/Renderer.h>
+#include <Config/Export.h>
+#include <vector>
+
+namespace Agmd
+{
+
+	class AGMD3D_EXPORT LineRenderer : public BaseSpline::UpdateListener
+	{
+	public:
+		LineRenderer(BaseSpline* spline);
+		void draw(const mat4& projection) const;
+		void drawPoints(const mat4& projection) const;
+		void onUpdate(std::vector<vec2>& points);
+		BaseSpline* getSpline(){return m_spline;};
+	private:
+		Color			m_color;
+		BaseSpline*		m_spline;
+		Buffer<vec2>    m_vertex; // line
+		Buffer<vec2>    m_vertex_control; // line
+		DeclarationPtr  m_declaration;
+		ShaderProgram   m_program;
+		ShaderProgram   m_program_control;
+
+	};
+}
+#endif /* _LINERENDERER_H_ */

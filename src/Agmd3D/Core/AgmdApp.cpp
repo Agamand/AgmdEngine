@@ -198,6 +198,8 @@ namespace Agmd
                 return 0;
             case WM_KEYUP:
             case WM_KEYDOWN:
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnKey((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
                 camera->OnKeyboard((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
                 switch(LOWORD(WParam))
                 {
@@ -215,39 +217,56 @@ namespace Agmd
 
             case WM_XBUTTONDOWN:
                 mouseState |= MOUSE_NONE;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_RBUTTONDOWN:
                 mouseState |= MOUSE_RIGHT;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
 				OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MBUTTONDOWN:
                 mouseState |= MOUSE_MIDDLE;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
                 camera->OnMouseWheel(true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONDOWN:
                 mouseState |= MOUSE_LEFT;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
 				OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
 
             case WM_XBUTTONUP:
                 mouseState &= ~MOUSE_NONE;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_RBUTTONUP:
                 mouseState &= ~MOUSE_RIGHT;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MBUTTONUP:
+
                 mouseState &= ~MOUSE_MIDDLE;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
                 camera->OnMouseWheel(false);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONUP:
                 mouseState &= ~MOUSE_LEFT;
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MOUSEWHEEL:
@@ -255,6 +274,8 @@ namespace Agmd
                 return 0;
             case WM_MOUSEMOVE:
                 ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
+				for(std::vector<InputListener*>::iterator itr = m_inputListener.begin(); itr != m_inputListener.end(); itr++)
+					(*itr)->OnMouseMotion(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1));
                 if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
                     camera->OnMouseMotion(posDiff.x, posDiff.y);
                 

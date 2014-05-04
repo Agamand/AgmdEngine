@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/Tools/Fast2DSurface.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Shader/ShaderProgram.h>
 
 SINGLETON_IMPL(Agmd::Fast2DSurface);

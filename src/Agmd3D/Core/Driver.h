@@ -173,7 +173,7 @@ namespace Agmd
 
         static Driver*    s_Instance;
     };
-    #include "Renderer.inl"
+    #include "Driver.inl"
 
 }
 

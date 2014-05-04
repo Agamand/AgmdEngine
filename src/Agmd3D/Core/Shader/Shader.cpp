@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core\Shader\Shader.h>
 #include <Core\ResourceManager.h>
 #include <Core\MediaManager.h>
-#include <Core\Renderer.h>
+#include <Core\Driver.h>
 
 namespace Agmd
 {

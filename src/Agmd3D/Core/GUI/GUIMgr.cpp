@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/GUI/GUIMgr.h>
 #include <Core/GUI/AWidget.h>
 #include <Core/Enums.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 
 SINGLETON_IMPL(Agmd::GUIMgr);
 

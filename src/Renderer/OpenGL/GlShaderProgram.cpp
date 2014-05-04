@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Renderer\OpenGL\GlShaderProgram.h>
 #include <Renderer\OpenGL\GlBuffer.h>
 #include <Renderer\OpenGL\GlUniformBuffer.h>
-#include <Renderer\OpenGL\GlRenderer.h>
+#include <Renderer\OpenGL\GlDriver.h>
 #include <Debug/Logger.h>
 
 namespace Agmd

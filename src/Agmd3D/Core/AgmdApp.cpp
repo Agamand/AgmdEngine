@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/AgmdApp.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Enums.h>
 #include <Core/MediaManager.h>
 #include <Core/ResourceManager.h>

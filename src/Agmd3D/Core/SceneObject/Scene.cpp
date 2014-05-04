@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/SceneObject/Model.h>
 #include <Core/SceneObject/Terrain.h>
 #include <Core/SceneObject/Water.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Tools/Fast2DSurface.h>

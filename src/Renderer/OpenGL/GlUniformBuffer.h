@@ -27,7 +27,7 @@ namespace Agmd
         unsigned int m_bindPoint;
     };
 
-    //#include <Renderer/OpenGL/GlRenderer.h>
+    //#include <Renderer/OpenGL/GlDriver.h>
 
     template <int bufferCount>
     GLUniformBuffer<bufferCount>::GLUniformBuffer(unsigned long count, unsigned int *buffer, unsigned int bindPoint) : 

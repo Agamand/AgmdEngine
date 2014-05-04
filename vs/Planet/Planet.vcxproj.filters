@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Examples\Planet\App.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\main.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\noiseutils.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\PerlinNoise.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\simplexnoise.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\Planet.cpp">
+      <Filter>Planet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetModel.cpp">
+      <Filter>Planet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.cpp">
+      <Filter>Planet</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Examples\Planet\App.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\noiseutils.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\PerlinNoise.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\simplexnoise.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\Planet.h">
+      <Filter>Planet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetModel.h">
+      <Filter>Planet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.h">
+      <Filter>Planet</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Planet">
+      <UniqueIdentifier>{d0a96023-4c47-446a-9984-95d26c59dbf7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

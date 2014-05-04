@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Renderer/OpenGL/GlTextureBuffer.h>
-#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlDriver.h>
 
 namespace Agmd
 {

@@ -5,7 +5,7 @@
 #include <core/Shader/ShaderProgram.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Config/Export.h>
 #include <vector>
 
@@ -24,7 +24,9 @@ namespace Agmd
 		Color			m_color;
 		BaseSpline*		m_spline;
 		Buffer<vec2>    m_vertex; // line
-		Buffer<vec2>    m_vertex_control; // line
+		Buffer<vec2>    m_vertexControl; // line
+		int				m_vertexCount;
+		int				m_vertexControlCount;
 		DeclarationPtr  m_declaration;
 		ShaderProgram   m_program;
 		ShaderProgram   m_program_control;

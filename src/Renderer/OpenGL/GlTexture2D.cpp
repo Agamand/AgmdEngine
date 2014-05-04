@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Renderer/OpenGL/GlTexture2D.h>
 #include <Renderer/OpenGL/GlEnums.h>
-#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlDriver.h>
 #include <Core/Texture/Image.h>
 #include <windows.h>
 #include <gl/gl.h>

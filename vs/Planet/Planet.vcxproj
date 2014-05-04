@@ -43,98 +43,92 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\Box.cpp" />
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\PhysicsMgr.cpp" />
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\Entities.cpp" />
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\Force.cpp" />
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\Plane.cpp" />
-    <ClCompile Include="..\..\src\AgmdPhysics\Core\Sphere.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\App.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\main.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\noiseutils.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\PerlinNoise.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\Planet.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetModel.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\simplexnoise.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\AgmdPhysics\Config\Export.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Config\Fwd.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\Box.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\PhysicsMgr.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\Entities.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\Force.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\Plane.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Core\Sphere.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Maths\Matrix4.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Maths\Quaternion.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Maths\Vector2.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Maths\Vector3.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Maths\Vector4.h" />
-    <ClInclude Include="..\..\src\AgmdPhysics\Utilities\Singleton.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\App.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\noiseutils.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\PerlinNoise.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\Planet.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetModel.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\simplexnoise.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2598881A-F203-41D4-A95C-2957ED3295AD}</ProjectGuid>
-    <RootNamespace>AgmdPhysics_EG</RootNamespace>
-    <ProjectName>AgmdPhysics</ProjectName>
+    <ProjectGuid>{3279626A-14AE-4ACC-871D-D44FB8C2C3FE}</ProjectGuid>
+    <RootNamespace>DemoApp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
@@ -173,7 +167,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <OutDir>..\..\bin\$(Configuration)_$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
@@ -186,6 +180,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">
     <OutDir>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\</OutDir>
@@ -206,12 +201,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation>true</BrowseInformation>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <BrowseInformation>false</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -222,12 +218,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;BulletPhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -238,11 +235,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
@@ -250,11 +248,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32d.lib;ConvexDecomposition_win32d.lib;BulletSoftBody_win32d.lib;BulletDynamics_win32d.lib;BulletCollision_win32d.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
@@ -264,16 +263,18 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">
@@ -282,17 +283,20 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
       <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>false</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -301,13 +305,14 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|x64'">
@@ -316,13 +321,15 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|Win32'">
@@ -331,8 +338,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -340,6 +346,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;WSock32.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Opti|x64'">
@@ -348,8 +356,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMDPHYSICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -357,6 +364,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WSock32.lib;AgmdNetwork.lib;AgmdMaths.lib;AgmdUtilities.lib;AgmdEngine.lib;WSock32.lib;LinearMath_win32.lib;ConvexDecomposition_win32.lib;BulletSoftBody_win32.lib;BulletDynamics_win32.lib;BulletCollision_win32.lib;PhysicsPlugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core\GUI\ASlider.h>
-#include <Core\Renderer.h>
+#include <Core\Driver.h>
 #include <Core/MatStack.h>
 
 namespace Agmd

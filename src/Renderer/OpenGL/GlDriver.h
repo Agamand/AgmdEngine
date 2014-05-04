@@ -11,7 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Config\Fwd.h>
 #include <Renderer/OpenGL/Config.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Renderer\OpenGL\GlBuffer.h>
 #include <Renderer\OpenGL\GlDeclaration.h>
 #include <Renderer\OpenGL\GlShaderProgram.h>

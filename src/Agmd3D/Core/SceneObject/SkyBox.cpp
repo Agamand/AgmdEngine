@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/SceneObject/SkyBox.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/MediaManager.h>
 #include <Core/MatStack.h>
 #include <Core/Shader/BaseShaderProgram.h>

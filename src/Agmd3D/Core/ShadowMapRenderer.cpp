@@ -1,5 +1,5 @@
 #include <Core/ShadowMapRenderer.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Tools/Fast2DSurface.h>
 #define _USE_MATH_DEFINES
 #include <math.h>

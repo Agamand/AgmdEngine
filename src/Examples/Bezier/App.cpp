@@ -14,7 +14,7 @@ status : in pause
 
 #include "App.h"
 #include <Agmd3D\Core\MediaManager.h>
-#include <Agmd3D\Core\Renderer.h>
+#include <Agmd3D\Core\Driver.h>
 #include <Agmd3D\Core\Enums.h>
 #include <Agmd3D\Core\Declaration.h>
 #include <Agmd3D\Core\DeclarationElement.h>
@@ -28,7 +28,7 @@ status : in pause
 #include <AgmdUtilities/Debug/Profiler.h>
 #include <Agmd3D/Core/Shader/ShaderPipeline.h>
 #include <Agmd3D/Core/Tools/Statistics.h>
-#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlDriver.h>
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <Agmd3D/Core/Camera/FollowCamera.h>
 #include <Agmd3D/Core/Camera/FPCamera.h>
@@ -63,11 +63,12 @@ void App::OnInit()
 	pause = false;
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     Driver::Get().SetCullFace(2);
+
 	/*
 		Bezier
 	*/
 
-	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);
 	cam2D = new FPCamera(m_MatProj2D);
 
 	m_plane = new DrawablePlane(getScreen(),vec2(100,100));

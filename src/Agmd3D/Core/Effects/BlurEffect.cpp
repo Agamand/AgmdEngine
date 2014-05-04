@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Effects/BlurEffect.h>
 #include <Core/Texture/Texture.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Tools/Fast2DSurface.h>
 
 namespace Agmd

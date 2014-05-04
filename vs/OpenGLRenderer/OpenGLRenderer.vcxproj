@@ -47,7 +47,7 @@
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlEnums.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.cpp" />
-    <ClCompile Include="..\..\src\Renderer\OpenGL\GlRenderer.cpp" />
+    <ClCompile Include="..\..\src\Renderer\OpenGL\GlDriver.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlShader.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlShaderProgram.cpp" />
     <ClCompile Include="..\..\src\Renderer\OpenGL\GlTexture.cpp" />
@@ -64,7 +64,7 @@
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlEnums.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlFrameBuffer.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderBuffer.h" />
-    <ClInclude Include="..\..\src\Renderer\OpenGL\GlRenderer.h" />
+    <ClInclude Include="..\..\src\Renderer\OpenGL\GlDriver.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlShader.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlShaderProgram.h" />
     <ClInclude Include="..\..\src\Renderer\OpenGL\GlTexture.h" />

@@ -3,7 +3,7 @@
 #include <GameEngine.h>
 
 
-SINGLETON_IMPL(Agmd::GameEngine);
+//SINGLETON_IMPL(Agmd::GameEngine);
 
 namespace Agmd
 {

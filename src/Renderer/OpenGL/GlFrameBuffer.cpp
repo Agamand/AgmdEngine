@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Renderer\OpenGL\GlFrameBuffer.h>
-#include <Renderer\OpenGL\GlRenderer.h>
+#include <Renderer\OpenGL\GlDriver.h>
 #include <Renderer\OpenGL\GlTexture.h>
 #include <Renderer\OpenGL\GlRenderBuffer.h>
 #include <Core\Texture\Texture.h>

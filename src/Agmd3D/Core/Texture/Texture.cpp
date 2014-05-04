@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/TextureBase.h>
 #include <Core/MediaManager.h>
 #include <Core/ResourceManager.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Texture/Image.h>
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/Tools/Fast2DSurface.h>

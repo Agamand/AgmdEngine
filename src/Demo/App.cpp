@@ -16,7 +16,7 @@ status : in pause
 #include "M2Model.h"
 #include "M2Loader.h"
 #include <Agmd3D\Core\MediaManager.h>
-#include <Agmd3D\Core\Renderer.h>
+#include <Agmd3D\Core\Driver.h>
 #include <Agmd3D\Core\Enums.h>
 #include <Agmd3D\Core\Declaration.h>
 #include <Agmd3D\Core\DeclarationElement.h>
@@ -47,7 +47,7 @@ status : in pause
 #include <Agmd3D/Core/Tools/Statistics.h>
 #include <Agmd3D/Core/SceneObject/Material.h>
 #include <Agmd3D/Core/SceneNode/MeshNode.h>
-#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlDriver.h>
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include "btBulletDynamicsCommon.h"
 #include "btBulletCollisionCommon.h"

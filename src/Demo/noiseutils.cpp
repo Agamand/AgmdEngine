@@ -965,9 +965,7 @@ void NoiseMapBuilderSphere::Build (int face)
 		,{0,0,-a}	// bottom
 	};
 
-	if ( m_eastLonBound <= m_westLonBound
-		|| m_northLatBound <= m_southLatBound
-		|| m_destWidth <= 0
+	if (m_destWidth <= 0
 		|| m_destHeight <= 0
 		|| m_pSourceModule == NULL
 		|| m_pDestNoiseMap == NULL) {

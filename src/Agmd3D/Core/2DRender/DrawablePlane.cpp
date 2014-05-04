@@ -4,7 +4,6 @@
 #define GRAB_DISTANCE 5.0f
 namespace Agmd
 {
-
 	void DrawablePlane::OnClick( int click,int state, const vec2& pos, bool up )
 	{
 		
@@ -108,6 +107,7 @@ namespace Agmd
 
 	DrawablePlane::DrawablePlane( ivec2 pixelSize, vec2 repere ) : m_pixelSize(pixelSize), m_repere(repere),m_selectedPoint(NULL),m_selectedSpline(NULL),key(0)
 	{
+	
 		Driver& driver = Driver::Get();
 		m_frame = driver.CreateFrameBuffer();
 		m_texture.Create(m_pixelSize,PXF_A8R8G8B8,TEXTURE_2D);

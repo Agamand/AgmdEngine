@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#include <Renderer/OpenGL/GlRenderer.h>
+#include <Renderer/OpenGL/GlDriver.h>
 #include <Renderer/OpenGL/GlTexture2D.h>
 #include <Renderer/OpenGL/GlTextureCube.h>
 #include <Renderer/OpenGL/GlShader.h>

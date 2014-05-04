@@ -129,9 +129,6 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\MediaManager.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\Renderer.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Resource.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -313,6 +310,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\2DRender\Bezier.h">
       <Filter>Core\2DRender</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Driver.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -322,9 +322,6 @@
       <Filter>Core\Shader</Filter>
     </None>
     <None Include="..\..\src\Agmd3D\Core\MediaManager.inl">
-      <Filter>Core</Filter>
-    </None>
-    <None Include="..\..\src\Agmd3D\Core\Renderer.inl">
       <Filter>Core</Filter>
     </None>
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl">
@@ -444,6 +441,9 @@
     <None Include="..\..\Ressources\Shader\Scene.frag">
       <Filter>Shader%28Built in%29</Filter>
     </None>
+    <None Include="..\..\src\Agmd3D\Core\Driver.inl">
+      <Filter>Core</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">
@@ -498,9 +498,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\MediaManager.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\Renderer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Resource.cpp">
@@ -667,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\2DRender\Bezier.cpp">
       <Filter>Core\2DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Driver.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Effects/AsciEffect.h>
 #include <Core/Texture/Texture.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Tools/Fast2DSurface.h>
 #include <Core/MediaManager.h>
 #include <core/ResourceManager.h>

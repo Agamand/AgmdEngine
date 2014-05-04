@@ -9,7 +9,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/FontManager.h>
 #include <Core/RenderObject/GraphicString.h>
 #include <Core/SceneObject/Model.h>
-#include <Core/Renderer.h>
+#include <Core/Driver.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Texture/Image.h>
 #include <windows.h>
@@ -42,32 +42,6 @@ namespace Agmd
         };
 
         m_Declaration = Driver::Get().CreateVertexDeclaration(decl);
-
-        /*m_VertexBuffer = Renderer::Get().CreateVertexBuffer<TVertex>(4, BUF_STATIC);
-
-        TVertex* vertices = m_VertexBuffer.Lock(0, 0, LOCK_WRITEONLY);
-
-        vertices[0].position = vec4(0,0,0,1);
-        vertices[1].position = vec4(1,0,0,1);
-        vertices[2].position = vec4(0,1,0,1);
-        vertices[3].position = vec4(1,1,0,1);
-
-        vertices[0].vertexId = 0;
-        vertices[1].vertexId = 1;
-        vertices[2].vertexId = 2;
-        vertices[3].vertexId = 3;
-        
-        m_VertexBuffer.Unlock();
-
-        std::vector<TIndex> Indices;
-        Indices.push_back(0);
-        Indices.push_back(1);
-        Indices.push_back(2);
-        Indices.push_back(1);
-        Indices.push_back(3);
-        Indices.push_back(2);
-
-        m_IndexBuffer = Renderer::Get().CreateIndexBuffer((int)Indices.size(), 0, &Indices[0]);*/
     }
 
     void FontManager::UnloadFonts()

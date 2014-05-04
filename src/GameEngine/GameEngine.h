@@ -11,10 +11,10 @@ using namespace std;
 
 namespace Agmd
 {
-    class GAMEENGINE_EXPORT GameEngine : public AgmdApp, public Singleton<GameEngine>
+    class GAMEENGINE_EXPORT GameEngine : public AgmdApp//, public Singleton<GameEngine>
     {
     public:
-    MAKE_SINGLETON(GameEngine);
+    //MAKE_SINGLETON(GameEngine);
 
     void SetActiveScene(GameScene* gs);
 

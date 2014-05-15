@@ -1,6 +1,7 @@
 #include <Core/2DRender/DrawablePlane.h>
 #include <Core/Enums.h>
 #include <Core/2DRender/Bezier.h>
+#include <Core/2DRender/BSpline.h>
 #define GRAB_DISTANCE 5.0f
 namespace Agmd
 {
@@ -45,7 +46,7 @@ namespace Agmd
 			m_bufferPoint.push_back(vec2(_pos.x,_pos.y));
 			if(!m_selectedSpline)
 			{
-				m_selectedSpline = new Bezier(m_bufferPoint);
+				m_selectedSpline = new BSpline(m_bufferPoint,3);
 				m_selectedPoint = m_selectedSpline->getLastPoint();
 				m_render.push_back(new LineRenderer(m_selectedSpline));
 			}

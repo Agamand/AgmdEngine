@@ -72,10 +72,11 @@ void App::OnInit()
 	cam2D = new FPCamera(m_MatProj2D);
 
 	m_plane = new DrawablePlane(getScreen(),vec2(100,100));
-	vec2 points[] = {vec2(-50,-50), vec2(-50,50), vec2(50,50)};
+	vec2 points[] = {vec2(-150,-50), vec2(-50,50), vec2(50,-50),vec2(50,50),vec2(50,50),vec2(50,50),vec2(50,50)};
 	BaseSpline* spline = new BaseSpline(points,3);
-	Bezier* bezier = new Bezier(points,3);
-	LineRenderer* renderer = new LineRenderer(bezier);
+	Bezier* bezier = new Bezier(points,7);
+	BSpline* bspline = new BSpline(points,7,3);
+	LineRenderer* renderer = new LineRenderer(bspline);
 	m_plane->addSpline(renderer);
 	addInputListener(m_plane);
 

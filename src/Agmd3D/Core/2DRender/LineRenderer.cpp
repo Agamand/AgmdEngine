@@ -30,7 +30,7 @@ namespace Agmd
 
 	void LineRenderer::draw( const mat4& projection ) const
 	{
-		m_spline->updatePoint();
+		//m_spline->updatePoint();
 		if(m_vertex.GetCount() < 2)
 			return;
 		Driver& driver = Driver::Get();

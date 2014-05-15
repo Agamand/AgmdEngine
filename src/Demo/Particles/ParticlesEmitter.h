@@ -17,6 +17,7 @@ public:
 	ParticlesEmitter(ShaderProgram& program, int particlesCount = 250, Transform* tr = NULL);
 	~ParticlesEmitter();
 	void Draw() const;
+	void Draw(const BaseShaderProgram* program) const;
 	void Update(a_uint32 time);
 	Texture position_buffer[2];
 	Texture velocity_buffer[2];

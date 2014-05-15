@@ -27,6 +27,7 @@ status : in pause
 #include <Core/2DRender/DrawablePlane.h>
 #include <Core/2DRender/LineRenderer.h>
 #include <Core/2DRender/BaseSpline.h>
+#include <Core/2DRender/BSpline.h>
 #include <Core/2DRender/Bezier.h>
 
 #include <map>

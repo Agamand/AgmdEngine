@@ -70,6 +70,39 @@ void ParticlesEmitter::Draw() const
 
 }
 
+void ParticlesEmitter::Draw(const BaseShaderProgram* program) const
+{
+	Driver& driver = Driver::Get();
+
+	float ar = driver.GetAspectRatio();
+	//Texture::TextureRender(velocity_buffer[0]);
+	driver.SetViewPort(ivec2(),driver.GetScreen());
+	driver.Enable(RENDER_POINTSIZE_SHADER,true);
+	driver.Enable(RENDER_POINTSPRITE,true);
+	driver.SetDeclaration(m_declaration);
+
+	driver.SetIndexBuffer(m_index);
+	driver.SetCurrentProgram(program);
+	float offset = 60*5*4;
+	m_diffuse.SetParameter("u_matProjectionPlane",ortho<float>(-offset*ar,offset*ar,-offset,offset));
+	m_diffuse.SetParameter("u_particleCount",draw_count > 1 ? MAX_PER_BUFFER : m_particleCount);
+	driver.SetTexture(0,position_buffer[1].GetTexture());
+	driver.SetTexture(1,extra_buffer[1].GetTexture());
+	driver.SetTexture(2,m_diffuse_texture.GetTexture());
+	driver.SetVertexBuffer(0, m_particles);
+	driver.Enable(RENDER_ALPHABLEND,true);
+	driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+	for(int i =0; i < draw_count; i++){
+		m_diffuse.SetParameter("u_yoffset",i*1.0f/draw_count);
+		driver.DrawIndexedPrimitives(PT_POINTLIST,0,i == draw_count-1 && m_particleCount%MAX_PER_BUFFER > 0 ? m_particleCount%MAX_PER_BUFFER : m_particles.GetCount());
+	}
+	driver.SetCurrentProgram(NULL);
+	driver.Enable(RENDER_POINTSIZE_SHADER,false);
+	driver.Enable(RENDER_POINTSPRITE,false);
+	driver.Enable(RENDER_ALPHABLEND,false);
+
+}
+
 ParticlesEmitter::ParticlesEmitter(ShaderProgram& program, int particlesCount /*= 250*/, Transform* tr /* = NULL*/) : m_program(program)
 {
 	m_transform = tr ? tr : new Transform();

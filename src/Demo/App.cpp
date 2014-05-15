@@ -237,6 +237,11 @@ void App::Run(int argc, char** argv)
 
 #include "Planet/Planet.h"
 SkyBox* boox;
+
+Texture tvelocity;
+Texture tmass;
+ShaderProgram velocity_program;
+ShaderProgram mass_program;
 void App::OnInit()
 {  
     pause = true;
@@ -266,7 +271,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	//generateNoise3d(t,256,_seed);
+	generateNoise3d(t,256,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
@@ -295,12 +300,11 @@ void App::OnInit()
 	AWindow* position =new AWindow();
 	AWindow* velocity = new AWindow();
 	AWindow* life = new AWindow();
-	position->SetBackground(mouse_emitter->position_buffer[0]);
-	velocity->SetBackground(mouse_emitter->velocity_buffer[0]);//particles->velocity_buffer[1]);
+	//particles->velocity_buffer[1]);
 	life->SetBackground(mouse_emitter->extra_buffer[0]);
 	GUIMgr::Instance().AddWidget(position);
 	GUIMgr::Instance().AddWidget(velocity);
-	GUIMgr::Instance().AddWidget(life);
+//	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
 	//box->SetTexture(tex_cubemap);
 	//m_Scene->SetSkybox(box);
@@ -308,8 +312,12 @@ void App::OnInit()
 	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam2D = new FPCamera(m_MatProj2D);
 
-
-
+	velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
+	mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
+	tmass.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
+	tvelocity.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
+	position->SetBackground(tmass);
+	velocity->SetBackground(tvelocity);
 	/*
 		Bezier
 	*/
@@ -320,7 +328,7 @@ void App::OnInit()
 	Bezier* bezier = new Bezier(points,3);
 	LineRenderer* renderer = new LineRenderer(bezier);
 	m_plane->addSpline(renderer);
-	addInputListener(m_plane);
+	//addInputListener(m_plane);
 
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
@@ -333,11 +341,11 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 	if(pause)
 		return;
 
-	/*for(int i = 0; i < m_particles.size(); i++)
+	for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Update(time_diff*timespeed);
 
 	if(drawMouse)
-		mouse_emitter->Update(time_diff);*/
+		mouse_emitter->Update(time_diff);
 
 	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
     const vec2& angles = cam->GetAngles();
@@ -347,13 +355,25 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 void App::OnRender3D()
 {
-	/*for(int i = 0; i < m_particles.size(); i++)
-		m_particles[i]->Draw();
 	if(drawMouse)
-		mouse_emitter->Draw();*/
-	m_plane->render();
-	Texture::TextureRender(m_plane->getTexture());
-
+		mouse_emitter->Draw();
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		m_particles[i]->Draw();
+		
+	}
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		Texture::BeginRenderToTexture(tvelocity);
+		m_particles[i]->Draw(velocity_program.GetShaderProgram());
+		Texture::EndRenderToTexture();
+	}
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		Texture::BeginRenderToTexture(tmass);
+		m_particles[i]->Draw(mass_program.GetShaderProgram());
+		Texture::EndRenderToTexture();
+	}
 }
 
 void App::OnRender2D()
@@ -406,7 +426,7 @@ void App::OnClick( int click, vec2 pos )
 		return;
 	if(click == 1)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),16000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),6000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
 	if(click == 2)
 	{

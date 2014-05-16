@@ -3,7 +3,7 @@
 
 namespace Agmd
 {
-	SceneMgr::SceneMgr()
+	SceneMgr::SceneMgr() : m_skybox(NULL)
 	{
 		m_root = new SceneNode(ROOT_NODE,NULL);
 	}

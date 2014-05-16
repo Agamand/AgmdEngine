@@ -47,10 +47,10 @@ namespace Agmd
 					switch(preprocessor(instruction))
 					{
 					case PREPROCESSOR_INCLUDE:
-						if(value.find_first_of('"') >= 0)
+						if(value.find_first_of('"') != std::string::npos)
 							buffer << LoadAndCompileShader(value.substr(value.find_first_of('"')+1, value.find_last_of('"')-1),&_path);
-						else if(value.find_first_of('<') >= 0)
-							buffer << LoadAndCompileShader(value.substr(value.find_first_of('<')+1, value.find_last_of('>')-1),&_path);
+						else if(value.find_first_of('<') != std::string::npos)
+							buffer << LoadAndCompileShader(value.substr(value.find_first_of('<')+1, value.find_last_of('>')-1),NULL);
 						break;
 					default:
 						buffer << "#" << instruction << " " << value << "\n";

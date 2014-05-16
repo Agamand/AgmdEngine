@@ -32,7 +32,8 @@ namespace Agmd
         virtual void OnMouseWheel(bool up);
 
         virtual void setPosition(glm::vec3 pos);
-        virtual void setTarget(glm::vec3 pos); 
+        virtual void setTarget(glm::vec3 pos);
+		virtual const glm::vec3 GetPosition();
 		void SetAngles(vec2 _angles)
 		{
 			angles = _angles;

@@ -55,7 +55,7 @@ PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Transform* transform /*= NULL
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
 	face = new PlanetTreeNode*[4];
-	std::memset(face,0,16);
+	std::memset(face,0,32);
 	m_divisor = 1;
 	for(int i = 0; i < lod; i++)
 		m_divisor *=2;

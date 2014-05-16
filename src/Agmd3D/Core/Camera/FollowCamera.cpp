@@ -194,4 +194,9 @@ namespace Agmd
 		return StringBuilder("Follow Camera Theta(")(_theta)(") _phi(")(_phi)(") angles(")(angles.x)(",")(angles.y)(") distance(")(distance)(")\n");
 	}
 
+	const vec3 FollowCamera::GetPosition()
+	{
+		return vec3(inverse(Look())*vec4(0,0,0,1));
+	}
+
 }

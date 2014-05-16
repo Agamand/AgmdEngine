@@ -37,6 +37,7 @@ namespace AgmdMaths
 		
 		void Scale(float x,float y,float z){
 			m_scale.x*=x,m_scale.y*=y,m_scale.z*=z;
+			m_localMatrix *=scale(mat4(1),vec3(x,y,z));
 		}
 
 		void SetScale(const vec3& scale)

@@ -17,6 +17,12 @@ namespace Agmd
     {
     }
 
+	ShaderPipeline::ShaderPipeline(const ShaderPipeline& copy)
+	{
+		std::memcpy(m_pipeline,copy.m_pipeline,sizeof(m_pipeline));
+
+	}
+
     ShaderPipeline::~ShaderPipeline()
     {
     }

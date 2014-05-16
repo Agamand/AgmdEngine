@@ -173,11 +173,12 @@ namespace Agmd
     {
 		const char* gl_version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
 		const char* glsl_version = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		std::string _const = GetConstant();
 		if(!gl_version)
 			gl_version ="GL version not found";
 		if(!glsl_version)
 			glsl_version = "GLSL version not found";
-		return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version);
+		return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version)("\n")(_const);
     }
 
     void GLDriver::Setup(HWND Hwnd)
@@ -258,6 +259,7 @@ namespace Agmd
 
         // Default states
         glClearColor(0.0f,0.0f,0.0f,0);
+		//glClearColor(0.5f,0.5f,0.5f,0);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -292,13 +294,18 @@ namespace Agmd
 
     const std::string GLDriver::GetConstant() const
     {
-        std::string str = "";
+        StringBuilder str;
         a_int32 value;
         glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &value);
-        str += "Max vertex attrib : " + value;
+       str("\nGL_MAX_VERTEX_ATTRIBS : ")(value);
 
         glGetIntegerv(GL_MAX_VARYING_FLOATS, &value);
-        str += "\nMax vertex attrib : " + value;
+        str("\nGL_MAX_VARYING_FLOATS : ")(value);
+
+
+		 glGetIntegerv(0x826E, &value);
+		 str("\nMax Uniform location :")(value);
+
         return str;
     }
 
@@ -886,7 +893,7 @@ namespace Agmd
             printf("\n source :\n %s \n error : \n%s\n",src,log);
             delete[] log;
             glDeleteShader(shader);
-            return NULL;
+            return NULL;	
         }
         delete[] log;
     

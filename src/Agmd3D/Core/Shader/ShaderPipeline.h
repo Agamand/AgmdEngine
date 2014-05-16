@@ -25,12 +25,17 @@ namespace Agmd
     public:
 
         ShaderPipeline();
-        ~ShaderPipeline();
+		ShaderPipeline(const ShaderPipeline& copy);
+		~ShaderPipeline();
 
         bool Enable(TRenderPass pass) const;
         void Disable() const;
 
         static ShaderPipeline* GetDefaultPipeline();
+		void setShader(const ShaderProgram& program, TRenderPass pass)
+		{
+				m_pipeline[pass] = program;
+		}
     private:
         ShaderProgram m_pipeline[MAX_RENDERPASS];
         static ShaderPipeline* s_defaultPipeline;

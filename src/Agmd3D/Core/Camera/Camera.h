@@ -43,7 +43,7 @@ namespace Agmd
         virtual void OnKeyboard(char key, bool up) = 0;
         virtual void OnMouseWheel(float delta) = 0;
         virtual void OnMouseWheel(bool up){};
-        const glm::vec3& GetPosition() { return _position; }
+        virtual const glm::vec3 GetPosition() { return _position; }
         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
         void GetPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
         void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }

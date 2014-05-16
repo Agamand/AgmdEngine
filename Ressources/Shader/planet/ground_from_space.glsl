@@ -35,8 +35,8 @@ uniform float fKm4PI;
 uniform float fScale;			
 uniform float fScaleDepth;		
 uniform float fScaleOverScaleDepth;
-const int nSamples = 4;
-const float fSamples = 4.0;
+const int nSamples = 5;
+const float fSamples = 5.0;
 in vec3 v3Pos;
 
 layout(location = 0) out vec4 out_Color;

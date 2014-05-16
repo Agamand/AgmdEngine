@@ -38,8 +38,8 @@ uniform float fKm4PI;	*/
 uniform float fScale;			
 uniform float fScaleDepth;		
 uniform float fScaleOverScaleDepth;
-const int nSamples = 4;
-const float fSamples = 4.0;
+const int nSamples = 5;
+const float fSamples = 5.0;
 in vec3 v3Pos;
 
 layout(location = 0) out vec4 out_Color;
@@ -78,8 +78,8 @@ void main()
     // Now loop through the sample rays
     vec3 v3FrontColor = vec3(0);
     vec3 v3Attenuate = vec3(0);
-    /*for (int i = 0; i < nSamples; i++)
-    {*/
+    for (int i = 0; i < nSamples; i++)
+    {
         float fHeight = length(v3SamplePoint);
 
         float fSampleDepth = exp(fScaleOverScaleDepth * (fInnerRadius - fHeight));
@@ -89,12 +89,17 @@ void main()
         v3Attenuate = exp(expComponent);
         v3FrontColor += v3Attenuate * (fSampleDepth * fScaledLength);
         v3SamplePoint += v3SampleRay;
-    //}
+    }
 
     // scattering colors
     vec3 vRayleighColor = v3FrontColor * (v3InvWavelength * fKrESun + vec3(fKmESun));
     vec3 vMieColor = v3Attenuate;
-    out_Color = vec4(vRayleighColor + vec3(0.25f, 0.25f, 0.3f) * vMieColor,1);
+
+    vec3 v3Dir = v3CameraPos - v3Pos;
+ 	float fCos = dot(v3LightPos, v3Dir ) / length(v3Dir);
+    float fCos2 = fCos*fCos;
+    out_Color = vec4(getRayleighPhase(fCos2) * vRayleighColor + getMiePhase(fCos, fCos2, g, g2)* vMieColor,1);
+    //vec4(vRayleighColor + vec3(0.25f, 0.25f, 0.3f) * vMieColor,1);
     out_Color.a = out_Color.b;
 
 }

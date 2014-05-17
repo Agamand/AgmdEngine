@@ -2,7 +2,6 @@
 
 #include <common/global_uniform.glsl>
 #include "tools.glsl"
-#include "sky_const.glsl"
 
 #ifdef _VERTEX_
 
@@ -25,7 +24,7 @@ uniform vec3 v3LightPos;
 uniform vec3 v3InvWavelength;	
 uniform float fCameraHeight;	
 uniform float fCameraHeight2;	
-/*	
+	
 uniform float fOuterRadius;		
 uniform float fOuterRadius2;	
 uniform float fInnerRadius;		
@@ -34,10 +33,12 @@ uniform float fInnerRadius2;
 uniform float fKrESun;			
 uniform float fKmESun;			
 uniform float fKr4PI;			
-uniform float fKm4PI;	*/	
+uniform float fKm4PI;		
 uniform float fScale;			
 uniform float fScaleDepth;		
 uniform float fScaleOverScaleDepth;
+uniform float g;
+uniform float g2;
 const int nSamples = 5;
 const float fSamples = 5.0;
 in vec3 v3Pos;
@@ -62,7 +63,9 @@ void main()
     float fCameraAngle = dot(-v3Ray, v3Pos) / length(v3Pos);
     float fLightAngle = dot(v3LightPos, v3Pos) / length(v3Pos);
 
-
+    float fStartDepth = exp(-1.0/fScaleDepth);
+    float fStartAngle = dot(v3Ray, v3Start) / fOuterRadius;
+    float fStartOffset = fStartDepth*scale(fStartAngle,0.25f);
     float fCameraScale = scale(fCameraAngle, fScaleDepth);
     float fLightScale = scale(fLightAngle, fScaleDepth);
 
@@ -77,23 +80,22 @@ void main()
 
     // Now loop through the sample rays
     vec3 v3FrontColor = vec3(0);
-    vec3 v3Attenuate = vec3(0);
+    //vec3 v3Attenuate = vec3(0);
     for (int i = 0; i < nSamples; i++)
     {
         float fHeight = length(v3SamplePoint);
-
-        float fSampleDepth = exp(fScaleOverScaleDepth * (fInnerRadius - fHeight));
-        float fScatter = fSampleDepth * fTemp - fCameraOffset;
-
-        vec3 expComponent = (v3InvWavelength * fKr4PI + vec3(fKm4PI)) * -fScatter;
-        v3Attenuate = exp(expComponent);
-        v3FrontColor += v3Attenuate * (fSampleDepth * fScaledLength);
+        float fDepth = exp(fScaleOverScaleDepth * (fInnerRadius - fHeight));
+        float fLightAngle = dot(v3LightPos, v3SamplePoint) / fHeight;
+        float fCameraAngle = dot(v3Ray, v3SamplePoint) / fHeight;
+        float fScatter = (fStartOffset + fDepth*(scale(fLightAngle,0.25f) - scale(fCameraAngle,0.25f)));
+        vec3 v3Attenuate = exp(-fScatter * (v3InvWavelength * fKr4PI + vec3(fKm4PI)));
+        v3FrontColor += v3Attenuate * (fDepth * fScaledLength);
         v3SamplePoint += v3SampleRay;
     }
 
     // scattering colors
-    vec3 vRayleighColor = v3FrontColor * (v3InvWavelength * fKrESun + vec3(fKmESun));
-    vec3 vMieColor = v3Attenuate;
+    vec3 vRayleighColor = v3FrontColor * (v3InvWavelength * fKrESun);
+    vec3 vMieColor = v3FrontColor * fKmESun;
 
     vec3 v3Dir = v3CameraPos - v3Pos;
  	float fCos = dot(v3LightPos, v3Dir ) / length(v3Dir);

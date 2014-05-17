@@ -48,6 +48,8 @@ status : in pause
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
 
 #include <Agmd3D/Core/GUI/GUIMgr.h>
+#include <Agmd3D/Core/GUI/ASlider.h>
+#include <Agmd3D/Core/GUI/AWindow.h>
 
 #include <Agmd3D/Core/Shader/ShaderPreCompiler.h>
 
@@ -81,7 +83,7 @@ BaseShaderProgram* default_program;
 
 double freq = 8.0f;
 double persi = 0.5f;
-int octave = 1;
+int octave = 8;
 void generateNoise(Texture& t,int size,int seed)
 {
 	uint32* img = new uint32[size*size];
@@ -167,7 +169,7 @@ void generateNoise3d(Texture& t,int size,int seed)
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
 
-const char* gradient ="Texture/gradient_mars.png";
+const char* gradient ="Texture/gradient_terra_desat.png";
 const char* seed = NULL;
 
 void App::Run(int argc, char** argv)
@@ -193,15 +195,33 @@ Texture color_gradiant;
 Material* mat;
 
 Model* sphere;
-ShaderProgram sphereProgram;
-ShaderProgram skyProgram;
+Model* sphere2;
+ShaderProgram groundProgram[2];
+ShaderProgram skyProgram[2];
+
+
+
 ShaderProgram lightProgram;
 
 Transform* sphereTransform = new Transform();
 Transform* skyTransform = new Transform();
 Transform* lightTransform = new Transform();
+
+ASlider* slider_kr,
+	 *slider_km,
+	 *slider_esun,
+	 *slider_r,
+	 *slider_g,
+	 *slider_b,
+	 *slider_gg;
 Planet* p;
 vec3 pos ;
+float radius = 1.0f;
+float kr = 0.0025f;
+float km = 0.0015f;
+float eSun = 15.0f;
+vec3 rgb(0.650,0.570,0.475);
+float g = -0.98f;
 void App::OnInit()
 {  
     pause = true;
@@ -209,7 +229,7 @@ void App::OnInit()
 	printf("Loading...");
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
-	pause = false;
+	pause = true;
     DeferredRendering* mode = new DeferredRendering(getScreen());
     RenderingMode::SetRenderingMode(mode);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -227,7 +247,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,256,_seed);
+	generateNoise3d(t,512,_seed);
 	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
 	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
 	ShaderProgram diffuseShader;
@@ -237,10 +257,51 @@ void App::OnInit()
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	p = new Planet(mat);
-	sphere = CreateSphere(1.0f,100,100,M_PI*2,"",PT_TRIANGLELIST);
+	sphere = CreateSphere(1.0f*radius,100,100,M_PI*2,"",PT_TRIANGLELIST);
 	MeshNode* mnode = new MeshNode(sphere,sphereTransform);
     //m_Scene->AddNode(p->GetRoot());
+	slider_kr = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_kr);
+	slider_kr->SetPosition(1300,800);
+	slider_kr->SetSize(200,20);
+	slider_kr->setValue(&kr,0,0.1);
 
+	slider_km = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_km);
+	slider_km->SetPosition(1300,775);
+	slider_km->SetSize(200,20);
+	slider_km->setValue(&km,0,0.1);
+
+	slider_esun = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_esun);
+	slider_esun->SetPosition(1300,750);
+	slider_esun->SetSize(200,20);
+	slider_esun->setValue(&eSun,0,30);
+
+	slider_r = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_r);
+	slider_r->SetPosition(1300,725);
+	slider_r->SetSize(200,20);
+	slider_r->setValue(&rgb.r,0,1);
+
+	slider_g = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_g);
+	slider_g->SetPosition(1300,700);
+	slider_g->SetSize(200,20);
+	slider_g->setValue(&rgb.g,0,1);
+
+	slider_b = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_b);
+	slider_b->SetPosition(1300,675);
+	slider_b->SetSize(200,20);
+	slider_b->setValue(&rgb.b,0,1);
+
+	slider_gg = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider_gg);
+	slider_gg->SetPosition(1300,650);
+	slider_gg->SetSize(200,20);
+	slider_gg->setValue(&g,-1,-0.5);
+	
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
 
@@ -261,17 +322,19 @@ void App::OnInit()
 	boox = box;
 	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam2D = new FPCamera(m_MatProj2D);
-	sphereProgram.LoadFromFile("shader/planet/ground_from_space.glsl");
-	skyProgram.LoadFromFile("shader/planet/sky_from_space.glsl");
+	groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
+	groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
+	skyProgram[0].LoadFromFile("shader/planet/sky_from_space.glsl");
+	skyProgram[1].LoadFromFile("shader/planet/sky_from_atmo.glsl");
 	lightProgram.LoadFromFile("shader/planet/light.glsl");
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
 	printf("Loading end");
-	skyTransform->Scale(1.01,1.01,1.01);
+	skyTransform->Scale(1.025,1.025,1.025);
 	//skyTransform->Translate(2,0,0);
 	skyTransform->Update(NULL);
 
-	lightTransform->Translate(5,5,5);
+	lightTransform->Translate(50,50,50);
 	lightTransform->Scale(0.2,0.2,0.2);
 	
 	lightTransform->Update(NULL);
@@ -302,9 +365,11 @@ void App::OnRender3D()
 	p->GetRoot()->Update(NULL,true);
 	p->GetRoot()->FindVisible(cam3D,displayable,l);
 
-	/*if(displayable.size())
-		displayable[0]->Render(RENDERPASS_DIFFUSE);*/
-	if(!pause)
+	float inner = 1.0f*radius;
+	float outer = 1.025f*radius;
+/*	if(displayable.size())
+		displayable[0]->Render(RENDERPASS_DIFFUSE);
+	*/
 	for(int i = 0; i < displayable.size(); i++)
 		displayable[i]->Render(RENDERPASS_DIFFUSE);
 	vec3 campos = cam3D->GetPosition();
@@ -318,70 +383,80 @@ void App::OnRender3D()
 	sphere->Draw(lightTransform);
 	driver.SetCurrentProgram(NULL);
 
-	//if(pause)
-		//return;
+	if(pause)
+		return;
 
 	
 
 
-	driver.Enable(TRenderParameter::RENDER_ZWRITE,false);
-	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,true);
+	
+	
 	driver.SetCullFace(1);
-	driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-	driver.SetCurrentProgram(skyProgram.GetShaderProgram());
+	int use;
+	float l = length(campos);
+	if(l > outer)
+	{
+		driver.Enable(TRenderParameter::RENDER_ZWRITE,false);
+		driver.Enable(TRenderParameter::RENDER_ALPHABLEND,true);
+		driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+		use = 0; 
+	}else use = 1;
 
-	
-	skyProgram.SetParameter("v3CameraPos",campos);
-	skyProgram.SetParameter("v3LightPos",normalize(vec3(5,5,5)));
-	skyProgram.SetParameter("v3InvWavelength",vec3(1.0 / pow(0.650, 4.0), 1.0 / pow(0.570, 4.0), 1.0 / pow(0.475, 4.0)));
+	driver.SetCurrentProgram(skyProgram[use].GetShaderProgram());
+	skyProgram[use].SetParameter("v3CameraPos",campos);
+	skyProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
+	skyProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0), 1.0 / pow(rgb.g, 4.0), 1.0 / pow(rgb.b, 4.0)));
 
-	skyProgram.SetParameter("fCameraHeight",length(campos));
-	skyProgram.SetParameter("fCameraHeight2",length(campos)*length(campos));
+	skyProgram[use].SetParameter("fCameraHeight",length(campos));
+	skyProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
 
-	skyProgram.SetParameter("fInnerRadius",1.f);
-	skyProgram.SetParameter("fInnerRadius2",1.f);
-	skyProgram.SetParameter("fOuterRadius",1.025f);
-	skyProgram.SetParameter("fOuterRadius2",1.025f*1.025f);
-	skyProgram.SetParameter("fKrESun", 0.0025f * 15.0f);
-	skyProgram.SetParameter("fKmESun", 0.0015f * 15.0f);
-	skyProgram.SetParameter("fKr4PI",0.0025f * 4.0f * 3.141592653f);
-	skyProgram.SetParameter("fKm4PI",0.0015f * 4.0f * 3.141592653f);
-	skyProgram.SetParameter("fScale", 1.0f / (1.025f - 1));
-	skyProgram.SetParameter("fScaleDepth",0.25f);
-	skyProgram.SetParameter("fScaleOverScaleDepth", 4.0f / (1.025f - 1));
-	skyProgram.SetParameter("g",-0.98f);
-	skyProgram.SetParameter("g2",-0.98f*-0.98f);
+	skyProgram[use].SetParameter("fInnerRadius",inner);
+	skyProgram[use].SetParameter("fInnerRadius2",inner*inner);
+	skyProgram[use].SetParameter("fOuterRadius",outer);
+	skyProgram[use].SetParameter("fOuterRadius2",outer*outer);
+	skyProgram[use].SetParameter("fKrESun", kr * eSun);
+	skyProgram[use].SetParameter("fKmESun", km * eSun);
+	skyProgram[use].SetParameter("fKr4PI",kr * 4.0f * 3.141592653f);
+	skyProgram[use].SetParameter("fKm4PI",km * 4.0f * 3.141592653f);
+	skyProgram[use].SetParameter("fScale", 1.0f / (outer - inner));
+	skyProgram[use].SetParameter("fScaleDepth",0.25f);
+	skyProgram[use].SetParameter("fScaleOverScaleDepth", 4.0f / (outer - inner));
+	skyProgram[use].SetParameter("g",g);
+	skyProgram[use].SetParameter("g2",g*g);
 	sphere->Draw(skyTransform);
 	driver.SetCurrentProgram(NULL);
 	driver.SetCullFace(2);
+	use = 0;
 	mat->Enable(RENDERPASS_DEFERRED);
+	driver.Enable(TRenderParameter::RENDER_ZWRITE,false);
+	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,true);
 	driver.Enable(TRenderParameter::RENDER_ZTEST,false);
 	driver.SetupAlphaBlending(BLEND_ONE, BLEND_SRCCOLOR);
-	driver.SetCurrentProgram(sphereProgram.GetShaderProgram());
-	sphereProgram.SetParameter("v3CameraPos",campos);
-	sphereProgram.SetParameter("v3LightPos",normalize(vec3(5,5,5)));
-	sphereProgram.SetParameter("v3InvWavelength",vec3(1.0 / pow(0.650, 4.0), 1.0 / pow(0.570, 4.0), 1.0 / pow(0.475, 4.0)));
+	driver.SetCurrentProgram(groundProgram[use].GetShaderProgram());
+	groundProgram[use].SetParameter("v3CameraPos",campos);
+	groundProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
+	groundProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0), 1.0 / pow(rgb.g, 4.0), 1.0 / pow(rgb.b, 4.0)));
 
-	sphereProgram.SetParameter("fCameraHeight",length(campos));
-	sphereProgram.SetParameter("fCameraHeight2",length(campos)*length(campos));
+	groundProgram[use].SetParameter("fCameraHeight",length(campos));
+	groundProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
 
-	sphereProgram.SetParameter("fInnerRadius",1.f);
-	sphereProgram.SetParameter("fInnerRadius2",1.f);
-	sphereProgram.SetParameter("fOuterRadius",1.025f);
-	sphereProgram.SetParameter("fOuterRadius2",1.025f*1.025f);
-	sphereProgram.SetParameter("fKrESun", 0.0025f * 15.0f);
-	sphereProgram.SetParameter("fKmESun", 0.0015f * 15.0f);
-	sphereProgram.SetParameter("fKr4PI",0.0025f * 4.0f * 3.141592653f);
-	sphereProgram.SetParameter("fKm4PI",0.0015f * 4.0f * 3.141592653f);
-	sphereProgram.SetParameter("fScale", 1.0f / (1.025f - 1));
-	sphereProgram.SetParameter("fScaleDepth",0.25f);
-	sphereProgram.SetParameter("fScaleOverScaleDepth", 4.0f / (1.025f - 1));
-	sphereProgram.SetParameter("g",-0.98f);
-	sphereProgram.SetParameter("g2",-0.98f*-0.98f);
+	groundProgram[use].SetParameter("fInnerRadius",inner);
+	groundProgram[use].SetParameter("fInnerRadius2",inner*inner);
+	groundProgram[use].SetParameter("fOuterRadius",outer);
+	groundProgram[use].SetParameter("fOuterRadius2",outer*outer);
+	groundProgram[use].SetParameter("fKrESun", kr * eSun);
+	groundProgram[use].SetParameter("fKmESun", km * eSun);
+	groundProgram[use].SetParameter("fKr4PI",kr * 4.0f * 3.141592653f);
+	groundProgram[use].SetParameter("fKm4PI",km * 4.0f * 3.141592653f);
+	groundProgram[use].SetParameter("fScale", 1.0f / (outer - inner));
+	groundProgram[use].SetParameter("fScaleDepth",0.25f);
+	groundProgram[use].SetParameter("fScaleOverScaleDepth", 4.0f / (outer - inner));
+	groundProgram[use].SetParameter("g",g);
+	groundProgram[use].SetParameter("g2",g*g);
 	sphere->Draw(sphereTransform);
 	driver.SetCurrentProgram(NULL);
 	mat->Disable();
-
+	
 	//Fast2DSurface::Instance().Draw();
 	
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
@@ -395,7 +470,14 @@ void App::OnRender3D()
 void App::OnRender2D()
 {
     Driver& render = Driver::Get();
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	)("\n Octave : ")(octave)("\n frequency : ")(freq)("\n persistance : ")(persi);
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	)("\n Octave : ")(octave)("\n frequency : ")(freq)("\n persistance : ")(persi)
+	("\nkr : ")(kr)
+	("\nkm : ")(km)
+	("\neSun : ")(eSun)
+	("\nrbg.r")(rgb.r)
+	("\nrgb.g")(rgb.g)
+	("\nrgb.b")(rgb.b)
+	("\ng")(g);
     m_fps->Draw();
 
 }
@@ -419,37 +501,37 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			break;
 		case 'C':
 			//generateNoise(test,256,100*rand());
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 103:
 			freq +=0.1f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 100:
 			freq -=0.1f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 104:
 			persi +=0.1f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 101:
 			persi -=0.1f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 105:
 			octave +=1.f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 102:
 			octave -=1.f;
-			generateNoise3d(t,256,rand());
+			generateNoise3d(t,512,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 			break;
 		}

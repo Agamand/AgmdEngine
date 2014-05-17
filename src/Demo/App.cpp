@@ -43,6 +43,7 @@ status : in pause
 #include <Agmd3D/Core/Effects/AsciEffect.h>
 #include <Agmd3D/Core/RenderObject/MeshRender.h>
 #include <Agmd3D/Core/GUI/GUIMgr.h>
+#include <Agmd3D/Core/GUI/ASlider.h>
 #include <Agmd3D/Core/Shader/ShaderPipeline.h>
 #include <Agmd3D/Core/Tools/Statistics.h>
 #include <Agmd3D/Core/SceneObject/Material.h>
@@ -242,6 +243,7 @@ Texture tvelocity;
 Texture tmass;
 ShaderProgram velocity_program;
 ShaderProgram mass_program;
+
 void App::OnInit()
 {  
     pause = true;
@@ -271,7 +273,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,256,_seed);
+	generateNoise3d(t,512,_seed);
 
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
@@ -300,6 +302,8 @@ void App::OnInit()
 	AWindow* position =new AWindow();
 	AWindow* velocity = new AWindow();
 	AWindow* life = new AWindow();
+
+
 	//particles->velocity_buffer[1]);
 	life->SetBackground(mouse_emitter->extra_buffer[0]);
 	GUIMgr::Instance().AddWidget(position);

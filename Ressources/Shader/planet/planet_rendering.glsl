@@ -28,11 +28,11 @@ void main()
 	float scale = 1.f;
 	color = in_Color;
 	texCoord0 = in_TexCoord0;
-	normal = normalize(texCoord1 = (u_matModel * vec4(in_Vertex,1)).xyz);
+	normal = texCoord1 = normalize( (u_matModel * vec4(in_Vertex,1)).xyz);
 	pos = vec4(normal*scale,1.0f);
 	float displacement = rgb2grayscale(texture(texture0,pos.xyz).rgb);
 	displacement = clamp(displacement,0.0f,1.f);
-	pos += vec4(normal*scale*-0.02+scale*normal*displacement*0.02,0);
+	pos += vec4(normal*scale*-0.05+scale*normal*displacement*0.05,0);
 	comp_pos = u_matViewProjection *  pos;
 	gl_Position = comp_pos;
 }

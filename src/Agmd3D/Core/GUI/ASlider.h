@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
-#include <Core/Shader/BaseShaderProgram.h>
+#include <Core/Shader/ShaderProgram.h>
 #include <Core/MediaManager.h>
 
 namespace Agmd
@@ -36,6 +36,7 @@ namespace Agmd
         virtual bool In(ivec2& pos_mouse);
 
         void SetCursor(float value);
+		void setValue(float* value,float min,float max);
     private:
 
         void BuildSlider();
@@ -47,16 +48,21 @@ namespace Agmd
         };
 
         typedef unsigned short TIndex;
-
+		Transform*          m_transform;
         Buffer<TVertex>     m_VertexBuffer;
         Buffer<TIndex>      m_IndexBuffer;
         DeclarationPtr      m_Declaration;
         Texture             m_Texture;
         Texture             m_Font;
-        BaseShaderProgram*  m_Program;
-        float               m_cursor; // range [0.0f-1.0f]
+        ShaderProgram       m_Program;
+		ShaderProgram       m_ProgramCursor;
+        float               m_cursor;
+		float*				m_value;
+		float				m_max;
+		float				m_min;// range [0.0f-1.0f]
         bool                hold; // hold = true if mouse is hold the cursor else hold = false
-    };
+	
+	};
 }
 
 #endif /* _ASLIDER_H_ */

@@ -27,7 +27,7 @@ namespace Agmd
 		}
 		return points[(points_control.size()-1)*points_control.size()];
 	}
-	void Bezier::compute()
+	void Bezier::compute( int pointIndex /*= -1*/ )
 	{
 		std::vector<std::vector<vec2>> points;
 		vec2* _points = new vec2[m_computedPoints.size()*m_computedPoints.size()];

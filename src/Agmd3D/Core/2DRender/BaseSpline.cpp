@@ -22,35 +22,41 @@ namespace Agmd
 		m_updateListener = context;
 	}
 
-	void BaseSpline::compute()
+	void BaseSpline::compute( int pointIndex /*= -1*/ )
 	{
 		m_computedPoints.clear();
 		for(std::vector<vec2>::iterator itr = m_controlPoints.begin(); itr !=m_controlPoints.end(); itr++)
 			m_computedPoints.push_back(*itr);
 	}
 
-	void BaseSpline::updatePoint()
+	void BaseSpline::updatePoint( int pointIndex  /*= -1*/)
 	{
 		compute();
 		if(m_updateListener)
 			m_updateListener->onUpdate(m_computedPoints);
 	}
 
-	vec2* BaseSpline::getNearControlPoint( vec4 pos )
+	vec2* BaseSpline::getNearControlPoint( vec4 pos, int& pointindex )
 	{
 		vec2* p = NULL;
+		int i = 0;
 		for(std::vector<vec2>::iterator itr = m_controlPoints.begin(); itr !=m_controlPoints.end(); itr++)
 		{
 			if(!p)
 			{
+				pointindex = i;
 				p = &(*itr);
 			}else 
 			{
 				float l = length((*itr)-vec2(pos.x,pos.y));
 				float l2 = length(*p-vec2(pos.x,pos.y));
 				if(l < l2)
+				{
 					p = &(*itr);
+					pointindex = i;
+				}
 			}
+			i++;
 		}
 		return p;
 	}

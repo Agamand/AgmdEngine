@@ -31,6 +31,8 @@ namespace Agmd
 
 		virtual void OnMouseMotion( const vec2& pos );
 		void clear();
+
+		float degree;
 	private:
 		std::vector<vec2> m_bufferPoint;
 		ShaderProgram m_renderProgram;
@@ -43,7 +45,9 @@ namespace Agmd
 		mat4 m_reverse_projection;
 		vec2* m_selectedPoint;
 		BaseSpline* m_selectedSpline;
+		int m_pointIndex;
 		int key;
+		
 		enum KEY
 		{
 			CTRL =0x1,

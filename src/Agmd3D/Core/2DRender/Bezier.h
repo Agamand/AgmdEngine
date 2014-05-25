@@ -18,7 +18,7 @@ namespace Agmd
 		{
 			compute();
 		}
-		virtual void compute();
+		virtual void compute(int pointIndex = -1);
 	};
 }
 #endif /* _BEZIER_H_ */

@@ -32,6 +32,8 @@ status : in pause
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <Agmd3D/Core/Camera/FollowCamera.h>
 #include <Agmd3D/Core/Camera/FPCamera.h>
+#include <Agmd3D/Core/GUI/GUIMgr.h>
+#include <Agmd3D/Core/GUI/ASlider.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
@@ -79,6 +81,11 @@ void App::OnInit()
 	LineRenderer* renderer = new LineRenderer(bspline);
 	m_plane->addSpline(renderer);
 	addInputListener(m_plane);
+	ASlider* slider = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slider);
+	slider->SetPosition(1300,800);
+	slider->SetSize(200,20);
+	slider->setValue(&m_plane->degree,1,5);
 
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
@@ -98,7 +105,7 @@ void App::OnRender3D()
 void App::OnRender2D()
 {
     Driver& render = Driver::Get();
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString());
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\n")("Spline degree : ")(floor(m_plane->degree));
     m_fps->Draw();
 
 }

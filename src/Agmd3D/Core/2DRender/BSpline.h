@@ -17,7 +17,7 @@ namespace Agmd
 		{
 			compute();
 		}
-		virtual void compute();
+		virtual void compute(int pointIndex = -1);
 		vec2 cdb(vec2* data ,std::vector<float> ti,int n,float t, int r);
 	private:
 		std::vector<vec2> m_knot;

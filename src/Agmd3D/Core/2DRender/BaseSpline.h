@@ -39,9 +39,9 @@ namespace Agmd
 		{
 			return &m_controlPoints[m_controlPoints.size()-1];
 		}
-		void updatePoint();
-		vec2*getNearControlPoint( vec4 pos );
-		virtual void compute();
+		void updatePoint(int pointIndex = -1);
+		vec2*getNearControlPoint( vec4 pos, int& pointindex );
+		virtual void compute(int pointIndex = -1);
 		void addPoint(vec2& p);
 	protected:
 		std::vector<vec2> m_controlPoints;

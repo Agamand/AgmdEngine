@@ -14,10 +14,12 @@ namespace Agmd
 			_pos = m_reverse_projection*_pos;
 			vec2* point = NULL;
 			BaseSpline* spline = NULL;
+			int pointIndex = 0;
 			for(std::vector<LineRenderer*>::iterator itr = m_render.begin(); itr != m_render.end(); itr++)
 			{
 				BaseSpline* spl = (*itr)->getSpline();
-				vec2* p = spl->getNearControlPoint(_pos);
+				int pi;
+				vec2* p = spl->getNearControlPoint(_pos,pi);
 				if(!p)
 					continue;
 				float l = length((*p)-vec2(_pos.x,_pos.y));
@@ -31,11 +33,13 @@ namespace Agmd
 				}
 				point = p;
 				spline = spl;
+				pointIndex = pi;
 			}
 			if(point && spline)
 			{
 				m_selectedPoint = point;
 				m_selectedSpline = spline;
+				m_pointIndex = pointIndex;
 			}
 		}
 
@@ -46,7 +50,7 @@ namespace Agmd
 			m_bufferPoint.push_back(vec2(_pos.x,_pos.y));
 			if(!m_selectedSpline)
 			{
-				m_selectedSpline = new BSpline(m_bufferPoint,3);
+				m_selectedSpline = new BSpline(m_bufferPoint,floor(degree));
 				m_selectedPoint = m_selectedSpline->getLastPoint();
 				m_render.push_back(new LineRenderer(m_selectedSpline));
 			}
@@ -106,7 +110,7 @@ namespace Agmd
 		}
 	}
 
-	DrawablePlane::DrawablePlane( ivec2 pixelSize, vec2 repere ) : m_pixelSize(pixelSize), m_repere(repere),m_selectedPoint(NULL),m_selectedSpline(NULL),key(0)
+	DrawablePlane::DrawablePlane( ivec2 pixelSize, vec2 repere ) : m_pixelSize(pixelSize), m_repere(repere),m_selectedPoint(NULL),m_selectedSpline(NULL),m_pointIndex(0),key(0)
 	{
 	
 		Driver& driver = Driver::Get();

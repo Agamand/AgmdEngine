@@ -33,7 +33,7 @@ namespace Agmd
 
 		virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light);
 
-		const Material& GetMaterial() const { return *m_material;}
+		Material& GetMaterial() const { return *m_material;}
 		const BoundingBox& GetBoundingBox() const { return m_localBBox;};
 		const BoundingBox& GetGlobalBoundingBox() const { return m_globalBbox;};
 

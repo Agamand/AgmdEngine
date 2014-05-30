@@ -19,7 +19,7 @@ public:
 		BOTTOM_LEFT,
 		BOTTOM_RIGHT
 	};
-	PlanetTreeNode(PlanetModel* model,Transform* transform = NULL,int lod = 0);
+	PlanetTreeNode(PlanetModel* model,Planet* controller,Transform* transform = NULL,int lod = 0);
 
 	virtual void Update(Transform* transform, bool updateChildren)
 	{
@@ -38,6 +38,7 @@ private:
 	int m_divisor;
 	int x,y;
 	PlanetTreeNode** face;
+	Planet* m_controller;
 };
 
 #endif /* _QUADTREENODE_H_ */

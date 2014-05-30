@@ -21,12 +21,14 @@ namespace Agmd
 	m_transform(new Transform()),
 	m_value(&m_cursor),
 	m_max(1.0f),
-	m_min(0)
+	m_min(0),
+	updateListener(NULL)
     {
         BuildSlider();
         //m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
         m_Program.LoadFromFile("Shader/gui/slider.glsl");
 		m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
+		m_gstring = new GraphicString();
     }
 
     ASlider::~ASlider()
@@ -77,6 +79,9 @@ namespace Agmd
 
     void ASlider::OnPosChanged()
     {
+		
+		m_gstring->GetTransform().SetPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
+		m_gstring->GetTransform().Update(NULL);
 		m_transform->SetPosition(vec3(m_vAbsolutePosition,0));
 		m_transform->Update(NULL);
     }
@@ -92,7 +97,7 @@ namespace Agmd
 		m_Program.SetParameter("u_size",vec2(m_vSize.x,m_cursor));
 		Fast2DSurface::Instance().Draw();
 		render.SetCurrentProgram(NULL);
-        
+        m_gstring->Draw();
     }
 
     
@@ -128,6 +133,9 @@ namespace Agmd
             m_cursor = 0.0f;
         else m_cursor = value;
 		*m_value = (m_max-m_min)*m_cursor+m_min;
+		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
+		if(updateListener)
+			updateListener->valueUpdate(*m_value,m_cursor);
     }
 
 	void ASlider::setValue( float* value,float min,float max )
@@ -136,6 +144,15 @@ namespace Agmd
 		m_min = min;
 		m_max = max;
 		m_cursor = (*m_value-m_min)/(m_max-m_min);
+		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
 	}
+
+	void ASlider::setLabel( std::string& label )
+	{
+		m_label = label;
+		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
+	}
+
+
 
 }

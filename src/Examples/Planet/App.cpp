@@ -169,7 +169,7 @@ void generateNoise3d(Texture& t,int size,int seed)
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
 
-const char* gradient ="Texture/gradient_terra_desat.png";
+const char* gradient ="Texture/gradient_mars.png";
 const char* seed = NULL;
 
 void App::Run(int argc, char** argv)
@@ -247,7 +247,7 @@ void App::OnInit()
 	else _seed = rand();
 
 
-	generateNoise3d(t,512,_seed);
+	generateNoise3d(t,2048,_seed);
 	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
 	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
 	ShaderProgram diffuseShader;
@@ -370,6 +370,7 @@ void App::OnRender3D()
 /*	if(displayable.size())
 		displayable[0]->Render(RENDERPASS_DIFFUSE);
 	*/
+	//if(pause)
 	for(int i = 0; i < displayable.size(); i++)
 		displayable[i]->Render(RENDERPASS_DIFFUSE);
 	vec3 campos = cam3D->GetPosition();
@@ -383,7 +384,7 @@ void App::OnRender3D()
 	sphere->Draw(lightTransform);
 	driver.SetCurrentProgram(NULL);
 
-	if(pause)
+//	if(pause)
 		return;
 
 	

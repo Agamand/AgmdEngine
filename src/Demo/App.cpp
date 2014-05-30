@@ -255,7 +255,7 @@ void App::OnInit()
 	draw = true;
 	pause = false;
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    //RenderingMode::SetRenderingMode(mode);
+    RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -325,12 +325,15 @@ void App::OnInit()
 	/*
 		Bezier
 	*/
-
+	Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/suzanne.obj");
 	m_plane = new DrawablePlane(getScreen(),vec2(100,100));
 	vec2 points[] = {vec2(-50,-50), vec2(-50,50), vec2(50,50)};
 	BaseSpline* spline = new BaseSpline(points,3);
 	Bezier* bezier = new Bezier(points,3);
 	LineRenderer* renderer = new LineRenderer(bezier);
+	MeshNode* node = new MeshNode(model);
+	//node->GetTransform().Rotate(90,vec3(1,0,1));
+	m_Scene->AddNode(node);
 	m_plane->addSpline(renderer);
 	//addInputListener(m_plane);
 

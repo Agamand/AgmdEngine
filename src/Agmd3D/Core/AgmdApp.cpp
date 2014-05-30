@@ -118,7 +118,7 @@ namespace Agmd
         lExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE);
         SetWindowLong(m_Hwnd, GWL_EXSTYLE, lExStyle);
         SetWindowPos(m_Hwnd, NULL, 0,0,0,0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
-        //ShowCursor(0);
+        ShowCursor(1);
     }
 
     void AgmdApp::MainLoop()

@@ -15,6 +15,7 @@ void main(){
 #endif
 
 #ifdef _FRAGMENT_
+
 in vec4 v_Color;
 out vec4 out_color;
 

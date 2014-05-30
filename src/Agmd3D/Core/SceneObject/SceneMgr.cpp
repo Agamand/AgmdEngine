@@ -67,4 +67,9 @@ namespace Agmd
 		return m_skybox;
 	}
 
+	void SceneMgr::clear()
+	{
+		m_root->clear();
+	}
+
 }

@@ -36,6 +36,7 @@ namespace Agmd
 		{
 			return !m_root || m_root->isEmpty();
 		}
+		void clear();
 	private:
 		std::vector<Light*> m_light; // static light
 		std::vector<DisplayNode*> m_displayable;

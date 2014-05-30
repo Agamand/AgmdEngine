@@ -11,6 +11,7 @@ out vec2 v_TexCoord0;
 
 void main(){
 	v_TexCoord0 = in_TexCoord0;
+
 	gl_Position = u_matProjection * vec4(in_Vertex,1);
 }
 #endif
@@ -25,25 +26,27 @@ uniform sampler2D texture2;
 in vec2 v_TexCoord0;
 
 out vec4 out_color;
-
+#include <common/color.glsl>
 
 vec3 textureToNormal(vec3 tex)
 {
-	return tex*2-vec3(0.5);
+	return (tex-vec3(0.5))*2;
 }
 
 
 void main()
 {
 	vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
-	vec3 L = normalize(l_dir.xyz);
+	vec3 L = -normalize(l_dir.xyz);
 	float lambertTerm = max(dot(N,L),0.0);
 	
 	//alpha discard
 	vec4 color = texture(texture0, v_TexCoord0);
 	if(color.a < 1.0f)
 		discard;
-	out_color = vec4(color.rgb*lambertTerm,color.a);
+
+	//out_color = vec4(getColor1f(lambertTerm),color.a);
+	out_color = vec4(color.rgb,1);
 }
 
 #endif

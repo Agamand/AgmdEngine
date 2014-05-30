@@ -12,17 +12,18 @@ using namespace Agmd;
 class Planet
 {
 public:
-	Planet(Material*mat = NULL);
+	friend class PlanetTreeNode;
+	Planet(Material*mat = NULL, float size = 0);
 
 	SceneNode* GetRoot()
 	{
 		return m_root;
 	}
-
+	
 	static PlanetModel* s_plane;
 	static Material* s_mat;
 private:
 	SceneNode* m_root;
-
+	int m_size;
 };
 #endif

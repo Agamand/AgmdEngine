@@ -59,13 +59,16 @@ namespace Agmd
 
     MAKE_SINGLETON(GUIMgr); 
     public:
+		
 
         void Update(a_uint64 t_diff);
         void DrawGUI() const;
         void SetSelected(a_uint32 i);
-        void HandleEvent(EventEntry& _event);
+		int HandleEvent(EventEntry& _event);
         void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);
+		void RemoveWidget(AWidget* widget);
+
 
     private:
         GUIMgr();

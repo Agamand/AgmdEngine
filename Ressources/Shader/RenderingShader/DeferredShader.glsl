@@ -8,63 +8,44 @@ in vec3 in_Normal;
 in vec4 in_Color;
 in vec2 in_TexCoord0;
 
-out vec4 color;
-out vec2 texCoord0;
-out vec3 texCoord1;
-out vec3 normal;
-out vec4 pos;
-out vec4 comp_pos;
+out vec4 v_color;
+out vec2 v_texCoord0;
+out vec3 v_normal;
+out vec4 v_pos;
 uniform samplerCube texture0;
 
-float rgb2grayscale(vec3 color)
-{
-	return 0.299*color.r + 0.58*color.g + 0.114*color.b;
-}
+
 
 void main()
 {
-	vec3 vertex = in_Vertex;
 
-	
-	float scale = 1.f;
-	color = in_Color;
-	texCoord0 = in_TexCoord0;
-	normal = normalize(texCoord1 = (u_matModel * vec4(in_Vertex,1)).xyz);//normalize(mat3(u_matModel) * in_Normal);
-	pos = vec4(normal*scale,1.0f);
-	float displacement = rgb2grayscale(texture(texture0,pos.xyz).rgb);
-	displacement = clamp(displacement,0.0f,1.f);
-	pos += vec4(scale*normal*displacement*0.05,0);
-	comp_pos = u_matViewProjection *  pos;
-	gl_Position = comp_pos;
+	v_color = in_Color;
+	v_texCoord0 = in_TexCoord0;
+	v_normal = normalize(mat3(u_matModel)*in_Normal);
+	v_pos = u_matModel * vec4(in_Vertex,1);
+	gl_Position = u_matViewProjection * vec4(v_pos.xyz,1);
 }
 #endif
 
 
 #ifdef _FRAGMENT_
 
-in vec4 color;
-in vec2 texCoord0;
-in vec3 normal;
-in vec4 pos;
-in vec4 comp_pos;
+#include <common/color.glsl>
+
+in vec4 v_color;
+in vec2 v_texCoord0;
+in vec3 v_normal;
+in vec4 v_pos;
 
 layout(location = 0) out vec4 out_Color;
 layout(location = 1) out vec3 out_Normal;
 layout(location = 2) out vec3 out_Position;
-uniform samplerCube texture0;
-uniform sampler2D texture1;
-
-float rgb2grayscale(vec3 color)
-{
-	return 0.299*color.r + 0.58*color.g + 0.114*color.b;
-}
-
+uniform sampler2D texture0;
 void main()
 {
-	float offset = rgb2grayscale(texture(texture0,pos.xyz).rgb);
-	out_Color = vec4(texture(texture1,vec2(offset,0)).rgb,1.0f);
-	out_Normal = normal;
-	out_Position = pos.xyz;
+	out_Color = vec4(normal2rgb(v_normal),1);//vec4(texture(texture0,v_texCoord0).rgb,1);
+	out_Normal = normal2rgb(v_normal);
+	out_Position = v_pos.xyz;
 }
 
 

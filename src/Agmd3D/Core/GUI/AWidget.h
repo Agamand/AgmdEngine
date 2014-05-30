@@ -24,6 +24,7 @@ namespace Agmd
     class AGMD3D_EXPORT AWidget
     {
     public:
+		friend class GUIMgr;
         AWidget(AWidget* parent = NULL);
         virtual ~AWidget();
 
@@ -49,12 +50,17 @@ namespace Agmd
         void RemoveChild(AWidget* child);
 
         virtual bool In(ivec2& pos);
+		void setEnable(bool enable=true)
+		{
+			m_enable = enable;
+		}
 
     protected:
         AWidget* m_wParent;
         ivec2 m_vPosition;
         ivec2 m_vAbsolutePosition;
         ivec2 m_vSize;
+		bool m_enable;
 
         WidgetVector m_WidgetChild;
 

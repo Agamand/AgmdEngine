@@ -44,5 +44,10 @@ namespace Agmd
 	}
 
 
+	void SceneNode::clear()
+	{
+		m_children.clear();
+	}
+
 }
 

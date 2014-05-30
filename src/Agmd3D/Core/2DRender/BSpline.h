@@ -9,19 +9,17 @@ namespace Agmd
 	class AGMD3D_EXPORT BSpline : public BaseSpline
 	{
 	public:
-		BSpline(vec2 p[], int count, int degree) : BaseSpline(p,count), m_knot(count+degree,vec2()), m_degree(degree)
-		{
-			compute();
-		}
-		BSpline(const std::vector<vec2>& p, int degree) : BaseSpline(p), m_knot(p.size()+degree,vec2()), m_degree(degree)
-		{
-			compute();
-		}
+		friend class DrawablePlane;
+		BSpline(vec2 p[], int count, int degree);
+		BSpline(const std::vector<vec2>& p, int degree);
 		virtual void compute(int pointIndex = -1);
 		vec2 cdb(vec2* data ,std::vector<float> ti,int n,float t, int r);
+
+
 	private:
-		std::vector<vec2> m_knot;
+		std::vector<float> m_knot;
 		int m_degree;
+		
 	};
 }
 #endif /* _BSPLINE_H_ */

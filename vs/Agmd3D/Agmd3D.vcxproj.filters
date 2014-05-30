@@ -593,9 +593,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ASlider.cpp">
       <Filter>Core\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ALabel.cpp">
-      <Filter>Core\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\RenderObject\MeshRender.cpp">
       <Filter>Core\RenderObject</Filter>
     </ClCompile>
@@ -667,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Driver.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\GUI\ALabel.cpp">
+      <Filter>Core\2DRender</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

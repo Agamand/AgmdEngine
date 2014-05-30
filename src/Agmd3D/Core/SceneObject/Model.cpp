@@ -36,6 +36,7 @@ namespace Agmd
 		Assert(vertices != NULL);
 		Assert(indices  != NULL);
 
+		Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
 		//Generate(G_TANGENT, vertices, verticesCount, indices, indicesCount);
 
 		TDeclarationElement Elements[] =

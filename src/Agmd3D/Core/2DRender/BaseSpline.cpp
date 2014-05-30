@@ -3,17 +3,19 @@
 namespace Agmd
 {
 
-	BaseSpline::BaseSpline( vec2 points[], int count )
+	BaseSpline::BaseSpline( vec2 points[], int count ) : _points(NULL),m_localUpdate(false)
 	{
 		for(int i = 0; i < count; i++)
 			m_controlPoints.push_back(points[i]);
+		m_controlPointsC = count;
 		compute();
 	}
 
-	BaseSpline::BaseSpline( const std::vector<vec2>& points )
+	BaseSpline::BaseSpline( const std::vector<vec2>& points ) :_points(NULL),m_localUpdate(false)
 	{
 		for(std::vector<vec2>::const_iterator itr = points.begin(); itr !=points.end(); itr++)
 			m_controlPoints.push_back(*itr);
+		m_controlPointsC = m_controlPoints.size();
 		compute();
 	}
 
@@ -31,17 +33,19 @@ namespace Agmd
 
 	void BaseSpline::updatePoint( int pointIndex  /*= -1*/)
 	{
-		compute();
+		compute(pointIndex);
 		if(m_updateListener)
 			m_updateListener->onUpdate(m_computedPoints);
 	}
 
-	vec2* BaseSpline::getNearControlPoint( vec4 pos, int& pointindex )
+	vec2* BaseSpline::getNearControlPoint( vec4 pos, int& pointindex, vec2* ignore/*=NULL */ )
 	{
 		vec2* p = NULL;
 		int i = 0;
 		for(std::vector<vec2>::iterator itr = m_controlPoints.begin(); itr !=m_controlPoints.end(); itr++)
 		{
+			if(&(*itr) == ignore)
+				continue;
 			if(!p)
 			{
 				pointindex = i;
@@ -64,7 +68,9 @@ namespace Agmd
 	void BaseSpline::addPoint(vec2& point )
 	{
 		m_controlPoints.push_back(point);
+
 		updatePoint();
+		m_controlPointsC = m_controlPoints.size();
 	}
 
 	

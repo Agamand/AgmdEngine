@@ -116,8 +116,9 @@ namespace Agmd
             int i = 0;
             for (char c; i<10; ++i) 
             {
+				//std::string str = is.;
                 is >> index >> c >> temp >> c >> temp;
-
+				
                 if(!is.good())
                     break;    
 

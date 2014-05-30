@@ -10,10 +10,11 @@
 #include <vector>
 #include <Core/AgmdApp.h>
 #include <Config/Export.h>
+#include <core/gui/ASlider.h>
 
 namespace Agmd
 {
-	class AGMD3D_EXPORT DrawablePlane : public AgmdApp::InputListener
+	class AGMD3D_EXPORT DrawablePlane : public AgmdApp::InputListener , public ASlider::SliderInterface
 	{
 	public:
 		DrawablePlane(ivec2 pixelSize, vec2 repere);
@@ -32,6 +33,11 @@ namespace Agmd
 		virtual void OnMouseMotion( const vec2& pos );
 		void clear();
 
+		virtual void valueUpdate( float value,float cursor );
+		std::vector<LineRenderer*>& getRender()
+		{
+			return m_render;
+		}
 		float degree;
 	private:
 		std::vector<vec2> m_bufferPoint;
@@ -47,7 +53,8 @@ namespace Agmd
 		BaseSpline* m_selectedSpline;
 		int m_pointIndex;
 		int key;
-		
+		bool rightDown;
+		std::vector<ASlider*> m_slider;
 		enum KEY
 		{
 			CTRL =0x1,

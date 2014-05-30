@@ -46,6 +46,7 @@ namespace Agmd
 		void AddChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this;}
 		NodeType GetType() const {return m_type;}
 		bool isEmpty();
+		void clear();
 	protected:
 		
 

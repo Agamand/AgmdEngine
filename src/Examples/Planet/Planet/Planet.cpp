@@ -1,6 +1,8 @@
 #include "Planet.h"
 #include "PlanetModel.h"
 
+#include <Core/SceneObject/Material.h>
+
 vec3 face[] = {
 	vec3(0,0,1),
 	vec3(0,0,-1),
@@ -19,9 +21,10 @@ quat sRot[] = {
 	quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
 };
 
-Planet::Planet(Material* mat)
+Planet::Planet(Material* mat, float size) : m_size(size)
 {
 	s_mat = mat;
+	mat->setParameter("u_size",size);
 	s_plane = new PlanetModel(0,0,0);
 	m_root = new SceneNode(ROOT_NODE,new Transform(vec3(0),quat(),vec3(2)));
 	for(int i = 0; i < MAX_PLANET_FACE; i++ )

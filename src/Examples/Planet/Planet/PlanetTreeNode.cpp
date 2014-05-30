@@ -42,7 +42,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 			{
 				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
 				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
-				face[i] = new PlanetTreeNode(Planet::s_plane,t,m_lod+1);
+				face[i] = new PlanetTreeNode(Planet::s_plane,m_controller,t,m_lod+1);
 				face[i]->Update(m_transform,false);
 			}
 			face[i]->FindVisible(cam,display,light);
@@ -50,7 +50,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	}
 }
 
-PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod)
+PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod), m_controller(controller)
 {
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;

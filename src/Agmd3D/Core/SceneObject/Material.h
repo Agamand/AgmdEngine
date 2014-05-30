@@ -53,8 +53,12 @@ namespace Agmd
         void Disable() const;
 
         void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
-
+		template <typename T> setParameter(std::string paramName,T value)
+		{
+			m_pipeline->setParameter(paramName,value);
+		}
     private:
+		
         ShaderPipeline* m_pipeline;
         TextureUnit m_texture[MAX_TEXTUREUNIT];
         MaterialInfo m_materialInfo;

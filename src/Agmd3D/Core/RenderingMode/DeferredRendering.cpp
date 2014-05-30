@@ -105,7 +105,7 @@ namespace Agmd
 			End();
 			return;
 		}*/
-		render.SetCullFace(2);
+		render.SetCullFace(0);
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
         m_framebuffer->DrawBuffer(0);
@@ -131,23 +131,23 @@ namespace Agmd
 
         if(maxLights)
         {
-            
-            
-
             //render.Enable(RENDER_ALPHABLEND, true);
             //render.SetupAlphaBlending(BLEND_SRCCOLOR, BLEND_DESTCOLOR);
             for(a_uint32 i = 0; i < maxLights; i++)
             {
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()].GetShaderProgram());
-                //Re-enable Z-Test for making shadow cast
-                render.Enable(RENDER_ZTEST,true);
-                render.Enable(RENDER_ZWRITE,true);
-                render.SetupDepthTest(DEPTH_LESS);
-                lights[i]->Bind();
-                m_shadowRender->Reset();
-                m_shadowRender->BeginLight(lights[i]);
-                sc->Draw();
-                m_shadowRender->EndLight();
+                if(false)//if shadow is enable
+				{
+					//Re-enable Z-Test for making shadow cast
+					render.Enable(RENDER_ZTEST,true);
+					render.Enable(RENDER_ZWRITE,true);
+					render.SetupDepthTest(DEPTH_LESS);
+					lights[i]->Bind();
+					m_shadowRender->Reset();
+					m_shadowRender->BeginLight(lights[i]);
+					sc->Draw();
+					m_shadowRender->EndLight();
+				}
                 //Disable Z-Test for light rendering
                 render.SetupDepthTest(DEPTH_LEQUAL);
                 render.Enable(RENDER_ZWRITE,false);
@@ -156,7 +156,7 @@ namespace Agmd
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()/*+3 for use with SHADOW*/].GetShaderProgram());
-                m_shadowRender->SetupForRendering();
+                //m_shadowRender->SetupForRendering();
                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
                 Fast2DSurface::Instance().Draw();
             }

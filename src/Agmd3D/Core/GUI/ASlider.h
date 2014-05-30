@@ -16,12 +16,20 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Declaration.h>
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/MediaManager.h>
+#include <Core/RenderObject/GraphicString.h>
 
 namespace Agmd
 {
     class AGMD3D_EXPORT ASlider : public AWidget
     {
     public:
+
+		class SliderInterface
+		{
+		public:
+			virtual void valueUpdate(float value,float cursor) = 0;
+		};
+
         ASlider(AWidget* parent);
         virtual ~ASlider();
         virtual a_uint32 OnClick(ivec2& pos_mouse, a_uint32 mouseState);
@@ -37,8 +45,14 @@ namespace Agmd
 
         void SetCursor(float value);
 		void setValue(float* value,float min,float max);
+		void setLabel(std::string& label);
+		
+		void setUpdateCallBack(SliderInterface* listener)
+		{
+			updateListener = listener;
+		}
     private:
-
+		SliderInterface* updateListener;
         void BuildSlider();
         struct TVertex
         {
@@ -61,7 +75,8 @@ namespace Agmd
 		float				m_max;
 		float				m_min;// range [0.0f-1.0f]
         bool                hold; // hold = true if mouse is hold the cursor else hold = false
-	
+		std::string			m_label;
+		GraphicString*		m_gstring;
 	};
 }
 

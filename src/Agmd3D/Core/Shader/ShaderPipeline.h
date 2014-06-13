@@ -36,10 +36,11 @@ namespace Agmd
 		{
 				m_pipeline[pass] = program;
 		}
-		template <typename T> setParameter(std::string paramName, T value)
+		template <typename T> void setParameter(std::string paramName, T value)
 		{
 			for(int i = 0; i < MAX_RENDERPASS; i++)
-				m_pipeline[i].SetParameter(paramName,value);
+				if(m_pipeline[i].GetShaderProgram())
+					m_pipeline[i].SetParameter(paramName,value);
 		}
     private:
         ShaderProgram m_pipeline[MAX_RENDERPASS];

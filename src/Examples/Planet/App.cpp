@@ -119,7 +119,9 @@ void generateNoise(Texture& t,int size,int seed)
 
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
-void generateNoise3d(Texture& t,int size,int seed)
+
+void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds = vec4(0,1,0,1));
+void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 {
 	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
 
@@ -134,7 +136,55 @@ void generateNoise3d(Texture& t,int size,int seed)
 	heightMapBuilder.SetSourceModule (_perlin);
 	heightMapBuilder.SetDestSize (size, size);
 	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
+	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
+	//heightMapBuilder.Build ();
+
+
+	noise::utils::RendererImage renderer;
+	noise::utils::Image image(size,size);
+	renderer.SetSourceNoiseMap (heightMap);
+	renderer.SetDestImage (image);
+	//image.GetValue()
+	Image _img;
+	uint32 * img = new uint32[size*size];
+	float max,min = max = 0;
+	heightMapBuilder.Build(face);
+	renderer.Render ();
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)	
+		{
+			noise::utils::Color a= image.GetValue(i,j);
+			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
+			color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
+			color[3] = 255;
+			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
+		}
+	}
+	_img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+	delete img;
+
+	t.CreateFromImage(_img,PXF_A8R8G8B8);
+}
+
+
+void generateNoise3d(Texture& t,int size,int seed,vec4 bounds = vec4(0,1,0,1));
+void generateNoise3d(Texture& t, int size,int seed,vec4 bounds)
+{
+	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+
+	//PerlinNoise p(1,0.1,1,6,seed);
+	noise::module::Perlin _perlin;
+	_perlin.SetOctaveCount(octave);
+	_perlin.SetFrequency(freq);
+	_perlin.SetPersistence(persi);
+	_perlin.SetSeed(5465463);
+	noise::utils::NoiseMap heightMap;
+	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
+	heightMapBuilder.SetSourceModule (_perlin);
+	heightMapBuilder.SetDestSize (size, size);
+	heightMapBuilder.SetDestNoiseMap (heightMap);
+	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
 	//heightMapBuilder.Build ();
 
 
@@ -222,6 +272,7 @@ float km = 0.0015f;
 float eSun = 15.0f;
 vec3 rgb(0.650,0.570,0.475);
 float g = -0.98f;
+Texture ptexture[6];
 void App::OnInit()
 {  
     pause = true;
@@ -230,8 +281,10 @@ void App::OnInit()
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 	pause = true;
-    DeferredRendering* mode = new DeferredRendering(getScreen());
-    RenderingMode::SetRenderingMode(mode);
+    //DeferredRendering* mode = new DeferredRendering(getScreen());
+    ForwardRendering* mode = new ForwardRendering(getScreen());
+	
+	RenderingMode::SetRenderingMode(mode);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
 	
@@ -245,21 +298,29 @@ void App::OnInit()
 	if(seed)
 		_seed = std::atoi(seed);
 	else _seed = rand();
-
-
-	generateNoise3d(t,2048,_seed);
+	
+	for(int i = 0; i <6; i++)
+		generateNoiseFace(ptexture[i],256,0,i,vec4(0,1,0,1));
+	generateNoise3d(t,256,_seed);
 	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
 	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
 	ShaderProgram diffuseShader;
 	diffuseShader.LoadFromFile("Shader/planet/planet_rendering.glsl");
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
 	mat = new Material(planetpipe);
+
+	Texture grass, rock;
+	grass.CreateFromFile("Texture/grass.png",PXF_A8R8G8B8);
+	rock.CreateFromFile("Texture/rock.jpg",PXF_A8R8G8B8);
+
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(mat);
+	mat->SetTexture(grass,2,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(rock,3,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
+	p = new Planet(ptexture,mat);
 	sphere = CreateSphere(1.0f*radius,100,100,M_PI*2,"",PT_TRIANGLELIST);
 	MeshNode* mnode = new MeshNode(sphere,sphereTransform);
-    //m_Scene->AddNode(p->GetRoot());
+    m_Scene->AddNode(p->GetRoot());
 	slider_kr = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_kr);
 	slider_kr->SetPosition(1300,800);
@@ -358,6 +419,11 @@ void App::OnRender3D()
 {
 
 	Driver& driver = Driver::Get();
+	ivec2 screen = getScreen();
+	//Texture::TextureRender(ptexture[0],ivec2(0),ivec2(screen.x/2,screen.y));
+	//Texture::TextureRender(ptexture[1],ivec2(screen.x/2,0),ivec2(screen.x/2,screen.y));
+	
+	return;
 	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
@@ -503,37 +569,37 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		case 'C':
 			//generateNoise(test,256,100*rand());
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 103:
 			freq +=0.1f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 100:
 			freq -=0.1f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 104:
 			persi +=0.1f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 101:
 			persi -=0.1f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 105:
 			octave +=1.f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 102:
 			octave -=1.f;
 			generateNoise3d(t,512,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		}
 

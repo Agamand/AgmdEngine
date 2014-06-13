@@ -255,7 +255,7 @@ void App::OnInit()
 	draw = true;
 	pause = false;
     DeferredRendering* mode = new DeferredRendering(getScreen());
-    RenderingMode::SetRenderingMode(mode);
+    //RenderingMode::SetRenderingMode(mode);
     m_fxaa = new AntiAliasing();
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -333,7 +333,7 @@ void App::OnInit()
 	LineRenderer* renderer = new LineRenderer(bezier);
 	MeshNode* node = new MeshNode(model);
 	//node->GetTransform().Rotate(90,vec3(1,0,1));
-	m_Scene->AddNode(node);
+	//m_Scene->AddNode(node);
 	m_plane->addSpline(renderer);
 	//addInputListener(m_plane);
 

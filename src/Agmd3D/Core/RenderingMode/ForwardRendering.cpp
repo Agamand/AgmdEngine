@@ -62,9 +62,12 @@ namespace Agmd
     void ForwardRendering::Compute()
     {
         Driver& render = Driver::Get();
-        SceneMgr* sc = render.GetActiveScene();
         Start();
-
+		render.SetViewPort(ivec2(),render.GetScreen());
+        SceneMgr* sc = render.GetActiveScene();
+		render.SetRenderMode(m_mode);
+		sc->Update();
+		sc->Compute();
         /*
            FirstPass, here is draw the ZBuffer(Only).
         */

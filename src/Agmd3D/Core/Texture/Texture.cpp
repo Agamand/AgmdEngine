@@ -272,13 +272,15 @@ namespace Agmd
         s_framebuffer->UnBind();
     }
 
-    void Texture::TextureRender(Texture input)
-    {
+	void Texture::TextureRender( Texture input,ivec2 pos /*= ivec2(0)*/,ivec2 resolution/*=ivec2(-1)*/ )
+	{
         Driver& render = Driver::Get();
 
         if(!s_renderTexture)
             s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
-        render.SetViewPort(ivec2(),render.GetScreen());
+		if(resolution.x  < 0 || resolution.y < 0);
+			resolution = render.GetScreen();
+        render.SetViewPort(pos,resolution);
         render.SetTexture(0,input.GetTexture());
         render.SetCurrentProgram(s_renderTexture);
         Fast2DSurface::Instance().Draw();

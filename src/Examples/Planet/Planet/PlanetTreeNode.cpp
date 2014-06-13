@@ -1,5 +1,6 @@
 #include "PlanetTreeNode.h"
 #include "Planet.h"
+#include <Core/SceneObject/Material.h>
 
 ivec2 order[]=
 {
@@ -32,7 +33,10 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 		display.push_back(this);
 		return;
 	}
-	if(distance > CONST_DISTANCE/m_divisor)
+	float trigger = 4*m_controller->m_size/m_divisor;
+	float offset = distance;
+
+	if(offset > trigger || true)
 		display.push_back(this);
 	else
 	{
@@ -41,8 +45,9 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 			if(!face[i])
 			{
 				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
+				//t->Update(m_transform);
 				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
-				face[i] = new PlanetTreeNode(Planet::s_plane,m_controller,t,m_lod+1);
+				face[i] = new PlanetTreeNode(Planet::s_plane,m_controller,m_texture,t,m_lod+1);
 				face[i]->Update(m_transform,false);
 			}
 			face[i]->FindVisible(cam,display,light);
@@ -50,14 +55,27 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	}
 }
 
-PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod), m_controller(controller)
+PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Texture tex,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod), m_controller(controller),m_texture(tex)
 {
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
+	
+	//mat4 planetMatrix = controller->GetRoot()->GetTransform().ModelMatrix();
+	//mat4 invPM = inverse(planetMatrix);
+	//this->setModel(new PlanetModel(invPM*m_transform->ModelMatrix()));
 	face = new PlanetTreeNode*[4];
 	std::memset(face,0,32);
 	m_divisor = 1;
 	for(int i = 0; i < lod; i++)
 		m_divisor *=2;
+}
+
+void PlanetTreeNode::Render( TRenderPass pass ) const
+{
+	if(!m_material || !m_material->Enable(pass))
+		return;
+	m_material->setParameter("u_divisor",(float)m_divisor);
+	Draw();
+	m_material->Disable();
 }
 

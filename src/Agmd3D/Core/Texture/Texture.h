@@ -61,7 +61,7 @@ namespace Agmd
 
         static void TextureAdd(Texture output, Texture input1, Texture input2);
         static void TextureProd(Texture output, Texture input1, Texture input2);
-        static void TextureRender(Texture input);
+		static void TextureRender(Texture input,ivec2 pos = ivec2(0),ivec2 resolution=ivec2(-1));
         static void TextureRandom();
 
         static void BeginRenderToTexture(const Texture& texture);

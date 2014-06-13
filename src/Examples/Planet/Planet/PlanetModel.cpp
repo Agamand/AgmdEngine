@@ -1,8 +1,9 @@
 #include "PlanetModel.h"
-
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
-void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+
+void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,mat4 matrix = mat4(1));
+void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,mat4 matrix)
 {
 
 
@@ -10,8 +11,9 @@ void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& verti
 	float x_2 = 1;
 	float y_2 = 1;
 	vec3 o = -vec3(0.5f,0.5f,0);
-	int count = size;
-	float offset = 1.f/count;
+	int count = size+2;
+	float offset = 1.f/size;
+	
 
 	for(int i = 0; i <= count; i++)
 	{
@@ -20,13 +22,11 @@ void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& verti
 			Model::TVertex vertex;
 			vertex.color = -1;
 			vertex.normal = orientation;
-			vertex.position = vec3(o.x+offset*i,o.y+offset*j,0.f);
-			vertex.texCoords = vec2(i*offset,j*offset);
+			vertex.position = vec3(o.x+offset*clamp(i-1,0,size),o.y+offset*clamp(j-1,0,size),0);
+			vertex.texCoords = vec2((i-1)*offset,(j-1)*offset);
 			vertices.push_back(vertex);
 		}
 	}
-
-
 
 	for(int i = 0; i < count;i++)
 	{
@@ -44,11 +44,19 @@ void _CreatePlane(int size, int offset_index, std::vector<Model::TVertex>& verti
 	}
 }
 
-void CreateFaceMetaSphere(std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& indices,int layer)
+void CreateFaceMetaSphere(std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& indices,int layer,mat4 matrix = mat4(1));
+void CreateFaceMetaSphere(std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& indices,int layer,mat4 matrix)
 {
 	_CreatePlane(20,0,vertices,indices);
-	/*for(std::vector<Model::TVertex>::iterator itr = vertices.begin(); itr != vertices.end(); itr++)
-		(*itr).position= normalize((*itr).position);*/
+	mat4 inv = inverse(matrix);
+	/*
+	for(std::vector<Model::TVertex>::iterator itr = vertices.begin(); itr != vertices.end(); itr++)
+	{
+		(*itr).position = vec3(matrix*vec4((*itr).position,1.0f));
+		(*itr).position = normalize((*itr).position);
+		(*itr).position = vec3(inv*vec4((*itr).position,1.0f));
+		//(*itr).position.z -= 0.5f;
+	}*/
 }
 
 PlanetModel::PlanetModel( int layer, int x, int y ) : Model()
@@ -57,5 +65,14 @@ PlanetModel::PlanetModel( int layer, int x, int y ) : Model()
 	std::vector<Model::TIndex> indices;
 
 	CreateFaceMetaSphere(vertices,indices,layer);
+	GenerateBuffer(&vertices[0],vertices.size(),&indices[0],indices.size());
+}
+
+PlanetModel::PlanetModel(mat4 matrix)
+{
+	std::vector<Model::TVertex> vertices;
+	std::vector<Model::TIndex> indices;
+
+	CreateFaceMetaSphere(vertices,indices,0,matrix);
 	GenerateBuffer(&vertices[0],vertices.size(),&indices[0],indices.size());
 }

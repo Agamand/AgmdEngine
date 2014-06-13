@@ -128,8 +128,8 @@ namespace Agmd
         else if( moveFlags & ZOOM_OUT)
             distance += _speed*0.1f*time_diff/1000.0f;
 
-        if(distance < 1.0f)
-            distance = 1.0f;
+        //if(distance < 0.9f)
+            //distance = 0.9f;
 		angles += vec2(move*(_speed*time_diff)/(float)pow(2,4/distance)/1000.0f);
         _target += move*(_speed*time_diff)/1000.0f;
         _position = _target - distance*_forward;
@@ -172,9 +172,10 @@ namespace Agmd
 		float f = pow(2,4/distance);
 		printf("factor %f",f);
         distance += delta/f*0.001f;
-		if(distance < 0.90f)
-			distance = 0.90f;
-        UpdateVector();
+		//if(distance < 0.90f)
+			//distance = 0.90f;
+
+		UpdateVector();
     }
     void FollowCamera::OnMouseWheel(bool up)
     {

@@ -12,6 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Config/Fwd.h>
 #include <Config/Export.h>
 #include <Core/Shader/ShaderProgram.h>
+#include <Core/Shader/ShaderPipeline.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Enums.h>
@@ -47,13 +48,14 @@ namespace Agmd
     public:
         Material();
         Material(ShaderPipeline* pipeline);
-        ~Material();
+		Material(const Material& mat);
+		~Material();
 
         bool Enable(TRenderPass pass) const;
         void Disable() const;
 
         void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
-		template <typename T> setParameter(std::string paramName,T value)
+		template <typename T> void setParameter(std::string paramName,T value)
 		{
 			m_pipeline->setParameter(paramName,value);
 		}

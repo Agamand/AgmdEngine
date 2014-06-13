@@ -11,6 +11,7 @@ class PlanetModel :public Model
 {
 public:
 	PlanetModel(int layer, int x, int y);
+	PlanetModel(mat4 matrix);
 
 private:
 	int x,y;

@@ -37,6 +37,12 @@ namespace Agmd
         m_bufferMaterial.Unlock();
     }
 
+	Material::Material( const Material& mat ) : m_pipeline(mat.m_pipeline)
+	{
+		for(int i = 0 ; i < MAX_TEXTUREUNIT;i++)
+			m_texture[i] = mat.m_texture[i];
+	}
+
     Material::~Material()
     {
         m_bufferMaterial.Release();

@@ -22,6 +22,10 @@ namespace Agmd
         virtual void Render(TRenderPass pass) const;
         virtual void Draw() const;
 		virtual bool IsVisible(BoundingBox& bbox);
+		void setModel(Model*model)
+		{
+			m_baseModel = model;
+		}
     private:
         Model* m_baseModel;
     };

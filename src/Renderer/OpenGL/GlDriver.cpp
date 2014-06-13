@@ -867,10 +867,12 @@ namespace Agmd
             break;
 
         }
+
         if(index != std::string::npos)
             source = source.substr(0,index)+define+source.substr(index,source.size()-1);
         std::replace(source.begin(), source.end(), '\r','\n');
-        const char* src = source.c_str();
+        
+		const char* src = source.c_str();
         a_uint32 shader = glCreateShader(RGLEnum::Get(type));
         glShaderSource(shader, 1, (const char**)&src, NULL);
     

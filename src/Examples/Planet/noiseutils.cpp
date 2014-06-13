@@ -979,23 +979,28 @@ void NoiseMapBuilderSphere::Build (int face)
 	// Create the plane model.
 	model::Sphere sphereModel;
 	sphereModel.SetModule (*m_pSourceModule);
-	/*
+	
 	double lonExtent = m_eastLonBound  - m_westLonBound ;
 	double latExtent = m_northLatBound - m_southLatBound;
-	double xDelta = lonExtent / (double)m_destWidth ;
-	double yDelta = latExtent / (double)m_destHeight;
-	double curLon = m_westLonBound ;
+	double xDelta = lonExtent / ((double)m_destWidth-1);
+	double yDelta = latExtent / ((double)m_destHeight-1);
+	/*double curLon = m_westLonBound ;
 	double curLat = m_southLatBound;
 	*/
 	// Fill every point in the noise map with the output values from the model.
-	float __x,__y,_x,_y;
+	float __x,__y,_x,_y,dX,dY,offX,offY;
+	offX = m_westLonBound*2;
+	offY = m_southLatBound*2;
+
 	for (int y = 0; y < m_destHeight; y++) {
-		float* pDest = m_pDestNoiseMap->GetSlabPtr (y);
-		
+		float* pDest = m_pDestNoiseMap->GetSlabPtr (y);	
 		for (int x = 0; x < m_destWidth; x++) {
-			__x = (((float)(x))/m_destWidth-0.5f)*2;
-			__y = (((float)(y))/m_destHeight-0.5f)*2;
+			//__x = (((float)(x))/m_destWidth-0.5f)*2;
+			//__y = (((float)(y))/m_destHeight-0.5f)*2;
 			//printf("p %f %f \n",__x,__y);
+			__x = -1+x*xDelta*2+offX;
+			__y = -1+y*yDelta*2+offY;
+			
 			float n = __x*__x+__y*__y+1;
 			n = sqrtf(n);
 
@@ -1038,7 +1043,7 @@ void NoiseMapBuilderSphere::Build (int face)
 
 			//printf("p %f %f %f, angles lat:%f lng:%f\n",point[0],point[1],point[2],a2/M_PI*180, a1/M_PI*180);
 			
-			float curValue = (float)sphereModel.GetValue (a2/M_PI*180, a1/M_PI*180);
+			float curValue = (float)sphereModel.GetValue (a2*180/M_PI, a1/M_PI*180);
 			*pDest++ = curValue;
 			//curLon += xDelta;
 		}

@@ -63,6 +63,13 @@ void App::Run(int argc, char** argv)
 	AgmdApp::Run();
 }
 SceneMgr* scene;
+
+ASlider * debugSlider;
+float debug_value = 0;
+float scalemin = 1;
+float scalemax = 1;
+float height = 1;
+Model* m = NULL;
 void App::OnInit()
 {  
 	pause = true;
@@ -97,6 +104,33 @@ void App::OnInit()
 	slider->SetPosition(1300,800);
 	slider->SetSize(200,20);
 	slider->setValue(&m_plane->degree,1,5);
+	debugSlider = new ASlider(NULL);
+	debugSlider->setLabel(std::string("DEBUG"));
+	debugSlider->setValue(&debug_value,0,10000);
+	debugSlider->SetSize(200,20);
+	debugSlider->SetPosition(1300,850);
+	GUIMgr::Instance().AddWidget(debugSlider);
+
+	slider = new ASlider(NULL);
+	slider->setLabel(std::string("scale min"));
+	GUIMgr::Instance().AddWidget(slider);
+	slider->SetPosition(1300,750);
+	slider->SetSize(200,20);
+	slider->setValue(&scalemin,0,10);
+
+	slider = new ASlider(NULL);
+	slider->setLabel(std::string("scale max"));
+	GUIMgr::Instance().AddWidget(slider);
+	slider->SetPosition(1300,700);
+	slider->SetSize(200,20);
+	slider->setValue(&scalemax,0,10);
+	slider = new ASlider(NULL);
+
+	slider->setLabel(std::string("height"));
+	GUIMgr::Instance().AddWidget(slider);
+	slider->SetPosition(1300,650);
+	slider->SetSize(200,20);
+	slider->setValue(&height,0.1,1000);
 
 	Camera::SetCurrent(cam3D, CAMERA_3D);
 	Camera::SetCurrent(cam2D, CAMERA_2D);
@@ -105,6 +139,8 @@ void App::OnInit()
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
 
+	if(m)
+		m->setMaxDraw((int)debug_value*3);
 }
 
 void App::OnRender3D()
@@ -125,7 +161,7 @@ void App::OnRender2D()
 
 void _CreatePlane(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
 void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,int splice);
-void simpleExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
+void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height);
 void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
 void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
 
@@ -138,8 +174,10 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		std::vector<LineRenderer*> render = m_plane->getRender();
 		std::vector<Model::TVertex> vertices;
 		std::vector<Model::TIndex> index;
+		std::vector<Model::TVertex> vertices2;
+		std::vector<Model::TIndex> index2;
 		Texture tex;
-		Model* m;
+		Model* mo;
 		MeshNode* p;
 		switch(c)
 		{
@@ -147,10 +185,10 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			if(render.size() < 2)
 				break;
 			_CreatePlane(render[0]->getSpline(),render[1]->getSpline(),vertices,index);
-			m= new Model(&vertices[0],vertices.size(),&index[0],index.size());
+			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			//tex.CreateFromFile("Texture/debug.png",PXF_A8R8G8B8);
 
-			p = new MeshNode(m);
+			p = new MeshNode(mo);
 			//p->GetMaterial().SetTexture(tex,0,(TRenderPass)((1<<RENDERPASS_DEFERRED)));
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
@@ -164,22 +202,30 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			if(render.size() < 2)
 				break;
 			lathe(render[0]->getSpline(),render[1]->getSpline(),vertices,index,60);
-			m= new Model(&vertices[0],vertices.size(),&index[0],index.size());
-			p = new MeshNode(m);
+			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
+			p = new MeshNode(mo);
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
+			break;
+		case 'b':
+			if(render.size() < 1)
+				break;
+			simpleExtrusion(render[0]->getSpline(),vertices,index,60,scalemin,scalemax,height);
+			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
+			p = new MeshNode(mo);
+			p->GetTransform().Scale(0.1f,0.1f,0.1f);
+			scene->AddNode(p);
+			m = mo;
 			break;
 		case 'c':
 			if(render.size() < 2)
 				break;
 			generalizedExtrusion(render[0]->getSpline(),render[1]->getSpline(),vertices,index);
-			vertices.clear();
-			index.clear();
-			generalizedExtrusionOLD(render[0]->getSpline(),render[1]->getSpline(),vertices,index);
-			m= new Model(&vertices[0],vertices.size(),&index[0],index.size());
-			p = new MeshNode(m);
+			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
+			p = new MeshNode(mo);
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
+			m = mo;
 			break;
 		case 'X':
 			scene->clear();
@@ -307,9 +353,47 @@ void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices,
 }
 
 
-void simpleExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height)
 {
+	float x_2 = 1;
+	float y_2 = 1;
+	vec3 o = -vec3(0.5f,0.5f,0);
+	std::vector<vec2> _p1 = p1->getComputedPoints();
+	vec3 k = vec3(0,0,1);
+	vec3 normal = vec3(0);
+	bool p1close = p1->isClosed();
+	int sizep1 = _p1.size() - (p1close ? 1 : 0);
+	float offset = (scalemax-scalemin)/slice;
+	float hoffset = (height)/slice;
+	for(int i = 0; i <= slice; i++)
+	{
+		for(int j = 0; j < sizep1; j++)
+		{
+			Model::TVertex vertex;
+			vertex.color = -1;
+			vertex.normal = vec3(0,0,1);
+			vertex.position = vec3(_p1[j].x,0,_p1[j].y)*(scalemin+offset*i);
+			vertex.position.y = i*hoffset;
+			vertex.texCoords = vec2(j/(float)(_p1.size()-1),i/(float)(slice));
+			vertices.push_back(vertex);
+		}
+	}
 
+	int count = sizep1-1;
+	for(int i = 0; i < slice; i++)
+	{
+		for(int j = 0; j<  (_p1.size()-1);j++)
+		{
+			int _i = SELECT(i+1, slice+1), _j = SELECT(j+1, sizep1);
+			index.push_back(i*(count+1)+j);
+			index.push_back(_i*(count+1)+j);
+			index.push_back(_i*(count+1)+_j);
+
+			index.push_back(i*(count+1)+j);
+			index.push_back(_i*(count+1)+_j);
+			index.push_back(i*(count+1)+_j);
+		}
+	}
 
 }
 
@@ -324,17 +408,16 @@ void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVer
 	vec3 ori;//(_p1[0].x,_p1[0].y+_p2[0].x,_p2[0].y);
 	vec3 k = vec3(0,0,1);
 	vec3 normal = vec3(0);
-	vec2 last = vec2(0);
 	vec2 _T = normalize(_p2[1]-_p2[0]);
-	bool p1close = p1->isClose();
-	bool p2close = p2->isClose();
-	int sizep1 = _p1.size() - (p1close ? 1 : 0),sizep2 = _p2.size() - (p2close ? 1 : 0);
+	bool p1close = p1->isClosed();
+	bool p2close = p2->isClosed();
+	int sizep1 = _p1.size() - (p1close ? 1 : 0),sizep2 = _p2.size()- (p2close ? 1 : 0);
 	for(int i = 0; i < sizep2; i++)
 	{
-		if(i == 0 && !p2->isClose())
+		if(i == 0 && !p2close)
 			_T = normalize(_p2[1]-_p2[0]);
-		else if(i == 0 && p2->isClose())
-			_T = normalize(_p2[0]-_p2[sizep2]);
+		else if(i == 0 && p2close)
+			_T = normalize(_p2[0]-_p2[_p2.size()-2]);
 		else
 			_T = normalize(_p2[i]-_p2[i-1]);
 		for(int j = 0; j < sizep1; j++)
@@ -352,16 +435,14 @@ void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVer
 
 			
 		}
-		last = _p2[i];
 	}
 
 	int count = sizep1-1;
-	for(int i = 0; i < _p2.size()-1; i++)
+	for(int i = 0; i < (_p2.size()-1); i++)
 	{
-	for(int j = 0; j< _p1.size()-1;j++)
-	{
-
-			int _i = SELECT(i+1, sizep2), _j = SELECT(j+1, sizep2);
+		for(int j = 0; j<  (_p1.size()-1);j++)
+		{
+			int _i = SELECT(i+1, sizep2), _j = SELECT(j+1, sizep1);
 			index.push_back(i*(count+1)+j);
 			index.push_back(_i*(count+1)+j);
 			index.push_back(_i*(count+1)+_j);
@@ -404,11 +485,6 @@ void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, std::vector<Model::T
 			vertex.color = -1;
 			vertex.normal = vec3(0,0,1);
 			vertex.position = vec3(_p2[i].x,_p2[i].y,0)+vec3(_p1[j].x*p.x,_p1[j].x*p.y,_p1[j].y)-vec3(_p2[0].x,_p2[0].y,0);
-			if(!length(ori))
-			{
-				ori  = vertex.position;
-				//vertex.position -= ori;
-			}
 			vertex.texCoords = vec2(j/(float)(_p1.size()-1),i/(float)(_p2.size()-1));
 			vertices.push_back(vertex);
 

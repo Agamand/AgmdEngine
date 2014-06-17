@@ -98,7 +98,7 @@ namespace Agmd
 				m_selectedPoint = m_selectedSpline->getLastPoint();
 				m_render.push_back(new LineRenderer(m_selectedSpline));
 				
-				if(sp->m_knot.size() > m_slider.size())
+			/*	if(sp->m_knot.size() > m_slider.size())
 				{
 					for(int i = m_slider.size(), j = sp->m_knot.size(); i < j; i++ )
 					{
@@ -118,7 +118,7 @@ namespace Agmd
 				{
 					m_slider[i]->setEnable(true);
 					m_slider[i]->setValue(&sp->m_knot[i],-5,5);
-				}
+				}*/
 			}
 			else if(m_selectedPoint)
 			{
@@ -129,7 +129,7 @@ namespace Agmd
 				m_selectedPoint = m_selectedSpline->getLastPoint();
 				BSpline* sp = static_cast<BSpline*>(m_selectedSpline);
 				int id = sp->m_knot.size()-1;
-				if(sp->m_knot.size() > m_slider.size())
+				/*if(sp->m_knot.size() > m_slider.size())
 				{
 					ASlider* slider = new ASlider(NULL);
 					slider->setLabel(StringBuilder("t")(id).operator std::string());
@@ -143,7 +143,7 @@ namespace Agmd
 				{
 					m_slider[i]->setEnable(true);
 					m_slider[i]->setValue(&sp->m_knot[i],-5,5);
-				}
+				}*/
 			}
 		}
 
@@ -181,11 +181,11 @@ namespace Agmd
 				spline->m_knot.push_back(clamp(knot,0,1));
 			}
 			spline->updatePoint();
-			for(int i =0, j = spline->m_knot.size(); i < j; i++ )
+			/*for(int i =0, j = spline->m_knot.size(); i < j; i++ )
 			{
 				m_slider[i]->setEnable(true);
 				m_slider[i]->setValue(&spline->m_knot[i],-5,5);
-			}
+			}*/
 		}
 		if(key == 'U' && !up && m_render.size())
 			m_render[m_render.size()-1]->getSpline()->m_localUpdate = !m_render[m_render.size()-1]->getSpline()->m_localUpdate;
@@ -199,11 +199,11 @@ namespace Agmd
 				spline->m_knot.push_back(knot);//clamp(knot,0,1));
 			}
 			spline->updatePoint();
-			for(int i =0, j = spline->m_knot.size(); i < j; i++ )
+			/*for(int i =0, j = spline->m_knot.size(); i < j; i++ )
 			{
 				m_slider[i]->setEnable(true);
 				m_slider[i]->setValue(&spline->m_knot[i],-5,5);
-			}
+			}*/
 		}
 		if(key == 16) //MAJ
 			this->key = !up ? this->key | MAJ : this->key & ~MAJ ;
@@ -216,8 +216,8 @@ namespace Agmd
 		m_selectedPoint = NULL;
 		m_selectedSpline = NULL;
 		m_render.clear();
-		for(int i  =0 ; i < m_slider.size(); i++)
-			m_slider[i]->setEnable(false);
+	/*	for(int i  =0 ; i < m_slider.size(); i++)
+			m_slider[i]->setEnable(false);*/
 	}
 
 	void DrawablePlane::OnMouseMotion( const vec2& pos )

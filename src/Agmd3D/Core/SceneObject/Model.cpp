@@ -20,7 +20,7 @@ namespace Agmd
 	Model::Model()
 	{}
 	Model::Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type) :
-    m_PrimitiveType(type),m_indexed(true)
+    m_PrimitiveType(type),m_indexed(true), m_maxDraw(-1)
     {
 		GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }
@@ -36,7 +36,7 @@ namespace Agmd
 		Assert(vertices != NULL);
 		Assert(indices  != NULL);
 
-		//Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
+		Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
 		//Generate(G_TANGENT, vertices, verticesCount, indices, indicesCount);
 
 		TDeclarationElement Elements[] =
@@ -190,5 +190,10 @@ namespace Agmd
         std::memcpy(index,i,icount*sizeof(TIndex));
         m_IndexBuffer.Release();
     }
+
+	void Model::setMaxDraw( int param1 )
+	{
+		m_maxDraw = param1;
+	}
 
 }

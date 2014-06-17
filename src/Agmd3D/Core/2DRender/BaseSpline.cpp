@@ -73,7 +73,7 @@ namespace Agmd
 		m_controlPointsC = m_controlPoints.size();
 	}
 
-	bool BaseSpline::isClose() const
+	bool BaseSpline::isClosed() const
 	{
 		if(m_computedPoints.size() < 2)
 			return false;

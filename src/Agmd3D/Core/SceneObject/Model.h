@@ -58,16 +58,18 @@ namespace Agmd
         void Draw(const Transform* transform) const;
 
         void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
-
+		void setMaxDraw( int param1 );
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
+		
 
         DeclarationPtr  m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
         TPrimitiveType  m_PrimitiveType;
 		bool			m_indexed;
-        
+		int m_maxDraw;
+
     };
 
     typedef SmartPtr<Model, ResourceCOM> TModelPtr;

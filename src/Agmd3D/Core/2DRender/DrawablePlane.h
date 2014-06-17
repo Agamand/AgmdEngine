@@ -38,6 +38,7 @@ namespace Agmd
 		{
 			return m_render;
 		}
+		vec2 getPositionFromScreenSpace(vec2 pos);
 		float degree;
 	private:
 		std::vector<vec2> m_bufferPoint;

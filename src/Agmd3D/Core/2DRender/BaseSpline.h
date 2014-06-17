@@ -44,6 +44,7 @@ namespace Agmd
 		vec2*getNearControlPoint( vec4 pos, int& pointindex, vec2* ignore=NULL );
 		virtual void compute(int pointIndex = -1);
 		void addPoint(vec2& p);
+		bool isClose() const;
 	protected:
 		std::vector<vec2> m_controlPoints;
 		std::vector<vec2> m_computedPoints;

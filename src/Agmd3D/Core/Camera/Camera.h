@@ -64,6 +64,7 @@ namespace Agmd
 		{
 			recvInput = active;
 		}
+		float* GetSpeedPtr(){return &_speed;}
     protected:
         struct CameraBuffer
         {

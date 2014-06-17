@@ -242,6 +242,13 @@ namespace Agmd
 		m_reverse_projection = inverse(m_projection);
 	}
 
+	vec2 DrawablePlane::getPositionFromScreenSpace(vec2 pos)
+	{
+		vec4 _pos = vec4(pos,0,1);
+		_pos = m_reverse_projection*_pos;
+		return vec2(_pos);
+	}
+
 	void DrawablePlane::render()
 	{
 		m_frame->Bind();

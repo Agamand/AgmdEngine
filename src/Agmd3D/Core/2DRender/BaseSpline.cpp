@@ -73,6 +73,14 @@ namespace Agmd
 		m_controlPointsC = m_controlPoints.size();
 	}
 
+	bool BaseSpline::isClose() const
+	{
+		if(m_computedPoints.size() < 2)
+			return false;
+		vec2 close = m_computedPoints[0]-m_computedPoints[m_computedPoints.size()-1];
+		return length(close) < 0.01f;
+	}
+
 	
 
 }

@@ -283,7 +283,7 @@ namespace Agmd
 				
                 last_mouse_pos.x = GET_X_LPARAM(LParam);
                 last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
-				OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize));
+				OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.f-vec2(1));
                 guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,last_mouse_pos,posDiff,mouseState,0));
                 return 0;
         }

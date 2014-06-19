@@ -79,7 +79,8 @@ namespace Agmd
         Driver& render = Driver::Get();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		
+		mat4 inverseCam = inverse(Camera::GetCurrent(CAMERA_3D)->Look());
+		vec3 cameraPosition = vec3(inverseCam*vec4(0,0,0,1));
         const std::vector<Light*>& lights = sc->GetLights();
 
         const Light*const*  t = &lights[0];
@@ -156,6 +157,7 @@ namespace Agmd
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()/*+3 for use with SHADOW*/].GetShaderProgram());
+				render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
                 //m_shadowRender->SetupForRendering();
                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
                 Fast2DSurface::Instance().Draw();

@@ -59,7 +59,8 @@ namespace Agmd
 		{
 			m_pipeline->setParameter(paramName,value);
 		}
-    private:
+		Texture getTexture( int texUnit );
+	private:
 		
         ShaderPipeline* m_pipeline;
         TextureUnit m_texture[MAX_TEXTUREUNIT];

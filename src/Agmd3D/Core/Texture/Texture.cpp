@@ -176,6 +176,10 @@ namespace Agmd
     {
         return *m_Texture->getPixels();
     }
+	Image* Texture::GetPixelsPtr()
+	{
+		return m_Texture->getPixels();
+	}
 
     const ivec2& Texture::GetSize() const
     {

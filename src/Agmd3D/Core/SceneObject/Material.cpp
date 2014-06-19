@@ -78,4 +78,9 @@ namespace Agmd
         m_texture[unit] = TextureUnit(tex,pass);
     }
 
+	Texture Material::getTexture( int texUnit )
+	{
+		return m_texture[texUnit].tex;
+	}
+
 }

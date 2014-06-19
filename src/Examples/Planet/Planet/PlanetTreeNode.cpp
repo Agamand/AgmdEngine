@@ -36,7 +36,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	float trigger = 4*m_controller->m_size/m_divisor;
 	float offset = distance;
 
-	if(offset > trigger || true)
+	if(offset > trigger)
 		display.push_back(this);
 	else
 	{
@@ -75,6 +75,7 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 	if(!m_material || !m_material->Enable(pass))
 		return;
 	m_material->setParameter("u_divisor",(float)m_divisor);
+	m_material->setParameter("u_offset",(float)m_controller->m_offset);
 	Draw();
 	m_material->Disable();
 }

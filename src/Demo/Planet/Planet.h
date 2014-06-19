@@ -14,7 +14,7 @@ class Planet
 public:
 	Planet(Material*mat = NULL);
 
-	SceneNode* GetRoot()
+	SceneNode* getRoot()
 	{
 		return m_root;
 	}
@@ -23,6 +23,6 @@ public:
 	static Material* s_mat;
 private:
 	SceneNode* m_root;
-
+	Material* m_material;
 };
 #endif

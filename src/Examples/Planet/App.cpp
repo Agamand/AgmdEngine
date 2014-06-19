@@ -81,7 +81,7 @@ SINGLETON_IMPL(App);
 BaseShaderProgram* default_program;
 
 
-double freq = 8.0f;
+double freq = 0.2f;
 double persi = 0.5f;
 int octave = 8;
 void generateNoise(Texture& t,int size,int seed)
@@ -219,7 +219,7 @@ void generateNoise3d(Texture& t, int size,int seed,vec4 bounds)
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
 
-const char* gradient ="Texture/gradient_mars.png";
+const char* gradient ="Texture/gradient_terra_desat.png";
 const char* seed = NULL;
 
 void App::Run(int argc, char** argv)
@@ -317,10 +317,10 @@ void App::OnInit()
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(grass,2,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(rock,3,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(ptexture,mat);
+	p = new Planet(ptexture,mat,0.05f);
 	sphere = CreateSphere(1.0f*radius,100,100,M_PI*2,"",PT_TRIANGLELIST);
 	MeshNode* mnode = new MeshNode(sphere,sphereTransform);
-    m_Scene->AddNode(p->GetRoot());
+    m_Scene->AddNode(p->getRoot());
 	slider_kr = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_kr);
 	slider_kr->SetPosition(1300,800);
@@ -362,6 +362,14 @@ void App::OnInit()
 	slider_gg->SetPosition(1300,650);
 	slider_gg->SetSize(200,20);
 	slider_gg->setValue(&g,-1,-0.5);
+
+
+	ASlider *slder = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slder);
+	slder->SetPosition(1300,600);
+	slder->setLabel(std::string("Cam Speed"));
+	slder->SetSize(200,20);
+	
 	
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
@@ -381,7 +389,8 @@ void App::OnInit()
 	box->SetTexture(tex_cubemap);
     //m_Scene->SetSkybox(box);
 	boox = box;
-	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
 	cam2D = new FPCamera(m_MatProj2D);
 	groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
 	groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
@@ -390,6 +399,17 @@ void App::OnInit()
 	lightProgram.LoadFromFile("shader/planet/light.glsl");
     Camera::SetCurrent(cam3D, CAMERA_3D);
     Camera::SetCurrent(cam2D, CAMERA_2D);
+
+
+	slder = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slder);
+	slder->SetPosition(1300,550);
+	slder->setLabel(std::string("Offset"));
+	slder->SetSize(200,20);
+	slder->setValue(&p->m_offset,-0.1,0.1);
+
+
+
 	printf("Loading end");
 	skyTransform->Scale(1.025,1.025,1.025);
 	//skyTransform->Translate(2,0,0);
@@ -428,8 +448,8 @@ void App::OnRender3D()
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
 	displayable.clear();
-	p->GetRoot()->Update(NULL,true);
-	p->GetRoot()->FindVisible(cam3D,displayable,l);
+	p->getRoot()->Update(NULL,true);
+	p->getRoot()->FindVisible(cam3D,displayable,l);
 
 	float inner = 1.0f*radius;
 	float outer = 1.025f*radius;
@@ -551,6 +571,7 @@ void App::OnRender2D()
 //103 100 104 101 105 102
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	MeshNode *node;
     if(message == WM_KEYDOWN)
     {
 		char c = LOWORD(wParam);
@@ -568,38 +589,44 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			break;
 		case 'C':
 			//generateNoise(test,256,100*rand());
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 103:
 			freq +=0.1f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 100:
 			freq -=0.1f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 104:
 			persi +=0.1f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 101:
 			persi -=0.1f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 105:
 			octave +=1.f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 102:
 			octave -=1.f;
-			generateNoise3d(t,512,rand());
+			generateNoise3d(t,256,rand());
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
+			break;
+		case 'E':
+			node = new MeshNode(p->exportToFile("planet_1.obj",2));
+			node->GetMaterial().SetTexture(color_gradiant,0,(TRenderPass)(1 << RENDERPASS_DIFFUSE));
+			m_Scene->AddNode(node);
+
 			break;
 		}
 

@@ -34,4 +34,10 @@ namespace Agmd
         Draw();
         m_material->Disable();
     }
+
+	void MeshNode::setMaterial( Material* surface_mat )
+	{
+		m_material = surface_mat;
+	}
+
 }

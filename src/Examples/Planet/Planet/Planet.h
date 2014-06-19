@@ -15,17 +15,23 @@ public:
 	friend class PlanetTreeNode;
 	Planet(Texture tex[MAX_PLANET_FACE],Material*mat = NULL, float size = 0);
 
-	SceneNode* GetRoot()
+	SceneNode* getRoot()
 	{
 		return m_root;
 	}
 	
+	Model* exportToFile(const std::string& filename,int precision = 0);
+
 	static PlanetModel* s_plane;
 	static Material* s_mat;
+
+
+	float m_offset;
 private:
 	Texture m_texture[MAX_PLANET_FACE];
 	SceneNode* m_root;
-	float m_offset;
+	Material* m_material;
+	
 	float m_size;
 };
 #endif

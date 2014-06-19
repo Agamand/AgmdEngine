@@ -207,8 +207,15 @@ namespace Agmd
 		}
 		if(key == 16) //MAJ
 			this->key = !up ? this->key | MAJ : this->key & ~MAJ ;
-		if(key == 'C')
+		if(key == 'C' && !up)
 			clear();
+		if(key == 'W' && !up)
+		{
+			m_selectedPoint = NULL;
+			m_selectedSpline = NULL;
+			m_render.pop_back();
+		}
+
 	}
 
 	void DrawablePlane::clear()

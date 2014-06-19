@@ -893,7 +893,8 @@ namespace Agmd
         if(compile_status != GL_TRUE)
         {
             printf("\n source :\n %s \n error : \n%s\n",src,log);
-            delete[] log;
+            printf("on shader type : %i\n-----------------\n",type);
+			delete[] log;
             glDeleteShader(shader);
             return NULL;	
         }

@@ -42,6 +42,7 @@ namespace Agmd
         void Update(const AgmdMaths::Rectangle& rect = AgmdMaths::Rectangle(-1, -1, -1, -1));
 
         Image& GetPixels();
+		Image* GetPixelsPtr();
 
         const ivec2& GetSize() const;
 
@@ -78,7 +79,8 @@ namespace Agmd
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
         void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
-        SmartPtr<TextureBase, ResourceCOM> m_Texture;
+		
+		SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };
 
 }

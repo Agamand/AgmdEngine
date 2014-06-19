@@ -70,6 +70,7 @@ float scalemin = 1;
 float scalemax = 1;
 float height = 1;
 Model* m = NULL;
+Material* surface_mat;
 void App::OnInit()
 {  
 	pause = true;
@@ -81,6 +82,11 @@ void App::OnInit()
 	Driver::Get().SetCullFace(2);
 	DeferredRendering* _renderer = new DeferredRendering(getScreen());
 	RenderingMode::SetRenderingMode(_renderer);
+	surface_mat = new Material();
+	
+	Texture surface_texture;
+	surface_texture.CreateFromFile("Texture/debug.png",PXF_A8R8G8B8);
+	surface_mat->SetTexture(surface_texture,0, (TRenderPass)(1<<RENDERPASS_DEFERRED));
 	/*
 	Bezier
 	*/
@@ -204,6 +210,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			lathe(render[0]->getSpline(),render[1]->getSpline(),vertices,index,60);
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
+			p->setMaterial(surface_mat);
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			break;
@@ -213,6 +220,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			simpleExtrusion(render[0]->getSpline(),vertices,index,60,scalemin,scalemax,height);
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
+			p->setMaterial(surface_mat);
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			m = mo;
@@ -223,6 +231,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			generalizedExtrusion(render[0]->getSpline(),render[1]->getSpline(),vertices,index);
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
+			p->setMaterial(surface_mat);
 			p->GetTransform().Scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			m = mo;

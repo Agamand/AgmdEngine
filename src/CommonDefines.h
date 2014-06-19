@@ -16,6 +16,8 @@ https://github.com/Agamand/AgmdEngine
 #define AGMD_MAJOR      0
 #define AGMD_MINOR      2
 
+#define SCREEN_WIDTH 1600
+#define SCREEN_HEIGHT 900
 
 #if _WIN32 || _WIN64
 #define __WIN_PLATFORM__

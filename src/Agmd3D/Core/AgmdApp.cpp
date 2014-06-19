@@ -55,7 +55,8 @@ namespace Agmd
             DestroyWindow(m_Hwnd);
             UnregisterClass("AgmdEngine", m_Instance);
         }
-    }
+	}
+
 
     void AgmdApp::Run()
     {

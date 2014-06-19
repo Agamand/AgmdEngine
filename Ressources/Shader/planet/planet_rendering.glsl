@@ -46,7 +46,7 @@ void main()
 	//position = vec4(normal*scale,1);
 	if(in_TexCoord0.x < 0.0f || in_TexCoord0.y < 0.0f || in_TexCoord0.x > 1.0f || in_TexCoord0.y > 1.0f)
 	{
-		displacement =-1.0f;
+		displacement =0;
 		position += vec4(scale*normal*displacement,0);
 	}
 	else{
@@ -148,7 +148,39 @@ void main()
 #endif
 
 #ifdef _GEOMETRY8_
+/*
+layout(triangles) in;
+layout (triangle_strip, max_vertices=3) out;
 
+struct vertex
+{
+	vec3 Position;	 
+	vec3 Normal;
+	vec2 TexCoord0;
+};
+
+in vertex vVertex[];
+out vec2 v_texCoord0;
+out vec3 v_position;
+out smooth vec3 v_normal;
+
+ void main()
+ {
+
+        vec3 n = cross(normalize(vVertex[1].Position-vVertex[0].Position), normalize(vVertex[2].Position-vVertex[0].Position));
+        for(int i = 0; i < gl_in.length(); i++)
+        {
+             gl_Position = gl_in[i].gl_Position;
+
+             v_texCoord0 = vVertex[i].TexCoord0;
+             v_normal = n;
+             v_position = vVertex[i].Position;
+
+             EmitVertex();
+        }
+}*/
+
+/*
 layout(triangles,invocations = 1 ) in;
 layout(triangle_strip, max_vertices = 3) out;
 
@@ -197,7 +229,7 @@ void main()
 		EmitVertex();
 	}
 	EndPrimitive();
-}
+}*/
 #endif
 #endif
 #ifdef _FRAGMENT_
@@ -234,7 +266,7 @@ void main()
 		color = texture(texture3,v_texCoord0*texMult/u_divisor).rgb;
 	else color = texture(texture2,v_texCoord0*texMult/u_divisor).rgb*(0.6-offset+0.3)/0.6+texture(texture3,v_texCoord0*texMult/u_divisor).rgb*(offset-0.3)/0.6;
 	color = texture(texture1,vec2(offset,0)).rgb;
-	//out_Color =vec4(1);
+	//out_Color =vec4(v_normal,1.0f);
 	out_Color = vec4(color,1.0f);
 }
 #endif

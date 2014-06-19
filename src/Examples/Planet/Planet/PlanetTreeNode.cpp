@@ -60,9 +60,6 @@ PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Texture te
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
 	
-	//mat4 planetMatrix = controller->GetRoot()->GetTransform().ModelMatrix();
-	//mat4 invPM = inverse(planetMatrix);
-	//this->setModel(new PlanetModel(invPM*m_transform->ModelMatrix()));
 	face = new PlanetTreeNode*[4];
 	std::memset(face,0,32);
 	m_divisor = 1;
@@ -78,5 +75,28 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 	m_material->setParameter("u_offset",(float)m_controller->m_offset);
 	Draw();
 	m_material->Disable();
+}
+
+void PlanetTreeNode::Update( Transform* transform, bool updateChildren )
+{
+	DisplayNode::Update(transform,false);
+	vec4 point(0,0,0,1);
+	mat4 view = Camera::GetCurrent(CAMERA_3D)->GetView();
+	point = m_transform->ModelMatrix()*point;
+	vec3 real_point = normalize(vec3(point));
+	point = view*vec4(real_point,1.0f);
+	float distance = length(vec3(point));
+
+	if(m_lod >= MAX_LOD)
+		return;
+	float trigger = 4*m_controller->m_size/m_divisor/2;
+	float offset = distance;
+
+	if(offset > trigger)
+		for(int i = 0; i < MAX_FACE; i++)
+		{
+			if(face[i])
+				face[i]->Update(m_transform,updateChildren);
+		}
 }
 

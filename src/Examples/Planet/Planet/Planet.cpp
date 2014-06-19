@@ -59,8 +59,8 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )
 		4,
 		5,
 		0,
-		2,
 		1,
+		2,
 		3
 	};
 
@@ -76,11 +76,11 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )
 		vertices[i].normal = normalize(vec3(translate(mat4(1),face[j]*0.5f)*mat4_cast(sRot[j])*vec4(vertices[i].position,1)));
 		const ivec2& isize = img.GetSize();
 		ivec2 pixel;
-		if(j == 5)
+		//if(j == 5)
+			//pixel = ivec2(255-(0.5+vertices[i].position.x)*(isize.x-1),(0.5+vertices[i].position.y)*(isize.y-1));
+		/*else*/ if(j == 1)
 			pixel = ivec2(255-(0.5+vertices[i].position.x)*(isize.x-1),(0.5+vertices[i].position.y)*(isize.y-1));
-		else if(j == 1)
-			pixel = ivec2(255-(0.5+vertices[i].position.x)*(isize.x-1),(0.5+vertices[i].position.y)*(isize.y-1));
-		else pixel = ivec2((0.5+vertices[i].position.x)*(isize.x-1),(0.5+vertices[i].position.y)*(isize.y-1));
+		else pixel = ivec2((0.5+vertices[i].position.x)*(isize.x-1),255-(0.5+vertices[i].position.y)*(isize.y-1));
 		
 		c = img.GetPixel(pixel.x,pixel.y);
 		float grayScale = c.ToGrey()/255.0f;

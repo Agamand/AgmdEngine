@@ -23,15 +23,7 @@ public:
 	};
 	PlanetTreeNode(PlanetModel* model,Planet* controller,Texture tex,Transform* transform = NULL,int lod = 0);
 
-	virtual void Update(Transform* transform, bool updateChildren)
-	{
-		DisplayNode::Update(transform,false);
-		for(int i = 0; i < MAX_FACE; i++)
-		{
-			if(face[i])
-				face[i]->Update(m_transform,updateChildren);
-		}
-	}
+	virtual void Update(Transform* transform, bool updateChildren);
 	virtual void Render(TRenderPass pass) const;
 	virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light);
 

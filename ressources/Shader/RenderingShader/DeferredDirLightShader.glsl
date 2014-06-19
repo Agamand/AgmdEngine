@@ -19,14 +19,17 @@ void main(){
 #ifdef _FRAGMENT_
 
 #include "global_light_uniform.glsl"
+uniform vec3 u_cameraPosition;
 uniform sampler2D texture0;
 uniform sampler2D texture1;
 uniform sampler2D texture2;
 
 in vec2 v_TexCoord0;
-
 out vec4 out_color;
+
 #include <common/color.glsl>
+
+
 
 vec3 textureToNormal(vec3 tex)
 {
@@ -36,6 +39,8 @@ vec3 textureToNormal(vec3 tex)
 
 void main()
 {
+	
+
 	vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
 	vec3 L = -normalize(l_dir.xyz);
 	float lambertTerm = max(dot(N,L),0.0);
@@ -46,7 +51,19 @@ void main()
 		discard;
 
 	//out_color = vec4(getColor1f(lambertTerm),color.a);
-	out_color = vec4(color.rgb,1);
+	lambertTerm = clamp(lambertTerm,0,1);
+	vec3 _color = color.rgb*0.1f; //ambient
+	if(lambertTerm > 0)
+	{
+		vec3 position = texture(texture2,v_TexCoord0).xyz;
+		_color += color.rgb*lambertTerm; //diffuse
+		vec3 eye = normalize(position-u_cameraPosition);
+		vec3 _reflect = reflect(L,N);
+		float specular = pow( max(dot(_reflect, eye), 0.0), 100);
+		_color += color.rgb*specular;
+	}
+	
+	out_color = vec4(_color,1);
 }
 
 #endif

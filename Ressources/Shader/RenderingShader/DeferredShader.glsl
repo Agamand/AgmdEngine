@@ -43,7 +43,7 @@ layout(location = 2) out vec3 out_Position;
 uniform sampler2D texture0;
 void main()
 {
-	out_Color = vec4(normal2rgb(v_normal),1);//vec4(texture(texture0,v_texCoord0).rgb,1);
+	out_Color = vec4(0.5f,0.5f,0.5f,1);//vec4(texture(texture0,v_texCoord0).rgb,1);
 	out_Normal = normal2rgb(v_normal);
 	out_Position = v_pos.xyz;
 }

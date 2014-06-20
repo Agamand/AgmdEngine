@@ -42,20 +42,20 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	{
 		for(int i = 0; i < MAX_FACE; i++)
 		{
-			if(!face[i])
+			if(!m_faces[i])
 			{
-				Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
-				//t->Update(m_transform);
-				//t->Rotate(GetRotationFor(m_divisor,i),Transform(vec3(0,0,1)));
-				face[i] = new PlanetTreeNode(Planet::s_plane,m_controller,m_texture,t,m_lod+1);
-				face[i]->Update(m_transform,false);
+			Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
+				m_faces[i] = new PlanetTreeNode(Planet::s_plane,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),GetTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),new Transform(),m_lod+1);
+				m_faces[i]->Update(m_transform,false);
 			}
-			face[i]->FindVisible(cam,display,light);
+			m_faces[i]->FindVisible(cam,display,light);
 		}
 	}
 }
 
-PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Texture tex,Transform* transform /*= NULL*/,int lod /*= 0*/ ) : MeshNode(model,transform), m_lod(lod), m_controller(controller),m_texture(tex)
+PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,int face,const mat4& matrix /*= mat4(1)*/,Transform* transform /*= NULL*/,int lod /*= 0*/ ) :
+MeshNode(model,transform), m_lod(lod), m_controller(controller), m_positionMatrix(matrix),
+m_face(face)
 {
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
@@ -63,8 +63,9 @@ PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,Texture te
 	//mat4 planetMatrix = controller->GetRoot()->GetTransform().ModelMatrix();
 	//mat4 invPM = inverse(planetMatrix);
 	//this->setModel(new PlanetModel(invPM*m_transform->ModelMatrix()));
-	face = new PlanetTreeNode*[4];
-	std::memset(face,0,32);
+
+	m_faces = new PlanetTreeNode*[4];
+	std::memset(m_faces,0,32);
 	m_divisor = 1;
 	for(int i = 0; i < lod; i++)
 		m_divisor *=2;
@@ -76,6 +77,8 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 		return;
 	m_material->setParameter("u_divisor",(float)m_divisor);
 	m_material->setParameter("u_offset",(float)m_controller->m_offset);
+	m_material->setParameter("u_position_matrix",m_positionMatrix);
+	m_material->setParameter("u_face",m_face);
 	Draw();
 	m_material->Disable();
 }

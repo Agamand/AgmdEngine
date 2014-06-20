@@ -21,15 +21,15 @@ public:
 		BOTTOM_LEFT,
 		BOTTOM_RIGHT
 	};
-	PlanetTreeNode(PlanetModel* model,Planet* controller,Texture tex,Transform* transform = NULL,int lod = 0);
+	PlanetTreeNode(PlanetModel* model,Planet* controller,int face,const mat4& matrix = mat4(1),Transform* transform = NULL,int lod = 0);
 
 	virtual void Update(Transform* transform, bool updateChildren)
 	{
 		DisplayNode::Update(transform,false);
 		for(int i = 0; i < MAX_FACE; i++)
 		{
-			if(face[i])
-				face[i]->Update(m_transform,updateChildren);
+			if(m_faces[i])
+				m_faces[i]->Update(m_transform,updateChildren);
 		}
 	}
 	virtual void Render(TRenderPass pass) const;
@@ -39,9 +39,11 @@ private:
 	int m_lod;
 	int m_divisor;
 	int x,y;
-	PlanetTreeNode** face;
+	PlanetTreeNode** m_faces;
 	Planet* m_controller;
 	Texture m_texture;
+	mat4 m_positionMatrix;
+	int m_face;
 };
 
 #endif /* _QUADTREENODE_H_ */

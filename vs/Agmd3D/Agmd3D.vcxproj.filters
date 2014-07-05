@@ -638,9 +638,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SceneMgr.cpp">
       <Filter>Core\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Scene.cpp">
-      <Filter>Core\Model</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\QuadTree.cpp">
       <Filter>Core\Tools</Filter>
     </ClCompile>

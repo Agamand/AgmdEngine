@@ -228,7 +228,6 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Light.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Material.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Model.cpp" />
-    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Scene.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SceneMgr.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\SkyBox.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\BaseShader.cpp" />

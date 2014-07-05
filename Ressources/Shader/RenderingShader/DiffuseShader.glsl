@@ -18,16 +18,16 @@ void main(){
 
 #ifdef _FRAGMENT_
 
-uniform sampler2D texture0;
+//uniform sampler2D texture0;
 in vec4 v_Color;
 in vec3 v_pos;
 out vec4 out_color;
 
 void main()
 {
-	//out_color = v_Color;
-	float offset = (length(v_pos)-1)/0.05f;
+	out_color = v_Color;
+	//float offset = (length(v_pos)-1)/0.05f;
 
-	out_color = vec4(texture(texture0,vec2(offset,0)).rgb,1);	
+	//out_color = vec4(texture(texture0,vec2(offset,0)).rgb,1);	
 }
 #endif

@@ -23,9 +23,9 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 {
 	vec4 point(0,0,0,1);
 	mat4 view = cam->GetView();
-	point = m_transform->ModelMatrix()*point;
+	point = m_positionMatrix*point;
 	vec3 real_point = normalize(vec3(point));
-	point = view*vec4(real_point,1.0f);
+	point = view*m_transform->ModelMatrix()*vec4(real_point,1.0f);
 	float distance = length(vec3(point));
 
 	if(m_lod >= MAX_LOD)
@@ -44,7 +44,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 		{
 			if(!m_faces[i])
 			{
-			Transform* t = new Transform(GetTranslation(m_divisor,i),quat(),vec3(0.5f));
+
 				m_faces[i] = new PlanetTreeNode(Planet::s_plane,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),GetTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),new Transform(),m_lod+1);
 				m_faces[i]->Update(m_transform,false);
 			}
@@ -59,10 +59,6 @@ m_face(face)
 {
 	if(Planet::s_mat)
 		m_material = Planet::s_mat;
-	
-	//mat4 planetMatrix = controller->GetRoot()->GetTransform().ModelMatrix();
-	//mat4 invPM = inverse(planetMatrix);
-	//this->setModel(new PlanetModel(invPM*m_transform->ModelMatrix()));
 
 	m_faces = new PlanetTreeNode*[4];
 	std::memset(m_faces,0,32);
@@ -81,5 +77,28 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 	m_material->setParameter("u_face",m_face);
 	Draw();
 	m_material->Disable();
+}
+
+void PlanetTreeNode::Update( Transform* transform, bool updateChildren )
+{
+	DisplayNode::Update(transform,false);
+	vec4 point(0,0,0,1);
+	mat4 view = Camera::GetCurrent(CAMERA_3D)->GetView();
+	point = m_positionMatrix*point;
+	vec3 real_point = normalize(vec3(point));
+	point = view*m_transform->ModelMatrix()*vec4(real_point,1.0f);
+	float distance = length(vec3(point));
+
+	if(m_lod >= MAX_LOD)
+		return;
+	float trigger = 4*m_controller->m_size/m_divisor/2;
+	float offset = distance;
+
+	if(offset <= trigger)
+		for(int i = 0; i < MAX_FACE; i++)
+		{
+			if(m_faces[i])
+				m_faces[i]->Update(m_transform,updateChildren);
+		}
 }
 

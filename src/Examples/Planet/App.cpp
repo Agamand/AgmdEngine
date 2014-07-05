@@ -120,6 +120,8 @@ void generateNoise(Texture& t,int size,int seed)
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
 
+
+
 void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds = vec4(0,1,0,1));
 void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 {
@@ -166,6 +168,82 @@ void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 
 	t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
+
+/*
+void generateNoise3d(Texture& t,Texture& normal,float offset, int size,int seed,vec4 bounds = vec4(0,1,0,1));
+void generateNoise3d(Texture& t,Texture& normal,float offset, int size,int seed,vec4 bounds)
+{
+	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+
+	//PerlinNoise p(1,0.1,1,6,seed);
+	noise::module::Perlin _perlin;
+	_perlin.SetOctaveCount(octave);
+	_perlin.SetFrequency(freq);
+	_perlin.SetPersistence(persi);
+	_perlin.SetSeed(5465463);
+	noise::utils::NoiseMap heightMap;
+	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
+	heightMapBuilder.SetSourceModule (_perlin);
+	heightMapBuilder.SetDestSize (size, size);
+	heightMapBuilder.SetDestNoiseMap (heightMap);
+	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
+	//heightMapBuilder.Build ();
+
+
+	noise::utils::RendererImage renderer;
+	noise::utils::Image image(size,size);
+	renderer.SetSourceNoiseMap (heightMap);
+	renderer.SetDestImage (image);
+	//image.GetValue()
+	Image _img[6];
+	uint32 * img = new uint32[size*size];
+	float max,min = max = 0;
+	for(int face = 0; face < 6; face++)
+	{
+		heightMapBuilder.Build(face);
+		renderer.Render ();
+
+		for(int i = 0; i < size; i++)
+		{
+			for(int j = 0; j < size; j++)	
+			{
+				noise::utils::Color a= image.GetValue(i,j);
+				unsigned char* color = (unsigned char*)(&img[i*size+j]); 
+				color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
+				color[3] = 255;
+				//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
+			}
+		}
+		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+	}
+	t.CreateFromImage(_img,PXF_A8R8G8B8);
+
+	for(int face = 0; face < 6; face++)
+	{
+		heightMapBuilder.Build(face);
+		renderer.Render ();
+
+		for(int i = 0; i < size; i++)
+		{
+			for(int j = 0; j < size; j++)	
+			{
+				noise::utils::Color a= image.GetValue(i,j);
+				unsigned char* color = (unsigned char*)(&img[i*size+j]); 
+				color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
+				color[3] = 255;
+				//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
+			}
+		}
+		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+	}
+	t.CreateFromImage(_img,PXF_A8R8G8B8);
+
+
+
+	delete img;
+
+	
+}*/
 
 
 void generateNoise3d(Texture& t,int size,int seed,vec4 bounds = vec4(0,1,0,1));
@@ -221,7 +299,7 @@ void generateNoise3d(Texture& t, int size,int seed,vec4 bounds)
 
 const char* gradient ="Texture/gradient_terra_desat.png";
 const char* seed = NULL;
-
+float layer = 0;
 void App::Run(int argc, char** argv)
 {
     if(argc > 0)
@@ -320,7 +398,7 @@ void App::OnInit()
 	p = new Planet(ptexture,mat,0.05f);
 	sphere = CreateSphere(1.0f*radius,100,100,M_PI*2,"",PT_TRIANGLELIST);
 	MeshNode* mnode = new MeshNode(sphere,sphereTransform);
-    m_Scene->AddNode(p->getRoot());
+   // m_Scene->AddNode(p->getRoot());
 	slider_kr = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_kr);
 	slider_kr->SetPosition(1300,800);
@@ -370,6 +448,7 @@ void App::OnInit()
 	slder->setLabel(std::string("Cam Speed"));
 	slder->SetSize(200,20);
 	
+
 	
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
@@ -408,6 +487,13 @@ void App::OnInit()
 	slder->SetSize(200,20);
 	slder->setValue(&p->m_offset,-0.1,0.1);
 
+	slder = new ASlider(NULL);
+	GUIMgr::Instance().AddWidget(slder);
+	slder->SetPosition(1300,500);
+	slder->setLabel(std::string("Precision export"));
+	slder->SetSize(200,20);
+	slder->setValue(&layer,0,10);
+
 
 
 	printf("Loading end");
@@ -440,10 +526,6 @@ void App::OnRender3D()
 
 	Driver& driver = Driver::Get();
 	ivec2 screen = getScreen();
-	//Texture::TextureRender(ptexture[0],ivec2(0),ivec2(screen.x/2,screen.y));
-	//Texture::TextureRender(ptexture[1],ivec2(screen.x/2,0),ivec2(screen.x/2,screen.y));
-	
-	return;
 	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
@@ -470,7 +552,7 @@ void App::OnRender3D()
 	sphere->Draw(lightTransform);
 	driver.SetCurrentProgram(NULL);
 
-//	if(pause)
+	if(pause)
 		return;
 
 	
@@ -623,9 +705,10 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
 			break;
 		case 'E':
-			node = new MeshNode(p->exportToFile("planet_1.obj",2));
-			node->GetMaterial().SetTexture(color_gradiant,0,(TRenderPass)(1 << RENDERPASS_DIFFUSE));
-			m_Scene->AddNode(node);
+			//node = new MeshNode(p->exportToFile("planet_1.obj",(int)layer));
+			p->exportToFile("planet_1.obj",(int)layer);
+			//node->GetMaterial().SetTexture(color_gradiant,0,(TRenderPass)(1 << RENDERPASS_DIFFUSE));
+			//m_Scene->AddNode(node);
 
 			break;
 		}

@@ -26,8 +26,8 @@ public:
 		DisplayNode::Update(transform,false);
 		for(int i = 0; i < MAX_FACE; i++)
 		{
-			if(face[i])
-				face[i]->Update(m_transform,updateChildren);
+			if(m_faces[i])
+				m_faces[i]->Update(m_transform,updateChildren);
 		}
 	}
 
@@ -37,7 +37,7 @@ private:
 	int m_lod;
 	int m_divisor;
 	int x,y;
-	PlanetTreeNode** face;
+	PlanetTreeNode** m_faces;
 };
 
 #endif /* _QUADTREENODE_H_ */

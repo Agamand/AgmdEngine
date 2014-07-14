@@ -13,13 +13,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Quaternion.h>
 #include <Matrix4.h>
 
-#include <vector>
-
+#include <AgmdUtilities/Container/Vector.h>
 namespace AgmdMaths
 {
     class Transform;
     typedef Transform* TransformPtr;
-    typedef std::vector<TransformPtr> TransformVector;
+    typedef a_vector<TransformPtr> TransformVector;
 
     class Transform
     {

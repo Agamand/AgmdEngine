@@ -27,17 +27,17 @@ namespace Agmd
     {
         std::ifstream file(filename,std::ios::in);
         if (!file)
-            throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ObjLoader)");
+            throw LoadingFailed(filename,"Error on loading file (ObjLoader)");
 
         a_uint32 size =  (a_uint32)file.tellg();
         file.seekg(0, std::ios::beg);
 
-        std::vector<vec3> position;
-        std::vector<vec2> texPos;
-        std::vector<vec3> normal;
+        a_vector<vec3> position;
+        a_vector<vec2> texPos;
+        a_vector<vec3> normal;
 
-        std::vector<Model::TVertex> vertices;
-        std::vector<Model::TIndex> indices;
+        a_vector<Model::TVertex> vertices;
+        a_vector<Model::TIndex> indices;
 
         while(skipCommentLine(file))
         {
@@ -83,7 +83,7 @@ namespace Agmd
         while( (file >> next) && ('\n' != next) );
     }
 
-    bool ObjLoader::processLine(std::vector<vec3>& position,std::vector<vec2>& texPos,std::vector<vec3>& normal,std::vector<Model::TIndex>& indices, std::istream& is)
+    bool ObjLoader::processLine(a_vector<vec3>& position,a_vector<vec2>& texPos,a_vector<vec3>& normal,a_vector<Model::TIndex>& indices, std::istream& is)
     {
         std::string value;
         a_int32 index = 0;

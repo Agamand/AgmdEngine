@@ -141,9 +141,9 @@ namespace Agmd
         while(stream >> str && GetToken(str) != TOKEN_GLSLEND);
         end = -7+stream.tellg();
         stream.seekg(begin,stream.beg);
-        char* _str = new char[end-begin+1];
+        char* _str = new char[(int)(end-begin)+1];
         int i =0;
-        std::memcpy(_str,&i,end-begin+1);
+        std::memcpy(_str,&i,(int)(end-begin)+1);
         while(stream.tellg() < end)
             _str[i++] = stream.get();
         std::string subroutine(_str);
@@ -232,7 +232,7 @@ namespace Agmd
         switch(_type)
         {
         case UNIFORM_FLOAT:
-            uniform._defaultvalue.fvalue[0] =  atof(defaultvalue.c_str());
+            uniform._defaultvalue.fvalue[0] =  (float)atof(defaultvalue.c_str());
             break;
         default:
             std::strncpy(uniform._defaultvalue.svalue,defaultvalue.c_str(), 20);

@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <CommonDefines.h>
 #include <string>
 #include <map>
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
@@ -42,7 +42,7 @@ namespace Agmd
         };
 
         typedef std::map<std::string,Parameter> ParameterMap; 
-        typedef std::vector<Parameter> APIMatrix;
+        typedef a_vector<Parameter> APIMatrix;
 
         GLShaderProgram(a_uint32 id);
         virtual ~GLShaderProgram();

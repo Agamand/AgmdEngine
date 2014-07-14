@@ -50,9 +50,6 @@
     <ClCompile Include="..\..\src\Demo\noiseutils.cpp" />
     <ClCompile Include="..\..\src\Demo\Particles\ParticlesEmitter.cpp" />
     <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
-    <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp" />
-    <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp" />
-    <ClCompile Include="..\..\src\Demo\Planet\PlanetTreeNode.cpp" />
     <ClCompile Include="..\..\src\Demo\simplexnoise.cpp" />
     <None Include="..\..\src\Demo\Loader\objTester.cpp" />
     <ClCompile Include="..\..\src\Demo\Loader\obj_parser.cpp" />
@@ -73,9 +70,6 @@
     <ClInclude Include="..\..\src\Demo\noiseutils.h" />
     <ClInclude Include="..\..\src\Demo\Particles\ParticlesEmitter.h" />
     <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
-    <ClInclude Include="..\..\src\Demo\Planet\Planet.h" />
-    <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h" />
-    <ClInclude Include="..\..\src\Demo\Planet\PlanetTreeNode.h" />
     <ClInclude Include="..\..\src\Demo\simplexnoise.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -112,7 +106,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

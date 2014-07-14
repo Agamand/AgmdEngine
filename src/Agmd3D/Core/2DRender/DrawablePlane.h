@@ -7,7 +7,7 @@
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/MediaManager.h>
-#include <vector>
+#include <Container/Vector.h>
 #include <Core/AgmdApp.h>
 #include <Config/Export.h>
 #include <core/gui/ASlider.h>
@@ -34,20 +34,20 @@ namespace Agmd
 		void clear();
 
 		virtual void valueUpdate( float value,float cursor );
-		std::vector<LineRenderer*>& getRender()
+		a_vector<LineRenderer*>& getRender()
 		{
 			return m_render;
 		}
 		vec2 getPositionFromScreenSpace(vec2 pos);
 		float degree;
 	private:
-		std::vector<vec2> m_bufferPoint;
+		a_vector<vec2> m_bufferPoint;
 		ShaderProgram m_renderProgram;
 		ivec2 m_pixelSize;
 		vec2  m_repere;
 		Texture m_texture;
 		FrameBuffer* m_frame;
-		std::vector<LineRenderer*> m_render;
+		a_vector<LineRenderer*> m_render;
 		mat4 m_projection;
 		mat4 m_reverse_projection;
 		vec2* m_selectedPoint;
@@ -55,7 +55,7 @@ namespace Agmd
 		int m_pointIndex;
 		int key;
 		bool rightDown;
-		std::vector<ASlider*> m_slider;
+		a_vector<ASlider*> m_slider;
 		enum KEY
 		{
 			CTRL =0x1,

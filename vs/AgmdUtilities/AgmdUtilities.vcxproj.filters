@@ -13,11 +13,11 @@
     <Filter Include="Utilities\TinyXml">
       <UniqueIdentifier>{5c5ce992-dc9c-48ce-b478-5b39ccd740c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FastStl">
-      <UniqueIdentifier>{78156720-6cb9-4ad8-be0a-da3c0f2487a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Allocator">
       <UniqueIdentifier>{46945308-fddb-43f5-a097-6c22ea261c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{78156720-6cb9-4ad8-be0a-da3c0f2487a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +125,6 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Queue.h">
-      <Filter>FastStl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.h">
       <Filter>Allocator</Filter>
     </ClInclude>
@@ -137,14 +134,17 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Array.h">
-      <Filter>FastStl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\List.h">
-      <Filter>FastStl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\Allocator.h">
       <Filter>Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\List.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\Queue.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\Vector.h">
+      <Filter>Container</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +160,6 @@
     <None Include="..\..\src\AgmdUtilities\Utilities\Typelist.inl">
       <Filter>Utilities</Filter>
     </None>
-    <None Include="..\..\src\AgmdUtilities\FastStl\Queue.inl">
-      <Filter>FastStl</Filter>
-    </None>
     <None Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.inl">
       <Filter>Allocator</Filter>
     </None>
@@ -172,11 +169,14 @@
     <None Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.inl">
       <Filter>Utilities</Filter>
     </None>
-    <None Include="..\..\src\AgmdUtilities\FastStl\Array.inl">
-      <Filter>FastStl</Filter>
+    <None Include="..\..\src\AgmdUtilities\Container\List.inl">
+      <Filter>Container</Filter>
     </None>
-    <None Include="..\..\src\AgmdUtilities\FastStl\List.inl">
-      <Filter>FastStl</Filter>
+    <None Include="..\..\src\AgmdUtilities\Container\Queue.inl">
+      <Filter>Container</Filter>
+    </None>
+    <None Include="..\..\src\AgmdUtilities\Container\Vector.inl">
+      <Filter>Container</Filter>
     </None>
   </ItemGroup>
 </Project>

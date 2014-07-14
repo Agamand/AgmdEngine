@@ -12,9 +12,9 @@ namespace Agmd
 	class GeometryFactory
 	{
 	public:
-		void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,int splice);
-		void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height);
-		void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
+		void lathe(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,int splice);
+		void simpleExtrusion( BaseSpline* p1,a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height);
+		void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices,a_vector<Model::TIndex>& index);
 	};
 }
 

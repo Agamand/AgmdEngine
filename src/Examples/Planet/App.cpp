@@ -80,7 +80,7 @@ SINGLETON_IMPL(App);
 
 BaseShaderProgram* default_program;
 
-const char* gradient ="Texture/gradient_terra_desat.png";
+const char* gradient ="Texture/gradient_mars.png";
 const char* seed = NULL;
 float layer = 0;
 void App::Run(int argc, char** argv)
@@ -135,7 +135,8 @@ vec3 rgb(0.650,0.570,0.475);
 float g = -0.98f;
 Texture ptexture[6];
 void App::OnInit()
-{  
+{ 
+
     pause = true;
     m_timer = 1000;
 	printf("Loading... \n");
@@ -151,7 +152,7 @@ void App::OnInit()
 	
 	printf("init scene\n");
 	if(gradient)
-		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8);
+		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8,TEX_WRAP_CLAMP);
 	else
 		color_gradiant.CreateFromFile("Texture/gradient_terra_desat.png",PXF_A8R8G8B8);
 
@@ -287,18 +288,15 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 	
 	if(pause)
 		return;
-
-	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
-    const vec2& angles = cam->GetAngles();
 }
 
-std::vector<DisplayNode*> displayable;
-std::vector<LightNode*> l;
+a_vector<DisplayNode*> displayable;
+a_vector<LightNode*> l;
 
 void App::OnRender3D()
 {
 	Driver& driver = Driver::Get();
-
+	
 
 
 	
@@ -479,8 +477,8 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
     float cosa1 = cos(angle/stack);
     float sina1 = sin(angle/stack);
 
-    std::vector<Model::TVertex> vertices;
-    std::vector<Model::TIndex> index;
+    a_vector<Model::TVertex> vertices;
+    a_vector<Model::TIndex> index;
 
     for(int i = 0; i <= stack; i++)
     {
@@ -526,8 +524,8 @@ Model* App::CreateSphere(float r,float stack, float slice,float angle, std::stri
 Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitiveType type)
 {
 
-    std::vector<Model::TVertex> vertices;
-    std::vector<Model::TIndex> index;
+    a_vector<Model::TVertex> vertices;
+    a_vector<Model::TIndex> index;
 
     float x_2 = size.x/2.0f;
     float y_2 = size.y/2.0f;
@@ -609,7 +607,7 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
         {vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(1,1)}
     };
 
-    std::vector<Model::TIndex> indices;
+    a_vector<Model::TIndex> indices;
 
     for(a_uint32 i = 0; i < 6; i++)
     {
@@ -629,7 +627,7 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
     return m;
 }
 
-void _CreatePlane(vec3 orientation, quat rot,int size, int offset_index, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+void _CreatePlane(vec3 orientation, quat rot,int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
 {
     float x_2 = 1;
     float y_2 = 1;
@@ -671,8 +669,8 @@ void _CreatePlane(vec3 orientation, quat rot,int size, int offset_index, std::ve
 
 Model* App::CreateMetaSphere(float r, int stack, int slice)
 {
-	std::vector<Model::TVertex> vertices;
-	std::vector<Model::TIndex> indices;
+	a_vector<Model::TVertex> vertices;
+	a_vector<Model::TIndex> indices;
 
 	quat sRot[] = {
 		quat(),

@@ -3,7 +3,7 @@
 #define _PLANET_H_
 
 #include <core/SceneNode/SceneNode.h>
-#include <Core/Shader/ShaderProgram.h>
+
 #include "PlanetTreeNode.h"
 #include <map>
 #include <string>
@@ -23,16 +23,16 @@ public:
 	
 	Model* exportToFile(const std::string& filename,int precision = 0);
 
-	static PlanetModel* s_plane;
-	static Material* s_mat;
+	
 
 
 	float m_offset;
 private:
 	Texture m_texture[MAX_PLANET_FACE];
 	SceneNode* m_root;
+	PlanetModel* m_model;
 	Material* m_material;
-	ShaderProgram m_ground_program;
+	
 	
 	float m_size;
 };

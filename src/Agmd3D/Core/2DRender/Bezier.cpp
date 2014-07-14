@@ -1,10 +1,10 @@
 #include <Core/2DRender/Bezier.h>
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
 
-	vec2 dc(std::vector<std::vector<vec2>>& points,const std::vector<vec2>& points_control,float t)
+	vec2 dc(a_vector<a_vector<vec2>>& points,const a_vector<vec2>& points_control,float t)
 	{
 		for(int j = 1; j < points_control.size(); j++)
 		{
@@ -16,7 +16,7 @@ namespace Agmd
 		return points[points_control.size()-1][0];
 	}
 
-	vec2 dc2(vec2* points,const std::vector<vec2>& points_control,float t)
+	vec2 dc2(vec2* points,const a_vector<vec2>& points_control,float t)
 	{
 		for(int j = 1; j < points_control.size(); j++)
 		{
@@ -29,7 +29,7 @@ namespace Agmd
 	}
 	void Bezier::compute( int pointIndex /*= -1*/ )
 	{
-		std::vector<std::vector<vec2>> points;
+		a_vector<a_vector<vec2>> points;
 		vec2* _points = new vec2[m_computedPoints.size()*m_computedPoints.size()];
 		m_computedPoints.clear();
 		float zero = 0.0f;

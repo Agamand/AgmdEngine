@@ -5,10 +5,10 @@ namespace Agmd
 	
 	template <typename T> T _clamp(T a, T min,T max)
 	{
-	return a > max ? max : (a < min ? min : a);
+		return a > max ? max : (a < min ? min : a);
 	}
 
-	int findr(float  p, float u,  std::vector<float> U ) {
+	int findr(float  p, float u,  a_vector<float> U ) {
 		float n = U.size() - p - 1;
 
 		if (u >= U[n]) {
@@ -35,7 +35,7 @@ namespace Agmd
 		return mid;
 	}
 
-	vec2 BSpline::cdb( vec2* data ,std::vector<float> knots,int n,float t, int r )
+	vec2 BSpline::cdb( vec2* data ,a_vector<float> knots,int n,float t, int r )
 	{
 		int max = n - m_degree - 1;
 		for(int i =  r - m_degree; i <= r; i++)
@@ -144,7 +144,7 @@ namespace Agmd
 		compute();
 	}
 
-	BSpline::BSpline( const std::vector<vec2>& p, int degree ) : BaseSpline(p), m_degree(degree)
+	BSpline::BSpline( const a_vector<vec2>& p, int degree ) : BaseSpline(p), m_degree(degree)
 	{
 		_points = new vec2[(m_degree+1)*(p.size()+1)];
 		for ( int i = -m_degree-1, j=m_controlPoints.size(); i < j; i ++ ) {

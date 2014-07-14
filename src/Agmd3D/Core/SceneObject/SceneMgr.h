@@ -8,7 +8,7 @@
 #include <Core/SceneNode/LightNode.h>
 #include <Core/SceneObject/Light.h>
 #include <Core/SceneObject/SkyBox.h>
-#include <vector>
+#include <Container/Vector.h>
 #include <queue>
 namespace Agmd
 {
@@ -22,11 +22,11 @@ namespace Agmd
 		void Draw() const;
 		void Compute();
 		void Update();
-		void FindVisible(std::vector<DisplayNode*>&,std::vector<LightNode*>&);
+		void FindVisible(a_vector<DisplayNode*>&,a_vector<LightNode*>&);
 
 		void AddNode(SceneNode *node); // add to root
 
-	    const std::vector<Light*>& GetLights();
+	    const a_vector<Light*>& GetLights();
 		void AddLight(Light* l);
 
 		void SetSkybox(SkyBox* skybox);
@@ -38,8 +38,8 @@ namespace Agmd
 		}
 		void clear();
 	private:
-		std::vector<Light*> m_light; // static light
-		std::vector<DisplayNode*> m_displayable;
+		a_vector<Light*> m_light; // static light
+		a_vector<DisplayNode*> m_displayable;
 		SceneNode* m_root;
 		SkyBox* m_skybox;
 	};

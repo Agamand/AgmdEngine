@@ -11,13 +11,13 @@ namespace Agmd
 	public:
 		friend class DrawablePlane;
 		BSpline(vec2 p[], int count, int degree);
-		BSpline(const std::vector<vec2>& p, int degree);
+		BSpline(const a_vector<vec2>& p, int degree);
 		virtual void compute(int pointIndex = -1);
-		vec2 cdb(vec2* data ,std::vector<float> ti,int n,float t, int r);
+		vec2 cdb(vec2* data , a_vector<float> ti,int n,float t, int r);
 
 
 	private:
-		std::vector<float> m_knot;
+		a_vector<float> m_knot;
 		int m_degree;
 		
 	};

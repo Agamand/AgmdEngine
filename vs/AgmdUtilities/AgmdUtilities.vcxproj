@@ -61,15 +61,15 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\Allocator.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\List.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\Queue.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Container\Vector.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Exception.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Logger.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\MemoryMgr.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Array.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\List.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\FastStl\Queue.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h" />
@@ -90,9 +90,9 @@
   <ItemGroup>
     <None Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.inl" />
     <None Include="..\..\src\AgmdUtilities\Allocator\MemPoolAllocator.inl" />
-    <None Include="..\..\src\AgmdUtilities\FastStl\Array.inl" />
-    <None Include="..\..\src\AgmdUtilities\FastStl\List.inl" />
-    <None Include="..\..\src\AgmdUtilities\FastStl\Queue.inl" />
+    <None Include="..\..\src\AgmdUtilities\Container\List.inl" />
+    <None Include="..\..\src\AgmdUtilities\Container\Queue.inl" />
+    <None Include="..\..\src\AgmdUtilities\Container\Vector.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\ConvertPixel.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\SharedPtr.inl" />
     <None Include="..\..\src\AgmdUtilities\Utilities\SmartPtr.inl" />
@@ -133,7 +133,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>

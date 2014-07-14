@@ -20,8 +20,9 @@ namespace Agmd
 			vec2* point = NULL;
 			BaseSpline* spline = NULL;
 			int pointIndex = 0;
-			for(std::vector<LineRenderer*>::iterator itr = m_render.begin(); itr != m_render.end(); itr++)
+			for(a_uint32 i = 0,len = m_render.size(); i < len; i++) 
 			{
+				LineRenderer ** itr = &m_render[i];
 				BaseSpline* spl = (*itr)->getSpline();
 				int pi;
 				vec2* p = spl->getNearControlPoint(_pos,pi);
@@ -55,8 +56,9 @@ namespace Agmd
 			vec2* point = NULL;
 			BaseSpline* spline = NULL;
 			int pointIndex = 0;
-			for(std::vector<LineRenderer*>::iterator itr = m_render.begin(); itr != m_render.end(); itr++)
+			for(a_uint32 i = 0,len = m_render.size(); i < len; i++) 
 			{
+				LineRenderer ** itr = &m_render[i];
 				BaseSpline* spl = (*itr)->getSpline();
 				int pi;
 				vec2* p = spl->getNearControlPoint(_pos,pi,m_selectedPoint);
@@ -261,10 +263,10 @@ namespace Agmd
 		m_frame->Bind();
 		m_frame->Clear(CLEAR_COLOR);
 		Driver::Get().Enable(RENDER_POINTSIZE_SHADER,true);
-		for(std::vector<LineRenderer*>::iterator itr = m_render.begin(); itr != m_render.end(); itr++)
-			(*itr)->draw(m_projection);
-		for(std::vector<LineRenderer*>::iterator itr = m_render.begin(); itr != m_render.end(); itr++)
-			(*itr)->drawPoints(m_projection);
+		for(a_uint32 i = 0,len = m_render.size(); i < len; i++) 
+			m_render[i]->draw(m_projection);
+		for(a_uint32 i = 0,len = m_render.size(); i < len; i++) 
+			m_render[i]->drawPoints(m_projection);
 		m_frame->UnBind();
 	}
 

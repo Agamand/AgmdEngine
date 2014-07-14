@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <map>
 #include <string>
-#include <vector>
+#include <Container/Vector.h>
 #include <sstream>
 
 namespace Agmd
@@ -114,7 +114,7 @@ namespace Agmd
         void AddUniform(const std::string& name, const std::string& type, const std::string& defaultvalue);
 
 
-        std::vector<Properties> m_properties;
+        a_vector<Properties> m_properties;
         std::map<std::string,std::string> m_subroutine;
 		std::map<std::string,const char*> d_subroutine;
     };

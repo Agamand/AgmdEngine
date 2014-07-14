@@ -30,25 +30,20 @@ quat sRot[] = {
 Planet::Planet(Texture tex[6],Material* mat,float offset) : m_offset(offset),m_size(1.0f)
 {
 	
-	s_mat = mat;
 	m_material = mat;
-	//mat->setParameter("u_size",size);
-	s_plane = new PlanetModel(0,0,0);
+	m_model = new PlanetModel(0,0,0);
 	m_root = new SceneNode(ROOT_NODE,new Transform(vec3(0),quat(),vec3(2)));
 	for(int i = 0; i < 1*MAX_PLANET_FACE; i++ )
-	{
-		//Material*_mat = new Material(*mat);
-		//mat->SetTexture(tex[i],0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
-		m_root->AddChild(new PlanetTreeNode(s_plane,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
-	}
-	m_ground_program.LoadFromFile("shader/planet/ground.glsl");
+		m_root->AddChild(new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
+	
+	
 }
 
 Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )
 {
 
-	std::vector<Model::TVertex> vertices;
-	std::vector<unsigned short> indices;
+	a_vector<Model::TVertex> vertices;
+	a_vector<unsigned short> indices;
 	for(a_uint32 i = 0; i < MAX_PLANET_FACE; i++)
 	{
 		PlanetModel::CreateFaceMetaSphere(vertices,indices,precision);
@@ -101,6 +96,3 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )
 	out.close();
 	return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
 }
-
-PlanetModel* Planet::s_plane = NULL;
-Material* Planet::s_mat = NULL;

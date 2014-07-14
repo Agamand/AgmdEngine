@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    BoundingBox::BoundingBox(const std::vector<vec3>& vertex_pos)
+    BoundingBox::BoundingBox(const a_vector<vec3>& vertex_pos)
     {}
 
 	BoundingBox::BoundingBox(const vec3 min, const vec3 max) : m_min(min),m_max(max)

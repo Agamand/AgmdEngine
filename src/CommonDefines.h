@@ -43,6 +43,4 @@ typedef unsigned int        a_uint32;
 typedef unsigned short      a_uint16;
 typedef unsigned char       a_uint8;
 
-
-
 #endif /* _COMMOMDEFINES_H_ */

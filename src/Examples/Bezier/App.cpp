@@ -165,11 +165,11 @@ void App::OnRender2D()
 
 }
 
-void _CreatePlane(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
-void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,int splice);
-void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height);
-void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
-void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index);
+void _CreatePlane(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index);
+void lathe(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,int splice);
+void simpleExtrusion( BaseSpline* p1, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height);
+void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index);
+void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index);
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -177,11 +177,11 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 	if(message == WM_KEYDOWN)
 	{
 		char c = LOWORD(wParam);
-		std::vector<LineRenderer*> render = m_plane->getRender();
-		std::vector<Model::TVertex> vertices;
-		std::vector<Model::TIndex> index;
-		std::vector<Model::TVertex> vertices2;
-		std::vector<Model::TIndex> index2;
+		a_vector<LineRenderer*> render = m_plane->getRender();
+		a_vector<Model::TVertex> vertices;
+		a_vector<Model::TIndex> index;
+		a_vector<Model::TVertex> vertices2;
+		a_vector<Model::TIndex> index2;
 		Texture tex;
 		Model* mo;
 		MeshNode* p;
@@ -256,7 +256,7 @@ void App::OnMove(vec2 pos)
 
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
-void _CreatePlane(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+void _CreatePlane(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
 {
 
 
@@ -264,8 +264,8 @@ void _CreatePlane(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& ve
 	float x_2 = 1;
 	float y_2 = 1;
 	vec3 o = -vec3(0.5f,0.5f,0);
-	std::vector<vec2> _p1 = p1->getComputedPoints();
-	std::vector<vec2> _p2 = p2->getComputedPoints();
+	a_vector<vec2> _p1 = p1->getComputedPoints();
+	a_vector<vec2> _p2 = p2->getComputedPoints();
 	//vec3 ori(_p1[0].x,_p2[0].x,_p1[0].y+_p2[0].y);
 	vec3 ori;//(_p1[0].x,_p1[0].y+_p2[0].x,_p2[0].y);
 	vec3 k = vec3(0,0,1);
@@ -322,10 +322,10 @@ void _CreatePlane(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& ve
 
 
 
-void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,int splice)
+void lathe(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,int splice)
 {
-	std::vector<vec2> _p1 = p1->getComputedPoints();
-	std::vector<vec2> _p2 = p2->getComputedPoints();
+	a_vector<vec2> _p1 = p1->getComputedPoints();
+	a_vector<vec2> _p2 = p2->getComputedPoints();
 	vec3 center = vec3(_p2[0],0),
 		dir = vec3(_p2[1]-_p2[0],0);
 
@@ -362,12 +362,12 @@ void lathe(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices,
 }
 
 
-void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height)
+void simpleExtrusion( BaseSpline* p1, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index, int slice, float scalemin, float scalemax,float height)
 {
 	float x_2 = 1;
 	float y_2 = 1;
 	vec3 o = -vec3(0.5f,0.5f,0);
-	std::vector<vec2> _p1 = p1->getComputedPoints();
+	a_vector<vec2> _p1 = p1->getComputedPoints();
 	vec3 k = vec3(0,0,1);
 	vec3 normal = vec3(0);
 	bool p1close = p1->isClosed();
@@ -406,13 +406,13 @@ void simpleExtrusion( BaseSpline* p1, std::vector<Model::TVertex>& vertices, std
 
 }
 
-void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
 {
 	float x_2 = 1;
 	float y_2 = 1;
 	vec3 o = -vec3(0.5f,0.5f,0);
-	std::vector<vec2> _p1 = p1->getComputedPoints();
-	std::vector<vec2> _p2 = p2->getComputedPoints();
+	a_vector<vec2> _p1 = p1->getComputedPoints();
+	a_vector<vec2> _p2 = p2->getComputedPoints();
 	//vec3 ori(_p1[0].x,_p2[0].x,_p1[0].y+_p2[0].y);
 	vec3 ori;//(_p1[0].x,_p1[0].y+_p2[0].x,_p2[0].y);
 	vec3 k = vec3(0,0,1);
@@ -465,13 +465,13 @@ void generalizedExtrusion(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVer
 }
 
 
-void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
+void generalizedExtrusionOLD(BaseSpline* p1,BaseSpline* p2, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
 {
 	float x_2 = 1;
 	float y_2 = 1;
 	vec3 o = -vec3(0.5f,0.5f,0);
-	std::vector<vec2> _p1 = p1->getComputedPoints();
-	std::vector<vec2> _p2 = p2->getComputedPoints();
+	a_vector<vec2> _p1 = p1->getComputedPoints();
+	a_vector<vec2> _p2 = p2->getComputedPoints();
 	//vec3 ori(_p1[0].x,_p2[0].x,_p1[0].y+_p2[0].y);
 	vec3 ori;//(_p1[0].x,_p1[0].y+_p2[0].x,_p2[0].y);
 	vec3 k = vec3(0,0,1);

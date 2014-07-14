@@ -69,7 +69,7 @@ namespace Agmd
 			{vec3(1.f,-1.f,-1.f)},{vec3(-1.f,-1.f,-1.f)},{vec3(1.f,-1.f,1.f)},{vec3(-1.f,-1.f,1.f)}
 		};
 
-		std::vector<TIndex> indices;
+		a_vector<TIndex> indices;
 
 		for(a_uint32 i = 0; i < 6; i++)
 		{

@@ -19,7 +19,7 @@ namespace Agmd
 		return true;
 	}
 
-	void DisplayNode::FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light)
+	void DisplayNode::FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light)
 	{
 		display.push_back(this);
 		SceneNode::FindVisible(cam,display,light);

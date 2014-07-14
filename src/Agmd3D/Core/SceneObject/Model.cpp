@@ -84,7 +84,8 @@ namespace Agmd
 
     void Model::Draw(const Transform* transform) const
     {
-        Driver::Get().SetCurrentTransform(transform);
+		if(transform)
+			Driver::Get().SetCurrentTransform(transform);
         Driver::Get().SetDeclaration(m_Declaration);
         Driver::Get().SetVertexBuffer(0, m_VertexBuffer);
 		if(m_indexed)
@@ -97,9 +98,9 @@ namespace Agmd
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
     {
-        std::vector<vec3> normal;
+        a_vector<vec3> normal;
         normal.resize(verticesCount,vec3(0.0f));
-        std::vector<vec4> tangent;
+       std::vector<vec4> tangent;
         tangent.resize(verticesCount,vec4(0.0f));
 
         if(!type)

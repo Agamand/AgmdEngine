@@ -11,7 +11,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Vector3.h>
 #include <Transform.h>
-#include <vector>
+#include <Container/Vector.h>
 
 using namespace AgmdMaths;
 
@@ -20,7 +20,7 @@ namespace Agmd
     class BoundingBox
     {
     public:
-        BoundingBox(const std::vector<vec3>& vertex_pos);
+        BoundingBox(const a_vector<vec3>& vertex_pos);
 		BoundingBox(const vec3, const vec3);
         BoundingBox();
 

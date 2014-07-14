@@ -23,7 +23,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    typedef std::vector<Displayable*> vDisplayable;
+    typedef a_vector<Displayable*> vDisplayable;
 
     class AGMD3D_EXPORT Scene
     {
@@ -45,14 +45,14 @@ namespace Agmd
 
         void RemoveMesh(Displayable*);
 
-        const std::vector<Light*>& GetLights();
+        const a_vector<Light*>& GetLights();
 
     private:
 
         vDisplayable        m_vMesh;
         SkyBox*             m_SkyBox;
 
-        std::vector<Light*> m_lights;
+        a_vector<Light*> m_lights;
     };
 
 

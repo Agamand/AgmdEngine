@@ -14,14 +14,14 @@ https://github.com/Agamand/AgmdEngine
 #include <sstream>
 #include <fstream>
 #include <string>
-#include <vector>
+#include <Container/Vector.h>
 #include <Debug/Exception.h>
 
 
 namespace AgmdUtilities
 {
 
-    void Split(const std::string& str, std::vector<std::string>& tokens, const std::string& delim = " \t\n");
+    void Split(const std::string& str, a_vector<std::string>& tokens, const std::string& delim = " \t\n");
 
     std::string ReadFile(const std::string& filename);
 

@@ -35,8 +35,8 @@ namespace Agmd
 			m_transform->Update(transform);
 		if(updateChildren && !m_children.empty())
 		{
-			for(std::vector<SceneNode*>::iterator itr = m_children.begin(); itr != m_children.end(); itr++)
-				(*itr)->Update(m_transform,updateChildren,transformUpdate);
+			for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
+				m_children[i]->Update(m_transform,updateChildren,transformUpdate);
 		}
 	}
 

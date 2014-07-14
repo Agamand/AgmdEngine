@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-inline void Split(const std::string& str, std::vector<std::string>& tokens, const std::string& delim)
+inline void Split(const std::string& str, a_vector<std::string>& tokens, const std::string& delim)
 {
     tokens.clear();
 

@@ -9,22 +9,23 @@ https://github.com/Agamand/AgmdEngine
 template <class T>
 inline void MediaManager::RegisterLoader(Loader<T>* loader, const std::string& extensions)
 {
-    std::vector<std::string> ext;
+    a_vector<std::string> ext;
     Split(extensions, ext, " /\\*.,;|-_\t\n'\"");
 
     SmartPtr<Loader<T> > ptr = loader;
-    for (std::vector<std::string>::iterator i = ext.begin(); i != ext.end(); ++i)
-        MediaHolder<T>::m_Loaders[ToLower(*i)] = ptr;
+	for(a_uint32 i = 0, len =ext.size(); i < len; i++)
+		MediaHolder<T>::m_Loaders[ToLower(ext[i])] = ptr;
 }
 
 template <class T>
 inline void MediaManager::UnregisterLoader(const std::string& extensions)
 {
-    std::vector<std::string> ext;
+    a_vector<std::string> ext;
     Split(extensions, ext, " /\\*.,;|-_\t\n'\"");
 
-    for (std::vector<std::string>::iterator i = Ext.begin(); i != Ext.end(); ++i)
-        MediaHolder<T>::m_Loaders.erase(ToLower(*i));
+	for(a_uint32 i = 0, len =ext.size(); i < len; i++)
+		MediaHolder<T>::m_Loaders.erase(ToLower(ext[i]));
+
 }
 
 template <class T>

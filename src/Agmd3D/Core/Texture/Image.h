@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector2.h>
 #include <Utilities/Color.h>
 #include <Rectangle.h>
-#include <vector>
+#include <Container/Vector.h>
 
 using namespace AgmdUtilities;
 using namespace AgmdMaths;
@@ -60,7 +60,7 @@ namespace Agmd
 
         ivec2                       m_Size;
         TPixelFormat               m_Format;
-        std::vector<unsigned char> m_Pixels;
+		a_vector<unsigned char> m_Pixels;
     };
 
 }

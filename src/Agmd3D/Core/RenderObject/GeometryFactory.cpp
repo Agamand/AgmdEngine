@@ -5,8 +5,8 @@ namespace Agmd
 	#define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 	void GeometryFactory::lathe( BaseSpline* p1,BaseSpline* p2, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index,int splice )
 	{
-		std::vector<vec2> _p1 = p1->getComputedPoints();
-		std::vector<vec2> _p2 = p2->getComputedPoints();
+		a_vector<vec2> _p1 = p1->getComputedPoints();
+		a_vector<vec2> _p2 = p2->getComputedPoints();
 		vec3 center = vec3(_p2[0],0),
 			dir = vec3(_p2[1]-_p2[0],0);
 
@@ -48,7 +48,7 @@ namespace Agmd
 		float x_2 = 1;
 		float y_2 = 1;
 		vec3 o = -vec3(0.5f,0.5f,0);
-		std::vector<vec2> _p1 = p1->getComputedPoints();
+		a_vector<vec2> _p1 = p1->getComputedPoints();
 		vec3 k = vec3(0,0,1);
 		vec3 normal = vec3(0);
 		bool p1close = p1->isClosed();
@@ -92,8 +92,8 @@ namespace Agmd
 		float x_2 = 1;
 		float y_2 = 1;
 		vec3 o = -vec3(0.5f,0.5f,0);
-		std::vector<vec2> _p1 = p1->getComputedPoints();
-		std::vector<vec2> _p2 = p2->getComputedPoints();
+		a_vector<vec2> _p1 = p1->getComputedPoints();
+		a_vector<vec2> _p2 = p2->getComputedPoints();
 		//vec3 ori(_p1[0].x,_p2[0].x,_p1[0].y+_p2[0].y);
 		vec3 ori;//(_p1[0].x,_p1[0].y+_p2[0].x,_p2[0].y);
 		vec3 k = vec3(0,0,1);

@@ -7,7 +7,7 @@
 #include <Core/Declaration.h>
 #include <Core/Driver.h>
 #include <Config/Export.h>
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
@@ -18,7 +18,7 @@ namespace Agmd
 		LineRenderer(BaseSpline* spline);
 		void draw(const mat4& projection) const;
 		void drawPoints(const mat4& projection) const;
-		void onUpdate(std::vector<vec2>& points);
+		void onUpdate(a_vector<vec2>& points);
 		BaseSpline* getSpline(){return m_spline;};
 	private:
 		Color			m_color;

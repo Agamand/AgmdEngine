@@ -11,17 +11,40 @@ ivec2 order[]=
 	ivec2(-1,1),
 	ivec2(-1,-1)
 };
-
-quat GetRotationFor(int divisor, int face)
+quat getRotationFor(int divisor, int face)
 {
-	return quat(glm::rotate(mat4(1),order[face].x*45.f,vec3(1,0,0))/*glm::rotate(mat4(1),order[face].y*45.0f/divisor,vec3(0,1,0))*/);
+	return quat(glm::rotate(mat4(1),order[face].x*45.f,vec3(1,0,0)));
 }
-vec3 GetTranslation(int divisor, int face)
+vec3 getTranslation(int divisor, int face)
 {
 	return vec3(order[face].x*0.25f,order[face].y*0.25f,0);
 }
 
-void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light )
+PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,int face,const mat4& matrix /*= mat4(1)*/,Transform* transform /*= NULL*/,int lod /*= 0*/ ) :
+	MeshNode(model,transform), m_lod(lod), m_controller(controller), m_positionMatrix(matrix),
+	m_face(face),m_textureInit(false),m_needGenerate(false)
+{
+	if(m_controller->m_material)
+		m_material = m_controller->m_material;
+
+
+	std::memset(m_faces,0,sizeof(m_faces));
+	m_divisor = 1;
+	for(int i = 0; i < lod; i++)
+		m_divisor *=2;
+}
+
+
+PlanetTreeNode::~PlanetTreeNode()
+{
+	for(a_uint8 i = 0; i < MAX_FACE; i++)
+		if(m_faces[i])
+			delete m_faces[i];
+
+}
+
+
+void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light )
 {
 	float trigger = 2*m_controller->m_size/m_divisor;
 	vec4 point(0,0,0,1);
@@ -57,6 +80,8 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 
 	if(m_lod >= MAX_LOD)
 	{
+		if(!m_textureInit || m_needGenerate)
+			generateTexture();
 		display.push_back(this);
 		return;
 	}
@@ -65,6 +90,8 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	trigger = trigger > trigger2 ? trigger  :  trigger2;
 	if(offset > trigger)
 	{
+		if(!m_textureInit || m_needGenerate)
+			generateTexture();
 		display.push_back(this);
 		for(int i = 0; i < MAX_FACE; i++)
 		{
@@ -76,34 +103,27 @@ void PlanetTreeNode::FindVisible( Camera*cam, std::vector<DisplayNode*>& display
 	else
 	{
 		bool first_init = false;
-		for(int i = 0; i < MAX_FACE; i++)
+		for(a_uint8 i = 0; i < MAX_FACE; i++)
 		{
 			if(!m_faces[i])
 			{
 				first_init = true;
-				m_faces[i] = new PlanetTreeNode(Planet::s_plane,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),GetTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),new Transform(),m_lod+1);
+				m_faces[i] = new PlanetTreeNode(m_controller->m_model,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),getTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),new Transform(),m_lod+1);
 				//m_faces[i]->Update(m_transform,false,false);
 			}
 			if(!first_init)
 				m_faces[i]->FindVisible(cam,display,light);
-			else display.push_back(this);
+			else
+			{
+				if(!m_textureInit || m_needGenerate)
+					generateTexture();
+				display.push_back(this);
+			}
 		}
 	}
 }
 
-PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,int face,const mat4& matrix /*= mat4(1)*/,Transform* transform /*= NULL*/,int lod /*= 0*/ ) :
-MeshNode(model,transform), m_lod(lod), m_controller(controller), m_positionMatrix(matrix),
-m_face(face),m_textureInit(false)
-{
-	if(Planet::s_mat)
-		m_material = Planet::s_mat;
 
-	m_faces = new PlanetTreeNode*[4];
-	std::memset(m_faces,0,32);
-	m_divisor = 1;
-	for(int i = 0; i < lod; i++)
-		m_divisor *=2;
-}
 
 void PlanetTreeNode::Render( TRenderPass pass ) const
 {
@@ -111,6 +131,7 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 
 	//PlanetTreeNode* node = const_cast<PlanetTreeNode*>(this);
 	//node->generateTexture();
+
 
 	if(!m_material || !m_material->Enable(pass))
 		return;
@@ -133,8 +154,7 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 
 
 
-	if(!m_textureInit)
-		generateTexture();
+
 
 	for(int i = 0; i < MAX_FACE; i++)
 	{
@@ -172,8 +192,11 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 #define  TEX_SIZE 256
 void PlanetTreeNode::generateTexture()
 {
-	m_heightTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
-	m_normalTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP | TEX_NOMIPMAP);
+	if(!m_textureInit)
+	{
+		m_heightTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
+		m_normalTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
+	}
 	Texture::BeginRenderToTexture(m_heightTexture,m_normalTexture);
 
 	Driver& driver = Driver::Get();

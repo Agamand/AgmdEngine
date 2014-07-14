@@ -1,7 +1,7 @@
 #ifndef _QUADTREE_H_
 #define _QUADTREE_H_
 
-#include <vector>
+#include <Container/Vector.h>
 
 #define MAX_QUADFACE 4
 namespace Agmd

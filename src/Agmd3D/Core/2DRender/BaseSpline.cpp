@@ -1,5 +1,6 @@
 #include <Core/2DRender/BaseSpline.h>
-#include <vector>
+#include <Container/Vector.h>
+#include <CommonDefines.h>
 namespace Agmd
 {
 
@@ -11,10 +12,10 @@ namespace Agmd
 		compute();
 	}
 
-	BaseSpline::BaseSpline( const std::vector<vec2>& points ) :_points(NULL),m_localUpdate(false)
+	BaseSpline::BaseSpline( const a_vector<vec2>& points ) :_points(NULL),m_localUpdate(false)
 	{
-		for(std::vector<vec2>::const_iterator itr = points.begin(); itr !=points.end(); itr++)
-			m_controlPoints.push_back(*itr);
+		for(a_uint32 i = 0,len = points.size(); i < len; i++)
+			m_controlPoints.push_back(points[i]);
 		m_controlPointsC = m_controlPoints.size();
 		compute();
 	}
@@ -27,8 +28,8 @@ namespace Agmd
 	void BaseSpline::compute( int pointIndex /*= -1*/ )
 	{
 		m_computedPoints.clear();
-		for(std::vector<vec2>::iterator itr = m_controlPoints.begin(); itr !=m_controlPoints.end(); itr++)
-			m_computedPoints.push_back(*itr);
+		for(a_uint32 i = 0,len = m_controlPoints.size(); i < len; i++)
+			m_computedPoints.push_back(m_controlPoints[i]);
 	}
 
 	void BaseSpline::updatePoint( int pointIndex  /*= -1*/)
@@ -42,21 +43,22 @@ namespace Agmd
 	{
 		vec2* p = NULL;
 		int i = 0;
-		for(std::vector<vec2>::iterator itr = m_controlPoints.begin(); itr !=m_controlPoints.end(); itr++)
+		for(a_uint32 j = 0,len = m_controlPoints.size(); j < len; j++)
 		{
+			vec2* itr = &m_controlPoints[j];
 			if(&(*itr) == ignore)
 				continue;
 			if(!p)
 			{
 				pointindex = i;
-				p = &(*itr);
+				p = itr;
 			}else 
 			{
 				float l = length((*itr)-vec2(pos.x,pos.y));
 				float l2 = length(*p-vec2(pos.x,pos.y));
 				if(l < l2)
 				{
-					p = &(*itr);
+					p = itr;
 					pointindex = i;
 				}
 			}

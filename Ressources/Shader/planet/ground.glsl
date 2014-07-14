@@ -23,12 +23,12 @@ void main()
 #endif
 
 #ifdef _FRAGMENT_
-#include <Core/noise/perlin.glsl>
+//#include <Core/noise/perlin.glsl>
+#include <Core/noise/perlin3.glsl>
 
 #include <common/math.glsl>
 
 uniform mat4 u_position_matrix;
-
 in vec2 v_TexCoord;
 in vec3 v_position;
 
@@ -36,13 +36,15 @@ layout(location = 0) out vec4 out_Color0;
 layout(location = 1) out vec4 out_Color1;
 
 const float const_scalling = 2.0f;
-uniform float u_offset = 0.1f;
+uniform float u_offset = 0.05f;
 float getDisplacement(vec3 normal)
 {
 	float noise = 10.0f *  -.10 * turbulence( .5 * normal );
     float b = 5.0 * pnoise( 0.05 * normal, vec3( 100.0 ) );
 
-	return 10. * noise + b;
+    return 0.1*(10. * noise + b);
+
+	//return  (1.0f *  -.1 * turbulence( .5 * normal )+pnoise(vec3(normal.x,normal.y,normal.z),vec3(1.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(10.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(100.f)))/4*0.1;//10. * noise + b;
 }
 const vec3 off = vec3(-1,0,1)*0.001f;
 const float mult = 1;
@@ -81,7 +83,7 @@ vec3 _getNormal(vec2 angles)
 
     vec3 va = normalize(vx2-vx1);
     vec3 vb = normalize(vy1-vy2);
-    return cross(va,vb);
+    return -cross(va,vb);
 }
 vec3 normal2color(vec3 normal)
 {
@@ -92,9 +94,16 @@ vec3 normal2color(vec3 normal)
 void main ()
 {
 	vec3 position = normalize(vec3(u_position_matrix*vec4(v_position,1.f)));
-	float displacement = getDisplacement(position);
-	out_Color0 = 0.1*vec4(displacement);
-	out_Color1 = vec4(normal2color(_getNormal(cart2sphere(position))),1.0f);
+	float displacement =getDisplacement(position);//(1+Perlin3D(position))/2;
+    if(displacement > 1)
+        out_Color0 = vec4(1.0f,0,0,1.f);
+    else if(displacement < 0)
+         out_Color0 = vec4(0,1.0f,0,1.f);
+    else
+        out_Color0 = vec4(vec3(0,0,1),1.f);
+
+	out_Color0 = vec4(displacement);	
+    out_Color1 = vec4(normal2color(_getNormal(cart2sphere(position))),1.0f);
 	//out_Color1 = getNormal(cart2sphere(position),displacement);
 }
 

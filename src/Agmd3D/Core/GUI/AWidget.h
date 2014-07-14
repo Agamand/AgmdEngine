@@ -14,12 +14,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector2.h>
 #include <CommonDefines.h>
 
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
     class AWidget;
-    typedef std::vector<AWidget*> WidgetVector;
+    typedef a_vector<AWidget*> WidgetVector;
 
     class AGMD3D_EXPORT AWidget
     {

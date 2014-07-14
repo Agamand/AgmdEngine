@@ -81,7 +81,7 @@ namespace Agmd
         SceneMgr* sc = render.GetActiveScene();
 		mat4 inverseCam = inverse(Camera::GetCurrent(CAMERA_3D)->Look());
 		vec3 cameraPosition = vec3(inverseCam*vec4(0,0,0,1));
-        const std::vector<Light*>& lights = sc->GetLights();
+        const a_vector<Light*>& lights = sc->GetLights();
 
         const Light*const*  t = &lights[0];
         

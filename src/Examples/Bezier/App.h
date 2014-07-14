@@ -31,7 +31,7 @@ status : in pause
 #include <Core/2DRender/Bezier.h>
 
 #include <map>
-#include <vector>
+#include <Container/Vector.h>
 
 class App : public Agmd::AgmdApp, public Singleton<App>
 {

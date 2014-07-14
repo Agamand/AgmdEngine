@@ -16,7 +16,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/SmartPtr.h>
 #include <Transform.h>
 
-#include <vector>
+#include <Container/Vector.h>
 using namespace AgmdMaths;
 
 namespace Agmd
@@ -35,10 +35,10 @@ namespace Agmd
         SceneNode(NodeType, Transform*);
         virtual ~SceneNode();
 		virtual bool IsVisible(BoundingBox& bbox) { return true;}
-		virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light) {
+		virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light) {
 			if(!m_children.empty())
-				for(std::vector<SceneNode*>::iterator itr = m_children.begin(); itr != m_children.end(); itr++)
-					(*itr)->FindVisible(cam,display,light);
+				for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
+					m_children[i]->FindVisible(cam,display,light);
 		}
 
 		virtual void Update(Transform* transform, bool updateChildren, bool transformChanged);
@@ -52,7 +52,7 @@ namespace Agmd
 
         Transform* m_transform;
 		NodeType m_type;
-		std::vector<SceneNode*> m_children;
+		a_vector<SceneNode*> m_children;
 		SceneNode* m_parent;
 	};
 

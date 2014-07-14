@@ -1,5 +1,5 @@
 #include <Core/2DRender/Nurbs.h>
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {

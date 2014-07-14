@@ -29,8 +29,8 @@ Model* MeshLoader::LoadFromFile(const std::string& filename)
     std::ifstream file(filename,std::ios::in);
     if (!file)
         throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ObjLoader)");
-	std::vector<Model::TVertex> vertices;
-	std::vector<Model::TIndex> indices;
+	a_vector<Model::TVertex> vertices;
+	a_vector<Model::TIndex> indices;
 	int vertices_count, index;
 	file >> vertices_count;
 	for(int i = 0; i < vertices_count; i++)

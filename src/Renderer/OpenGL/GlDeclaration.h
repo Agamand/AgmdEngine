@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _GLDECLARATION_H_
 
 #include <Core/Declaration.h>
-#include <vector>
+#include <Container/Vector.h>
 
 #include <CommonDefines.h>
 
@@ -27,8 +27,8 @@ namespace Agmd
             TElementType  type;
             unsigned int  offset;
         };
-        typedef std::vector<TElement>      TElementArray;
-        typedef std::vector<TElementArray> TElementMatrix;
+        typedef a_vector<TElement>      TElementArray;
+        typedef a_vector<TElementArray> TElementMatrix;
 
         GLDeclaration();
 

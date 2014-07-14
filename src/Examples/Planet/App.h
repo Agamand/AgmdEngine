@@ -22,7 +22,7 @@ status : in pause
 #include <Agmd3D/Core/SceneObject/Model.h>
 #include <Agmd3D/Core/SceneObject/SceneMgr.h>
 #include <map>
-#include <vector>
+#include <Container/Vector.h>
 
 class App : public Agmd::AgmdApp, public Singleton<App>
 {

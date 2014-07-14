@@ -173,8 +173,8 @@ namespace Agmd
 
         m_Declaration = Driver::Get().CreateVertexDeclaration(Decl);
 
-        std::vector<TVertex> vertices;
-        std::vector<TIndex> indices;
+        a_vector<TVertex> vertices;
+        a_vector<TIndex> indices;
 
         TVertex vertex;
 

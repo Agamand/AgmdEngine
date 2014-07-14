@@ -56,10 +56,10 @@ namespace Agmd
 
         SetPixel(0, 0, color);
 
-        unsigned int Bpp = GetBytesPerPixel(m_Format);
-        std::vector<unsigned char>::iterator Begin = m_Pixels.begin();
-        for (std::vector<unsigned char>::iterator i = Begin + Bpp; i != m_Pixels.end(); i += Bpp)
-            std::copy(Begin, Begin + Bpp, i);
+        unsigned int bpp = GetBytesPerPixel(m_Format);
+        a_uint32 begin = 0;
+		//for (a_uint32 i = begin + bpp,len = m_Pixels.size(); i < len; i += bpp)
+			//std::copy(&m_Pixels[begin], &m_Pixels[begin + bpp], i);
     }
 
     void Image::SetPixel(int x, int y, const unsigned char* pix)

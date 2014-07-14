@@ -476,7 +476,7 @@ namespace Agmd
     {
         GLDeclaration* declaration = new GLDeclaration;
 
-        std::vector<int> offset(count, 0);
+        a_vector<int> offset(count, 0);
         for (const TDeclarationElement* Elt = elt; Elt < elt + count; ++Elt)
         {
             GLDeclaration::TElement CurrentElement;
@@ -642,8 +642,9 @@ namespace Agmd
         if(unit > MAX_TEXTUREUNIT)
             return;
         
-        if(m_TextureBind[unit] == texture)
-            return; // NO CHANGE? -> return!
+		// nope this fail :/
+        //if(m_TextureBind[unit] == texture) 
+            //return; // NO CHANGE? -> return!
 
         const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
 

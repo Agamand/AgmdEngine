@@ -2,7 +2,7 @@
 #define _BASESPLINE_H_
 
 #include <Vector2.h>
-#include <vector>
+#include <Container/Vector.h>
 
 #include <Config/Export.h>
 
@@ -18,21 +18,21 @@ namespace Agmd
 		class UpdateListener
 		{
 		public:
-			virtual void onUpdate(std::vector<vec2>& points) = 0;
+			virtual void onUpdate(a_vector<vec2>& points) = 0;
 		};
 		friend class DrawablePlane;
 		
 		BaseSpline(vec2 points[], int count);
 		
-		BaseSpline(const std::vector<vec2>& points);
+		BaseSpline(const a_vector<vec2>& points);
 		
 		void setUpdateListener(UpdateListener* context);
 
-		std::vector<vec2>& getControlPoints() {
+		a_vector<vec2>& getControlPoints() {
 			return m_controlPoints;
 		}
 
-		std::vector<vec2>& getComputedPoints() {
+		a_vector<vec2>& getComputedPoints() {
 			return m_computedPoints;
 		}
 
@@ -46,8 +46,8 @@ namespace Agmd
 		void addPoint(vec2& p);
 		bool isClosed() const;
 	protected:
-		std::vector<vec2> m_controlPoints;
-		std::vector<vec2> m_computedPoints;
+		a_vector<vec2> m_controlPoints;
+		a_vector<vec2> m_computedPoints;
 		UpdateListener* m_updateListener;
 		int m_controlPointsC;
 		vec2* _points;

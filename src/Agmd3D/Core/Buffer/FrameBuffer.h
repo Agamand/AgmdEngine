@@ -14,13 +14,13 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 #include <Utilities/SmartPtr.h>
 
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
 
-    typedef std::vector<const Texture> TextureMap;
-    typedef std::vector<RenderBuffer*> RenderBufferMap;
+    typedef a_vector<const Texture> TextureMap;
+    typedef a_vector<RenderBuffer*> RenderBufferMap;
 
     class AGMD3D_EXPORT FrameBuffer
     {

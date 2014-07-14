@@ -14,7 +14,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Utilities/Singleton.h>
 
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
@@ -29,7 +29,7 @@ namespace Agmd
         void AddEffect(PostEffectPtr effect);
         bool HaveEffect() const;
     private:
-        std::vector<PostEffectPtr> m_Effects;
+        a_vector<PostEffectPtr> m_Effects;
     };
 
 }

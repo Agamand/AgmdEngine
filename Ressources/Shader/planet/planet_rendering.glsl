@@ -193,12 +193,18 @@ void main()
 	vec3 normal = color2normal(texture(texture2,v_texCoord0).rgb);//_getNormalV3(angles);
 	//normal.z = 0;
 
-	vec4 displacementTable = texelFetch(texture2,ivec2(v_texCoord0.x*1024,v_texCoord0.y*1024),0);
-	float xdiff = (displacementTable.x-displacementTable.y)*100;
-	color = texture(texture1,vec2(offset,0)).rgb;
+	color = texture(texture1,vec2(clamp(offset,0,0.98f),0)).rgb;
 	
-	float lambert =clamp(dot(normal,l),0,1);
-	out_Color = vec4(vec3(lambert),1.0f);
+	float lambert =clamp(dot(normal,l),0,1),
+	lambert2 = clamp(dot(v_normal,l),0,1);
+	out_Color = vec4(vec3(color*lambert),1);
+	//out_Color = vec4(vec3(offset),1);
+
+	//out_Color = vec4(texture(texture0,v_texCoord0));
+		//out_Color = vec4(vec3(min(lambert,lambert2)),1.0f);
+	
+
+	//out_Color = vec4(vec3(lambert*color),1.0f);
 	//out_Color = vec4(vec3(displacementTable.w),1.0f);
 	//out_Color = vec4(texture(texture2,v_texCoord0).rgb,1.0f);
 	//out_Color = vec4(vec3(displacementTable.y-0.1*getDisplacementFor(angles,off.xy))*100,1.0f);

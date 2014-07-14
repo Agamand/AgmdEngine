@@ -31,7 +31,7 @@ namespace Agmd
 		virtual void Render(TRenderPass pass) const = 0;
 		virtual void Draw() const = 0;
 
-		virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light);
+		virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light);
 
 		Material& GetMaterial() const { return *m_material;}
 		const BoundingBox& GetBoundingBox() const { return m_localBBox;};

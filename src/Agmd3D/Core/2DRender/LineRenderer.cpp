@@ -12,8 +12,8 @@ namespace Agmd
 		};
 		Driver& driver = Driver::Get();
 		m_declaration = driver.CreateVertexDeclaration(elements);
-		std::vector<vec2> &points = spline->getComputedPoints();
-		std::vector<vec2> &points_control = spline->getControlPoints();
+		a_vector<vec2> &points = spline->getComputedPoints();
+		a_vector<vec2> &points_control = spline->getControlPoints();
 		if(points.size())
 		{
 			m_vertex = driver.CreateVertexBuffer(points.size(),BUF_STREAM,&points[0]);
@@ -55,17 +55,17 @@ namespace Agmd
 
 
 
-	void LineRenderer::onUpdate( std::vector<vec2>& points )
+	void LineRenderer::onUpdate( a_vector<vec2>& points )
 	{
 		Driver& driver = Driver::Get();
 		
-		std::vector<vec2>& ct_points = m_spline->getControlPoints();
+		a_vector<vec2>& ct_points = m_spline->getControlPoints();
 		if(ct_points.size() <= m_vertexControl.GetCount())
 		{
 			vec2* p= m_vertexControl.Lock();
-			for( std::vector<vec2>::iterator itr =ct_points.begin(); itr != ct_points.end(); itr++)
+			for(a_uint32 i = 0, len = ct_points.size(); i < len;i++)
 			{
-				*(p) = *itr; 
+				*(p) = ct_points[i]; 
 				++p;
 			}
 			m_vertexControl.Unlock();
@@ -80,9 +80,9 @@ namespace Agmd
 		if(points.size() <= m_vertex.GetCount())
 		{
 			vec2* p= m_vertex.Lock();
-			for( std::vector<vec2>::iterator itr =points.begin(); itr != points.end(); itr++)
+			for(a_uint32 i = 0, len = points.size(); i < len;i++)
 			{
-				*(p) = *itr; 
+				*(p) = points[i]; 
 				++p;
 			}
 			m_vertex.Unlock();

@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #define _MEMPOOLALLOCATOR_H_
 
 #include <CommonDefines.h>
-#include <vector>
 #include <queue>
 #include <stack>
 #include <Utilities/SharedPtr.h>

@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 #include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
 
-#include <vector>
+#include <Container/Vector.h>
 
 #define SECONDS_IN_MS 1000
 
@@ -77,7 +77,7 @@ namespace Agmd
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;
         a_uint32 mouseState;
-		std::vector<InputListener*> m_inputListener;
+		a_vector<InputListener*> m_inputListener;
     };
     
 }

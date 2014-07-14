@@ -162,7 +162,7 @@ namespace Agmd
         float x, y = x = 0.0f;
 
 
-        std::vector<TVertex> _vertex;
+        a_vector<TVertex> _vertex;
         int nbChars = 0;
         for (std::string::const_iterator i = str.m_Text.begin(); (i != str.m_Text.end()) && (nbChars < nbCharMax); ++i)
         {
@@ -238,7 +238,7 @@ namespace Agmd
         str.m_VertexBuffer.Release();
         str.m_IndexBuffer.Release();
 
-        std::vector<TIndex> _indices;
+        a_vector<TIndex> _indices;
         for(a_uint32 i = 0, len = _vertex.size()/4; i < len; i++)
         {
             _indices.push_back(0+i*4);
@@ -260,7 +260,7 @@ namespace Agmd
         const TFont& curFont = m_Fonts[str.m_Font];
         const float  ratio   = str.m_Size * 16.0f / curFont.texture.GetSize().x;
 
-        std::vector<int> lengths;
+        a_vector<int> lengths;
 
         ivec2 size(0, str.m_Size);
 

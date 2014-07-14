@@ -21,20 +21,11 @@
       <Filter>Loader</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Demo\PerlinNoise.cpp" />
-    <ClCompile Include="..\..\src\Demo\Planet\Planet.cpp">
-      <Filter>Planet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Demo\Planet\PlanetModel.cpp">
-      <Filter>Planet</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Demo\noiseutils.cpp">
       <Filter>Noiseutils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Demo\simplexnoise.cpp">
       <Filter>Noiseutils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Demo\Planet\PlanetTreeNode.cpp">
-      <Filter>Planet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Demo\Particles\ParticlesEmitter.cpp">
       <Filter>Particle</Filter>
@@ -60,20 +51,11 @@
       <Filter>Loader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Demo\PerlinNoise.h" />
-    <ClInclude Include="..\..\src\Demo\Planet\Planet.h">
-      <Filter>Planet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Demo\Planet\PlanetModel.h">
-      <Filter>Planet</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Demo\noiseutils.h">
       <Filter>Noiseutils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Demo\simplexnoise.h">
       <Filter>Noiseutils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Demo\Planet\PlanetTreeNode.h">
-      <Filter>Planet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Demo\Particles\ParticlesEmitter.h">
       <Filter>Particle</Filter>
@@ -85,9 +67,6 @@
     </Filter>
     <Filter Include="Loader">
       <UniqueIdentifier>{f508311c-bdc3-414a-b744-18b0e6ea42d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Planet">
-      <UniqueIdentifier>{90394e38-f90e-4d75-ba73-423dc6db964d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Noiseutils">
       <UniqueIdentifier>{c2cd4a81-22c0-4b5a-8f0d-7d6bf9048784}</UniqueIdentifier>

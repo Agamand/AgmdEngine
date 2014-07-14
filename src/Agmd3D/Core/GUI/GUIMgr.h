@@ -16,7 +16,7 @@ https://github.com/Agamand/AgmdEngine
 #include <CommonDefines.h>
 #include <Vector2.h>
 
-#include <vector>
+#include <Container/Vector.h>
 
 namespace Agmd
 {
@@ -51,8 +51,8 @@ namespace Agmd
         char var;
     };
 
-    typedef std::vector<EventEntry> VectorEvent;
-    typedef std::vector<AWidget*> VectorWidget;
+    typedef a_vector<EventEntry> VectorEvent;
+    typedef a_vector<AWidget*> VectorWidget;
 
     class AGMD3D_EXPORT GUIMgr : public Singleton<GUIMgr>
     {

@@ -7,7 +7,7 @@
 using namespace Agmd;
 
 #define MAX_FACE 4
-#define MAX_LOD 10
+#define MAX_LOD 6
 #define CONST_DISTANCE 4.0f
 
 class Planet;
@@ -23,20 +23,22 @@ public:
 	};
 	PlanetTreeNode(PlanetModel* model,Planet* controller,int face,const mat4& matrix = mat4(1),Transform* transform = NULL,int lod = 0);
 
-	virtual void Update(Transform* transform, bool updateChildren);
+	virtual void Update(Transform* transform, bool updateChildren,bool transformUpdate);
 
 	virtual void Render(TRenderPass pass) const;
 	virtual void FindVisible(Camera*cam, std::vector<DisplayNode*>& display,std::vector<LightNode*>& light);
-
+	void generateTexture();
 private:
 	int m_lod;
 	int m_divisor;
 	int x,y;
 	PlanetTreeNode** m_faces;
 	Planet* m_controller;
-	Texture m_texture;
+	Texture m_heightTexture;
+	Texture m_normalTexture;
 	mat4 m_positionMatrix;
 	int m_face;
+	bool m_textureInit;
 };
 
 #endif /* _QUADTREENODE_H_ */

@@ -84,7 +84,8 @@ namespace Agmd
 
     enum
     {
-        TEX_NOMIPMAP = 1 << 0
+        TEX_NOMIPMAP = 1 << 0,
+		TEX_WRAP_CLAMP = 1 << 1
     };
 
     enum TCapability

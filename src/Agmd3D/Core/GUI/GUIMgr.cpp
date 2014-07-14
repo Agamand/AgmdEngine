@@ -16,7 +16,7 @@ SINGLETON_IMPL(Agmd::GUIMgr);
 
 namespace Agmd
 {
-    GUIMgr::GUIMgr()
+    GUIMgr::GUIMgr() : m_renderGUI(true)
     {}
 
     GUIMgr::~GUIMgr()
@@ -46,7 +46,8 @@ namespace Agmd
 
     void GUIMgr::DrawGUI() const
     {
-        if(m_vwWidget.empty())
+
+        if( !m_renderGUI || m_vwWidget.empty())
             return;
 
         Driver::Get().Enable(RENDER_ZTEST,false);

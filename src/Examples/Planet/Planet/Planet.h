@@ -3,6 +3,7 @@
 #define _PLANET_H_
 
 #include <core/SceneNode/SceneNode.h>
+#include <Core/Shader/ShaderProgram.h>
 #include "PlanetTreeNode.h"
 #include <map>
 #include <string>
@@ -31,6 +32,7 @@ private:
 	Texture m_texture[MAX_PLANET_FACE];
 	SceneNode* m_root;
 	Material* m_material;
+	ShaderProgram m_ground_program;
 	
 	float m_size;
 };

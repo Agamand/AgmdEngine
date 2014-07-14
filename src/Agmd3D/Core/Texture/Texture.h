@@ -65,7 +65,8 @@ namespace Agmd
 		static void TextureRender(Texture input,ivec2 pos = ivec2(0),ivec2 resolution=ivec2(-1));
         static void TextureRandom();
 
-        static void BeginRenderToTexture(const Texture& texture);
+        static void BeginRenderToTexture(const Texture& texture0);
+		static void BeginRenderToTexture(const Texture& texture0,const Texture& texture1);
         static void EndRenderToTexture();
         static BaseShaderProgram* s_addTexture;
         static BaseShaderProgram* s_prodTexture;

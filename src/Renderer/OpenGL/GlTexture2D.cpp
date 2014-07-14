@@ -15,7 +15,6 @@ https://github.com/Agamand/AgmdEngine
 #include <gl/glu.h>
 #include <gl/glext.h>
 #include <Utilities/PixelUtils.h>
-#include <Debug/New.h>
 
 
 namespace Agmd

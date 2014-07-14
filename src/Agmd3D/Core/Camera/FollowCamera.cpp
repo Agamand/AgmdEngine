@@ -170,7 +170,6 @@ namespace Agmd
 		if(!recvInput)
 			return;
 		float f = pow(2,4/distance);
-		printf("factor %f",f);
         distance += delta/f*0.001f;
 		//if(distance < 0.90f)
 			//distance = 0.90f;

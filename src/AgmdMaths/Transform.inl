@@ -7,6 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 inline Transform::Transform(const vec3& _position, const quat& _rotation, const vec3& _scale) :
+m_UpdateNeeded(false),
 m_parent(NULL),
 m_position(_position),
 m_rotation(_rotation),
@@ -18,6 +19,7 @@ m_globalMatrix(m_localMatrix)
 {}
 
 inline Transform::Transform(Transform* parent, const vec3& _position, const quat& _rotation) :
+m_UpdateNeeded(false),
 m_parent(parent),
 m_position(_position),
 m_rotation(_rotation),
@@ -26,6 +28,7 @@ position(m_position),
 rotation(m_rotation),
 m_localMatrix(translate(mat4(1.0f),m_position)*mat4_cast(m_rotation)*scale(mat4(1),m_scale)),
 m_globalMatrix(m_localMatrix)
+
 {}
 
 inline mat4 Transform::ModelMatrix() const
@@ -41,39 +44,46 @@ inline mat4 Transform::LocalModelMatrix() const
 inline void Transform::SetLocalModelMatrix(const mat4& matrix)
 {
 	m_localMatrix = matrix;
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Update(Transform* t)
 {
 	m_globalMatrix = t ? t->ModelMatrix()*m_localMatrix: m_localMatrix;
+	m_UpdateNeeded=false;
 }
 
 inline void Transform::Rotate(float angle, const vec3& vector)
 {
     //m_rotation = quat(rotate(m_rotation, angle, vector));
 	m_localMatrix = rotate(m_localMatrix, angle, vector);
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Translate(const vec3& move)
 {
     //m_position += move;
 	m_localMatrix = translate(m_localMatrix, move);
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Translate(float move_x, float move_y, float move_z)
 {
     //m_position += vec3(move_x,move_y,move_z);
 	m_localMatrix = translate(m_localMatrix, vec3(move_x,move_y,move_z));
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Rotate(float angle, const vec3& vector, const Transform& base)
 {
     m_localMatrix = inverse(base.m_localMatrix)*rotate(mat4(1.f), angle, vector)*base.m_localMatrix*m_localMatrix;
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Rotate(quat q, const Transform& base)
 {
 	m_localMatrix = inverse(base.m_localMatrix)*mat4_cast(q)*base.m_localMatrix*m_localMatrix;
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::Translate(const vec3& move, const Transform& base)
@@ -89,9 +99,16 @@ inline void Transform::Translate(float move_x, float move_y, float move_z, const
 inline void Transform::SetPosition(const vec3& position)
 {
     m_localMatrix = translate(mat4(1),position);
+	m_UpdateNeeded=true;
 }
 
 inline void Transform::SetRotation(const quat& rotation)
 {
     m_rotation = rotation;
+	m_UpdateNeeded=true;
+}
+
+inline bool Transform::needUpdate() const
+{
+	return m_UpdateNeeded;
 }

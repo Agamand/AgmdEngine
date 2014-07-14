@@ -97,15 +97,15 @@ namespace Agmd
         {
             size = pixels.GetSize();
         }
-
-        try
+		m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
+      /*try
         {
             m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
         }
         catch (const std::exception& E)
         {
             throw LoadingFailed(name, E.what());
-        }
+        }*/
 
         if (name != "")
             ResourceManager::Instance().Add(name, m_Texture);
@@ -282,7 +282,7 @@ namespace Agmd
 
         if(!s_renderTexture)
             s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
-		if(resolution.x  < 0 || resolution.y < 0);
+		if(resolution.x  < 0 || resolution.y < 0)
 			resolution = render.GetScreen();
         render.SetViewPort(pos,resolution);
         render.SetTexture(0,input.GetTexture());
@@ -306,16 +306,33 @@ namespace Agmd
         render.SetCurrentProgram(nullptr);
     }
 
-    void Texture::BeginRenderToTexture(const Texture& texture)
+    void Texture::BeginRenderToTexture(const Texture& texture0)
     {
         if(!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
-        s_framebuffer->SetTexture(texture,COLOR_ATTACHMENT);
+        s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();
     }
+
+	void Texture::BeginRenderToTexture(const Texture& texture0,const Texture& texture1)
+	{
+		 Driver& render = Driver::Get();
+		 render.SetViewPort(ivec2(0),ivec2(texture0.GetSize()));
+		 if(!s_framebuffer)
+			s_framebuffer = Driver::Get().CreateFrameBuffer();
+		a_uint32 flags[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT+1};
+		s_framebuffer->GenerateBufferFlags(flags,2,flags);
+		s_framebuffer->DrawBuffers(2,flags);
+		s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
+		s_framebuffer->SetTexture(texture1,COLOR_ATTACHMENT+1);
+		s_framebuffer->Clear(CLEAR_COLOR);
+		s_framebuffer->Bind();
+	}
+
     void Texture::EndRenderToTexture()
     {
+		Driver::Get().SetViewPort(ivec2(0),ivec2(Driver::Get().GetScreen()));
         if(s_framebuffer)
             s_framebuffer->UnBind();
     }

@@ -14,7 +14,7 @@ namespace Agmd
 		for(int i = 0; i <= splice; i++)
 		{
 			quat rot = rotate(quat(),360*i*offset,dir);
-			for(int j = 0; j < _p1.size(); j++)
+			for(size_t j = 0; j < _p1.size(); j++)
 			{
 				Model::TVertex vertex;
 				vertex.color = -1;
@@ -28,7 +28,7 @@ namespace Agmd
 		int count = _p1.size()-1;
 		for(int i = 0; i < splice;i++)
 		{
-			for(int j = 0; j < _p1.size()-1; j++)
+			for(size_t j = 0; j < _p1.size()-1; j++)
 			{
 				int _i = SELECT(i+1, splice+1), _j = SELECT(j+1, _p1.size());
 				index.push_back(i*(count+1)+j);
@@ -72,7 +72,7 @@ namespace Agmd
 		int count = sizep1-1;
 		for(int i = 0; i < slice; i++)
 		{
-			for(int j = 0; j<  (_p1.size()-1);j++)
+			for(size_t j = 0; j<  (_p1.size()-1);j++)
 			{
 				int _i = SELECT(i+1, slice+1), _j = SELECT(j+1, sizep1);
 				index.push_back(i*(count+1)+j);
@@ -128,9 +128,9 @@ namespace Agmd
 		}
 
 		int count = sizep1-1;
-		for(int i = 0; i < (_p2.size()-1); i++)
+		for(size_t i = 0; i < (_p2.size()-1); i++)
 		{
-			for(int j = 0; j<  (_p1.size()-1);j++)
+			for(size_t j = 0; j<  (_p1.size()-1);j++)
 			{
 				int _i = SELECT(i+1, sizep2), _j = SELECT(j+1, sizep1);
 				index.push_back(i*(count+1)+j);

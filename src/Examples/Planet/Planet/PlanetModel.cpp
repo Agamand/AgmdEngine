@@ -23,6 +23,7 @@ void PlanetModel::CreatePlane(int size, int offset_index, std::vector<Model::TVe
 			vertex.normal = orientation;
 			vertex.position = vec3(matrix*vec4(o.x+offset*clamp(i-1,0,size),o.y+offset*clamp(j-1,0,size),0.f,1.f));
 			vertex.texCoords = vec2((i-1)*offset,(j-1)*offset);
+			//vertex.texCoords = clamp(vertex.texCoords,0,1);
 			vertices.push_back(vertex);
 		}
 	}

@@ -38,6 +38,7 @@ private:
 	int m_divisor;
 	int x,y;
 	PlanetTreeNode** m_faces;
+	bool m_textureInit;
 };
 
 #endif /* _QUADTREENODE_H_ */

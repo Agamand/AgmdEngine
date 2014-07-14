@@ -19,7 +19,7 @@ status : in pause
 using namespace AgmdUtilities;
 int main(int argc, char** argv)
 {
-    try
+   /* try
     {
         App::Instance().Run(argc,argv);
         App::Destroy();
@@ -28,7 +28,9 @@ int main(int argc, char** argv)
 		std::cout << "Fail -> exception" << std::endl;
 		std::cout << e.what() << std::endl;
 		
-    }
+    }*/
+	App::Instance().Run(argc,argv);
+	App::Destroy();
 	system("pause");
     return EXIT_SUCCESS;
 }

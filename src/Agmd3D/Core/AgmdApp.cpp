@@ -23,8 +23,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Tools/Statistics.h>
 #include <Debug/Profiler.h>
 
-#include <chrono>
-
 namespace Agmd
 {
     AgmdApp* AgmdApp::m_Application = NULL;

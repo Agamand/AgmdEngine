@@ -80,223 +80,6 @@ SINGLETON_IMPL(App);
 
 BaseShaderProgram* default_program;
 
-
-double freq = 0.2f;
-double persi = 0.5f;
-int octave = 8;
-void generateNoise(Texture& t,int size,int seed)
-{
-	uint32* img = new uint32[size*size];
-	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(8.f);
-	_perlin.SetFrequency(4.f);
-	_perlin.SetPersistence(0.5f);
-	_perlin.SetSeed(135445);
-	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
-	heightMapBuilder.SetSourceModule (_perlin);
-	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetDestSize (size, size);
-	//heightMapBuilder.SetBounds (2.0, 6.0, 1.0, 5.0);
-	heightMapBuilder.Build(0);
-	/*noise::utils::RendererImage renderer;
-	noise::utils::Image image(size,size);
-	renderer.SetSourceNoiseMap (heightMap);
-	renderer.SetDestImage (image);*/
-	for(int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)	
-		{
-			float a= heightMap.GetValue(i,j);
-			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-			color[0] = a*255; color[1] = a*255; color[2] =a*255;
-			color[3] = 255;
-			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
-		}
-	}
-	Image _img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);;
-	delete img;
-
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
-}
-
-
-
-void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds = vec4(0,1,0,1));
-void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
-{
-	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
-
-	//PerlinNoise p(1,0.1,1,6,seed);
-	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(octave);
-	_perlin.SetFrequency(freq);
-	_perlin.SetPersistence(persi);
-	_perlin.SetSeed(5465463);
-	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
-	heightMapBuilder.SetSourceModule (_perlin);
-	heightMapBuilder.SetDestSize (size, size);
-	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
-	//heightMapBuilder.Build ();
-
-
-	noise::utils::RendererImage renderer;
-	noise::utils::Image image(size,size);
-	renderer.SetSourceNoiseMap (heightMap);
-	renderer.SetDestImage (image);
-	//image.GetValue()
-	Image _img;
-	uint32 * img = new uint32[size*size];
-	float max,min = max = 0;
-	heightMapBuilder.Build(face);
-	renderer.Render ();
-	for(int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)	
-		{
-			noise::utils::Color a= image.GetValue(i,j);
-			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-			color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
-			color[3] = 255;
-			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
-		}
-	}
-	_img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
-	delete img;
-
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
-}
-
-/*
-void generateNoise3d(Texture& t,Texture& normal,float offset, int size,int seed,vec4 bounds = vec4(0,1,0,1));
-void generateNoise3d(Texture& t,Texture& normal,float offset, int size,int seed,vec4 bounds)
-{
-	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
-
-	//PerlinNoise p(1,0.1,1,6,seed);
-	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(octave);
-	_perlin.SetFrequency(freq);
-	_perlin.SetPersistence(persi);
-	_perlin.SetSeed(5465463);
-	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
-	heightMapBuilder.SetSourceModule (_perlin);
-	heightMapBuilder.SetDestSize (size, size);
-	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
-	//heightMapBuilder.Build ();
-
-
-	noise::utils::RendererImage renderer;
-	noise::utils::Image image(size,size);
-	renderer.SetSourceNoiseMap (heightMap);
-	renderer.SetDestImage (image);
-	//image.GetValue()
-	Image _img[6];
-	uint32 * img = new uint32[size*size];
-	float max,min = max = 0;
-	for(int face = 0; face < 6; face++)
-	{
-		heightMapBuilder.Build(face);
-		renderer.Render ();
-
-		for(int i = 0; i < size; i++)
-		{
-			for(int j = 0; j < size; j++)	
-			{
-				noise::utils::Color a= image.GetValue(i,j);
-				unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-				color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
-				color[3] = 255;
-				//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
-			}
-		}
-		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
-	}
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
-
-	for(int face = 0; face < 6; face++)
-	{
-		heightMapBuilder.Build(face);
-		renderer.Render ();
-
-		for(int i = 0; i < size; i++)
-		{
-			for(int j = 0; j < size; j++)	
-			{
-				noise::utils::Color a= image.GetValue(i,j);
-				unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-				color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
-				color[3] = 255;
-				//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
-			}
-		}
-		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
-	}
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
-
-
-
-	delete img;
-
-	
-}*/
-
-
-void generateNoise3d(Texture& t,int size,int seed,vec4 bounds = vec4(0,1,0,1));
-void generateNoise3d(Texture& t, int size,int seed,vec4 bounds)
-{
-	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
-
-	//PerlinNoise p(1,0.1,1,6,seed);
-	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(octave);
-	_perlin.SetFrequency(freq);
-	_perlin.SetPersistence(persi);
-	_perlin.SetSeed(5465463);
-	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
-	heightMapBuilder.SetSourceModule (_perlin);
-	heightMapBuilder.SetDestSize (size, size);
-	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
-	//heightMapBuilder.Build ();
-
-
-	noise::utils::RendererImage renderer;
-	noise::utils::Image image(size,size);
-	renderer.SetSourceNoiseMap (heightMap);
-	renderer.SetDestImage (image);
-	//image.GetValue()
-	Image _img[6];
-	uint32 * img = new uint32[size*size];
-	float max,min = max = 0;
-	for(int face = 0; face < 6; face++)
-	{
-		heightMapBuilder.Build(face);
-		renderer.Render ();
-	
-	for(int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)	
-		{
-			noise::utils::Color a= image.GetValue(i,j);
-			unsigned char* color = (unsigned char*)(&img[i*size+j]); 
-			color[0] =  a.red; color[1] =  a.green; color[2] =a.blue;
-			color[3] = 255;
-			//img[i] = c+((c)<<8)+((c)<<16)+((255)<<24);
-		}
-	}
-		_img[face] = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
-	}
-	delete img;
-
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
-}
-
 const char* gradient ="Texture/gradient_terra_desat.png";
 const char* seed = NULL;
 float layer = 0;
@@ -355,7 +138,7 @@ void App::OnInit()
 {  
     pause = true;
     m_timer = 1000;
-	printf("Loading...");
+	printf("Loading... \n");
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 	pause = true;
@@ -366,7 +149,7 @@ void App::OnInit()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
 	
-	
+	printf("init scene\n");
 	if(gradient)
 		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8);
 	else
@@ -377,57 +160,46 @@ void App::OnInit()
 		_seed = std::atoi(seed);
 	else _seed = rand();
 	
-	for(int i = 0; i <6; i++)
-		generateNoiseFace(ptexture[i],256,0,i,vec4(0,1,0,1));
-	generateNoise3d(t,256,_seed);
 	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
 	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
 	ShaderProgram diffuseShader;
 	diffuseShader.LoadFromFile("Shader/planet/planet_rendering.glsl");
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
 	mat = new Material(planetpipe);
-
-	Texture grass, rock;
-	grass.CreateFromFile("Texture/grass.png",PXF_A8R8G8B8);
-	rock.CreateFromFile("Texture/rock.jpg",PXF_A8R8G8B8);
-
-	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(grass,2,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(rock,3,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 	p = new Planet(ptexture,mat,0.05f);
-	sphere = CreateSphere(1.0f*radius,100,100,M_PI*2,"",PT_TRIANGLELIST);
-	MeshNode* mnode = new MeshNode(sphere,sphereTransform);
    // m_Scene->AddNode(p->getRoot());
+
+	printf("init planet\n");
 	slider_kr = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_kr);
 	slider_kr->SetPosition(1300,800);
 	slider_kr->SetSize(200,20);
-	slider_kr->setValue(&kr,0,0.1);
+	slider_kr->setValue(&kr,0,0.1f);
 
 	slider_km = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_km);
 	slider_km->SetPosition(1300,775);
 	slider_km->SetSize(200,20);
-	slider_km->setValue(&km,0,0.1);
+	slider_km->setValue(&km,0,0.1f);
 
 	slider_esun = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_esun);
 	slider_esun->SetPosition(1300,750);
 	slider_esun->SetSize(200,20);
-	slider_esun->setValue(&eSun,0,30);
+	slider_esun->setValue(&eSun,0,30.f);
 
 	slider_r = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_r);
 	slider_r->SetPosition(1300,725);
 	slider_r->SetSize(200,20);
-	slider_r->setValue(&rgb.r,0,1);
+	slider_r->setValue(&rgb.r,0,1.f);
 
 	slider_g = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_g);
 	slider_g->SetPosition(1300,700);
 	slider_g->SetSize(200,20);
-	slider_g->setValue(&rgb.g,0,1);
+	slider_g->setValue(&rgb.g,0,1.f);
 
 	slider_b = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_b);
@@ -448,6 +220,8 @@ void App::OnInit()
 	slder->setLabel(std::string("Cam Speed"));
 	slder->SetSize(200,20);
 	
+
+	printf("init slider\n");
 
 	
     Driver::Get().SetActiveScene(m_Scene);
@@ -523,16 +297,20 @@ std::vector<LightNode*> l;
 
 void App::OnRender3D()
 {
-
 	Driver& driver = Driver::Get();
+
+
+
+	
+
 	ivec2 screen = getScreen();
 	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
 	displayable.clear();
-	p->getRoot()->Update(NULL,true);
+	p->getRoot()->Update(NULL,true,false);
 	p->getRoot()->FindVisible(cam3D,displayable,l);
-
+	
 	float inner = 1.0f*radius;
 	float outer = 1.025f*radius;
 /*	if(displayable.size())
@@ -541,12 +319,12 @@ void App::OnRender3D()
 	//if(pause)
 	for(int i = 0; i < displayable.size(); i++)
 		displayable[i]->Render(RENDERPASS_DIFFUSE);
+
+	return;
 	vec3 campos = cam3D->GetPosition();
 	//render sphere / planer
 	cam3D->SetActive();
 	driver.SetCullFace(2);
-	
-	
 
 	driver.SetCurrentProgram(lightProgram.GetShaderProgram());
 	sphere->Draw(lightTransform);
@@ -555,11 +333,6 @@ void App::OnRender3D()
 	if(pause)
 		return;
 
-	
-
-
-	
-	
 	driver.SetCullFace(1);
 	int use;
 	float l = length(campos);
@@ -574,7 +347,7 @@ void App::OnRender3D()
 	driver.SetCurrentProgram(skyProgram[use].GetShaderProgram());
 	skyProgram[use].SetParameter("v3CameraPos",campos);
 	skyProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
-	skyProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0), 1.0 / pow(rgb.g, 4.0), 1.0 / pow(rgb.b, 4.0)));
+	skyProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
 
 	skyProgram[use].SetParameter("fCameraHeight",length(campos));
 	skyProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
@@ -604,7 +377,7 @@ void App::OnRender3D()
 	driver.SetCurrentProgram(groundProgram[use].GetShaderProgram());
 	groundProgram[use].SetParameter("v3CameraPos",campos);
 	groundProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
-	groundProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0), 1.0 / pow(rgb.g, 4.0), 1.0 / pow(rgb.b, 4.0)));
+	groundProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
 
 	groundProgram[use].SetParameter("fCameraHeight",length(campos));
 	groundProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
@@ -638,15 +411,17 @@ void App::OnRender3D()
 
 void App::OnRender2D()
 {
+	if(!GUIMgr::Instance().isEnable())
+		return;
     Driver& render = Driver::Get();
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	)("\n Octave : ")(octave)("\n frequency : ")(freq)("\n persistance : ")(persi)
+    /**(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	)
 	("\nkr : ")(kr)
 	("\nkm : ")(km)
 	("\neSun : ")(eSun)
 	("\nrbg.r")(rgb.r)
 	("\nrgb.g")(rgb.g)
 	("\nrgb.b")(rgb.b)
-	("\ng")(g);
+	("\ng")(g);*/
     m_fps->Draw();
 
 }
@@ -661,56 +436,14 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         {
         case 'P':
             pause = !pause;
-			//cam3D->SetRecvInput(pause);
             break;
-		case 107:
-			timespeed *=2.f;
-			break;
-		case 109:
-			timespeed /=2.f;
-			break;
-		case 'C':
-			//generateNoise(test,256,100*rand());
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 103:
-			freq +=0.1f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 100:
-			freq -=0.1f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 104:
-			persi +=0.1f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 101:
-			persi -=0.1f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 105:
-			octave +=1.f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
-		case 102:
-			octave -=1.f;
-			generateNoise3d(t,256,rand());
-			mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_DIFFUSE)| (1<<RENDERPASS_ZBUFFER)));
-			break;
 		case 'E':
-			//node = new MeshNode(p->exportToFile("planet_1.obj",(int)layer));
 			p->exportToFile("planet_1.obj",(int)layer);
-			//node->GetMaterial().SetTexture(color_gradiant,0,(TRenderPass)(1 << RENDERPASS_DIFFUSE));
-			//m_Scene->AddNode(node);
-
 			break;
+		case 'G':
+			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());
+			break;
+		
 		}
 
 
@@ -722,7 +455,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 
 void App::OnClick( int click, vec2 pos )
 {
-	printf("click %i at pos (%f,%f)\n",click,pos.x,pos.y);
+	
 }
 	
 
@@ -898,9 +631,6 @@ Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
 
 void _CreatePlane(vec3 orientation, quat rot,int size, int offset_index, std::vector<Model::TVertex>& vertices, std::vector<Model::TIndex>& index)
 {
-
-
-
     float x_2 = 1;
     float y_2 = 1;
     vec3 o = -vec3(0.5f,0.5f,0);
@@ -971,55 +701,4 @@ Model* App::CreateMetaSphere(float r, int stack, int slice)
 		vertices[i].normal = vertices[i].position;
 	}
 	return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
-
-    /*Model* model = MediaManager::Instance().LoadMediaFromFile<Model>("Model/grid25.mesh");
-	return model;
-	Model::TVertex* vertex = NULL;
-	Model::TIndex* index = NULL;
-    int vc=0,ic=0;
-    model->Export(vertex,index,vc,ic);
-    for(int i = 0; i < vc; i++)
-    {
-        vertex[i].position = r*normalize(vertex[i].position);
-        vertex[i].normal = vertex[i].position;
-    }
-    Model* result = new Model(vertex,vc,index,ic);
-    delete[] vertex;
-    delete[] index;
-    return result;*/
-}
-
-Model* App::CreateTriangle(float size, TPrimitiveType type)
-{
-    std::vector<Model::TVertex> vertices;
-    std::vector<Model::TIndex> index;
-
-    for(int i = 0; i < 3; i++)
-    {
-        Model::TVertex vertex;
-        vertex.color = -1;
-        vertex.normal = vec3(0.0f,0.0f,1.0f);
-        vertex.position = size*vec3(cos(2*M_PI/3*i),sin(2*M_PI/3*i),0.0f);
-        vertex.texCoords = vec2(cos(2*M_PI/3*i),sin(2*M_PI/3*i));
-        vertices.push_back(vertex);
-        index.push_back(i);
-    }
-
-
-    return new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
-}
-
-
-
-
-
-vec2 intersect(vec4 d1, vec4 d2)
-{
-    /*
-    | A B |   | t |  | d2.x-d1.x |
-    | C D | * | s |= | d2.y-d1.y |
-    */
-    vec2 m3(d2.x-d1.x,d2.y-d1.y);
-    mat2 m1(d1.z-d1.x,d1.y-d1.w,d2.z-d2.x,d2.y-d2.w);
-    return m1._inverse()*m3;
 }

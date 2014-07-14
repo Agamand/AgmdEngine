@@ -16,15 +16,15 @@ https://github.com/Agamand/AgmdEngine
 #define AGMD_MAJOR      0
 #define AGMD_MINOR      2
 
-#define SCREEN_WIDTH 1600
-#define SCREEN_HEIGHT 900
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 #if _WIN32 || _WIN64
 #define __WIN_PLATFORM__
 #endif
-
+#define _DISABLE_WARNING_
 #ifdef _DISABLE_WARNING_
-_DEPRECATED_(name) name
+#define _DEPRECATED_(name) name
 #else
 #ifdef GCC
 #define _DEPRECATED_(name) __attribute__((deprecated)) name

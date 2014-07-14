@@ -56,7 +56,7 @@ namespace AgmdMaths
 		void Translate(float move_x, float move_y, float move_z, const Transform& base);
 
 		void Update(Transform* t);
-
+		bool needUpdate() const;
 		const vec3&     position;
         const quat&     rotation;
 

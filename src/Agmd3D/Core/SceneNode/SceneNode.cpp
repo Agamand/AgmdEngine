@@ -28,13 +28,15 @@ namespace Agmd
         return *m_transform;
     }
 
-	void SceneNode::Update(Transform* transform, bool updateChildren )
+	void SceneNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
 	{
-		m_transform->Update(transform);
+		bool transformUpdate = transformChanged || m_transform->needUpdate();
+		if(transformUpdate)
+			m_transform->Update(transform);
 		if(updateChildren && !m_children.empty())
 		{
 			for(std::vector<SceneNode*>::iterator itr = m_children.begin(); itr != m_children.end(); itr++)
-				(*itr)->Update(m_transform,updateChildren);
+				(*itr)->Update(m_transform,updateChildren,transformUpdate);
 		}
 	}
 

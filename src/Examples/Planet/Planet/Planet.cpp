@@ -41,6 +41,7 @@ Planet::Planet(Texture tex[6],Material* mat,float offset) : m_offset(offset),m_s
 		//mat->SetTexture(tex[i],0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)| (1<<RENDERPASS_DIFFUSE)));
 		m_root->AddChild(new PlanetTreeNode(s_plane,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
 	}
+	m_ground_program.LoadFromFile("shader/planet/ground.glsl");
 }
 
 Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )

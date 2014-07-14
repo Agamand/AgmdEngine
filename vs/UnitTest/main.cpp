@@ -6,20 +6,38 @@
 #include <vector>
 
 using namespace AgmdUtilities;
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 
-void bidule()
+void testSphere2Cart2Sphere()
 {
-	int *c = new int(0);
-	SmartPtr<int> a = c;
-	*a = 1;
-	SmartPtr<int> b = c;
-	
-	
-	printf("%i %i",*a,*b);
-	
-	/**/
-	return;
+	for(int i = 0 ; i <= 0; i++)
+	{
+		for(int j = 0; j < 50; j++)
+		{
+			float a = (M_PI*2*i)/50.0f, b = M_PI_2-M_PI*j/50.0f;
+			float x = cosf(a)*cosf(b),
+				y =sinf(a)*cosf(b),
+				z =sinf(b);
+			float a2,b2;
+			/*a2 = atan2f(y,x);
+			if(y < 0)
+				a2 = 2*M_PI+a2;
+			b2 = */
+			b2 =atan2f(z,sqrt(x*x+y*y));
+			a2 = atan2f(y,x);
+			if(x < 0)
+				a2 += 2*M_PI;
+
+			
+			printf("x : %.3f,y : %.3f,z : %.3f, alpha : %.3f , beta : %.3f\n",x,y,z,a,b);
+			if(a-a2 >= 0.001f)
+				printf("i: %.2f j: %.2f   -- a!=a2 %.3f %.3f\n",i/50.f,j/50.f,a,a2);
+			if(b-b2 >= 0.001f)
+				printf("i: %.2f j: %.2f   -- b!=b2 %.3f %.3f\n",i/50.f,j/50.f,b,b2);
+		}
+	}
 }
 
 
@@ -34,7 +52,7 @@ int main(int _a, char** _b)
     //int v = 10;
     //int v2 = 15;
     //SharedPtr<int> a,b,c = a = b = &v;
-	bidule();
+	testSphere2Cart2Sphere();
     /*int d = 10;
     SharedPtr<int>c(&d);
     SharedPtr<int>t(c);

@@ -17,8 +17,8 @@ namespace Agmd
 {
     Light::Light(vec3 pos, vec3 dir, LightType type) :
     m_position(pos), m_dir(dir), m_Type(type), m_ambient(vec3(1)),
-    m_diffuse(vec3(1.0)), m_specular(vec3(1)), m_range(30.0f),m_innerAngle(cos(50.0f/180.0f*M_PI)),
-    m_outerAngle(cos(60.0f/180.0f*M_PI))
+    m_diffuse(vec3(1.0)), m_specular(vec3(1)), m_range(30.0f),m_innerAngle(cosf(50.0f/180.0f*(float)M_PI)),
+    m_outerAngle(cosf(60.0f/180.0f*(float)M_PI))
     {
         LightBuffer lightBuffer;
         lightBuffer.position = vec4(m_position,1.0f);

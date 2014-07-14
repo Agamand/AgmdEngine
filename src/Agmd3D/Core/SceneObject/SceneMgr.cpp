@@ -34,7 +34,7 @@ namespace Agmd
 
 	void SceneMgr::Update()
 	{
-		m_root->Update(NULL,true);
+		m_root->Update(NULL,true,false);
 	}
 
 	void SceneMgr::FindVisible( std::vector<DisplayNode*>& displayable,std::vector<LightNode*>& light)

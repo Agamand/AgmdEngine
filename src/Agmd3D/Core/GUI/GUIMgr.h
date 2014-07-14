@@ -68,16 +68,25 @@ namespace Agmd
         void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);
 		void RemoveWidget(AWidget* widget);
-
+		void Enable(bool enable = true)
+		{
+			m_renderGUI = enable;
+		}
+		bool isEnable() const
+		{
+			return m_renderGUI;
+		}
 
     private:
         GUIMgr();
         ~GUIMgr();
-        
+		
+
     protected:
-        VectorWidget m_vwWidget;
-        VectorEvent  m_veEvents;
-    };
+        VectorWidget	m_vwWidget;
+        VectorEvent		m_veEvents;
+		bool			m_renderGUI;
+	};
 }
 
 #endif /* _GUIMGR_H_ */

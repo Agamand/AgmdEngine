@@ -137,7 +137,7 @@ namespace Agmd
             throw ParserFail("","");
 
         
-        int begin = stream.tellg(), end = 0;
+        std::streamoff begin = stream.tellg(), end = 0;
         while(stream >> str && GetToken(str) != TOKEN_GLSLEND);
         end = -7+stream.tellg();
         stream.seekg(begin,stream.beg);

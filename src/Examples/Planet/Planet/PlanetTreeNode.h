@@ -7,7 +7,7 @@
 using namespace Agmd;
 
 #define MAX_FACE 4
-#define MAX_LOD 6
+#define MAX_LOD 4
 #define CONST_DISTANCE 4.0f
 
 class Planet;

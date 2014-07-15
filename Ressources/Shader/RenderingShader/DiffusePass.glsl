@@ -4,8 +4,9 @@
 #ifdef _VERTEX_
 in vec3 in_Vertex;
 in vec4 in_Color;
+in vec2 in_TexCoord0;
 out vec4 v_Color;
-
+out vec2 v_texCoord0;
 
 void main(){
 	

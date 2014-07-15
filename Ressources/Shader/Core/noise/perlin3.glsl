@@ -3,18 +3,18 @@
 #define _PERLIN3_GLSL_
 
 #include "perlin.glsl"
-
+#include "noise_table.glsl"
 /*
 	LIBnoise conversion c++ to glsl
 
 */
 
 
-float persistence = 0.1f, frequency = 4f, amplitude = 1.f,
+float persistence = 0.5f, frequency = 0.2f, amplitude = 1.f,
 lacunarity = 2.0f;
-int octaves = 8, randomseed = 2+8716*8716;
+int octaves = 8, randomseed = 5465463;
 
-/*
+
 const int X_NOISE_GEN = 1619;
 const int Y_NOISE_GEN = 31337;
 const int Z_NOISE_GEN = 6971;
@@ -94,7 +94,7 @@ float GradientCoherentNoise3D (float x, float y, float z, int seed)
 }
 
 
-*/
+
 float GetValue (float x, float y, float z)
 {
   float value = 0.0;
@@ -118,7 +118,7 @@ float GetValue (float x, float y, float z)
     // Get the coherent-noise value from the input value and add it to the
     // final result.
     seed = int(uint(randomseed + curOctave) & 0xffffffff);
-    signal = pnoise (vec3(nx,ny,nz),vec3(seed));
+    signal = GradientCoherentNoise3D (nx,ny,nz,seed);
     value += signal * curPersistence;
 
     // Prepare the next octave.

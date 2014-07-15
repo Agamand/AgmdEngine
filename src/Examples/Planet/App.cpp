@@ -19,7 +19,7 @@ status : in pause
 #include <Agmd3D/Core/Declaration.h>
 #include <Agmd3D/Core/DeclarationElement.h>
 #include <Agmd3D/Core/ResourceManager.h>
-
+#include <Agmd3D/Core/RenderObject/GeometryFactory.h>
 
 #include <Agmd3D/Core/Buffer/FrameBuffer.h>
 
@@ -78,11 +78,81 @@ using namespace AgmdUtilities;
 
 SINGLETON_IMPL(App);
 
+
+
+
+
+void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds = vec4(0,1,0,1));
+void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
+{
+	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+
+	//PerlinNoise p(1,0.1,1,6,seed);
+	noise::module::Perlin _perlin;
+	_perlin.SetOctaveCount(8);
+	_perlin.SetFrequency(0.2f);
+	_perlin.SetPersistence(0.5f);
+	_perlin.SetSeed(5465463);
+	noise::utils::NoiseMap heightMap;
+	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
+	heightMapBuilder.SetSourceModule (_perlin);
+	heightMapBuilder.SetDestSize (size, size);
+	heightMapBuilder.SetDestNoiseMap (heightMap);
+	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
+	//heightMapBuilder.Build ();
+
+
+	noise::utils::RendererImage renderer;
+	noise::utils::Image image(size,size);
+	renderer.SetSourceNoiseMap (heightMap);
+	renderer.SetDestImage (image);
+	//image.GetValue()
+	Image _img;
+	uint32 * img = new uint32[size*size];
+	float max,min = max = 0;
+	heightMapBuilder.Build(face);
+	renderer.Render ();
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)	
+		{
+			//noise::utils::Color a= image.GetValue(i,j);
+			vec3 pos(-0.5f+i/(float)size,-0.5f+j/(float)size,0.5f);
+			pos = normalize(pos);
+			float value = _perlin.GetValue(pos.x,pos.y,pos.z);
+			a_uint8* c =(a_uint8*)&img[i*size+j];
+			c[0] = c[1] =c[2] =0;
+			if(value > 1)
+				c[0] = 255;
+			else if(value < 0)
+				c[1] = 255;
+			else c[2] = 255;
+			c[3] = 255;
+			
+		}
+	}
+	_img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+	delete img;
+
+	t.CreateFromImage(_img,PXF_A8R8G8B8);
+}
+
+
+
 BaseShaderProgram* default_program;
 
 const char* gradient ="Texture/gradient_mars.png";
 const char* seed = NULL;
 float layer = 0;
+
+
+
+
+
+
+
+
+
 void App::Run(int argc, char** argv)
 {
     if(argc > 0)
@@ -107,6 +177,10 @@ Material* mat;
 
 Model* sphere;
 Model* sphere2;
+Model* plane_test;
+Material* test_material;
+Transform* test_transform;
+
 ShaderProgram groundProgram[2];
 ShaderProgram skyProgram[2];
 
@@ -133,7 +207,6 @@ float km = 0.0015f;
 float eSun = 15.0f;
 vec3 rgb(0.650,0.570,0.475);
 float g = -0.98f;
-Texture ptexture[6];
 void App::OnInit()
 { 
 
@@ -168,8 +241,19 @@ void App::OnInit()
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
 	mat = new Material(planetpipe);
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(ptexture,mat,0.05f);
-   // m_Scene->AddNode(p->getRoot());
+	p = new Planet(mat,0.05f);
+	sphere = GeometryFactory::createSphere(1,80,80,M_PI*2);
+	plane_test = GeometryFactory::createPlane(ivec2(1),ivec2(20));
+	Texture test;
+	test_material = new Material();
+	generateNoiseFace(test,256,0,0);
+	test_transform = new Transform(vec3(1,0,0));
+	MeshNode* n = new MeshNode(plane_test,test_transform);
+	test_material->SetTexture(test,0,(TRenderPass)(1<<RENDERPASS_DIFFUSE));
+	n->setMaterial(test_material);
+
+
+	// m_Scene->AddNode(p->getRoot());
 
 	printf("init planet\n");
 	slider_kr = new ASlider(NULL);
@@ -230,6 +314,7 @@ void App::OnInit()
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
+	m_Scene->AddNode(n);
     m_light->SetRange(2000.0f);	
 	string cubemap[6];
 	for(int i = 0; i < 6; i++)
@@ -318,7 +403,8 @@ void App::OnRender3D()
 	for(int i = 0; i < displayable.size(); i++)
 		displayable[i]->Render(RENDERPASS_DIFFUSE);
 
-	return;
+	if(pause)
+		return;
 	vec3 campos = cam3D->GetPosition();
 	//render sphere / planer
 	cam3D->SetActive();
@@ -328,8 +414,7 @@ void App::OnRender3D()
 	sphere->Draw(lightTransform);
 	driver.SetCurrentProgram(NULL);
 
-	if(pause)
-		return;
+	
 
 	driver.SetCullFace(1);
 	int use;
@@ -468,235 +553,4 @@ void App::OnMove(vec2 pos)
 
 
 
-#define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
-Model* App::CreateSphere(float r,float stack, float slice,float angle, std::string texture, TPrimitiveType type, a_uint32 color)
-{
-    float cosa = 1.0f;
-    float sina = 0.0f;
-    float cosa1 = cos(angle/stack);
-    float sina1 = sin(angle/stack);
-
-    a_vector<Model::TVertex> vertices;
-    a_vector<Model::TIndex> index;
-
-    for(int i = 0; i <= stack; i++)
-    {
-        for(int j = 0; j <= slice; j++)
-        {
-            Model::TVertex vertex;
-            vertex.color = color;
-            vertex.normal = vec3(cos(i*angle/stack)*sin(j*M_PI/slice),sin(i*angle/stack)*sin(j*M_PI/slice), cos(j*M_PI/slice));
-            vertex.position = vec3(r*cos(i*angle/stack)*sin(j*M_PI/slice),r*sin(i*angle/stack)*sin(j*M_PI/slice), r*cos(j*M_PI/slice));
-            vertex.texCoords = vec2(i/stack*angle/(M_PI*2),1.0f-j/slice);
-            vertices.push_back(vertex);
-        }
-    }
-
-    for(int i = 0; i < stack;i++)
-    {
-        for(int j = 0; j < slice; j++)
-        {
-            /*(i,j+1) _ _ (i+1,j+1)
-            |  /|
-            | / |
-            (i,j)|/  |(i+1,j)
-            */
-            int _i = SELECT(i+1,stack+1), _j = SELECT(j+1,(slice+1));
-
-            index.push_back(_i*((int)slice+1)+j);
-            index.push_back(i*((int)slice+1)+j);
-            index.push_back(_i*((int)slice+1)+_j);
-
-            index.push_back(i*((int)slice+1)+j);
-            index.push_back(i*((int)slice+1)+_j);
-            index.push_back(_i*((int)slice+1)+_j);
-        }
-    }
-    Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
-    Texture tex;
-    if(texture.length() != 0)
-        tex.CreateFromFile(texture,PXF_A8R8G8B8);
-
-    return m;
-}
-
-Model* App::CreatePlane(ivec2 size,ivec2 n_poly, std::string texture, TPrimitiveType type)
-{
-
-    a_vector<Model::TVertex> vertices;
-    a_vector<Model::TIndex> index;
-
-    float x_2 = size.x/2.0f;
-    float y_2 = size.y/2.0f;
-
-    vec2 polysize = vec2(size);
-    polysize /= n_poly;
-
-    for(int i = 0; i <= n_poly.x; i++)
-    {
-        for(int j = 0; j <= n_poly.y; j++)
-        {
-            Model::TVertex vertex;
-            vertex.color = -1;
-            vertex.normal = vec3(0.0f,0.0f,1.0f);
-            vertex.position = vec3(i*polysize.x-x_2,j*polysize.y-y_2,0.0f);
-            vertex.texCoords = vec2(i/((float)n_poly.x),j/((float)n_poly.y));
-            vertices.push_back(vertex);
-        }
-    }
-
-    a_uint32 npoly = n_poly.x*n_poly.y;
-
-
-    for(int i = 0; i < n_poly.x;i++)
-    {
-        for(int j = 0; j < n_poly.y; j++)
-        {
-            int _i = SELECT(i+1, n_poly.x+1), _j = SELECT(j+1, n_poly.y+1);
-            index.push_back(i*(n_poly.y+1)+j);
-            index.push_back(_i*(n_poly.y+1)+j);
-            index.push_back(_i*(n_poly.y+1)+_j);
-
-            index.push_back(i*(n_poly.y+1)+j);
-            index.push_back(_i*(n_poly.y+1)+_j);
-            index.push_back(i*(n_poly.y+1)+_j);
-        }
-    }
-
-    Model* m = new Model(&vertices[0],vertices.size(),&index[0],index.size(),type);
-    Texture tex;
-    if(texture.length() != 0)
-        tex.CreateFromFile(texture,PXF_A8R8G8B8);
-
-    return m;
-}
-Model* App::CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type)
-{
-    Model::TVertex vertex[] = 
-    {    
-        //Z+
-        {vec3(size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,0)},
-        {vec3(size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,1)},
-        {vec3(-size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,0)},
-        {vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,1)},
-        //Z-
-        {vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,0)},
-        {vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,0)},
-        {vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,1)},
-        {vec3(size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,1)},
-        //X-
-        {vec3(-size.x/2,-size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(0,0)},
-        {vec3(-size.x/2,size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(1,0)},
-        {vec3(-size.x/2,-size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(0,1)},
-        {vec3(-size.x/2,size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(1,1)},
-        //Y+
-        {vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(0,0)},
-        {vec3(size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(1,0)},
-        {vec3(-size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(0,1)},
-        {vec3(size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(1,1)},
-        //X+
-        {vec3(size.x/2,size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(0,0)},
-        {vec3(size.x/2,-size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(1,0)},
-        {vec3(size.x/2,size.y/2,size.z/2),vec3(1,0,0),-1,vec2(0,1)},
-        {vec3(size.x/2,-size.y/2,size.z/2),vec3(1,0,0),-1,vec2(1,1)},
-        //Y-
-        {vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(0,0)},
-        {vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(1,0)},
-        {vec3(size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(0,1)},
-        {vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(1,1)}
-    };
-
-    a_vector<Model::TIndex> indices;
-
-    for(a_uint32 i = 0; i < 6; i++)
-    {
-        indices.push_back(2+i*4);
-        indices.push_back(1+i*4);
-        indices.push_back(0+i*4);
-
-        indices.push_back(1+i*4);
-        indices.push_back(2+i*4);
-        indices.push_back(3+i*4);
-    }
-    Model* m = new Model(vertex,4*6,&indices[0],indices.size(),type);
-    Texture tex;
-    if(texture.length() != 0)
-        tex.CreateFromFile(texture,PXF_A8R8G8B8);
-
-    return m;
-}
-
-void _CreatePlane(vec3 orientation, quat rot,int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
-{
-    float x_2 = 1;
-    float y_2 = 1;
-    vec3 o = -vec3(0.5f,0.5f,0);
-    int count = size;
-    float offset = 1.f/count;
-	
-    for(int i = 0; i <= count; i++)
-    {
-        for(int j = 0; j <= count; j++)
-        {
-            Model::TVertex vertex;
-            vertex.color = -1;
-            vertex.normal = orientation;
-            vertex.position = orientation/2.f+rot*vec3(o.x+offset*i,o.y+offset*j,0.f);
-            vertex.texCoords = vec2(i*offset,j*offset);
-            vertices.push_back(vertex);
-        }
-    }
-
-
-
-    for(int i = 0; i < count;i++)
-    {
-        for(int j = 0; j < count; j++)
-        {
-            int _i = SELECT(i+1, count+1), _j = SELECT(j+1, count+1);
-            index.push_back(offset_index+i*(count+1)+j);
-            index.push_back(offset_index+_i*(count+1)+j);
-            index.push_back(offset_index+_i*(count+1)+_j);
-
-            index.push_back(offset_index+i*(count+1)+j);
-            index.push_back(offset_index+_i*(count+1)+_j);
-            index.push_back(offset_index+i*(count+1)+_j);
-        }
-    }
-}
-
-
-Model* App::CreateMetaSphere(float r, int stack, int slice)
-{
-	a_vector<Model::TVertex> vertices;
-	a_vector<Model::TIndex> indices;
-
-	quat sRot[] = {
-		quat(),
-		quat(glm::rotate(mat4(1),180.f,vec3(1,0,0))),
-		quat(glm::rotate(mat4(1),90.f,vec3(0,1,0))),
-		quat(glm::rotate(mat4(1),-90.f,vec3(0,1,0))),
-		quat(glm::rotate(mat4(1),-90.f,vec3(1,0,0))),
-		quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
-	};
-
-	vec3 sOri[] = {
-		vec3(0,0,1),
-		vec3(0,0,-1),
-		vec3(1,0,0),
-		vec3(-1,0,0),
-		vec3(0,1,0),
-		vec3(0,-1,0)
-	};
-
-	for(a_uint32 i = 0; i < 6; i++)
-		_CreatePlane(sOri[i],sRot[i],20,vertices.size(),vertices,indices);
-	
-	for(int i = 0; i < vertices.size(); i++)
-	{
-		vertices[i].position = r*normalize(vertices[i].position);
-		vertices[i].normal = vertices[i].position;
-	}
-	return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
-}

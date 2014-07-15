@@ -1,6 +1,6 @@
 
-#ifndef _PËRLIN_GLSL_
-#define _PËRLIN_GLSL_
+#ifndef _PERLIN_GLSL_
+#define _PERLIN_GLSL_
 //
 // GLSL textureless classic 3D noise "cnoise",
 // with an RSL-style periodic variant "pnoise".
@@ -190,4 +190,4 @@ float turbulence( vec3 p ) {
     }
     return t;
 }
-#endif /* _PËRLIN_GLSL_ */ 
+#endif /* _PERLIN_GLSL_ */ 

@@ -42,7 +42,7 @@ void main()
 	position.w = 1.0f;
 	float scale = 1f;
 	
-	position.xyz = normal = normalize(( u_position_matrix * vec4(in_Vertex,1)).xyz);
+	position.xyz = normal = (( u_position_matrix * vec4(in_Vertex,1)).xyz);
 	position.xyz *= scale;
 
 	float displacement = v_displacement =  texture(texture0,clamp(in_TexCoord0,0,1)).x;
@@ -51,11 +51,11 @@ void main()
 	{
 		displacement =displacement*u_offset*const_scalling-0.1f;
 		//position = vec4(0,0,0,1);
-		position += vec4(scale*normal*displacement,0);
+		//position += vec4(scale*normal*displacement,0);
 	}
 	else{
 		displacement = clamp(displacement,0.0f,1.f)*u_offset*const_scalling;
-		position += vec4(scale*normal*displacement,0);
+		//position += vec4(scale*normal*displacement,0);
 	}
 
 
@@ -198,7 +198,7 @@ void main()
 	float lambert =clamp(dot(normal,l),0,1),
 	lambert2 = clamp(dot(v_normal,l),0,1);
 	out_Color = vec4(vec3(color*lambert),1);
-	//out_Color = vec4(vec3(offset),1);
+	out_Color = vec4(vec3(offset),1);
 
 	//out_Color = vec4(texture(texture0,v_texCoord0));
 		//out_Color = vec4(vec3(min(lambert,lambert2)),1.0f);

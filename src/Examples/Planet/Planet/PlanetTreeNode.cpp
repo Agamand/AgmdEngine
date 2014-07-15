@@ -78,7 +78,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 	if(!isVisible)
 		return;
 
-	if(m_lod >= MAX_LOD)
+	if(m_lod >= MAX_LOD || true)
 	{
 		if(!m_textureInit || m_needGenerate)
 			generateTexture();
@@ -189,15 +189,16 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 				m_faces[i]->Update(m_transform,updateChildren);
 		}*/
 }
-#define  TEX_SIZE 256
+#define TEX_SIZE 2048
 void PlanetTreeNode::generateTexture()
 {
 	if(!m_textureInit)
 	{
-		m_heightTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
-		m_normalTexture.Create(ivec2(TEX_SIZE*2),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
+		m_heightTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
+		m_normalTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
 	}
-	Texture::BeginRenderToTexture(m_heightTexture,m_normalTexture);
+	m_controller->m_model->generateTexture(m_heightTexture,m_normalTexture,m_positionMatrix);
+	/*Texture::BeginRenderToTexture(m_heightTexture,m_normalTexture);
 
 	Driver& driver = Driver::Get();
 	driver.SetViewPort(ivec2(0),ivec2(TEX_SIZE*2));
@@ -206,7 +207,7 @@ void PlanetTreeNode::generateTexture()
 	Draw();
 	Texture::EndRenderToTexture();
 	driver.SetCurrentProgram(NULL);
-	driver.SetViewPort(ivec2(0),driver.GetScreen());
+	driver.SetViewPort(ivec2(0),driver.GetScreen());*/
 	m_textureInit = true;
 }
 

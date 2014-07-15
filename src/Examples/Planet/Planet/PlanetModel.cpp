@@ -354,13 +354,12 @@ PlanetModel::PlanetModel(mat4 matrix)
 	initNoise();
 	//this->m_PrimitiveType = PT_PATCHLIST;
 }
-#define TEX_SIZE 256
+
 void PlanetModel::generateTexture( Texture& height, Texture& normal, mat4& postion_matrix )
 {
 	Texture::BeginRenderToTexture(height,normal);
 
 	Driver& driver = Driver::Get();
-	driver.SetViewPort(ivec2(0),ivec2(TEX_SIZE*2));
 	driver.SetCurrentProgram(m_ground_program.GetShaderProgram());
 	m_ground_program.SetParameter("u_position_matrix",postion_matrix);
 	driver.SetTexture(0,m_noiseTable.GetTexture());

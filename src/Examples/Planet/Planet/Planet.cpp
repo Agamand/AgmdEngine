@@ -27,13 +27,13 @@ quat sRot[] = {
 	quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
 };
 
-Planet::Planet(Texture tex[6],Material* mat,float offset) : m_offset(offset),m_size(1.0f)
+Planet::Planet(Material* mat,float offset) : m_offset(offset),m_size(1.0f)
 {
 	
 	m_material = mat;
 	m_model = new PlanetModel(0,0,0);
 	m_root = new SceneNode(ROOT_NODE,new Transform(vec3(0),quat(),vec3(2)));
-	for(int i = 0; i < 1*MAX_PLANET_FACE; i++ )
+	for(int i = 0; i < 1+0*MAX_PLANET_FACE; i++ )
 		m_root->AddChild(new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
 	
 	
@@ -50,7 +50,6 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )
 	}
 	std::ofstream out(filename, std::ios::out);
 	
-
 	int face_order[] ={
 		4,
 		5,

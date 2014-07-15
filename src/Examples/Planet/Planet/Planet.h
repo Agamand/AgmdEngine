@@ -14,7 +14,7 @@ class Planet
 {
 public:
 	friend class PlanetTreeNode;
-	Planet(Texture tex[MAX_PLANET_FACE],Material*mat = NULL, float size = 0);
+	Planet(Material*mat = NULL, float size = 0);
 
 	SceneNode* getRoot()
 	{
@@ -28,7 +28,6 @@ public:
 
 	float m_offset;
 private:
-	Texture m_texture[MAX_PLANET_FACE];
 	SceneNode* m_root;
 	PlanetModel* m_model;
 	Material* m_material;

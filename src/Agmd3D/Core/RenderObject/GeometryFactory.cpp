@@ -1,5 +1,8 @@
 #include <Core/RenderObject/GeometryFactory.h>
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 namespace Agmd
 {
 	#define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
@@ -143,6 +146,223 @@ namespace Agmd
 			}
 		}
 
+	}
+	Model* GeometryFactory::createPlane(ivec2 size,ivec2 n_poly)
+	{
+
+		a_vector<Model::TVertex> vertices;
+		a_vector<Model::TIndex> index;
+
+		float x_2 = size.x/2.0f;
+		float y_2 = size.y/2.0f;
+
+		vec2 polysize = vec2(size);
+		polysize /= n_poly;
+
+		for(int i = 0; i <= n_poly.x; i++)
+		{
+			for(int j = 0; j <= n_poly.y; j++)
+			{
+				Model::TVertex vertex;
+				vertex.color = -1;
+				vertex.normal = vec3(0.0f,0.0f,1.0f);
+				vertex.position = vec3(i*polysize.x-x_2,j*polysize.y-y_2,0.0f);
+				vertex.texCoords = vec2(i/((float)n_poly.x),j/((float)n_poly.y));
+				vertices.push_back(vertex);
+			}
+		}
+
+		a_uint32 npoly = n_poly.x*n_poly.y;
+
+
+		for(int i = 0; i < n_poly.x;i++)
+		{
+			for(int j = 0; j < n_poly.y; j++)
+			{
+				int _i = SELECT(i+1, n_poly.x+1), _j = SELECT(j+1, n_poly.y+1);
+				index.push_back(i*(n_poly.y+1)+j);
+				index.push_back(_i*(n_poly.y+1)+j);
+				index.push_back(_i*(n_poly.y+1)+_j);
+
+				index.push_back(i*(n_poly.y+1)+j);
+				index.push_back(_i*(n_poly.y+1)+_j);
+				index.push_back(i*(n_poly.y+1)+_j);
+			}
+		}
+
+		return new Model(&vertices[0],vertices.size(),&index[0],index.size());
+	}
+	#define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
+
+	Model* GeometryFactory::createSphere(float r,float stack, float slice,float angle)
+	{
+		float cosa = 1.0f;
+		float sina = 0.0f;
+		float cosa1 = cos(angle/stack);
+		float sina1 = sin(angle/stack);
+
+		a_vector<Model::TVertex> vertices;
+		a_vector<Model::TIndex> index;
+
+		for(int i = 0; i <= stack; i++)
+		{
+			for(int j = 0; j <= slice; j++)
+			{
+				Model::TVertex vertex;
+				vertex.normal = vec3(cos(i*angle/stack)*sin(j*M_PI/slice),sin(i*angle/stack)*sin(j*M_PI/slice), cos(j*M_PI/slice));
+				vertex.position = vec3(r*cos(i*angle/stack)*sin(j*M_PI/slice),r*sin(i*angle/stack)*sin(j*M_PI/slice), r*cos(j*M_PI/slice));
+				vertex.texCoords = vec2(i/stack*angle/(M_PI*2),1.0f-j/slice);
+				vertices.push_back(vertex);
+			}
+		}
+
+		for(int i = 0; i < stack;i++)
+		{
+			for(int j = 0; j < slice; j++)
+			{
+				/*(i,j+1) _ _ (i+1,j+1)
+				|  /|
+				| / |
+				(i,j)|/  |(i+1,j)
+				*/
+				int _i = SELECT(i+1,stack+1), _j = SELECT(j+1,(slice+1));
+
+				index.push_back(_i*((int)slice+1)+j);
+				index.push_back(i*((int)slice+1)+j);
+				index.push_back(_i*((int)slice+1)+_j);
+
+				index.push_back(i*((int)slice+1)+j);
+				index.push_back(i*((int)slice+1)+_j);
+				index.push_back(_i*((int)slice+1)+_j);
+			}
+		}
+		return new Model(&vertices[0],vertices.size(),&index[0],index.size());
+	}
+
+
+	Model* GeometryFactory::createBox(vec3 size)
+	{
+		Model::TVertex vertex[] = 
+		{    
+			//Z+
+			{vec3(size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,0)},
+			{vec3(size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(1,1)},
+			{vec3(-size.x/2,size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,0)},
+			{vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,0,1),-1,vec2(0,1)},
+			//Z-
+			{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,0)},
+			{vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,0)},
+			{vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(0,1)},
+			{vec3(size.x/2,size.y/2,-size.z/2),vec3(0,0,-1),-1,vec2(1,1)},
+			//X-
+			{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(0,0)},
+			{vec3(-size.x/2,size.y/2,-size.z/2),vec3(-1,0,0),-1,vec2(1,0)},
+			{vec3(-size.x/2,-size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(0,1)},
+			{vec3(-size.x/2,size.y/2,size.z/2),vec3(-1,0,0),-1,vec2(1,1)},
+			//Y+
+			{vec3(-size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(0,0)},
+			{vec3(size.x/2,size.y/2,-size.z/2),vec3(0,1,0),-1,vec2(1,0)},
+			{vec3(-size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(0,1)},
+			{vec3(size.x/2,size.y/2,size.z/2),vec3(0,1,0),-1,vec2(1,1)},
+			//X+
+			{vec3(size.x/2,size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(0,0)},
+			{vec3(size.x/2,-size.y/2,-size.z/2),vec3(1,0,0),-1,vec2(1,0)},
+			{vec3(size.x/2,size.y/2,size.z/2),vec3(1,0,0),-1,vec2(0,1)},
+			{vec3(size.x/2,-size.y/2,size.z/2),vec3(1,0,0),-1,vec2(1,1)},
+			//Y-
+			{vec3(size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(0,0)},
+			{vec3(-size.x/2,-size.y/2,-size.z/2),vec3(0,-1,0),-1,vec2(1,0)},
+			{vec3(size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(0,1)},
+			{vec3(-size.x/2,-size.y/2,size.z/2),vec3(0,-1,0),-1,vec2(1,1)}
+		};
+
+		a_vector<Model::TIndex> indices;
+
+		for(a_uint32 i = 0; i < 6; i++)
+		{
+			indices.push_back(2+i*4);
+			indices.push_back(1+i*4);
+			indices.push_back(0+i*4);
+
+			indices.push_back(1+i*4);
+			indices.push_back(2+i*4);
+			indices.push_back(3+i*4);
+		}
+		return new Model(vertex,4*6,&indices[0],indices.size());
+	}
+
+	void GeometryFactory::createPlane(vec3 orientation, quat rot,int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index)
+	{
+		float x_2 = 1;
+		float y_2 = 1;
+		vec3 o = -vec3(0.5f,0.5f,0);
+		int count = size;
+		float offset = 1.f/count;
+	
+		for(int i = 0; i <= count; i++)
+		{
+			for(int j = 0; j <= count; j++)
+			{
+				Model::TVertex vertex;
+				vertex.color = -1;
+				vertex.normal = orientation;
+				vertex.position = orientation/2.f+rot*vec3(o.x+offset*i,o.y+offset*j,0.f);
+				vertex.texCoords = vec2(i*offset,j*offset);
+				vertices.push_back(vertex);
+			}
+		}
+
+
+
+		for(int i = 0; i < count;i++)
+		{
+			for(int j = 0; j < count; j++)
+			{
+				int _i = SELECT(i+1, count+1), _j = SELECT(j+1, count+1);
+				index.push_back(offset_index+i*(count+1)+j);
+				index.push_back(offset_index+_i*(count+1)+j);
+				index.push_back(offset_index+_i*(count+1)+_j);
+
+				index.push_back(offset_index+i*(count+1)+j);
+				index.push_back(offset_index+_i*(count+1)+_j);
+				index.push_back(offset_index+i*(count+1)+_j);
+			}
+		}
+	}
+
+
+	Model* GeometryFactory::createMetaSphere(float r, int stack, int slice)
+	{
+		a_vector<Model::TVertex> vertices;
+		a_vector<Model::TIndex> indices;
+
+		quat sRot[] = {
+			quat(),
+			quat(glm::rotate(mat4(1),180.f,vec3(1,0,0))),
+			quat(glm::rotate(mat4(1),90.f,vec3(0,1,0))),
+			quat(glm::rotate(mat4(1),-90.f,vec3(0,1,0))),
+			quat(glm::rotate(mat4(1),-90.f,vec3(1,0,0))),
+			quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
+		};
+
+		vec3 sOri[] = {
+			vec3(0,0,1),
+			vec3(0,0,-1),
+			vec3(1,0,0),
+			vec3(-1,0,0),
+			vec3(0,1,0),
+			vec3(0,-1,0)
+		};
+
+		for(a_uint32 i = 0; i < 6; i++)
+			createPlane(sOri[i],sRot[i],20,vertices.size(),vertices,indices);
+	
+		for(int i = 0; i < vertices.size(); i++)
+		{
+			vertices[i].position = r*normalize(vertices[i].position);
+			vertices[i].normal = vertices[i].position;
+		}
+		return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
 	}
 }
 

@@ -42,8 +42,8 @@ float getDisplacement(vec3 normal)
 	float noise = 10.0f *  -.10 * turbulence( .5 * normal );
     float b = 5.0 * pnoise( 0.05 * normal, vec3( 100.0 ) );
 
-    return 0.1*(10. * noise + b);
-
+    //return 0.1*(10. * noise + b);
+    return GetValue(normal.x,normal.y,normal.z);
 	//return  (1.0f *  -.1 * turbulence( .5 * normal )+pnoise(vec3(normal.x,normal.y,normal.z),vec3(1.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(10.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(100.f)))/4*0.1;//10. * noise + b;
 }
 const vec3 off = vec3(-1,0,1)*0.001f;

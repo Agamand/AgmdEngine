@@ -32,13 +32,12 @@ namespace Agmd
 		virtual void Draw() const = 0;
 
 		virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light);
-
 		Material& GetMaterial() const { return *m_material;}
 		const BoundingBox& GetBoundingBox() const { return m_localBBox;};
 		const BoundingBox& GetGlobalBoundingBox() const { return m_globalBbox;};
 
 		virtual bool IsVisible( BoundingBox& bbox );
-
+		virtual bool Update(Transform* transform, bool updateChildren, bool transformChanged);
 	protected:
 		BoundingBox m_baseBbox;
 		BoundingBox m_localBBox;

@@ -45,4 +45,22 @@ namespace Agmd
 
         return BoundingBox(vec3(min),vec3(max));
     }
+
+	void BoundingBox::mult( const mat4& matrix, const BoundingBox& bbox )
+	{
+		vec4 min = vec4(bbox.m_min,1);
+		vec4 max = vec4(bbox.m_max,1);
+		min = matrix*min;
+		max = matrix*max;
+
+		if(min.x > max.x)
+			std::swap(min.x,max.x);
+		if(min.y > max.y)
+			std::swap(min.y,max.y);
+		if(min.z > max.z)
+			std::swap(min.y,max.y);
+		m_max = vec3(max);
+		m_min = vec3(min);
+	}
+
 }

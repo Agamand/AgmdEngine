@@ -23,7 +23,7 @@ public:
 	};
 	PlanetTreeNode(PlanetModel* model,Planet* controller,int face,const mat4& matrix = mat4(1),Transform* transform = NULL,int lod = 0);
 	~PlanetTreeNode();
-	virtual void Update(Transform* transform, bool updateChildren,bool transformUpdate);
+	virtual bool void Update(Transform* transform, bool updateChildren,bool transformUpdate);
 
 	virtual void Render(TRenderPass pass) const;
 	virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light);

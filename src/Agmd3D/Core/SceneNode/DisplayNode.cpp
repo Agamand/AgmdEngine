@@ -25,5 +25,19 @@ namespace Agmd
 		SceneNode::FindVisible(cam,display,light);
 	}
 
+	bool DisplayNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
+	{
+		bool transformUpdate = SceneNode::Update(transform,updateChildren,transformChanged);
+		
+		if(transformUpdate)
+		{
+			m_localBBox = m_transform->LocalModelMatrix()*m_baseBbox;
+			m_globalBbox = m_transform->ModelMatrix()*m_baseBbox;
+
+		}
+		
+		return transformUpdate;
+	}
+
 }
 

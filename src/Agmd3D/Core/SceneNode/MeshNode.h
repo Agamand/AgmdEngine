@@ -27,6 +27,7 @@ namespace Agmd
 			m_baseModel = model;
 		}
 		void setMaterial( Material* surface_mat );
+		
 	private:
         Model* m_baseModel;
     };

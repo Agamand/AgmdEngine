@@ -28,7 +28,7 @@ namespace Agmd
         vec3 GetMax();
 
         BoundingBox GetTransformedBoundingBox(Transform*);
-
+		void mult(const mat4&, const BoundingBox& bbox);
 
     private:
         vec3 m_max;

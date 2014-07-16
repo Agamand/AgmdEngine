@@ -28,7 +28,7 @@ namespace Agmd
         return *m_transform;
     }
 
-	void SceneNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
+	bool SceneNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
 	{
 		bool transformUpdate = transformChanged || m_transform->needUpdate();
 		if(transformUpdate)
@@ -38,6 +38,7 @@ namespace Agmd
 			for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
 				m_children[i]->Update(m_transform,updateChildren,transformUpdate);
 		}
+		return transformUpdate;
 	}
 
 	bool SceneNode::isEmpty()

@@ -197,4 +197,9 @@ namespace Agmd
 		m_maxDraw = param1;
 	}
 
+	const BoundingBox& Model::getBoundingBox() const
+	{
+		return m_boundingBox;
+	}
+
 }

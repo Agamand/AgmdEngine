@@ -152,8 +152,7 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
 {
 	float trigger = 4*m_controller->m_size/m_divisor/2;
-	bool transformUpdate = transformChanged || m_transform->needUpdate();
-	DisplayNode::Update(transform,updateChildren,transformChanged);
+	bool transformUpdate = DisplayNode::Update(transform,updateChildren,transformChanged);
 	for(int i = 0; i < MAX_FACE; i++)
 	{
 		if(m_faces[i])

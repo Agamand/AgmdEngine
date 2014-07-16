@@ -8,7 +8,7 @@ using namespace Agmd;
 
 #define MAX_FACE 4
 #define MAX_LOD 4
-#define CONST_DISTANCE 4.0f
+#define CONST_DISTANCE 1.0f
 
 class Planet;
 class PlanetTreeNode : public MeshNode

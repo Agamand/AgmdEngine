@@ -21,6 +21,7 @@ status : in pause
 #include <AgmdUtilities/Utilities/Singleton.h>
 #include <Agmd3D/Core/SceneObject/Model.h>
 #include <Agmd3D/Core/SceneObject/SceneMgr.h>
+#include <Agmd3D/Core/GUI/ASlider.h>
 #include <map>
 #include <Container/Vector.h>
 
@@ -61,6 +62,15 @@ private :
     Agmd::Light* m_light;
     a_uint64  m_timer;
     bool pause;
+
+
+	/*
+		UISLider	
+	*/
+
+	Agmd::ASlider*  m_frequencySlider;
+	Agmd::ASlider*  m_octaveCountSlider;
+	Agmd::ASlider*  m_persistanceSlider;
 
 };
 

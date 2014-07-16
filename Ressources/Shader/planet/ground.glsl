@@ -29,22 +29,47 @@ void main()
 #include <common/math.glsl>
 
 uniform mat4 u_position_matrix;
+uniform int u_octave = 1;
+uniform float u_frequency = 1.0f;
+uniform float u_persistance = 1.0f;
 in vec2 v_TexCoord;
 in vec3 v_position;
 
 layout(location = 0) out vec4 out_Color0;
 layout(location = 1) out vec4 out_Color1;
 
-const float const_scalling = 2.0f;
+const float const_scalling = 1.0f;
 uniform float u_offset = 0.05f;
 float getDisplacement(vec3 normal)
 {
-	float noise = 10.0f *  -.10 * turbulence( .5 * normal );
-    float b = 5.0 * pnoise( 0.05 * normal, vec3( 100.0 ) );
 
-    //return 0.1*(10. * noise + b);
-    return GetValue(normal.x,normal.y,normal.z);
+	float noise = 0*10.0f *  -.10 * turbulence( .5 * normal );
+    float b = 10*5.0 * pnoise(0.05*normal,vec3(10));//pnoise( 0.05 * normal, vec3( 100.0 ) );
+
+    return 0.1*(10. * noise + b);
+    //return GetValue(normal.x,normal.y,normal.z);
 	//return  (1.0f *  -.1 * turbulence( .5 * normal )+pnoise(vec3(normal.x,normal.y,normal.z),vec3(1.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(10.f))+pnoise(vec3(normal.x,normal.y,normal.z),vec3(100.f)))/4*0.1;//10. * noise + b;
+}
+
+float _getDisplacement(vec3 position)
+{
+    float value = 0;
+    int octave_count = max(u_octave,1);
+    float curP = u_persistance;
+    vec3 noise = position*u_frequency;
+    float w = 1;
+    int seed = -5656;
+    for (int curOctave = 0; curOctave < octave_count; curOctave++) {
+        value += (pnoise(noise+vec3(seed),vec3(100))+(turbulence( .5 * noise)))*w;
+        value *=2.0f;
+        curP *= u_persistance;
+        w *= 0.5f;
+    }
+    value += 2;
+    return max(0,value)/2.f;
+    //float b = 0.5f-1 * pnoise(position,vec3(10));
+    //float _noise = 10.0f *  -.1f * turbulence( .5 * position );
+    //return (b+_noise);
 }
 const vec3 off = vec3(-1,0,1)*0.001f;
 const float mult = 1;
@@ -75,11 +100,11 @@ vec3 _getNormal(vec2 angles)
     vec3 vy1 = sphere2Cart(angles+off.yx);
     vec3 vy2 = sphere2Cart(angles+off.yz);
 
-    vx1 *=1+getDisplacement(vx1)*u_offset*const_scalling;
-    vx2 *=1+getDisplacement(vx2)*u_offset*const_scalling;
+    vx1 *=1+_getDisplacement(vx1)*u_offset*const_scalling;
+    vx2 *=1+_getDisplacement(vx2)*u_offset*const_scalling;
  
-    vy1 *=1+getDisplacement(vy1)*u_offset*const_scalling;
-    vy2 *=1+getDisplacement(vy2)*u_offset*const_scalling;
+    vy1 *=1+_getDisplacement(vy1)*u_offset*const_scalling;
+    vy2 *=1+_getDisplacement(vy2)*u_offset*const_scalling;
 
     vec3 va = normalize(vx2-vx1);
     vec3 vb = normalize(vy1-vy2);
@@ -94,7 +119,7 @@ vec3 normal2color(vec3 normal)
 void main ()
 {
 	vec3 position = normalize(vec3(u_position_matrix*vec4(v_position,1.f)));
-	float displacement =getDisplacement(position);//(1+Perlin3D(position))/2;
+	float displacement = _getDisplacement(position);//(1+Perlin3D(position))/2;
     if(displacement > 1)
         out_Color0 = vec4(1.0f,0,0,1.f);
     else if(displacement < 0)

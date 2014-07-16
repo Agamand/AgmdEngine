@@ -31,7 +31,7 @@ namespace Agmd
         return m_vPosition;
     }
 
-    void AWidget::SetPosition(ivec2& pos)
+    void AWidget::SetPosition(const ivec2& pos)
     {
         m_vPosition = pos;
         if(m_wParent)
@@ -45,18 +45,15 @@ namespace Agmd
         SetPosition(ivec2(x,y));
     }
 
-    void AWidget::SetSize(ivec2& size)
+    void AWidget::SetSize(const ivec2& size)
     {
-        if(size.x < 0)
-            size.x = 0;
+		m_vSize = size;
+        if(m_vSize.x < 0)
+            m_vSize.x = 0;
 
-        if(size.y < 0)
-            size.y = 0;
+        if(m_vSize.y < 0)
+            m_vSize.y = 0;
 
-        if(size == m_vSize)
-            return;
-
-        m_vSize = size;
         OnSizeChanged();
     }
 

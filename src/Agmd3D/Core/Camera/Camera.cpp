@@ -23,6 +23,7 @@ namespace Agmd
     _speed(100.0f),
     _sensivity(0.2f),
 	recvInput(true),
+	m_frustum(new Frustum()),
     map(NULL)
     {
         m_transform.m_MatProjection = projection;
@@ -32,6 +33,13 @@ namespace Agmd
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
         m_cameraBuffer.Fill(&m_transform,1);
     }
+
+
+	Camera::~Camera()
+	{
+		delete m_frustum;
+	}
+
 
     void Camera::UpdateBuffer(mat4& view)
     {

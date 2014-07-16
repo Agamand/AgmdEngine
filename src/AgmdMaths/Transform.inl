@@ -47,7 +47,7 @@ inline void Transform::SetLocalModelMatrix(const mat4& matrix)
 	m_UpdateNeeded=true;
 }
 
-inline void Transform::Update(Transform* t)
+inline void Transform::Update(Transform* t,bool forcedUpdate)
 {
 	m_globalMatrix = t ? t->ModelMatrix()*m_localMatrix: m_localMatrix;
 	m_UpdateNeeded=false;

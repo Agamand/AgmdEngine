@@ -14,6 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 #include <Vector3.h>
 #include <Matrix4.h>
+#include <Core/Tools/Frustum.h>
 #include <CommonDefines.h>
 
 namespace Agmd
@@ -36,7 +37,7 @@ namespace Agmd
     {
     public:
         Camera(mat4& projection, vec3& pos);
-        virtual ~Camera() {}
+        virtual ~Camera();
 
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnMouseMotion(int x, int y) = 0;
@@ -89,6 +90,7 @@ namespace Agmd
         float _phi;
         mat4* map;
 		bool recvInput;
+		Frustum* m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
 		
     private:

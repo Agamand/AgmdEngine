@@ -19,11 +19,13 @@ public:
 	static void CreatePlane(int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,mat4 matrix);
 	void generateTexture(Texture& height, Texture& normal, mat4& postion_matrix);
 	void initNoise();
+	float m_persistance;
+	float m_octave;
+	float m_frequency;
+	int m_normal_mapping;
 private:
 	Texture m_noiseTable;
-	float m_persistance;
-	int	  m_octave;
-	float m_frequency;
+	
 	ShaderProgram m_ground_program;
 };
 

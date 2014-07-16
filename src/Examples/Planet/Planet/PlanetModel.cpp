@@ -333,7 +333,11 @@ void PlanetModel::initNoise()
 	m_ground_program.LoadFromFile("shader/planet/ground.glsl");
 }
 
-PlanetModel::PlanetModel( int layer, int x, int y ) : Model()
+PlanetModel::PlanetModel( int layer, int x, int y ) : Model(),
+	m_frequency(1.0f),
+	m_persistance(1.0f),
+	m_octave(1.0f),
+	m_normal_mapping(1)
 {
 	a_vector<Model::TVertex> vertices;
 	a_vector<Model::TIndex> indices;
@@ -344,7 +348,11 @@ PlanetModel::PlanetModel( int layer, int x, int y ) : Model()
 	initNoise();
 }
 
-PlanetModel::PlanetModel(mat4 matrix)
+PlanetModel::PlanetModel(mat4 matrix) : Model(),
+	m_frequency(1.0f),
+	m_persistance(1.0f),
+	m_octave(1.0f),
+	m_normal_mapping(1)
 {
 	a_vector<Model::TVertex> vertices;
 	a_vector<Model::TIndex> indices;
@@ -362,6 +370,9 @@ void PlanetModel::generateTexture( Texture& height, Texture& normal, mat4& posti
 	Driver& driver = Driver::Get();
 	driver.SetCurrentProgram(m_ground_program.GetShaderProgram());
 	m_ground_program.SetParameter("u_position_matrix",postion_matrix);
+	m_ground_program.SetParameter("u_frequency",m_frequency);
+	m_ground_program.SetParameter("u_persistance",m_persistance);
+	m_ground_program.SetParameter("u_octave",(int)m_octave);
 	driver.SetTexture(0,m_noiseTable.GetTexture());
 	Draw(NULL);
 	Texture::EndRenderToTexture();

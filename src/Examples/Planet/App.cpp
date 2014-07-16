@@ -93,6 +93,7 @@ void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 	_perlin.SetFrequency(0.2f);
 	_perlin.SetPersistence(0.5f);
 	_perlin.SetSeed(5465463);
+	_perlin.SetNoiseQuality(noise::NoiseQuality::QUALITY_FAST);
 	noise::utils::NoiseMap heightMap;
 	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
 	heightMapBuilder.SetSourceModule (_perlin);
@@ -141,11 +142,12 @@ void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 
 BaseShaderProgram* default_program;
 
-const char* gradient ="Texture/gradient_mars.png";
+const char* gradient ="Texture/gradient_terra_desat.png";//superb_terra.png";
 const char* seed = NULL;
 float layer = 0;
 
-
+Texture height_test;
+Texture normal_test;
 
 
 
@@ -199,9 +201,10 @@ ASlider* slider_kr,
 	 *slider_g,
 	 *slider_b,
 	 *slider_gg;
-Planet* p;
+Planet* planet;
+PlanetModel* pmodel;
 vec3 pos ;
-float radius = 1.0f;
+float radius = 100.0f;
 float kr = 0.0025f;
 float km = 0.0015f;
 float eSun = 15.0f;
@@ -213,7 +216,7 @@ void App::OnInit()
     pause = true;
     m_timer = 1000;
 	printf("Loading... \n");
-	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
+	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 	pause = true;
     //DeferredRendering* mode = new DeferredRendering(getScreen());
@@ -241,7 +244,11 @@ void App::OnInit()
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
 	mat = new Material(planetpipe);
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(mat,0.05f);
+	pmodel = new PlanetModel(0,0,0);
+	pmodel->m_persistance = 1.f;
+	pmodel->m_octave = 1.0f;
+	pmodel->m_frequency = 3.f;
+	planet = new Planet(pmodel,mat,0.05f);
 	sphere = GeometryFactory::createSphere(1,80,80,M_PI*2);
 	plane_test = GeometryFactory::createPlane(ivec2(1),ivec2(20));
 	Texture test;
@@ -256,18 +263,19 @@ void App::OnInit()
 	// m_Scene->AddNode(p->getRoot());
 
 	printf("init planet\n");
-	slider_kr = new ASlider(NULL);
-	GUIMgr::Instance().AddWidget(slider_kr);
-	slider_kr->SetPosition(1300,800);
-	slider_kr->SetSize(200,20);
-	slider_kr->setValue(&kr,0,0.1f);
+	
+	m_persistanceSlider = new ASlider("Persistance",ivec2(1300.0f,800.0f),ivec2(200,20));
+	m_persistanceSlider->setValue(&pmodel->m_persistance,0.0f,2.0f);
+	GUIMgr::Instance().AddWidget(m_persistanceSlider);
 
-	slider_km = new ASlider(NULL);
-	GUIMgr::Instance().AddWidget(slider_km);
-	slider_km->SetPosition(1300,775);
-	slider_km->SetSize(200,20);
-	slider_km->setValue(&km,0,0.1f);
+	m_octaveCountSlider = new ASlider("Octave",ivec2(1300.f,750.0f),ivec2(200,20));
+	m_octaveCountSlider->setValue(&pmodel->m_octave,0.0f,2.0f);
+	GUIMgr::Instance().AddWidget(m_octaveCountSlider);
 
+	m_frequencySlider = new ASlider("Frequency",ivec2(1300.0f,700.0f),ivec2(200,20));
+	m_frequencySlider->setValue(&pmodel->m_frequency,0.0f,2.0f);
+	GUIMgr::Instance().AddWidget(m_frequencySlider);
+	/*
 	slider_esun = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slider_esun);
 	slider_esun->SetPosition(1300,750);
@@ -297,7 +305,7 @@ void App::OnInit()
 	slider_gg->SetPosition(1300,650);
 	slider_gg->SetSize(200,20);
 	slider_gg->setValue(&g,-1,-0.5);
-
+	*/
 
 	ASlider *slder = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slder);
@@ -314,7 +322,6 @@ void App::OnInit()
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
-	m_Scene->AddNode(n);
     m_light->SetRange(2000.0f);	
 	string cubemap[6];
 	for(int i = 0; i < 6; i++)
@@ -328,7 +335,7 @@ void App::OnInit()
 	box->SetTexture(tex_cubemap);
     //m_Scene->SetSkybox(box);
 	boox = box;
-	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),120.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
 	cam2D = new FPCamera(m_MatProj2D);
 	groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
@@ -345,8 +352,8 @@ void App::OnInit()
 	slder->SetPosition(1300,550);
 	slder->setLabel(std::string("Offset"));
 	slder->SetSize(200,20);
-	slder->setValue(&p->m_offset,-0.1,0.1);
-
+	slder->setValue(&planet->m_offset,-0.1,0.1);
+	
 	slder = new ASlider(NULL);
 	GUIMgr::Instance().AddWidget(slder);
 	slder->SetPosition(1300,500);
@@ -358,11 +365,13 @@ void App::OnInit()
 
 	printf("Loading end");
 	skyTransform->Scale(1.025,1.025,1.025);
+	skyTransform->Scale(100.0f,100.0f,100.0f);
 	//skyTransform->Translate(2,0,0);
 	skyTransform->Update(NULL);
 
 	lightTransform->Translate(50,50,50);
 	lightTransform->Scale(0.2,0.2,0.2);
+	sphereTransform->Scale(100.0f,100.0f,100.0f);
 	
 	lightTransform->Update(NULL);
 	pos = cam3D->GetPosition();
@@ -380,6 +389,8 @@ a_vector<LightNode*> l;
 
 void App::OnRender3D()
 {
+	//pmodel->generateTexture(height_test,normal_test,translate(mat4(1),vec3(0,0,0.5f)));
+	//return;
 	Driver& driver = Driver::Get();
 	
 
@@ -391,8 +402,8 @@ void App::OnRender3D()
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
 	displayable.clear();
-	p->getRoot()->Update(NULL,true,false);
-	p->getRoot()->FindVisible(cam3D,displayable,l);
+	planet->getRoot()->Update(NULL,true,false);
+	planet->getRoot()->FindVisible(cam3D,displayable,l);
 	
 	float inner = 1.0f*radius;
 	float outer = 1.025f*radius;
@@ -521,10 +532,13 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             pause = !pause;
             break;
 		case 'E':
-			p->exportToFile("planet_1.obj",(int)layer);
+			planet->exportToFile("planet_1.obj",(int)layer);
 			break;
 		case 'G':
 			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());
+			break;
+		case 'N':
+			pmodel->m_normal_mapping = pmodel->m_normal_mapping ? 0 : 1;
 			break;
 		
 		}

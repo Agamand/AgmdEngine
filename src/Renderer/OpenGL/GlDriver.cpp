@@ -714,10 +714,14 @@ namespace Agmd
 			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
 
-
-			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  flags & TEX_NOMIPMAP ? GL_LINEAR : GL_LINEAR_MIPMAP_LINEAR);
-			
+			if(flags & TEX_USE_FILTER)
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  flags & TEX_NOMIPMAP ? GL_LINEAR : GL_LINEAR_MIPMAP_LINEAR);
+			}else
+			{
+				
+			}
 			
             if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
                 glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);

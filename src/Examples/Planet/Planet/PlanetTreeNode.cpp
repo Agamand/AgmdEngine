@@ -46,15 +46,15 @@ PlanetTreeNode::~PlanetTreeNode()
 
 void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light )
 {
-	float trigger = 2*m_controller->m_size/m_divisor;
+	float trigger = CONST_DISTANCE*2*m_controller->m_size/m_divisor;
 	vec4 point(0,0,0,1);
 	mat4 view = cam->GetView();
 	point = m_positionMatrix*point;
 	vec3 real_point = normalize(vec3(point));
 	vec4 points[] = {vec4(0,0,0,1),vec4(-0.5f,-0.5f,0,1),vec4(0.5f,-0.5f,0,1),vec4(-0.5f,0.5f,0,1),vec4(0.5f,0.5f,0,1)};
 	point = m_positionMatrix*point;
-	float distance = trigger+1;
-	bool isVisible = false;
+	float distance = -1;
+	bool isVisible = true;
 	vec3 camDirection = vec3(0,0,1);
 	for(a_uint8 i = 0; i < 5; i++)
 	{
@@ -71,14 +71,14 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 		points[i] = view*m_transform->ModelMatrix()*vec4(real_point,1.0f);
 		
 		float len = length(vec3(points[i]));
-		if(len < distance)
+		if(len < distance || distance < 0.0f)
 			distance = len;
 	}
-	float trigger2 = length(points[0]-points[1]);
+	float trigger2 = 0;//length(points[0]-points[1]);
 	if(!isVisible)
 		return;
 
-	if(m_lod >= MAX_LOD || true)
+	if(m_lod >= MAX_LOD)
 	{
 		if(!m_textureInit || m_needGenerate)
 			generateTexture();
@@ -108,7 +108,9 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 			if(!m_faces[i])
 			{
 				first_init = true;
-				m_faces[i] = new PlanetTreeNode(m_controller->m_model,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),getTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),new Transform(),m_lod+1);
+				Transform*t = new Transform();
+				t->Update(m_transform);
+				m_faces[i] = new PlanetTreeNode(m_controller->m_model,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),getTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),t,m_lod+1);
 				//m_faces[i]->Update(m_transform,false,false);
 			}
 			if(!first_init)
@@ -140,6 +142,7 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 	m_material->setParameter("u_offset",(float)m_controller->m_offset);
 	m_material->setParameter("u_position_matrix",m_positionMatrix);
 	m_material->setParameter("u_face",m_face);
+	m_material->setParameter("u_normal_mapping",m_controller->m_model->m_normal_mapping);
 	driver.SetTexture(0,m_heightTexture.GetTexture());
 	driver.SetTexture(2,m_normalTexture.GetTexture());
 	Draw();
@@ -151,11 +154,6 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 	float trigger = 4*m_controller->m_size/m_divisor/2;
 	bool transformUpdate = transformChanged || m_transform->needUpdate();
 	DisplayNode::Update(transform,updateChildren,transformChanged);
-
-
-
-
-
 	for(int i = 0; i < MAX_FACE; i++)
 	{
 		if(m_faces[i])
@@ -189,13 +187,13 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 				m_faces[i]->Update(m_transform,updateChildren);
 		}*/
 }
-#define TEX_SIZE 2048
+#define TEX_SIZE 256
 void PlanetTreeNode::generateTexture()
 {
 	if(!m_textureInit)
 	{
-		m_heightTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
-		m_normalTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP);
+		m_heightTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP | TEX_USE_FILTER);
+		m_normalTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP | TEX_USE_FILTER);
 	}
 	m_controller->m_model->generateTexture(m_heightTexture,m_normalTexture,m_positionMatrix);
 	/*Texture::BeginRenderToTexture(m_heightTexture,m_normalTexture);

@@ -10,7 +10,7 @@ float getDisplacement(vec3 normal)
 
 	return 10. * noise + b;
 }
-const float const_scalling = 2.0f;
+const float const_scalling = 1.0f;
 #ifdef _VERTEX_
 in vec3 in_Vertex;
 in vec3 in_Normal;
@@ -42,7 +42,7 @@ void main()
 	position.w = 1.0f;
 	float scale = 1f;
 	
-	position.xyz = normal = (( u_position_matrix * vec4(in_Vertex,1)).xyz);
+	position.xyz = normal = normalize(( u_position_matrix * vec4(in_Vertex,1)).xyz);
 	position.xyz *= scale;
 
 	float displacement = v_displacement =  texture(texture0,clamp(in_TexCoord0,0,1)).x;
@@ -50,12 +50,11 @@ void main()
 	if(in_TexCoord0.x < 0.0f || in_TexCoord0.y < 0.0f || in_TexCoord0.x > 1.0f || in_TexCoord0.y > 1.0f)
 	{
 		displacement =displacement*u_offset*const_scalling-0.1f;
-		//position = vec4(0,0,0,1);
-		//position += vec4(scale*normal*displacement,0);
+		position += vec4(scale*normal*displacement,0);
 	}
 	else{
 		displacement = clamp(displacement,0.0f,1.f)*u_offset*const_scalling;
-		//position += vec4(scale*normal*displacement,0);
+		position += vec4(scale*normal*displacement,0);
 	}
 
 
@@ -86,6 +85,7 @@ uniform sampler2D texture1;
 uniform sampler2D texture2;
 uniform float u_divisor = 1;
 uniform float u_offset = 0.05f;
+uniform int u_normal_mapping = 1;
 
 float texMult = 30f;
 
@@ -180,40 +180,46 @@ vec3 getNormalv3(vec2 angles,float displacement)
     return cross(va,vb);
 }
 
-
+bool isInFrustrum(vec4 position)
+{
+	if(position.x < -1.0f || position.x > 1.0f || position.y < -1.0f || position.y > 1.0f)
+		return false;
+	return true;
+}
 
 
 
 const vec3 l = normalize(vec3(1,1,0));
 void main()
 {
+	vec4 screen_pos = gl_FragCoord;
+	screen_pos.x /=1920.0f;
+	screen_pos.y /=1080.0f;
+	if(!isInFrustrum(screen_pos))
+	{
+		discard;
+		//out_Color = vec4(gl_FragCoord.y,0,0,1);
+		return;
+	}
+
+
 	vec3 color;
 	float offset = texture(texture0,v_texCoord0).x;//getDisplacement(v_normal); //rgb2grayscale(color = texture(texture0,v_texCoord0).rgb);
 	vec2 angles = cart2sphere(v_normal);
 	vec3 normal = color2normal(texture(texture2,v_texCoord0).rgb);//_getNormalV3(angles);
 	//normal.z = 0;
 
-	color = texture(texture1,vec2(clamp(offset,0,0.98f),0)).rgb;
+	color = texture(texture1,vec2(clamp(offset,0,1),0)).rgb;
 	
 	float lambert =clamp(dot(normal,l),0,1),
 	lambert2 = clamp(dot(v_normal,l),0,1);
-	out_Color = vec4(vec3(color*lambert),1);
-	out_Color = vec4(vec3(offset),1);
-
-	//out_Color = vec4(texture(texture0,v_texCoord0));
-		//out_Color = vec4(vec3(min(lambert,lambert2)),1.0f);
-	
-
-	//out_Color = vec4(vec3(lambert*color),1.0f);
-	//out_Color = vec4(vec3(displacementTable.w),1.0f);
-	//out_Color = vec4(texture(texture2,v_texCoord0).rgb,1.0f);
-	//out_Color = vec4(vec3(displacementTable.y-0.1*getDisplacementFor(angles,off.xy))*100,1.0f);
-	//out_Color = vec4(vec3(displacementTable.x-0.1*getDisplacementFor(angles,off.zy))*100,1.0f);
-	//out_Color = vec4(vec3(displacementTable.w-0.1*getDisplacementFor(angles,off.yz))*100,1.0f);
-	//out_Color = vec4(vec3(displacementTable.z-0.1*getDisplacementFor(angles,off.yx))*100,1.0f);
-	//out_Color = vec4(texture(texture1,v_texCoord0).rgb,1.0f);
-	//out_Color = displacementTable;
-	//out_Color =vec4(xdiff,0,0,1);
-	//out_Color = vec4(vec3(getDiff(angles).x),1);
+	//show color with normal mapping
+	if(u_normal_mapping > 0)
+		out_Color = vec4(vec3(color*lambert),1);
+	//show color without normal mapping
+	else
+		out_Color = vec4(vec3(color*lambert2),1);
+	//show heigth map
+	//out_Color = vec4(vec3(offset),1);
 }
 #endif

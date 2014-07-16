@@ -14,7 +14,7 @@ class Planet
 {
 public:
 	friend class PlanetTreeNode;
-	Planet(Material*mat = NULL, float size = 0);
+	Planet(PlanetModel* model = NULL,Material*mat = NULL, float size = 0);
 
 	SceneNode* getRoot()
 	{

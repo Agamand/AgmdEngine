@@ -40,10 +40,10 @@ namespace Agmd
         const ivec2& GetAbsPostion();
         const ivec2& GetPosition();
 
-        void SetPosition(ivec2& pos);
+        void SetPosition(const ivec2& pos);
         void SetPosition(a_uint32 x, a_uint32 y);
 
-        void SetSize(ivec2& size);
+        void SetSize(const ivec2& size);
         void SetSize(a_uint32 x, a_uint32 y);
 
         void AddChild(AWidget* child);

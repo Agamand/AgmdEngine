@@ -31,6 +31,25 @@ namespace Agmd
 		m_gstring = new GraphicString();
     }
 
+	ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ):
+	AWidget(NULL),
+	hold(false),
+	m_transform(new Transform()),
+	m_value(&m_cursor),
+	m_max(1.0f),
+	m_min(0),
+	m_label(label),
+	updateListener(NULL)
+	{
+		SetSize(size);
+		BuildSlider();
+		//m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
+		m_Program.LoadFromFile("Shader/gui/slider.glsl");
+		m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
+		m_gstring = new GraphicString();
+		SetPosition(position);
+	}
+
     ASlider::~ASlider()
     {}
 

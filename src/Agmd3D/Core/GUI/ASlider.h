@@ -31,7 +31,8 @@ namespace Agmd
 		};
 
         ASlider(AWidget* parent);
-        virtual ~ASlider();
+        ASlider(const std::string& label, const ivec2& position, const ivec2& size);
+		virtual ~ASlider();
         virtual a_uint32 OnClick(ivec2& pos_mouse, a_uint32 mouseState);
         virtual a_uint32 OnMouseOver();
         virtual a_uint32 OnMouseMove(ivec2& pos_diff, a_uint32 mouseState);

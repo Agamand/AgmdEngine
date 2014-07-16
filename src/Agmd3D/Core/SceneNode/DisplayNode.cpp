@@ -12,6 +12,7 @@ namespace Agmd
 			m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
 		else
 			m_material = mat;
+		
 	}	
 
 	bool DisplayNode::IsVisible( BoundingBox& bbox )
@@ -21,7 +22,10 @@ namespace Agmd
 
 	void DisplayNode::FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light)
 	{
+		if(!cam->isInFrustrum(m_globalBbox))
+			return;
 		display.push_back(this);
+		
 		SceneNode::FindVisible(cam,display,light);
 	}
 
@@ -29,13 +33,11 @@ namespace Agmd
 	{
 		bool transformUpdate = SceneNode::Update(transform,updateChildren,transformChanged);
 		
-		if(transformUpdate)
+		if(transformUpdate) // need implement : m_baseBbox = modelbbox + (all children bbox), actually is only m_baseBbox = modelbbox
 		{
-			m_localBBox = m_transform->LocalModelMatrix()*m_baseBbox;
-			m_globalBbox = m_transform->ModelMatrix()*m_baseBbox;
-
+			m_localBBox.mult( m_transform->LocalModelMatrix(),m_baseBbox);
+			m_globalBbox.mult( m_transform->ModelMatrix(),m_baseBbox);
 		}
-		
 		return transformUpdate;
 	}
 

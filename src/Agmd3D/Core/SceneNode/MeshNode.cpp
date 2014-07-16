@@ -10,7 +10,8 @@ namespace Agmd
     DisplayNode(transform,NULL),
     m_baseModel(basemodel)
     {
-		m_localBBox = m_baseModel->getBoundingBox();	
+		m_baseBbox = m_baseModel->getBoundingBox();
+		Update(NULL,false,true);
 	}
     MeshNode::~MeshNode()
     {}

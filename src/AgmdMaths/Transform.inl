@@ -62,7 +62,6 @@ inline void Transform::Rotate(float angle, const vec3& vector)
 
 inline void Transform::Translate(const vec3& move)
 {
-    //m_position += move;
 	m_localMatrix = translate(m_localMatrix, move);
 	m_UpdateNeeded=true;
 }

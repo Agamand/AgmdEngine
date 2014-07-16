@@ -22,6 +22,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Quaternion.h>
 #include <Transform.h>
 
+#include <Core/Tools/BoundingBox.h>
+
 #include <vector>
 
 using namespace AgmdMaths;

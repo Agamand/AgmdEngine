@@ -9,10 +9,15 @@ https://github.com/Agamand/AgmdEngine
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
+
 #include <Core/Driver.h>
 #include <Core/Camera/Camera.h>
+#include <Core/Tools/BoundingBox.h>
+
 #include <Container/Vector.h>
+
 #include <Debug/Profiler.h>
+
 
 namespace Agmd
 {
@@ -23,13 +28,12 @@ namespace Agmd
     _speed(100.0f),
     _sensivity(0.2f),
 	recvInput(true),
-	m_frustum(new Frustum()),
+	m_frustum(new Frustum(projection)),
     map(NULL)
     {
         m_transform.m_MatProjection = projection;
         m_transform.m_MatView = mat4(1.0f);
         m_cameraBuffer = Driver::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
-        //m_cameraBuffer.SwapBuffers();
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
         m_cameraBuffer.Fill(&m_transform,1);
     }
@@ -116,6 +120,12 @@ namespace Agmd
 	const std::string Camera::ToString()
 	{
 		return "Camera(Abstract)";
+	}
+
+	bool Camera::isInFrustrum( const BoundingBox& boundingBox )
+	{
+		const BoundingBox bbox = boundingBox.getTransformedBoundingBox(m_transform.m_MatView);
+		return m_frustum->IsIn(bbox);
 	}
 
 	Camera* Camera::s_currentCamera2D = NULL;

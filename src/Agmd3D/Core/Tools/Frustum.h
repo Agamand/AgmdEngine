@@ -26,12 +26,13 @@ namespace Agmd
         MAKE_SINGLETON(Frustum);
     public:
         Frustum();
+		Frustum(const mat4& clipMatrix);
         ~Frustum();
 
-        void Setup(mat4& clipMatrix);
+		void Setup(const mat4& clipMatrix);
 
-        bool IsIn(vec3& pos);
-        bool IsIn(BoundingBox& box);
+        bool IsIn(const vec3& pos) const;
+        bool IsIn(const BoundingBox& box) const;
 
     private:
 

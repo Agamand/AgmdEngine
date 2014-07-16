@@ -61,6 +61,7 @@ namespace Agmd
         bool UnProject(vec3& mousepos);
 		const mat4& GetView() { return m_transform.m_MatView;} 
 		virtual const std::string ToString();
+		bool isInFrustrum(const BoundingBox& boundingBox);
 		void SetRecvInput(bool active = true)
 		{
 			recvInput = active;

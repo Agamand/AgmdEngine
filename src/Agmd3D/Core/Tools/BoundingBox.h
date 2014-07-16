@@ -10,24 +10,25 @@ https://github.com/Agamand/AgmdEngine
 #define _BOUNDINGBOX_H_
 
 #include <Vector3.h>
-#include <Transform.h>
+#include <Config/Export.h>
 #include <Container/Vector.h>
 
 using namespace AgmdMaths;
 
 namespace Agmd
 {
-    class BoundingBox
-    {
+
+    class AGMD3D_EXPORT BoundingBox{
     public:
+		BoundingBox();
         BoundingBox(const a_vector<vec3>& vertex_pos);
-		BoundingBox(const vec3, const vec3);
-        BoundingBox();
+		BoundingBox(const vec3&, const vec3&);
+        
 
-        vec3 GetMin();
-        vec3 GetMax();
+		vec3 GetMin() const;
+		vec3 GetMax() const;
 
-        BoundingBox GetTransformedBoundingBox(Transform*);
+		const BoundingBox getTransformedBoundingBox(const mat4& mat) const;
 		void mult(const mat4&, const BoundingBox& bbox);
 
     private:
@@ -35,6 +36,4 @@ namespace Agmd
         vec3 m_min;
     }; 
 }
-
-
 #endif /* _BOUNDINGBOX_H_ */

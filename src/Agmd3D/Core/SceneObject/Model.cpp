@@ -14,7 +14,9 @@ https://github.com/Agamand/AgmdEngine
 #include <Debug/New.h>
 #include <Core/MatStack.h>
 #include <Core/ResourceManager.h>
-
+#include <Vector3.h>
+#include <Core/Tools/BoundingBox.h>
+#include <CommonDefines.h>
 namespace Agmd
 {
 	Model::Model()
@@ -22,12 +24,47 @@ namespace Agmd
 	Model::Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type) :
     m_PrimitiveType(type),m_indexed(true), m_maxDraw(-1)
     {
+		vec3 _max, _min;
+		if(verticesCount > 0)
+		{
+			_max = _min = vertices[0].position;
+
+			for(a_uint32 i = 1; i < verticesCount;i++)
+			{
+				_min.x = min(_min.x,vertices[i].position.x);
+				_min.y = min(_min.y,vertices[i].position.y);
+				_min.z = min(_min.z,vertices[i].position.z);
+
+				_max.x = max(_max.x,vertices[i].position.x);
+				_max.y = max(_max.y,vertices[i].position.y);
+				_max.z = max(_max.z,vertices[i].position.z);
+			}
+
+			m_boundingBox = BoundingBox(_min,_max);
+		}
 		GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }
 
-
 	Model::Model( TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type/*= PT_TRIANGLELIST*/ ) : m_PrimitiveType(type),m_indexed(false)
 	{
+		vec3 _max, _min;
+		if(verticesCount > 0)
+		{
+			_max = _min = vertices[0].position;
+
+			for(a_uint32 i = 1; i < verticesCount;i++)
+			{
+				_min.x = min(_min.x,vertices[i].position.x);
+				_min.y = min(_min.y,vertices[i].position.y);
+				_min.z = min(_min.z,vertices[i].position.z);
+
+				_max.x = max(_max.x,vertices[i].position.x);
+				_max.y = max(_max.y,vertices[i].position.y);
+				_max.z = max(_max.z,vertices[i].position.z);
+			}
+
+			m_boundingBox = BoundingBox(_min,_max);
+		}
 		GenerateBuffer(vertices,verticesCount,type);
 	}
 	void Model::GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type)
@@ -100,7 +137,7 @@ namespace Agmd
     {
         a_vector<vec3> normal;
         normal.resize(verticesCount,vec3(0.0f));
-       std::vector<vec4> tangent;
+		std::vector<vec4> tangent;
         tangent.resize(verticesCount,vec4(0.0f));
 
         if(!type)

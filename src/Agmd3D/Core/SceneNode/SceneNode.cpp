@@ -18,6 +18,7 @@ namespace Agmd
 		if(!transform)
 			m_transform = new Transform();
 		else m_transform = transform;
+		Update(NULL,false,true);
 	}
 
     SceneNode::~SceneNode()

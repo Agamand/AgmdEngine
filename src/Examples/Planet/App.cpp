@@ -254,13 +254,13 @@ void App::OnInit()
 	Texture test;
 	test_material = new Material();
 	generateNoiseFace(test,256,0,0);
-	test_transform = new Transform(vec3(1,0,0));
-	MeshNode* n = new MeshNode(plane_test,test_transform);
+	test_transform = new Transform(vec3(0,0,0));
+	MeshNode* n = new MeshNode(sphere,test_transform);
 	test_material->SetTexture(test,0,(TRenderPass)(1<<RENDERPASS_DIFFUSE));
 	n->setMaterial(test_material);
 
-
-	// m_Scene->AddNode(p->getRoot());
+		//m_Scene->AddNode(n);
+	m_Scene->AddNode(planet->getRoot());
 
 	printf("init planet\n");
 	
@@ -335,7 +335,7 @@ void App::OnInit()
 	box->SetTexture(tex_cubemap);
     //m_Scene->SetSkybox(box);
 	boox = box;
-	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),120.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
 	cam2D = new FPCamera(m_MatProj2D);
 	groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
@@ -378,11 +378,7 @@ void App::OnInit()
 }
 float timespeed= 1.0f;
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
-{
-	
-	if(pause)
-		return;
-}
+{}
 
 a_vector<DisplayNode*> displayable;
 a_vector<LightNode*> l;
@@ -390,13 +386,8 @@ a_vector<LightNode*> l;
 void App::OnRender3D()
 {
 	//pmodel->generateTexture(height_test,normal_test,translate(mat4(1),vec3(0,0,0.5f)));
-	//return;
+	return;
 	Driver& driver = Driver::Get();
-	
-
-
-	
-
 	ivec2 screen = getScreen();
 	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
 	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
@@ -508,14 +499,14 @@ void App::OnRender2D()
 	if(!GUIMgr::Instance().isEnable())
 		return;
     Driver& render = Driver::Get();
-    /**(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	)
+	*(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed)
 	("\nkr : ")(kr)
 	("\nkm : ")(km)
 	("\neSun : ")(eSun)
 	("\nrbg.r")(rgb.r)
 	("\nrgb.g")(rgb.g)
 	("\nrgb.b")(rgb.b)
-	("\ng")(g);*/
+	("\ng")(g);
     m_fps->Draw();
 
 }

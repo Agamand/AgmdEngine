@@ -1,7 +1,16 @@
 #ifndef _QUADTREE_H_
 #define _QUADTREE_H_
 
-#include <Container/Vector.h>
+/*
+============================================================================
+Agmd3D - 3D Engine
+Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+https://github.com/Agamand/AgmdEngine
+
+status : abandon
+============================================================================
+*/
+
 
 #define MAX_QUADFACE 4
 namespace Agmd
@@ -23,7 +32,7 @@ namespace Agmd
 
 	protected:
 		
-		QuadTree* m_children;
+		QuadTree* m_children[MAX_QUADFACE];
 	};
 }
 

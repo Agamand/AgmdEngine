@@ -3,6 +3,7 @@
 #include <Core/SceneObject/Material.h>
 #include <Core/Driver.h>
 #include <Core/Tools/Fast2DSurface.h>
+#include <Core/Tools/BoundingBox.h>
 
 ivec2 order[]=
 {
@@ -32,6 +33,41 @@ PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,int face,c
 	m_divisor = 1;
 	for(int i = 0; i < lod; i++)
 		m_divisor *=2;
+
+	vec4 points[] = {vec4(-0.5f,-0.5f,0,1),vec4(0.5f,-0.5f,0,1),vec4(-0.5f,0.5f,0,1),vec4(0.5f,0.5f,0,1)};
+	
+	for(a_uint8 i = 0; i < 4; i++)
+	{
+		points[i] = m_positionMatrix*points[i];
+		points[i] = vec4(normalize(vec3(points[i])),1);
+	}
+
+	vec3 _min, _max = _min = vec3(points[0]);
+	_min.x = min(_min.x,points[0].x*(1+0.1f));
+	_min.y = min(_min.y,points[0].y*(1+0.1f));
+	_min.z = min(_min.z,points[0].z*(1+0.1f));
+	_max.x = max(_max.x,points[0].x*(1+0.1f));
+	_max.y = max(_max.y,points[0].y*(1+0.1f));
+	_max.z = max(_max.z,points[0].z*(1+0.1f));
+
+	for(a_uint8 i = 1; i < 4; i++)
+	{
+		_min.x = min(_min.x,points[i].x);
+		_min.y = min(_min.y,points[i].y);
+		_min.z = min(_min.z,points[i].z);
+		_max.x = max(_max.x,points[i].x);
+		_max.y = max(_max.y,points[i].y);
+		_max.z = max(_max.z,points[i].z);
+
+		_min.x = min(_min.x,points[i].x*(1+0.1f));
+		_min.y = min(_min.y,points[i].y*(1+0.1f));
+		_min.z = min(_min.z,points[i].z*(1+0.1f));
+		_max.x = max(_max.x,points[i].x*(1+0.1f));
+		_max.y = max(_max.y,points[i].y*(1+0.1f));
+		_max.z = max(_max.z,points[i].z*(1+0.1f));
+	}
+	m_baseBbox = BoundingBox(_min,_max);
+	Update(NULL,false,true);
 }
 
 
@@ -46,6 +82,8 @@ PlanetTreeNode::~PlanetTreeNode()
 
 void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light )
 {
+	if(!cam->isInFrustrum(m_globalBbox))
+		return;
 	float trigger = CONST_DISTANCE*2*m_controller->m_size/m_divisor;
 	vec4 point(0,0,0,1);
 	mat4 view = cam->GetView();
@@ -78,11 +116,11 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 	if(!isVisible)
 		return;
 
-	if(m_lod >= MAX_LOD)
+	if(m_lod >= MAX_LOD|| true)
 	{
 		if(!m_textureInit || m_needGenerate)
 			generateTexture();
-		display.push_back(this);
+		DisplayNode::FindVisible(cam,display,light);
 		return;
 	}
 	
@@ -92,7 +130,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 	{
 		if(!m_textureInit || m_needGenerate)
 			generateTexture();
-		display.push_back(this);
+		DisplayNode::FindVisible(cam,display,light);
 		for(int i = 0; i < MAX_FACE; i++)
 		{
 			if(m_faces[i])
@@ -111,7 +149,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 				Transform*t = new Transform();
 				t->Update(m_transform);
 				m_faces[i] = new PlanetTreeNode(m_controller->m_model,m_controller,m_face,m_positionMatrix*translate(mat4(1.0f),getTranslation(m_divisor,i))*scale(mat4(1),vec3(0.5f)),t,m_lod+1);
-				//m_faces[i]->Update(m_transform,false,false);
+				m_faces[i]->Update(m_transform,false,true);
 			}
 			if(!first_init)
 				m_faces[i]->FindVisible(cam,display,light);
@@ -119,7 +157,7 @@ void PlanetTreeNode::FindVisible( Camera*cam, a_vector<DisplayNode*>& display, a
 			{
 				if(!m_textureInit || m_needGenerate)
 					generateTexture();
-				display.push_back(this);
+				DisplayNode::FindVisible(cam,display,light);
 			}
 		}
 	}
@@ -149,7 +187,7 @@ void PlanetTreeNode::Render( TRenderPass pass ) const
 	m_material->Disable();
 }
 
-void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
+bool PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
 {
 	float trigger = 4*m_controller->m_size/m_divisor/2;
 	bool transformUpdate = DisplayNode::Update(transform,updateChildren,transformChanged);
@@ -158,6 +196,7 @@ void PlanetTreeNode::Update( Transform* transform, bool updateChildren, bool tra
 		if(m_faces[i])
 			m_faces[i]->Update(m_transform,updateChildren,transformUpdate);
 	}
+	return transformUpdate;
 
 	/*vec4 point(0,0,0,1); //center
 	vec4 points[] = {vec4(0,0,0,1),vec4(-0.5f,-0.5f,0,1),vec4(0.5f,-0.5f,0,1),vec4(-0.5f,0.5f,0,1),vec4(0.5f,0.5f,0,1)};

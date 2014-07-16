@@ -37,7 +37,7 @@ Planet::Planet(PlanetModel* model, Material* mat,float offset) : m_offset(offset
 	Transform* t = new Transform(vec3(0),quat(),vec3(1));
 	t->Scale(m_size,m_size,m_size);
 	m_root = new SceneNode(ROOT_NODE,t);
-	for(int i = 0; i < 1*MAX_PLANET_FACE; i++ )
+	for(int i = 0; i < 1+0*MAX_PLANET_FACE; i++ )
 		m_root->AddChild(new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
 	
 	

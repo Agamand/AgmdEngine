@@ -43,7 +43,7 @@ namespace Agmd
 
 		virtual bool Update(Transform* transform, bool updateChildren, bool transformChanged);
         Transform& GetTransform();
-		void AddChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this;}
+		void AddChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->Update(m_transform,true,true);}
 		NodeType GetType() const {return m_type;}
 		bool isEmpty();
 		void clear();

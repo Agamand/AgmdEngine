@@ -331,6 +331,7 @@ void PlanetModel::initNoise()
 	Image img = Image(ivec2(16),PXF_A8R8G8B8,pixel);
 	m_noiseTable.CreateFromImage(img,PXF_A8R8G8B8,TEX_NOMIPMAP|TEX_WRAP_CLAMP);
 	m_ground_program.LoadFromFile("shader/planet/ground.glsl");
+	m_diffuse_program.LoadFromFile("shader/planet/diffuse_ground.glsl");
 }
 
 PlanetModel::PlanetModel( int layer, int x, int y ) : Model(),
@@ -363,7 +364,7 @@ PlanetModel::PlanetModel(mat4 matrix) : Model(),
 	//this->m_PrimitiveType = PT_PATCHLIST;
 }
 
-void PlanetModel::generateTexture( Texture& height, Texture& normal, mat4& postion_matrix )
+void PlanetModel::generateTexture(const Texture& height, const Texture& normal, const mat4& postion_matrix )
 {
 	Texture::BeginRenderToTexture(height,normal);
 
@@ -374,6 +375,20 @@ void PlanetModel::generateTexture( Texture& height, Texture& normal, mat4& posti
 	m_ground_program.SetParameter("u_persistance",m_persistance);
 	m_ground_program.SetParameter("u_octave",(int)m_octave);
 	driver.SetTexture(0,m_noiseTable.GetTexture());
+	Draw(NULL);
+	Texture::EndRenderToTexture();
+	driver.SetCurrentProgram(NULL);
+	driver.SetViewPort(ivec2(0),driver.GetScreen());
+}
+
+void PlanetModel::generateTexture( const Texture& diffuse,const Texture& heightmap, const Texture& gradient)
+{
+	Texture::BeginRenderToTexture(diffuse);
+
+	Driver& driver = Driver::Get();
+	driver.SetCurrentProgram(m_diffuse_program.GetShaderProgram());
+	driver.SetTexture(0,heightmap.GetTexture());
+	driver.SetTexture(1,gradient.GetTexture());
 	Draw(NULL);
 	Texture::EndRenderToTexture();
 	driver.SetCurrentProgram(NULL);

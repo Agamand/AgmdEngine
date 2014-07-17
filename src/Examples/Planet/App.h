@@ -25,6 +25,9 @@ status : in pause
 #include <map>
 #include <Container/Vector.h>
 
+#define SCREEN_WIDTH_PLANET 1920
+#define SCREEN_HEIGHT_PLANET 1080
+
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
     MAKE_SINGLETON(App);
@@ -36,7 +39,8 @@ public:
     static Agmd::Model* CreateMetaSphere(float r, int stack, int slice);
     void Run(int argc, char** argv);
 private :
-
+	App() : AgmdApp(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
+	{}
     virtual void OnInit();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
@@ -71,7 +75,7 @@ private :
 	Agmd::ASlider*  m_frequencySlider;
 	Agmd::ASlider*  m_octaveCountSlider;
 	Agmd::ASlider*  m_persistanceSlider;
-
+	bool m_animated;
 };
 
 #endif // APP_H

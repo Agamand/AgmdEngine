@@ -22,7 +22,7 @@ public:
 		return m_root;
 	}
 	
-	Model* exportToFile(const std::string& filename,int precision = 0);
+	Model* exportToFile(const std::string& filename,int precision = 0, int textureSize = 1024);
 	void modelChange()
 	{
 		for(a_uint32 i = 0; i < MAX_PLANET_FACE; i++)

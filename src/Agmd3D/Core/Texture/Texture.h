@@ -75,12 +75,14 @@ namespace Agmd
         static FrameBuffer* s_framebuffer;
         static void BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face = -1);
         static void EndRenderToCubeMap();
+		void updatePixelFromTexture();
 
     private :
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
         void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
 		
+
 		SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };
 

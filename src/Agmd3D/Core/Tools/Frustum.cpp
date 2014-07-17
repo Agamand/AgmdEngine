@@ -9,7 +9,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Tools/Frustum.h>
 #include <Core/Tools/BoundingBox.h>
 
-SINGLETON_IMPL(Agmd::Frustum);
 namespace Agmd
 {
     Frustum::Frustum()

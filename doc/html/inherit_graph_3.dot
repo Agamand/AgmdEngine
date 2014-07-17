@@ -1,9 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="Agmd::AWidget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_a_widget.html"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Agmd::AWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_a_window.html"];
-}

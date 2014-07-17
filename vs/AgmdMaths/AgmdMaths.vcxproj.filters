@@ -20,5 +20,6 @@
     <None Include="..\..\src\AgmdMaths\Plane.inl" />
     <None Include="..\..\src\AgmdMaths\Transform.inl" />
     <None Include="..\..\src\AgmdMaths\Matrix4.inl" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -447,6 +447,7 @@
     <None Include="..\..\src\Agmd3D\Core\Driver.inl">
       <Filter>Core</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\Buffer\BaseBuffer.cpp">

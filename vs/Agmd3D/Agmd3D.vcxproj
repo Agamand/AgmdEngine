@@ -176,6 +176,7 @@
     <None Include="..\..\src\Agmd3D\Core\Driver.inl" />
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl" />
     <None Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.inl" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Agmd3D\Core\2DRender\Bezier.cpp" />

@@ -12,6 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/PixelUtils.h>
 #include <Debug/Exception.h>
 #include <Debug/New.h>
+#include <DevIL/il.h>
 
 
 namespace Agmd
@@ -198,6 +199,18 @@ namespace Agmd
                                  &m_Pixels[(m_Size.x - i - 1 + j * m_Size.x) * Bpp]);
             }
     }
+
+	void Image::saveToFile( const std::string& filename )
+	{
+		a_uint32 texture;
+		ilGenImages(1, &texture);
+		ilBindImage(texture);
+		ilTexImage(m_Size.x,m_Size.y,0,4,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
+		//ilSetPixels(0,0,0,m_Size.x,m_Size.y,0,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
+		ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
+		ilSaveImage(filename.c_str());
+		ilDeleteImages(1, &texture);
+	}
 
 
 }

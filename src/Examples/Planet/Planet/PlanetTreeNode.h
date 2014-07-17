@@ -21,6 +21,8 @@ public:
 		BOTTOM_LEFT,
 		BOTTOM_RIGHT
 	};
+	friend class Planet;
+
 	PlanetTreeNode(PlanetModel* model,Planet* controller,int face,const mat4& matrix = mat4(1),Transform* transform = NULL,int lod = 0);
 	~PlanetTreeNode();
 	virtual bool update(Transform* transform, bool updateChildren,bool transformUpdate);

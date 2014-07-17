@@ -340,6 +340,7 @@
     <None Include="..\..\src\AgmdMaths\Matrix4.inl" />
     <None Include="..\..\src\AgmdMaths\Plane.inl" />
     <None Include="..\..\src\AgmdMaths\Transform.inl" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

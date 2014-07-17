@@ -21,9 +21,8 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-    class Frustum : public Singleton<Frustum>
+    class Frustum
     {
-        MAKE_SINGLETON(Frustum);
     public:
         Frustum();
 		Frustum(const mat4& clipMatrix);

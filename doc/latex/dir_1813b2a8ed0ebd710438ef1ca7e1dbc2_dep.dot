@@ -1,9 +1,0 @@
-digraph "src/AgmdNetwork/Packet" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_d6c8eed0d85060071eff8f91cac5c02b {
-    graph [ bgcolor="#ddddee", pencolor="black", label="AgmdNetwork" fontname="Helvetica", fontsize="10", URL="dir_d6c8eed0d85060071eff8f91cac5c02b.html"]
-  dir_1813b2a8ed0ebd710438ef1ca7e1dbc2 [shape=box, label="Packet", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_1813b2a8ed0ebd710438ef1ca7e1dbc2.html"];
-  }
-}

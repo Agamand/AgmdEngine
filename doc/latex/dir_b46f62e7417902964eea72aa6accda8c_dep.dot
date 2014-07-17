@@ -1,9 +1,0 @@
-digraph "src/AgmdUtilities/Utilities/TinyXml" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_0c79881849223b10faef0715b5abb189 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="Utilities" fontname="Helvetica", fontsize="10", URL="dir_0c79881849223b10faef0715b5abb189.html"]
-  dir_b46f62e7417902964eea72aa6accda8c [shape=box, label="TinyXml", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b46f62e7417902964eea72aa6accda8c.html"];
-  }
-}

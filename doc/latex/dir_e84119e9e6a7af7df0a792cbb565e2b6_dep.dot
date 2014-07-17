@@ -1,9 +1,0 @@
-digraph "src/Agmd3D/Config" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_b6dd29adde0db5f9f95c54dc9697d5b1 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="Agmd3D" fontname="Helvetica", fontsize="10", URL="dir_b6dd29adde0db5f9f95c54dc9697d5b1.html"]
-  dir_e84119e9e6a7af7df0a792cbb565e2b6 [shape=box, label="Config", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e84119e9e6a7af7df0a792cbb565e2b6.html"];
-  }
-}

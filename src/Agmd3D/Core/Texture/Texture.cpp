@@ -310,6 +310,9 @@ namespace Agmd
     {
         if(!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
+		a_uint32 flags[] = {COLOR_ATTACHMENT};
+		s_framebuffer->GenerateBufferFlags(flags,1,flags);
+		s_framebuffer->DrawBuffers(1,flags);
         s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();

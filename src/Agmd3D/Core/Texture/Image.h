@@ -56,6 +56,8 @@ namespace Agmd
 
         void Mirror();
 
+		void saveToFile(const std::string& filename);
+
 		a_uint8* GetDataPtr() 
 		{
 			return &m_Pixels[0];

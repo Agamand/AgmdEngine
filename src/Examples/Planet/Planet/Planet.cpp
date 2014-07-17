@@ -60,11 +60,10 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,i
 
 	a_vector<Model::TVertex> vertices;
 	a_vector<unsigned short> indices;
-
 	for(a_uint32 i = 0; i < MAX_PLANET_FACE; i++)
 	{
 		PlanetModel::CreateFaceMetaSphere(vertices,indices,precision);
-		std::ofstream out(StringBuilder(filename)("_")(face_names[i])(".obj"), std::ios::out);
+		std::ofstream out(StringBuilder("export/")(face_names[i])("_")(filename)(".obj"), std::ios::out);
 		Texture heightMap, normalMap, diffuseMap;
 		heightMap.Create(ivec2(textureSize),PXF_A8R8G8B8,TEXTURE_2D);
 		normalMap.Create(ivec2(textureSize),PXF_A8R8G8B8,TEXTURE_2D);
@@ -102,6 +101,9 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,i
 		vertices.clear();
 		indices.clear();
 		out.close();
+		heightMap.GetPixels().saveToFile(StringBuilder("export/")(face_names[i])("_")(filename)("_h")(".png"));
+		normalMap.GetPixels().saveToFile(StringBuilder("export/")(face_names[i])("_")(filename)("_n")(".png"));
+		diffuseMap.GetPixels().saveToFile(StringBuilder("export/")(face_names[i])("_")(filename)("_d")(".png"));
 	}
 	
 	return NULL;// new Model(&vertices[0],vertices.size(),&indices[0],indices.size());

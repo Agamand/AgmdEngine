@@ -189,7 +189,7 @@ bool isInFrustrum(vec4 position)
 
 
 
-const vec3 l = normalize(vec3(1,1,0));
+const vec3 l = normalize(vec3(1,0,0));
 void main()
 {
 	vec4 screen_pos = gl_FragCoord;
@@ -206,7 +206,7 @@ void main()
 	vec3 color;
 	float offset = texture(texture0,v_texCoord0).x;//getDisplacement(v_normal); //rgb2grayscale(color = texture(texture0,v_texCoord0).rgb);
 	vec2 angles = cart2sphere(v_normal);
-	vec3 normal = color2normal(texture(texture2,v_texCoord0).rgb);//_getNormalV3(angles);
+	vec3 normal = normalize(mat3(u_matModel)*color2normal(texture(texture2,v_texCoord0).rgb));//_getNormalV3(angles);
 	//normal.z = 0;
 
 	color = texture(texture1,vec2(clamp(offset,0,1),0)).rgb;

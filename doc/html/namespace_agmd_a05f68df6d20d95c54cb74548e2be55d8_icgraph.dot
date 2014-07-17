@@ -1,9 +1,0 @@
-digraph "Agmd::dc2"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="Agmd::dc2",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Agmd::Bezier::compute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_bezier.html#ab2c80c0a53fa09b1bff334846e0b1d8e"];
-}

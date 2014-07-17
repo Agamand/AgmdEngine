@@ -34,6 +34,7 @@ namespace Agmd
         TextureBase(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps);
 
         virtual void Update(const AgmdMaths::Rectangle& rect) = 0;
+		virtual void updatePixelFromTexture() = 0;
 
         TPixelFormat m_Format;
         ivec2         m_Size;

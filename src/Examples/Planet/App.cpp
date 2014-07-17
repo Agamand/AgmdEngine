@@ -211,7 +211,7 @@ vec3 rgb(0.650,0.570,0.475);
 float g = -0.98f;
 void App::OnInit()
 { 
-
+	m_animated =false;
     pause = true;
     m_timer = 1000;
 	std::cout << "Loading..." << std::endl;
@@ -345,13 +345,20 @@ void App::OnInit()
 }
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
-{}
+{
+	if(!m_animated)
+		return;
+
+	m_planet->getRoot()->getTransform().rotate(0.01f*time_diff,vec3(0,0,1));
+
+}
 
 
 
 void App::OnRender3D()
 {
 	//pmodel->generateTexture(height_test,normal_test,translate(mat4(1),vec3(0,0,0.5f)));
+	vec3 ligp =normalize(vec3(1,0,0));	
 	a_vector<DisplayNode*> displayable;
 	a_vector<LightNode*> light;
 	Driver& driver = Driver::Get();
@@ -396,7 +403,7 @@ void App::OnRender3D()
 
 	driver.SetCurrentProgram(m_skyProgram[use].GetShaderProgram());
 	m_skyProgram[use].SetParameter("v3CameraPos",campos);
-	m_skyProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
+	m_skyProgram[use].SetParameter("v3LightPos",ligp);
 	m_skyProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
 
 	m_skyProgram[use].SetParameter("fCameraHeight",length(campos));
@@ -426,7 +433,7 @@ void App::OnRender3D()
 	driver.SetupAlphaBlending(BLEND_ONE, BLEND_SRCCOLOR);
 	driver.SetCurrentProgram(m_groundProgram[use].GetShaderProgram());
 	m_groundProgram[use].SetParameter("v3CameraPos",campos);
-	m_groundProgram[use].SetParameter("v3LightPos",normalize(vec3(5,5,5)));
+	m_groundProgram[use].SetParameter("v3LightPos",ligp);
 	m_groundProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
 
 	m_groundProgram[use].SetParameter("fCameraHeight",length(campos));
@@ -487,7 +494,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             pause = !pause;
             break;
 		case 'E':
-			m_planet->exportToFile("planet_1.obj",(int)layer);
+			m_planet->exportToFile("planet",(int)layer);
 			break;
 		case 'G':
 			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());
@@ -497,6 +504,9 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			break;
 		case 'U':
 			m_planet->modelChange();
+			break;
+		case VK_F4:
+			m_animated = !m_animated;
 			break;
 		}
 

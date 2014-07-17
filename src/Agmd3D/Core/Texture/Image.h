@@ -56,11 +56,16 @@ namespace Agmd
 
         void Mirror();
 
+		a_uint8* GetDataPtr() 
+		{
+			return &m_Pixels[0];
+		}
+
     private :
 
         ivec2                       m_Size;
-        TPixelFormat               m_Format;
-		a_vector<unsigned char> m_Pixels;
+        TPixelFormat				m_Format;
+		a_vector<a_uint8>			m_Pixels;
     };
 
 }

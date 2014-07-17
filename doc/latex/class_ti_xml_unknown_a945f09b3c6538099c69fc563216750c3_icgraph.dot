@@ -1,9 +1,0 @@
-digraph "TiXmlUnknown::TiXmlUnknown"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="TiXmlUnknown::TiXmlUnknown",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node2 [label="TiXmlUnknown::Clone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_unknown.html#a675c4b2684af35e4c7649b7fd5ae598d",tooltip="Creates a copy of this Unknown and returns it. "];
-}

@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b410d07ab593881ab11f161da7a80e94.html">src</a></li><li class="navelem"><a class="el" href="dir_c11272a1c791afc0e19bc74f6f6797fb.html">AgmdUtilities</a></li><li class="navelem"><a class="el" href="dir_da777287463337b912ac9788c3e1f656.html">Allocator</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_0d15bf9e8202e30bbe201a6b4b84665d.html">src</a></li><li class="navelem"><a class="el" href="dir_faef8384f64cd2587f961dc272b1a419.html">AgmdUtilities</a></li><li class="navelem"><a class="el" href="dir_792f6cb86ab9db0509f4b6b30ac6b595.html">Allocator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -104,19 +104,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stack&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_shared_ptr_8h.html">Utilities/SharedPtr.h</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_allocator_8h.html">Allocator/Allocator.h</a>&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>AgmdUtilities</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T ,a_u<span class="keywordtype">int</span>32 base_memory = 256&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html">   20</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html">MemPoolAllocator</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html">   20</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html">MemPoolAllocator</a> : <span class="keyword">public</span> <a class="code" href="class_agmd_utilities_1_1_allocator.html">Allocator</a>&lt;T&gt;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a46eae618b846bd04044a83c5d0720868">MemPoolAllocator</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#adaf46fe1d375e2b6fab9ce89a0069076">~MemPoolAllocator</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aaa795d493ff1ba1d62841341f87aeed8">MemPoolAllocator</a>(<a class="code" href="_common_defines_8h.html#a964296f9770051b9e4807b1f180dd416">a_uint32</a> base_memory = 256);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a71326f3c70abd848e9f79e63c007619f">~MemPoolAllocator</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        T*&amp; <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a1f60b93f1ded808afa12365ffb1926f1">Allocate</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        T*&amp; <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ae49e592ec0a90978ac4cc83b322bf6ef">Allocate</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ad9504fbb01b0d6f262736b281162f03a">ReallocatePool</a>(<span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aad3697dcce25fd5064aac51e01032bf2">ReallocatePool</a>(<span class="keywordtype">size_t</span> count);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">struct </span>memBlock</div>
@@ -135,16 +135,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::stack&lt;memBlock&gt; m_UsedBlocks;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, a_u<span class="keywordtype">int</span>32 base_memory&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a46eae618b846bd04044a83c5d0720868">   48</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a46eae618b846bd04044a83c5d0720868">MemPoolAllocator&lt;T,base_memory&gt;::MemPoolAllocator</a>():</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aaa795d493ff1ba1d62841341f87aeed8">   48</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aaa795d493ff1ba1d62841341f87aeed8">MemPoolAllocator&lt;T&gt;::MemPoolAllocator</a>(<a class="code" href="_common_defines_8h.html#a964296f9770051b9e4807b1f180dd416">a_uint32</a> base_memory<span class="comment">/* = 256*/</span>):</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    m_allocate(base_memory),m_current_offset(0),m_pool(new T[m_allocate])</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">/*for(int i = 0; i &lt; base_memory; i++)</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">            m_UnusedBlocks.push(new MemPoolAllocator::memBlock(m_pool+i,i));*/</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, a_u<span class="keywordtype">int</span>32 base_memory&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#adaf46fe1d375e2b6fab9ce89a0069076">   56</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#adaf46fe1d375e2b6fab9ce89a0069076">MemPoolAllocator&lt;T,base_memory&gt;::~MemPoolAllocator</a>()</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a71326f3c70abd848e9f79e63c007619f">   56</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a71326f3c70abd848e9f79e63c007619f">MemPoolAllocator&lt;T&gt;::~MemPoolAllocator</a>()</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">delete</span> m_pool;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">/*uint32 s = m_UnusedBlocks.size()+1;</span></div>
@@ -153,8 +153,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, a_u<span class="keywordtype">int</span>32 base_memory&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a1f60b93f1ded808afa12365ffb1926f1">   66</a></span>&#160;    <span class="keyword">inline</span> T*&amp; <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#a1f60b93f1ded808afa12365ffb1926f1">MemPoolAllocator&lt;T,base_memory&gt;::Allocate</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ae49e592ec0a90978ac4cc83b322bf6ef">   66</a></span>&#160;    <span class="keyword">inline</span> T*&amp; <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ae49e592ec0a90978ac4cc83b322bf6ef">MemPoolAllocator&lt;T&gt;::Allocate</a>()</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        memBlock b = memBlock(((T*)m_pool)+(++m_current_offset),m_current_offset);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        m_UsedBlocks.push(b);</div>
@@ -163,12 +163,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> *a;<span class="comment">//m_UnusedBlocks.pop();</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, a_u<span class="keywordtype">int</span>32 base_memory&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ad9504fbb01b0d6f262736b281162f03a">   76</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#ad9504fbb01b0d6f262736b281162f03a">MemPoolAllocator&lt;T,base_memory&gt;::ReallocatePool</a>(<span class="keywordtype">size_t</span> count)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aad3697dcce25fd5064aac51e01032bf2">   76</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_agmd_utilities_1_1_mem_pool_allocator.html#aad3697dcce25fd5064aac51e01032bf2">MemPoolAllocator&lt;T&gt;::ReallocatePool</a>(<span class="keywordtype">size_t</span> count)</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span>(m_count &lt;= m_allocate)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        T* pool = <span class="keyword">new</span>[count];</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;       <span class="comment">// T* pool = new[count];</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">/*</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">        for(int i = 0;  i &lt; m_UnusedBlocks.size(), i++);</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            m_UnusedBlocks[i]._mem = pool+m_UnusedBlocks[i]._offset;</span></div>
@@ -185,20 +185,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _MEMPOOLALLOCATOR_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_adaf46fe1d375e2b6fab9ce89a0069076"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#adaf46fe1d375e2b6fab9ce89a0069076">AgmdUtilities::MemPoolAllocator::~MemPoolAllocator</a></div><div class="ttdeci">~MemPoolAllocator()</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:56</div></div>
-<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_a46eae618b846bd04044a83c5d0720868"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#a46eae618b846bd04044a83c5d0720868">AgmdUtilities::MemPoolAllocator::MemPoolAllocator</a></div><div class="ttdeci">MemPoolAllocator()</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:48</div></div>
+<div class="ttc" id="_allocator_8h_html"><div class="ttname"><a href="_allocator_8h.html">Allocator.h</a></div></div>
+<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_aad3697dcce25fd5064aac51e01032bf2"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#aad3697dcce25fd5064aac51e01032bf2">AgmdUtilities::MemPoolAllocator::ReallocatePool</a></div><div class="ttdeci">void ReallocatePool(size_t count)</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:76</div></div>
 <div class="ttc" id="_shared_ptr_8h_html"><div class="ttname"><a href="_shared_ptr_8h.html">SharedPtr.h</a></div></div>
+<div class="ttc" id="class_agmd_utilities_1_1_allocator_html"><div class="ttname"><a href="class_agmd_utilities_1_1_allocator.html">AgmdUtilities::Allocator</a></div><div class="ttdef"><b>Definition:</b> Allocator.h:15</div></div>
 <div class="ttc" id="_examples_2_planet_2_app_8cpp_html_a125ce9f8ead659256dbdd0816ede24d4"><div class="ttname"><a href="_examples_2_planet_2_app_8cpp.html#a125ce9f8ead659256dbdd0816ede24d4">t</a></div><div class="ttdeci">Texture t</div><div class="ttdef"><b>Definition:</b> App.cpp:174</div></div>
 <div class="ttc" id="_common_defines_8h_html"><div class="ttname"><a href="_common_defines_8h.html">CommonDefines.h</a></div></div>
+<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_a71326f3c70abd848e9f79e63c007619f"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#a71326f3c70abd848e9f79e63c007619f">AgmdUtilities::MemPoolAllocator::~MemPoolAllocator</a></div><div class="ttdeci">~MemPoolAllocator()</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:56</div></div>
 <div class="ttc" id="class_agmd_utilities_1_1_shared_ptr_html"><div class="ttname"><a href="class_agmd_utilities_1_1_shared_ptr.html">AgmdUtilities::SharedPtr</a></div><div class="ttdef"><b>Definition:</b> SharedPtr.h:22</div></div>
-<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_ad9504fbb01b0d6f262736b281162f03a"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#ad9504fbb01b0d6f262736b281162f03a">AgmdUtilities::MemPoolAllocator::ReallocatePool</a></div><div class="ttdeci">void ReallocatePool(size_t count)</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:76</div></div>
+<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_ae49e592ec0a90978ac4cc83b322bf6ef"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#ae49e592ec0a90978ac4cc83b322bf6ef">AgmdUtilities::MemPoolAllocator::Allocate</a></div><div class="ttdeci">T *&amp; Allocate()</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:66</div></div>
 <div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html">AgmdUtilities::MemPoolAllocator</a></div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:20</div></div>
-<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_a1f60b93f1ded808afa12365ffb1926f1"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#a1f60b93f1ded808afa12365ffb1926f1">AgmdUtilities::MemPoolAllocator::Allocate</a></div><div class="ttdeci">T *&amp; Allocate()</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:66</div></div>
 <div class="ttc" id="_common_defines_8h_html_a964296f9770051b9e4807b1f180dd416"><div class="ttname"><a href="_common_defines_8h.html#a964296f9770051b9e4807b1f180dd416">a_uint32</a></div><div class="ttdeci">unsigned int a_uint32</div><div class="ttdef"><b>Definition:</b> CommonDefines.h:42</div></div>
+<div class="ttc" id="class_agmd_utilities_1_1_mem_pool_allocator_html_aaa795d493ff1ba1d62841341f87aeed8"><div class="ttname"><a href="class_agmd_utilities_1_1_mem_pool_allocator.html#aaa795d493ff1ba1d62841341f87aeed8">AgmdUtilities::MemPoolAllocator::MemPoolAllocator</a></div><div class="ttdeci">MemPoolAllocator(a_uint32 base_memory=256)</div><div class="ttdef"><b>Definition:</b> MemPoolAllocator.h:48</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 17 2014 18:41:50 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 17 2014 19:24:31 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

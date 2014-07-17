@@ -358,4 +358,9 @@ namespace Agmd
         return m_Texture->GetType();
     }
 
+	void Texture::updatePixelFromTexture()
+	{
+		m_Texture->updatePixelFromTexture();
+	}
+
 }

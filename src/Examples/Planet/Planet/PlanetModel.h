@@ -17,7 +17,8 @@ public:
 	PlanetModel(mat4 matrix);
 	static void CreateFaceMetaSphere(a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& indices,int layer,mat4 matrix = mat4(1));
 	static void CreatePlane(int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,mat4 matrix);
-	void generateTexture(Texture& height, Texture& normal, mat4& postion_matrix);
+	void generateTexture(const Texture& height, const Texture& normal, const mat4& postion_matrix);
+	void generateTexture(const Texture& diffuse,const Texture& heightmap, const Texture& gradient);
 	void initNoise();
 	float m_persistance;
 	float m_octave;
@@ -27,6 +28,7 @@ private:
 	Texture m_noiseTable;
 	
 	ShaderProgram m_ground_program;
+	ShaderProgram m_diffuse_program;
 };
 
 #endif /* _PLANETMODEL_H_ */

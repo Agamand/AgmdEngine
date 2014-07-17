@@ -29,6 +29,8 @@ namespace Agmd
 
         virtual void Update(const AgmdMaths::Rectangle& rect);
 
+		virtual void updatePixelFromTexture();
+
         Image        m_Data;
     };
 }

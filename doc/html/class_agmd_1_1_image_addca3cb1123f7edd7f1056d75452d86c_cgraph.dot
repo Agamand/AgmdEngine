@@ -5,17 +5,17 @@ digraph "Agmd::Image::SubImage"
   rankdir="LR";
   Node1 [label="Agmd::Image::SubImage",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="AgmdMaths::Rectangle\l::Intersects",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a2909f069eebe632daf37c771de1b7a6c"];
+  Node2 [label="AgmdMaths::Rectangle\l::intersects",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#ae80c388222e8fd91f1d9f0d7415897a3"];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="AgmdMaths::Rectangle\l::Width",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#aaa9b2b5a5eba97ea4f22f2331aec870b"];
+  Node3 [label="AgmdMaths::Rectangle\l::width",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#af1c815824174137249e8e73d2619a220"];
   Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="AgmdMaths::Rectangle\l::Height",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a04c35ddf7fe30e5e98392289bdefd682"];
+  Node4 [label="AgmdMaths::Rectangle\l::height",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a9dae0715e9e44bdbd86bc1d952862cd6"];
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="AgmdMaths::Rectangle\l::Left",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a17d05a899b9d17b5edc032d509079b66"];
+  Node5 [label="AgmdMaths::Rectangle\l::left",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a5f7011fcba6e867de2b407e8818b7283"];
   Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="AgmdMaths::Rectangle::Top",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a48d9bf603ca0d7f0906939d81fd2a927"];
+  Node6 [label="AgmdMaths::Rectangle::top",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a58a5c48cad84de8f8c1babd77f2b1500"];
   Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="AgmdUtilities::GetBytesPer\lPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_utilities.html#a2652f08860fb5eb126af8afd4245b96a"];
   Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="AgmdMaths::Rectangle\l::Right",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#ab2bb33b4ad568190c8778cd247d8438a"];
+  Node8 [label="AgmdMaths::Rectangle\l::right",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_rectangle.html#a3d13be4ed7660488576b66eace8910fe"];
 }

@@ -1,0 +1,133 @@
+\hypertarget{class_particles_emitter}{\section{Particles\+Emitter Class Reference}
+\label{class_particles_emitter}\index{Particles\+Emitter@{Particles\+Emitter}}
+}
+
+
+{\ttfamily \#include $<$Particles\+Emitter.\+h$>$}
+
+
+
+Collaboration diagram for Particles\+Emitter\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_particles_emitter_acbf94f018561bb2ff965dca1cf6c1b14}{Particles\+Emitter} (std\+::string \&shaderpath, int particles\+Count=250, \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$tr=N\+U\+L\+L)
+\item 
+\hyperlink{class_particles_emitter_a7525b09aea03025fb7c1148da750ff68}{Particles\+Emitter} (\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \&program, int particles\+Count=250, \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$tr=N\+U\+L\+L)
+\item 
+\hyperlink{class_particles_emitter_a42bdf88fddda4457168496145cd474b7}{$\sim$\+Particles\+Emitter} ()
+\item 
+void \hyperlink{class_particles_emitter_ac376a1dcd6bdb9f05021a83c11e3e207}{Draw} () const 
+\item 
+void \hyperlink{class_particles_emitter_a4779ba9b7cb1d6861ac3538b77a48bc3}{Draw} (const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$program) const 
+\item 
+void \hyperlink{class_particles_emitter_a53c719f781fd5778e1982c70b44dc0d5}{Update} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} time)
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{class_particles_emitter_a18a9648cb2a852ccde601908074bc0d8}{Get\+Transform} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{class_particles_emitter_aaa728ecd42b97efd1e8900518956fd09}{position\+\_\+buffer} \mbox{[}2\mbox{]}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{class_particles_emitter_a8f15127a5f7247f56dce194e35154e80}{velocity\+\_\+buffer} \mbox{[}2\mbox{]}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{class_particles_emitter_a114fec3226d013ad87726693b3619629}{extra\+\_\+buffer} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_particles_emitter_acbf94f018561bb2ff965dca1cf6c1b14}{\index{Particles\+Emitter@{Particles\+Emitter}!Particles\+Emitter@{Particles\+Emitter}}
+\index{Particles\+Emitter@{Particles\+Emitter}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Particles\+Emitter}]{\setlength{\rightskip}{0pt plus 5cm}Particles\+Emitter\+::\+Particles\+Emitter (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{shaderpath, }
+\item[{int}]{particles\+Count = {\ttfamily 250}, }
+\item[{{\bf Transform} $\ast$}]{tr = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{class_particles_emitter_acbf94f018561bb2ff965dca1cf6c1b14}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_particles_emitter_a7525b09aea03025fb7c1148da750ff68}{\index{Particles\+Emitter@{Particles\+Emitter}!Particles\+Emitter@{Particles\+Emitter}}
+\index{Particles\+Emitter@{Particles\+Emitter}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Particles\+Emitter}]{\setlength{\rightskip}{0pt plus 5cm}Particles\+Emitter\+::\+Particles\+Emitter (
+\begin{DoxyParamCaption}
+\item[{{\bf Shader\+Program} \&}]{program, }
+\item[{int}]{particles\+Count = {\ttfamily 250}, }
+\item[{{\bf Transform} $\ast$}]{tr = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{class_particles_emitter_a7525b09aea03025fb7c1148da750ff68}
+\hypertarget{class_particles_emitter_a42bdf88fddda4457168496145cd474b7}{\index{Particles\+Emitter@{Particles\+Emitter}!````~Particles\+Emitter@{$\sim$\+Particles\+Emitter}}
+\index{````~Particles\+Emitter@{$\sim$\+Particles\+Emitter}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{$\sim$\+Particles\+Emitter}]{\setlength{\rightskip}{0pt plus 5cm}Particles\+Emitter\+::$\sim$\+Particles\+Emitter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_particles_emitter_a42bdf88fddda4457168496145cd474b7}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_particles_emitter_ac376a1dcd6bdb9f05021a83c11e3e207}{\index{Particles\+Emitter@{Particles\+Emitter}!Draw@{Draw}}
+\index{Draw@{Draw}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Particles\+Emitter\+::\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_particles_emitter_ac376a1dcd6bdb9f05021a83c11e3e207}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_particles_emitter_a4779ba9b7cb1d6861ac3538b77a48bc3}{\index{Particles\+Emitter@{Particles\+Emitter}!Draw@{Draw}}
+\index{Draw@{Draw}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Particles\+Emitter\+::\+Draw (
+\begin{DoxyParamCaption}
+\item[{const {\bf Base\+Shader\+Program} $\ast$}]{program}
+\end{DoxyParamCaption}
+) const}}\label{class_particles_emitter_a4779ba9b7cb1d6861ac3538b77a48bc3}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_particles_emitter_a18a9648cb2a852ccde601908074bc0d8}{\index{Particles\+Emitter@{Particles\+Emitter}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Get\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ Particles\+Emitter\+::\+Get\+Transform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_particles_emitter_a18a9648cb2a852ccde601908074bc0d8}
+\hypertarget{class_particles_emitter_a53c719f781fd5778e1982c70b44dc0d5}{\index{Particles\+Emitter@{Particles\+Emitter}!Update@{Update}}
+\index{Update@{Update}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Particles\+Emitter\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{time}
+\end{DoxyParamCaption}
+)}}\label{class_particles_emitter_a53c719f781fd5778e1982c70b44dc0d5}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_particles_emitter_a114fec3226d013ad87726693b3619629}{\index{Particles\+Emitter@{Particles\+Emitter}!extra\+\_\+buffer@{extra\+\_\+buffer}}
+\index{extra\+\_\+buffer@{extra\+\_\+buffer}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{extra\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} Particles\+Emitter\+::extra\+\_\+buffer\mbox{[}2\mbox{]}}}\label{class_particles_emitter_a114fec3226d013ad87726693b3619629}
+\hypertarget{class_particles_emitter_aaa728ecd42b97efd1e8900518956fd09}{\index{Particles\+Emitter@{Particles\+Emitter}!position\+\_\+buffer@{position\+\_\+buffer}}
+\index{position\+\_\+buffer@{position\+\_\+buffer}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{position\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} Particles\+Emitter\+::position\+\_\+buffer\mbox{[}2\mbox{]}}}\label{class_particles_emitter_aaa728ecd42b97efd1e8900518956fd09}
+\hypertarget{class_particles_emitter_a8f15127a5f7247f56dce194e35154e80}{\index{Particles\+Emitter@{Particles\+Emitter}!velocity\+\_\+buffer@{velocity\+\_\+buffer}}
+\index{velocity\+\_\+buffer@{velocity\+\_\+buffer}!Particles\+Emitter@{Particles\+Emitter}}
+\subsubsection[{velocity\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} Particles\+Emitter\+::velocity\+\_\+buffer\mbox{[}2\mbox{]}}}\label{class_particles_emitter_a8f15127a5f7247f56dce194e35154e80}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Demo/\+Particles/\hyperlink{_particles_emitter_8h}{Particles\+Emitter.\+h}\item 
+src/\+Demo/\+Particles/\hyperlink{_particles_emitter_8cpp}{Particles\+Emitter.\+cpp}\end{DoxyCompactItemize}

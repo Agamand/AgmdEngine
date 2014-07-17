@@ -1,0 +1,14 @@
+digraph "src/Demo/Particles" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_b4822abd8aa8a40cd9c361c0202bf53e {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Demo" fontname="Helvetica", fontsize="10", URL="dir_b4822abd8aa8a40cd9c361c0202bf53e.html"]
+  dir_079e39841e556a690ab3fa799ea631e5 [shape=box, label="Particles", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_079e39841e556a690ab3fa799ea631e5.html"];
+  }
+  dir_b6dd29adde0db5f9f95c54dc9697d5b1 [shape=box label="Agmd3D" fillcolor="white" style="filled" color="red" URL="dir_b6dd29adde0db5f9f95c54dc9697d5b1.html"];
+  dir_63fe998611d45edd7ddae16015d2257a [shape=box label="AgmdMaths" URL="dir_63fe998611d45edd7ddae16015d2257a.html"];
+  dir_079e39841e556a690ab3fa799ea631e5->dir_b6dd29adde0db5f9f95c54dc9697d5b1 [headlabel="8", labeldistance=1.5 headhref="dir_000045_000001.html"];
+  dir_079e39841e556a690ab3fa799ea631e5->dir_63fe998611d45edd7ddae16015d2257a [headlabel="1", labeldistance=1.5 headhref="dir_000045_000025.html"];
+  dir_b6dd29adde0db5f9f95c54dc9697d5b1->dir_63fe998611d45edd7ddae16015d2257a [headlabel="9", labeldistance=1.5 headhref="dir_000001_000025.html"];
+}

@@ -3,7 +3,15 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="Singleton\< Logger \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_singleton.html"];
+  Node1 [label="Handler",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="AgmdUtilities::Logger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_logger.html"];
+  Node2 [label="AgmdUtilities::LinearHierarchy\l\< TypeList\< T, NullType \>,\l Handler, Root \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_linear_hierarchy_3_01_type_list_3_01_t_00_01_null_type_01_4_00_01_handler_00_01_root_01_4.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AgmdUtilities::LinearHierarchy\l\< TypeList\< T1, T2 \>, Handler, Root \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_linear_hierarchy_3_01_type_list_3_01_t1_00_01_t2_01_4_00_01_handler_00_01_root_01_4.html"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="AgmdUtilities::Scattered\lHierarchy\< TypeList\< T,\l NullType \>, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_scattered_hierarchy_3_01_type_list_3_01_t_00_01_null_type_01_4_00_01_handler_01_4.html"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="AgmdUtilities::Scattered\lHierarchy\< TypeList\< T1,\l T2 \>, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_scattered_hierarchy_3_01_type_list_3_01_t1_00_01_t2_01_4_00_01_handler_01_4.html"];
+  Node6 [label="AgmdUtilities::Scattered\lHierarchy\< T2, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_scattered_hierarchy.html"];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

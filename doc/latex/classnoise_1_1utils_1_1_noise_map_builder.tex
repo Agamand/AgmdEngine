@@ -1,0 +1,410 @@
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder}{\section{noise\+:\+:utils\+:\+:Noise\+Map\+Builder Class Reference}
+\label{classnoise_1_1utils_1_1_noise_map_builder}\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+}
+
+
+{\ttfamily \#include $<$noiseutils.\+h$>$}
+
+
+
+Inheritance diagram for noise\+:\+:utils\+:\+:Noise\+Map\+Builder\+:
+
+
+Collaboration diagram for noise\+:\+:utils\+:\+:Noise\+Map\+Builder\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_adbbffa06dd4de296fbd0c8a395aa444b}{Noise\+Map\+Builder} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build} ()=0
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}{Get\+Dest\+Height} () const 
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}{Get\+Dest\+Width} () const 
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{Set\+Callback} (\hyperlink{namespacenoise_1_1utils_af10741a3394fadf8798a8f40b753b208}{Noise\+Map\+Callback} p\+Callback)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{Set\+Dest\+Noise\+Map} (\hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} \&dest\+Noise\+Map)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module} (const module\+::\+Module \&source\+Module)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size} (int dest\+Width, int dest\+Height)
+\item 
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a6a866e7ae94d27a34cc322e4d43cb51e}{Noise\+Map\+Builder} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build} ()=0
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}{Get\+Dest\+Height} () const 
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}{Get\+Dest\+Width} () const 
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a901f165227e6095b57342698e0c682e5}{Set\+Callback} (\hyperlink{namespacenoise_1_1utils_af10741a3394fadf8798a8f40b753b208}{Noise\+Map\+Callback} p\+Callback)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{Set\+Dest\+Noise\+Map} (\hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} \&dest\+Noise\+Map)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module} (const module\+::\+Module \&source\+Module)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size} (int dest\+Width, int dest\+Height)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacenoise_1_1utils_af10741a3394fadf8798a8f40b753b208}{Noise\+Map\+Callback} \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_adf2a8d0f463ba83c0efabffc83b0074c}{m\+\_\+p\+Callback}
+\item 
+int \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a06a6db4772fe959e741be9ebe2023ce8}{m\+\_\+dest\+Height}
+\begin{DoxyCompactList}\small\item\em Height of the destination noise map, in points. \end{DoxyCompactList}\item 
+int \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a95d8075e9917c2a1c319a0afe639dd31}{m\+\_\+dest\+Width}
+\begin{DoxyCompactList}\small\item\em Width of the destination noise map, in points. \end{DoxyCompactList}\item 
+\hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} $\ast$ \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a6de6a3c7781f2823b10057d6a657b631}{m\+\_\+p\+Dest\+Noise\+Map}
+\begin{DoxyCompactList}\small\item\em Destination noise map that will contain the coherent-\/noise values. \end{DoxyCompactList}\item 
+const module\+::\+Module $\ast$ \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a45b357c74061bc078bc800605c3c1636}{m\+\_\+p\+Source\+Module}
+\begin{DoxyCompactList}\small\item\em Source noise module that will generate the coherent-\/noise values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract base class for a noise-\/map builder
+
+A builder class builds a noise map by filling it with coherent-\/noise values generated from the surface of a three-\/dimensional mathematical object. Each builder class defines a specific three-\/dimensional surface, such as a cylinder, sphere, or plane.
+
+A builder class describes these input values using a coordinate system applicable for the mathematical object (e.\+g., a latitude/longitude coordinate system for the spherical noise-\/map builder.) It then \char`\"{}flattens\char`\"{} these coordinates onto a plane so that it can write the coherent-\/noise values into a two-\/dimensional noise map.
+
+{\bfseries Building the Noise Map}
+
+To build the noise map, perform the following steps\+:
+\begin{DoxyItemize}
+\item Pass the bounding coordinates to the Set\+Bounds() method.
+\item Pass the noise map size, in points, to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size()} method.
+\item Pass a \hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} object to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{Set\+Dest\+Noise\+Map()} method.
+\item Pass a noise module (derived from noise\+::module\+::\+Module) to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module()} method.
+\item Call the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method.
+\end{DoxyItemize}
+
+You may also pass a callback function to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{Set\+Callback()} method. The \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method calls this callback function each time it fills a row of the noise map with coherent-\/noise values. This callback function has a single integer parameter that contains a count of the rows that have been completed. It returns void.
+
+Note that Set\+Bounds() is not defined in the abstract base class; it is only defined in the derived classes. This is because each model uses a different coordinate system. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_adbbffa06dd4de296fbd0c8a395aa444b}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Noise\+Map\+Builder@{Noise\+Map\+Builder}}
+\index{Noise\+Map\+Builder@{Noise\+Map\+Builder}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Noise\+Map\+Builder}]{\setlength{\rightskip}{0pt plus 5cm}Noise\+Map\+Builder\+::\+Noise\+Map\+Builder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_noise_map_builder_adbbffa06dd4de296fbd0c8a395aa444b}
+
+
+Constructor. 
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a6a866e7ae94d27a34cc322e4d43cb51e}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Noise\+Map\+Builder@{Noise\+Map\+Builder}}
+\index{Noise\+Map\+Builder@{Noise\+Map\+Builder}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Noise\+Map\+Builder}]{\setlength{\rightskip}{0pt plus 5cm}noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Noise\+Map\+Builder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_noise_map_builder_a6a866e7ae94d27a34cc322e4d43cb51e}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Build@{Build}}
+\index{Build@{Build}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Build}]{\setlength{\rightskip}{0pt plus 5cm}virtual void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Build (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}
+Builds the noise map.
+
+\begin{DoxyPrecond}{Precondition}
+Set\+Bounds() was previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{Set\+Dest\+Noise\+Map()} was previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module()} was previously called. 
+
+The width and height values specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size()} are positive. 
+
+The width and height values specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size()} do not exceed the maximum possible width and height for the noise map.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The original contents of the destination noise map is destroyed.
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the preconditions. \\
+\hline
+{\em noise\+::\+Exception\+Out\+Of\+Memory} & Out of memory.\\
+\hline
+\end{DoxyExceptions}
+If this method is successful, the destination noise map contains the coherent-\/noise values from the noise module specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module()}. 
+
+Implemented in \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_sphere_a39ac9c3dba8db40b6d5d34c2ec54704b}{noise\+::utils\+::\+Noise\+Map\+Builder\+Sphere}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_sphere_a3596d6c68110cfaa10b6624a5670db70}{noise\+::utils\+::\+Noise\+Map\+Builder\+Sphere}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_plane_a81d553c3215dc657dfe2cdbc3264a045}{noise\+::utils\+::\+Noise\+Map\+Builder\+Plane}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_plane_a5a22db6eda87825af47cfa598d4c1fb4}{noise\+::utils\+::\+Noise\+Map\+Builder\+Plane}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_cylinder_a684d087e172d16c1c754e48c69ac12a0}{noise\+::utils\+::\+Noise\+Map\+Builder\+Cylinder}, and \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_cylinder_a0c136038ea3fa328962c437a28269726}{noise\+::utils\+::\+Noise\+Map\+Builder\+Cylinder}.
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Build@{Build}}
+\index{Build@{Build}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Build}]{\setlength{\rightskip}{0pt plus 5cm}virtual void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Build (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}
+Builds the noise map.
+
+\begin{DoxyPrecond}{Precondition}
+Set\+Bounds() was previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{Set\+Dest\+Noise\+Map()} was previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module()} was previously called. 
+
+The width and height values specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size()} are positive. 
+
+The width and height values specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{Set\+Dest\+Size()} do not exceed the maximum possible width and height for the noise map.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The original contents of the destination noise map is destroyed.
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the preconditions. \\
+\hline
+{\em noise\+::\+Exception\+Out\+Of\+Memory} & Out of memory.\\
+\hline
+\end{DoxyExceptions}
+If this method is successful, the destination noise map contains the coherent-\/noise values from the noise module specified by \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{Set\+Source\+Module()}. 
+
+Implemented in \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_sphere_a39ac9c3dba8db40b6d5d34c2ec54704b}{noise\+::utils\+::\+Noise\+Map\+Builder\+Sphere}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_sphere_a3596d6c68110cfaa10b6624a5670db70}{noise\+::utils\+::\+Noise\+Map\+Builder\+Sphere}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_plane_a81d553c3215dc657dfe2cdbc3264a045}{noise\+::utils\+::\+Noise\+Map\+Builder\+Plane}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_plane_a5a22db6eda87825af47cfa598d4c1fb4}{noise\+::utils\+::\+Noise\+Map\+Builder\+Plane}, \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_cylinder_a684d087e172d16c1c754e48c69ac12a0}{noise\+::utils\+::\+Noise\+Map\+Builder\+Cylinder}, and \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_cylinder_a0c136038ea3fa328962c437a28269726}{noise\+::utils\+::\+Noise\+Map\+Builder\+Cylinder}.
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Get\+Dest\+Height@{Get\+Dest\+Height}}
+\index{Get\+Dest\+Height@{Get\+Dest\+Height}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Get\+Dest\+Height}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Get\+Dest\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}
+Returns the height of the destination noise map.
+
+\begin{DoxyReturn}{Returns}
+The height of the destination noise map, in points.
+\end{DoxyReturn}
+This object does not change the height in the destination noise map object until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Get\+Dest\+Height@{Get\+Dest\+Height}}
+\index{Get\+Dest\+Height@{Get\+Dest\+Height}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Get\+Dest\+Height}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Get\+Dest\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_aef40bf8315cf974a468b1c8b5d0f857e}
+Returns the height of the destination noise map.
+
+\begin{DoxyReturn}{Returns}
+The height of the destination noise map, in points.
+\end{DoxyReturn}
+This object does not change the height in the destination noise map object until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Get\+Dest\+Width@{Get\+Dest\+Width}}
+\index{Get\+Dest\+Width@{Get\+Dest\+Width}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Get\+Dest\+Width}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Get\+Dest\+Width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}
+Returns the width of the destination noise map.
+
+\begin{DoxyReturn}{Returns}
+The width of the destination noise map, in points.
+\end{DoxyReturn}
+This object does not change the height in the destination noise map object until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Get\+Dest\+Width@{Get\+Dest\+Width}}
+\index{Get\+Dest\+Width@{Get\+Dest\+Width}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Get\+Dest\+Width}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Get\+Dest\+Width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a911a54e1d86b59beaad313b54c7c715e}
+Returns the width of the destination noise map.
+
+\begin{DoxyReturn}{Returns}
+The width of the destination noise map, in points.
+\end{DoxyReturn}
+This object does not change the height in the destination noise map object until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Callback@{Set\+Callback}}
+\index{Set\+Callback@{Set\+Callback}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void Noise\+Map\+Builder\+::\+Set\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf Noise\+Map\+Callback}}]{p\+Callback}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}
+Sets the callback function that \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} calls each time it fills a row of the noise map with coherent-\/noise values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Callback} & The callback function.\\
+\hline
+\end{DoxyParams}
+This callback function has a single integer parameter that contains a count of the rows that have been completed. It returns void. Pass a function with this signature to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{Set\+Callback()} method. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a901f165227e6095b57342698e0c682e5}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Callback@{Set\+Callback}}
+\index{Set\+Callback@{Set\+Callback}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf Noise\+Map\+Callback}}]{p\+Callback}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_noise_map_builder_a901f165227e6095b57342698e0c682e5}
+Sets the callback function that \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} calls each time it fills a row of the noise map with coherent-\/noise values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Callback} & The callback function.\\
+\hline
+\end{DoxyParams}
+This callback function has a single integer parameter that contains a count of the rows that have been completed. It returns void. Pass a function with this signature to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{Set\+Callback()} method. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Dest\+Noise\+Map@{Set\+Dest\+Noise\+Map}}
+\index{Set\+Dest\+Noise\+Map@{Set\+Dest\+Noise\+Map}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Dest\+Noise\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Dest\+Noise\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Noise\+Map} \&}]{dest\+Noise\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}
+Sets the destination noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Noise\+Map} & The destination noise map.\\
+\hline
+\end{DoxyParams}
+The destination noise map will contain the coherent-\/noise values from this noise map after a successful call to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method.
+
+The destination noise map must exist throughout the lifetime of this object unless another noise map replaces that noise map. 
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Dest\+Noise\+Map@{Set\+Dest\+Noise\+Map}}
+\index{Set\+Dest\+Noise\+Map@{Set\+Dest\+Noise\+Map}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Dest\+Noise\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Dest\+Noise\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Noise\+Map} \&}]{dest\+Noise\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a07555b64324efbb16f0ef244c4fed8b7}
+Sets the destination noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Noise\+Map} & The destination noise map.\\
+\hline
+\end{DoxyParams}
+The destination noise map will contain the coherent-\/noise values from this noise map after a successful call to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method.
+
+The destination noise map must exist throughout the lifetime of this object unless another noise map replaces that noise map. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Dest\+Size@{Set\+Dest\+Size}}
+\index{Set\+Dest\+Size@{Set\+Dest\+Size}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Dest\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Dest\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{dest\+Width, }
+\item[{int}]{dest\+Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}
+Sets the size of the destination noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Width} & The width of the destination noise map, in points. \\
+\hline
+{\em dest\+Height} & The height of the destination noise map, in points.\\
+\hline
+\end{DoxyParams}
+This method does not change the size of the destination noise map until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Dest\+Size@{Set\+Dest\+Size}}
+\index{Set\+Dest\+Size@{Set\+Dest\+Size}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Dest\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Dest\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{dest\+Width, }
+\item[{int}]{dest\+Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_abad282f0cbe67824b73c580f611a7bd0}
+Sets the size of the destination noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Width} & The width of the destination noise map, in points. \\
+\hline
+{\em dest\+Height} & The height of the destination noise map, in points.\\
+\hline
+\end{DoxyParams}
+This method does not change the size of the destination noise map until the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} method is called. 
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Source\+Module@{Set\+Source\+Module}}
+\index{Set\+Source\+Module@{Set\+Source\+Module}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Source\+Module}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Source\+Module (
+\begin{DoxyParamCaption}
+\item[{const module\+::\+Module \&}]{source\+Module}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}
+Sets the source module.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Module} & The source module.\\
+\hline
+\end{DoxyParams}
+This object fills in a noise map with the coherent-\/noise values from this source module.
+
+The source module must exist throughout the lifetime of this object unless another noise module replaces that noise module. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!Set\+Source\+Module@{Set\+Source\+Module}}
+\index{Set\+Source\+Module@{Set\+Source\+Module}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{Set\+Source\+Module}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Noise\+Map\+Builder\+::\+Set\+Source\+Module (
+\begin{DoxyParamCaption}
+\item[{const module\+::\+Module \&}]{source\+Module}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_aa39e8ea292711aa3a7627ddcaee4f12f}
+Sets the source module.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Module} & The source module.\\
+\hline
+\end{DoxyParams}
+This object fills in a noise map with the coherent-\/noise values from this source module.
+
+The source module must exist throughout the lifetime of this object unless another noise module replaces that noise module. 
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a06a6db4772fe959e741be9ebe2023ce8}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!m\+\_\+dest\+Height@{m\+\_\+dest\+Height}}
+\index{m\+\_\+dest\+Height@{m\+\_\+dest\+Height}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{m\+\_\+dest\+Height}]{\setlength{\rightskip}{0pt plus 5cm}int noise\+::utils\+::\+Noise\+Map\+Builder\+::m\+\_\+dest\+Height\hspace{0.3cm}{\ttfamily [protected]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a06a6db4772fe959e741be9ebe2023ce8}
+
+
+Height of the destination noise map, in points. 
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a95d8075e9917c2a1c319a0afe639dd31}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!m\+\_\+dest\+Width@{m\+\_\+dest\+Width}}
+\index{m\+\_\+dest\+Width@{m\+\_\+dest\+Width}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{m\+\_\+dest\+Width}]{\setlength{\rightskip}{0pt plus 5cm}int noise\+::utils\+::\+Noise\+Map\+Builder\+::m\+\_\+dest\+Width\hspace{0.3cm}{\ttfamily [protected]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a95d8075e9917c2a1c319a0afe639dd31}
+
+
+Width of the destination noise map, in points. 
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_adf2a8d0f463ba83c0efabffc83b0074c}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!m\+\_\+p\+Callback@{m\+\_\+p\+Callback}}
+\index{m\+\_\+p\+Callback@{m\+\_\+p\+Callback}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{m\+\_\+p\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Noise\+Map\+Callback} noise\+::utils\+::\+Noise\+Map\+Builder\+::m\+\_\+p\+Callback\hspace{0.3cm}{\ttfamily [protected]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_adf2a8d0f463ba83c0efabffc83b0074c}
+The callback function that \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_abe0e5f01c696c2290792c8f8736e3ed1}{Build()} calls each time it fills a row of the noise map with coherent-\/noise values.
+
+This callback function has a single integer parameter that contains a count of the rows that have been completed. It returns void. Pass a function with this signature to the \hyperlink{classnoise_1_1utils_1_1_noise_map_builder_ac760187423eb5e16ac015f9beafd78ea}{Set\+Callback()} method. \hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a6de6a3c7781f2823b10057d6a657b631}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!m\+\_\+p\+Dest\+Noise\+Map@{m\+\_\+p\+Dest\+Noise\+Map}}
+\index{m\+\_\+p\+Dest\+Noise\+Map@{m\+\_\+p\+Dest\+Noise\+Map}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{m\+\_\+p\+Dest\+Noise\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Noise\+Map} $\ast$ noise\+::utils\+::\+Noise\+Map\+Builder\+::m\+\_\+p\+Dest\+Noise\+Map\hspace{0.3cm}{\ttfamily [protected]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a6de6a3c7781f2823b10057d6a657b631}
+
+
+Destination noise map that will contain the coherent-\/noise values. 
+
+\hypertarget{classnoise_1_1utils_1_1_noise_map_builder_a45b357c74061bc078bc800605c3c1636}{\index{noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}!m\+\_\+p\+Source\+Module@{m\+\_\+p\+Source\+Module}}
+\index{m\+\_\+p\+Source\+Module@{m\+\_\+p\+Source\+Module}!noise\+::utils\+::\+Noise\+Map\+Builder@{noise\+::utils\+::\+Noise\+Map\+Builder}}
+\subsubsection[{m\+\_\+p\+Source\+Module}]{\setlength{\rightskip}{0pt plus 5cm}const module\+::\+Module $\ast$ noise\+::utils\+::\+Noise\+Map\+Builder\+::m\+\_\+p\+Source\+Module\hspace{0.3cm}{\ttfamily [protected]}}}\label{classnoise_1_1utils_1_1_noise_map_builder_a45b357c74061bc078bc800605c3c1636}
+
+
+Source noise module that will generate the coherent-\/noise values. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8h}{noiseutils.\+h}\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8cpp}{noiseutils.\+cpp}\end{DoxyCompactItemize}

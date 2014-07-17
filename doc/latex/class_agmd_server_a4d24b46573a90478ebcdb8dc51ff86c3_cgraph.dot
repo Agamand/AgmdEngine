@@ -9,5 +9,5 @@ digraph "AgmdServer::RecvPacket"
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node3 [label="AgmdNetwork::OpcodeMgr\l::RecvPacket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_opcode_mgr.html#addf7440a6b36b8cbd4ab2756cdc25c6b"];
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
-  Node4 [label="AgmdNetwork::Packet\l::GetOpcode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_packet.html#afc7160f386d5c7836dd8992ba20c06c4"];
+  Node4 [label="AgmdNetwork::Packet\l::GetOpcode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_packet.html#a4b7d742e39bae80008380be6e4a51dc0"];
 }

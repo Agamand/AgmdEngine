@@ -1,0 +1,173 @@
+\hypertarget{class_planet_model}{\section{Planet\+Model Class Reference}
+\label{class_planet_model}\index{Planet\+Model@{Planet\+Model}}
+}
+
+
+{\ttfamily \#include $<$Planet\+Model.\+h$>$}
+
+
+
+Inheritance diagram for Planet\+Model\+:
+
+
+Collaboration diagram for Planet\+Model\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_planet_model_aaa2a2b0dbc90840709413d285f69d44e}{Planet\+Model} (int \hyperlink{_examples_2_planet_2_app_8cpp_a821f9e41ad80528dd35e9a982db1b22a}{layer}, int x, int y)
+\item 
+\hyperlink{class_planet_model_a80d057db0662a584bd0ae9534cec66a9}{Planet\+Model} (mat4 matrix)
+\item 
+void \hyperlink{class_planet_model_ae46743410636735396db8d14e606e560}{generate\+Texture} (\hyperlink{class_agmd_1_1_texture}{Texture} \&\hyperlink{_examples_2_bezier_2_app_8cpp_a48083b65ac9a863566dc3e3fff09a5b4}{height}, \hyperlink{class_agmd_1_1_texture}{Texture} \&normal, mat4 \&postion\+\_\+matrix)
+\item 
+void \hyperlink{class_planet_model_ab0a4c231cea9292b1a7ea1db773b691d}{init\+Noise} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_planet_model_aaa6a3e138bde8c6bcf5da9e7d17cf463}{Create\+Face\+Meta\+Sphere} (\hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&indices, int \hyperlink{_examples_2_planet_2_app_8cpp_a821f9e41ad80528dd35e9a982db1b22a}{layer}, mat4 matrix=mat4(1))
+\item 
+static void \hyperlink{class_planet_model_a3a26a59fe70e2ffecbb3d5f8f8ee26ac}{Create\+Plane} (int size, int offset\+\_\+index, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index, mat4 matrix)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_planet_model_a89ed4daf68550bcbfe414ee96379649b}{m\+\_\+persistance}
+\item 
+float \hyperlink{class_planet_model_a5af782ac76afb9b21346effc0fda0bde}{m\+\_\+octave}
+\item 
+float \hyperlink{class_planet_model_a3a085d9ea92c44a1404b06fa8a368176}{m\+\_\+frequency}
+\item 
+int \hyperlink{class_planet_model_a9aab0eb4b59ba73d9b13104526e64b74}{m\+\_\+normal\+\_\+mapping}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_planet_model_aaa2a2b0dbc90840709413d285f69d44e}{\index{Planet\+Model@{Planet\+Model}!Planet\+Model@{Planet\+Model}}
+\index{Planet\+Model@{Planet\+Model}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{Planet\+Model}]{\setlength{\rightskip}{0pt plus 5cm}Planet\+Model\+::\+Planet\+Model (
+\begin{DoxyParamCaption}
+\item[{int}]{layer, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{class_planet_model_aaa2a2b0dbc90840709413d285f69d44e}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_planet_model_a80d057db0662a584bd0ae9534cec66a9}{\index{Planet\+Model@{Planet\+Model}!Planet\+Model@{Planet\+Model}}
+\index{Planet\+Model@{Planet\+Model}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{Planet\+Model}]{\setlength{\rightskip}{0pt plus 5cm}Planet\+Model\+::\+Planet\+Model (
+\begin{DoxyParamCaption}
+\item[{mat4}]{matrix}
+\end{DoxyParamCaption}
+)}}\label{class_planet_model_a80d057db0662a584bd0ae9534cec66a9}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_planet_model_aaa6a3e138bde8c6bcf5da9e7d17cf463}{\index{Planet\+Model@{Planet\+Model}!Create\+Face\+Meta\+Sphere@{Create\+Face\+Meta\+Sphere}}
+\index{Create\+Face\+Meta\+Sphere@{Create\+Face\+Meta\+Sphere}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{Create\+Face\+Meta\+Sphere}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Model\+::\+Create\+Face\+Meta\+Sphere (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{indices, }
+\item[{int}]{layer, }
+\item[{mat4}]{matrix = {\ttfamily mat4(1)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_planet_model_aaa6a3e138bde8c6bcf5da9e7d17cf463}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_model_a3a26a59fe70e2ffecbb3d5f8f8ee26ac}{\index{Planet\+Model@{Planet\+Model}!Create\+Plane@{Create\+Plane}}
+\index{Create\+Plane@{Create\+Plane}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{Create\+Plane}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Model\+::\+Create\+Plane (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{offset\+\_\+index, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index, }
+\item[{mat4}]{matrix}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_planet_model_a3a26a59fe70e2ffecbb3d5f8f8ee26ac}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_model_ae46743410636735396db8d14e606e560}{\index{Planet\+Model@{Planet\+Model}!generate\+Texture@{generate\+Texture}}
+\index{generate\+Texture@{generate\+Texture}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{generate\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Model\+::generate\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture} \&}]{height, }
+\item[{{\bf Texture} \&}]{normal, }
+\item[{mat4 \&}]{postion\+\_\+matrix}
+\end{DoxyParamCaption}
+)}}\label{class_planet_model_ae46743410636735396db8d14e606e560}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_model_ab0a4c231cea9292b1a7ea1db773b691d}{\index{Planet\+Model@{Planet\+Model}!init\+Noise@{init\+Noise}}
+\index{init\+Noise@{init\+Noise}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{init\+Noise}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Model\+::init\+Noise (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_planet_model_ab0a4c231cea9292b1a7ea1db773b691d}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_planet_model_a3a085d9ea92c44a1404b06fa8a368176}{\index{Planet\+Model@{Planet\+Model}!m\+\_\+frequency@{m\+\_\+frequency}}
+\index{m\+\_\+frequency@{m\+\_\+frequency}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{m\+\_\+frequency}]{\setlength{\rightskip}{0pt plus 5cm}float Planet\+Model\+::m\+\_\+frequency}}\label{class_planet_model_a3a085d9ea92c44a1404b06fa8a368176}
+\hypertarget{class_planet_model_a9aab0eb4b59ba73d9b13104526e64b74}{\index{Planet\+Model@{Planet\+Model}!m\+\_\+normal\+\_\+mapping@{m\+\_\+normal\+\_\+mapping}}
+\index{m\+\_\+normal\+\_\+mapping@{m\+\_\+normal\+\_\+mapping}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{m\+\_\+normal\+\_\+mapping}]{\setlength{\rightskip}{0pt plus 5cm}int Planet\+Model\+::m\+\_\+normal\+\_\+mapping}}\label{class_planet_model_a9aab0eb4b59ba73d9b13104526e64b74}
+\hypertarget{class_planet_model_a5af782ac76afb9b21346effc0fda0bde}{\index{Planet\+Model@{Planet\+Model}!m\+\_\+octave@{m\+\_\+octave}}
+\index{m\+\_\+octave@{m\+\_\+octave}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{m\+\_\+octave}]{\setlength{\rightskip}{0pt plus 5cm}float Planet\+Model\+::m\+\_\+octave}}\label{class_planet_model_a5af782ac76afb9b21346effc0fda0bde}
+\hypertarget{class_planet_model_a89ed4daf68550bcbfe414ee96379649b}{\index{Planet\+Model@{Planet\+Model}!m\+\_\+persistance@{m\+\_\+persistance}}
+\index{m\+\_\+persistance@{m\+\_\+persistance}!Planet\+Model@{Planet\+Model}}
+\subsubsection[{m\+\_\+persistance}]{\setlength{\rightskip}{0pt plus 5cm}float Planet\+Model\+::m\+\_\+persistance}}\label{class_planet_model_a89ed4daf68550bcbfe414ee96379649b}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Examples/\+Planet/\+Planet/\hyperlink{_planet_model_8h}{Planet\+Model.\+h}\item 
+src/\+Examples/\+Planet/\+Planet/\hyperlink{_planet_model_8cpp}{Planet\+Model.\+cpp}\end{DoxyCompactItemize}

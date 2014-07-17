@@ -5,5 +5,5 @@ digraph "Agmd::TPCamera::setPosition"
   rankdir="LR";
   Node1 [label="Agmd::TPCamera::setPosition",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Agmd::TPCamera::VectorsFrom\lAngles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a4af5b7d6b7bb1690e4b4b2ce23186178"];
+  Node2 [label="Agmd::TPCamera::updateVector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_t_p_camera.html#a58a0ed04fc0335f665f826f2a7e4b8b0"];
 }

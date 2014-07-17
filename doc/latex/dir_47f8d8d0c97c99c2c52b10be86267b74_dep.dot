@@ -1,0 +1,9 @@
+digraph "src/GameEngine/GameEngineConfig" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_87d9bbb463c94c1515574f4c4d964a1a {
+    graph [ bgcolor="#ddddee", pencolor="black", label="GameEngine" fontname="Helvetica", fontsize="10", URL="dir_87d9bbb463c94c1515574f4c4d964a1a.html"]
+  dir_47f8d8d0c97c99c2c52b10be86267b74 [shape=box, label="GameEngineConfig", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_47f8d8d0c97c99c2c52b10be86267b74.html"];
+  }
+}

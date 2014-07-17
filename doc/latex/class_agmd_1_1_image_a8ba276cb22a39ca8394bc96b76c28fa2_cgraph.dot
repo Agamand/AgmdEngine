@@ -1,0 +1,25 @@
+digraph "Agmd::Image::LoadFromFile"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::Image::LoadFromFile",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Singleton\< MediaManager\l \>::Instance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_singleton.html#a131e87528259529400d58b6df5d9743c"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Agmd::MediaManager\l::LoadMediaFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_media_manager.html#ae4602b1d6e9800cf24b8338dbb6e50b8"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Agmd::Image::CopyImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a8ac7614cf6bd3e6432f07db2240dcf4b"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="AgmdUtilities::GetBytesPer\lPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_utilities.html#a2652f08860fb5eb126af8afd4245b96a"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="AgmdUtilities::ConvertPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_utilities.html#a869c26bd9d35ce976f114f571ef0b8a4"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="AgmdUtilities::FormatToString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_utilities.html#af4b737723de85a01ece1c8132702c087"];
+  Node4 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Agmd::Image::GetPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a5cd2b6c73f1e50a2038fbbf2207c6665"];
+  Node8 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Agmd::Image::SetPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#aef1f82c5377735b70e03bd50b9c349c7"];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+}

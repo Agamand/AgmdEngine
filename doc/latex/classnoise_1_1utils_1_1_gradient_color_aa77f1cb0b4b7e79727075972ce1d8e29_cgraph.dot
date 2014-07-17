@@ -1,0 +1,11 @@
+digraph "noise::utils::GradientColor::GetColor"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="noise::utils::GradientColor\l::GetColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="noise::utils::LinearInterp\lColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespacenoise_1_1utils.html#ad7a9086f885346fea9dc0011f1884f70"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="noise::utils::BlendChannel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespacenoise_1_1utils.html#a2711778d9c2d9c7641e6deb98bea878f"];
+}

@@ -1,0 +1,178 @@
+\hypertarget{class_agmd_1_1_base_buffer}{\section{Agmd\+:\+:Base\+Buffer Class Reference}
+\label{class_agmd_1_1_base_buffer}\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+}
+
+
+{\ttfamily \#include $<$Base\+Buffer.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Base\+Buffer\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer_ab69957780fa17eef7da0915c3f12ec77}{$\sim$\+Base\+Buffer} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_base_buffer_ab2e642026d9013d84dba26248a09e3c5}{Base\+Buffer} (unsigned long count)
+\item 
+virtual void $\ast$ \hyperlink{class_agmd_1_1_base_buffer_ab3c4e881ef20a8d6d9f8d3f2d920a60e}{Lock} (unsigned long offset, unsigned long size, unsigned long flags)=0
+\item 
+virtual void $\ast$ \hyperlink{class_agmd_1_1_base_buffer_a0523f6a4bebacc8800d91297d20b12ca}{Lock\+Byte} (unsigned long offset, unsigned long size, unsigned long flags)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_a7bf279e968311e91e905afd7d7e2c145}{Fill\+Byte} (unsigned char $\ast$data, unsigned long offset, unsigned long size)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_afb2c7043048c1327a1b1cef6644f1878}{Unlock} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_a8da8efb40a86c4c48e1b9bca64de6f92}{Bind} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} bindpoint)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_a9d694ef2b76825d6e496d35a2d6def6b}{Wait\+Sync} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_a5d698e89b12501c71dfea9f7575b3742}{Swap\+Buffers} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_base_buffer_ad4922f6545124baec94ce4bd9b4ccceb}{Flush} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \hyperlink{class_agmd_1_1_base_buffer_a74887fc81c30f9546d0ad9afab580919}{m\+\_\+\+Count}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\class \hyperlink{class_agmd_1_1_base_buffer_a121ba56e0cdc05eea057f3760cc35279}{Buffer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_base_buffer_ab69957780fa17eef7da0915c3f12ec77}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!````~Base\+Buffer@{$\sim$\+Base\+Buffer}}
+\index{````~Base\+Buffer@{$\sim$\+Base\+Buffer}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{$\sim$\+Base\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Base\+Buffer\+::$\sim$\+Base\+Buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_base_buffer_ab69957780fa17eef7da0915c3f12ec77}
+\hypertarget{class_agmd_1_1_base_buffer_ab2e642026d9013d84dba26248a09e3c5}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Base\+Buffer@{Base\+Buffer}}
+\index{Base\+Buffer@{Base\+Buffer}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Base\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Base\+Buffer\+::\+Base\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_base_buffer_ab2e642026d9013d84dba26248a09e3c5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_base_buffer_a8da8efb40a86c4c48e1b9bca64de6f92}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Bind@{Bind}}
+\index{Bind@{Bind}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Bind}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Bind (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{bindpoint}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_a8da8efb40a86c4c48e1b9bca64de6f92}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_a1e77bdd1dffe7eed3314dada721ef60a}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_a1e77bdd1dffe7eed3314dada721ef60a}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_a1e77bdd1dffe7eed3314dada721ef60a}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}, and \hyperlink{class_agmd_1_1_g_l_uniform_buffer_a3eb59228ab1366d6f802559d0e372aba}{Agmd\+::\+G\+L\+Uniform\+Buffer$<$ buffer\+Count $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_a7bf279e968311e91e905afd7d7e2c145}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Fill\+Byte@{Fill\+Byte}}
+\index{Fill\+Byte@{Fill\+Byte}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Fill\+Byte}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Fill\+Byte (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{data, }
+\item[{unsigned long}]{offset, }
+\item[{unsigned long}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_a7bf279e968311e91e905afd7d7e2c145}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_afad84215ec431ed1c275b062c76d9ee0}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_afad84215ec431ed1c275b062c76d9ee0}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_afad84215ec431ed1c275b062c76d9ee0}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_ad4922f6545124baec94ce4bd9b4ccceb}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Flush@{Flush}}
+\index{Flush@{Flush}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Flush}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Flush (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_ad4922f6545124baec94ce4bd9b4ccceb}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_abf3c8799242660a0e05ee7ece5355560}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_abf3c8799242660a0e05ee7ece5355560}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_abf3c8799242660a0e05ee7ece5355560}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_ab3c4e881ef20a8d6d9f8d3f2d920a60e}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Lock@{Lock}}
+\index{Lock@{Lock}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Lock}]{\setlength{\rightskip}{0pt plus 5cm}virtual void$\ast$ Agmd\+::\+Base\+Buffer\+::\+Lock (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{offset, }
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_ab3c4e881ef20a8d6d9f8d3f2d920a60e}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_af528936de0f248d8600f98a4a90b0690}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_af528936de0f248d8600f98a4a90b0690}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_af528936de0f248d8600f98a4a90b0690}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_a0523f6a4bebacc8800d91297d20b12ca}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Lock\+Byte@{Lock\+Byte}}
+\index{Lock\+Byte@{Lock\+Byte}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Lock\+Byte}]{\setlength{\rightskip}{0pt plus 5cm}virtual void$\ast$ Agmd\+::\+Base\+Buffer\+::\+Lock\+Byte (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{offset, }
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_a0523f6a4bebacc8800d91297d20b12ca}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_af9af1f6412e317779012ab1e8b8fa392}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_af9af1f6412e317779012ab1e8b8fa392}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_af9af1f6412e317779012ab1e8b8fa392}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_a5d698e89b12501c71dfea9f7575b3742}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Swap\+Buffers@{Swap\+Buffers}}
+\index{Swap\+Buffers@{Swap\+Buffers}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Swap\+Buffers}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Swap\+Buffers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_a5d698e89b12501c71dfea9f7575b3742}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_af88ce97bde11de88a1ca227af3257698}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_af88ce97bde11de88a1ca227af3257698}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_af88ce97bde11de88a1ca227af3257698}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_afb2c7043048c1327a1b1cef6644f1878}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Unlock@{Unlock}}
+\index{Unlock@{Unlock}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Unlock}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_afb2c7043048c1327a1b1cef6644f1878}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_adf95328adee30f22c59f39bc4f04177e}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_adf95328adee30f22c59f39bc4f04177e}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_adf95328adee30f22c59f39bc4f04177e}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+\hypertarget{class_agmd_1_1_base_buffer_a9d694ef2b76825d6e496d35a2d6def6b}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Wait\+Sync@{Wait\+Sync}}
+\index{Wait\+Sync@{Wait\+Sync}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Wait\+Sync}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Base\+Buffer\+::\+Wait\+Sync (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_base_buffer_a9d694ef2b76825d6e496d35a2d6def6b}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_buffer_ab79847088a93b9e0c9ec18acea0dc614}{Agmd\+::\+G\+L\+Buffer$<$ Type, buffer\+Count $>$}, \hyperlink{class_agmd_1_1_g_l_buffer_ab79847088a93b9e0c9ec18acea0dc614}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+B\+U\+F\+F\+E\+R, buffer\+Count $>$}, and \hyperlink{class_agmd_1_1_g_l_buffer_ab79847088a93b9e0c9ec18acea0dc614}{Agmd\+::\+G\+L\+Buffer$<$ G\+L\+\_\+\+T\+E\+X\+T\+U\+R\+E\+\_\+\+B\+U\+F\+F\+E\+R, 1 $>$}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_agmd_1_1_base_buffer_a121ba56e0cdc05eea057f3760cc35279}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ friend class {\bf Buffer}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_agmd_1_1_base_buffer_a121ba56e0cdc05eea057f3760cc35279}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_base_buffer_a74887fc81c30f9546d0ad9afab580919}{\index{Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}!m\+\_\+\+Count@{m\+\_\+\+Count}}
+\index{m\+\_\+\+Count@{m\+\_\+\+Count}!Agmd\+::\+Base\+Buffer@{Agmd\+::\+Base\+Buffer}}
+\subsubsection[{m\+\_\+\+Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long Agmd\+::\+Base\+Buffer\+::m\+\_\+\+Count\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_base_buffer_a74887fc81c30f9546d0ad9afab580919}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Buffer/\hyperlink{_base_buffer_8h}{Base\+Buffer.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Buffer/\hyperlink{_base_buffer_8cpp}{Base\+Buffer.\+cpp}\end{DoxyCompactItemize}

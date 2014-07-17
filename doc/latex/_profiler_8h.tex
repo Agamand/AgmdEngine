@@ -1,0 +1,83 @@
+\hypertarget{_profiler_8h}{\section{src/\+Agmd\+Utilities/\+Debug/\+Profiler.h File Reference}
+\label{_profiler_8h}\index{src/\+Agmd\+Utilities/\+Debug/\+Profiler.\+h@{src/\+Agmd\+Utilities/\+Debug/\+Profiler.\+h}}
+}
+{\ttfamily \#include $<$Agmd\+Utilities\textbackslash{}\+Utilities\textbackslash{}\+Timer.\+h$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$Container/\+Vector.\+h$>$}\\*
+Include dependency graph for Profiler.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_profiler}{Profiler}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_profiler_8h_a73d6e2c636c7644296d4e6646b5390f1}{P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T}()~;
+\item 
+\#define \hyperlink{_profiler_8h_aba5c74d71c983cfad8b5b8d3a20a4b8d}{P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T}()~;
+\item 
+\#define \hyperlink{_profiler_8h_a5e3371a234bac46ce40ccc087eb17ed0}{P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D}()~;
+\item 
+\#define \hyperlink{_profiler_8h_a30f7b6c7f3a9d7f574ac63c76fb7d349}{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T}()~;
+\item 
+\#define \hyperlink{_profiler_8h_a3d75e9851d399d5cbff12208d5bcc334}{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O}()~;
+\item 
+\#define \hyperlink{_profiler_8h_a6e7edc40b6c30a16019a8c203a7019b9}{P\+R\+O\+F\+I\+L\+E\+R}(func)~func;
+\item 
+\#define \hyperlink{_profiler_8h_a0ed8873b7800bc01ded01999f3134323}{P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E}(func)~;
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_profiler_8h_a5e3371a234bac46ce40ccc087eb17ed0}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D@{P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D}}
+\index{P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D@{P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+\_\+\+E\+N\+D(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_a5e3371a234bac46ce40ccc087eb17ed0}
+\hypertarget{_profiler_8h_a73d6e2c636c7644296d4e6646b5390f1}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T@{P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T}}
+\index{P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T@{P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+\_\+\+I\+N\+I\+T(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_a73d6e2c636c7644296d4e6646b5390f1}
+\hypertarget{_profiler_8h_aba5c74d71c983cfad8b5b8d3a20a4b8d}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T@{P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T}}
+\index{P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T@{P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+\_\+\+S\+T\+A\+R\+T(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_aba5c74d71c983cfad8b5b8d3a20a4b8d}
+\hypertarget{_profiler_8h_a0ed8873b7800bc01ded01999f3134323}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E@{P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E}}
+\index{P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E@{P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+\_\+\+T\+I\+M\+E(
+\begin{DoxyParamCaption}
+\item[{}]{func}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_a0ed8873b7800bc01ded01999f3134323}
+\hypertarget{_profiler_8h_a6e7edc40b6c30a16019a8c203a7019b9}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+R@{P\+R\+O\+F\+I\+L\+E\+R}}
+\index{P\+R\+O\+F\+I\+L\+E\+R@{P\+R\+O\+F\+I\+L\+E\+R}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+R(
+\begin{DoxyParamCaption}
+\item[{}]{func}
+\end{DoxyParamCaption}
+)~func;}}\label{_profiler_8h_a6e7edc40b6c30a16019a8c203a7019b9}
+\hypertarget{_profiler_8h_a3d75e9851d399d5cbff12208d5bcc334}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O@{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O}}
+\index{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O@{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+F\+O(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_a3d75e9851d399d5cbff12208d5bcc334}
+\hypertarget{_profiler_8h_a30f7b6c7f3a9d7f574ac63c76fb7d349}{\index{Profiler.\+h@{Profiler.\+h}!P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T@{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T}}
+\index{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T@{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T}!Profiler.\+h@{Profiler.\+h}}
+\subsubsection[{P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+F\+I\+L\+E\+R\+\_\+\+I\+N\+I\+T(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~;}}\label{_profiler_8h_a30f7b6c7f3a9d7f574ac63c76fb7d349}

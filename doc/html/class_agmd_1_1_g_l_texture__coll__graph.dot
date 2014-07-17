@@ -7,6 +7,4 @@ digraph "Agmd::GLTexture"
   Node2 [label="Agmd::TextureBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_texture_base.html"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="Agmd::Resource",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_resource.html"];
-  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" m_Data" ,fontname="Helvetica"];
-  Node4 [label="Agmd::Image",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html"];
 }

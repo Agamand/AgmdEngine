@@ -1,0 +1,303 @@
+\hypertarget{classnoise_1_1utils_1_1_gradient_color}{\section{noise\+:\+:utils\+:\+:Gradient\+Color Class Reference}
+\label{classnoise_1_1utils_1_1_gradient_color}\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+}
+
+
+{\ttfamily \#include $<$noiseutils.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnoise_1_1utils_1_1_gradient_color_aef6d8057a751f014c15ccb6ead7d68dd}{Gradient\+Color} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classnoise_1_1utils_1_1_gradient_color_a766b336606b01981f44cdc9b8b3a097b}{$\sim$\+Gradient\+Color} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classnoise_1_1utils_1_1_gradient_color_ac715c443ee7e6456657d131ab0cac42a}{Add\+Gradient\+Point} (double gradient\+Pos, const \hyperlink{classnoise_1_1utils_1_1_color}{Color} \&gradient\+Color)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_gradient_color_ae70b2720fc9a51c051d20f9d2575bc94}{Clear} ()
+\item 
+const \hyperlink{classnoise_1_1utils_1_1_color}{Color} \& \hyperlink{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}{Get\+Color} (double gradient\+Pos) const 
+\item 
+const \hyperlink{structnoise_1_1utils_1_1_gradient_point}{Gradient\+Point} $\ast$ \hyperlink{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}{Get\+Gradient\+Point\+Array} () const 
+\item 
+int \hyperlink{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{Get\+Gradient\+Point\+Count} () const 
+\item 
+\hyperlink{classnoise_1_1utils_1_1_gradient_color_af302d241e27c11c3f864a0b5368196d3}{Gradient\+Color} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classnoise_1_1utils_1_1_gradient_color_a7bc79f04663e2a6948fa359ed822682f}{$\sim$\+Gradient\+Color} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classnoise_1_1utils_1_1_gradient_color_a961e65225ac07622d6138a35f71c3801}{Add\+Gradient\+Point} (double gradient\+Pos, const \hyperlink{classnoise_1_1utils_1_1_color}{Color} \&gradient\+Color)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_gradient_color_a1d59cb7ed0a1601331a66d50c83d6a64}{Clear} ()
+\item 
+const \hyperlink{classnoise_1_1utils_1_1_color}{Color} \& \hyperlink{classnoise_1_1utils_1_1_gradient_color_a979a2490e26a6831e1067989199fd003}{Get\+Color} (double gradient\+Pos) const 
+\item 
+const \hyperlink{structnoise_1_1utils_1_1_gradient_point}{Gradient\+Point} $\ast$ \hyperlink{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}{Get\+Gradient\+Point\+Array} () const 
+\item 
+int \hyperlink{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{Get\+Gradient\+Point\+Count} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines a color gradient.
+
+A color gradient is a list of gradually-\/changing colors. A color gradient is defined by a list of {\itshape gradient points}. Each gradient point has a position and a color. In a color gradient, the colors between two adjacent gradient points are linearly interpolated.
+
+To add a gradient point to the color gradient, pass its position and color to the \hyperlink{classnoise_1_1utils_1_1_gradient_color_ac715c443ee7e6456657d131ab0cac42a}{Add\+Gradient\+Point()} method.
+
+To retrieve a color from a specific position in the color gradient, pass that position to the \hyperlink{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}{Get\+Color()} method.
+
+This class is a useful tool for coloring height maps based on elevation.
+
+{\bfseries Gradient example}
+
+Suppose a gradient object contains the following gradient points\+:
+\begin{DoxyItemize}
+\item -\/1.\+0 maps to black.
+\item 0.\+0 maps to white.
+\item 1.\+0 maps to red.
+\end{DoxyItemize}
+
+If an application passes -\/0.\+5 to the \hyperlink{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}{Get\+Color()} method, this method will return a gray color that is halfway between black and white.
+
+If an application passes 0.\+25 to the \hyperlink{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}{Get\+Color()} method, this method will return a very light pink color that is one quarter of the way between white and red. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_aef6d8057a751f014c15ccb6ead7d68dd}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Gradient\+Color@{Gradient\+Color}}
+\index{Gradient\+Color@{Gradient\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Gradient\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Gradient\+Color\+::\+Gradient\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_aef6d8057a751f014c15ccb6ead7d68dd}
+
+
+Constructor. 
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a766b336606b01981f44cdc9b8b3a097b}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!````~Gradient\+Color@{$\sim$\+Gradient\+Color}}
+\index{````~Gradient\+Color@{$\sim$\+Gradient\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{$\sim$\+Gradient\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Gradient\+Color\+::$\sim$\+Gradient\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_a766b336606b01981f44cdc9b8b3a097b}
+
+
+Destructor. 
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_af302d241e27c11c3f864a0b5368196d3}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Gradient\+Color@{Gradient\+Color}}
+\index{Gradient\+Color@{Gradient\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Gradient\+Color}]{\setlength{\rightskip}{0pt plus 5cm}noise\+::utils\+::\+Gradient\+Color\+::\+Gradient\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_af302d241e27c11c3f864a0b5368196d3}
+
+
+Constructor. 
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a7bc79f04663e2a6948fa359ed822682f}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!````~Gradient\+Color@{$\sim$\+Gradient\+Color}}
+\index{````~Gradient\+Color@{$\sim$\+Gradient\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{$\sim$\+Gradient\+Color}]{\setlength{\rightskip}{0pt plus 5cm}noise\+::utils\+::\+Gradient\+Color\+::$\sim$\+Gradient\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_a7bc79f04663e2a6948fa359ed822682f}
+
+
+Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_ac715c443ee7e6456657d131ab0cac42a}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Add\+Gradient\+Point@{Add\+Gradient\+Point}}
+\index{Add\+Gradient\+Point@{Add\+Gradient\+Point}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Add\+Gradient\+Point}]{\setlength{\rightskip}{0pt plus 5cm}void Gradient\+Color\+::\+Add\+Gradient\+Point (
+\begin{DoxyParamCaption}
+\item[{double}]{gradient\+Pos, }
+\item[{const {\bf Color} \&}]{gradient\+Color}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_ac715c443ee7e6456657d131ab0cac42a}
+Adds a gradient point to this gradient object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gradient\+Pos} & The position of this gradient point. \\
+\hline
+{\em gradient\+Color} & The color of this gradient point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+No two gradient points have the same position.
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the precondition.\\
+\hline
+\end{DoxyExceptions}
+It does not matter which order these gradient points are added. 
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a961e65225ac07622d6138a35f71c3801}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Add\+Gradient\+Point@{Add\+Gradient\+Point}}
+\index{Add\+Gradient\+Point@{Add\+Gradient\+Point}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Add\+Gradient\+Point}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Gradient\+Color\+::\+Add\+Gradient\+Point (
+\begin{DoxyParamCaption}
+\item[{double}]{gradient\+Pos, }
+\item[{const {\bf Color} \&}]{gradient\+Color}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_a961e65225ac07622d6138a35f71c3801}
+Adds a gradient point to this gradient object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gradient\+Pos} & The position of this gradient point. \\
+\hline
+{\em gradient\+Color} & The color of this gradient point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+No two gradient points have the same position.
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the precondition.\\
+\hline
+\end{DoxyExceptions}
+It does not matter which order these gradient points are added. \hypertarget{classnoise_1_1utils_1_1_gradient_color_ae70b2720fc9a51c051d20f9d2575bc94}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Clear@{Clear}}
+\index{Clear@{Clear}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Gradient\+Color\+::\+Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_ae70b2720fc9a51c051d20f9d2575bc94}
+Deletes all the gradient points from this gradient object.
+
+\begin{DoxyPostcond}{Postcondition}
+All gradient points from this gradient object are deleted. 
+\end{DoxyPostcond}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a1d59cb7ed0a1601331a66d50c83d6a64}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Clear@{Clear}}
+\index{Clear@{Clear}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Gradient\+Color\+::\+Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_gradient_color_a1d59cb7ed0a1601331a66d50c83d6a64}
+Deletes all the gradient points from this gradient object.
+
+\begin{DoxyPostcond}{Postcondition}
+All gradient points from this gradient object are deleted. 
+\end{DoxyPostcond}
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a979a2490e26a6831e1067989199fd003}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Color@{Get\+Color}}
+\index{Get\+Color@{Get\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Color}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Color}\& noise\+::utils\+::\+Gradient\+Color\+::\+Get\+Color (
+\begin{DoxyParamCaption}
+\item[{double}]{gradient\+Pos}
+\end{DoxyParamCaption}
+) const}}\label{classnoise_1_1utils_1_1_gradient_color_a979a2490e26a6831e1067989199fd003}
+Returns the color at the specified position in the color gradient.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gradient\+Pos} & The specified position.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color at that position. 
+\end{DoxyReturn}
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Color@{Get\+Color}}
+\index{Get\+Color@{Get\+Color}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Color}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Color} \& Gradient\+Color\+::\+Get\+Color (
+\begin{DoxyParamCaption}
+\item[{double}]{gradient\+Pos}
+\end{DoxyParamCaption}
+) const}}\label{classnoise_1_1utils_1_1_gradient_color_aa77f1cb0b4b7e79727075972ce1d8e29}
+Returns the color at the specified position in the color gradient.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gradient\+Pos} & The specified position.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color at that position. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Gradient\+Point\+Array@{Get\+Gradient\+Point\+Array}}
+\index{Get\+Gradient\+Point\+Array@{Get\+Gradient\+Point\+Array}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Gradient\+Point\+Array}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Gradient\+Point}$\ast$ noise\+::utils\+::\+Gradient\+Color\+::\+Get\+Gradient\+Point\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}
+Returns a pointer to the array of gradient points in this object.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the array of gradient points.
+\end{DoxyReturn}
+Before calling this method, call \hyperlink{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{Get\+Gradient\+Point\+Count()} to determine the number of gradient points in this array.
+
+It is recommended that an application does not store this pointer for later use since the pointer to the array may change if the application calls another method of this object. \hypertarget{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Gradient\+Point\+Array@{Get\+Gradient\+Point\+Array}}
+\index{Get\+Gradient\+Point\+Array@{Get\+Gradient\+Point\+Array}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Gradient\+Point\+Array}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Gradient\+Point}$\ast$ noise\+::utils\+::\+Gradient\+Color\+::\+Get\+Gradient\+Point\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_gradient_color_a3679d2455b1b73f7e25f80609fa90820}
+Returns a pointer to the array of gradient points in this object.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the array of gradient points.
+\end{DoxyReturn}
+Before calling this method, call \hyperlink{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{Get\+Gradient\+Point\+Count()} to determine the number of gradient points in this array.
+
+It is recommended that an application does not store this pointer for later use since the pointer to the array may change if the application calls another method of this object. \hypertarget{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Gradient\+Point\+Count@{Get\+Gradient\+Point\+Count}}
+\index{Get\+Gradient\+Point\+Count@{Get\+Gradient\+Point\+Count}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Gradient\+Point\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int noise\+::utils\+::\+Gradient\+Color\+::\+Get\+Gradient\+Point\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}
+Returns the number of gradient points stored in this object.
+
+\begin{DoxyReturn}{Returns}
+The number of gradient points stored in this object. 
+\end{DoxyReturn}
+\hypertarget{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}{\index{noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}!Get\+Gradient\+Point\+Count@{Get\+Gradient\+Point\+Count}}
+\index{Get\+Gradient\+Point\+Count@{Get\+Gradient\+Point\+Count}!noise\+::utils\+::\+Gradient\+Color@{noise\+::utils\+::\+Gradient\+Color}}
+\subsubsection[{Get\+Gradient\+Point\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int noise\+::utils\+::\+Gradient\+Color\+::\+Get\+Gradient\+Point\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_gradient_color_a5755924714ac89914b339f3addc80741}
+Returns the number of gradient points stored in this object.
+
+\begin{DoxyReturn}{Returns}
+The number of gradient points stored in this object. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8h}{noiseutils.\+h}\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8cpp}{noiseutils.\+cpp}\end{DoxyCompactItemize}

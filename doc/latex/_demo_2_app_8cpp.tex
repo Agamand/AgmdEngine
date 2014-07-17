@@ -1,145 +1,205 @@
-\hypertarget{_demo_2_app_8cpp}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.cpp File Reference}
-\label{_demo_2_app_8cpp}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.\-cpp@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Demo/\-App.\-cpp}}
+\hypertarget{_demo_2_app_8cpp}{\section{src/\+Demo/\+App.cpp File Reference}
+\label{_demo_2_app_8cpp}\index{src/\+Demo/\+App.\+cpp@{src/\+Demo/\+App.\+cpp}}
 }
-{\ttfamily \#include \char`\"{}App.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}M2\-Model.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}M2\-Loader.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Media\-Manager.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Renderer.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Enums.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Declaration.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Declaration\-Element.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Resource\-Manager.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Terrain.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Buffer\textbackslash{}\-Frame\-Buffer.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Graphic\-String.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Scene.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Water.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Sky\-Box.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-G\-U\-I\textbackslash{}\-G\-U\-I\-Mgr.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd\-Network\textbackslash{}\-Client\textbackslash{}\-Client.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd\-Network\textbackslash{}\-Opcode\textbackslash{}\-Opcode\-Mgr.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd3\-D\textbackslash{}\-Core\textbackslash{}\-Camera\textbackslash{}\-Dynamic\-Camera.\-h$>$}\\*
-{\ttfamily \#include $<$Physics\-Plugin\textbackslash{}\-Physics\-Mgr.\-h$>$}\\*
-{\ttfamily \#include $<$math.\-h$>$}\\*
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{class_op_client_mgr}{Op\-Client\-Mgr}
-\item 
-class \hyperlink{class_agmd_client}{Agmd\-Client}
-\end{DoxyCompactItemize}
+{\ttfamily \#include \char`\"{}App.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}M2\+Model.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}M2\+Loader.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Media\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Enums.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Declaration.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Declaration\+Element.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Resource\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Scene\+Object\textbackslash{}\+Terrain.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Buffer\textbackslash{}\+Frame\+Buffer.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Render\+Object\textbackslash{}\+Graphic\+String.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Scene\+Object\textbackslash{}\+Scene.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Scene\+Object\textbackslash{}\+Water.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Scene\+Object\textbackslash{}\+Sky\+Box.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Light.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Rendering\+Mode/\+Deferred\+Rendering.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Rendering\+Mode/\+Forward\+Rendering.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+F\+P\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+Follow\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Network\textbackslash{}\+Client\textbackslash{}\+Client.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Network\textbackslash{}\+Opcode\textbackslash{}\+Opcode\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Utilities/\+Utilities/\+Color.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Utilities/\+Debug/\+Profiler.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Effects/\+Post\+Effect\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Effects/\+Blur\+Effect.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Effects/\+Asci\+Effect.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Render\+Object/\+Mesh\+Render.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+G\+U\+I\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+A\+Slider.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Shader/\+Shader\+Pipeline.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Statistics.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Material.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Node/\+Mesh\+Node.\+h$>$}\\*
+{\ttfamily \#include $<$Renderer/\+Open\+G\+L/\+Gl\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Fast2\+D\+Surface.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}bt\+Bullet\+Dynamics\+Common.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}bt\+Bullet\+Collision\+Common.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Loader/obj\+Loader.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Demo/\+Loader/\+Mesh\+Loader.\+h$>$}\\*
+{\ttfamily \#include $<$glm/ext.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Perlin\+Noise.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$libnoise/noise.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Shader/\+Shader\+Pre\+Compiler.\+h$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include \char`\"{}simplexnoise.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}noiseutils.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Planet/\+Planet.\+h\char`\"{}}\\*
+Include dependency graph for App.\+cpp\+:
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}
+\#define \hyperlink{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}
 \item 
-\#define \hyperlink{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}~3.\-661786780f
-\item 
-\#define \hyperlink{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}{K\-M\-\_\-\-M\-O\-O\-N}~0.\-0005760f
-\item 
-\#define \hyperlink{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}{T\-O\-\_\-\-P\-H\-Y\-S}(a)~$\ast$((\hyperlink{struct_agmd_1_1_physics_transfo}{Physics\-Transfo}$\ast$)\&a)
-\item 
-\#define \hyperlink{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}(a, x)~((a)-\/(x)$\ast$(int)((a)/(x)))
-\item 
-\#define \hyperlink{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}{O\-R\-I\-G\-I\-N}~-\/98.\-0f
-\item 
-\#define \hyperlink{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{S\-E\-L\-E\-C\-T}(i, size)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))
+\#define \hyperlink{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{S\+E\+L\+E\+C\+T}(i, size)~((i) $>$= ((int)size) ? (i)\%((int)size) \+: (i))
 \end{DoxyCompactItemize}
-\subsection*{Enumerations}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}{Opcode} \{ \\*
-\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N} = 0x0, 
-\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x1, 
-\hyperlink{_agmd_server_2main_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x2, 
-\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N} = 0x0, 
-\\*
-\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x1, 
-\hyperlink{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E} = 0x2
- \}
+\hyperlink{_demo_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L} (\hyperlink{class_app}{App})
+\item 
+void \hyperlink{_demo_2_app_8cpp_a4b7c38b4a8b46d19f5216142bc0170dc}{generate\+Noise} (uint32 $\ast$\&img, int size, int \hyperlink{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{seed})
+\item 
+void \hyperlink{_demo_2_app_8cpp_a5a8a996bc7ffa9c2f718301519ea7b04}{generate\+Noise3d} (\hyperlink{class_agmd_1_1_texture}{Texture} \&\hyperlink{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{t}, int size, int \hyperlink{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{seed})
+\item 
+void \hyperlink{_demo_2_app_8cpp_ae1a3968e7947464bee7714f6d43b7002}{test} ()
+\item 
+void \hyperlink{_demo_2_app_8cpp_aae9751cf6ab64562c1c16b4fd8704b3c}{\+\_\+\+Create\+Plane} (vec3 orientation, quat rot, int size, int offset\+\_\+index, std\+::vector$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, std\+::vector$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index)
+\item 
+vec2 \hyperlink{_demo_2_app_8cpp_ae67408962fc866122e199cc01a720fa3}{intersect} (vec4 d1, vec4 d2)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{struct_agmd_network_1_1_opcode_handler}{Agmd\-Network\-::\-Opcode\-Handler}\\*
-$<$ \hyperlink{class_op_client_mgr}{Op\-Client\-Mgr} $>$ \hyperlink{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}{\-\_\-opcode} \mbox{[}$\,$\mbox{]}
+\hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{_demo_2_app_8cpp_a6254fe828486731db871549be494a42b}{default\+\_\+program}
+\item 
+const char $\ast$ \hyperlink{_demo_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}{gradient} =\char`\"{}Texture/gradient\+\_\+mars.\+png\char`\"{}
+\item 
+const char $\ast$ \hyperlink{_demo_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{seed} = N\+U\+L\+L
+\item 
+\hyperlink{class_agmd_1_1_sky_box}{Sky\+Box} $\ast$ \hyperlink{_demo_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}{boox}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_demo_2_app_8cpp_a9c3699bf95c97b64bbd13f30230e0bef}{tvelocity}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_demo_2_app_8cpp_aa4158ec26a0ab3e2138b1120bf00a09c}{tmass}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{_demo_2_app_8cpp_af8ef56015f075745fa7df1f0a0c5d28f}{velocity\+\_\+program}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{_demo_2_app_8cpp_aab736805472b4624f8378ce158b0cde7}{mass\+\_\+program}
+\item 
+float \hyperlink{_demo_2_app_8cpp_a8108db6538a0d24860c484c261125d02}{timespeed} = 1.\+0f
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S@{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}}
-\index{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S@{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{\-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-U\-S\-E\-\_\-\-M\-A\-T\-H\-\_\-\-D\-E\-F\-I\-N\-E\-S}}\label{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}
-\hypertarget{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R@{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}}
-\index{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R@{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-R\-T\-H\-\_\-\-M\-O\-O\-N\-\_\-\-R~3.\-661786780f}}\label{_demo_2_app_8cpp_a76b14e73df012c75edf02d740027e3d7}
-\hypertarget{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!K\-M\-\_\-\-M\-O\-O\-N@{K\-M\-\_\-\-M\-O\-O\-N}}
-\index{K\-M\-\_\-\-M\-O\-O\-N@{K\-M\-\_\-\-M\-O\-O\-N}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{K\-M\-\_\-\-M\-O\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\-M\-\_\-\-M\-O\-O\-N~0.\-0005760f}}\label{_demo_2_app_8cpp_a38429e79969315f9b97fcb1a702cd598}
-\hypertarget{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T@{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}}
-\index{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T@{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-O\-D\-U\-L\-O\-\_\-\-F\-L\-O\-A\-T(
-\begin{DoxyParamCaption}
-\item[{}]{a, }
-\item[{}]{x}
-\end{DoxyParamCaption}
-)~((a)-\/(x)$\ast$(int)((a)/(x)))}}\label{_demo_2_app_8cpp_a35a4938eb6e62223277f88dc2d8f4cda}
-\hypertarget{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!O\-R\-I\-G\-I\-N@{O\-R\-I\-G\-I\-N}}
-\index{O\-R\-I\-G\-I\-N@{O\-R\-I\-G\-I\-N}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{O\-R\-I\-G\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-R\-I\-G\-I\-N~-\/98.\-0f}}\label{_demo_2_app_8cpp_a6d0e35daa22db6d441eec2154f0b692f}
-\hypertarget{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}}
-\index{S\-E\-L\-E\-C\-T@{S\-E\-L\-E\-C\-T}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{S\-E\-L\-E\-C\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-L\-E\-C\-T(
+\hypertarget{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}\label{_demo_2_app_8cpp_a525335710b53cb064ca56b936120431e}
+\hypertarget{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!S\+E\+L\+E\+C\+T@{S\+E\+L\+E\+C\+T}}
+\index{S\+E\+L\+E\+C\+T@{S\+E\+L\+E\+C\+T}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{S\+E\+L\+E\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+L\+E\+C\+T(
 \begin{DoxyParamCaption}
 \item[{}]{i, }
 \item[{}]{size}
 \end{DoxyParamCaption}
-)~((i) $>$= ((int)size) ? (i)\%((int)size) \-: (i))}}\label{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}
-\hypertarget{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!T\-O\-\_\-\-P\-H\-Y\-S@{T\-O\-\_\-\-P\-H\-Y\-S}}
-\index{T\-O\-\_\-\-P\-H\-Y\-S@{T\-O\-\_\-\-P\-H\-Y\-S}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{T\-O\-\_\-\-P\-H\-Y\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-O\-\_\-\-P\-H\-Y\-S(
+)~((i) $>$= ((int)size) ? (i)\%((int)size) \+: (i))}}\label{_demo_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}
+
+
+\subsection{Function Documentation}
+\hypertarget{_demo_2_app_8cpp_aae9751cf6ab64562c1c16b4fd8704b3c}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!\+\_\+\+Create\+Plane@{\+\_\+\+Create\+Plane}}
+\index{\+\_\+\+Create\+Plane@{\+\_\+\+Create\+Plane}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{\+\_\+\+Create\+Plane}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+\+Create\+Plane (
 \begin{DoxyParamCaption}
-\item[{}]{a}
+\item[{vec3}]{orientation, }
+\item[{quat}]{rot, }
+\item[{int}]{size, }
+\item[{int}]{offset\+\_\+index, }
+\item[{std\+::vector$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{std\+::vector$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index}
 \end{DoxyParamCaption}
-)~$\ast$(({\bf Physics\-Transfo}$\ast$)\&a)}}\label{_demo_2_app_8cpp_aafe5c85000b19a68855bee6793bf3034}
+)}}\label{_demo_2_app_8cpp_aae9751cf6ab64562c1c16b4fd8704b3c}
 
 
-\subsection{Enumeration Type Documentation}
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!Opcode@{Opcode}}
-\index{Opcode@{Opcode}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{Opcode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Opcode}}}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7}
-\begin{Desc}
-\item[Enumerator\-: ]\par
-\begin{description}
-\index{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}
-}]\index{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}
-}]\index{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}
-}]\index{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N@{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}{M\-S\-G\-\_\-\-N\-U\-L\-L\-\_\-\-A\-C\-T\-I\-O\-N}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7abe872011253337054be26ee259166439}
-}]\index{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}{C\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a0372ec2eb5ec0263c6cc83b7d2a1ba2d}
-}]\index{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}!Demo/\-App.\-cpp@{Demo/\-App.\-cpp}}\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E@{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}}\item[{\em 
-\hypertarget{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}{S\-M\-S\-G\-\_\-\-S\-E\-N\-D\-\_\-\-M\-E\-S\-S\-A\-G\-E}\label{_demo_2_app_8cpp_a2112dbdb049f53df83b3ba6fcbf13dc7a6d55cc9cdac491ee2336dccbbaf0cf40}
-}]\end{description}
-\end{Desc}
+Here is the caller graph for this function\+:
 
+
+\hypertarget{_demo_2_app_8cpp_a4b7c38b4a8b46d19f5216142bc0170dc}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!generate\+Noise@{generate\+Noise}}
+\index{generate\+Noise@{generate\+Noise}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{generate\+Noise}]{\setlength{\rightskip}{0pt plus 5cm}void generate\+Noise (
+\begin{DoxyParamCaption}
+\item[{uint32 $\ast$\&}]{img, }
+\item[{int}]{size, }
+\item[{int}]{seed}
+\end{DoxyParamCaption}
+)}}\label{_demo_2_app_8cpp_a4b7c38b4a8b46d19f5216142bc0170dc}
+\hypertarget{_demo_2_app_8cpp_a5a8a996bc7ffa9c2f718301519ea7b04}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!generate\+Noise3d@{generate\+Noise3d}}
+\index{generate\+Noise3d@{generate\+Noise3d}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{generate\+Noise3d}]{\setlength{\rightskip}{0pt plus 5cm}void generate\+Noise3d (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture} \&}]{t, }
+\item[{int}]{size, }
+\item[{int}]{seed}
+\end{DoxyParamCaption}
+)}}\label{_demo_2_app_8cpp_a5a8a996bc7ffa9c2f718301519ea7b04}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_demo_2_app_8cpp_ae67408962fc866122e199cc01a720fa3}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!intersect@{intersect}}
+\index{intersect@{intersect}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}vec2 intersect (
+\begin{DoxyParamCaption}
+\item[{vec4}]{d1, }
+\item[{vec4}]{d2}
+\end{DoxyParamCaption}
+)}}\label{_demo_2_app_8cpp_ae67408962fc866122e199cc01a720fa3}
+\hypertarget{_demo_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}}
+\index{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}]{\setlength{\rightskip}{0pt plus 5cm}S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L (
+\begin{DoxyParamCaption}
+\item[{{\bf App}}]{}
+\end{DoxyParamCaption}
+)}}\label{_demo_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}
+\hypertarget{_demo_2_app_8cpp_ae1a3968e7947464bee7714f6d43b7002}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!test@{test}}
+\index{test@{test}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}void test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{_demo_2_app_8cpp_ae1a3968e7947464bee7714f6d43b7002}
 
 
 \subsection{Variable Documentation}
-\hypertarget{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}{\index{Demo/\-App.\-cpp@{Demo/\-App.\-cpp}!\-\_\-opcode@{\-\_\-opcode}}
-\index{\-\_\-opcode@{\-\_\-opcode}!Demo/App.cpp@{Demo/\-App.\-cpp}}
-\subsubsection[{\-\_\-opcode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Agmd\-Network\-::\-Opcode\-Handler}$<${\bf Op\-Client\-Mgr}$>$ \-\_\-opcode\mbox{[}$\,$\mbox{]}}}\label{_demo_2_app_8cpp_a0868ab605e91244d0db6aac85b3e37cb}
-{\bfseries Initial value\-:}
-\begin{DoxyCode}
-= 
-\{
-    \{\textcolor{stringliteral}{"MSG\_NULL\_ACTION"},&\hyperlink{class_op_client_mgr_a0ab5f6d4d5d1d556f3b65a10c645d5ca}{OpClientMgr::Handle\_NULL}\},
-    \{\textcolor{stringliteral}{"CMSG\_SEND\_MESSAGE"},&\hyperlink{class_op_client_mgr_a0ab5f6d4d5d1d556f3b65a10c645d5ca}{OpClientMgr::Handle\_NULL}\},
-    \{\textcolor{stringliteral}{"SMSG\_SEND\_MESSAGE"},&\hyperlink{class_op_client_mgr_a957a649ffae63dd4b92c4fff260b1487}{OpClientMgr::HandleMessage}\}
-      ,
-\}
-\end{DoxyCode}
+\hypertarget{_demo_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!boox@{boox}}
+\index{boox@{boox}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{boox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sky\+Box}$\ast$ boox}}\label{_demo_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}
+\hypertarget{_demo_2_app_8cpp_a6254fe828486731db871549be494a42b}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!default\+\_\+program@{default\+\_\+program}}
+\index{default\+\_\+program@{default\+\_\+program}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{default\+\_\+program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program}$\ast$ default\+\_\+program}}\label{_demo_2_app_8cpp_a6254fe828486731db871549be494a42b}
+\hypertarget{_demo_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!gradient@{gradient}}
+\index{gradient@{gradient}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{gradient}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ gradient =\char`\"{}Texture/gradient\+\_\+mars.\+png\char`\"{}}}\label{_demo_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}
+\hypertarget{_demo_2_app_8cpp_aab736805472b4624f8378ce158b0cde7}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!mass\+\_\+program@{mass\+\_\+program}}
+\index{mass\+\_\+program@{mass\+\_\+program}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{mass\+\_\+program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} mass\+\_\+program}}\label{_demo_2_app_8cpp_aab736805472b4624f8378ce158b0cde7}
+\hypertarget{_demo_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!seed@{seed}}
+\index{seed@{seed}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{seed}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ seed = N\+U\+L\+L}}\label{_demo_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}
+\hypertarget{_demo_2_app_8cpp_a8108db6538a0d24860c484c261125d02}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!timespeed@{timespeed}}
+\index{timespeed@{timespeed}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{timespeed}]{\setlength{\rightskip}{0pt plus 5cm}float timespeed = 1.\+0f}}\label{_demo_2_app_8cpp_a8108db6538a0d24860c484c261125d02}
+\hypertarget{_demo_2_app_8cpp_aa4158ec26a0ab3e2138b1120bf00a09c}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!tmass@{tmass}}
+\index{tmass@{tmass}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{tmass}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} tmass}}\label{_demo_2_app_8cpp_aa4158ec26a0ab3e2138b1120bf00a09c}
+\hypertarget{_demo_2_app_8cpp_a9c3699bf95c97b64bbd13f30230e0bef}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!tvelocity@{tvelocity}}
+\index{tvelocity@{tvelocity}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{tvelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} tvelocity}}\label{_demo_2_app_8cpp_a9c3699bf95c97b64bbd13f30230e0bef}
+\hypertarget{_demo_2_app_8cpp_af8ef56015f075745fa7df1f0a0c5d28f}{\index{Demo/\+App.\+cpp@{Demo/\+App.\+cpp}!velocity\+\_\+program@{velocity\+\_\+program}}
+\index{velocity\+\_\+program@{velocity\+\_\+program}!Demo/\+App.\+cpp@{Demo/\+App.\+cpp}}
+\subsubsection[{velocity\+\_\+program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} velocity\+\_\+program}}\label{_demo_2_app_8cpp_af8ef56015f075745fa7df1f0a0c5d28f}

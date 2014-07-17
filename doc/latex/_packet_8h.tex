@@ -1,30 +1,36 @@
-\hypertarget{_packet_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Packet.h File Reference}
-\label{_packet_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Packet.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd\-Network/\-Packet/\-Packet.\-h}}
+\hypertarget{_packet_8h}{\section{src/\+Agmd\+Network/\+Packet/\+Packet.h File Reference}
+\label{_packet_8h}\index{src/\+Agmd\+Network/\+Packet/\+Packet.\+h@{src/\+Agmd\+Network/\+Packet/\+Packet.\+h}}
 }
-{\ttfamily \#include $<$Packet\textbackslash{}\-Byte\-Buffer.\-h$>$}\\*
+{\ttfamily \#include $<$Packet\textbackslash{}\+Byte\+Buffer.\+h$>$}\\*
+Include dependency graph for Packet.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class_agmd_network_1_1_packet}{Agmd\-Network\-::\-Packet}
+struct \hyperlink{struct_agmd_network_1_1_client_packet_header}{Agmd\+Network\+::\+Client\+Packet\+Header}
+\item 
+struct \hyperlink{struct_agmd_network_1_1_server_packet_header}{Agmd\+Network\+::\+Server\+Packet\+Header}
+\item 
+class \hyperlink{class_agmd_network_1_1_packet}{Agmd\+Network\+::\+Packet}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \hyperlink{namespace_agmd_network}{Agmd\-Network}
+ \hyperlink{namespace_agmd_network}{Agmd\+Network}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{_packet_8h_a70ed59adcb4159ac551058053e649640}{S\-I\-Z\-E}~4
+\#define \hyperlink{_packet_8h_a70ed59adcb4159ac551058053e649640}{S\+I\+Z\+E}~2
 \item 
-\#define \hyperlink{_packet_8h_a66af445efd415f99aadf774f122216ce}{S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E}~2
+\#define \hyperlink{_packet_8h_a66af445efd415f99aadf774f122216ce}{S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E}~2
 \end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{_packet_8h_a70ed59adcb4159ac551058053e649640}{\index{Packet.\-h@{Packet.\-h}!S\-I\-Z\-E@{S\-I\-Z\-E}}
-\index{S\-I\-Z\-E@{S\-I\-Z\-E}!Packet.h@{Packet.\-h}}
-\subsubsection[{S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-I\-Z\-E~4}}\label{_packet_8h_a70ed59adcb4159ac551058053e649640}
-\hypertarget{_packet_8h_a66af445efd415f99aadf774f122216ce}{\index{Packet.\-h@{Packet.\-h}!S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E@{S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E}}
-\index{S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E@{S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E}!Packet.h@{Packet.\-h}}
-\subsubsection[{S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-I\-Z\-E\-\_\-\-O\-P\-C\-O\-D\-E~2}}\label{_packet_8h_a66af445efd415f99aadf774f122216ce}
+\hypertarget{_packet_8h_a70ed59adcb4159ac551058053e649640}{\index{Packet.\+h@{Packet.\+h}!S\+I\+Z\+E@{S\+I\+Z\+E}}
+\index{S\+I\+Z\+E@{S\+I\+Z\+E}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E~2}}\label{_packet_8h_a70ed59adcb4159ac551058053e649640}
+\hypertarget{_packet_8h_a66af445efd415f99aadf774f122216ce}{\index{Packet.\+h@{Packet.\+h}!S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E@{S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E}}
+\index{S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E@{S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E}!Packet.\+h@{Packet.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+O\+P\+C\+O\+D\+E~2}}\label{_packet_8h_a66af445efd415f99aadf774f122216ce}

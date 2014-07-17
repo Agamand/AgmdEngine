@@ -1,0 +1,196 @@
+\hypertarget{class_agmd_1_1_scene_node}{\section{Agmd\+:\+:Scene\+Node Class Reference}
+\label{class_agmd_1_1_scene_node}\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+}
+
+
+{\ttfamily \#include $<$Scene\+Node.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Scene\+Node\+:
+
+
+Collaboration diagram for Agmd\+:\+:Scene\+Node\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_scene_node_a1c1f053d797d8e8a6ba88ce5a83255ed}{Scene\+Node} (\hyperlink{namespace_agmd_aab017255de32f494c1e7330b4ad7e945}{Node\+Type}, \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$)
+\item 
+virtual \hyperlink{class_agmd_1_1_scene_node_a10621f9021041f93f137e7c1edd2a8bb}{$\sim$\+Scene\+Node} ()
+\item 
+virtual bool \hyperlink{class_agmd_1_1_scene_node_ae523c967aa9d24bc8b66db43e84f0c5f}{is\+Visible} (\hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \&bbox)
+\item 
+virtual void \hyperlink{class_agmd_1_1_scene_node_a7cae5ee1b73f40e074f4ac86be4b694a}{find\+Visible} (\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$cam, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_display_node}{Display\+Node} $\ast$ $>$ \&display, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_light_node}{Light\+Node} $\ast$ $>$ \&light)
+\item 
+virtual bool \hyperlink{class_agmd_1_1_scene_node_a8ee2002fe5b30368f272d31ce0213d2e}{update} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$transform, bool update\+Children, bool transform\+Changed)
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} \& \hyperlink{class_agmd_1_1_scene_node_ab45325e60dec6187293000b3d3e5bbef}{get\+Transform} ()
+\item 
+void \hyperlink{class_agmd_1_1_scene_node_a018339cbc213ce125319ddc996671efd}{add\+Child} (\hyperlink{class_agmd_1_1_scene_node}{Scene\+Node} $\ast$node)
+\item 
+\hyperlink{namespace_agmd_aab017255de32f494c1e7330b4ad7e945}{Node\+Type} \hyperlink{class_agmd_1_1_scene_node_aa239f52109ebd0ab1678038ab549ee71}{get\+Type} () const 
+\item 
+bool \hyperlink{class_agmd_1_1_scene_node_a424dd9ef137707cd9ec54bd05a72a31d}{is\+Empty} ()
+\item 
+void \hyperlink{class_agmd_1_1_scene_node_a8f81da4424e248ccfa3896247aa27883}{clear} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{class_agmd_1_1_scene_node_a0587fe34600b0ba0f739d04b0712553e}{m\+\_\+transform}
+\item 
+\hyperlink{namespace_agmd_aab017255de32f494c1e7330b4ad7e945}{Node\+Type} \hyperlink{class_agmd_1_1_scene_node_a1322779a116c1ae5df21e2e1920d3ba0}{m\+\_\+type}
+\item 
+\hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_scene_node}{Scene\+Node} $\ast$ $>$ \hyperlink{class_agmd_1_1_scene_node_aa2657c3c7b7bdae0fab8a4e66170a6c4}{m\+\_\+children}
+\item 
+\hyperlink{class_agmd_1_1_scene_node}{Scene\+Node} $\ast$ \hyperlink{class_agmd_1_1_scene_node_a5112314f51117dbd59cd43330dfb50d7}{m\+\_\+parent}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_scene_node_a1c1f053d797d8e8a6ba88ce5a83255ed}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!Scene\+Node@{Scene\+Node}}
+\index{Scene\+Node@{Scene\+Node}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{Scene\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Scene\+Node\+::\+Scene\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Type}}]{type, }
+\item[{{\bf Transform} $\ast$}]{transform}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_node_a1c1f053d797d8e8a6ba88ce5a83255ed}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_scene_node_a10621f9021041f93f137e7c1edd2a8bb}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!````~Scene\+Node@{$\sim$\+Scene\+Node}}
+\index{````~Scene\+Node@{$\sim$\+Scene\+Node}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{$\sim$\+Scene\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Scene\+Node\+::$\sim$\+Scene\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_scene_node_a10621f9021041f93f137e7c1edd2a8bb}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_scene_node_a018339cbc213ce125319ddc996671efd}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{add\+Child}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+Node\+::add\+Child (
+\begin{DoxyParamCaption}
+\item[{{\bf Scene\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_scene_node_a018339cbc213ce125319ddc996671efd}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_scene_node_a8f81da4424e248ccfa3896247aa27883}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!clear@{clear}}
+\index{clear@{clear}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+Node\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_node_a8f81da4424e248ccfa3896247aa27883}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_scene_node_a7cae5ee1b73f40e074f4ac86be4b694a}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!find\+Visible@{find\+Visible}}
+\index{find\+Visible@{find\+Visible}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{find\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Scene\+Node\+::find\+Visible (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Display\+Node} $\ast$ $>$ \&}]{display, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Light\+Node} $\ast$ $>$ \&}]{light}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_scene_node_a7cae5ee1b73f40e074f4ac86be4b694a}
+
+
+Reimplemented in \hyperlink{class_agmd_1_1_display_node_aeecd3fa458a80f9d4f69f09bb7087f2e}{Agmd\+::\+Display\+Node}, and \hyperlink{class_planet_tree_node_a7e08300b24c7656d04debb88f07c9cfe}{Planet\+Tree\+Node}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_scene_node_ab45325e60dec6187293000b3d3e5bbef}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!get\+Transform@{get\+Transform}}
+\index{get\+Transform@{get\+Transform}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{get\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform} \& Agmd\+::\+Scene\+Node\+::get\+Transform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_node_ab45325e60dec6187293000b3d3e5bbef}
+\hypertarget{class_agmd_1_1_scene_node_aa239f52109ebd0ab1678038ab549ee71}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\+Type} Agmd\+::\+Scene\+Node\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_scene_node_aa239f52109ebd0ab1678038ab549ee71}
+\hypertarget{class_agmd_1_1_scene_node_a424dd9ef137707cd9ec54bd05a72a31d}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{is\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Scene\+Node\+::is\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_node_a424dd9ef137707cd9ec54bd05a72a31d}
+\hypertarget{class_agmd_1_1_scene_node_ae523c967aa9d24bc8b66db43e84f0c5f}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!is\+Visible@{is\+Visible}}
+\index{is\+Visible@{is\+Visible}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{is\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Agmd\+::\+Scene\+Node\+::is\+Visible (
+\begin{DoxyParamCaption}
+\item[{{\bf Bounding\+Box} \&}]{bbox}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_scene_node_ae523c967aa9d24bc8b66db43e84f0c5f}
+
+
+Reimplemented in \hyperlink{class_agmd_1_1_display_node_af2275c9f97b9a9fd9b2747afe1a7afdc}{Agmd\+::\+Display\+Node}, and \hyperlink{class_agmd_1_1_mesh_node_afdb179841c3cd851b2288a48dfb691f8}{Agmd\+::\+Mesh\+Node}.
+
+\hypertarget{class_agmd_1_1_scene_node_a8ee2002fe5b30368f272d31ce0213d2e}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!update@{update}}
+\index{update@{update}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Scene\+Node\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{transform, }
+\item[{bool}]{update\+Children, }
+\item[{bool}]{transform\+Changed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_scene_node_a8ee2002fe5b30368f272d31ce0213d2e}
+
+
+Reimplemented in \hyperlink{class_agmd_1_1_display_node_ad82e625239b3c31f56a650703894e99e}{Agmd\+::\+Display\+Node}, and \hyperlink{class_planet_tree_node_ad14bdf9e466f0267ba56782fbae6a9ec}{Planet\+Tree\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_scene_node_aa2657c3c7b7bdae0fab8a4e66170a6c4}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!m\+\_\+children@{m\+\_\+children}}
+\index{m\+\_\+children@{m\+\_\+children}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{m\+\_\+children}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+vector}$<${\bf Scene\+Node}$\ast$$>$ Agmd\+::\+Scene\+Node\+::m\+\_\+children\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_scene_node_aa2657c3c7b7bdae0fab8a4e66170a6c4}
+\hypertarget{class_agmd_1_1_scene_node_a5112314f51117dbd59cd43330dfb50d7}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!m\+\_\+parent@{m\+\_\+parent}}
+\index{m\+\_\+parent@{m\+\_\+parent}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{m\+\_\+parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Node}$\ast$ Agmd\+::\+Scene\+Node\+::m\+\_\+parent\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_scene_node_a5112314f51117dbd59cd43330dfb50d7}
+\hypertarget{class_agmd_1_1_scene_node_a0587fe34600b0ba0f739d04b0712553e}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!m\+\_\+transform@{m\+\_\+transform}}
+\index{m\+\_\+transform@{m\+\_\+transform}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{m\+\_\+transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ Agmd\+::\+Scene\+Node\+::m\+\_\+transform\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_scene_node_a0587fe34600b0ba0f739d04b0712553e}
+\hypertarget{class_agmd_1_1_scene_node_a1322779a116c1ae5df21e2e1920d3ba0}{\index{Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}!m\+\_\+type@{m\+\_\+type}}
+\index{m\+\_\+type@{m\+\_\+type}!Agmd\+::\+Scene\+Node@{Agmd\+::\+Scene\+Node}}
+\subsubsection[{m\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\+Type} Agmd\+::\+Scene\+Node\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_scene_node_a1322779a116c1ae5df21e2e1920d3ba0}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Node/\hyperlink{_scene_node_8h}{Scene\+Node.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Node/\hyperlink{_scene_node_8cpp}{Scene\+Node.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,186 @@
+\hypertarget{class_planet_tree_node}{\section{Planet\+Tree\+Node Class Reference}
+\label{class_planet_tree_node}\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+}
+
+
+{\ttfamily \#include $<$Planet\+Tree\+Node.\+h$>$}
+
+
+
+Inheritance diagram for Planet\+Tree\+Node\+:
+
+
+Collaboration diagram for Planet\+Tree\+Node\+:
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006c}{Face} \{ \hyperlink{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006cacd8fb9f35d21bd0306526d2d7ce9f305}{T\+O\+P\+\_\+\+L\+E\+F\+T}, 
+\hyperlink{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006caf267b6582de2e842c8a8c43ef073b05c}{T\+O\+P\+\_\+\+R\+I\+G\+H\+T}, 
+\hyperlink{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca59295adcd412488cd24833ea86231d52}{B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T}, 
+\hyperlink{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca8fe618ad036bb0edb8bf357e138c851a}{B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_planet_tree_node_aa92af6169edbe87d6634a51b42885955}{Planet\+Tree\+Node} (\hyperlink{class_planet_model}{Planet\+Model} $\ast$model, \hyperlink{class_planet}{Planet} $\ast$controller, int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face}, const mat4 \&matrix=mat4(1), \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$transform=N\+U\+L\+L, int lod=0)
+\item 
+\hyperlink{class_planet_tree_node_a99ce00aa4736ca0231ffffda431feb24}{$\sim$\+Planet\+Tree\+Node} ()
+\item 
+virtual bool \hyperlink{class_planet_tree_node_ad14bdf9e466f0267ba56782fbae6a9ec}{update} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$transform, bool update\+Children, bool transform\+Update)
+\item 
+virtual void \hyperlink{class_planet_tree_node_a54479e30d42d32cbb904b2d396646eaa}{render} (\hyperlink{namespace_agmd_a893087981df53d0bf39466e9039aeb73}{T\+Render\+Pass} pass) const 
+\item 
+virtual void \hyperlink{class_planet_tree_node_a7e08300b24c7656d04debb88f07c9cfe}{find\+Visible} (\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$cam, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_display_node}{Display\+Node} $\ast$ $>$ \&display, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_light_node}{Light\+Node} $\ast$ $>$ \&light)
+\item 
+void \hyperlink{class_planet_tree_node_a6551b608c3765cc429d6cb2b1107a705}{generate\+Texture} ()
+\item 
+void \hyperlink{class_planet_tree_node_a6f4d8eafc50cbfd3e7e14c3d7f1cdb65}{need\+Regenerate\+Maps} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006c}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!Face@{Face}}
+\index{Face@{Face}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{Face}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Planet\+Tree\+Node\+::\+Face}}}\label{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{T\+O\+P\+\_\+\+L\+E\+F\+T@{T\+O\+P\+\_\+\+L\+E\+F\+T}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!T\+O\+P\+\_\+\+L\+E\+F\+T@{T\+O\+P\+\_\+\+L\+E\+F\+T}}\item[{\em 
+\hypertarget{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006cacd8fb9f35d21bd0306526d2d7ce9f305}{T\+O\+P\+\_\+\+L\+E\+F\+T}\label{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006cacd8fb9f35d21bd0306526d2d7ce9f305}
+}]\index{T\+O\+P\+\_\+\+R\+I\+G\+H\+T@{T\+O\+P\+\_\+\+R\+I\+G\+H\+T}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!T\+O\+P\+\_\+\+R\+I\+G\+H\+T@{T\+O\+P\+\_\+\+R\+I\+G\+H\+T}}\item[{\em 
+\hypertarget{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006caf267b6582de2e842c8a8c43ef073b05c}{T\+O\+P\+\_\+\+R\+I\+G\+H\+T}\label{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006caf267b6582de2e842c8a8c43ef073b05c}
+}]\index{B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T@{B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T@{B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T}}\item[{\em 
+\hypertarget{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca59295adcd412488cd24833ea86231d52}{B\+O\+T\+T\+O\+M\+\_\+\+L\+E\+F\+T}\label{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca59295adcd412488cd24833ea86231d52}
+}]\index{B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T@{B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T@{B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T}}\item[{\em 
+\hypertarget{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca8fe618ad036bb0edb8bf357e138c851a}{B\+O\+T\+T\+O\+M\+\_\+\+R\+I\+G\+H\+T}\label{class_planet_tree_node_a6083412108802a50ff0ef1fd7806006ca8fe618ad036bb0edb8bf357e138c851a}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_planet_tree_node_aa92af6169edbe87d6634a51b42885955}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{Planet\+Tree\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Planet\+Tree\+Node\+::\+Planet\+Tree\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Planet\+Model} $\ast$}]{model, }
+\item[{{\bf Planet} $\ast$}]{controller, }
+\item[{int}]{face, }
+\item[{const mat4 \&}]{matrix = {\ttfamily mat4(1)}, }
+\item[{{\bf Transform} $\ast$}]{transform = {\ttfamily NULL}, }
+\item[{int}]{lod = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_planet_tree_node_aa92af6169edbe87d6634a51b42885955}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_tree_node_a99ce00aa4736ca0231ffffda431feb24}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!````~Planet\+Tree\+Node@{$\sim$\+Planet\+Tree\+Node}}
+\index{````~Planet\+Tree\+Node@{$\sim$\+Planet\+Tree\+Node}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{$\sim$\+Planet\+Tree\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Planet\+Tree\+Node\+::$\sim$\+Planet\+Tree\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_planet_tree_node_a99ce00aa4736ca0231ffffda431feb24}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_planet_tree_node_a7e08300b24c7656d04debb88f07c9cfe}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!find\+Visible@{find\+Visible}}
+\index{find\+Visible@{find\+Visible}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{find\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Tree\+Node\+::find\+Visible (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Display\+Node} $\ast$ $>$ \&}]{display, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Light\+Node} $\ast$ $>$ \&}]{light}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_planet_tree_node_a7e08300b24c7656d04debb88f07c9cfe}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_display_node_aeecd3fa458a80f9d4f69f09bb7087f2e}{Agmd\+::\+Display\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_tree_node_a6551b608c3765cc429d6cb2b1107a705}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!generate\+Texture@{generate\+Texture}}
+\index{generate\+Texture@{generate\+Texture}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{generate\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Tree\+Node\+::generate\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_planet_tree_node_a6551b608c3765cc429d6cb2b1107a705}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_planet_tree_node_a6f4d8eafc50cbfd3e7e14c3d7f1cdb65}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!need\+Regenerate\+Maps@{need\+Regenerate\+Maps}}
+\index{need\+Regenerate\+Maps@{need\+Regenerate\+Maps}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{need\+Regenerate\+Maps}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Tree\+Node\+::need\+Regenerate\+Maps (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_planet_tree_node_a6f4d8eafc50cbfd3e7e14c3d7f1cdb65}
+\hypertarget{class_planet_tree_node_a54479e30d42d32cbb904b2d396646eaa}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!render@{render}}
+\index{render@{render}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Planet\+Tree\+Node\+::render (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Pass}}]{pass}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_planet_tree_node_a54479e30d42d32cbb904b2d396646eaa}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_mesh_node_a4152144e5d07304bb44001a5e97571a5}{Agmd\+::\+Mesh\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_planet_tree_node_ad14bdf9e466f0267ba56782fbae6a9ec}{\index{Planet\+Tree\+Node@{Planet\+Tree\+Node}!update@{update}}
+\index{update@{update}!Planet\+Tree\+Node@{Planet\+Tree\+Node}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool Planet\+Tree\+Node\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{transform, }
+\item[{bool}]{update\+Children, }
+\item[{bool}]{transform\+Update}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_planet_tree_node_ad14bdf9e466f0267ba56782fbae6a9ec}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_display_node_ad82e625239b3c31f56a650703894e99e}{Agmd\+::\+Display\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Examples/\+Planet/\+Planet/\hyperlink{_planet_tree_node_8h}{Planet\+Tree\+Node.\+h}\item 
+src/\+Examples/\+Planet/\+Planet/\hyperlink{_planet_tree_node_8cpp}{Planet\+Tree\+Node.\+cpp}\end{DoxyCompactItemize}

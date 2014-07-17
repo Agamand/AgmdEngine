@@ -1,0 +1,9 @@
+digraph "src/AgmdPhysics/Maths" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_241771118764bf85f747bdd58a68b9ce {
+    graph [ bgcolor="#ddddee", pencolor="black", label="AgmdPhysics" fontname="Helvetica", fontsize="10", URL="dir_241771118764bf85f747bdd58a68b9ce.html"]
+  dir_771fce709801713068ac2dac8ed7511d [shape=box, label="Maths", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_771fce709801713068ac2dac8ed7511d.html"];
+  }
+}

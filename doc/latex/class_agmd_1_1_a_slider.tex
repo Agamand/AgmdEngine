@@ -1,0 +1,252 @@
+\hypertarget{class_agmd_1_1_a_slider}{\section{Agmd\+:\+:A\+Slider Class Reference}
+\label{class_agmd_1_1_a_slider}\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+}
+
+
+{\ttfamily \#include $<$A\+Slider.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:A\+Slider\+:
+
+
+Collaboration diagram for Agmd\+:\+:A\+Slider\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_agmd_1_1_a_slider_1_1_slider_interface}{Slider\+Interface}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_a_slider_aa6beff0f83fec475e5bb093272296f14}{A\+Slider} (\hyperlink{class_agmd_1_1_a_widget}{A\+Widget} $\ast$parent)
+\item 
+\hyperlink{class_agmd_1_1_a_slider_ac2f6d8ae73da369dddf93a565e63d533}{A\+Slider} (const std\+::string \&label, const ivec2 \&position, const ivec2 \&size)
+\item 
+virtual \hyperlink{class_agmd_1_1_a_slider_aad6dbacd8049104210755a7923a4755f}{$\sim$\+A\+Slider} ()
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_a_slider_a8d0c6dc2f70371f135ba8d6e0bcb0b15}{On\+Click} (ivec2 \&pos\+\_\+mouse, \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} mouse\+State)
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_a_slider_a115a1aa823e2cdce934d24b7d49c238f}{On\+Mouse\+Over} ()
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_a_slider_a91f5793c64f2f2e6cf793249f086986f}{On\+Mouse\+Move} (ivec2 \&pos\+\_\+diff, \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} mouse\+State)
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_a_slider_a90cfe6583a85d18f7bc69824477a1cfa}{On\+Key} (char key)
+\item 
+virtual void \hyperlink{class_agmd_1_1_a_slider_a3f56de5c2458630b2e7ff9d6c697cef6}{On\+Size\+Changed} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_a_slider_a138d10251a25064f697235ebe1fc59d2}{On\+Pos\+Changed} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_a_slider_ae1911d7bddd521702668eb36f7963bcc}{Draw} () const 
+\item 
+virtual bool \hyperlink{class_agmd_1_1_a_slider_a4c9ac245898f71f0100e02088daf363e}{In} (ivec2 \&pos\+\_\+mouse)
+\item 
+void \hyperlink{class_agmd_1_1_a_slider_ae3251c05f05994fa8d662d89b6cea1d9}{Set\+Cursor} (float value)
+\item 
+void \hyperlink{class_agmd_1_1_a_slider_abf0141f86162d31068a7704bdd63f93e}{set\+Value} (float $\ast$value, float min, float max)
+\item 
+void \hyperlink{class_agmd_1_1_a_slider_ab1489f414d8929d4ff38ac97ed4cef44}{set\+Label} (std\+::string \&label)
+\item 
+void \hyperlink{class_agmd_1_1_a_slider_adf04598932948b007c9a14e743ea3a69}{set\+Update\+Call\+Back} (\hyperlink{class_agmd_1_1_a_slider_1_1_slider_interface}{Slider\+Interface} $\ast$listener)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_a_slider_aa6beff0f83fec475e5bb093272296f14}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!A\+Slider@{A\+Slider}}
+\index{A\+Slider@{A\+Slider}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{A\+Slider}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+A\+Slider\+::\+A\+Slider (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+Widget} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_a_slider_aa6beff0f83fec475e5bb093272296f14}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_ac2f6d8ae73da369dddf93a565e63d533}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!A\+Slider@{A\+Slider}}
+\index{A\+Slider@{A\+Slider}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{A\+Slider}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+A\+Slider\+::\+A\+Slider (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{label, }
+\item[{const ivec2 \&}]{position, }
+\item[{const ivec2 \&}]{size}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_a_slider_ac2f6d8ae73da369dddf93a565e63d533}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_aad6dbacd8049104210755a7923a4755f}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!````~A\+Slider@{$\sim$\+A\+Slider}}
+\index{````~A\+Slider@{$\sim$\+A\+Slider}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{$\sim$\+A\+Slider}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+A\+Slider\+::$\sim$\+A\+Slider (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_aad6dbacd8049104210755a7923a4755f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_a_slider_ae1911d7bddd521702668eb36f7963bcc}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!Draw@{Draw}}
+\index{Draw@{Draw}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_ae1911d7bddd521702668eb36f7963bcc}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_a310017991d4562418b3b4a1523778373}{Agmd\+::\+A\+Widget}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_a4c9ac245898f71f0100e02088daf363e}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!In@{In}}
+\index{In@{In}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{In}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+A\+Slider\+::\+In (
+\begin{DoxyParamCaption}
+\item[{ivec2 \&}]{pos\+\_\+mouse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a4c9ac245898f71f0100e02088daf363e}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_a_widget_a277347e1b69a4b0bf9b533712839c175}{Agmd\+::\+A\+Widget}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_a8d0c6dc2f70371f135ba8d6e0bcb0b15}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Click@{On\+Click}}
+\index{On\+Click@{On\+Click}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Click}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+A\+Slider\+::\+On\+Click (
+\begin{DoxyParamCaption}
+\item[{ivec2 \&}]{pos\+\_\+mouse, }
+\item[{{\bf a\+\_\+uint32}}]{mouse\+State}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a8d0c6dc2f70371f135ba8d6e0bcb0b15}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_aff1c3f1dad51042de699456c2a33e84f}{Agmd\+::\+A\+Widget}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_a90cfe6583a85d18f7bc69824477a1cfa}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Key@{On\+Key}}
+\index{On\+Key@{On\+Key}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Key}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+A\+Slider\+::\+On\+Key (
+\begin{DoxyParamCaption}
+\item[{char}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a90cfe6583a85d18f7bc69824477a1cfa}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_a7aa98bc35ca8af51b5d28f7d96c2cba6}{Agmd\+::\+A\+Widget}.
+
+\hypertarget{class_agmd_1_1_a_slider_a91f5793c64f2f2e6cf793249f086986f}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Mouse\+Move@{On\+Mouse\+Move}}
+\index{On\+Mouse\+Move@{On\+Mouse\+Move}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Mouse\+Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+A\+Slider\+::\+On\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{ivec2 \&}]{pos\+\_\+diff, }
+\item[{{\bf a\+\_\+uint32}}]{mouse\+State}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a91f5793c64f2f2e6cf793249f086986f}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_aa9b911c2d4f8506f80bdcfafb5373cc0}{Agmd\+::\+A\+Widget}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_a115a1aa823e2cdce934d24b7d49c238f}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Mouse\+Over@{On\+Mouse\+Over}}
+\index{On\+Mouse\+Over@{On\+Mouse\+Over}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Mouse\+Over}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+A\+Slider\+::\+On\+Mouse\+Over (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a115a1aa823e2cdce934d24b7d49c238f}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_a2504dbb651b6458a4733bde00cf029f4}{Agmd\+::\+A\+Widget}.
+
+\hypertarget{class_agmd_1_1_a_slider_a138d10251a25064f697235ebe1fc59d2}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Pos\+Changed@{On\+Pos\+Changed}}
+\index{On\+Pos\+Changed@{On\+Pos\+Changed}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Pos\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::\+On\+Pos\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a138d10251a25064f697235ebe1fc59d2}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_a0ed53f97e67bcb7ed8db276d57c768d2}{Agmd\+::\+A\+Widget}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_a3f56de5c2458630b2e7ff9d6c697cef6}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!On\+Size\+Changed@{On\+Size\+Changed}}
+\index{On\+Size\+Changed@{On\+Size\+Changed}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{On\+Size\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::\+On\+Size\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_a_slider_a3f56de5c2458630b2e7ff9d6c697cef6}
+
+
+Implements \hyperlink{class_agmd_1_1_a_widget_a65c040f47c294031a56ad4478e61654c}{Agmd\+::\+A\+Widget}.
+
+\hypertarget{class_agmd_1_1_a_slider_ae3251c05f05994fa8d662d89b6cea1d9}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!Set\+Cursor@{Set\+Cursor}}
+\index{Set\+Cursor@{Set\+Cursor}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{Set\+Cursor}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::\+Set\+Cursor (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_a_slider_ae3251c05f05994fa8d662d89b6cea1d9}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_a_slider_ab1489f414d8929d4ff38ac97ed4cef44}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!set\+Label@{set\+Label}}
+\index{set\+Label@{set\+Label}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{set\+Label}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::set\+Label (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{label}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_a_slider_ab1489f414d8929d4ff38ac97ed4cef44}
+\hypertarget{class_agmd_1_1_a_slider_adf04598932948b007c9a14e743ea3a69}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!set\+Update\+Call\+Back@{set\+Update\+Call\+Back}}
+\index{set\+Update\+Call\+Back@{set\+Update\+Call\+Back}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{set\+Update\+Call\+Back}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::set\+Update\+Call\+Back (
+\begin{DoxyParamCaption}
+\item[{{\bf Slider\+Interface} $\ast$}]{listener}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_a_slider_adf04598932948b007c9a14e743ea3a69}
+\hypertarget{class_agmd_1_1_a_slider_abf0141f86162d31068a7704bdd63f93e}{\index{Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!Agmd\+::\+A\+Slider@{Agmd\+::\+A\+Slider}}
+\subsubsection[{set\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+A\+Slider\+::set\+Value (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{value, }
+\item[{float}]{min, }
+\item[{float}]{max}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_a_slider_abf0141f86162d31068a7704bdd63f93e}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+G\+U\+I/\hyperlink{_a_slider_8h}{A\+Slider.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+G\+U\+I/\hyperlink{_a_slider_8cpp}{A\+Slider.\+cpp}\end{DoxyCompactItemize}

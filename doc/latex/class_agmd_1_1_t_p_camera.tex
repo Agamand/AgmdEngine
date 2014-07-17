@@ -1,0 +1,220 @@
+\hypertarget{class_agmd_1_1_t_p_camera}{\section{Agmd\+:\+:T\+P\+Camera Class Reference}
+\label{class_agmd_1_1_t_p_camera}\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+}
+
+
+{\ttfamily \#include $<$T\+P\+Camera.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:T\+P\+Camera\+:
+
+
+Collaboration diagram for Agmd\+:\+:T\+P\+Camera\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_t_p_camera_afc44937f2240183b40e1bfdd8a3f29fb}{T\+P\+Camera} (mat4 \&projection, vec3 \&\hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}=vec3())
+\item 
+virtual \hyperlink{class_agmd_1_1_t_p_camera_ae465cca4c7a92bc6b4ba05aa4d04c050}{$\sim$\+T\+P\+Camera} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a4cd0db75011e1f173d0ba8849915c8a7}{on\+Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} time\+\_\+diff)
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a1810fd8f0d0a54d6139d57fa4d8582e3}{on\+Mouse\+Motion} (int x, int y)
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a8f42a9f4193e6638b827c2bc499530c0}{on\+Keyboard} (char key, bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a7de48e08f381f1360cb7f5d868fffb9b}{on\+Mouse\+Wheel} (float delta)
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_aab0a8d73857d92c72491f7b8bac21998}{on\+Mouse\+Wheel} (bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a74f9fc32896db29d618cf34c8b71d315}{set\+Position} (glm\+::vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_ae2454e8823d2821f25c2a679dc0750f5}{set\+Target} (glm\+::vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_agmd_1_1_t_p_camera_a58a0ed04fc0335f665f826f2a7e4b8b0}{update\+Vector} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_agmd_1_1_t_p_camera_a2755fafa6ba9f68c9b38ebd6d871169d}{\+\_\+theta}
+\item 
+float \hyperlink{class_agmd_1_1_t_p_camera_a2883b3063207de9bdc4d78a67a8fea0e}{\+\_\+phi}
+\item 
+vec3 \hyperlink{class_agmd_1_1_t_p_camera_a485ddef0f2efd5b781fa10be1cb22c1d}{\+\_\+up}
+\item 
+float \hyperlink{class_agmd_1_1_t_p_camera_abc1fde7404cdc568bae1f28b2c7c5cee}{distance}
+\item 
+bool \hyperlink{class_agmd_1_1_t_p_camera_abc20c2e9e998caf67f457504cb71401e}{m\+\_\+mousewheel}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_t_p_camera_afc44937f2240183b40e1bfdd8a3f29fb}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!T\+P\+Camera@{T\+P\+Camera}}
+\index{T\+P\+Camera@{T\+P\+Camera}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{T\+P\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+T\+P\+Camera\+::\+T\+P\+Camera (
+\begin{DoxyParamCaption}
+\item[{mat4 \&}]{projection, }
+\item[{vec3 \&}]{pos = {\ttfamily vec3()}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_t_p_camera_afc44937f2240183b40e1bfdd8a3f29fb}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_ae465cca4c7a92bc6b4ba05aa4d04c050}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!````~T\+P\+Camera@{$\sim$\+T\+P\+Camera}}
+\index{````~T\+P\+Camera@{$\sim$\+T\+P\+Camera}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{$\sim$\+T\+P\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+T\+P\+Camera\+::$\sim$\+T\+P\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_ae465cca4c7a92bc6b4ba05aa4d04c050}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_t_p_camera_a8f42a9f4193e6638b827c2bc499530c0}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!on\+Keyboard@{on\+Keyboard}}
+\index{on\+Keyboard@{on\+Keyboard}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{on\+Keyboard}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::on\+Keyboard (
+\begin{DoxyParamCaption}
+\item[{char}]{key, }
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a8f42a9f4193e6638b827c2bc499530c0}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_a63fae187423be21161d39da11039e3ba}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_a1810fd8f0d0a54d6139d57fa4d8582e3}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!on\+Mouse\+Motion@{on\+Mouse\+Motion}}
+\index{on\+Mouse\+Motion@{on\+Mouse\+Motion}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{on\+Mouse\+Motion}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::on\+Mouse\+Motion (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a1810fd8f0d0a54d6139d57fa4d8582e3}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_a2a4fe292c83654aa7f2011f7f43c3635}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_a7de48e08f381f1360cb7f5d868fffb9b}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!on\+Mouse\+Wheel@{on\+Mouse\+Wheel}}
+\index{on\+Mouse\+Wheel@{on\+Mouse\+Wheel}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{on\+Mouse\+Wheel}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::on\+Mouse\+Wheel (
+\begin{DoxyParamCaption}
+\item[{float}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a7de48e08f381f1360cb7f5d868fffb9b}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_aa372ea65985a59ede956ad731f5e06d1}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_aab0a8d73857d92c72491f7b8bac21998}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!on\+Mouse\+Wheel@{on\+Mouse\+Wheel}}
+\index{on\+Mouse\+Wheel@{on\+Mouse\+Wheel}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{on\+Mouse\+Wheel}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::on\+Mouse\+Wheel (
+\begin{DoxyParamCaption}
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_aab0a8d73857d92c72491f7b8bac21998}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_camera_a7db9439e6553d5b72f2825a95a623d26}{Agmd\+::\+Camera}.
+
+\hypertarget{class_agmd_1_1_t_p_camera_a4cd0db75011e1f173d0ba8849915c8a7}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!on\+Update@{on\+Update}}
+\index{on\+Update@{on\+Update}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{on\+Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::on\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{time\+\_\+diff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a4cd0db75011e1f173d0ba8849915c8a7}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_af232107b328d1fa4c55ba98afa04a99b}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_a74f9fc32896db29d618cf34c8b71d315}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec3}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a74f9fc32896db29d618cf34c8b71d315}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_ae2454e8823d2821f25c2a679dc0750f5}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!set\+Target@{set\+Target}}
+\index{set\+Target@{set\+Target}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{set\+Target}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::set\+Target (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec3}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_ae2454e8823d2821f25c2a679dc0750f5}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_t_p_camera_a58a0ed04fc0335f665f826f2a7e4b8b0}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!update\+Vector@{update\+Vector}}
+\index{update\+Vector@{update\+Vector}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{update\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+T\+P\+Camera\+::update\+Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_t_p_camera_a58a0ed04fc0335f665f826f2a7e4b8b0}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_ae4a8331a5f97dd09708fa5096b21eaf0}{Agmd\+::\+Camera}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_t_p_camera_a2883b3063207de9bdc4d78a67a8fea0e}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!\+\_\+phi@{\+\_\+phi}}
+\index{\+\_\+phi@{\+\_\+phi}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{\+\_\+phi}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+T\+P\+Camera\+::\+\_\+phi\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_t_p_camera_a2883b3063207de9bdc4d78a67a8fea0e}
+\hypertarget{class_agmd_1_1_t_p_camera_a2755fafa6ba9f68c9b38ebd6d871169d}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!\+\_\+theta@{\+\_\+theta}}
+\index{\+\_\+theta@{\+\_\+theta}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{\+\_\+theta}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+T\+P\+Camera\+::\+\_\+theta\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_t_p_camera_a2755fafa6ba9f68c9b38ebd6d871169d}
+\hypertarget{class_agmd_1_1_t_p_camera_a485ddef0f2efd5b781fa10be1cb22c1d}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!\+\_\+up@{\+\_\+up}}
+\index{\+\_\+up@{\+\_\+up}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{\+\_\+up}]{\setlength{\rightskip}{0pt plus 5cm}vec3 Agmd\+::\+T\+P\+Camera\+::\+\_\+up\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_t_p_camera_a485ddef0f2efd5b781fa10be1cb22c1d}
+\hypertarget{class_agmd_1_1_t_p_camera_abc1fde7404cdc568bae1f28b2c7c5cee}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!distance@{distance}}
+\index{distance@{distance}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+T\+P\+Camera\+::distance\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_t_p_camera_abc1fde7404cdc568bae1f28b2c7c5cee}
+\hypertarget{class_agmd_1_1_t_p_camera_abc20c2e9e998caf67f457504cb71401e}{\index{Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}!m\+\_\+mousewheel@{m\+\_\+mousewheel}}
+\index{m\+\_\+mousewheel@{m\+\_\+mousewheel}!Agmd\+::\+T\+P\+Camera@{Agmd\+::\+T\+P\+Camera}}
+\subsubsection[{m\+\_\+mousewheel}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+T\+P\+Camera\+::m\+\_\+mousewheel\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_t_p_camera_abc20c2e9e998caf67f457504cb71401e}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Camera/\hyperlink{_t_p_camera_8h}{T\+P\+Camera.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Camera/\hyperlink{_t_p_camera_8cpp}{T\+P\+Camera.\+cpp}\end{DoxyCompactItemize}

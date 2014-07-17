@@ -1,0 +1,11 @@
+digraph "src/Agmd3D/Core/Shader" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_b3e9ade9c04b4b48621f7755b7dfe0ba {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Core" fontname="Helvetica", fontsize="10", URL="dir_b3e9ade9c04b4b48621f7755b7dfe0ba.html"]
+  dir_80ecb26c22e3b4686954a80c7d4a6114 [shape=box, label="Shader", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_80ecb26c22e3b4686954a80c7d4a6114.html"];
+  }
+  dir_c11272a1c791afc0e19bc74f6f6797fb [shape=box label="AgmdUtilities" fillcolor="white" style="filled" color="red" URL="dir_c11272a1c791afc0e19bc74f6f6797fb.html"];
+  dir_80ecb26c22e3b4686954a80c7d4a6114->dir_c11272a1c791afc0e19bc74f6f6797fb [headlabel="4", labeldistance=1.5 headhref="dir_000016_000034.html"];
+}

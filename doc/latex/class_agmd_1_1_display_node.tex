@@ -1,0 +1,201 @@
+\hypertarget{class_agmd_1_1_display_node}{\section{Agmd\+:\+:Display\+Node Class Reference}
+\label{class_agmd_1_1_display_node}\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+}
+
+
+{\ttfamily \#include $<$Display\+Node.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Display\+Node\+:
+
+
+Collaboration diagram for Agmd\+:\+:Display\+Node\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_display_node_a4f497a75b192c795061a9167710ef73f}{Display\+Node} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$\hyperlink{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{t}, \hyperlink{class_agmd_1_1_material}{Material} $\ast$\hyperlink{_examples_2_planet_2_app_8cpp_ab1c3784ff3dfc4e8cd95bfcb681f720b}{mat})
+\item 
+virtual \hyperlink{class_agmd_1_1_display_node_abb894413a0b84536608aa5ff7a16f15f}{$\sim$\+Display\+Node} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_display_node_a77a583f122dde9f7d2bfb1f10f7e47b0}{render} (\hyperlink{namespace_agmd_a893087981df53d0bf39466e9039aeb73}{T\+Render\+Pass} pass) const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_display_node_a13dd7059195a342e38cccc8989d317cb}{draw} () const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_display_node_aeecd3fa458a80f9d4f69f09bb7087f2e}{find\+Visible} (\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$cam, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_display_node}{Display\+Node} $\ast$ $>$ \&display, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_light_node}{Light\+Node} $\ast$ $>$ \&light)
+\item 
+\hyperlink{class_agmd_1_1_material}{Material} \& \hyperlink{class_agmd_1_1_display_node_a28bd0df97f134c750e0a081c3a1cd962}{get\+Material} () const 
+\item 
+const \hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \& \hyperlink{class_agmd_1_1_display_node_af410729daa6f2afa23f58d6a54aa1886}{get\+Bounding\+Box} () const 
+\item 
+const \hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \& \hyperlink{class_agmd_1_1_display_node_a09f52bfa2ac908c9ca00a5182b57d894}{get\+Global\+Bounding\+Box} () const 
+\item 
+virtual bool \hyperlink{class_agmd_1_1_display_node_af2275c9f97b9a9fd9b2747afe1a7afdc}{is\+Visible} (\hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \&bbox)
+\item 
+virtual bool \hyperlink{class_agmd_1_1_display_node_ad82e625239b3c31f56a650703894e99e}{update} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$transform, bool update\+Children, bool transform\+Changed)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \hyperlink{class_agmd_1_1_display_node_a714263d2f76415041226b8f845d66cdd}{m\+\_\+base\+Bbox}
+\item 
+\hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \hyperlink{class_agmd_1_1_display_node_a993d533dcaa4829af32dd492905685a4}{m\+\_\+local\+B\+Box}
+\item 
+\hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \hyperlink{class_agmd_1_1_display_node_a44b5c78624423a653dbb2c3b71558816}{m\+\_\+global\+Bbox}
+\item 
+\hyperlink{class_agmd_1_1_material}{Material} $\ast$ \hyperlink{class_agmd_1_1_display_node_ad1fad464f5656add4af5d76b98fed80e}{m\+\_\+material}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_display_node_a4f497a75b192c795061a9167710ef73f}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!Display\+Node@{Display\+Node}}
+\index{Display\+Node@{Display\+Node}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{Display\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Display\+Node\+::\+Display\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{t, }
+\item[{{\bf Material} $\ast$}]{mat}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_display_node_a4f497a75b192c795061a9167710ef73f}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_display_node_abb894413a0b84536608aa5ff7a16f15f}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!````~Display\+Node@{$\sim$\+Display\+Node}}
+\index{````~Display\+Node@{$\sim$\+Display\+Node}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{$\sim$\+Display\+Node}]{\setlength{\rightskip}{0pt plus 5cm}virtual Agmd\+::\+Display\+Node\+::$\sim$\+Display\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_display_node_abb894413a0b84536608aa5ff7a16f15f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_display_node_a13dd7059195a342e38cccc8989d317cb}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!draw@{draw}}
+\index{draw@{draw}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Display\+Node\+::draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_display_node_a13dd7059195a342e38cccc8989d317cb}
+
+
+Implemented in \hyperlink{class_agmd_1_1_mesh_node_a8b905212c90d73b820531b36ea9bb0a9}{Agmd\+::\+Mesh\+Node}.
+
+\hypertarget{class_agmd_1_1_display_node_aeecd3fa458a80f9d4f69f09bb7087f2e}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!find\+Visible@{find\+Visible}}
+\index{find\+Visible@{find\+Visible}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{find\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Display\+Node\+::find\+Visible (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Display\+Node} $\ast$ $>$ \&}]{display, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Light\+Node} $\ast$ $>$ \&}]{light}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_display_node_aeecd3fa458a80f9d4f69f09bb7087f2e}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_scene_node_a7cae5ee1b73f40e074f4ac86be4b694a}{Agmd\+::\+Scene\+Node}.
+
+
+
+Reimplemented in \hyperlink{class_planet_tree_node_a7e08300b24c7656d04debb88f07c9cfe}{Planet\+Tree\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_display_node_af410729daa6f2afa23f58d6a54aa1886}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!get\+Bounding\+Box@{get\+Bounding\+Box}}
+\index{get\+Bounding\+Box@{get\+Bounding\+Box}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{get\+Bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Bounding\+Box}\& Agmd\+::\+Display\+Node\+::get\+Bounding\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_display_node_af410729daa6f2afa23f58d6a54aa1886}
+\hypertarget{class_agmd_1_1_display_node_a09f52bfa2ac908c9ca00a5182b57d894}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!get\+Global\+Bounding\+Box@{get\+Global\+Bounding\+Box}}
+\index{get\+Global\+Bounding\+Box@{get\+Global\+Bounding\+Box}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{get\+Global\+Bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Bounding\+Box}\& Agmd\+::\+Display\+Node\+::get\+Global\+Bounding\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_display_node_a09f52bfa2ac908c9ca00a5182b57d894}
+\hypertarget{class_agmd_1_1_display_node_a28bd0df97f134c750e0a081c3a1cd962}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!get\+Material@{get\+Material}}
+\index{get\+Material@{get\+Material}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{get\+Material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}\& Agmd\+::\+Display\+Node\+::get\+Material (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_display_node_a28bd0df97f134c750e0a081c3a1cd962}
+\hypertarget{class_agmd_1_1_display_node_af2275c9f97b9a9fd9b2747afe1a7afdc}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!is\+Visible@{is\+Visible}}
+\index{is\+Visible@{is\+Visible}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{is\+Visible}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Display\+Node\+::is\+Visible (
+\begin{DoxyParamCaption}
+\item[{{\bf Bounding\+Box} \&}]{bbox}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_display_node_af2275c9f97b9a9fd9b2747afe1a7afdc}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_scene_node_ae523c967aa9d24bc8b66db43e84f0c5f}{Agmd\+::\+Scene\+Node}.
+
+
+
+Reimplemented in \hyperlink{class_agmd_1_1_mesh_node_afdb179841c3cd851b2288a48dfb691f8}{Agmd\+::\+Mesh\+Node}.
+
+\hypertarget{class_agmd_1_1_display_node_a77a583f122dde9f7d2bfb1f10f7e47b0}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!render@{render}}
+\index{render@{render}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Display\+Node\+::render (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Pass}}]{pass}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_display_node_a77a583f122dde9f7d2bfb1f10f7e47b0}
+
+
+Implemented in \hyperlink{class_planet_tree_node_a54479e30d42d32cbb904b2d396646eaa}{Planet\+Tree\+Node}, \hyperlink{class_agmd_1_1_mesh_node_a4152144e5d07304bb44001a5e97571a5}{Agmd\+::\+Mesh\+Node}, and \hyperlink{class_planet_atmosphere_node_af189c2bae9cde22097fccbc7ec278a7c}{Planet\+Atmosphere\+Node}.
+
+\hypertarget{class_agmd_1_1_display_node_ad82e625239b3c31f56a650703894e99e}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!update@{update}}
+\index{update@{update}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Display\+Node\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{transform, }
+\item[{bool}]{update\+Children, }
+\item[{bool}]{transform\+Changed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_display_node_ad82e625239b3c31f56a650703894e99e}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_scene_node_a8ee2002fe5b30368f272d31ce0213d2e}{Agmd\+::\+Scene\+Node}.
+
+
+
+Reimplemented in \hyperlink{class_planet_tree_node_ad14bdf9e466f0267ba56782fbae6a9ec}{Planet\+Tree\+Node}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_display_node_a714263d2f76415041226b8f845d66cdd}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!m\+\_\+base\+Bbox@{m\+\_\+base\+Bbox}}
+\index{m\+\_\+base\+Bbox@{m\+\_\+base\+Bbox}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{m\+\_\+base\+Bbox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bounding\+Box} Agmd\+::\+Display\+Node\+::m\+\_\+base\+Bbox\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_display_node_a714263d2f76415041226b8f845d66cdd}
+\hypertarget{class_agmd_1_1_display_node_a44b5c78624423a653dbb2c3b71558816}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!m\+\_\+global\+Bbox@{m\+\_\+global\+Bbox}}
+\index{m\+\_\+global\+Bbox@{m\+\_\+global\+Bbox}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{m\+\_\+global\+Bbox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bounding\+Box} Agmd\+::\+Display\+Node\+::m\+\_\+global\+Bbox\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_display_node_a44b5c78624423a653dbb2c3b71558816}
+\hypertarget{class_agmd_1_1_display_node_a993d533dcaa4829af32dd492905685a4}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!m\+\_\+local\+B\+Box@{m\+\_\+local\+B\+Box}}
+\index{m\+\_\+local\+B\+Box@{m\+\_\+local\+B\+Box}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{m\+\_\+local\+B\+Box}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bounding\+Box} Agmd\+::\+Display\+Node\+::m\+\_\+local\+B\+Box\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_display_node_a993d533dcaa4829af32dd492905685a4}
+\hypertarget{class_agmd_1_1_display_node_ad1fad464f5656add4af5d76b98fed80e}{\index{Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}!m\+\_\+material@{m\+\_\+material}}
+\index{m\+\_\+material@{m\+\_\+material}!Agmd\+::\+Display\+Node@{Agmd\+::\+Display\+Node}}
+\subsubsection[{m\+\_\+material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ Agmd\+::\+Display\+Node\+::m\+\_\+material\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_display_node_ad1fad464f5656add4af5d76b98fed80e}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Node/\hyperlink{_display_node_8h}{Display\+Node.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Node/\hyperlink{_display_node_8cpp}{Display\+Node.\+cpp}\end{DoxyCompactItemize}

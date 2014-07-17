@@ -3,7 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="Singleton\< GUIMgr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_singleton.html"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Agmd::GUIMgr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_u_i_mgr.html"];
+  Node1 [label="AgmdUtilities::Scattered\lHierarchy\< NullType, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_scattered_hierarchy_3_01_null_type_00_01_handler_01_4.html"];
 }

@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="AgmdNetwork::OpcodeHandler\l\< OpServerMgr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_agmd_network_1_1_opcode_handler.html"];
+  Node1 [label="Agmd::RGLEnum::TPixelFmt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_agmd_1_1_r_g_l_enum_1_1_t_pixel_fmt.html"];
 }

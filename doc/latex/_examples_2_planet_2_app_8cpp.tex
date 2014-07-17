@@ -1,0 +1,290 @@
+\hypertarget{_examples_2_planet_2_app_8cpp}{\section{src/\+Examples/\+Planet/\+App.cpp File Reference}
+\label{_examples_2_planet_2_app_8cpp}\index{src/\+Examples/\+Planet/\+App.\+cpp@{src/\+Examples/\+Planet/\+App.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}App.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Media\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Enums.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Declaration.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Declaration\+Element.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Resource\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Render\+Object/\+Geometry\+Factory.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Buffer/\+Frame\+Buffer.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Render\+Object/\+Graphic\+String.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Scene.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Water.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Sky\+Box.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Light.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Object/\+Material.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Scene\+Node/\+Mesh\+Node.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Rendering\+Mode/\+Deferred\+Rendering.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Rendering\+Mode/\+Forward\+Rendering.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+F\+P\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+Follow\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Utilities/\+Utilities/\+Color.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Effects/\+Post\+Effect\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Effects/\+Anti\+Aliasing.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Render\+Object/\+Mesh\+Render.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+G\+U\+I\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+A\+Slider.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+A\+Window.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Shader/\+Shader\+Pre\+Compiler.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Statistics.\+h$>$}\\*
+{\ttfamily \#include $<$Renderer/\+Open\+G\+L/\+Gl\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Fast2\+D\+Surface.\+h$>$}\\*
+{\ttfamily \#include $<$glm/ext.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Perlin\+Noise.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$libnoise/noise.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include \char`\"{}simplexnoise.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}noiseutils.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Core/\+Shader/\+Shader\+Pipeline.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Planet/\+Planet.\+h\char`\"{}}\\*
+Include dependency graph for App.\+cpp\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_examples_2_planet_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_examples_2_planet_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L} (\hyperlink{class_app}{App})
+\item 
+void \hyperlink{_examples_2_planet_2_app_8cpp_a594efdf2752a2c333bee6b3be7f7f660}{generate\+Noise\+Face} (\hyperlink{class_agmd_1_1_texture}{Texture} \&\hyperlink{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{t}, int size, int \hyperlink{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{seed}, int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face}, vec4 bounds=vec4(0, 1, 0, 1))
+\item 
+vec3 \hyperlink{_examples_2_planet_2_app_8cpp_a0b4b73ecf5d3fa7d7a986eb02947b32f}{rgb} (0.\+650, 0.\+570, 0.\+475)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a6254fe828486731db871549be494a42b}{default\+\_\+program}
+\item 
+const char $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}{gradient} =\char`\"{}Texture/gradient\+\_\+terra\+\_\+desat.\+png\char`\"{}
+\item 
+const char $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{seed} = N\+U\+L\+L
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_a821f9e41ad80528dd35e9a982db1b22a}{layer} = 0
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_examples_2_planet_2_app_8cpp_a93a94ccbc7497be1e2f24132b4f2b11a}{height\+\_\+test}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_examples_2_planet_2_app_8cpp_ac142b78db0b752a814b4ebdefda57c21}{normal\+\_\+test}
+\item 
+\hyperlink{class_agmd_1_1_sky_box}{Sky\+Box} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}{boox}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{t}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_examples_2_planet_2_app_8cpp_a16d01195c85ab61e58ca9ca9dc5b2668}{test}
+\item 
+\hyperlink{class_agmd_1_1_texture}{Texture} \hyperlink{_examples_2_planet_2_app_8cpp_aa716095f54ec49b45073b1af7a3e35e7}{color\+\_\+gradiant}
+\item 
+\hyperlink{class_agmd_1_1_material}{Material} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_ab1c3784ff3dfc4e8cd95bfcb681f720b}{mat}
+\item 
+\hyperlink{class_agmd_1_1_model}{Model} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_af39e68800eb04957731b0b1875f47cef}{sphere}
+\item 
+\hyperlink{class_agmd_1_1_model}{Model} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_aed73f1969c134b0b11b0b0f741d1a557}{sphere2}
+\item 
+\hyperlink{class_agmd_1_1_model}{Model} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_aedfa9b392177231f3fce63d4bcbbd8a7}{plane\+\_\+test}
+\item 
+\hyperlink{class_agmd_1_1_material}{Material} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_af07e68d8226e27dc5c33dd17687de67d}{test\+\_\+material}
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a7cbdaa5205099bd702f97d09532c4498}{test\+\_\+transform}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{_examples_2_planet_2_app_8cpp_a092b93ae123228850d410ef074ced1bf}{m\+\_\+ground\+Program} \mbox{[}2\mbox{]}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{_examples_2_planet_2_app_8cpp_a0d60861e959b6c7930d5ce66cc82f588}{m\+\_\+sky\+Program} \mbox{[}2\mbox{]}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{_examples_2_planet_2_app_8cpp_aa92e588142a186d4b8e82f76c5090c55}{m\+\_\+light\+Program}
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a5375cedca1e4c4c67beafff5da1c5188}{sphere\+Transform} = new \hyperlink{class_agmd_maths_1_1_transform}{Transform}()
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_ab962cd72e409588f9c01dcca8db72bbb}{sky\+Transform} = new \hyperlink{class_agmd_maths_1_1_transform}{Transform}()
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a0fbb9dbd2bb9c0e4990b353d5256bb86}{light\+Transform} = new \hyperlink{class_agmd_maths_1_1_transform}{Transform}()
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a474404f388da10669dd4a4749faadfcc}{slider\+\_\+kr}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a039d44075ba54108633191345ee72752}{slider\+\_\+km}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a8dc28cb7f71304b160524a5be354fbf8}{slider\+\_\+esun}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a661c54f81d0cfc0840e34b1930d442d6}{slider\+\_\+r}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a533bc6d0973dcade2b17e7532cf35eb6}{slider\+\_\+g}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a108b886134b49967a6f20fe0ed91d337}{slider\+\_\+b}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_adf77475ebacf71a077c6721184aa8339}{slider\+\_\+gg}
+\item 
+\hyperlink{class_planet}{Planet} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a11fe1da7ca60c64c45eea663ea636ef6}{m\+\_\+planet}
+\item 
+\hyperlink{class_planet_model}{Planet\+Model} $\ast$ \hyperlink{_examples_2_planet_2_app_8cpp_a5bedae2020384078a04f570076475997}{m\+\_\+pmodel}
+\item 
+vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_a5050a760c11da521cd4aee6336f6529f}{radius} = 1.\+0f
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_a969c435ef4ca6cab2727eac4b439680d}{kr} = 0.\+0025f
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_ab68095c69b0d739a1baada9640d29be6}{km} = 0.\+0015f
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_aaec677f09a59a0cac2ba00048daeb92b}{e\+Sun} = 15.\+0f
+\item 
+float \hyperlink{_examples_2_planet_2_app_8cpp_a8cf17d727651616de6f2b79ef32170cd}{g} = -\/0.\+98f
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_examples_2_planet_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}\label{_examples_2_planet_2_app_8cpp_a525335710b53cb064ca56b936120431e}
+
+
+\subsection{Function Documentation}
+\hypertarget{_examples_2_planet_2_app_8cpp_a594efdf2752a2c333bee6b3be7f7f660}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!generate\+Noise\+Face@{generate\+Noise\+Face}}
+\index{generate\+Noise\+Face@{generate\+Noise\+Face}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{generate\+Noise\+Face}]{\setlength{\rightskip}{0pt plus 5cm}void generate\+Noise\+Face (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture} \&}]{t, }
+\item[{int}]{size, }
+\item[{int}]{seed, }
+\item[{int}]{face, }
+\item[{vec4}]{bounds = {\ttfamily vec4(0,1,0,1)}}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_planet_2_app_8cpp_a594efdf2752a2c333bee6b3be7f7f660}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_planet_2_app_8cpp_a0b4b73ecf5d3fa7d7a986eb02947b32f}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!rgb@{rgb}}
+\index{rgb@{rgb}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{rgb}]{\setlength{\rightskip}{0pt plus 5cm}vec3 rgb (
+\begin{DoxyParamCaption}
+\item[{0.}]{650, }
+\item[{0.}]{570, }
+\item[{0.}]{475}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_planet_2_app_8cpp_a0b4b73ecf5d3fa7d7a986eb02947b32f}
+\hypertarget{_examples_2_planet_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}}
+\index{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}]{\setlength{\rightskip}{0pt plus 5cm}S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L (
+\begin{DoxyParamCaption}
+\item[{{\bf App}}]{}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_planet_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_examples_2_planet_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!boox@{boox}}
+\index{boox@{boox}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{boox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sky\+Box}$\ast$ boox}}\label{_examples_2_planet_2_app_8cpp_a41750ffc59e0ee5a7e7880567a0ea6a1}
+\hypertarget{_examples_2_planet_2_app_8cpp_aa716095f54ec49b45073b1af7a3e35e7}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!color\+\_\+gradiant@{color\+\_\+gradiant}}
+\index{color\+\_\+gradiant@{color\+\_\+gradiant}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{color\+\_\+gradiant}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} color\+\_\+gradiant}}\label{_examples_2_planet_2_app_8cpp_aa716095f54ec49b45073b1af7a3e35e7}
+\hypertarget{_examples_2_planet_2_app_8cpp_a6254fe828486731db871549be494a42b}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!default\+\_\+program@{default\+\_\+program}}
+\index{default\+\_\+program@{default\+\_\+program}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{default\+\_\+program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program}$\ast$ default\+\_\+program}}\label{_examples_2_planet_2_app_8cpp_a6254fe828486731db871549be494a42b}
+\hypertarget{_examples_2_planet_2_app_8cpp_aaec677f09a59a0cac2ba00048daeb92b}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!e\+Sun@{e\+Sun}}
+\index{e\+Sun@{e\+Sun}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{e\+Sun}]{\setlength{\rightskip}{0pt plus 5cm}float e\+Sun = 15.\+0f}}\label{_examples_2_planet_2_app_8cpp_aaec677f09a59a0cac2ba00048daeb92b}
+\hypertarget{_examples_2_planet_2_app_8cpp_a8cf17d727651616de6f2b79ef32170cd}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!g@{g}}
+\index{g@{g}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{g}]{\setlength{\rightskip}{0pt plus 5cm}float g = -\/0.\+98f}}\label{_examples_2_planet_2_app_8cpp_a8cf17d727651616de6f2b79ef32170cd}
+\hypertarget{_examples_2_planet_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!gradient@{gradient}}
+\index{gradient@{gradient}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{gradient}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ gradient =\char`\"{}Texture/gradient\+\_\+terra\+\_\+desat.\+png\char`\"{}}}\label{_examples_2_planet_2_app_8cpp_a921425a432411d58c2ccd475b1a26c2a}
+\hypertarget{_examples_2_planet_2_app_8cpp_a93a94ccbc7497be1e2f24132b4f2b11a}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!height\+\_\+test@{height\+\_\+test}}
+\index{height\+\_\+test@{height\+\_\+test}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{height\+\_\+test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} height\+\_\+test}}\label{_examples_2_planet_2_app_8cpp_a93a94ccbc7497be1e2f24132b4f2b11a}
+\hypertarget{_examples_2_planet_2_app_8cpp_ab68095c69b0d739a1baada9640d29be6}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!km@{km}}
+\index{km@{km}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{km}]{\setlength{\rightskip}{0pt plus 5cm}float km = 0.\+0015f}}\label{_examples_2_planet_2_app_8cpp_ab68095c69b0d739a1baada9640d29be6}
+\hypertarget{_examples_2_planet_2_app_8cpp_a969c435ef4ca6cab2727eac4b439680d}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!kr@{kr}}
+\index{kr@{kr}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{kr}]{\setlength{\rightskip}{0pt plus 5cm}float kr = 0.\+0025f}}\label{_examples_2_planet_2_app_8cpp_a969c435ef4ca6cab2727eac4b439680d}
+\hypertarget{_examples_2_planet_2_app_8cpp_a821f9e41ad80528dd35e9a982db1b22a}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!layer@{layer}}
+\index{layer@{layer}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{layer}]{\setlength{\rightskip}{0pt plus 5cm}float layer = 0}}\label{_examples_2_planet_2_app_8cpp_a821f9e41ad80528dd35e9a982db1b22a}
+\hypertarget{_examples_2_planet_2_app_8cpp_a0fbb9dbd2bb9c0e4990b353d5256bb86}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!light\+Transform@{light\+Transform}}
+\index{light\+Transform@{light\+Transform}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{light\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ light\+Transform = new {\bf Transform}()}}\label{_examples_2_planet_2_app_8cpp_a0fbb9dbd2bb9c0e4990b353d5256bb86}
+\hypertarget{_examples_2_planet_2_app_8cpp_a092b93ae123228850d410ef074ced1bf}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!m\+\_\+ground\+Program@{m\+\_\+ground\+Program}}
+\index{m\+\_\+ground\+Program@{m\+\_\+ground\+Program}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{m\+\_\+ground\+Program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} m\+\_\+ground\+Program\mbox{[}2\mbox{]}}}\label{_examples_2_planet_2_app_8cpp_a092b93ae123228850d410ef074ced1bf}
+\hypertarget{_examples_2_planet_2_app_8cpp_aa92e588142a186d4b8e82f76c5090c55}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!m\+\_\+light\+Program@{m\+\_\+light\+Program}}
+\index{m\+\_\+light\+Program@{m\+\_\+light\+Program}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{m\+\_\+light\+Program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} m\+\_\+light\+Program}}\label{_examples_2_planet_2_app_8cpp_aa92e588142a186d4b8e82f76c5090c55}
+\hypertarget{_examples_2_planet_2_app_8cpp_a11fe1da7ca60c64c45eea663ea636ef6}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!m\+\_\+planet@{m\+\_\+planet}}
+\index{m\+\_\+planet@{m\+\_\+planet}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{m\+\_\+planet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Planet}$\ast$ m\+\_\+planet}}\label{_examples_2_planet_2_app_8cpp_a11fe1da7ca60c64c45eea663ea636ef6}
+\hypertarget{_examples_2_planet_2_app_8cpp_a5bedae2020384078a04f570076475997}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!m\+\_\+pmodel@{m\+\_\+pmodel}}
+\index{m\+\_\+pmodel@{m\+\_\+pmodel}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{m\+\_\+pmodel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Planet\+Model}$\ast$ m\+\_\+pmodel}}\label{_examples_2_planet_2_app_8cpp_a5bedae2020384078a04f570076475997}
+\hypertarget{_examples_2_planet_2_app_8cpp_a0d60861e959b6c7930d5ce66cc82f588}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!m\+\_\+sky\+Program@{m\+\_\+sky\+Program}}
+\index{m\+\_\+sky\+Program@{m\+\_\+sky\+Program}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{m\+\_\+sky\+Program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} m\+\_\+sky\+Program\mbox{[}2\mbox{]}}}\label{_examples_2_planet_2_app_8cpp_a0d60861e959b6c7930d5ce66cc82f588}
+\hypertarget{_examples_2_planet_2_app_8cpp_ab1c3784ff3dfc4e8cd95bfcb681f720b}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!mat@{mat}}
+\index{mat@{mat}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ mat}}\label{_examples_2_planet_2_app_8cpp_ab1c3784ff3dfc4e8cd95bfcb681f720b}
+\hypertarget{_examples_2_planet_2_app_8cpp_ac142b78db0b752a814b4ebdefda57c21}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!normal\+\_\+test@{normal\+\_\+test}}
+\index{normal\+\_\+test@{normal\+\_\+test}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{normal\+\_\+test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} normal\+\_\+test}}\label{_examples_2_planet_2_app_8cpp_ac142b78db0b752a814b4ebdefda57c21}
+\hypertarget{_examples_2_planet_2_app_8cpp_aedfa9b392177231f3fce63d4bcbbd8a7}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!plane\+\_\+test@{plane\+\_\+test}}
+\index{plane\+\_\+test@{plane\+\_\+test}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{plane\+\_\+test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ plane\+\_\+test}}\label{_examples_2_planet_2_app_8cpp_aedfa9b392177231f3fce63d4bcbbd8a7}
+\hypertarget{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!pos@{pos}}
+\index{pos@{pos}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}vec3 pos}}\label{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}
+\hypertarget{_examples_2_planet_2_app_8cpp_a5050a760c11da521cd4aee6336f6529f}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!radius@{radius}}
+\index{radius@{radius}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{radius}]{\setlength{\rightskip}{0pt plus 5cm}float radius = 1.\+0f}}\label{_examples_2_planet_2_app_8cpp_a5050a760c11da521cd4aee6336f6529f}
+\hypertarget{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!seed@{seed}}
+\index{seed@{seed}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{seed}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ seed = N\+U\+L\+L}}\label{_examples_2_planet_2_app_8cpp_a165e18f816026e942be054cc1c8a0bf9}
+\hypertarget{_examples_2_planet_2_app_8cpp_ab962cd72e409588f9c01dcca8db72bbb}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!sky\+Transform@{sky\+Transform}}
+\index{sky\+Transform@{sky\+Transform}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{sky\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ sky\+Transform = new {\bf Transform}()}}\label{_examples_2_planet_2_app_8cpp_ab962cd72e409588f9c01dcca8db72bbb}
+\hypertarget{_examples_2_planet_2_app_8cpp_a108b886134b49967a6f20fe0ed91d337}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+b@{slider\+\_\+b}}
+\index{slider\+\_\+b@{slider\+\_\+b}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+b}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+b}}\label{_examples_2_planet_2_app_8cpp_a108b886134b49967a6f20fe0ed91d337}
+\hypertarget{_examples_2_planet_2_app_8cpp_a8dc28cb7f71304b160524a5be354fbf8}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+esun@{slider\+\_\+esun}}
+\index{slider\+\_\+esun@{slider\+\_\+esun}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+esun}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+esun}}\label{_examples_2_planet_2_app_8cpp_a8dc28cb7f71304b160524a5be354fbf8}
+\hypertarget{_examples_2_planet_2_app_8cpp_a533bc6d0973dcade2b17e7532cf35eb6}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+g@{slider\+\_\+g}}
+\index{slider\+\_\+g@{slider\+\_\+g}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+g}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+g}}\label{_examples_2_planet_2_app_8cpp_a533bc6d0973dcade2b17e7532cf35eb6}
+\hypertarget{_examples_2_planet_2_app_8cpp_adf77475ebacf71a077c6721184aa8339}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+gg@{slider\+\_\+gg}}
+\index{slider\+\_\+gg@{slider\+\_\+gg}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+gg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+gg}}\label{_examples_2_planet_2_app_8cpp_adf77475ebacf71a077c6721184aa8339}
+\hypertarget{_examples_2_planet_2_app_8cpp_a039d44075ba54108633191345ee72752}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+km@{slider\+\_\+km}}
+\index{slider\+\_\+km@{slider\+\_\+km}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+km}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+km}}\label{_examples_2_planet_2_app_8cpp_a039d44075ba54108633191345ee72752}
+\hypertarget{_examples_2_planet_2_app_8cpp_a474404f388da10669dd4a4749faadfcc}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+kr@{slider\+\_\+kr}}
+\index{slider\+\_\+kr@{slider\+\_\+kr}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+kr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider}$\ast$ slider\+\_\+kr}}\label{_examples_2_planet_2_app_8cpp_a474404f388da10669dd4a4749faadfcc}
+\hypertarget{_examples_2_planet_2_app_8cpp_a661c54f81d0cfc0840e34b1930d442d6}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!slider\+\_\+r@{slider\+\_\+r}}
+\index{slider\+\_\+r@{slider\+\_\+r}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{slider\+\_\+r}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider} $\ast$ slider\+\_\+r}}\label{_examples_2_planet_2_app_8cpp_a661c54f81d0cfc0840e34b1930d442d6}
+\hypertarget{_examples_2_planet_2_app_8cpp_af39e68800eb04957731b0b1875f47cef}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!sphere@{sphere}}
+\index{sphere@{sphere}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{sphere}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ sphere}}\label{_examples_2_planet_2_app_8cpp_af39e68800eb04957731b0b1875f47cef}
+\hypertarget{_examples_2_planet_2_app_8cpp_aed73f1969c134b0b11b0b0f741d1a557}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!sphere2@{sphere2}}
+\index{sphere2@{sphere2}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{sphere2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ sphere2}}\label{_examples_2_planet_2_app_8cpp_aed73f1969c134b0b11b0b0f741d1a557}
+\hypertarget{_examples_2_planet_2_app_8cpp_a5375cedca1e4c4c67beafff5da1c5188}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!sphere\+Transform@{sphere\+Transform}}
+\index{sphere\+Transform@{sphere\+Transform}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{sphere\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ sphere\+Transform = new {\bf Transform}()}}\label{_examples_2_planet_2_app_8cpp_a5375cedca1e4c4c67beafff5da1c5188}
+\hypertarget{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!t@{t}}
+\index{t@{t}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} t}}\label{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}
+\hypertarget{_examples_2_planet_2_app_8cpp_a16d01195c85ab61e58ca9ca9dc5b2668}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!test@{test}}
+\index{test@{test}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} test}}\label{_examples_2_planet_2_app_8cpp_a16d01195c85ab61e58ca9ca9dc5b2668}
+\hypertarget{_examples_2_planet_2_app_8cpp_af07e68d8226e27dc5c33dd17687de67d}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!test\+\_\+material@{test\+\_\+material}}
+\index{test\+\_\+material@{test\+\_\+material}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{test\+\_\+material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ test\+\_\+material}}\label{_examples_2_planet_2_app_8cpp_af07e68d8226e27dc5c33dd17687de67d}
+\hypertarget{_examples_2_planet_2_app_8cpp_a7cbdaa5205099bd702f97d09532c4498}{\index{Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}!test\+\_\+transform@{test\+\_\+transform}}
+\index{test\+\_\+transform@{test\+\_\+transform}!Examples/\+Planet/\+App.\+cpp@{Examples/\+Planet/\+App.\+cpp}}
+\subsubsection[{test\+\_\+transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform}$\ast$ test\+\_\+transform}}\label{_examples_2_planet_2_app_8cpp_a7cbdaa5205099bd702f97d09532c4498}

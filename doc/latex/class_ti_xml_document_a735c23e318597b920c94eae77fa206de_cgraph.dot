@@ -1,0 +1,13 @@
+digraph "TiXmlDocument::SetError"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlDocument::SetError",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="TiXmlCursor::Clear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_ti_xml_cursor.html#a1e6fa622b59dafb71b6efe595105dcdd"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TiXmlParsingData::Stamp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_parsing_data.html#a65cee8ab77a36c605db08c84b4c30a7d"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="TiXmlParsingData::Cursor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_parsing_data.html#a9e63d965fdb53ff4ac711e105269e918"];
+}

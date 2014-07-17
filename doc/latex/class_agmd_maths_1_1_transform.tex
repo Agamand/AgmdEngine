@@ -1,0 +1,257 @@
+\hypertarget{class_agmd_maths_1_1_transform}{\section{Agmd\+Maths\+:\+:Transform Class Reference}
+\label{class_agmd_maths_1_1_transform}\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+}
+
+
+{\ttfamily \#include $<$Transform.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_maths_1_1_transform_aade6c5a38c2998d80d4dfff20a9ac312}{Transform} (const vec3 \&\+\_\+position=vec3(0.\+0f), const quat \&\+\_\+rotation=quat(1.\+0f, vec3(0.\+0f)), const vec3 \&scale=vec3(1))
+\item 
+\hyperlink{class_agmd_maths_1_1_transform_aa39bf7c38505fedfdf209a795ad0e585}{Transform} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$parent, const vec3 \&\+\_\+position=vec3(0.\+0f), const quat \&\+\_\+rotation=quat(1.\+0f, vec3(0.\+0f)))
+\item 
+mat4 \hyperlink{class_agmd_maths_1_1_transform_a10bb16e4f3dc5555d2684384526da320}{model\+Matrix} () const 
+\item 
+mat4 \hyperlink{class_agmd_maths_1_1_transform_a17a66b12dee563680c1f892c01d85942}{local\+Model\+Matrix} () const 
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a02af45f9d01f746cdf4995e63710915e}{set\+Local\+Model\+Matrix} (const mat4 \&matrix)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_af8193d7ee91c39dfadbeb2b290489e93}{rotate} (float angle, const vec3 \&vector)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_ab23a8a7ff9a6f47be3976276a4d86a05}{translate} (const vec3 \&move)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a236cc03dc9140fe79c7061a21150d7a0}{translate} (float move\+\_\+x, float move\+\_\+y, float move\+\_\+z)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a3b83e0b351d7010f30d7fed4a37fd2f9}{scale} (float x, float y, float z)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_ac39fae3bdf45fc054a0a802fbbce638a}{set\+Scale} (const vec3 \&\hyperlink{class_agmd_maths_1_1_transform_a3b83e0b351d7010f30d7fed4a37fd2f9}{scale})
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_af7c4fff5b997d3bd4c0de1aca80db2ef}{set\+Position} (const vec3 \&\hyperlink{class_agmd_maths_1_1_transform_acebb687500339c406d42ad7a98470210}{position})
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a00ac2d8b2a532482b05e6169667c3191}{Set\+Rotation} (const quat \&\hyperlink{class_agmd_maths_1_1_transform_ad6d49103ed9dbf40cc77cb55b024010b}{rotation})
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a67c9b56bea89b7085505bd3b2f479cce}{rotate} (float angle, const vec3 \&vector, const \hyperlink{class_agmd_maths_1_1_transform}{Transform} \&base)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a1ddbf2fff41a96c88defdeaa268be254}{rotate} (quat q, const \hyperlink{class_agmd_maths_1_1_transform}{Transform} \&base)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_ae905a67d3d6fc2740a4a9a30e320072d}{translate} (const vec3 \&move, const \hyperlink{class_agmd_maths_1_1_transform}{Transform} \&base)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_a0ac7ba153083f7d9c0085e4bb6673c94}{translate} (float move\+\_\+x, float move\+\_\+y, float move\+\_\+z, const \hyperlink{class_agmd_maths_1_1_transform}{Transform} \&base)
+\item 
+void \hyperlink{class_agmd_maths_1_1_transform_abc27a93e3cac63e8222138b91d098310}{update} (\hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$\hyperlink{_examples_2_planet_2_app_8cpp_a125ce9f8ead659256dbdd0816ede24d4}{t}, bool forced\+Update=false)
+\item 
+bool \hyperlink{class_agmd_maths_1_1_transform_a4b719bb99a251321827d33e90bebad61}{need\+Update} () const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const vec3 \& \hyperlink{class_agmd_maths_1_1_transform_acebb687500339c406d42ad7a98470210}{position}
+\item 
+const quat \& \hyperlink{class_agmd_maths_1_1_transform_ad6d49103ed9dbf40cc77cb55b024010b}{rotation}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_maths_1_1_transform_aade6c5a38c2998d80d4dfff20a9ac312}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Maths\+::\+Transform\+::\+Transform (
+\begin{DoxyParamCaption}
+\item[{const vec3 \&}]{\+\_\+position = {\ttfamily vec3(0.0f)}, }
+\item[{const quat \&}]{\+\_\+rotation = {\ttfamily quat(1.0f,~vec3(0.0f))}, }
+\item[{const vec3 \&}]{scale = {\ttfamily vec3(1)}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_maths_1_1_transform_aade6c5a38c2998d80d4dfff20a9ac312}
+\hypertarget{class_agmd_maths_1_1_transform_aa39bf7c38505fedfdf209a795ad0e585}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Maths\+::\+Transform\+::\+Transform (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{parent, }
+\item[{const vec3 \&}]{\+\_\+position = {\ttfamily vec3(0.0f)}, }
+\item[{const quat \&}]{\+\_\+rotation = {\ttfamily quat(1.0f,~vec3(0.0f))}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_maths_1_1_transform_aa39bf7c38505fedfdf209a795ad0e585}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_maths_1_1_transform_a17a66b12dee563680c1f892c01d85942}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!local\+Model\+Matrix@{local\+Model\+Matrix}}
+\index{local\+Model\+Matrix@{local\+Model\+Matrix}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{local\+Model\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}mat4 Transform\+::local\+Model\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a17a66b12dee563680c1f892c01d85942}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_a10bb16e4f3dc5555d2684384526da320}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!model\+Matrix@{model\+Matrix}}
+\index{model\+Matrix@{model\+Matrix}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{model\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}mat4 Transform\+::model\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a10bb16e4f3dc5555d2684384526da320}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_a4b719bb99a251321827d33e90bebad61}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!need\+Update@{need\+Update}}
+\index{need\+Update@{need\+Update}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{need\+Update}]{\setlength{\rightskip}{0pt plus 5cm}bool Transform\+::need\+Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a4b719bb99a251321827d33e90bebad61}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_af8193d7ee91c39dfadbeb2b290489e93}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!rotate@{rotate}}
+\index{rotate@{rotate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{angle, }
+\item[{const vec3 \&}]{vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_af8193d7ee91c39dfadbeb2b290489e93}
+\hypertarget{class_agmd_maths_1_1_transform_a67c9b56bea89b7085505bd3b2f479cce}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!rotate@{rotate}}
+\index{rotate@{rotate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{angle, }
+\item[{const vec3 \&}]{vector, }
+\item[{const {\bf Transform} \&}]{base}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a67c9b56bea89b7085505bd3b2f479cce}
+\hypertarget{class_agmd_maths_1_1_transform_a1ddbf2fff41a96c88defdeaa268be254}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!rotate@{rotate}}
+\index{rotate@{rotate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::rotate (
+\begin{DoxyParamCaption}
+\item[{quat}]{q, }
+\item[{const {\bf Transform} \&}]{base}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a1ddbf2fff41a96c88defdeaa268be254}
+\hypertarget{class_agmd_maths_1_1_transform_a3b83e0b351d7010f30d7fed4a37fd2f9}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!scale@{scale}}
+\index{scale@{scale}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+Maths\+::\+Transform\+::scale (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a3b83e0b351d7010f30d7fed4a37fd2f9}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_a02af45f9d01f746cdf4995e63710915e}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!set\+Local\+Model\+Matrix@{set\+Local\+Model\+Matrix}}
+\index{set\+Local\+Model\+Matrix@{set\+Local\+Model\+Matrix}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{set\+Local\+Model\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::set\+Local\+Model\+Matrix (
+\begin{DoxyParamCaption}
+\item[{const mat4 \&}]{matrix}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a02af45f9d01f746cdf4995e63710915e}
+\hypertarget{class_agmd_maths_1_1_transform_af7c4fff5b997d3bd4c0de1aca80db2ef}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{const vec3 \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_af7c4fff5b997d3bd4c0de1aca80db2ef}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_a00ac2d8b2a532482b05e6169667c3191}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!Set\+Rotation@{Set\+Rotation}}
+\index{Set\+Rotation@{Set\+Rotation}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{Set\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::\+Set\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const quat \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a00ac2d8b2a532482b05e6169667c3191}
+\hypertarget{class_agmd_maths_1_1_transform_ac39fae3bdf45fc054a0a802fbbce638a}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!set\+Scale@{set\+Scale}}
+\index{set\+Scale@{set\+Scale}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{set\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+Maths\+::\+Transform\+::set\+Scale (
+\begin{DoxyParamCaption}
+\item[{const vec3 \&}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_ac39fae3bdf45fc054a0a802fbbce638a}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_maths_1_1_transform_ab23a8a7ff9a6f47be3976276a4d86a05}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!translate@{translate}}
+\index{translate@{translate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::translate (
+\begin{DoxyParamCaption}
+\item[{const vec3 \&}]{move}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_ab23a8a7ff9a6f47be3976276a4d86a05}
+\hypertarget{class_agmd_maths_1_1_transform_a236cc03dc9140fe79c7061a21150d7a0}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!translate@{translate}}
+\index{translate@{translate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::translate (
+\begin{DoxyParamCaption}
+\item[{float}]{move\+\_\+x, }
+\item[{float}]{move\+\_\+y, }
+\item[{float}]{move\+\_\+z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a236cc03dc9140fe79c7061a21150d7a0}
+\hypertarget{class_agmd_maths_1_1_transform_ae905a67d3d6fc2740a4a9a30e320072d}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!translate@{translate}}
+\index{translate@{translate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::translate (
+\begin{DoxyParamCaption}
+\item[{const vec3 \&}]{move, }
+\item[{const {\bf Transform} \&}]{base}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_ae905a67d3d6fc2740a4a9a30e320072d}
+\hypertarget{class_agmd_maths_1_1_transform_a0ac7ba153083f7d9c0085e4bb6673c94}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!translate@{translate}}
+\index{translate@{translate}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::translate (
+\begin{DoxyParamCaption}
+\item[{float}]{move\+\_\+x, }
+\item[{float}]{move\+\_\+y, }
+\item[{float}]{move\+\_\+z, }
+\item[{const {\bf Transform} \&}]{base}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_a0ac7ba153083f7d9c0085e4bb6673c94}
+\hypertarget{class_agmd_maths_1_1_transform_abc27a93e3cac63e8222138b91d098310}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!update@{update}}
+\index{update@{update}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Transform\+::update (
+\begin{DoxyParamCaption}
+\item[{{\bf Transform} $\ast$}]{t, }
+\item[{bool}]{forced\+Update = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_maths_1_1_transform_abc27a93e3cac63e8222138b91d098310}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_maths_1_1_transform_acebb687500339c406d42ad7a98470210}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!position@{position}}
+\index{position@{position}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}const vec3\& Agmd\+Maths\+::\+Transform\+::position}}\label{class_agmd_maths_1_1_transform_acebb687500339c406d42ad7a98470210}
+\hypertarget{class_agmd_maths_1_1_transform_ad6d49103ed9dbf40cc77cb55b024010b}{\index{Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}!rotation@{rotation}}
+\index{rotation@{rotation}!Agmd\+Maths\+::\+Transform@{Agmd\+Maths\+::\+Transform}}
+\subsubsection[{rotation}]{\setlength{\rightskip}{0pt plus 5cm}const quat\& Agmd\+Maths\+::\+Transform\+::rotation}}\label{class_agmd_maths_1_1_transform_ad6d49103ed9dbf40cc77cb55b024010b}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd\+Maths/\hyperlink{_transform_8h}{Transform.\+h}\item 
+src/\+Agmd\+Maths/\hyperlink{_transform_8inl}{Transform.\+inl}\end{DoxyCompactItemize}

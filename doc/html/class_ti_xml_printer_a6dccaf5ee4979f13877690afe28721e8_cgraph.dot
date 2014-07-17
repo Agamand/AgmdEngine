@@ -1,0 +1,21 @@
+digraph "TiXmlPrinter::VisitEnter"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlPrinter::VisitEnter",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlNode::Value",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_node.html#a77943eb90d12c2892b1337a9f5918b41"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlAttribute::Next",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_attribute.html#a776478980776a024f7c2846eec640f65",tooltip="Get the next sibling attribute in the DOM. Returns null at end. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TiXmlAttribute::Print",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_attribute.html#acc04956c1d5c4c31fe74f7a7528d109a"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TiXmlNode::FirstChild",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_node.html#a44c8eee26bbe2d1b2762038df9dde2f0",tooltip="The first child of this node. Will be null if there are no children. "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TiXmlNode::ToText",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_node.html#a95a46a52c525992d6b4ee08beb14cd69",tooltip="Cast to a more defined type. Will return null if not of the requested type. "];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TiXmlNode::LastChild",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_node.html#a6d671107e00cca1d28cb2d7f3a87a21e"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TiXmlText::CDATA",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_text.html#ad1a6a6b83fa2271022dd97c072a2b586",tooltip="Queries whether this represents text using a CDATA section. "];
+}

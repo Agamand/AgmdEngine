@@ -6,4 +6,14 @@ digraph "AgmdNetwork::Client::Start"
   Node1 [label="AgmdNetwork::Client\l::Start",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="AgmdNetwork::Client\l::ThreadLauncher",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_client.html#ac617a67a113b31d50b2cd323420dd21f"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AgmdNetwork::Client\l::ClientThread",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_client.html#a27232ac76253415cf3efce3053da082f"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="AgmdNetwork::ByteBuffer\l::append",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_byte_buffer.html#ad1f64e19c6c0b4039c7b356393cec1dc"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="AgmdNetwork::EndianConvert",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_agmd_network.html#a99165d18c9ba6f33bea3804804884645"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="AgmdNetwork::Packet\l::SetOpcode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_packet.html#a0717ff71886722e606b4c9feef5c0d6d"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="AgmdNetwork::Client\l::RecvPacket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_client.html#ae4ccb5b2635151a85c7075f6de619d07"];
 }

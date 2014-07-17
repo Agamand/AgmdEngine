@@ -5,5 +5,5 @@ digraph "AgmdUtilities::Color::Color"
   rankdir="LR";
   Node1 [label="AgmdUtilities::Color\l::Color",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="AgmdUtilities::Color::Set",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#a4bf128e6f21adf406e211a68193d998c"];
+  Node2 [label="AgmdUtilities::Color::Set",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_color.html#ac83264d4c8e976d243366041dc930873"];
 }

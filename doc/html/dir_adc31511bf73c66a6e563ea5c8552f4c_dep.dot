@@ -1,9 +1,0 @@
-digraph "J:/Projet Infographie/Moteur3D/AgmdEngine/src/Agmd3D/Core/Effects" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_d5d0f021f9a91f3b13375d17a8dbcbf9 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="Core" fontname="Helvetica", fontsize="10", URL="dir_d5d0f021f9a91f3b13375d17a8dbcbf9.html"]
-  dir_adc31511bf73c66a6e563ea5c8552f4c [shape=box, label="Effects", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_adc31511bf73c66a6e563ea5c8552f4c.html"];
-  }
-}

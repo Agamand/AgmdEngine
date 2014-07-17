@@ -1,0 +1,11 @@
+digraph "TiXmlElement::RemoveAttribute"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlElement::RemoveAttribute",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="TiXmlAttributeSet::Find",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_attribute_set.html#af3675cc2bfd0aea153cda1cfcdd1f77e"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TiXmlAttributeSet::\lRemove",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_attribute_set.html#a924a73d071f2573f9060f0be57879c57"];
+}

@@ -1,0 +1,121 @@
+\hypertarget{class_agmd_1_1_scene}{\section{Agmd\+:\+:Scene Class Reference}
+\label{class_agmd_1_1_scene}\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+}
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_scene_a6b19eed0049231e84f9560c9ff19bdb8}{Scene} ()
+\item 
+\hyperlink{class_agmd_1_1_scene_ae29ea12d1350cf2f753c304debdcff32}{$\sim$\+Scene} ()
+\item 
+void \hyperlink{class_agmd_1_1_scene_a093246111cca2a83ae0c5415609605a5}{Render} (\hyperlink{namespace_agmd_a893087981df53d0bf39466e9039aeb73}{T\+Render\+Pass} pass) const 
+\item 
+void \hyperlink{class_agmd_1_1_scene_a0d5e4509302ae5d7227c0186cb9d7ed4}{Draw} () const 
+\item 
+void \hyperlink{class_agmd_1_1_scene_a20e89763e8f1181f10c45bce87a5ec60}{Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} t\+\_\+diff)
+\item 
+void \hyperlink{class_agmd_1_1_scene_a3548b8bf093a815a30cd44710fdc4219}{Add\+Mesh} (\hyperlink{class_agmd_1_1_displayable}{Displayable} $\ast$)
+\item 
+void \hyperlink{class_agmd_1_1_scene_a37ec859a37fc24cdeb33b82b817c60fc}{Add\+Light} (\hyperlink{class_agmd_1_1_light}{Light} $\ast$)
+\item 
+void \hyperlink{class_agmd_1_1_scene_ab35002aa6ddf9cc555ea39b1e0e700ef}{Set\+Sky\+Box} (\hyperlink{class_agmd_1_1_sky_box}{Sky\+Box} $\ast$)
+\item 
+\hyperlink{class_agmd_1_1_sky_box}{Sky\+Box} $\ast$ \hyperlink{class_agmd_1_1_scene_aa0bee806744f4d322d1cb7a2f460716b}{Get\+Sky\+Box} ()
+\item 
+void \hyperlink{class_agmd_1_1_scene_abd11c1b8f2d16ca563a881cf1b0be0ae}{Remove\+Mesh} (\hyperlink{class_agmd_1_1_displayable}{Displayable} $\ast$)
+\item 
+const \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_light}{Light} $\ast$ $>$ \& \hyperlink{class_agmd_1_1_scene_a7b5bc39608f2b4700ade55709ec07bbb}{Get\+Lights} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_scene_a6b19eed0049231e84f9560c9ff19bdb8}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Scene@{Scene}}
+\index{Scene@{Scene}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Scene}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Scene\+::\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_a6b19eed0049231e84f9560c9ff19bdb8}
+\hypertarget{class_agmd_1_1_scene_ae29ea12d1350cf2f753c304debdcff32}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!````~Scene@{$\sim$\+Scene}}
+\index{````~Scene@{$\sim$\+Scene}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{$\sim$\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Scene\+::$\sim$\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_ae29ea12d1350cf2f753c304debdcff32}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_scene_a37ec859a37fc24cdeb33b82b817c60fc}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Add\+Light@{Add\+Light}}
+\index{Add\+Light@{Add\+Light}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Add\+Light}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Add\+Light (
+\begin{DoxyParamCaption}
+\item[{{\bf Light} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_a37ec859a37fc24cdeb33b82b817c60fc}
+\hypertarget{class_agmd_1_1_scene_a3548b8bf093a815a30cd44710fdc4219}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Add\+Mesh@{Add\+Mesh}}
+\index{Add\+Mesh@{Add\+Mesh}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Add\+Mesh}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Add\+Mesh (
+\begin{DoxyParamCaption}
+\item[{{\bf Displayable} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_a3548b8bf093a815a30cd44710fdc4219}
+\hypertarget{class_agmd_1_1_scene_a0d5e4509302ae5d7227c0186cb9d7ed4}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Draw@{Draw}}
+\index{Draw@{Draw}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_scene_a0d5e4509302ae5d7227c0186cb9d7ed4}
+\hypertarget{class_agmd_1_1_scene_a7b5bc39608f2b4700ade55709ec07bbb}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Get\+Lights@{Get\+Lights}}
+\index{Get\+Lights@{Get\+Lights}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Get\+Lights}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf Light} $\ast$ $>$ \& Agmd\+::\+Scene\+::\+Get\+Lights (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_a7b5bc39608f2b4700ade55709ec07bbb}
+\hypertarget{class_agmd_1_1_scene_aa0bee806744f4d322d1cb7a2f460716b}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Get\+Sky\+Box@{Get\+Sky\+Box}}
+\index{Get\+Sky\+Box@{Get\+Sky\+Box}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Get\+Sky\+Box}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sky\+Box} $\ast$ Agmd\+::\+Scene\+::\+Get\+Sky\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_aa0bee806744f4d322d1cb7a2f460716b}
+\hypertarget{class_agmd_1_1_scene_abd11c1b8f2d16ca563a881cf1b0be0ae}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Remove\+Mesh@{Remove\+Mesh}}
+\index{Remove\+Mesh@{Remove\+Mesh}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Remove\+Mesh}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Remove\+Mesh (
+\begin{DoxyParamCaption}
+\item[{{\bf Displayable} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_abd11c1b8f2d16ca563a881cf1b0be0ae}
+\hypertarget{class_agmd_1_1_scene_a093246111cca2a83ae0c5415609605a5}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Render@{Render}}
+\index{Render@{Render}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Render}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Render (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Pass}}]{pass}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_scene_a093246111cca2a83ae0c5415609605a5}
+\hypertarget{class_agmd_1_1_scene_ab35002aa6ddf9cc555ea39b1e0e700ef}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Set\+Sky\+Box@{Set\+Sky\+Box}}
+\index{Set\+Sky\+Box@{Set\+Sky\+Box}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Set\+Sky\+Box}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Set\+Sky\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf Sky\+Box} $\ast$}]{\+\_\+\+Sky}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_ab35002aa6ddf9cc555ea39b1e0e700ef}
+\hypertarget{class_agmd_1_1_scene_a20e89763e8f1181f10c45bce87a5ec60}{\index{Agmd\+::\+Scene@{Agmd\+::\+Scene}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+Scene@{Agmd\+::\+Scene}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Scene\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{t\+\_\+diff}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_scene_a20e89763e8f1181f10c45bce87a5ec60}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Object/\hyperlink{_scene_8h}{Scene.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Object/\hyperlink{_scene_8cpp}{Scene.\+cpp}\end{DoxyCompactItemize}

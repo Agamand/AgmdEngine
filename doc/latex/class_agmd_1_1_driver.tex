@@ -1,0 +1,1194 @@
+\hypertarget{class_agmd_1_1_driver}{\section{Agmd\+:\+:Driver Class Reference}
+\label{class_agmd_1_1_driver}\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+}
+
+
+{\ttfamily \#include $<$Driver.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Driver\+:
+
+
+Collaboration diagram for Agmd\+:\+:Driver\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{class_agmd_1_1_driver_acd6fcffe1c271f55b8b5c0b89c540f53}{$\sim$\+Driver} ()
+\item 
+virtual std\+::string \hyperlink{class_agmd_1_1_driver_a35c8501ea4154ef1f9dfd6dfb04d6b7d}{Get\+Renderer\+Desc} () const =0
+\item 
+virtual const std\+::string \hyperlink{class_agmd_1_1_driver_a57ef5797a34bc3f9ed10fd05c319c155}{Get\+Extension} () const =0
+\item 
+virtual const std\+::string \hyperlink{class_agmd_1_1_driver_a16e778a171f2e45f55b3ab6391db69d6}{Get\+Constant} () const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_aff07d992edd330c24c177b4532f93218}{Init\+Scene} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a0616e055795e47e62fb71cce5c85c38a}{End\+Scene} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a54fa3d9aa9b5c3175bc2f4fc487f38fd}{Set\+V\+B} (unsigned int stream, const \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$buffer, unsigned long stride, unsigned long min\+Vertex, unsigned long max\+Vertex)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_adee1250e06ad2ac3d97a839076a52941}{Set\+I\+B} (const \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$buffer, unsigned long stride)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a302ea30a784d1eadd3f317f33a86ca71}{Set\+Declaration} (const \hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$declaration)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a17c73e5ff37f4da7cb16b63f2d1ffa1c}{Draw\+Primitives} (\hyperlink{namespace_agmd_a0e38d0c34891ddd6eef72e1c9e55161c}{T\+Primitive\+Type} type, unsigned long first\+Vertex, unsigned long count)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a602d935335e7601b5fe2b74fe57d3547}{Draw\+Indexed\+Primitives} (\hyperlink{namespace_agmd_a0e38d0c34891ddd6eef72e1c9e55161c}{T\+Primitive\+Type} type, unsigned long first\+Index, unsigned long count)=0
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_driver_aa9090ef4c1fd4865a708cf990155c780}{Convert\+Color} (const \hyperlink{class_agmd_utilities_1_1_color}{Color} \&color) const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_ae64ea2bdfb1bc1b114184d1135b613ff}{Set\+Texture} (unsigned int unit, const \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$texture, \hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} type=\hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4a337588dae252a993034541482655f94d}{T\+E\+X\+T\+U\+R\+E\+\_\+2\+D})=0
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_driver_ae34b1e5edc9a342fd5f1103a1188fce5}{Create\+Texture} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, \hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} type, unsigned long flags=0) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_driver_a1f3811041b6e476bf5523b51e9decaa4}{Create\+Texture2\+D} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_driver_a86ca6eb2c7dde110c0ad0aaa3be69602}{Create\+Texture\+Cube} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0) const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a9b028ec5fde8ac735723a49df6d69a9d}{Setup\+Alpha\+Blending} (\hyperlink{namespace_agmd_a5c64d61de9c502c3159b9ce5d653f947}{T\+Blend} src, \hyperlink{namespace_agmd_a5c64d61de9c502c3159b9ce5d653f947}{T\+Blend} dest) const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a431a5401de0d77261b341de358faaf0c}{Setup\+Depth\+Test} (\hyperlink{namespace_agmd_a6bf1c529fabec2b3b33d9d94a032cc6a}{T\+Depth} mode)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a772215047c5605c5d1d321f3f5ddac7e}{Setup\+Texture\+Unit} (unsigned int unit, \hyperlink{namespace_agmd_aafbdbe5caf9cc8574624faa1943bf5ef}{T\+Texture\+Op} op, \hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5}{T\+Texture\+Arg} arg1, \hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5}{T\+Texture\+Arg} arg2=\hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5a3b6eaeb8bc6375565b086e228263c2ee}{T\+X\+A\+\_\+\+D\+I\+F\+F\+U\+S\+E}, const \hyperlink{class_agmd_utilities_1_1_color}{Color} \&constant=0x00) const =0
+\item 
+virtual void \hyperlink{_common_defines_8h_a6602c025738b10d509fc133dabf88869}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+D\+\_\+}() \hyperlink{class_agmd_1_1_driver_aed5a533b299939f97e60de0897ca6cfb}{Enable} (\hyperlink{namespace_agmd_afc630cffacc9bfc42e46816feb4744ae}{T\+Render\+Parameter} param, bool value)=0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$ \hyperlink{class_agmd_1_1_driver_a8e8346a9341169d7486f8418a7671f67}{Create\+Shader} (std\+::string source, \hyperlink{namespace_agmd_a162a493eaff1589f07a505806e6724b4}{T\+Shader\+Type} type) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_driver_afa92f4325c4af6876919627e76aa6e28}{Create\+Shader\+Program} (\hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$vertex, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$eval, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$control, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$geom, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$frag) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_frame_buffer}{Frame\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_a7c431ff6b04e96f258b987ae8d922a9c}{Create\+Frame\+Buffer} () const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_render_buffer}{Render\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_a879e98a0d21b772b487b358dd912429b}{Create\+Render\+Buffer} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format) const =0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a6edc110be95fa6c2922a13ce025d8aa4}{Set\+Render\+Mode} (\hyperlink{namespace_agmd_aa4cbd15e55e815e187c31a8f435addae}{T\+Render\+Mode} mode)=0
+\item 
+virtual const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_driver_a2b14b7ecb1a8533e2b4e80d88fc95656}{Get\+Current\+Program} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_ac6d8e0a25e5bac4591731a006338eeb3}{Set\+Current\+Program} (const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$prog)=0
+\item 
+void \hyperlink{class_agmd_1_1_driver_a5d026607f63acff5dd9c14cc86ec1142}{Set\+Current\+Transform} (const \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$transform)
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_ab16bec32bad282876e909ee90df11be7}{Set\+View\+Port} (const ivec2 \&xy, const ivec2 \&size)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a9c44dbdfe6cd21a69bd0e2557f07d95e}{Set\+Cull\+Face} (int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face})=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_aa70ae0f0cb206e314bb35a3b99d49820}{draw\+Bounding\+Box} (const \hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \&bbox, const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$)=0
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_aeb0311aeb0121cf0ea859cc7f67213df}{Create\+Vertex\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data=N\+U\+L\+L) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a73a2d51147230616672aa7a1b4dd48dc}{Create\+Index\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data=N\+U\+L\+L) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_ab05c55dc5db4066a984665715e35b17a}{Create\+Uniform\+Buffer} (unsigned long size, unsigned long flags, int bind\+Point, int ubflags=0, const T $\ast$data=N\+U\+L\+L) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a30c95b577c73fee812ceb1714c542e1b}{Create\+Texture\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data=N\+U\+L\+L) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_driver_a8250e4086394f717b67cb38059a8d3fe}{Set\+Vertex\+Buffer} (unsigned int stream, const \hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \&buffer, unsigned long min\+Vertex=0, unsigned long max\+Vertex=0)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}{Set\+Index\+Buffer} (const \hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \&buffer)
+\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\\hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$ \hyperlink{class_agmd_1_1_driver_a93266682368c862356b50269041f983f}{Create\+Vertex\+Declaration} (const \hyperlink{struct_agmd_1_1_t_declaration_element}{T\+Declaration\+Element}(\&elt)\mbox{[}N\mbox{]}) const 
+\item 
+bool \hyperlink{class_agmd_1_1_driver_ac97e6ae7ed4b0e1bfe6905c3ac2642d2}{Has\+Capability} (\hyperlink{namespace_agmd_ac521de717d36bdd8a4aa86150d82a038}{T\+Capability} Cap) const 
+\item 
+std\+::string \hyperlink{class_agmd_1_1_driver_a2a2572fd9014436acc31978a2f992f8e}{Cap\+To\+String} (\hyperlink{namespace_agmd_ac521de717d36bdd8a4aa86150d82a038}{T\+Capability} Cap) const 
+\item 
+void \hyperlink{class_agmd_1_1_driver_a59a990194eb3b481b0b76a1a4257981a}{Initialize} (H\+W\+N\+D Hwnd)
+\item 
+mat4 \hyperlink{class_agmd_1_1_driver_a62c2818bf3bd13156ccd8dba304e05c7}{Get\+Mat\+View} ()
+\item 
+mat4 \hyperlink{class_agmd_1_1_driver_a0725af382475485e57a9d043d4e16f96}{Get\+Mat\+Projection} ()
+\item 
+ivec2 \hyperlink{class_agmd_1_1_driver_a94ddb55c49236dc19039b0ff01b6c90e}{Get\+Screen} ()
+\item 
+float \hyperlink{class_agmd_1_1_driver_a5e2188067d439d7ee62926934a6f7ff5}{Get\+Aspect\+Ratio} ()
+\item 
+void \hyperlink{class_agmd_1_1_driver_a1eb6624a294fc7020491b097893cc413}{Set\+Camera} (\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$cam)
+\item 
+\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$ \hyperlink{class_agmd_1_1_driver_a6994b46ccadacdbadae526fc9cb6ea1b}{Get\+Camera} ()
+\item 
+void \hyperlink{class_agmd_1_1_driver_a77c765bf0e8a52d67fb3d5ab00a9513f}{Set\+Texture\+Flag} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} flag)
+\item 
+void \hyperlink{class_agmd_1_1_driver_a819b761e20b3db3e3804983753ccf66d}{Add\+Texture\+Flag} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} flag)
+\item 
+void \hyperlink{class_agmd_1_1_driver_a8d52a15414214f02e7e472f3fb5d6588}{Remove\+Texture\+Flag} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} flag)
+\item 
+\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_driver_a3157d0c87887c8ccd55e6be13942afe0}{Get\+Texture\+Flag} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a1575876d9c54b9ed8e841f7a31049427}{On\+Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} t\+\_\+diff)
+\item 
+void \hyperlink{class_agmd_1_1_driver_a382852489bb3aa834d0e65059a2b4d70}{Set\+Mat\+View} (mat4 \+\_\+\+Mat\+View)
+\item 
+void \hyperlink{class_agmd_1_1_driver_af3d4d9d04dac8478f67b27f1a2894204}{Set\+Mat\+Projection} (mat4 \+\_\+\+Mat\+Projection)
+\item 
+void \hyperlink{class_agmd_1_1_driver_a34d0dfd09cfe090268806c7dd5a8b0e0}{Set\+Screen} (ivec2 \+\_\+screen)
+\item 
+void \hyperlink{class_agmd_1_1_driver_ae7bb6fde1c016329ed9b61d61ffc5e06}{Set\+Active\+Scene} (\hyperlink{class_agmd_1_1_scene_mgr}{Scene\+Mgr} $\ast$sc)
+\item 
+\hyperlink{class_agmd_1_1_scene_mgr}{Scene\+Mgr} $\ast$ \hyperlink{class_agmd_1_1_driver_ae2f53381d96063c7dab24d62637df6ec}{Get\+Active\+Scene} ()
+\item 
+\hyperlink{class_agmd_1_1_statistics}{Statistics} \& \hyperlink{class_agmd_1_1_driver_a173f21b78beddc1227b2a8aec81f2631}{Get\+Statistics} ()
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a2f28ead26c46cf0d4d44176f7d61ab70}{Create\+Vertex\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a487edfdc09992541069350015f8469f4}{Create\+Index\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a578e8bcd7fadd7ca91f9458a3ffbc5b2}{Create\+Uniform\+Buffer} (unsigned long size, unsigned long flags, int bind\+Point, int ubflags, const T $\ast$data) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \hyperlink{class_agmd_1_1_driver_a3bc39deb272f255473fdff8ce31e3ade}{Create\+Texture\+Buffer} (unsigned long size, unsigned long flags, const T $\ast$data) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_driver_a98eb12fd4fd70f082790b1b43e952cd6}{Set\+Vertex\+Buffer} (unsigned int stream, const \hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \&buffer, unsigned long min\+Vertex, unsigned long max\+Vertex)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}{Set\+Index\+Buffer} (const \hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ \&buffer)
+\item 
+{\footnotesize template$<$std\+::size\+\_\+t N$>$ }\\\hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$ \hyperlink{class_agmd_1_1_driver_a72eb9394e625625f8dfbff52c23a78f8}{Create\+Vertex\+Declaration} (const \hyperlink{struct_agmd_1_1_t_declaration_element}{T\+Declaration\+Element}(\&elt)\mbox{[}N\mbox{]}) const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_agmd_1_1_driver_a0e0c8fdd9df8f038dd42a0c15e763ffa}{Change} (\hyperlink{class_agmd_1_1_driver}{Driver} $\ast$new\+Renderer)
+\item 
+static void \hyperlink{class_agmd_1_1_driver_a0b25d6cef85fa193a413d193bc26b71a}{Destroy} ()
+\item 
+static \hyperlink{class_agmd_1_1_driver}{Driver} \& \hyperlink{class_agmd_1_1_driver_aedf84a4d782cbaad6a5d5eb1fd17b682}{Get} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_a68e5e8a6292970c5b5af085615d85b44}{Setup} (H\+W\+N\+D Hwnd)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_driver_aa8df8afdbd3f33a58d86f8e58d78af46}{Check\+Caps} ()=0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_a2bfdc7a75103f9ecfe9c5ee2572a54a1}{Create\+V\+B} (unsigned long size, unsigned long stride, unsigned long flags) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_af4c2c44926b8fdc1049fcb4e6876ed0d}{Create\+I\+B} (unsigned long size, unsigned long stride, unsigned long flags) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_a4e79ada057eefa151afc9887800f0395}{Create\+U\+B} (unsigned long size, unsigned long stride, unsigned long flags, int bind\+Point, int ubflags) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_driver_a1635888b4a66dc7860e1ae7043a319c9}{Create\+T\+B} (unsigned long size, unsigned long stride, unsigned long flags) const =0
+\item 
+virtual \hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$ \hyperlink{class_agmd_1_1_driver_a22aa3cceafe772fef0a1a6129ae105b0}{Create\+Declaration} (const \hyperlink{struct_agmd_1_1_t_declaration_element}{T\+Declaration\+Element} $\ast$elt, std\+::size\+\_\+t count) const =0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \hyperlink{namespace_agmd_ac521de717d36bdd8a4aa86150d82a038}{T\+Capability}, bool $>$ \hyperlink{class_agmd_1_1_driver_a8992152f99b8f034fa91e90907874fd3}{m\+\_\+\+Capabilities}
+\item 
+\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_driver_ac04c5f985b16457e0aa133c2c860ed7b}{m\+\_\+\+Texture\+Flags}
+\item 
+ivec2 \hyperlink{class_agmd_1_1_driver_a9a3219f10ce291ad3347ad3c25f619be}{m\+\_\+\+Screen}
+\item 
+const \hyperlink{class_agmd_maths_1_1_transform}{Transform} $\ast$ \hyperlink{class_agmd_1_1_driver_a6e2e70d57c02cf64c266f0cf556afa38}{m\+\_\+\+Current\+Transform}
+\item 
+\hyperlink{class_agmd_1_1_scene_mgr}{Scene\+Mgr} $\ast$ \hyperlink{class_agmd_1_1_driver_a41985d98cdad01df5d16af9e74df63a8}{m\+\_\+\+Active\+Scene}
+\item 
+\hyperlink{class_agmd_1_1_camera}{Camera} $\ast$ \hyperlink{class_agmd_1_1_driver_a7e7ad50240452ac418ff0d2ab4cd5def}{m\+\_\+\+Camera}
+\item 
+\hyperlink{class_agmd_1_1_statistics}{Statistics} $\ast$ \hyperlink{class_agmd_1_1_driver_a9c0454173d849b3620e3e5518319f5d6}{m\+\_\+stats}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_driver_acd6fcffe1c271f55b8b5c0b89c540f53}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!````~Driver@{$\sim$\+Driver}}
+\index{````~Driver@{$\sim$\+Driver}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{$\sim$\+Driver}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Driver\+::$\sim$\+Driver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_driver_acd6fcffe1c271f55b8b5c0b89c540f53}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_driver_a819b761e20b3db3e3804983753ccf66d}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Add\+Texture\+Flag@{Add\+Texture\+Flag}}
+\index{Add\+Texture\+Flag@{Add\+Texture\+Flag}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Add\+Texture\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Add\+Texture\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a819b761e20b3db3e3804983753ccf66d}
+\hypertarget{class_agmd_1_1_driver_a2a2572fd9014436acc31978a2f992f8e}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Cap\+To\+String@{Cap\+To\+String}}
+\index{Cap\+To\+String@{Cap\+To\+String}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Cap\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Agmd\+::\+Driver\+::\+Cap\+To\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Capability}}]{Cap}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_driver_a2a2572fd9014436acc31978a2f992f8e}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a0e0c8fdd9df8f038dd42a0c15e763ffa}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Change@{Change}}
+\index{Change@{Change}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Change}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Change (
+\begin{DoxyParamCaption}
+\item[{{\bf Driver} $\ast$}]{new\+Renderer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_driver_a0e0c8fdd9df8f038dd42a0c15e763ffa}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aa8df8afdbd3f33a58d86f8e58d78af46}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Check\+Caps@{Check\+Caps}}
+\index{Check\+Caps@{Check\+Caps}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Check\+Caps}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Check\+Caps (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_aa8df8afdbd3f33a58d86f8e58d78af46}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a01553c1cef204a7f4c3935aa57a6775b}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aa9090ef4c1fd4865a708cf990155c780}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Convert\+Color@{Convert\+Color}}
+\index{Convert\+Color@{Convert\+Color}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Convert\+Color}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf a\+\_\+uint32} Agmd\+::\+Driver\+::\+Convert\+Color (
+\begin{DoxyParamCaption}
+\item[{const {\bf Color} \&}]{color}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_aa9090ef4c1fd4865a708cf990155c780}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a8831b91a267cb813eea70e53eb4958ea}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a22aa3cceafe772fef0a1a6129ae105b0}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Declaration@{Create\+Declaration}}
+\index{Create\+Declaration@{Create\+Declaration}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Declaration}$\ast$ Agmd\+::\+Driver\+::\+Create\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf T\+Declaration\+Element} $\ast$}]{elt, }
+\item[{std\+::size\+\_\+t}]{count}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a22aa3cceafe772fef0a1a6129ae105b0}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a6b5a615d2c466aa66231b7ccc35b95ca}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a7c431ff6b04e96f258b987ae8d922a9c}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Frame\+Buffer@{Create\+Frame\+Buffer}}
+\index{Create\+Frame\+Buffer@{Create\+Frame\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Frame\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Frame\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+Frame\+Buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a7c431ff6b04e96f258b987ae8d922a9c}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_af7da1b0074515ed7aa2b9837bf2c1319}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_af4c2c44926b8fdc1049fcb4e6876ed0d}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+I\+B@{Create\+I\+B}}
+\index{Create\+I\+B@{Create\+I\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+I\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+I\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_af4c2c44926b8fdc1049fcb4e6876ed0d}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a4ec54d9e690d33b247bce4031b2ead85}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a487edfdc09992541069350015f8469f4}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Index\+Buffer@{Create\+Index\+Buffer}}
+\index{Create\+Index\+Buffer@{Create\+Index\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$T$>$ Agmd\+::\+Driver\+::\+Create\+Index\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a487edfdc09992541069350015f8469f4}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a73a2d51147230616672aa7a1b4dd48dc}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Index\+Buffer@{Create\+Index\+Buffer}}
+\index{Create\+Index\+Buffer@{Create\+Index\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$ T $>$ Agmd\+::\+Driver\+::\+Create\+Index\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a73a2d51147230616672aa7a1b4dd48dc}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a879e98a0d21b772b487b358dd912429b}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Render\+Buffer@{Create\+Render\+Buffer}}
+\index{Create\+Render\+Buffer@{Create\+Render\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Render\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Render\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+Render\+Buffer (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a879e98a0d21b772b487b358dd912429b}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a09cb3cec6ed1df5ff40e5fc67cb8d222}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a8e8346a9341169d7486f8418a7671f67}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Shader@{Create\+Shader}}
+\index{Create\+Shader@{Create\+Shader}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Shader}$\ast$ Agmd\+::\+Driver\+::\+Create\+Shader (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{source, }
+\item[{{\bf T\+Shader\+Type}}]{type}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a8e8346a9341169d7486f8418a7671f67}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_ab2e9dad9e27f72a8e45313b4cdd757e9}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_afa92f4325c4af6876919627e76aa6e28}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Shader\+Program@{Create\+Shader\+Program}}
+\index{Create\+Shader\+Program@{Create\+Shader\+Program}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Shader\+Program}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Shader\+Program}$\ast$ Agmd\+::\+Driver\+::\+Create\+Shader\+Program (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Shader} $\ast$}]{vertex, }
+\item[{{\bf Base\+Shader} $\ast$}]{eval, }
+\item[{{\bf Base\+Shader} $\ast$}]{control, }
+\item[{{\bf Base\+Shader} $\ast$}]{geom, }
+\item[{{\bf Base\+Shader} $\ast$}]{frag}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_afa92f4325c4af6876919627e76aa6e28}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a06554eb69eba097702bdef7f64a6cb9a}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a1635888b4a66dc7860e1ae7043a319c9}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+T\+B@{Create\+T\+B}}
+\index{Create\+T\+B@{Create\+T\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+T\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+T\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a1635888b4a66dc7860e1ae7043a319c9}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_af6f6070e470df70c79bbe18426e86ce7}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_ae34b1e5edc9a342fd5f1103a1188fce5}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Texture@{Create\+Texture}}
+\index{Create\+Texture@{Create\+Texture}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Texture\+Base}$\ast$ Agmd\+::\+Driver\+::\+Create\+Texture (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{{\bf T\+Texture\+Type}}]{type, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_ae34b1e5edc9a342fd5f1103a1188fce5}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a41af189f0e80548bb84b7b9796c12c5f}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a1f3811041b6e476bf5523b51e9decaa4}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Texture2\+D@{Create\+Texture2\+D}}
+\index{Create\+Texture2\+D@{Create\+Texture2\+D}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Texture2\+D}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Texture\+Base}$\ast$ Agmd\+::\+Driver\+::\+Create\+Texture2\+D (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a1f3811041b6e476bf5523b51e9decaa4}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a3cda774b7cc45aab379127e3ed26e291}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a3bc39deb272f255473fdff8ce31e3ade}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Texture\+Buffer@{Create\+Texture\+Buffer}}
+\index{Create\+Texture\+Buffer@{Create\+Texture\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Texture\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$T$>$ Agmd\+::\+Driver\+::\+Create\+Texture\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a3bc39deb272f255473fdff8ce31e3ade}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a30c95b577c73fee812ceb1714c542e1b}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Texture\+Buffer@{Create\+Texture\+Buffer}}
+\index{Create\+Texture\+Buffer@{Create\+Texture\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Texture\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$ T $>$ Agmd\+::\+Driver\+::\+Create\+Texture\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a30c95b577c73fee812ceb1714c542e1b}
+\hypertarget{class_agmd_1_1_driver_a86ca6eb2c7dde110c0ad0aaa3be69602}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Texture\+Cube@{Create\+Texture\+Cube}}
+\index{Create\+Texture\+Cube@{Create\+Texture\+Cube}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Texture\+Cube}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Texture\+Base}$\ast$ Agmd\+::\+Driver\+::\+Create\+Texture\+Cube (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a86ca6eb2c7dde110c0ad0aaa3be69602}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_aababdfe93bce46a06ac61d78d9afc1c4}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a4e79ada057eefa151afc9887800f0395}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+U\+B@{Create\+U\+B}}
+\index{Create\+U\+B@{Create\+U\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+U\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+U\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags, }
+\item[{int}]{bind\+Point, }
+\item[{int}]{ubflags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a4e79ada057eefa151afc9887800f0395}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_ac126ecbfb4ebe924dcaa26cfa5690a0b}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a578e8bcd7fadd7ca91f9458a3ffbc5b2}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Uniform\+Buffer@{Create\+Uniform\+Buffer}}
+\index{Create\+Uniform\+Buffer@{Create\+Uniform\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Uniform\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$T$>$ Agmd\+::\+Driver\+::\+Create\+Uniform\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{int}]{bind\+Point, }
+\item[{int}]{ubflags, }
+\item[{const T $\ast$}]{data}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a578e8bcd7fadd7ca91f9458a3ffbc5b2}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_ab05c55dc5db4066a984665715e35b17a}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Uniform\+Buffer@{Create\+Uniform\+Buffer}}
+\index{Create\+Uniform\+Buffer@{Create\+Uniform\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Uniform\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$ T $>$ Agmd\+::\+Driver\+::\+Create\+Uniform\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{int}]{bind\+Point, }
+\item[{int}]{ubflags = {\ttfamily 0}, }
+\item[{const T $\ast$}]{data = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_ab05c55dc5db4066a984665715e35b17a}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a2bfdc7a75103f9ecfe9c5ee2572a54a1}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+V\+B@{Create\+V\+B}}
+\index{Create\+V\+B@{Create\+V\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+V\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Base\+Buffer}$\ast$ Agmd\+::\+Driver\+::\+Create\+V\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a2bfdc7a75103f9ecfe9c5ee2572a54a1}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a0c827d7a71eb96036e41e11add44c6d6}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a2f28ead26c46cf0d4d44176f7d61ab70}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Vertex\+Buffer@{Create\+Vertex\+Buffer}}
+\index{Create\+Vertex\+Buffer@{Create\+Vertex\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$T$>$ Agmd\+::\+Driver\+::\+Create\+Vertex\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a2f28ead26c46cf0d4d44176f7d61ab70}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aeb0311aeb0121cf0ea859cc7f67213df}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Vertex\+Buffer@{Create\+Vertex\+Buffer}}
+\index{Create\+Vertex\+Buffer@{Create\+Vertex\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Buffer}$<$ T $>$ Agmd\+::\+Driver\+::\+Create\+Vertex\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{flags, }
+\item[{const T $\ast$}]{data = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_aeb0311aeb0121cf0ea859cc7f67213df}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a72eb9394e625625f8dfbff52c23a78f8}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Vertex\+Declaration@{Create\+Vertex\+Declaration}}
+\index{Create\+Vertex\+Declaration@{Create\+Vertex\+Declaration}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Vertex\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t N$>$ {\bf Declaration}$\ast$ Agmd\+::\+Driver\+::\+Create\+Vertex\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf T\+Declaration\+Element}(\&)}]{elt\mbox{[}\+N\mbox{]}}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_driver_a72eb9394e625625f8dfbff52c23a78f8}
+\hypertarget{class_agmd_1_1_driver_a93266682368c862356b50269041f983f}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Create\+Vertex\+Declaration@{Create\+Vertex\+Declaration}}
+\index{Create\+Vertex\+Declaration@{Create\+Vertex\+Declaration}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Create\+Vertex\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\+::size\+\_\+t N$>$ {\bf Declaration} $\ast$ Agmd\+::\+Driver\+::\+Create\+Vertex\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf T\+Declaration\+Element}(\&)}]{elt\mbox{[}\+N\mbox{]}}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_driver_a93266682368c862356b50269041f983f}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a0b25d6cef85fa193a413d193bc26b71a}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Destroy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_driver_a0b25d6cef85fa193a413d193bc26b71a}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aa70ae0f0cb206e314bb35a3b99d49820}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!draw\+Bounding\+Box@{draw\+Bounding\+Box}}
+\index{draw\+Bounding\+Box@{draw\+Bounding\+Box}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{draw\+Bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::draw\+Bounding\+Box (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{bbox, }
+\item[{const {\bf Base\+Shader\+Program} $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_aa70ae0f0cb206e314bb35a3b99d49820}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_ac182595e214c160ab8554c84f6d2da75}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a602d935335e7601b5fe2b74fe57d3547}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Draw\+Indexed\+Primitives@{Draw\+Indexed\+Primitives}}
+\index{Draw\+Indexed\+Primitives@{Draw\+Indexed\+Primitives}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Draw\+Indexed\+Primitives}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Draw\+Indexed\+Primitives (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Primitive\+Type}}]{type, }
+\item[{unsigned long}]{first\+Index, }
+\item[{unsigned long}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a602d935335e7601b5fe2b74fe57d3547}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a4f94f8cf789c88859eb4a678382d70ad}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a17c73e5ff37f4da7cb16b63f2d1ffa1c}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Draw\+Primitives@{Draw\+Primitives}}
+\index{Draw\+Primitives@{Draw\+Primitives}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Draw\+Primitives}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Draw\+Primitives (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Primitive\+Type}}]{type, }
+\item[{unsigned long}]{first\+Vertex, }
+\item[{unsigned long}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a17c73e5ff37f4da7cb16b63f2d1ffa1c}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_adae2a75d7f71fad8e717c0f8a7ad895d}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aed5a533b299939f97e60de0897ca6cfb}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Enable@{Enable}}
+\index{Enable@{Enable}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Enable}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf \+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+D\+\_\+}() Agmd\+::\+Driver\+::\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Parameter}}]{param, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_aed5a533b299939f97e60de0897ca6cfb}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a0f7dc8a8dd0a35f456abf04748d674ba}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a0616e055795e47e62fb71cce5c85c38a}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!End\+Scene@{End\+Scene}}
+\index{End\+Scene@{End\+Scene}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{End\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+End\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a0616e055795e47e62fb71cce5c85c38a}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_ab6e2d7fcf613c056a2172eeaf48816b4}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_aedf84a4d782cbaad6a5d5eb1fd17b682}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get@{Get}}
+\index{Get@{Get}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Driver} \& Agmd\+::\+Driver\+::\+Get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_driver_aedf84a4d782cbaad6a5d5eb1fd17b682}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_ae2f53381d96063c7dab24d62637df6ec}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Active\+Scene@{Get\+Active\+Scene}}
+\index{Get\+Active\+Scene@{Get\+Active\+Scene}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Active\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Mgr} $\ast$ Agmd\+::\+Driver\+::\+Get\+Active\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_ae2f53381d96063c7dab24d62637df6ec}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a5e2188067d439d7ee62926934a6f7ff5}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Aspect\+Ratio@{Get\+Aspect\+Ratio}}
+\index{Get\+Aspect\+Ratio@{Get\+Aspect\+Ratio}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Aspect\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Driver\+::\+Get\+Aspect\+Ratio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a5e2188067d439d7ee62926934a6f7ff5}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a6994b46ccadacdbadae526fc9cb6ea1b}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Camera@{Get\+Camera}}
+\index{Get\+Camera@{Get\+Camera}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ Agmd\+::\+Driver\+::\+Get\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a6994b46ccadacdbadae526fc9cb6ea1b}
+\hypertarget{class_agmd_1_1_driver_a16e778a171f2e45f55b3ab6391db69d6}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Constant@{Get\+Constant}}
+\index{Get\+Constant@{Get\+Constant}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Constant}]{\setlength{\rightskip}{0pt plus 5cm}virtual const std\+::string Agmd\+::\+Driver\+::\+Get\+Constant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a16e778a171f2e45f55b3ab6391db69d6}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_abf2bff50bf8cc4428c6f26f077274796}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a2b14b7ecb1a8533e2b4e80d88fc95656}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Current\+Program@{Get\+Current\+Program}}
+\index{Get\+Current\+Program@{Get\+Current\+Program}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Current\+Program}]{\setlength{\rightskip}{0pt plus 5cm}virtual const {\bf Base\+Shader\+Program}$\ast$ Agmd\+::\+Driver\+::\+Get\+Current\+Program (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a2b14b7ecb1a8533e2b4e80d88fc95656}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a103a7d4d5a67c924c3e25a494cdb19d6}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a57ef5797a34bc3f9ed10fd05c319c155}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Extension@{Get\+Extension}}
+\index{Get\+Extension@{Get\+Extension}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual const std\+::string Agmd\+::\+Driver\+::\+Get\+Extension (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a57ef5797a34bc3f9ed10fd05c319c155}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a760ded3d771343d171cd43e308326398}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a0725af382475485e57a9d043d4e16f96}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Mat\+Projection@{Get\+Mat\+Projection}}
+\index{Get\+Mat\+Projection@{Get\+Mat\+Projection}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Mat\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}mat4 Agmd\+::\+Driver\+::\+Get\+Mat\+Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a0725af382475485e57a9d043d4e16f96}
+\hypertarget{class_agmd_1_1_driver_a62c2818bf3bd13156ccd8dba304e05c7}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Mat\+View@{Get\+Mat\+View}}
+\index{Get\+Mat\+View@{Get\+Mat\+View}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Mat\+View}]{\setlength{\rightskip}{0pt plus 5cm}mat4 Agmd\+::\+Driver\+::\+Get\+Mat\+View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a62c2818bf3bd13156ccd8dba304e05c7}
+\hypertarget{class_agmd_1_1_driver_a35c8501ea4154ef1f9dfd6dfb04d6b7d}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Renderer\+Desc@{Get\+Renderer\+Desc}}
+\index{Get\+Renderer\+Desc@{Get\+Renderer\+Desc}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Renderer\+Desc}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string Agmd\+::\+Driver\+::\+Get\+Renderer\+Desc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a35c8501ea4154ef1f9dfd6dfb04d6b7d}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a7f34ce6d173642e11ac9795fe7acc59d}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a94ddb55c49236dc19039b0ff01b6c90e}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Screen@{Get\+Screen}}
+\index{Get\+Screen@{Get\+Screen}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}ivec2 Agmd\+::\+Driver\+::\+Get\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a94ddb55c49236dc19039b0ff01b6c90e}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a173f21b78beddc1227b2a8aec81f2631}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Statistics@{Get\+Statistics}}
+\index{Get\+Statistics@{Get\+Statistics}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Statistics}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Statistics} \& Agmd\+::\+Driver\+::\+Get\+Statistics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a173f21b78beddc1227b2a8aec81f2631}
+\hypertarget{class_agmd_1_1_driver_a3157d0c87887c8ccd55e6be13942afe0}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Get\+Texture\+Flag@{Get\+Texture\+Flag}}
+\index{Get\+Texture\+Flag@{Get\+Texture\+Flag}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Get\+Texture\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+Driver\+::\+Get\+Texture\+Flag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a3157d0c87887c8ccd55e6be13942afe0}
+\hypertarget{class_agmd_1_1_driver_ac97e6ae7ed4b0e1bfe6905c3ac2642d2}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Has\+Capability@{Has\+Capability}}
+\index{Has\+Capability@{Has\+Capability}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Has\+Capability}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Driver\+::\+Has\+Capability (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Capability}}]{Cap}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_driver_ac97e6ae7ed4b0e1bfe6905c3ac2642d2}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a59a990194eb3b481b0b76a1a4257981a}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Initialize (
+\begin{DoxyParamCaption}
+\item[{H\+W\+N\+D}]{Hwnd}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a59a990194eb3b481b0b76a1a4257981a}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_aff07d992edd330c24c177b4532f93218}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Init\+Scene@{Init\+Scene}}
+\index{Init\+Scene@{Init\+Scene}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Init\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Init\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_aff07d992edd330c24c177b4532f93218}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a4095bb84f37f1ed2dce478d4618ebb2f}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a1575876d9c54b9ed8e841f7a31049427}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!On\+Update@{On\+Update}}
+\index{On\+Update@{On\+Update}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{On\+Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+On\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{t\+\_\+diff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_driver_a1575876d9c54b9ed8e841f7a31049427}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a8d52a15414214f02e7e472f3fb5d6588}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Remove\+Texture\+Flag@{Remove\+Texture\+Flag}}
+\index{Remove\+Texture\+Flag@{Remove\+Texture\+Flag}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Remove\+Texture\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Remove\+Texture\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a8d52a15414214f02e7e472f3fb5d6588}
+\hypertarget{class_agmd_1_1_driver_ae7bb6fde1c016329ed9b61d61ffc5e06}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Active\+Scene@{Set\+Active\+Scene}}
+\index{Set\+Active\+Scene@{Set\+Active\+Scene}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Active\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Active\+Scene (
+\begin{DoxyParamCaption}
+\item[{{\bf Scene\+Mgr} $\ast$}]{sc}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_ae7bb6fde1c016329ed9b61d61ffc5e06}
+\hypertarget{class_agmd_1_1_driver_a1eb6624a294fc7020491b097893cc413}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Camera@{Set\+Camera}}
+\index{Set\+Camera@{Set\+Camera}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Camera (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{cam}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a1eb6624a294fc7020491b097893cc413}
+\hypertarget{class_agmd_1_1_driver_a9c44dbdfe6cd21a69bd0e2557f07d95e}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Cull\+Face@{Set\+Cull\+Face}}
+\index{Set\+Cull\+Face@{Set\+Cull\+Face}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Cull\+Face}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+Cull\+Face (
+\begin{DoxyParamCaption}
+\item[{int}]{face}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a9c44dbdfe6cd21a69bd0e2557f07d95e}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_aeeb0c06849491a9fa62b46a8624d1734}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_ac6d8e0a25e5bac4591731a006338eeb3}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Current\+Program@{Set\+Current\+Program}}
+\index{Set\+Current\+Program@{Set\+Current\+Program}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Current\+Program}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+Current\+Program (
+\begin{DoxyParamCaption}
+\item[{const {\bf Base\+Shader\+Program} $\ast$}]{prog}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_ac6d8e0a25e5bac4591731a006338eeb3}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a034ddd338f3f7e312d3844ba50e03a35}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a5d026607f63acff5dd9c14cc86ec1142}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Current\+Transform@{Set\+Current\+Transform}}
+\index{Set\+Current\+Transform@{Set\+Current\+Transform}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Current\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Driver\+::\+Set\+Current\+Transform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Transform} $\ast$}]{transform}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a5d026607f63acff5dd9c14cc86ec1142}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a302ea30a784d1eadd3f317f33a86ca71}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Declaration@{Set\+Declaration}}
+\index{Set\+Declaration@{Set\+Declaration}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf Declaration} $\ast$}]{declaration}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a302ea30a784d1eadd3f317f33a86ca71}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_aae27a98b3d696f5ad82257ad55133895}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_adee1250e06ad2ac3d97a839076a52941}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+I\+B@{Set\+I\+B}}
+\index{Set\+I\+B@{Set\+I\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+I\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+I\+B (
+\begin{DoxyParamCaption}
+\item[{const {\bf Base\+Buffer} $\ast$}]{buffer, }
+\item[{unsigned long}]{stride}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_adee1250e06ad2ac3d97a839076a52941}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_abe6eae14930800c02a9ba02b9a50ba0f}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Index\+Buffer@{Set\+Index\+Buffer}}
+\index{Set\+Index\+Buffer@{Set\+Index\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Driver\+::\+Set\+Index\+Buffer (
+\begin{DoxyParamCaption}
+\item[{const {\bf Buffer}$<$ T $>$ \&}]{buffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Index\+Buffer@{Set\+Index\+Buffer}}
+\index{Set\+Index\+Buffer@{Set\+Index\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Driver\+::\+Set\+Index\+Buffer (
+\begin{DoxyParamCaption}
+\item[{const {\bf Buffer}$<$ T $>$ \&}]{buffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a5dccb83b805c97bc4b50c92999055737}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_af3d4d9d04dac8478f67b27f1a2894204}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Mat\+Projection@{Set\+Mat\+Projection}}
+\index{Set\+Mat\+Projection@{Set\+Mat\+Projection}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Mat\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Mat\+Projection (
+\begin{DoxyParamCaption}
+\item[{mat4}]{\+\_\+\+Mat\+Projection}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_af3d4d9d04dac8478f67b27f1a2894204}
+\hypertarget{class_agmd_1_1_driver_a382852489bb3aa834d0e65059a2b4d70}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Mat\+View@{Set\+Mat\+View}}
+\index{Set\+Mat\+View@{Set\+Mat\+View}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Mat\+View}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Mat\+View (
+\begin{DoxyParamCaption}
+\item[{mat4}]{\+\_\+\+Mat\+View}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a382852489bb3aa834d0e65059a2b4d70}
+\hypertarget{class_agmd_1_1_driver_a6edc110be95fa6c2922a13ce025d8aa4}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Render\+Mode@{Set\+Render\+Mode}}
+\index{Set\+Render\+Mode@{Set\+Render\+Mode}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Render\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+Render\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a6edc110be95fa6c2922a13ce025d8aa4}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a4b7766cf2ffe53b71a6de1a76b8272de}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a34d0dfd09cfe090268806c7dd5a8b0e0}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Screen@{Set\+Screen}}
+\index{Set\+Screen@{Set\+Screen}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Screen (
+\begin{DoxyParamCaption}
+\item[{ivec2}]{\+\_\+screen}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a34d0dfd09cfe090268806c7dd5a8b0e0}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_ae64ea2bdfb1bc1b114184d1135b613ff}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Texture@{Set\+Texture}}
+\index{Set\+Texture@{Set\+Texture}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+Texture (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{unit, }
+\item[{const {\bf Texture\+Base} $\ast$}]{texture, }
+\item[{{\bf T\+Texture\+Type}}]{type = {\ttfamily {\bf T\+E\+X\+T\+U\+R\+E\+\_\+2\+D}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_ae64ea2bdfb1bc1b114184d1135b613ff}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a0434677977067223edacb20476df942c}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a77c765bf0e8a52d67fb3d5ab00a9513f}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Texture\+Flag@{Set\+Texture\+Flag}}
+\index{Set\+Texture\+Flag@{Set\+Texture\+Flag}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Texture\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Driver\+::\+Set\+Texture\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_driver_a77c765bf0e8a52d67fb3d5ab00a9513f}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a68e5e8a6292970c5b5af085615d85b44}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Setup@{Setup}}
+\index{Setup@{Setup}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Setup}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Setup (
+\begin{DoxyParamCaption}
+\item[{H\+W\+N\+D}]{Hwnd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a68e5e8a6292970c5b5af085615d85b44}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_ac7270273671f80996db604322a69bf63}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a9b028ec5fde8ac735723a49df6d69a9d}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Setup\+Alpha\+Blending@{Setup\+Alpha\+Blending}}
+\index{Setup\+Alpha\+Blending@{Setup\+Alpha\+Blending}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Setup\+Alpha\+Blending}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Setup\+Alpha\+Blending (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Blend}}]{src, }
+\item[{{\bf T\+Blend}}]{dest}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a9b028ec5fde8ac735723a49df6d69a9d}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_adb9e2cc3d36e5cbdc83d4860cdb569be}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a431a5401de0d77261b341de358faaf0c}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Setup\+Depth\+Test@{Setup\+Depth\+Test}}
+\index{Setup\+Depth\+Test@{Setup\+Depth\+Test}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Setup\+Depth\+Test}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Setup\+Depth\+Test (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Depth}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a431a5401de0d77261b341de358faaf0c}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a80794e6e56cda3f0a4ad31d2deac9e0d}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a772215047c5605c5d1d321f3f5ddac7e}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Setup\+Texture\+Unit@{Setup\+Texture\+Unit}}
+\index{Setup\+Texture\+Unit@{Setup\+Texture\+Unit}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Setup\+Texture\+Unit}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Setup\+Texture\+Unit (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{unit, }
+\item[{{\bf T\+Texture\+Op}}]{op, }
+\item[{{\bf T\+Texture\+Arg}}]{arg1, }
+\item[{{\bf T\+Texture\+Arg}}]{arg2 = {\ttfamily {\bf T\+X\+A\+\_\+\+D\+I\+F\+F\+U\+S\+E}}, }
+\item[{const {\bf Color} \&}]{constant = {\ttfamily 0x00}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a772215047c5605c5d1d321f3f5ddac7e}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_aab0483f33db17738214722b823c602ca}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a54fa3d9aa9b5c3175bc2f4fc487f38fd}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+V\+B@{Set\+V\+B}}
+\index{Set\+V\+B@{Set\+V\+B}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+V\+B}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+V\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{stream, }
+\item[{const {\bf Base\+Buffer} $\ast$}]{buffer, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{min\+Vertex, }
+\item[{unsigned long}]{max\+Vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_a54fa3d9aa9b5c3175bc2f4fc487f38fd}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a8a5b85d5128c13de54ffad58c3e54c7b}{Agmd\+::\+G\+L\+Driver}.
+
+\hypertarget{class_agmd_1_1_driver_a98eb12fd4fd70f082790b1b43e952cd6}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Vertex\+Buffer@{Set\+Vertex\+Buffer}}
+\index{Set\+Vertex\+Buffer@{Set\+Vertex\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Driver\+::\+Set\+Vertex\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{stream, }
+\item[{const {\bf Buffer}$<$ T $>$ \&}]{buffer, }
+\item[{unsigned long}]{min\+Vertex, }
+\item[{unsigned long}]{max\+Vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a98eb12fd4fd70f082790b1b43e952cd6}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_a8250e4086394f717b67cb38059a8d3fe}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+Vertex\+Buffer@{Set\+Vertex\+Buffer}}
+\index{Set\+Vertex\+Buffer@{Set\+Vertex\+Buffer}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Driver\+::\+Set\+Vertex\+Buffer (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{stream, }
+\item[{const {\bf Buffer}$<$ T $>$ \&}]{buffer, }
+\item[{unsigned long}]{min\+Vertex = {\ttfamily 0}, }
+\item[{unsigned long}]{max\+Vertex = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_driver_a8250e4086394f717b67cb38059a8d3fe}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_driver_ab16bec32bad282876e909ee90df11be7}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!Set\+View\+Port@{Set\+View\+Port}}
+\index{Set\+View\+Port@{Set\+View\+Port}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{Set\+View\+Port}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Driver\+::\+Set\+View\+Port (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{xy, }
+\item[{const ivec2 \&}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_driver_ab16bec32bad282876e909ee90df11be7}
+
+
+Implemented in \hyperlink{class_agmd_1_1_g_l_driver_a8c86b2ef5e0ca9178e9ff16ee432a624}{Agmd\+::\+G\+L\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_driver_a41985d98cdad01df5d16af9e74df63a8}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Active\+Scene@{m\+\_\+\+Active\+Scene}}
+\index{m\+\_\+\+Active\+Scene@{m\+\_\+\+Active\+Scene}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Active\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Mgr}$\ast$ Agmd\+::\+Driver\+::m\+\_\+\+Active\+Scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a41985d98cdad01df5d16af9e74df63a8}
+\hypertarget{class_agmd_1_1_driver_a7e7ad50240452ac418ff0d2ab4cd5def}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Camera@{m\+\_\+\+Camera}}
+\index{m\+\_\+\+Camera@{m\+\_\+\+Camera}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Agmd\+::\+Driver\+::m\+\_\+\+Camera\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a7e7ad50240452ac418ff0d2ab4cd5def}
+\hypertarget{class_agmd_1_1_driver_a8992152f99b8f034fa91e90907874fd3}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Capabilities@{m\+\_\+\+Capabilities}}
+\index{m\+\_\+\+Capabilities@{m\+\_\+\+Capabilities}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Capabilities}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<${\bf T\+Capability}, bool$>$ Agmd\+::\+Driver\+::m\+\_\+\+Capabilities\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a8992152f99b8f034fa91e90907874fd3}
+\hypertarget{class_agmd_1_1_driver_a6e2e70d57c02cf64c266f0cf556afa38}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Current\+Transform@{m\+\_\+\+Current\+Transform}}
+\index{m\+\_\+\+Current\+Transform@{m\+\_\+\+Current\+Transform}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Current\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Transform}$\ast$ Agmd\+::\+Driver\+::m\+\_\+\+Current\+Transform\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a6e2e70d57c02cf64c266f0cf556afa38}
+\hypertarget{class_agmd_1_1_driver_a9a3219f10ce291ad3347ad3c25f619be}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Screen@{m\+\_\+\+Screen}}
+\index{m\+\_\+\+Screen@{m\+\_\+\+Screen}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}ivec2 Agmd\+::\+Driver\+::m\+\_\+\+Screen\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a9a3219f10ce291ad3347ad3c25f619be}
+\hypertarget{class_agmd_1_1_driver_a9c0454173d849b3620e3e5518319f5d6}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+stats@{m\+\_\+stats}}
+\index{m\+\_\+stats@{m\+\_\+stats}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+stats}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Statistics}$\ast$ Agmd\+::\+Driver\+::m\+\_\+stats\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_a9c0454173d849b3620e3e5518319f5d6}
+\hypertarget{class_agmd_1_1_driver_ac04c5f985b16457e0aa133c2c860ed7b}{\index{Agmd\+::\+Driver@{Agmd\+::\+Driver}!m\+\_\+\+Texture\+Flags@{m\+\_\+\+Texture\+Flags}}
+\index{m\+\_\+\+Texture\+Flags@{m\+\_\+\+Texture\+Flags}!Agmd\+::\+Driver@{Agmd\+::\+Driver}}
+\subsubsection[{m\+\_\+\+Texture\+Flags}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+Driver\+::m\+\_\+\+Texture\+Flags\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_driver_ac04c5f985b16457e0aa133c2c860ed7b}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\hyperlink{_driver_8h}{Driver.\+h}\item 
+src/\+Agmd3\+D/\+Core/\hyperlink{_driver_8cpp}{Driver.\+cpp}\item 
+src/\+Agmd3\+D/\+Core/\hyperlink{_driver_8inl}{Driver.\+inl}\end{DoxyCompactItemize}

@@ -1,0 +1,1211 @@
+\hypertarget{class_agmd_1_1_g_l_driver}{\section{Agmd\+:\+:G\+L\+Driver Class Reference}
+\label{class_agmd_1_1_g_l_driver}\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+}
+
+
+{\ttfamily \#include $<$Gl\+Driver.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:G\+L\+Driver\+:
+
+
+Collaboration diagram for Agmd\+:\+:G\+L\+Driver\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{class_agmd_1_1_g_l_driver_a7f34ce6d173642e11ac9795fe7acc59d}{Get\+Renderer\+Desc} () const 
+\item 
+virtual const std\+::string \hyperlink{class_agmd_1_1_g_l_driver_a760ded3d771343d171cd43e308326398}{Get\+Extension} () const 
+\item 
+virtual const std\+::string \hyperlink{class_agmd_1_1_g_l_driver_abf2bff50bf8cc4428c6f26f077274796}{Get\+Constant} () const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a4095bb84f37f1ed2dce478d4618ebb2f}{Init\+Scene} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_ab6e2d7fcf613c056a2172eeaf48816b4}{End\+Scene} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a8a5b85d5128c13de54ffad58c3e54c7b}{Set\+V\+B} (unsigned int stream, const \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$buffer, unsigned long stride, unsigned long min\+Vertex, unsigned long max\+Vertex)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_abe6eae14930800c02a9ba02b9a50ba0f}{Set\+I\+B} (const \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$buffer, unsigned long stride)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_aae27a98b3d696f5ad82257ad55133895}{Set\+Declaration} (const \hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$declaration)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_adae2a75d7f71fad8e717c0f8a7ad895d}{Draw\+Primitives} (\hyperlink{namespace_agmd_a0e38d0c34891ddd6eef72e1c9e55161c}{T\+Primitive\+Type} type, unsigned long first\+Vertex, unsigned long count)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a4f94f8cf789c88859eb4a678382d70ad}{Draw\+Indexed\+Primitives} (\hyperlink{namespace_agmd_a0e38d0c34891ddd6eef72e1c9e55161c}{T\+Primitive\+Type} type, unsigned long first\+Index, unsigned long count)
+\item 
+virtual \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} \hyperlink{class_agmd_1_1_g_l_driver_a8831b91a267cb813eea70e53eb4958ea}{Convert\+Color} (const \hyperlink{class_agmd_utilities_1_1_color}{Color} \&color) const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a0434677977067223edacb20476df942c}{Set\+Texture} (unsigned int Unit, const \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$texture, \hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} type)
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a41af189f0e80548bb84b7b9796c12c5f}{Create\+Texture} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, \hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} type, unsigned long flags=0) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a3cda774b7cc45aab379127e3ed26e291}{Create\+Texture2\+D} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_aababdfe93bce46a06ac61d78d9afc1c4}{Create\+Texture\+Cube} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0) const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_adb9e2cc3d36e5cbdc83d4860cdb569be}{Setup\+Alpha\+Blending} (\hyperlink{namespace_agmd_a5c64d61de9c502c3159b9ce5d653f947}{T\+Blend} src, \hyperlink{namespace_agmd_a5c64d61de9c502c3159b9ce5d653f947}{T\+Blend} dest) const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a80794e6e56cda3f0a4ad31d2deac9e0d}{Setup\+Depth\+Test} (\hyperlink{namespace_agmd_a6bf1c529fabec2b3b33d9d94a032cc6a}{T\+Depth} mode)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_aab0483f33db17738214722b823c602ca}{Setup\+Texture\+Unit} (unsigned int Unit, \hyperlink{namespace_agmd_aafbdbe5caf9cc8574624faa1943bf5ef}{T\+Texture\+Op} Op, \hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5}{T\+Texture\+Arg} Arg1, \hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5}{T\+Texture\+Arg} Arg2=\hyperlink{namespace_agmd_ace3617cd312c454f60b4511e3e873db5a3b6eaeb8bc6375565b086e228263c2ee}{T\+X\+A\+\_\+\+D\+I\+F\+F\+U\+S\+E}, const \hyperlink{class_agmd_utilities_1_1_color}{Color} \&constant=0x00) const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a0f7dc8a8dd0a35f456abf04748d674ba}{Enable} (\hyperlink{namespace_agmd_afc630cffacc9bfc42e46816feb4744ae}{T\+Render\+Parameter} Param, bool Value)
+\item 
+virtual \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_ab2e9dad9e27f72a8e45313b4cdd757e9}{Create\+Shader} (std\+::string source, \hyperlink{namespace_agmd_a162a493eaff1589f07a505806e6724b4}{T\+Shader\+Type} type) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a06554eb69eba097702bdef7f64a6cb9a}{Create\+Shader\+Program} (\hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$vertex, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$eval, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$control, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$geom, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$frag) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_frame_buffer}{Frame\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_af7da1b0074515ed7aa2b9837bf2c1319}{Create\+Frame\+Buffer} () const 
+\item 
+virtual \hyperlink{class_agmd_1_1_render_buffer}{Render\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a09cb3cec6ed1df5ff40e5fc67cb8d222}{Create\+Render\+Buffer} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format) const 
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a4b7766cf2ffe53b71a6de1a76b8272de}{Set\+Render\+Mode} (\hyperlink{namespace_agmd_aa4cbd15e55e815e187c31a8f435addae}{T\+Render\+Mode} mode)
+\item 
+virtual const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a103a7d4d5a67c924c3e25a494cdb19d6}{Get\+Current\+Program} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a034ddd338f3f7e312d3844ba50e03a35}{Set\+Current\+Program} (const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$prog)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a8c86b2ef5e0ca9178e9ff16ee432a624}{Set\+View\+Port} (const ivec2 \&xy, const ivec2 \&size)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_aeeb0c06849491a9fa62b46a8624d1734}{Set\+Cull\+Face} (int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face})
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_ac182595e214c160ab8554c84f6d2da75}{draw\+Bounding\+Box} (const \hyperlink{class_agmd_1_1_bounding_box}{Bounding\+Box} \&bbox, const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$program)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+S\+T\+R\+I\+N\+G\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a5603388d49f1e39745fd1b8c8741f419}{gl\+Get\+Stringi}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ae9e9206f66c69bdb81127d17e502d645}{gl\+Bind\+Buffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a5c9e5d55d71b02896bad888f23461fc5}{gl\+Delete\+Buffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+N\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aa4a419a415a3f2f3598c5c50ee404e69}{gl\+Gen\+Buffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+U\+F\+F\+E\+R\+D\+A\+T\+A\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a72ddf9d5f821b46bc33f0623cd4730d0}{gl\+Buffer\+Data}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+U\+F\+F\+E\+R\+S\+U\+B\+D\+A\+T\+A\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a4d441a904aa7d6e20038e1b166c80109}{gl\+Buffer\+Sub\+Data}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+B\+U\+F\+F\+E\+R\+S\+U\+B\+D\+A\+T\+A\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a4740735076d7c453a30353366029a9f3}{gl\+Get\+Buffer\+Sub\+Data}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+M\+A\+P\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a7433a71b089ed9f090048db2a0f25157}{gl\+Map\+Buffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+M\+A\+P\+B\+U\+F\+F\+E\+R\+R\+A\+N\+G\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a5cab91ddf1cbffb27e38231b76fb6e89}{gl\+Map\+Buffer\+Range}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+M\+A\+P\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a02fa3989f3e3f4d10142d14ff5ac6918}{gl\+Unmap\+Buffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+S\+Y\+N\+C\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a3e439a92c87cae19fae168bb416c03fb}{gl\+Delete\+Sync}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+S\+Y\+N\+C\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a0c2fb6781ddda597d26c15e21342d8dc}{gl\+Get\+Synciv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+W\+A\+I\+T\+S\+Y\+N\+C\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a619b7422381e6ce3ad0b1c268a65dd3e}{gl\+Wait\+Sync}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+L\+I\+E\+N\+T\+W\+A\+I\+T\+S\+Y\+N\+C\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a8afd0f38432cd425043d0ed1f1aa59c9}{gl\+Client\+Wait\+Sync}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+F\+E\+N\+C\+E\+S\+Y\+N\+C\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_af877729750e7190ca2e5e2d91f22f9bc}{gl\+Fence\+Sync}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+A\+C\+T\+I\+V\+E\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aada95c0d15103631bfb8103133e4355a}{gl\+Active\+Texture}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+L\+I\+E\+N\+T\+A\+C\+T\+I\+V\+E\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a785811c63342ccb09d901f2565224ff9}{gl\+Client\+Active\+Texture}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+T\+E\+X\+I\+M\+A\+G\+E2\+D\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aad80ab48927af4495c8f2449b670a632}{gl\+Compressed\+Tex\+Image2\+D}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+T\+E\+X\+S\+U\+B\+I\+M\+A\+G\+E2\+D\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a12a98a79ac6f93390f7ee635930c505e}{gl\+Compressed\+Tex\+Sub\+Image2\+D}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+P\+A\+T\+C\+H\+P\+A\+R\+A\+M\+E\+T\+E\+R\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a41d54179c869685cd5b2f83fd6288d8d}{gl\+Patch\+Parameteri}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+N\+P\+R\+O\+G\+R\+A\+M\+P\+I\+P\+E\+L\+I\+N\+E\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a63ba03961f9754fc7e8cdb075fb985c3}{gl\+Gen\+Program\+Pipelines}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+P\+R\+O\+G\+R\+A\+M\+P\+I\+P\+E\+L\+I\+N\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ac09444ad917d9dcd385acddb2dd0973e}{gl\+Bind\+Program\+Pipelines}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+R\+E\+A\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a94461a10b539ca04d570f396ad78c42f}{gl\+Create\+Program}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a7821d8981f4821ace4e176010bdee544}{gl\+Delete\+Program}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+R\+E\+A\+T\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a7051646731a6b09a4f99078422656ff4}{gl\+Create\+Shader}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a417ccce16aa008039a02934b6dd934c4}{gl\+Delete\+Shader}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+S\+H\+A\+D\+E\+R\+S\+O\+U\+R\+C\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a11c8a6eceffdbf971f8aa954bef09d5e}{gl\+Shader\+Source}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+C\+O\+M\+P\+I\+L\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_acfb8dab4eadade450f17561c094f5372}{gl\+Compile\+Shader}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+S\+H\+A\+D\+E\+R\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a39fb1c4c4cf5db5fb814ccd672008de7}{gl\+Get\+Shaderiv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+S\+H\+A\+D\+E\+R\+I\+N\+F\+O\+L\+O\+G\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab9b9dc2a7f705fec01cab6bf4f84c96d}{gl\+Get\+Shader\+Info\+Log}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+A\+T\+T\+A\+C\+H\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ac000032736207a64ef8da4cb758fa769}{gl\+Attach\+Shader}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+L\+I\+N\+K\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a74bb96fef3d2405ab39ba42a64fec464}{gl\+Link\+Program}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+A\+L\+I\+D\+A\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a9effed72230c99f300e9977741781560}{gl\+Validate\+Program}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+P\+R\+O\+G\+R\+A\+M\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ac3d35a41762c39c1dc5253a5d6d83b8a}{gl\+Get\+Programiv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+P\+R\+O\+G\+R\+A\+M\+I\+N\+F\+O\+L\+O\+G\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a2c68c1c02e5cfe4116be4fa73837b2f0}{gl\+Get\+Program\+Info\+Log}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+S\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_afc12b8525341e9cd90eb9059c0f3b871}{gl\+Get\+Active\+Uniformsiv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+N\+A\+M\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab9d3d9142dd4298a1a3e8c4bbf021142}{gl\+Get\+Active\+Uniform\+Name}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+N\+A\+M\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a77da17d4d20489d1a5ff4ff1baa84522}{gl\+Get\+Active\+Uniform\+Block\+Name}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a6c6ee99d86d69e64c40e60f2bcfa29d3}{gl\+Get\+Active\+Uniform\+Blockiv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+I\+N\+T\+E\+G\+E\+R\+I\+\_\+\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_abb8b25a54988afb7f3add4885311e872}{gl\+Get\+Integeri\+\_\+v}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a8cbb247c2b502e4183e9cd4617946971}{gl\+Get\+Active\+Uniform}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+U\+N\+I\+F\+O\+R\+M\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a9b9203dfa86f50510f720cc7d93ab776}{gl\+Get\+Uniform\+Location}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+A\+T\+T\+R\+I\+B\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a268d9abbb19319c52c93583a408ab96c}{gl\+Get\+Active\+Attrib}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+T\+T\+R\+I\+B\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab0ee03cd9bb5ef2d908ba7d9fd18bb67}{gl\+Get\+Attrib\+Location}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a6340d495bef50555a94a3f0a841ff8e7}{gl\+Get\+Active\+Uniform\+Block}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+T\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+N\+D\+E\+X\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_abdab09833a0bc1b12b6164ec8376b9fd}{gl\+Get\+Uniform\+Block\+Index}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+B\+I\+N\+D\+I\+N\+G\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab551555cb6b30708df22f49803beef21}{gl\+Uniform\+Block\+Binding}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+B\+U\+F\+F\+E\+R\+B\+A\+S\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ace18401eaa5492bfe5b7ca07daa80b4f}{gl\+Bind\+Buffer\+Base}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+S\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ae35ed536290b155fb6430154ce4e87a3}{gl\+Use\+Program}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M1\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a6e3ddd5dda5dfc99a0ee447235889648}{gl\+Uniform1i}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M2\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_af0d2b6c60223719735c960bf5edb79f1}{gl\+Uniform2i}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M3\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a946a756d2e36f0e6ac6dc4b06f4855c9}{gl\+Uniform3i}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+I\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ae9d4d2bea223ebfc042a8bd19229b7cf}{gl\+Uniform4i}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M1\+F\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a019e942b0ec6713854a2ae51a50d5ae3}{gl\+Uniform1f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M2\+F\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ae7cbbc931fbd433c75e8c6124bf3dc14}{gl\+Uniform2f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M3\+F\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a50d983ba6ff60b7ae331d6d7c55eba85}{gl\+Uniform3f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a199bbbb46d7dc6585d38683580d43939}{gl\+Uniform4f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M1\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ac9bee7c2ee9bc6599967ed459e6214a5}{gl\+Uniform1fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M2\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aeed2ed646f910a532c8fa45563cb79cd}{gl\+Uniform2fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M3\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a3cec96e3d8b35ce79b0354c73e374ab4}{gl\+Uniform3fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a65384d11fa265e7717b5c251d7eec00b}{gl\+Uniform4fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X2\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a209ee0ba14551740f5dc4ba6448f5437}{gl\+Uniform\+Matrix2fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X3\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab3423707830a770ec584d245c99409ae}{gl\+Uniform\+Matrix3fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X4\+F\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a84dd6e63b9895fa975d5e3ade98586d7}{gl\+Uniform\+Matrix4fv}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B1\+F\+N\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_af65e9dcb352536e6311f7b23c4357cd9}{gl\+Vertex\+Attrib1f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B2\+F\+N\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a1bbb9035294023bb58f1663fd4ecf11e}{gl\+Vertex\+Attrib2f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B3\+F\+N\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a9c8f362af683929af147788df4c937f2}{gl\+Vertex\+Attrib3f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B4\+F\+N\+V\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab1c2da24c1eadd67c8c1dd59f4b3f0c8}{gl\+Vertex\+Attrib4f}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B\+P\+O\+I\+N\+T\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a5cf13627dcc785024d314a3c2397a0e2}{gl\+Vertex\+Attrib\+Pointer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+E\+N\+A\+B\+L\+E\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B\+A\+R\+R\+A\+Y\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aeea9e1eb6802a60e88ddc9b1dec1ff8a}{gl\+Enable\+Vertex\+Attrib\+Array}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+A\+T\+T\+R\+I\+B\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a455400c77fe5150921218b2645d7d982}{gl\+Bind\+Attrib\+Location}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+N\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ad6a6fa31b768852df072374d8c33e9ca}{gl\+Gen\+Renderbuffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a5cd27d325256efb460ad84bc38e5b970}{gl\+Delete\+Renderbuffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a1965718026372f3ed384516bffff3da2}{gl\+Bind\+Renderbuffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+T\+O\+R\+A\+G\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aafe5a377b329593d6b633e3656ed36d4}{gl\+Renderbuffer\+Storage}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+G\+E\+N\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_abf63a5e6e3d3fcf53119f36c0a61c317}{gl\+Gen\+Framebuffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+B\+I\+N\+D\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ade8af0da263156f979f8b3de3ac35a1e}{gl\+Bind\+Framebuffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+R\+A\+W\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ab6a97f13f70e33befca18717861e45df}{gl\+Draw\+Buffers}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+D\+R\+A\+W\+A\+R\+R\+A\+Y\+S\+E\+X\+T\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a1e0cc5c907c73d0a3582a8c5eda7bf1b}{gl\+Draw\+Arrays}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a3818929692ec671d26b3b504a0cbf064}{gl\+Framebuffer\+Renderbuffer}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a9d3330527b02d8661b93dd8bd3f602cd}{gl\+Framebuffer\+Texture}
+\item 
+static \hyperlink{_config_8h_a77401aa3bc0a379879047c1bd30f262e}{O\+P\+E\+N\+G\+L\+\_\+\+E\+X\+P\+O\+R\+T} \\*
+P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E2\+D\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a6177cc8fd4c96c33163b38ac69b4a0ff}{gl\+Framebuffer\+Texture2\+D}
+\item 
+static \\*
+P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E3\+D\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_aa12f161d66a6a1e78313040435b0e7ff}{gl\+Framebuffer\+Texture3\+D}
+\item 
+static \\*
+P\+F\+N\+G\+L\+C\+H\+E\+C\+K\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+T\+A\+T\+U\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a740b479fc5509641ccd4fa4aba946f8b}{gl\+Check\+Framebuffer\+Status}
+\item 
+static P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_a83b92608a37aabf994ad28e62c2cc45a}{gl\+Delete\+Framebuffers}
+\item 
+static \\*
+P\+F\+N\+W\+G\+L\+C\+R\+E\+A\+T\+E\+C\+O\+N\+T\+E\+X\+T\+A\+T\+T\+R\+I\+B\+S\+A\+R\+B\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_abd56505ddf55fe13d396534d0ae77baa}{wgl\+Create\+Context\+Attribs\+A\+R\+B}
+\item 
+static P\+F\+N\+W\+G\+L\+S\+W\+A\+P\+I\+N\+T\+E\+R\+V\+A\+L\+E\+X\+T\+P\+R\+O\+C \hyperlink{class_agmd_1_1_g_l_driver_ae8375296a8a17c17f8292cab6dacc2fb}{wgl\+Swap\+Interval\+E\+X\+T}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_ac7270273671f80996db604322a69bf63}{Setup} (H\+W\+N\+D Hwnd)
+\item 
+virtual void \hyperlink{class_agmd_1_1_g_l_driver_a01553c1cef204a7f4c3935aa57a6775b}{Check\+Caps} ()
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a0c827d7a71eb96036e41e11add44c6d6}{Create\+V\+B} (unsigned long size, unsigned long stride, unsigned long flags) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a4ec54d9e690d33b247bce4031b2ead85}{Create\+I\+B} (unsigned long size, unsigned long stride, unsigned long flags) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_ac126ecbfb4ebe924dcaa26cfa5690a0b}{Create\+U\+B} (unsigned long size, unsigned long stride, unsigned long flags, int bind\+Point, int ubflags) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_base_buffer}{Base\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_af6f6070e470df70c79bbe18426e86ce7}{Create\+T\+B} (unsigned long size, unsigned long stride, unsigned long flags) const 
+\item 
+virtual \hyperlink{class_agmd_1_1_declaration}{Declaration} $\ast$ \hyperlink{class_agmd_1_1_g_l_driver_a6b5a615d2c466aa66231b7ccc35b95ca}{Create\+Declaration} (const \hyperlink{struct_agmd_1_1_t_declaration_element}{T\+Declaration\+Element} $\ast$elt, std\+::size\+\_\+t count) const 
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_g_l_driver_a01553c1cef204a7f4c3935aa57a6775b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Check\+Caps@{Check\+Caps}}
+\index{Check\+Caps@{Check\+Caps}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Check\+Caps}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Check\+Caps (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a01553c1cef204a7f4c3935aa57a6775b}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_aa8df8afdbd3f33a58d86f8e58d78af46}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_a8831b91a267cb813eea70e53eb4958ea}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Convert\+Color@{Convert\+Color}}
+\index{Convert\+Color@{Convert\+Color}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Convert\+Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint32} Agmd\+::\+G\+L\+Driver\+::\+Convert\+Color (
+\begin{DoxyParamCaption}
+\item[{const {\bf Color} \&}]{color}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a8831b91a267cb813eea70e53eb4958ea}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_aa9090ef4c1fd4865a708cf990155c780}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a6b5a615d2c466aa66231b7ccc35b95ca}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Declaration@{Create\+Declaration}}
+\index{Create\+Declaration@{Create\+Declaration}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Declaration} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf T\+Declaration\+Element} $\ast$}]{elt, }
+\item[{std\+::size\+\_\+t}]{count}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a6b5a615d2c466aa66231b7ccc35b95ca}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a22aa3cceafe772fef0a1a6129ae105b0}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_af7da1b0074515ed7aa2b9837bf2c1319}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Frame\+Buffer@{Create\+Frame\+Buffer}}
+\index{Create\+Frame\+Buffer@{Create\+Frame\+Buffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Frame\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Frame\+Buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_af7da1b0074515ed7aa2b9837bf2c1319}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a7c431ff6b04e96f258b987ae8d922a9c}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_a4ec54d9e690d33b247bce4031b2ead85}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+I\+B@{Create\+I\+B}}
+\index{Create\+I\+B@{Create\+I\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+I\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+I\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a4ec54d9e690d33b247bce4031b2ead85}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_af4c2c44926b8fdc1049fcb4e6876ed0d}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a09cb3cec6ed1df5ff40e5fc67cb8d222}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Render\+Buffer@{Create\+Render\+Buffer}}
+\index{Create\+Render\+Buffer@{Create\+Render\+Buffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Render\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Render\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Render\+Buffer (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a09cb3cec6ed1df5ff40e5fc67cb8d222}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a879e98a0d21b772b487b358dd912429b}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_ab2e9dad9e27f72a8e45313b4cdd757e9}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Shader@{Create\+Shader}}
+\index{Create\+Shader@{Create\+Shader}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Shader (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{source, }
+\item[{{\bf T\+Shader\+Type}}]{type}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_ab2e9dad9e27f72a8e45313b4cdd757e9}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a8e8346a9341169d7486f8418a7671f67}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a06554eb69eba097702bdef7f64a6cb9a}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Shader\+Program@{Create\+Shader\+Program}}
+\index{Create\+Shader\+Program@{Create\+Shader\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Shader\+Program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Shader\+Program (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Shader} $\ast$}]{vertex, }
+\item[{{\bf Base\+Shader} $\ast$}]{eval, }
+\item[{{\bf Base\+Shader} $\ast$}]{control, }
+\item[{{\bf Base\+Shader} $\ast$}]{geom, }
+\item[{{\bf Base\+Shader} $\ast$}]{frag}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a06554eb69eba097702bdef7f64a6cb9a}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_afa92f4325c4af6876919627e76aa6e28}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_af6f6070e470df70c79bbe18426e86ce7}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+T\+B@{Create\+T\+B}}
+\index{Create\+T\+B@{Create\+T\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+T\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+T\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_af6f6070e470df70c79bbe18426e86ce7}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a1635888b4a66dc7860e1ae7043a319c9}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a41af189f0e80548bb84b7b9796c12c5f}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Texture@{Create\+Texture}}
+\index{Create\+Texture@{Create\+Texture}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Base} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Texture (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{{\bf T\+Texture\+Type}}]{type, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a41af189f0e80548bb84b7b9796c12c5f}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_ae34b1e5edc9a342fd5f1103a1188fce5}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a3cda774b7cc45aab379127e3ed26e291}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Texture2\+D@{Create\+Texture2\+D}}
+\index{Create\+Texture2\+D@{Create\+Texture2\+D}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Texture2\+D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Base} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Texture2\+D (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a3cda774b7cc45aab379127e3ed26e291}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a1f3811041b6e476bf5523b51e9decaa4}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_aababdfe93bce46a06ac61d78d9afc1c4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+Texture\+Cube@{Create\+Texture\+Cube}}
+\index{Create\+Texture\+Cube@{Create\+Texture\+Cube}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+Texture\+Cube}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Base} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+Texture\+Cube (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_aababdfe93bce46a06ac61d78d9afc1c4}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a86ca6eb2c7dde110c0ad0aaa3be69602}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_ac126ecbfb4ebe924dcaa26cfa5690a0b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+U\+B@{Create\+U\+B}}
+\index{Create\+U\+B@{Create\+U\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+U\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+U\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags, }
+\item[{int}]{bind\+Point, }
+\item[{int}]{ubflags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_ac126ecbfb4ebe924dcaa26cfa5690a0b}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a4e79ada057eefa151afc9887800f0395}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a0c827d7a71eb96036e41e11add44c6d6}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Create\+V\+B@{Create\+V\+B}}
+\index{Create\+V\+B@{Create\+V\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Create\+V\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Buffer} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Create\+V\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{size, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{flags}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a0c827d7a71eb96036e41e11add44c6d6}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a2bfdc7a75103f9ecfe9c5ee2572a54a1}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_ac182595e214c160ab8554c84f6d2da75}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!draw\+Bounding\+Box@{draw\+Bounding\+Box}}
+\index{draw\+Bounding\+Box@{draw\+Bounding\+Box}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{draw\+Bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::draw\+Bounding\+Box (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{bbox, }
+\item[{const {\bf Base\+Shader\+Program} $\ast$}]{program}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_ac182595e214c160ab8554c84f6d2da75}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_aa70ae0f0cb206e314bb35a3b99d49820}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a4f94f8cf789c88859eb4a678382d70ad}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Draw\+Indexed\+Primitives@{Draw\+Indexed\+Primitives}}
+\index{Draw\+Indexed\+Primitives@{Draw\+Indexed\+Primitives}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Draw\+Indexed\+Primitives}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Draw\+Indexed\+Primitives (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Primitive\+Type}}]{type, }
+\item[{unsigned long}]{first\+Index, }
+\item[{unsigned long}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a4f94f8cf789c88859eb4a678382d70ad}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a602d935335e7601b5fe2b74fe57d3547}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_adae2a75d7f71fad8e717c0f8a7ad895d}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Draw\+Primitives@{Draw\+Primitives}}
+\index{Draw\+Primitives@{Draw\+Primitives}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Draw\+Primitives}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Draw\+Primitives (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Primitive\+Type}}]{type, }
+\item[{unsigned long}]{first\+Vertex, }
+\item[{unsigned long}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_adae2a75d7f71fad8e717c0f8a7ad895d}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a17c73e5ff37f4da7cb16b63f2d1ffa1c}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a0f7dc8a8dd0a35f456abf04748d674ba}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Enable@{Enable}}
+\index{Enable@{Enable}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Enable (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Parameter}}]{Param, }
+\item[{bool}]{Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a0f7dc8a8dd0a35f456abf04748d674ba}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_aed5a533b299939f97e60de0897ca6cfb}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_ab6e2d7fcf613c056a2172eeaf48816b4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!End\+Scene@{End\+Scene}}
+\index{End\+Scene@{End\+Scene}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{End\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+End\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_ab6e2d7fcf613c056a2172eeaf48816b4}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a0616e055795e47e62fb71cce5c85c38a}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_abf2bff50bf8cc4428c6f26f077274796}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Get\+Constant@{Get\+Constant}}
+\index{Get\+Constant@{Get\+Constant}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Get\+Constant}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string Agmd\+::\+G\+L\+Driver\+::\+Get\+Constant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_abf2bff50bf8cc4428c6f26f077274796}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a16e778a171f2e45f55b3ab6391db69d6}{Agmd\+::\+Driver}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a103a7d4d5a67c924c3e25a494cdb19d6}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Get\+Current\+Program@{Get\+Current\+Program}}
+\index{Get\+Current\+Program@{Get\+Current\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Get\+Current\+Program}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+G\+L\+Driver\+::\+Get\+Current\+Program (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a103a7d4d5a67c924c3e25a494cdb19d6}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a2b14b7ecb1a8533e2b4e80d88fc95656}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_a760ded3d771343d171cd43e308326398}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Get\+Extension@{Get\+Extension}}
+\index{Get\+Extension@{Get\+Extension}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Get\+Extension}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string Agmd\+::\+G\+L\+Driver\+::\+Get\+Extension (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a760ded3d771343d171cd43e308326398}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a57ef5797a34bc3f9ed10fd05c319c155}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_a7f34ce6d173642e11ac9795fe7acc59d}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Get\+Renderer\+Desc@{Get\+Renderer\+Desc}}
+\index{Get\+Renderer\+Desc@{Get\+Renderer\+Desc}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Get\+Renderer\+Desc}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Agmd\+::\+G\+L\+Driver\+::\+Get\+Renderer\+Desc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a7f34ce6d173642e11ac9795fe7acc59d}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a35c8501ea4154ef1f9dfd6dfb04d6b7d}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a4095bb84f37f1ed2dce478d4618ebb2f}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Init\+Scene@{Init\+Scene}}
+\index{Init\+Scene@{Init\+Scene}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Init\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Init\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a4095bb84f37f1ed2dce478d4618ebb2f}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_aff07d992edd330c24c177b4532f93218}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_aeeb0c06849491a9fa62b46a8624d1734}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+Cull\+Face@{Set\+Cull\+Face}}
+\index{Set\+Cull\+Face@{Set\+Cull\+Face}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+Cull\+Face}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+Cull\+Face (
+\begin{DoxyParamCaption}
+\item[{int}]{face}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_aeeb0c06849491a9fa62b46a8624d1734}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a9c44dbdfe6cd21a69bd0e2557f07d95e}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_a034ddd338f3f7e312d3844ba50e03a35}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+Current\+Program@{Set\+Current\+Program}}
+\index{Set\+Current\+Program@{Set\+Current\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+Current\+Program}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+Current\+Program (
+\begin{DoxyParamCaption}
+\item[{const {\bf Base\+Shader\+Program} $\ast$}]{prog}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a034ddd338f3f7e312d3844ba50e03a35}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_ac6d8e0a25e5bac4591731a006338eeb3}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_aae27a98b3d696f5ad82257ad55133895}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+Declaration@{Set\+Declaration}}
+\index{Set\+Declaration@{Set\+Declaration}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+Declaration}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+Declaration (
+\begin{DoxyParamCaption}
+\item[{const {\bf Declaration} $\ast$}]{declaration}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_aae27a98b3d696f5ad82257ad55133895}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a302ea30a784d1eadd3f317f33a86ca71}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_abe6eae14930800c02a9ba02b9a50ba0f}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+I\+B@{Set\+I\+B}}
+\index{Set\+I\+B@{Set\+I\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+I\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+I\+B (
+\begin{DoxyParamCaption}
+\item[{const {\bf Base\+Buffer} $\ast$}]{buffer, }
+\item[{unsigned long}]{stride}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_abe6eae14930800c02a9ba02b9a50ba0f}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_adee1250e06ad2ac3d97a839076a52941}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a4b7766cf2ffe53b71a6de1a76b8272de}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+Render\+Mode@{Set\+Render\+Mode}}
+\index{Set\+Render\+Mode@{Set\+Render\+Mode}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+Render\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+Render\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a4b7766cf2ffe53b71a6de1a76b8272de}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a6edc110be95fa6c2922a13ce025d8aa4}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a0434677977067223edacb20476df942c}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+Texture@{Set\+Texture}}
+\index{Set\+Texture@{Set\+Texture}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+Texture (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{Unit, }
+\item[{const {\bf Texture\+Base} $\ast$}]{texture, }
+\item[{{\bf T\+Texture\+Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a0434677977067223edacb20476df942c}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_ae64ea2bdfb1bc1b114184d1135b613ff}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_ac7270273671f80996db604322a69bf63}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Setup@{Setup}}
+\index{Setup@{Setup}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Setup}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Setup (
+\begin{DoxyParamCaption}
+\item[{H\+W\+N\+D}]{Hwnd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_ac7270273671f80996db604322a69bf63}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a68e5e8a6292970c5b5af085615d85b44}{Agmd\+::\+Driver}.
+
+\hypertarget{class_agmd_1_1_g_l_driver_adb9e2cc3d36e5cbdc83d4860cdb569be}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Setup\+Alpha\+Blending@{Setup\+Alpha\+Blending}}
+\index{Setup\+Alpha\+Blending@{Setup\+Alpha\+Blending}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Setup\+Alpha\+Blending}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Setup\+Alpha\+Blending (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Blend}}]{src, }
+\item[{{\bf T\+Blend}}]{dest}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_adb9e2cc3d36e5cbdc83d4860cdb569be}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a9b028ec5fde8ac735723a49df6d69a9d}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a80794e6e56cda3f0a4ad31d2deac9e0d}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Setup\+Depth\+Test@{Setup\+Depth\+Test}}
+\index{Setup\+Depth\+Test@{Setup\+Depth\+Test}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Setup\+Depth\+Test}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Setup\+Depth\+Test (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Depth}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a80794e6e56cda3f0a4ad31d2deac9e0d}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a431a5401de0d77261b341de358faaf0c}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_aab0483f33db17738214722b823c602ca}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Setup\+Texture\+Unit@{Setup\+Texture\+Unit}}
+\index{Setup\+Texture\+Unit@{Setup\+Texture\+Unit}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Setup\+Texture\+Unit}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Setup\+Texture\+Unit (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{Unit, }
+\item[{{\bf T\+Texture\+Op}}]{Op, }
+\item[{{\bf T\+Texture\+Arg}}]{Arg1, }
+\item[{{\bf T\+Texture\+Arg}}]{Arg2 = {\ttfamily {\bf T\+X\+A\+\_\+\+D\+I\+F\+F\+U\+S\+E}}, }
+\item[{const {\bf Color} \&}]{constant = {\ttfamily 0x00}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_aab0483f33db17738214722b823c602ca}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a772215047c5605c5d1d321f3f5ddac7e}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a8a5b85d5128c13de54ffad58c3e54c7b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+V\+B@{Set\+V\+B}}
+\index{Set\+V\+B@{Set\+V\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+V\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+V\+B (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{stream, }
+\item[{const {\bf Base\+Buffer} $\ast$}]{buffer, }
+\item[{unsigned long}]{stride, }
+\item[{unsigned long}]{min\+Vertex, }
+\item[{unsigned long}]{max\+Vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a8a5b85d5128c13de54ffad58c3e54c7b}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_a54fa3d9aa9b5c3175bc2f4fc487f38fd}{Agmd\+::\+Driver}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_l_driver_a8c86b2ef5e0ca9178e9ff16ee432a624}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!Set\+View\+Port@{Set\+View\+Port}}
+\index{Set\+View\+Port@{Set\+View\+Port}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{Set\+View\+Port}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+L\+Driver\+::\+Set\+View\+Port (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{xy, }
+\item[{const ivec2 \&}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_g_l_driver_a8c86b2ef5e0ca9178e9ff16ee432a624}
+
+
+Implements \hyperlink{class_agmd_1_1_driver_ab16bec32bad282876e909ee90df11be7}{Agmd\+::\+Driver}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_g_l_driver_aada95c0d15103631bfb8103133e4355a}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Active\+Texture@{gl\+Active\+Texture}}
+\index{gl\+Active\+Texture@{gl\+Active\+Texture}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Active\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+A\+C\+T\+I\+V\+E\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Active\+Texture\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aada95c0d15103631bfb8103133e4355a}
+\hypertarget{class_agmd_1_1_g_l_driver_ac000032736207a64ef8da4cb758fa769}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Attach\+Shader@{gl\+Attach\+Shader}}
+\index{gl\+Attach\+Shader@{gl\+Attach\+Shader}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Attach\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+A\+T\+T\+A\+C\+H\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Attach\+Shader\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ac000032736207a64ef8da4cb758fa769}
+\hypertarget{class_agmd_1_1_g_l_driver_a455400c77fe5150921218b2645d7d982}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Attrib\+Location@{gl\+Bind\+Attrib\+Location}}
+\index{gl\+Bind\+Attrib\+Location@{gl\+Bind\+Attrib\+Location}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Attrib\+Location}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+A\+T\+T\+R\+I\+B\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Attrib\+Location\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a455400c77fe5150921218b2645d7d982}
+\hypertarget{class_agmd_1_1_g_l_driver_ae9e9206f66c69bdb81127d17e502d645}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Buffer@{gl\+Bind\+Buffer}}
+\index{gl\+Bind\+Buffer@{gl\+Bind\+Buffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Buffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ae9e9206f66c69bdb81127d17e502d645}
+\hypertarget{class_agmd_1_1_g_l_driver_ace18401eaa5492bfe5b7ca07daa80b4f}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Buffer\+Base@{gl\+Bind\+Buffer\+Base}}
+\index{gl\+Bind\+Buffer\+Base@{gl\+Bind\+Buffer\+Base}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Buffer\+Base}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+B\+U\+F\+F\+E\+R\+B\+A\+S\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Buffer\+Base\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ace18401eaa5492bfe5b7ca07daa80b4f}
+\hypertarget{class_agmd_1_1_g_l_driver_ade8af0da263156f979f8b3de3ac35a1e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Framebuffer@{gl\+Bind\+Framebuffer}}
+\index{gl\+Bind\+Framebuffer@{gl\+Bind\+Framebuffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Framebuffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Framebuffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ade8af0da263156f979f8b3de3ac35a1e}
+\hypertarget{class_agmd_1_1_g_l_driver_ac09444ad917d9dcd385acddb2dd0973e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Program\+Pipelines@{gl\+Bind\+Program\+Pipelines}}
+\index{gl\+Bind\+Program\+Pipelines@{gl\+Bind\+Program\+Pipelines}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Program\+Pipelines}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+P\+R\+O\+G\+R\+A\+M\+P\+I\+P\+E\+L\+I\+N\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Program\+Pipelines\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ac09444ad917d9dcd385acddb2dd0973e}
+\hypertarget{class_agmd_1_1_g_l_driver_a1965718026372f3ed384516bffff3da2}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Bind\+Renderbuffer@{gl\+Bind\+Renderbuffer}}
+\index{gl\+Bind\+Renderbuffer@{gl\+Bind\+Renderbuffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Bind\+Renderbuffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+I\+N\+D\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Bind\+Renderbuffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a1965718026372f3ed384516bffff3da2}
+\hypertarget{class_agmd_1_1_g_l_driver_a72ddf9d5f821b46bc33f0623cd4730d0}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Buffer\+Data@{gl\+Buffer\+Data}}
+\index{gl\+Buffer\+Data@{gl\+Buffer\+Data}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Buffer\+Data}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+U\+F\+F\+E\+R\+D\+A\+T\+A\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Buffer\+Data\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a72ddf9d5f821b46bc33f0623cd4730d0}
+\hypertarget{class_agmd_1_1_g_l_driver_a4d441a904aa7d6e20038e1b166c80109}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Buffer\+Sub\+Data@{gl\+Buffer\+Sub\+Data}}
+\index{gl\+Buffer\+Sub\+Data@{gl\+Buffer\+Sub\+Data}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Buffer\+Sub\+Data}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+B\+U\+F\+F\+E\+R\+S\+U\+B\+D\+A\+T\+A\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Buffer\+Sub\+Data\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a4d441a904aa7d6e20038e1b166c80109}
+\hypertarget{class_agmd_1_1_g_l_driver_a740b479fc5509641ccd4fa4aba946f8b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Check\+Framebuffer\+Status@{gl\+Check\+Framebuffer\+Status}}
+\index{gl\+Check\+Framebuffer\+Status@{gl\+Check\+Framebuffer\+Status}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Check\+Framebuffer\+Status}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+H\+E\+C\+K\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+T\+A\+T\+U\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Check\+Framebuffer\+Status\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a740b479fc5509641ccd4fa4aba946f8b}
+\hypertarget{class_agmd_1_1_g_l_driver_a785811c63342ccb09d901f2565224ff9}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Client\+Active\+Texture@{gl\+Client\+Active\+Texture}}
+\index{gl\+Client\+Active\+Texture@{gl\+Client\+Active\+Texture}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Client\+Active\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+L\+I\+E\+N\+T\+A\+C\+T\+I\+V\+E\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Client\+Active\+Texture\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a785811c63342ccb09d901f2565224ff9}
+\hypertarget{class_agmd_1_1_g_l_driver_a8afd0f38432cd425043d0ed1f1aa59c9}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Client\+Wait\+Sync@{gl\+Client\+Wait\+Sync}}
+\index{gl\+Client\+Wait\+Sync@{gl\+Client\+Wait\+Sync}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Client\+Wait\+Sync}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+L\+I\+E\+N\+T\+W\+A\+I\+T\+S\+Y\+N\+C\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Client\+Wait\+Sync\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a8afd0f38432cd425043d0ed1f1aa59c9}
+\hypertarget{class_agmd_1_1_g_l_driver_acfb8dab4eadade450f17561c094f5372}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Compile\+Shader@{gl\+Compile\+Shader}}
+\index{gl\+Compile\+Shader@{gl\+Compile\+Shader}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Compile\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+O\+M\+P\+I\+L\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Compile\+Shader\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_acfb8dab4eadade450f17561c094f5372}
+\hypertarget{class_agmd_1_1_g_l_driver_aad80ab48927af4495c8f2449b670a632}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Compressed\+Tex\+Image2\+D@{gl\+Compressed\+Tex\+Image2\+D}}
+\index{gl\+Compressed\+Tex\+Image2\+D@{gl\+Compressed\+Tex\+Image2\+D}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Compressed\+Tex\+Image2\+D}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+T\+E\+X\+I\+M\+A\+G\+E2\+D\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Compressed\+Tex\+Image2\+D\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aad80ab48927af4495c8f2449b670a632}
+\hypertarget{class_agmd_1_1_g_l_driver_a12a98a79ac6f93390f7ee635930c505e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Compressed\+Tex\+Sub\+Image2\+D@{gl\+Compressed\+Tex\+Sub\+Image2\+D}}
+\index{gl\+Compressed\+Tex\+Sub\+Image2\+D@{gl\+Compressed\+Tex\+Sub\+Image2\+D}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Compressed\+Tex\+Sub\+Image2\+D}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+T\+E\+X\+S\+U\+B\+I\+M\+A\+G\+E2\+D\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Compressed\+Tex\+Sub\+Image2\+D\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a12a98a79ac6f93390f7ee635930c505e}
+\hypertarget{class_agmd_1_1_g_l_driver_a94461a10b539ca04d570f396ad78c42f}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Create\+Program@{gl\+Create\+Program}}
+\index{gl\+Create\+Program@{gl\+Create\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Create\+Program}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+R\+E\+A\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Create\+Program\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a94461a10b539ca04d570f396ad78c42f}
+\hypertarget{class_agmd_1_1_g_l_driver_a7051646731a6b09a4f99078422656ff4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Create\+Shader@{gl\+Create\+Shader}}
+\index{gl\+Create\+Shader@{gl\+Create\+Shader}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Create\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+C\+R\+E\+A\+T\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Create\+Shader\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a7051646731a6b09a4f99078422656ff4}
+\hypertarget{class_agmd_1_1_g_l_driver_a5c9e5d55d71b02896bad888f23461fc5}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Buffers@{gl\+Delete\+Buffers}}
+\index{gl\+Delete\+Buffers@{gl\+Delete\+Buffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Buffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Buffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a5c9e5d55d71b02896bad888f23461fc5}
+\hypertarget{class_agmd_1_1_g_l_driver_a83b92608a37aabf994ad28e62c2cc45a}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Framebuffers@{gl\+Delete\+Framebuffers}}
+\index{gl\+Delete\+Framebuffers@{gl\+Delete\+Framebuffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Framebuffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Framebuffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a83b92608a37aabf994ad28e62c2cc45a}
+\hypertarget{class_agmd_1_1_g_l_driver_a7821d8981f4821ace4e176010bdee544}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Program@{gl\+Delete\+Program}}
+\index{gl\+Delete\+Program@{gl\+Delete\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Program}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Program\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a7821d8981f4821ace4e176010bdee544}
+\hypertarget{class_agmd_1_1_g_l_driver_a5cd27d325256efb460ad84bc38e5b970}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Renderbuffers@{gl\+Delete\+Renderbuffers}}
+\index{gl\+Delete\+Renderbuffers@{gl\+Delete\+Renderbuffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Renderbuffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Renderbuffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a5cd27d325256efb460ad84bc38e5b970}
+\hypertarget{class_agmd_1_1_g_l_driver_a417ccce16aa008039a02934b6dd934c4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Shader@{gl\+Delete\+Shader}}
+\index{gl\+Delete\+Shader@{gl\+Delete\+Shader}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Shader}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+S\+H\+A\+D\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Shader\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a417ccce16aa008039a02934b6dd934c4}
+\hypertarget{class_agmd_1_1_g_l_driver_a3e439a92c87cae19fae168bb416c03fb}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Delete\+Sync@{gl\+Delete\+Sync}}
+\index{gl\+Delete\+Sync@{gl\+Delete\+Sync}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Delete\+Sync}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+E\+L\+E\+T\+E\+S\+Y\+N\+C\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Delete\+Sync\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a3e439a92c87cae19fae168bb416c03fb}
+\hypertarget{class_agmd_1_1_g_l_driver_a1e0cc5c907c73d0a3582a8c5eda7bf1b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Draw\+Arrays@{gl\+Draw\+Arrays}}
+\index{gl\+Draw\+Arrays@{gl\+Draw\+Arrays}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Draw\+Arrays}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+R\+A\+W\+A\+R\+R\+A\+Y\+S\+E\+X\+T\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Draw\+Arrays\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a1e0cc5c907c73d0a3582a8c5eda7bf1b}
+\hypertarget{class_agmd_1_1_g_l_driver_ab6a97f13f70e33befca18717861e45df}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Draw\+Buffers@{gl\+Draw\+Buffers}}
+\index{gl\+Draw\+Buffers@{gl\+Draw\+Buffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Draw\+Buffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+D\+R\+A\+W\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Draw\+Buffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab6a97f13f70e33befca18717861e45df}
+\hypertarget{class_agmd_1_1_g_l_driver_aeea9e1eb6802a60e88ddc9b1dec1ff8a}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Enable\+Vertex\+Attrib\+Array@{gl\+Enable\+Vertex\+Attrib\+Array}}
+\index{gl\+Enable\+Vertex\+Attrib\+Array@{gl\+Enable\+Vertex\+Attrib\+Array}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Enable\+Vertex\+Attrib\+Array}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+E\+N\+A\+B\+L\+E\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B\+A\+R\+R\+A\+Y\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Enable\+Vertex\+Attrib\+Array\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aeea9e1eb6802a60e88ddc9b1dec1ff8a}
+\hypertarget{class_agmd_1_1_g_l_driver_af877729750e7190ca2e5e2d91f22f9bc}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Fence\+Sync@{gl\+Fence\+Sync}}
+\index{gl\+Fence\+Sync@{gl\+Fence\+Sync}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Fence\+Sync}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+F\+E\+N\+C\+E\+S\+Y\+N\+C\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Fence\+Sync\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_af877729750e7190ca2e5e2d91f22f9bc}
+\hypertarget{class_agmd_1_1_g_l_driver_a3818929692ec671d26b3b504a0cbf064}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Framebuffer\+Renderbuffer@{gl\+Framebuffer\+Renderbuffer}}
+\index{gl\+Framebuffer\+Renderbuffer@{gl\+Framebuffer\+Renderbuffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Framebuffer\+Renderbuffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Framebuffer\+Renderbuffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a3818929692ec671d26b3b504a0cbf064}
+\hypertarget{class_agmd_1_1_g_l_driver_a9d3330527b02d8661b93dd8bd3f602cd}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Framebuffer\+Texture@{gl\+Framebuffer\+Texture}}
+\index{gl\+Framebuffer\+Texture@{gl\+Framebuffer\+Texture}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Framebuffer\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Framebuffer\+Texture\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a9d3330527b02d8661b93dd8bd3f602cd}
+\hypertarget{class_agmd_1_1_g_l_driver_a6177cc8fd4c96c33163b38ac69b4a0ff}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Framebuffer\+Texture2\+D@{gl\+Framebuffer\+Texture2\+D}}
+\index{gl\+Framebuffer\+Texture2\+D@{gl\+Framebuffer\+Texture2\+D}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Framebuffer\+Texture2\+D}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E2\+D\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Framebuffer\+Texture2\+D\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a6177cc8fd4c96c33163b38ac69b4a0ff}
+\hypertarget{class_agmd_1_1_g_l_driver_aa12f161d66a6a1e78313040435b0e7ff}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Framebuffer\+Texture3\+D@{gl\+Framebuffer\+Texture3\+D}}
+\index{gl\+Framebuffer\+Texture3\+D@{gl\+Framebuffer\+Texture3\+D}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Framebuffer\+Texture3\+D}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+T\+E\+X\+T\+U\+R\+E3\+D\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Framebuffer\+Texture3\+D\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aa12f161d66a6a1e78313040435b0e7ff}
+\hypertarget{class_agmd_1_1_g_l_driver_aa4a419a415a3f2f3598c5c50ee404e69}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Gen\+Buffers@{gl\+Gen\+Buffers}}
+\index{gl\+Gen\+Buffers@{gl\+Gen\+Buffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Gen\+Buffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+N\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Gen\+Buffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aa4a419a415a3f2f3598c5c50ee404e69}
+\hypertarget{class_agmd_1_1_g_l_driver_abf63a5e6e3d3fcf53119f36c0a61c317}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Gen\+Framebuffers@{gl\+Gen\+Framebuffers}}
+\index{gl\+Gen\+Framebuffers@{gl\+Gen\+Framebuffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Gen\+Framebuffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+N\+F\+R\+A\+M\+E\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Gen\+Framebuffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_abf63a5e6e3d3fcf53119f36c0a61c317}
+\hypertarget{class_agmd_1_1_g_l_driver_a63ba03961f9754fc7e8cdb075fb985c3}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Gen\+Program\+Pipelines@{gl\+Gen\+Program\+Pipelines}}
+\index{gl\+Gen\+Program\+Pipelines@{gl\+Gen\+Program\+Pipelines}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Gen\+Program\+Pipelines}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+N\+P\+R\+O\+G\+R\+A\+M\+P\+I\+P\+E\+L\+I\+N\+E\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Gen\+Program\+Pipelines\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a63ba03961f9754fc7e8cdb075fb985c3}
+\hypertarget{class_agmd_1_1_g_l_driver_ad6a6fa31b768852df072374d8c33e9ca}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Gen\+Renderbuffers@{gl\+Gen\+Renderbuffers}}
+\index{gl\+Gen\+Renderbuffers@{gl\+Gen\+Renderbuffers}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Gen\+Renderbuffers}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+N\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Gen\+Renderbuffers\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ad6a6fa31b768852df072374d8c33e9ca}
+\hypertarget{class_agmd_1_1_g_l_driver_a268d9abbb19319c52c93583a408ab96c}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Attrib@{gl\+Get\+Active\+Attrib}}
+\index{gl\+Get\+Active\+Attrib@{gl\+Get\+Active\+Attrib}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Attrib}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+A\+T\+T\+R\+I\+B\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Attrib\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a268d9abbb19319c52c93583a408ab96c}
+\hypertarget{class_agmd_1_1_g_l_driver_a8cbb247c2b502e4183e9cd4617946971}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniform@{gl\+Get\+Active\+Uniform}}
+\index{gl\+Get\+Active\+Uniform@{gl\+Get\+Active\+Uniform}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniform}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniform\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a8cbb247c2b502e4183e9cd4617946971}
+\hypertarget{class_agmd_1_1_g_l_driver_a6340d495bef50555a94a3f0a841ff8e7}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniform\+Block@{gl\+Get\+Active\+Uniform\+Block}}
+\index{gl\+Get\+Active\+Uniform\+Block@{gl\+Get\+Active\+Uniform\+Block}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniform\+Block}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniform\+Block\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a6340d495bef50555a94a3f0a841ff8e7}
+\hypertarget{class_agmd_1_1_g_l_driver_a6c6ee99d86d69e64c40e60f2bcfa29d3}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniform\+Blockiv@{gl\+Get\+Active\+Uniform\+Blockiv}}
+\index{gl\+Get\+Active\+Uniform\+Blockiv@{gl\+Get\+Active\+Uniform\+Blockiv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniform\+Blockiv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniform\+Blockiv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a6c6ee99d86d69e64c40e60f2bcfa29d3}
+\hypertarget{class_agmd_1_1_g_l_driver_a77da17d4d20489d1a5ff4ff1baa84522}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniform\+Block\+Name@{gl\+Get\+Active\+Uniform\+Block\+Name}}
+\index{gl\+Get\+Active\+Uniform\+Block\+Name@{gl\+Get\+Active\+Uniform\+Block\+Name}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniform\+Block\+Name}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+N\+A\+M\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniform\+Block\+Name\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a77da17d4d20489d1a5ff4ff1baa84522}
+\hypertarget{class_agmd_1_1_g_l_driver_ab9d3d9142dd4298a1a3e8c4bbf021142}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniform\+Name@{gl\+Get\+Active\+Uniform\+Name}}
+\index{gl\+Get\+Active\+Uniform\+Name@{gl\+Get\+Active\+Uniform\+Name}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniform\+Name}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+N\+A\+M\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniform\+Name\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab9d3d9142dd4298a1a3e8c4bbf021142}
+\hypertarget{class_agmd_1_1_g_l_driver_afc12b8525341e9cd90eb9059c0f3b871}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Active\+Uniformsiv@{gl\+Get\+Active\+Uniformsiv}}
+\index{gl\+Get\+Active\+Uniformsiv@{gl\+Get\+Active\+Uniformsiv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Active\+Uniformsiv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+C\+T\+I\+V\+E\+U\+N\+I\+F\+O\+R\+M\+S\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Active\+Uniformsiv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_afc12b8525341e9cd90eb9059c0f3b871}
+\hypertarget{class_agmd_1_1_g_l_driver_ab0ee03cd9bb5ef2d908ba7d9fd18bb67}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Attrib\+Location@{gl\+Get\+Attrib\+Location}}
+\index{gl\+Get\+Attrib\+Location@{gl\+Get\+Attrib\+Location}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Attrib\+Location}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+A\+T\+T\+R\+I\+B\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Attrib\+Location\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab0ee03cd9bb5ef2d908ba7d9fd18bb67}
+\hypertarget{class_agmd_1_1_g_l_driver_a4740735076d7c453a30353366029a9f3}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Buffer\+Sub\+Data@{gl\+Get\+Buffer\+Sub\+Data}}
+\index{gl\+Get\+Buffer\+Sub\+Data@{gl\+Get\+Buffer\+Sub\+Data}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Buffer\+Sub\+Data}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+B\+U\+F\+F\+E\+R\+S\+U\+B\+D\+A\+T\+A\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Buffer\+Sub\+Data\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a4740735076d7c453a30353366029a9f3}
+\hypertarget{class_agmd_1_1_g_l_driver_abb8b25a54988afb7f3add4885311e872}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Integeri\+\_\+v@{gl\+Get\+Integeri\+\_\+v}}
+\index{gl\+Get\+Integeri\+\_\+v@{gl\+Get\+Integeri\+\_\+v}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Integeri\+\_\+v}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+I\+N\+T\+E\+G\+E\+R\+I\+\_\+\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Integeri\+\_\+v\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_abb8b25a54988afb7f3add4885311e872}
+\hypertarget{class_agmd_1_1_g_l_driver_a2c68c1c02e5cfe4116be4fa73837b2f0}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Program\+Info\+Log@{gl\+Get\+Program\+Info\+Log}}
+\index{gl\+Get\+Program\+Info\+Log@{gl\+Get\+Program\+Info\+Log}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Program\+Info\+Log}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+P\+R\+O\+G\+R\+A\+M\+I\+N\+F\+O\+L\+O\+G\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Program\+Info\+Log\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a2c68c1c02e5cfe4116be4fa73837b2f0}
+\hypertarget{class_agmd_1_1_g_l_driver_ac3d35a41762c39c1dc5253a5d6d83b8a}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Programiv@{gl\+Get\+Programiv}}
+\index{gl\+Get\+Programiv@{gl\+Get\+Programiv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Programiv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+P\+R\+O\+G\+R\+A\+M\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Programiv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ac3d35a41762c39c1dc5253a5d6d83b8a}
+\hypertarget{class_agmd_1_1_g_l_driver_ab9b9dc2a7f705fec01cab6bf4f84c96d}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Shader\+Info\+Log@{gl\+Get\+Shader\+Info\+Log}}
+\index{gl\+Get\+Shader\+Info\+Log@{gl\+Get\+Shader\+Info\+Log}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Shader\+Info\+Log}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+S\+H\+A\+D\+E\+R\+I\+N\+F\+O\+L\+O\+G\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Shader\+Info\+Log\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab9b9dc2a7f705fec01cab6bf4f84c96d}
+\hypertarget{class_agmd_1_1_g_l_driver_a39fb1c4c4cf5db5fb814ccd672008de7}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Shaderiv@{gl\+Get\+Shaderiv}}
+\index{gl\+Get\+Shaderiv@{gl\+Get\+Shaderiv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Shaderiv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+S\+H\+A\+D\+E\+R\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Shaderiv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a39fb1c4c4cf5db5fb814ccd672008de7}
+\hypertarget{class_agmd_1_1_g_l_driver_a5603388d49f1e39745fd1b8c8741f419}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Stringi@{gl\+Get\+Stringi}}
+\index{gl\+Get\+Stringi@{gl\+Get\+Stringi}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Stringi}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+S\+T\+R\+I\+N\+G\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Stringi\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a5603388d49f1e39745fd1b8c8741f419}
+\hypertarget{class_agmd_1_1_g_l_driver_a0c2fb6781ddda597d26c15e21342d8dc}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Synciv@{gl\+Get\+Synciv}}
+\index{gl\+Get\+Synciv@{gl\+Get\+Synciv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Synciv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+S\+Y\+N\+C\+I\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Synciv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a0c2fb6781ddda597d26c15e21342d8dc}
+\hypertarget{class_agmd_1_1_g_l_driver_abdab09833a0bc1b12b6164ec8376b9fd}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Uniform\+Block\+Index@{gl\+Get\+Uniform\+Block\+Index}}
+\index{gl\+Get\+Uniform\+Block\+Index@{gl\+Get\+Uniform\+Block\+Index}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Uniform\+Block\+Index}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+I\+N\+D\+E\+X\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Uniform\+Block\+Index\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_abdab09833a0bc1b12b6164ec8376b9fd}
+\hypertarget{class_agmd_1_1_g_l_driver_a9b9203dfa86f50510f720cc7d93ab776}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Get\+Uniform\+Location@{gl\+Get\+Uniform\+Location}}
+\index{gl\+Get\+Uniform\+Location@{gl\+Get\+Uniform\+Location}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Get\+Uniform\+Location}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+G\+E\+T\+U\+N\+I\+F\+O\+R\+M\+L\+O\+C\+A\+T\+I\+O\+N\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Get\+Uniform\+Location\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a9b9203dfa86f50510f720cc7d93ab776}
+\hypertarget{class_agmd_1_1_g_l_driver_a74bb96fef3d2405ab39ba42a64fec464}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Link\+Program@{gl\+Link\+Program}}
+\index{gl\+Link\+Program@{gl\+Link\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Link\+Program}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+L\+I\+N\+K\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Link\+Program\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a74bb96fef3d2405ab39ba42a64fec464}
+\hypertarget{class_agmd_1_1_g_l_driver_a7433a71b089ed9f090048db2a0f25157}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Map\+Buffer@{gl\+Map\+Buffer}}
+\index{gl\+Map\+Buffer@{gl\+Map\+Buffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Map\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+M\+A\+P\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Map\+Buffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a7433a71b089ed9f090048db2a0f25157}
+\hypertarget{class_agmd_1_1_g_l_driver_a5cab91ddf1cbffb27e38231b76fb6e89}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Map\+Buffer\+Range@{gl\+Map\+Buffer\+Range}}
+\index{gl\+Map\+Buffer\+Range@{gl\+Map\+Buffer\+Range}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Map\+Buffer\+Range}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+M\+A\+P\+B\+U\+F\+F\+E\+R\+R\+A\+N\+G\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Map\+Buffer\+Range\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a5cab91ddf1cbffb27e38231b76fb6e89}
+\hypertarget{class_agmd_1_1_g_l_driver_a41d54179c869685cd5b2f83fd6288d8d}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Patch\+Parameteri@{gl\+Patch\+Parameteri}}
+\index{gl\+Patch\+Parameteri@{gl\+Patch\+Parameteri}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Patch\+Parameteri}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+P\+A\+T\+C\+H\+P\+A\+R\+A\+M\+E\+T\+E\+R\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Patch\+Parameteri\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a41d54179c869685cd5b2f83fd6288d8d}
+\hypertarget{class_agmd_1_1_g_l_driver_aafe5a377b329593d6b633e3656ed36d4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Renderbuffer\+Storage@{gl\+Renderbuffer\+Storage}}
+\index{gl\+Renderbuffer\+Storage@{gl\+Renderbuffer\+Storage}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Renderbuffer\+Storage}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+R\+E\+N\+D\+E\+R\+B\+U\+F\+F\+E\+R\+S\+T\+O\+R\+A\+G\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Renderbuffer\+Storage\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aafe5a377b329593d6b633e3656ed36d4}
+\hypertarget{class_agmd_1_1_g_l_driver_a11c8a6eceffdbf971f8aa954bef09d5e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Shader\+Source@{gl\+Shader\+Source}}
+\index{gl\+Shader\+Source@{gl\+Shader\+Source}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Shader\+Source}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+S\+H\+A\+D\+E\+R\+S\+O\+U\+R\+C\+E\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Shader\+Source\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a11c8a6eceffdbf971f8aa954bef09d5e}
+\hypertarget{class_agmd_1_1_g_l_driver_a019e942b0ec6713854a2ae51a50d5ae3}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform1f@{gl\+Uniform1f}}
+\index{gl\+Uniform1f@{gl\+Uniform1f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform1f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M1\+F\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform1f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a019e942b0ec6713854a2ae51a50d5ae3}
+\hypertarget{class_agmd_1_1_g_l_driver_ac9bee7c2ee9bc6599967ed459e6214a5}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform1fv@{gl\+Uniform1fv}}
+\index{gl\+Uniform1fv@{gl\+Uniform1fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform1fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform1fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ac9bee7c2ee9bc6599967ed459e6214a5}
+\hypertarget{class_agmd_1_1_g_l_driver_a6e3ddd5dda5dfc99a0ee447235889648}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform1i@{gl\+Uniform1i}}
+\index{gl\+Uniform1i@{gl\+Uniform1i}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform1i}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M1\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform1i\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a6e3ddd5dda5dfc99a0ee447235889648}
+\hypertarget{class_agmd_1_1_g_l_driver_ae7cbbc931fbd433c75e8c6124bf3dc14}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform2f@{gl\+Uniform2f}}
+\index{gl\+Uniform2f@{gl\+Uniform2f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform2f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M2\+F\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform2f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ae7cbbc931fbd433c75e8c6124bf3dc14}
+\hypertarget{class_agmd_1_1_g_l_driver_aeed2ed646f910a532c8fa45563cb79cd}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform2fv@{gl\+Uniform2fv}}
+\index{gl\+Uniform2fv@{gl\+Uniform2fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform2fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform2fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_aeed2ed646f910a532c8fa45563cb79cd}
+\hypertarget{class_agmd_1_1_g_l_driver_af0d2b6c60223719735c960bf5edb79f1}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform2i@{gl\+Uniform2i}}
+\index{gl\+Uniform2i@{gl\+Uniform2i}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform2i}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M2\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform2i\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_af0d2b6c60223719735c960bf5edb79f1}
+\hypertarget{class_agmd_1_1_g_l_driver_a50d983ba6ff60b7ae331d6d7c55eba85}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform3f@{gl\+Uniform3f}}
+\index{gl\+Uniform3f@{gl\+Uniform3f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform3f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M3\+F\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform3f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a50d983ba6ff60b7ae331d6d7c55eba85}
+\hypertarget{class_agmd_1_1_g_l_driver_a3cec96e3d8b35ce79b0354c73e374ab4}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform3fv@{gl\+Uniform3fv}}
+\index{gl\+Uniform3fv@{gl\+Uniform3fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform3fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform3fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a3cec96e3d8b35ce79b0354c73e374ab4}
+\hypertarget{class_agmd_1_1_g_l_driver_a946a756d2e36f0e6ac6dc4b06f4855c9}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform3i@{gl\+Uniform3i}}
+\index{gl\+Uniform3i@{gl\+Uniform3i}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform3i}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M3\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform3i\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a946a756d2e36f0e6ac6dc4b06f4855c9}
+\hypertarget{class_agmd_1_1_g_l_driver_a199bbbb46d7dc6585d38683580d43939}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform4f@{gl\+Uniform4f}}
+\index{gl\+Uniform4f@{gl\+Uniform4f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform4f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform4f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a199bbbb46d7dc6585d38683580d43939}
+\hypertarget{class_agmd_1_1_g_l_driver_a65384d11fa265e7717b5c251d7eec00b}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform4fv@{gl\+Uniform4fv}}
+\index{gl\+Uniform4fv@{gl\+Uniform4fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform4fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform4fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a65384d11fa265e7717b5c251d7eec00b}
+\hypertarget{class_agmd_1_1_g_l_driver_ae9d4d2bea223ebfc042a8bd19229b7cf}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform4i@{gl\+Uniform4i}}
+\index{gl\+Uniform4i@{gl\+Uniform4i}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform4i}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M4\+I\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform4i\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ae9d4d2bea223ebfc042a8bd19229b7cf}
+\hypertarget{class_agmd_1_1_g_l_driver_ab551555cb6b30708df22f49803beef21}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform\+Block\+Binding@{gl\+Uniform\+Block\+Binding}}
+\index{gl\+Uniform\+Block\+Binding@{gl\+Uniform\+Block\+Binding}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform\+Block\+Binding}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+B\+L\+O\+C\+K\+B\+I\+N\+D\+I\+N\+G\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform\+Block\+Binding\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab551555cb6b30708df22f49803beef21}
+\hypertarget{class_agmd_1_1_g_l_driver_a209ee0ba14551740f5dc4ba6448f5437}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform\+Matrix2fv@{gl\+Uniform\+Matrix2fv}}
+\index{gl\+Uniform\+Matrix2fv@{gl\+Uniform\+Matrix2fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform\+Matrix2fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X2\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform\+Matrix2fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a209ee0ba14551740f5dc4ba6448f5437}
+\hypertarget{class_agmd_1_1_g_l_driver_ab3423707830a770ec584d245c99409ae}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform\+Matrix3fv@{gl\+Uniform\+Matrix3fv}}
+\index{gl\+Uniform\+Matrix3fv@{gl\+Uniform\+Matrix3fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform\+Matrix3fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X3\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform\+Matrix3fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab3423707830a770ec584d245c99409ae}
+\hypertarget{class_agmd_1_1_g_l_driver_a84dd6e63b9895fa975d5e3ade98586d7}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Uniform\+Matrix4fv@{gl\+Uniform\+Matrix4fv}}
+\index{gl\+Uniform\+Matrix4fv@{gl\+Uniform\+Matrix4fv}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Uniform\+Matrix4fv}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+I\+F\+O\+R\+M\+M\+A\+T\+R\+I\+X4\+F\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Uniform\+Matrix4fv\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a84dd6e63b9895fa975d5e3ade98586d7}
+\hypertarget{class_agmd_1_1_g_l_driver_a02fa3989f3e3f4d10142d14ff5ac6918}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Unmap\+Buffer@{gl\+Unmap\+Buffer}}
+\index{gl\+Unmap\+Buffer@{gl\+Unmap\+Buffer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Unmap\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+N\+M\+A\+P\+B\+U\+F\+F\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Unmap\+Buffer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a02fa3989f3e3f4d10142d14ff5ac6918}
+\hypertarget{class_agmd_1_1_g_l_driver_ae35ed536290b155fb6430154ce4e87a3}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Use\+Program@{gl\+Use\+Program}}
+\index{gl\+Use\+Program@{gl\+Use\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Use\+Program}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+U\+S\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Use\+Program\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ae35ed536290b155fb6430154ce4e87a3}
+\hypertarget{class_agmd_1_1_g_l_driver_a9effed72230c99f300e9977741781560}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Validate\+Program@{gl\+Validate\+Program}}
+\index{gl\+Validate\+Program@{gl\+Validate\+Program}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Validate\+Program}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+A\+L\+I\+D\+A\+T\+E\+P\+R\+O\+G\+R\+A\+M\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Validate\+Program\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a9effed72230c99f300e9977741781560}
+\hypertarget{class_agmd_1_1_g_l_driver_af65e9dcb352536e6311f7b23c4357cd9}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Vertex\+Attrib1f@{gl\+Vertex\+Attrib1f}}
+\index{gl\+Vertex\+Attrib1f@{gl\+Vertex\+Attrib1f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Vertex\+Attrib1f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B1\+F\+N\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Vertex\+Attrib1f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_af65e9dcb352536e6311f7b23c4357cd9}
+\hypertarget{class_agmd_1_1_g_l_driver_a1bbb9035294023bb58f1663fd4ecf11e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Vertex\+Attrib2f@{gl\+Vertex\+Attrib2f}}
+\index{gl\+Vertex\+Attrib2f@{gl\+Vertex\+Attrib2f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Vertex\+Attrib2f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B2\+F\+N\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Vertex\+Attrib2f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a1bbb9035294023bb58f1663fd4ecf11e}
+\hypertarget{class_agmd_1_1_g_l_driver_a9c8f362af683929af147788df4c937f2}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Vertex\+Attrib3f@{gl\+Vertex\+Attrib3f}}
+\index{gl\+Vertex\+Attrib3f@{gl\+Vertex\+Attrib3f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Vertex\+Attrib3f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B3\+F\+N\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Vertex\+Attrib3f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a9c8f362af683929af147788df4c937f2}
+\hypertarget{class_agmd_1_1_g_l_driver_ab1c2da24c1eadd67c8c1dd59f4b3f0c8}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Vertex\+Attrib4f@{gl\+Vertex\+Attrib4f}}
+\index{gl\+Vertex\+Attrib4f@{gl\+Vertex\+Attrib4f}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Vertex\+Attrib4f}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B4\+F\+N\+V\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Vertex\+Attrib4f\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ab1c2da24c1eadd67c8c1dd59f4b3f0c8}
+\hypertarget{class_agmd_1_1_g_l_driver_a5cf13627dcc785024d314a3c2397a0e2}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Vertex\+Attrib\+Pointer@{gl\+Vertex\+Attrib\+Pointer}}
+\index{gl\+Vertex\+Attrib\+Pointer@{gl\+Vertex\+Attrib\+Pointer}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Vertex\+Attrib\+Pointer}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+V\+E\+R\+T\+E\+X\+A\+T\+T\+R\+I\+B\+P\+O\+I\+N\+T\+E\+R\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Vertex\+Attrib\+Pointer\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a5cf13627dcc785024d314a3c2397a0e2}
+\hypertarget{class_agmd_1_1_g_l_driver_a619b7422381e6ce3ad0b1c268a65dd3e}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!gl\+Wait\+Sync@{gl\+Wait\+Sync}}
+\index{gl\+Wait\+Sync@{gl\+Wait\+Sync}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{gl\+Wait\+Sync}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+G\+L\+W\+A\+I\+T\+S\+Y\+N\+C\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::gl\+Wait\+Sync\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_a619b7422381e6ce3ad0b1c268a65dd3e}
+\hypertarget{class_agmd_1_1_g_l_driver_abd56505ddf55fe13d396534d0ae77baa}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!wgl\+Create\+Context\+Attribs\+A\+R\+B@{wgl\+Create\+Context\+Attribs\+A\+R\+B}}
+\index{wgl\+Create\+Context\+Attribs\+A\+R\+B@{wgl\+Create\+Context\+Attribs\+A\+R\+B}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{wgl\+Create\+Context\+Attribs\+A\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+W\+G\+L\+C\+R\+E\+A\+T\+E\+C\+O\+N\+T\+E\+X\+T\+A\+T\+T\+R\+I\+B\+S\+A\+R\+B\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::wgl\+Create\+Context\+Attribs\+A\+R\+B\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_abd56505ddf55fe13d396534d0ae77baa}
+\hypertarget{class_agmd_1_1_g_l_driver_ae8375296a8a17c17f8292cab6dacc2fb}{\index{Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}!wgl\+Swap\+Interval\+E\+X\+T@{wgl\+Swap\+Interval\+E\+X\+T}}
+\index{wgl\+Swap\+Interval\+E\+X\+T@{wgl\+Swap\+Interval\+E\+X\+T}!Agmd\+::\+G\+L\+Driver@{Agmd\+::\+G\+L\+Driver}}
+\subsubsection[{wgl\+Swap\+Interval\+E\+X\+T}]{\setlength{\rightskip}{0pt plus 5cm}P\+F\+N\+W\+G\+L\+S\+W\+A\+P\+I\+N\+T\+E\+R\+V\+A\+L\+E\+X\+T\+P\+R\+O\+C Agmd\+::\+G\+L\+Driver\+::wgl\+Swap\+Interval\+E\+X\+T\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_g_l_driver_ae8375296a8a17c17f8292cab6dacc2fb}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Renderer/\+Open\+G\+L/\hyperlink{_gl_driver_8h}{Gl\+Driver.\+h}\item 
+src/\+Renderer/\+Open\+G\+L/\hyperlink{_gl_driver_8cpp}{Gl\+Driver.\+cpp}\end{DoxyCompactItemize}

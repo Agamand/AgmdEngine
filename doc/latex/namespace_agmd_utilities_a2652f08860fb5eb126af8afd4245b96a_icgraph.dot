@@ -1,0 +1,41 @@
+digraph "AgmdUtilities::GetBytesPerPixel"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="AgmdUtilities::GetBytesPer\lPixel",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Agmd::Image::Fill",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a625cec70847526330b42b921890ff5da"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Agmd::AgmdApp::Run",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_agmd_app.html#ae9893d63db9a73d8adee883fb0ea8282"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="App::Run",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_app.html#a92c5c3d8799fe937ea0179b4efb1f4d3"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Agmd::Image::SetPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#aef1f82c5377735b70e03bd50b9c349c7"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Agmd::FontManager::\lLoadFont",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_font_manager.html#afa2ec2af9580873775a6d10070c3fa0d"];
+  Node6 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Agmd::Image::CopyImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a8ac7614cf6bd3e6432f07db2240dcf4b"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Agmd::Image::LoadFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a8ba276cb22a39ca8394bc96b76c28fa2"];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Agmd::ImagesLoader\l::SaveToFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_images_loader.html#a60ce8f960efd5b94565ec77dc8e5a40a"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Agmd::Image::GetPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a5cd2b6c73f1e50a2038fbbf2207c6665"];
+  Node11 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="Planet::exportToFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_planet.html#a9ec6cc5ceee6c943d3b614a776f524d8"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Agmd::Image::SubImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#addca3cb1123f7edd7f1056d75452d86c"];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="Agmd::Image::Flip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a7baa6c5c7e3f3d356af00742feedd2f0"];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Agmd::ImagesLoader\l::LoadFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_images_loader.html#a4b5126c9f0e9a64f121f33f69c1027db"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="Agmd::Image::Mirror",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_image.html#a57836b0e2bab7ca44ba61df2c43cf02b"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

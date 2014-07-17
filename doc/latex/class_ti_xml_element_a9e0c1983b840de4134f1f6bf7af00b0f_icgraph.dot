@@ -1,0 +1,13 @@
+digraph "TiXmlElement::CopyTo"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlElement::CopyTo",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="TiXmlElement::TiXmlElement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#a1ca4465f3c2eac6a60e641cd7f1d9f7e"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TiXmlElement::operator=",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#ad58d300f4cfc0016ffa6861ebb718a0b"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="TiXmlElement::Clone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#a13f6df105ebb1e8dc636e75cc883be32",tooltip="Creates a new Element and returns it - the returned element is a copy. "];
+}

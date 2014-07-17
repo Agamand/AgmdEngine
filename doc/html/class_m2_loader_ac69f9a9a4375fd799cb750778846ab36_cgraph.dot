@@ -13,6 +13,4 @@ digraph "M2Loader::LoadFromFile"
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="Agmd::MediaManager\l::LoadMediaFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_media_manager.html#ae4602b1d6e9800cf24b8338dbb6e50b8"];
-  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="Agmd::Model::SetTextureUnit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_model.html#a60fb80fd6f7e0b7af4b19c43d37ba70d"];
 }

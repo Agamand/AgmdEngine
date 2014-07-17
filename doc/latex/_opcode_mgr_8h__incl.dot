@@ -1,8 +1,8 @@
-digraph "J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdNetwork/Opcode/OpcodeMgr.h"
+digraph "src/AgmdNetwork/Opcode/OpcodeMgr.h"
 {
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="J:/Projet Infographie\l/Moteur3D/AgmdEngine\l/src/AgmdNetwork/Opcode\l/OpcodeMgr.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 [label="src/AgmdNetwork/Opcode\l/OpcodeMgr.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node2 [label="AgmdUtilities\\Utilities\l\\Singleton.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_agmd_utilities_2_utilities_2_singleton_8h.html"];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
@@ -12,7 +12,7 @@ digraph "J:/Projet Infographie/Moteur3D/AgmdEngine/src/AgmdNetwork/Opcode/Opcode
   Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
   Node5 [label="Packet\\ByteBuffer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_byte_buffer_8h.html"];
   Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
-  Node6 [label="AgmdDefines.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_agmd_defines_8h.html"];
+  Node6 [label="CommonDefines.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_common_defines_8h.html"];
   Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
   Node7 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid"];

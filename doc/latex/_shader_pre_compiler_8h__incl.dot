@@ -1,0 +1,43 @@
+digraph "src/Agmd3D/Core/Shader/ShaderPreCompiler.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/Agmd3D/Core/Shader\l/ShaderPreCompiler.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Config/Fwd.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Utilities/SmartPtr.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_smart_ptr_8h.html"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="cstdlib",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Utilities/SmartPtrPolicies.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_smart_ptr_policies_8h.html"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Debug/New.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_new_8h.html"];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Debug/NewOff.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_new_off_8h.html"];
+  Node3 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Debug/Exception.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_exception_8h.html"];
+  Node8 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="SmartPtr.inl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_smart_ptr_8inl.html"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="fstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Config/Export.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="Utilities/Singleton.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Utilities/File.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_file_8h.html"];
+  Node15 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="set",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}

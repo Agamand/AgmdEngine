@@ -1,0 +1,300 @@
+\hypertarget{class_agmd_1_1_follow_camera}{\section{Agmd\+:\+:Follow\+Camera Class Reference}
+\label{class_agmd_1_1_follow_camera}\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+}
+
+
+{\ttfamily \#include $<$Follow\+Camera.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Follow\+Camera\+:
+
+
+Collaboration diagram for Agmd\+:\+:Follow\+Camera\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_follow_camera_a8f2e873b4d1d046e1a15b472e6f6f2ea}{Follow\+Camera} (mat4 \&projection, vec3 \&\hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}=vec3())
+\item 
+\hyperlink{class_agmd_1_1_follow_camera_afc8c65d1d89b6dbb8260abec3b3abbac}{Follow\+Camera} (mat4 \&projection, float a, float b, vec2 angle, float dist)
+\item 
+virtual \hyperlink{class_agmd_1_1_follow_camera_ad0758578f1cf325d7498296700b72e1d}{$\sim$\+Follow\+Camera} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_ab79070a449a69cb3efe591aa631cb908}{on\+Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} time\+\_\+diff)
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_a3e1d519781c295ac1f42f462b769c9c5}{on\+Mouse\+Motion} (int x, int y)
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_a3186556fa90cb4f9c49d59afe609f3dd}{on\+Keyboard} (char key, bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_a235dd31d95e9363785c25660952c1b9b}{on\+Mouse\+Wheel} (float delta)
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_ac4cc280147816950f48d2f375f51a65f}{on\+Mouse\+Wheel} (bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_ad32b73bb67f8155d20978b7bbd8af536}{set\+Position} (glm\+::vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_ae67f0bb92c39993a01f3cdbbbdeffeb6}{set\+Target} (glm\+::vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\item 
+virtual const glm\+::vec3 \hyperlink{class_agmd_1_1_follow_camera_a00844fc6f5c31935b3590c781d16f90c}{get\+Position} ()
+\item 
+void \hyperlink{class_agmd_1_1_follow_camera_a49778fef0864dba27545ad66491eeae7}{Set\+Angles} (vec2 \+\_\+angles)
+\item 
+const vec2 \& \hyperlink{class_agmd_1_1_follow_camera_aaaf5e69d63b0673842711333940c057d}{Get\+Angles} ()
+\item 
+mat4 \hyperlink{class_agmd_1_1_follow_camera_a5e5a5e8c8578dd7ee00d2139318d35b9}{look} ()
+\item 
+const std\+::string \hyperlink{class_agmd_1_1_follow_camera_a78d7380ca1be7ca3fd26447f32586a23}{to\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_agmd_1_1_follow_camera_a7333f2458e8545bc9958e6fbb7013f62}{update\+Vector} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_agmd_1_1_follow_camera_a623b04727c0d3715f70322e96aeddb16}{\+\_\+theta}
+\item 
+float \hyperlink{class_agmd_1_1_follow_camera_a3360193bd8bde21673e3fd9ca3e6e87b}{\+\_\+phi}
+\item 
+vec2 \hyperlink{class_agmd_1_1_follow_camera_a1ef61747e3224e219edfa092cb0c4255}{angles}
+\item 
+vec3 \hyperlink{class_agmd_1_1_follow_camera_a24b4a832df24a6757d7e356135de2bd4}{\+\_\+up}
+\item 
+float \hyperlink{class_agmd_1_1_follow_camera_ab53685827a4fc37078210e80b174e3b7}{distance}
+\item 
+bool \hyperlink{class_agmd_1_1_follow_camera_a3c50e74860b0dd029b6a9dad0fd9a3ff}{m\+\_\+mousewheel}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_follow_camera_a8f2e873b4d1d046e1a15b472e6f6f2ea}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!Follow\+Camera@{Follow\+Camera}}
+\index{Follow\+Camera@{Follow\+Camera}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{Follow\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Follow\+Camera\+::\+Follow\+Camera (
+\begin{DoxyParamCaption}
+\item[{mat4 \&}]{projection, }
+\item[{vec3 \&}]{pos = {\ttfamily vec3()}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_follow_camera_a8f2e873b4d1d046e1a15b472e6f6f2ea}
+\hypertarget{class_agmd_1_1_follow_camera_afc8c65d1d89b6dbb8260abec3b3abbac}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!Follow\+Camera@{Follow\+Camera}}
+\index{Follow\+Camera@{Follow\+Camera}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{Follow\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Follow\+Camera\+::\+Follow\+Camera (
+\begin{DoxyParamCaption}
+\item[{mat4 \&}]{projection, }
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{vec2}]{angle, }
+\item[{float}]{dist}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_follow_camera_afc8c65d1d89b6dbb8260abec3b3abbac}
+\hypertarget{class_agmd_1_1_follow_camera_ad0758578f1cf325d7498296700b72e1d}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!````~Follow\+Camera@{$\sim$\+Follow\+Camera}}
+\index{````~Follow\+Camera@{$\sim$\+Follow\+Camera}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{$\sim$\+Follow\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Follow\+Camera\+::$\sim$\+Follow\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_ad0758578f1cf325d7498296700b72e1d}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_follow_camera_aaaf5e69d63b0673842711333940c057d}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!Get\+Angles@{Get\+Angles}}
+\index{Get\+Angles@{Get\+Angles}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{Get\+Angles}]{\setlength{\rightskip}{0pt plus 5cm}const vec2\& Agmd\+::\+Follow\+Camera\+::\+Get\+Angles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_follow_camera_aaaf5e69d63b0673842711333940c057d}
+\hypertarget{class_agmd_1_1_follow_camera_a00844fc6f5c31935b3590c781d16f90c}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{get\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const vec3 Agmd\+::\+Follow\+Camera\+::get\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a00844fc6f5c31935b3590c781d16f90c}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_camera_aabc09e5c46148902902121e2a82e5214}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a5e5a5e8c8578dd7ee00d2139318d35b9}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!look@{look}}
+\index{look@{look}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{look}]{\setlength{\rightskip}{0pt plus 5cm}mat4 Agmd\+::\+Follow\+Camera\+::look (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a5e5a5e8c8578dd7ee00d2139318d35b9}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_camera_a467e8b41237023bfd77203545c410425}{Agmd\+::\+Camera}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a3186556fa90cb4f9c49d59afe609f3dd}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!on\+Keyboard@{on\+Keyboard}}
+\index{on\+Keyboard@{on\+Keyboard}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{on\+Keyboard}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::on\+Keyboard (
+\begin{DoxyParamCaption}
+\item[{char}]{key, }
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a3186556fa90cb4f9c49d59afe609f3dd}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_a63fae187423be21161d39da11039e3ba}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a3e1d519781c295ac1f42f462b769c9c5}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!on\+Mouse\+Motion@{on\+Mouse\+Motion}}
+\index{on\+Mouse\+Motion@{on\+Mouse\+Motion}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{on\+Mouse\+Motion}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::on\+Mouse\+Motion (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a3e1d519781c295ac1f42f462b769c9c5}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_a2a4fe292c83654aa7f2011f7f43c3635}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a235dd31d95e9363785c25660952c1b9b}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!on\+Mouse\+Wheel@{on\+Mouse\+Wheel}}
+\index{on\+Mouse\+Wheel@{on\+Mouse\+Wheel}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{on\+Mouse\+Wheel}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::on\+Mouse\+Wheel (
+\begin{DoxyParamCaption}
+\item[{float}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a235dd31d95e9363785c25660952c1b9b}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_aa372ea65985a59ede956ad731f5e06d1}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_ac4cc280147816950f48d2f375f51a65f}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!on\+Mouse\+Wheel@{on\+Mouse\+Wheel}}
+\index{on\+Mouse\+Wheel@{on\+Mouse\+Wheel}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{on\+Mouse\+Wheel}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::on\+Mouse\+Wheel (
+\begin{DoxyParamCaption}
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_ac4cc280147816950f48d2f375f51a65f}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_camera_a7db9439e6553d5b72f2825a95a623d26}{Agmd\+::\+Camera}.
+
+\hypertarget{class_agmd_1_1_follow_camera_ab79070a449a69cb3efe591aa631cb908}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!on\+Update@{on\+Update}}
+\index{on\+Update@{on\+Update}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{on\+Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::on\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{time\+\_\+diff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_ab79070a449a69cb3efe591aa631cb908}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_af232107b328d1fa4c55ba98afa04a99b}{Agmd\+::\+Camera}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a49778fef0864dba27545ad66491eeae7}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!Set\+Angles@{Set\+Angles}}
+\index{Set\+Angles@{Set\+Angles}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{Set\+Angles}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::\+Set\+Angles (
+\begin{DoxyParamCaption}
+\item[{vec2}]{\+\_\+angles}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_follow_camera_a49778fef0864dba27545ad66491eeae7}
+\hypertarget{class_agmd_1_1_follow_camera_ad32b73bb67f8155d20978b7bbd8af536}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec3}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_ad32b73bb67f8155d20978b7bbd8af536}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_ae67f0bb92c39993a01f3cdbbbdeffeb6}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!set\+Target@{set\+Target}}
+\index{set\+Target@{set\+Target}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{set\+Target}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::set\+Target (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec3}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_ae67f0bb92c39993a01f3cdbbbdeffeb6}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_follow_camera_a78d7380ca1be7ca3fd26447f32586a23}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string Agmd\+::\+Follow\+Camera\+::to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a78d7380ca1be7ca3fd26447f32586a23}
+
+
+Reimplemented from \hyperlink{class_agmd_1_1_camera_aa48744d14605a3373cb5dd7ac8170d9f}{Agmd\+::\+Camera}.
+
+\hypertarget{class_agmd_1_1_follow_camera_a7333f2458e8545bc9958e6fbb7013f62}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!update\+Vector@{update\+Vector}}
+\index{update\+Vector@{update\+Vector}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{update\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Follow\+Camera\+::update\+Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_follow_camera_a7333f2458e8545bc9958e6fbb7013f62}
+
+
+Implements \hyperlink{class_agmd_1_1_camera_ae4a8331a5f97dd09708fa5096b21eaf0}{Agmd\+::\+Camera}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_follow_camera_a3360193bd8bde21673e3fd9ca3e6e87b}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!\+\_\+phi@{\+\_\+phi}}
+\index{\+\_\+phi@{\+\_\+phi}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{\+\_\+phi}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Follow\+Camera\+::\+\_\+phi\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_a3360193bd8bde21673e3fd9ca3e6e87b}
+\hypertarget{class_agmd_1_1_follow_camera_a623b04727c0d3715f70322e96aeddb16}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!\+\_\+theta@{\+\_\+theta}}
+\index{\+\_\+theta@{\+\_\+theta}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{\+\_\+theta}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Follow\+Camera\+::\+\_\+theta\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_a623b04727c0d3715f70322e96aeddb16}
+\hypertarget{class_agmd_1_1_follow_camera_a24b4a832df24a6757d7e356135de2bd4}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!\+\_\+up@{\+\_\+up}}
+\index{\+\_\+up@{\+\_\+up}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{\+\_\+up}]{\setlength{\rightskip}{0pt plus 5cm}vec3 Agmd\+::\+Follow\+Camera\+::\+\_\+up\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_a24b4a832df24a6757d7e356135de2bd4}
+\hypertarget{class_agmd_1_1_follow_camera_a1ef61747e3224e219edfa092cb0c4255}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!angles@{angles}}
+\index{angles@{angles}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{angles}]{\setlength{\rightskip}{0pt plus 5cm}vec2 Agmd\+::\+Follow\+Camera\+::angles\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_a1ef61747e3224e219edfa092cb0c4255}
+\hypertarget{class_agmd_1_1_follow_camera_ab53685827a4fc37078210e80b174e3b7}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!distance@{distance}}
+\index{distance@{distance}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Follow\+Camera\+::distance\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_ab53685827a4fc37078210e80b174e3b7}
+\hypertarget{class_agmd_1_1_follow_camera_a3c50e74860b0dd029b6a9dad0fd9a3ff}{\index{Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}!m\+\_\+mousewheel@{m\+\_\+mousewheel}}
+\index{m\+\_\+mousewheel@{m\+\_\+mousewheel}!Agmd\+::\+Follow\+Camera@{Agmd\+::\+Follow\+Camera}}
+\subsubsection[{m\+\_\+mousewheel}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Follow\+Camera\+::m\+\_\+mousewheel\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_follow_camera_a3c50e74860b0dd029b6a9dad0fd9a3ff}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Camera/\hyperlink{_follow_camera_8h}{Follow\+Camera.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Camera/\hyperlink{_follow_camera_8cpp}{Follow\+Camera.\+cpp}\end{DoxyCompactItemize}

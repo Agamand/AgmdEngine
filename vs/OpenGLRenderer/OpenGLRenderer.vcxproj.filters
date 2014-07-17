@@ -34,5 +34,6 @@
   <ItemGroup>
     <None Include="..\..\src\Renderer\OpenGL\GlBuffer.inl" />
     <None Include="..\..\src\Renderer\OpenGL\GlContext.inl" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

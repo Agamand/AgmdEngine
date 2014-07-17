@@ -1,0 +1,11 @@
+digraph "TiXmlAttribute::Parse"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlAttribute::Parse",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="TiXmlElement::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#af95c9165159fd9dfdcc5b894a3fcf85b"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="TiXmlDeclaration::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#a9839ea97ed687a2b7342fd7b0f04361b"];
+}

@@ -1,0 +1,441 @@
+\hypertarget{class_agmd_1_1_texture}{\section{Agmd\+:\+:Texture Class Reference}
+\label{class_agmd_1_1_texture}\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+}
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Texture\+:
+
+
+Collaboration diagram for Agmd\+:\+:Texture\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_agmd_1_1_texture_ab51a802868f0cf987aa1e1f8a1422357}{Create} (const ivec2 \&size, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, \hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} type, unsigned long flags=0, const std\+::string \&name=\char`\"{}\char`\"{})
+\item 
+void \hyperlink{class_agmd_1_1_texture_abeb5dabf5ef59f83c4c4adb8ef091d96}{Create\+From\+File} (const std\+::string \&filename, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0)
+\item 
+void \hyperlink{class_agmd_1_1_texture_a3e117c4750da5def2f6877da8c266239}{Create\+From\+Image} (const \hyperlink{class_agmd_1_1_image}{Image} \&image, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0, const std\+::string \&name=\char`\"{}\char`\"{})
+\item 
+void \hyperlink{class_agmd_1_1_texture_a96d9f45d9e6b95b265d68fb7d5d9f078}{Create\+From\+File} (const std\+::string filename\mbox{[}$\,$\mbox{]}, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0)
+\item 
+void \hyperlink{class_agmd_1_1_texture_a3ea020baa0eddfff7cd732bb4c1042c2}{Create\+From\+Image} (const \hyperlink{class_agmd_1_1_image}{Image} image\mbox{[}$\,$\mbox{]}, \hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} format, unsigned long flags=0, const std\+::string \&name=\char`\"{}\char`\"{})
+\item 
+void \hyperlink{class_agmd_1_1_texture_a686211a47844dbfcb765f26c09d4c562}{Save\+To\+File} (const std\+::string \&filename) const 
+\item 
+void \hyperlink{class_agmd_1_1_texture_a9631a110c75015db8705f1bb0378723d}{Update} (const \hyperlink{class_agmd_maths_1_1_rectangle}{Agmd\+Maths\+::\+Rectangle} \&rect=\hyperlink{class_agmd_maths_1_1_rectangle}{Agmd\+Maths\+::\+Rectangle}(-\/1,-\/1,-\/1,-\/1))
+\item 
+\hyperlink{class_agmd_1_1_image}{Image} \& \hyperlink{class_agmd_1_1_texture_a42ba02b636c409d71aa6888b13adc677}{Get\+Pixels} ()
+\item 
+\hyperlink{class_agmd_1_1_image}{Image} $\ast$ \hyperlink{class_agmd_1_1_texture_a046c0b2f42f39f64ef74def7f1f05233}{Get\+Pixels\+Ptr} ()
+\item 
+const ivec2 \& \hyperlink{class_agmd_1_1_texture_ad0bc7071cb4a1d0c7a0a68200c815c5d}{Get\+Size} () const 
+\item 
+\hyperlink{namespace_agmd_afc48fd9fa5dccb4c5621c052bfd1a7ec}{T\+Pixel\+Format} \hyperlink{class_agmd_1_1_texture_a14d772d75da1436a9987f80da0e81532}{Get\+Format} () const 
+\item 
+\hyperlink{namespace_agmd_a7036bece09449a930cfec410f75e85f4}{T\+Texture\+Type} \hyperlink{class_agmd_1_1_texture_a145fb653b1aedb53ab3e0702edd8954d}{Get\+Type} () const 
+\item 
+int \hyperlink{class_agmd_1_1_texture_a2e31e968f8e615800e98d7e77bf4a3da}{Get\+Active\+Texture} () const 
+\item 
+const std\+::string \& \hyperlink{class_agmd_1_1_texture_aeb19b9712c2fffaa9eb1391cf6ca2eec}{Get\+Name} () const 
+\item 
+const \hyperlink{class_agmd_1_1_texture_base}{Texture\+Base} $\ast$ \hyperlink{class_agmd_1_1_texture_a62313bf0a9d534c64ae9071d4dc0f200}{Get\+Texture} () const 
+\item 
+bool \hyperlink{class_agmd_1_1_texture_ab7153c28be2c58b62b7eb88d7e20f83a}{operator==} (const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture) const 
+\item 
+bool \hyperlink{class_agmd_1_1_texture_a0e5814c8c548faeb35cc93b56404b7a2}{operator!=} (const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture) const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a12159c3ef9493e7a82879d8a727c4367}{Texture\+Add} (\hyperlink{class_agmd_1_1_texture}{Texture} output, \hyperlink{class_agmd_1_1_texture}{Texture} input1, \hyperlink{class_agmd_1_1_texture}{Texture} input2)
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a0a6c56f3146829d69f1c0fe5a1bd790a}{Texture\+Prod} (\hyperlink{class_agmd_1_1_texture}{Texture} output, \hyperlink{class_agmd_1_1_texture}{Texture} input1, \hyperlink{class_agmd_1_1_texture}{Texture} input2)
+\item 
+static void \hyperlink{class_agmd_1_1_texture_af159d805c45dcb0d9fbcc5a1dc89954f}{Texture\+Render} (\hyperlink{class_agmd_1_1_texture}{Texture} input, ivec2 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}=ivec2(0), ivec2 resolution=ivec2(-\/1))
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a8947db62c7566c5cec617cf8f98cfce5}{Texture\+Random} ()
+\item 
+static void \hyperlink{class_agmd_1_1_texture_ad83edff18d06c385dbe996acc05d1d08}{Begin\+Render\+To\+Texture} (const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture0)
+\item 
+static void \hyperlink{class_agmd_1_1_texture_af76ce235088ae359bb6b0973d7a209e4}{Begin\+Render\+To\+Texture} (const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture0, const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture1)
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a9c4bd53f58f79ca3191b491ee152262a}{End\+Render\+To\+Texture} ()
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a92ea7fe0b00e72d102f53544708ff2d1}{Begin\+Render\+To\+Cube\+Map} (const \hyperlink{class_agmd_1_1_texture}{Texture} \&texture, \hyperlink{namespace_agmd_abf15b6f1dac1ed4da398b83bda0408e2}{T\+Attachment} attachment, int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face}=-\/1)
+\item 
+static void \hyperlink{class_agmd_1_1_texture_a81af676bea471fb4590eb2bccd567fba}{End\+Render\+To\+Cube\+Map} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_texture_a6928c69dec0e98efd09441b8b1622c03}{s\+\_\+add\+Texture} = N\+U\+L\+L
+\item 
+static \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_texture_a354c691fb837c97c9a0660268521fae6}{s\+\_\+prod\+Texture} = N\+U\+L\+L
+\item 
+static \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_texture_a51dca7410fffcf8b9f78631b9bc4b3da}{s\+\_\+render\+Texture} = N\+U\+L\+L
+\item 
+static \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_texture_a8ee8af75096b75990934221d5151c875}{s\+\_\+random\+Texture} = N\+U\+L\+L
+\item 
+static \hyperlink{class_agmd_1_1_frame_buffer}{Frame\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_texture_a7a630a36d895b3d403febf19755940eb}{s\+\_\+framebuffer} = N\+U\+L\+L
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_texture_a92ea7fe0b00e72d102f53544708ff2d1}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Begin\+Render\+To\+Cube\+Map@{Begin\+Render\+To\+Cube\+Map}}
+\index{Begin\+Render\+To\+Cube\+Map@{Begin\+Render\+To\+Cube\+Map}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Begin\+Render\+To\+Cube\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Begin\+Render\+To\+Cube\+Map (
+\begin{DoxyParamCaption}
+\item[{const {\bf Texture} \&}]{texture, }
+\item[{{\bf T\+Attachment}}]{attachment, }
+\item[{int}]{face = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a92ea7fe0b00e72d102f53544708ff2d1}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_ad83edff18d06c385dbe996acc05d1d08}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Begin\+Render\+To\+Texture@{Begin\+Render\+To\+Texture}}
+\index{Begin\+Render\+To\+Texture@{Begin\+Render\+To\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Begin\+Render\+To\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Begin\+Render\+To\+Texture (
+\begin{DoxyParamCaption}
+\item[{const {\bf Texture} \&}]{texture0}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_ad83edff18d06c385dbe996acc05d1d08}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_af76ce235088ae359bb6b0973d7a209e4}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Begin\+Render\+To\+Texture@{Begin\+Render\+To\+Texture}}
+\index{Begin\+Render\+To\+Texture@{Begin\+Render\+To\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Begin\+Render\+To\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Begin\+Render\+To\+Texture (
+\begin{DoxyParamCaption}
+\item[{const {\bf Texture} \&}]{texture0, }
+\item[{const {\bf Texture} \&}]{texture1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_af76ce235088ae359bb6b0973d7a209e4}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_ab51a802868f0cf987aa1e1f8a1422357}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Create@{Create}}
+\index{Create@{Create}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Create}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Create (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{size, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{{\bf T\+Texture\+Type}}]{type, }
+\item[{unsigned long}]{flags = {\ttfamily 0}, }
+\item[{const std\+::string \&}]{name = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_ab51a802868f0cf987aa1e1f8a1422357}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_abeb5dabf5ef59f83c4c4adb8ef091d96}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Create\+From\+File@{Create\+From\+File}}
+\index{Create\+From\+File@{Create\+From\+File}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Create\+From\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Create\+From\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_abeb5dabf5ef59f83c4c4adb8ef091d96}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a96d9f45d9e6b95b265d68fb7d5d9f078}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Create\+From\+File@{Create\+From\+File}}
+\index{Create\+From\+File@{Create\+From\+File}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Create\+From\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Create\+From\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{filename\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a96d9f45d9e6b95b265d68fb7d5d9f078}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a3e117c4750da5def2f6877da8c266239}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Create\+From\+Image@{Create\+From\+Image}}
+\index{Create\+From\+Image@{Create\+From\+Image}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Create\+From\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Create\+From\+Image (
+\begin{DoxyParamCaption}
+\item[{const {\bf Image} \&}]{image, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}, }
+\item[{const std\+::string \&}]{name = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a3e117c4750da5def2f6877da8c266239}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a3ea020baa0eddfff7cd732bb4c1042c2}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Create\+From\+Image@{Create\+From\+Image}}
+\index{Create\+From\+Image@{Create\+From\+Image}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Create\+From\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Create\+From\+Image (
+\begin{DoxyParamCaption}
+\item[{const {\bf Image}}]{image\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf T\+Pixel\+Format}}]{format, }
+\item[{unsigned long}]{flags = {\ttfamily 0}, }
+\item[{const std\+::string \&}]{name = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a3ea020baa0eddfff7cd732bb4c1042c2}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a81af676bea471fb4590eb2bccd567fba}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!End\+Render\+To\+Cube\+Map@{End\+Render\+To\+Cube\+Map}}
+\index{End\+Render\+To\+Cube\+Map@{End\+Render\+To\+Cube\+Map}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{End\+Render\+To\+Cube\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+End\+Render\+To\+Cube\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a81af676bea471fb4590eb2bccd567fba}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a9c4bd53f58f79ca3191b491ee152262a}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!End\+Render\+To\+Texture@{End\+Render\+To\+Texture}}
+\index{End\+Render\+To\+Texture@{End\+Render\+To\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{End\+Render\+To\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+End\+Render\+To\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a9c4bd53f58f79ca3191b491ee152262a}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a2e31e968f8e615800e98d7e77bf4a3da}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Active\+Texture@{Get\+Active\+Texture}}
+\index{Get\+Active\+Texture@{Get\+Active\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Active\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+::\+Texture\+::\+Get\+Active\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a2e31e968f8e615800e98d7e77bf4a3da}
+\hypertarget{class_agmd_1_1_texture_a14d772d75da1436a9987f80da0e81532}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Format@{Get\+Format}}
+\index{Get\+Format@{Get\+Format}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Format}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+Pixel\+Format} Agmd\+::\+Texture\+::\+Get\+Format (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a14d772d75da1436a9987f80da0e81532}
+\hypertarget{class_agmd_1_1_texture_aeb19b9712c2fffaa9eb1391cf6ca2eec}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Name@{Get\+Name}}
+\index{Get\+Name@{Get\+Name}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Name}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string \& Agmd\+::\+Texture\+::\+Get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_aeb19b9712c2fffaa9eb1391cf6ca2eec}
+\hypertarget{class_agmd_1_1_texture_a42ba02b636c409d71aa6888b13adc677}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Pixels@{Get\+Pixels}}
+\index{Get\+Pixels@{Get\+Pixels}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Pixels}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image} \& Agmd\+::\+Texture\+::\+Get\+Pixels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a42ba02b636c409d71aa6888b13adc677}
+\hypertarget{class_agmd_1_1_texture_a046c0b2f42f39f64ef74def7f1f05233}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Pixels\+Ptr@{Get\+Pixels\+Ptr}}
+\index{Get\+Pixels\+Ptr@{Get\+Pixels\+Ptr}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Pixels\+Ptr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image} $\ast$ Agmd\+::\+Texture\+::\+Get\+Pixels\+Ptr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a046c0b2f42f39f64ef74def7f1f05233}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_ad0bc7071cb4a1d0c7a0a68200c815c5d}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Size@{Get\+Size}}
+\index{Get\+Size@{Get\+Size}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}const ivec2 \& Agmd\+::\+Texture\+::\+Get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_ad0bc7071cb4a1d0c7a0a68200c815c5d}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a62313bf0a9d534c64ae9071d4dc0f200}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Texture@{Get\+Texture}}
+\index{Get\+Texture@{Get\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Texture\+Base} $\ast$ Agmd\+::\+Texture\+::\+Get\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a62313bf0a9d534c64ae9071d4dc0f200}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a145fb653b1aedb53ab3e0702edd8954d}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Get\+Type@{Get\+Type}}
+\index{Get\+Type@{Get\+Type}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+Texture\+Type} Agmd\+::\+Texture\+::\+Get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a145fb653b1aedb53ab3e0702edd8954d}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a0e5814c8c548faeb35cc93b56404b7a2}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Texture\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Texture} \&}]{texture}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a0e5814c8c548faeb35cc93b56404b7a2}
+\hypertarget{class_agmd_1_1_texture_ab7153c28be2c58b62b7eb88d7e20f83a}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!operator==@{operator==}}
+\index{operator==@{operator==}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+Texture\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Texture} \&}]{texture}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_ab7153c28be2c58b62b7eb88d7e20f83a}
+\hypertarget{class_agmd_1_1_texture_a686211a47844dbfcb765f26c09d4c562}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Save\+To\+File@{Save\+To\+File}}
+\index{Save\+To\+File@{Save\+To\+File}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Save\+To\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Save\+To\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_texture_a686211a47844dbfcb765f26c09d4c562}
+\hypertarget{class_agmd_1_1_texture_a12159c3ef9493e7a82879d8a727c4367}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Texture\+Add@{Texture\+Add}}
+\index{Texture\+Add@{Texture\+Add}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Texture\+Add}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Texture\+Add (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture}}]{output, }
+\item[{{\bf Texture}}]{input1, }
+\item[{{\bf Texture}}]{input2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a12159c3ef9493e7a82879d8a727c4367}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a0a6c56f3146829d69f1c0fe5a1bd790a}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Texture\+Prod@{Texture\+Prod}}
+\index{Texture\+Prod@{Texture\+Prod}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Texture\+Prod}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Texture\+Prod (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture}}]{output, }
+\item[{{\bf Texture}}]{input1, }
+\item[{{\bf Texture}}]{input2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a0a6c56f3146829d69f1c0fe5a1bd790a}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a8947db62c7566c5cec617cf8f98cfce5}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Texture\+Random@{Texture\+Random}}
+\index{Texture\+Random@{Texture\+Random}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Texture\+Random}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Texture\+Random (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a8947db62c7566c5cec617cf8f98cfce5}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_af159d805c45dcb0d9fbcc5a1dc89954f}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Texture\+Render@{Texture\+Render}}
+\index{Texture\+Render@{Texture\+Render}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Texture\+Render}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Texture\+Render (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture}}]{input, }
+\item[{ivec2}]{pos = {\ttfamily ivec2(0)}, }
+\item[{ivec2}]{resolution = {\ttfamily ivec2(-\/1)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_af159d805c45dcb0d9fbcc5a1dc89954f}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_texture_a9631a110c75015db8705f1bb0378723d}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Texture\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{const {\bf Agmd\+Maths\+::\+Rectangle} \&}]{rect = {\ttfamily {\bf Agmd\+Maths\+::\+Rectangle}(-\/1,~-\/1,~-\/1,~-\/1)}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_texture_a9631a110c75015db8705f1bb0378723d}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_texture_a6928c69dec0e98efd09441b8b1622c03}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!s\+\_\+add\+Texture@{s\+\_\+add\+Texture}}
+\index{s\+\_\+add\+Texture@{s\+\_\+add\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{s\+\_\+add\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+Texture\+::s\+\_\+add\+Texture = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a6928c69dec0e98efd09441b8b1622c03}
+\hypertarget{class_agmd_1_1_texture_a7a630a36d895b3d403febf19755940eb}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!s\+\_\+framebuffer@{s\+\_\+framebuffer}}
+\index{s\+\_\+framebuffer@{s\+\_\+framebuffer}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{s\+\_\+framebuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame\+Buffer} $\ast$ Agmd\+::\+Texture\+::s\+\_\+framebuffer = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a7a630a36d895b3d403febf19755940eb}
+\hypertarget{class_agmd_1_1_texture_a354c691fb837c97c9a0660268521fae6}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!s\+\_\+prod\+Texture@{s\+\_\+prod\+Texture}}
+\index{s\+\_\+prod\+Texture@{s\+\_\+prod\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{s\+\_\+prod\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+Texture\+::s\+\_\+prod\+Texture = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a354c691fb837c97c9a0660268521fae6}
+\hypertarget{class_agmd_1_1_texture_a8ee8af75096b75990934221d5151c875}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!s\+\_\+random\+Texture@{s\+\_\+random\+Texture}}
+\index{s\+\_\+random\+Texture@{s\+\_\+random\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{s\+\_\+random\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+Texture\+::s\+\_\+random\+Texture = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a8ee8af75096b75990934221d5151c875}
+\hypertarget{class_agmd_1_1_texture_a51dca7410fffcf8b9f78631b9bc4b3da}{\index{Agmd\+::\+Texture@{Agmd\+::\+Texture}!s\+\_\+render\+Texture@{s\+\_\+render\+Texture}}
+\index{s\+\_\+render\+Texture@{s\+\_\+render\+Texture}!Agmd\+::\+Texture@{Agmd\+::\+Texture}}
+\subsubsection[{s\+\_\+render\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+Texture\+::s\+\_\+render\+Texture = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_texture_a51dca7410fffcf8b9f78631b9bc4b3da}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Texture/\hyperlink{_texture_8h}{Texture.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Texture/\hyperlink{_texture_8cpp}{Texture.\+cpp}\end{DoxyCompactItemize}

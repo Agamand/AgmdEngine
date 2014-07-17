@@ -1,0 +1,109 @@
+\hypertarget{namespace_agmd_physics}{\section{Agmd\+Physics Namespace Reference}
+\label{namespace_agmd_physics}\index{Agmd\+Physics@{Agmd\+Physics}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_agmd_physics_1_1_box}{Box}
+\item 
+struct \hyperlink{struct_agmd_physics_1_1_collision_info}{Collision\+Info}
+\item 
+class \hyperlink{class_agmd_physics_1_1_entities}{Entities}
+\item 
+class \hyperlink{class_agmd_physics_1_1_force}{Force}
+\item 
+struct \hyperlink{struct_agmd_physics_1_1_intersection}{Intersection}
+\item 
+class \hyperlink{class_agmd_physics_1_1_physics_mgr}{Physics\+Mgr}
+\item 
+class \hyperlink{class_agmd_physics_1_1_plane}{Plane}
+\item 
+struct \hyperlink{struct_agmd_physics_1_1_p_position}{P\+Position}
+\item 
+class \hyperlink{class_agmd_physics_1_1_singleton}{Singleton}
+\item 
+class \hyperlink{class_agmd_physics_1_1_sphere}{Sphere}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{struct_agmd_physics_1_1_p_position}{P\+Position} $\ast$ \hyperlink{namespace_agmd_physics_a72f849383bbb96be02fec5a53333d7fd}{P\+Position\+Ptr}
+\item 
+typedef std\+::vector$<$ \hyperlink{class_agmd_physics_1_1_force}{Force} $>$ \hyperlink{namespace_agmd_physics_a039d4770849466fe53494a7db5bdc3dc}{Force\+Vector}
+\item 
+typedef std\+::vector$<$ \hyperlink{class_agmd_physics_1_1_entities}{Entities} $\ast$ $>$ \hyperlink{namespace_agmd_physics_ab6fd06a64e764c2dc23298f0a0351c23}{Entities\+Vector}
+\item 
+typedef std\+::vector$<$ \hyperlink{struct_agmd_physics_1_1_intersection}{Intersection} $>$ \hyperlink{namespace_agmd_physics_a5b1b4486f555597ab749510899005f8e}{Intersection\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92ed}{Entitie\+Type} \{ \hyperlink{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda24f365a28f13003b40961f83cb95c93b}{T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N} = 0, 
+\hyperlink{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda05650da4e3a8c895f18fe4f3e7ffd21a}{T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E} = 1, 
+\hyperlink{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda060678b5cbc5d878975e75058b7c9747}{T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E} = 2, 
+\hyperlink{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda303f0aae49b83f0696331cce49157320}{T\+Y\+P\+E\+\_\+\+B\+O\+X} = 3
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_agmd_physics_a310c5418f2ad02d3dde01301df034b91}{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L} (\hyperlink{class_agmd_physics_1_1_physics_mgr}{Physics\+Mgr})
+\item 
+\hyperlink{namespace_agmd_physics_aa408461295a9f6a2f3e68674fce76f5c}{\+\_\+\+\_\+declspec} (dllexport) void Load\+Plugin()
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{namespace_agmd_physics_ab6fd06a64e764c2dc23298f0a0351c23}{\index{Agmd\+Physics@{Agmd\+Physics}!Entities\+Vector@{Entities\+Vector}}
+\index{Entities\+Vector@{Entities\+Vector}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{Entities\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::vector$<${\bf Entities}$\ast$$>$ {\bf Agmd\+Physics\+::\+Entities\+Vector}}}\label{namespace_agmd_physics_ab6fd06a64e764c2dc23298f0a0351c23}
+\hypertarget{namespace_agmd_physics_a039d4770849466fe53494a7db5bdc3dc}{\index{Agmd\+Physics@{Agmd\+Physics}!Force\+Vector@{Force\+Vector}}
+\index{Force\+Vector@{Force\+Vector}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{Force\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::vector$<${\bf Force}$>$ {\bf Agmd\+Physics\+::\+Force\+Vector}}}\label{namespace_agmd_physics_a039d4770849466fe53494a7db5bdc3dc}
+\hypertarget{namespace_agmd_physics_a5b1b4486f555597ab749510899005f8e}{\index{Agmd\+Physics@{Agmd\+Physics}!Intersection\+Vector@{Intersection\+Vector}}
+\index{Intersection\+Vector@{Intersection\+Vector}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{Intersection\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::vector$<${\bf Intersection}$>$ {\bf Agmd\+Physics\+::\+Intersection\+Vector}}}\label{namespace_agmd_physics_a5b1b4486f555597ab749510899005f8e}
+\hypertarget{namespace_agmd_physics_a72f849383bbb96be02fec5a53333d7fd}{\index{Agmd\+Physics@{Agmd\+Physics}!P\+Position\+Ptr@{P\+Position\+Ptr}}
+\index{P\+Position\+Ptr@{P\+Position\+Ptr}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{P\+Position\+Ptr}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf P\+Position}$\ast$ {\bf Agmd\+Physics\+::\+P\+Position\+Ptr}}}\label{namespace_agmd_physics_a72f849383bbb96be02fec5a53333d7fd}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92ed}{\index{Agmd\+Physics@{Agmd\+Physics}!Entitie\+Type@{Entitie\+Type}}
+\index{Entitie\+Type@{Entitie\+Type}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{Entitie\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Agmd\+Physics\+::\+Entitie\+Type}}}\label{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92ed}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N@{T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N}!Agmd\+Physics@{Agmd\+Physics}}\index{Agmd\+Physics@{Agmd\+Physics}!T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N@{T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N}}\item[{\em 
+\hypertarget{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda24f365a28f13003b40961f83cb95c93b}{T\+Y\+P\+E\+\_\+\+U\+N\+K\+N\+O\+W\+N}\label{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda24f365a28f13003b40961f83cb95c93b}
+}]\index{T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E@{T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E}!Agmd\+Physics@{Agmd\+Physics}}\index{Agmd\+Physics@{Agmd\+Physics}!T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E@{T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E}}\item[{\em 
+\hypertarget{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda05650da4e3a8c895f18fe4f3e7ffd21a}{T\+Y\+P\+E\+\_\+\+S\+P\+H\+E\+R\+E}\label{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda05650da4e3a8c895f18fe4f3e7ffd21a}
+}]\index{T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E@{T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E}!Agmd\+Physics@{Agmd\+Physics}}\index{Agmd\+Physics@{Agmd\+Physics}!T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E@{T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E}}\item[{\em 
+\hypertarget{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda060678b5cbc5d878975e75058b7c9747}{T\+Y\+P\+E\+\_\+\+P\+L\+A\+N\+E}\label{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda060678b5cbc5d878975e75058b7c9747}
+}]\index{T\+Y\+P\+E\+\_\+\+B\+O\+X@{T\+Y\+P\+E\+\_\+\+B\+O\+X}!Agmd\+Physics@{Agmd\+Physics}}\index{Agmd\+Physics@{Agmd\+Physics}!T\+Y\+P\+E\+\_\+\+B\+O\+X@{T\+Y\+P\+E\+\_\+\+B\+O\+X}}\item[{\em 
+\hypertarget{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda303f0aae49b83f0696331cce49157320}{T\+Y\+P\+E\+\_\+\+B\+O\+X}\label{namespace_agmd_physics_ad084e24011be0a7009fedc9ed9ee92eda303f0aae49b83f0696331cce49157320}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_agmd_physics_aa408461295a9f6a2f3e68674fce76f5c}{\index{Agmd\+Physics@{Agmd\+Physics}!\+\_\+\+\_\+declspec@{\+\_\+\+\_\+declspec}}
+\index{\+\_\+\+\_\+declspec@{\+\_\+\+\_\+declspec}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{\+\_\+\+\_\+declspec}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Physics\+::\+\_\+\+\_\+declspec (
+\begin{DoxyParamCaption}
+\item[{dllexport}]{}
+\end{DoxyParamCaption}
+)}}\label{namespace_agmd_physics_aa408461295a9f6a2f3e68674fce76f5c}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{namespace_agmd_physics_a310c5418f2ad02d3dde01301df034b91}{\index{Agmd\+Physics@{Agmd\+Physics}!S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}}
+\index{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}!Agmd\+Physics@{Agmd\+Physics}}
+\subsubsection[{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Physics\+::\+S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L (
+\begin{DoxyParamCaption}
+\item[{Physics\+Mgr}]{}
+\end{DoxyParamCaption}
+)}}\label{namespace_agmd_physics_a310c5418f2ad02d3dde01301df034b91}

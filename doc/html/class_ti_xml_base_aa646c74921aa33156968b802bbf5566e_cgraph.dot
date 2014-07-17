@@ -1,0 +1,22 @@
+digraph "TiXmlBase::ReadText"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlBase::ReadText",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlBase::StringEqual",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#a51631e6986179558b9e5850723ed165a"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlBase::ToLower",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#a799f17405a86a5c2029618e85f11a097"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TiXmlBase::GetChar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#a5b0fde72d6f662ae1fd6303195d2159b"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TiXmlBase::GetEntity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#ac5c08bf3deffcda0bf8ce2958372b584"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TiXmlBase::ConvertUTF32ToUTF8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#a07c765e3a7f979d343e646ea797b180b"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TiXmlBase::SkipWhiteSpace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#ac0c3d66d8a9e6996a1fa016275e16875"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TiXmlBase::IsWhiteSpace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#af56296d561c0bab4bc8e198cdcf5c48e"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

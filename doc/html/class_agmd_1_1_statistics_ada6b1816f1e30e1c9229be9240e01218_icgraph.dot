@@ -1,0 +1,11 @@
+digraph "Agmd::Statistics::IncrVertexCount"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::Statistics::IncrVertex\lCount",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::GLDriver::DrawPrimitives",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_driver.html#adae2a75d7f71fad8e717c0f8a7ad895d"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::GLDriver::DrawIndexed\lPrimitives",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_driver.html#a4f94f8cf789c88859eb4a678382d70ad"];
+}

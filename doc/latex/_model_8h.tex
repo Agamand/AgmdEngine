@@ -1,64 +1,46 @@
-\hypertarget{_model_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Model.h File Reference}
-\label{_model_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Model.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Model.\-h}}
+\hypertarget{_model_8h}{\section{src/\+Agmd3\+D/\+Core/\+Scene\+Object/\+Model.h File Reference}
+\label{_model_8h}\index{src/\+Agmd3\+D/\+Core/\+Scene\+Object/\+Model.\+h@{src/\+Agmd3\+D/\+Core/\+Scene\+Object/\+Model.\+h}}
 }
-{\ttfamily \#include $<$Config/\-Fwd.\-h$>$}\\*
-{\ttfamily \#include $<$Core/\-Resource.\-h$>$}\\*
-{\ttfamily \#include $<$Core/\-Buffer/\-Buffer.\-h$>$}\\*
-{\ttfamily \#include $<$Core/\-Declaration.\-h$>$}\\*
-{\ttfamily \#include $<$Core/\-Texture.\-h$>$}\\*
-{\ttfamily \#include $<$Core/\-Enums.\-h$>$}\\*
-{\ttfamily \#include $<$Utilities/\-Smart\-Ptr.\-h$>$}\\*
-{\ttfamily \#include $<$Vector2.\-h$>$}\\*
-{\ttfamily \#include $<$Vector3.\-h$>$}\\*
-{\ttfamily \#include $<$Matrix4.\-h$>$}\\*
-{\ttfamily \#include $<$Quaternion.\-h$>$}\\*
+{\ttfamily \#include $<$Config/\+Fwd.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Resource.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Buffer/\+Buffer.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Declaration.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Texture/\+Texture.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Enums.\+h$>$}\\*
+{\ttfamily \#include $<$Utilities/\+Smart\+Ptr.\+h$>$}\\*
+{\ttfamily \#include $<$Vector2.\+h$>$}\\*
+{\ttfamily \#include $<$Vector3.\+h$>$}\\*
+{\ttfamily \#include $<$Matrix4.\+h$>$}\\*
+{\ttfamily \#include $<$Quaternion.\+h$>$}\\*
+{\ttfamily \#include $<$Transform.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Tools/\+Bounding\+Box.\+h$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+Include dependency graph for Model.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct_agmd_1_1_texture_unit}{Agmd\-::\-Texture\-Unit}
+class \hyperlink{class_agmd_1_1_model}{Agmd\+::\+Model}
 \item 
-struct \hyperlink{struct_agmd_1_1_model_render_pass}{Agmd\-::\-Model\-Render\-Pass}
-\item 
-struct \hyperlink{struct_agmd_1_1_model_transfo}{Agmd\-::\-Model\-Transfo}
-\item 
-class \hyperlink{class_agmd_1_1_model}{Agmd\-::\-Model}
-\item 
-struct \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Agmd\-::\-Model\-::\-T\-Vertex}
-\item 
-struct \hyperlink{struct_agmd_1_1_model_1_1_joint}{Agmd\-::\-Model\-::\-Joint}
+struct \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Agmd\+::\+Model\+::\+T\+Vertex}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \hyperlink{namespace_agmd}{Agmd}
+ \hyperlink{namespace_agmd}{Agmd}
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef Model\-Transfo $\ast$ \hyperlink{namespace_agmd_a87111ace35f29906262815b815f0d5d3}{Agmd\-::\-Model\-Transfo\-Ptr}
-\item 
-typedef std\-::vector\\*
-$<$ Model\-Render\-Pass $>$ \hyperlink{namespace_agmd_a78789164286f292559a3ac13486bcd3c}{Agmd\-::\-M\-R\-Pvector}
-\item 
-typedef \hyperlink{class_agmd_utilities_1_1_smart_ptr}{Smart\-Ptr}$<$ Model, \\*
-\hyperlink{class_agmd_utilities_1_1_resource_c_o_m}{Resource\-C\-O\-M} $>$ \hyperlink{namespace_agmd_ad983a692239653fa2f9dfc95b7c98359}{Agmd\-::\-T\-Model\-Ptr}
+typedef \hyperlink{class_agmd_utilities_1_1_smart_ptr}{Smart\+Ptr}$<$ Model, \\*
+\hyperlink{class_agmd_utilities_1_1_resource_c_o_m}{Resource\+C\+O\+M} $>$ \hyperlink{namespace_agmd_ad983a692239653fa2f9dfc95b7c98359}{Agmd\+::\+T\+Model\+Ptr}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931}{Agmd\-::\-Generate\-Type} \{ \hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931ab22033239b17f0ba4ffbb7f6445a2fe3}{Agmd\-::\-G\-\_\-\-N\-O\-N\-E} = 0x0, 
-\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931ab537da531c4fc9b0f2c51bdc1884fe43}{Agmd\-::\-G\-\_\-\-N\-O\-R\-M\-A\-L} = 0x1, 
-\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931aa8fb2f53e762400fe880195fbdf99e98}{Agmd\-::\-G\-\_\-\-T\-A\-N\-G\-E\-N\-T} = 0x2, 
-\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931aa24375cf0f39584e61baa84fd19e2665}{Agmd\-::\-G\-\_\-\-A\-L\-L} = G\-\_\-\-N\-O\-R\-M\-A\-L $|$ G\-\_\-\-T\-A\-N\-G\-E\-N\-T
- \}
-\item 
-enum \hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9}{Agmd\-::\-Render\-Flags} \{ \\*
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9a96b723d5709cb541e33450660d55a6f0}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-N\-U\-L\-L} = 0x00, 
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9a723fdc2491a4b8dd8d73574ae83af2c7}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-U\-N\-L\-I\-T} = 0x01, 
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9a55671b80ee87aeb93f1cb66b2f39b5c6}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-U\-N\-F\-O\-G\-G\-E\-D} = 0x02, 
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9af32c0370138698a5e99cbd7c96889f46}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-T\-W\-O\-S\-I\-D\-E\-D} = 0x04, 
-\\*
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9acd5d38f0ae7bbd467dc6cb9a333dc401}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-B\-I\-L\-L\-B\-O\-A\-R\-D} = 0x08, 
-\hyperlink{namespace_agmd_a482c1bf4b5bb6a51a2233e18d1398cf9afcbf18409844a9b7ffce9eef513d0e87}{Agmd\-::\-R\-E\-N\-D\-E\-R\-F\-L\-A\-G\-S\-\_\-\-Z\-B\-U\-F\-F\-E\-R\-E\-D} = 0x10
+enum \hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931}{Agmd\+::\+Generate\+Type} \{ \hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931ab22033239b17f0ba4ffbb7f6445a2fe3}{Agmd\+::\+G\+\_\+\+N\+O\+N\+E} = 0x0, 
+\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931ab537da531c4fc9b0f2c51bdc1884fe43}{Agmd\+::\+G\+\_\+\+N\+O\+R\+M\+A\+L} = 0x1, 
+\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931aa8fb2f53e762400fe880195fbdf99e98}{Agmd\+::\+G\+\_\+\+T\+A\+N\+G\+E\+N\+T} = 0x2, 
+\hyperlink{namespace_agmd_a6e9a06379d2c12d83e486eb350caa931aa24375cf0f39584e61baa84fd19e2665}{Agmd\+::\+G\+\_\+\+A\+L\+L} = G\+\_\+\+N\+O\+R\+M\+A\+L $\vert$ G\+\_\+\+T\+A\+N\+G\+E\+N\+T
  \}
 \end{DoxyCompactItemize}

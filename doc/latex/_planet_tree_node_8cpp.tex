@@ -1,0 +1,73 @@
+\hypertarget{_planet_tree_node_8cpp}{\section{src/\+Examples/\+Planet/\+Planet/\+Planet\+Tree\+Node.cpp File Reference}
+\label{_planet_tree_node_8cpp}\index{src/\+Examples/\+Planet/\+Planet/\+Planet\+Tree\+Node.\+cpp@{src/\+Examples/\+Planet/\+Planet/\+Planet\+Tree\+Node.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}Planet\+Tree\+Node.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Planet.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Object/\+Material.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Tools/\+Fast2\+D\+Surface.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Tools/\+Bounding\+Box.\+h$>$}\\*
+Include dependency graph for Planet\+Tree\+Node.\+cpp\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_planet_tree_node_8cpp_a56dce54d2eef141faab9d338d77e9902}{T\+E\+X\+\_\+\+S\+I\+Z\+E}~512
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+quat \hyperlink{_planet_tree_node_8cpp_aacf93e365ce591d56a36fd26b866452a}{get\+Rotation\+For} (int divisor, int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face})
+\item 
+vec3 \hyperlink{_planet_tree_node_8cpp_a21a59e323034532205509d25f7fcd7e5}{get\+Translation} (int divisor, int \hyperlink{_planet_8cpp_ae1161f79bdbe47164b23549af2139d25}{face})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ivec2 \hyperlink{_planet_tree_node_8cpp_a7fa7f47fa1ed6a6eeaa474e99fbc8cd6}{order} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_planet_tree_node_8cpp_a56dce54d2eef141faab9d338d77e9902}{\index{Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}!T\+E\+X\+\_\+\+S\+I\+Z\+E@{T\+E\+X\+\_\+\+S\+I\+Z\+E}}
+\index{T\+E\+X\+\_\+\+S\+I\+Z\+E@{T\+E\+X\+\_\+\+S\+I\+Z\+E}!Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}}
+\subsubsection[{T\+E\+X\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+E\+X\+\_\+\+S\+I\+Z\+E~512}}\label{_planet_tree_node_8cpp_a56dce54d2eef141faab9d338d77e9902}
+
+
+\subsection{Function Documentation}
+\hypertarget{_planet_tree_node_8cpp_aacf93e365ce591d56a36fd26b866452a}{\index{Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}!get\+Rotation\+For@{get\+Rotation\+For}}
+\index{get\+Rotation\+For@{get\+Rotation\+For}!Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}}
+\subsubsection[{get\+Rotation\+For}]{\setlength{\rightskip}{0pt plus 5cm}quat get\+Rotation\+For (
+\begin{DoxyParamCaption}
+\item[{int}]{divisor, }
+\item[{int}]{face}
+\end{DoxyParamCaption}
+)}}\label{_planet_tree_node_8cpp_aacf93e365ce591d56a36fd26b866452a}
+\hypertarget{_planet_tree_node_8cpp_a21a59e323034532205509d25f7fcd7e5}{\index{Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}!get\+Translation@{get\+Translation}}
+\index{get\+Translation@{get\+Translation}!Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}}
+\subsubsection[{get\+Translation}]{\setlength{\rightskip}{0pt plus 5cm}vec3 get\+Translation (
+\begin{DoxyParamCaption}
+\item[{int}]{divisor, }
+\item[{int}]{face}
+\end{DoxyParamCaption}
+)}}\label{_planet_tree_node_8cpp_a21a59e323034532205509d25f7fcd7e5}
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{_planet_tree_node_8cpp_a7fa7f47fa1ed6a6eeaa474e99fbc8cd6}{\index{Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}!order@{order}}
+\index{order@{order}!Planet\+Tree\+Node.\+cpp@{Planet\+Tree\+Node.\+cpp}}
+\subsubsection[{order}]{\setlength{\rightskip}{0pt plus 5cm}ivec2 order\mbox{[}$\,$\mbox{]}}}\label{_planet_tree_node_8cpp_a7fa7f47fa1ed6a6eeaa474e99fbc8cd6}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    ivec2(1,1),
+    ivec2(1,-1),
+    ivec2(-1,1),
+    ivec2(-1,-1)
+\}
+\end{DoxyCode}

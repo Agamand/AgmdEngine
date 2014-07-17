@@ -1,0 +1,422 @@
+\hypertarget{class_ti_xml_attribute}{\section{Ti\+Xml\+Attribute Class Reference}
+\label{class_ti_xml_attribute}\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+}
+
+
+{\ttfamily \#include $<$tinyxml.\+h$>$}
+
+
+
+Inheritance diagram for Ti\+Xml\+Attribute\+:
+
+
+Collaboration diagram for Ti\+Xml\+Attribute\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ti_xml_attribute_a9cfa3c8179873fd485d83003b114f8e1}{Ti\+Xml\+Attribute} ()
+\begin{DoxyCompactList}\small\item\em Construct an empty attribute. \end{DoxyCompactList}\item 
+\hyperlink{class_ti_xml_attribute_a759d0b76fb8fcf765ecab243bc14f05e}{Ti\+Xml\+Attribute} (const char $\ast$\+\_\+name, const char $\ast$\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Construct an attribute with a name and value. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{class_ti_xml_attribute_a298a57287d305904ba6bd96ae6f78d3d}{Name} () const 
+\begin{DoxyCompactList}\small\item\em Return the name of this attribute. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{class_ti_xml_attribute_a0f874490eac8ca00ee0070765d0e97e3}{Value} () const 
+\begin{DoxyCompactList}\small\item\em Return the value of this attribute. \end{DoxyCompactList}\item 
+int \hyperlink{class_ti_xml_attribute_aa1a20ad59dc7e89a0ab265396360d50f}{Int\+Value} () const 
+\begin{DoxyCompactList}\small\item\em Return the value of this attribute, converted to an integer. \end{DoxyCompactList}\item 
+double \hyperlink{class_ti_xml_attribute_a2880ddef53fc7522c99535273954d230}{Double\+Value} () const 
+\begin{DoxyCompactList}\small\item\em Return the value of this attribute, converted to a double. \end{DoxyCompactList}\item 
+const \hyperlink{tinyxml_8h_a92bada05fd84d9a0c9a5bbe53de26887}{T\+I\+X\+M\+L\+\_\+\+S\+T\+R\+I\+N\+G} \& \hyperlink{class_ti_xml_attribute_a64cee17bceb8232eb0736d26dd082d79}{Name\+T\+Str} () const 
+\item 
+int \hyperlink{class_ti_xml_attribute_ad6c93088ee21af41a107931223339344}{Query\+Int\+Value} (int $\ast$\+\_\+value) const 
+\item 
+int \hyperlink{class_ti_xml_attribute_ac87b2a8489906a5d7aa2875f20be3513}{Query\+Double\+Value} (double $\ast$\+\_\+value) const 
+\begin{DoxyCompactList}\small\item\em Query\+Double\+Value examines the value string. See \hyperlink{class_ti_xml_attribute_ad6c93088ee21af41a107931223339344}{Query\+Int\+Value()}. \end{DoxyCompactList}\item 
+void \hyperlink{class_ti_xml_attribute_ab7fa3d21ff8d7c5764cf9af15b667a99}{Set\+Name} (const char $\ast$\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Set the name of this attribute. \end{DoxyCompactList}\item 
+void \hyperlink{class_ti_xml_attribute_a2dae44178f668b3cb48101be4f2236a0}{Set\+Value} (const char $\ast$\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set the value. \end{DoxyCompactList}\item 
+void \hyperlink{class_ti_xml_attribute_a7e065df640116a62ea4f4b7da5449cc8}{Set\+Int\+Value} (int \+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set the value from an integer. \end{DoxyCompactList}\item 
+void \hyperlink{class_ti_xml_attribute_a0316da31373496c4368ad549bf711394}{Set\+Double\+Value} (double \+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set the value from a double. \end{DoxyCompactList}\item 
+const \hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} $\ast$ \hyperlink{class_ti_xml_attribute_a776478980776a024f7c2846eec640f65}{Next} () const 
+\begin{DoxyCompactList}\small\item\em Get the next sibling attribute in the D\+O\+M. Returns null at end. \end{DoxyCompactList}\item 
+\hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} $\ast$ \hyperlink{class_ti_xml_attribute_a138320aa7793b148ba7e5bd0a0ea4db6}{Next} ()
+\item 
+const \hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} $\ast$ \hyperlink{class_ti_xml_attribute_a54a5f8730c7b02b9a41b74e12e27fe86}{Previous} () const 
+\begin{DoxyCompactList}\small\item\em Get the previous sibling attribute in the D\+O\+M. Returns null at beginning. \end{DoxyCompactList}\item 
+\hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} $\ast$ \hyperlink{class_ti_xml_attribute_ae4dabc932cba945ed1e92fec5f121193}{Previous} ()
+\item 
+bool \hyperlink{class_ti_xml_attribute_ae48c2a65b520d453914ce4e845d607cf}{operator==} (const \hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} \&rhs) const 
+\item 
+bool \hyperlink{class_ti_xml_attribute_adb8b6f2cad5948e73e383182e7ce10de}{operator$<$} (const \hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} \&rhs) const 
+\item 
+bool \hyperlink{class_ti_xml_attribute_a867562769ef9778c1690cd373246b05b}{operator$>$} (const \hyperlink{class_ti_xml_attribute}{Ti\+Xml\+Attribute} \&rhs) const 
+\item 
+virtual const char $\ast$ \hyperlink{class_ti_xml_attribute_ad62774421b814894b995af3b5d231dda}{Parse} (const char $\ast$p, \hyperlink{class_ti_xml_parsing_data}{Ti\+Xml\+Parsing\+Data} $\ast$data, \hyperlink{tinyxml_8h_a88d51847a13ee0f4b4d320d03d2c4d96}{Ti\+Xml\+Encoding} encoding)
+\item 
+virtual void \hyperlink{class_ti_xml_attribute_acc04956c1d5c4c31fe74f7a7528d109a}{Print} (F\+I\+L\+E $\ast$cfile, int depth) const 
+\item 
+void \hyperlink{class_ti_xml_attribute_a19e6b6862a80b188571c47947e88d030}{Print} (F\+I\+L\+E $\ast$cfile, int depth, \hyperlink{tinyxml_8h_a92bada05fd84d9a0c9a5bbe53de26887}{T\+I\+X\+M\+L\+\_\+\+S\+T\+R\+I\+N\+G} $\ast$str) const 
+\item 
+void \hyperlink{class_ti_xml_attribute_ac12a94d4548302afb12f488ba101f7d1}{Set\+Document} (\hyperlink{class_ti_xml_document}{Ti\+Xml\+Document} $\ast$doc)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_ti_xml_attribute_a35a7b7f89f708527677d5078d41ce0bf}{Ti\+Xml\+Attribute\+Set}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An attribute is a name-\/value pair. Elements have an arbitrary number of attributes, each with a unique name.
+
+\begin{DoxyNote}{Note}
+The attributes are not Ti\+Xml\+Nodes, since they are not part of the tiny\+X\+M\+L document object model. There are other suggested ways to look at this problem. 
+\end{DoxyNote}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ti_xml_attribute_a9cfa3c8179873fd485d83003b114f8e1}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Ti\+Xml\+Attribute}]{\setlength{\rightskip}{0pt plus 5cm}Ti\+Xml\+Attribute\+::\+Ti\+Xml\+Attribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a9cfa3c8179873fd485d83003b114f8e1}
+
+
+Construct an empty attribute. 
+
+\hypertarget{class_ti_xml_attribute_a759d0b76fb8fcf765ecab243bc14f05e}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Ti\+Xml\+Attribute}]{\setlength{\rightskip}{0pt plus 5cm}Ti\+Xml\+Attribute\+::\+Ti\+Xml\+Attribute (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{\+\_\+name, }
+\item[{const char $\ast$}]{\+\_\+value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a759d0b76fb8fcf765ecab243bc14f05e}
+
+
+Construct an attribute with a name and value. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ti_xml_attribute_a2880ddef53fc7522c99535273954d230}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Double\+Value@{Double\+Value}}
+\index{Double\+Value@{Double\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Double\+Value}]{\setlength{\rightskip}{0pt plus 5cm}double Ti\+Xml\+Attribute\+::\+Double\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_a2880ddef53fc7522c99535273954d230}
+
+
+Return the value of this attribute, converted to a double. 
+
+\hypertarget{class_ti_xml_attribute_aa1a20ad59dc7e89a0ab265396360d50f}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Int\+Value@{Int\+Value}}
+\index{Int\+Value@{Int\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Int\+Value}]{\setlength{\rightskip}{0pt plus 5cm}int Ti\+Xml\+Attribute\+::\+Int\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_aa1a20ad59dc7e89a0ab265396360d50f}
+
+
+Return the value of this attribute, converted to an integer. 
+
+\hypertarget{class_ti_xml_attribute_a298a57287d305904ba6bd96ae6f78d3d}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Name@{Name}}
+\index{Name@{Name}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Ti\+Xml\+Attribute\+::\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a298a57287d305904ba6bd96ae6f78d3d}
+
+
+Return the name of this attribute. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a64cee17bceb8232eb0736d26dd082d79}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Name\+T\+Str@{Name\+T\+Str}}
+\index{Name\+T\+Str@{Name\+T\+Str}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Name\+T\+Str}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf T\+I\+X\+M\+L\+\_\+\+S\+T\+R\+I\+N\+G}\& Ti\+Xml\+Attribute\+::\+Name\+T\+Str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a64cee17bceb8232eb0736d26dd082d79}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a776478980776a024f7c2846eec640f65}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Next@{Next}}
+\index{Next@{Next}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Next}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Ti\+Xml\+Attribute} $\ast$ Ti\+Xml\+Attribute\+::\+Next (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_a776478980776a024f7c2846eec640f65}
+
+
+Get the next sibling attribute in the D\+O\+M. Returns null at end. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a138320aa7793b148ba7e5bd0a0ea4db6}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Next@{Next}}
+\index{Next@{Next}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ti\+Xml\+Attribute}$\ast$ Ti\+Xml\+Attribute\+::\+Next (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a138320aa7793b148ba7e5bd0a0ea4db6}
+\hypertarget{class_ti_xml_attribute_adb8b6f2cad5948e73e383182e7ce10de}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool Ti\+Xml\+Attribute\+::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ti\+Xml\+Attribute} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_adb8b6f2cad5948e73e383182e7ce10de}
+\hypertarget{class_ti_xml_attribute_ae48c2a65b520d453914ce4e845d607cf}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!operator==@{operator==}}
+\index{operator==@{operator==}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Ti\+Xml\+Attribute\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ti\+Xml\+Attribute} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_ae48c2a65b520d453914ce4e845d607cf}
+\hypertarget{class_ti_xml_attribute_a867562769ef9778c1690cd373246b05b}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Ti\+Xml\+Attribute\+::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ti\+Xml\+Attribute} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a867562769ef9778c1690cd373246b05b}
+\hypertarget{class_ti_xml_attribute_ad62774421b814894b995af3b5d231dda}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Parse@{Parse}}
+\index{Parse@{Parse}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Parse}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ Ti\+Xml\+Attribute\+::\+Parse (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p, }
+\item[{{\bf Ti\+Xml\+Parsing\+Data} $\ast$}]{data, }
+\item[{{\bf Ti\+Xml\+Encoding}}]{encoding}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_ti_xml_attribute_ad62774421b814894b995af3b5d231dda}
+
+
+Implements \hyperlink{class_ti_xml_base_a00e4edb0219d00a1379c856e5a1d2025}{Ti\+Xml\+Base}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a54a5f8730c7b02b9a41b74e12e27fe86}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Previous@{Previous}}
+\index{Previous@{Previous}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Previous}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Ti\+Xml\+Attribute} $\ast$ Ti\+Xml\+Attribute\+::\+Previous (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_a54a5f8730c7b02b9a41b74e12e27fe86}
+
+
+Get the previous sibling attribute in the D\+O\+M. Returns null at beginning. 
+
+\hypertarget{class_ti_xml_attribute_ae4dabc932cba945ed1e92fec5f121193}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Previous@{Previous}}
+\index{Previous@{Previous}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Previous}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ti\+Xml\+Attribute}$\ast$ Ti\+Xml\+Attribute\+::\+Previous (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_ae4dabc932cba945ed1e92fec5f121193}
+\hypertarget{class_ti_xml_attribute_acc04956c1d5c4c31fe74f7a7528d109a}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Print@{Print}}
+\index{Print@{Print}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Ti\+Xml\+Attribute\+::\+Print (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{cfile, }
+\item[{int}]{depth}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_ti_xml_attribute_acc04956c1d5c4c31fe74f7a7528d109a}
+All Tiny\+Xml classes can print themselves to a filestream or the string class (\hyperlink{class_ti_xml_string}{Ti\+Xml\+String} in non-\/\+S\+T\+L mode, std\+::string in S\+T\+L mode.) Either or both cfile and str can be null.
+
+This is a formatted print, and will insert tabs and newlines.
+
+(For an unformatted stream, use the $<$$<$ operator.) 
+
+Implements \hyperlink{class_ti_xml_base_a0de56b3f2ef14c65091a3b916437b512}{Ti\+Xml\+Base}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a19e6b6862a80b188571c47947e88d030}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Print@{Print}}
+\index{Print@{Print}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Print (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{cfile, }
+\item[{int}]{depth, }
+\item[{{\bf T\+I\+X\+M\+L\+\_\+\+S\+T\+R\+I\+N\+G} $\ast$}]{str}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_a19e6b6862a80b188571c47947e88d030}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_ac87b2a8489906a5d7aa2875f20be3513}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Query\+Double\+Value@{Query\+Double\+Value}}
+\index{Query\+Double\+Value@{Query\+Double\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Query\+Double\+Value}]{\setlength{\rightskip}{0pt plus 5cm}int Ti\+Xml\+Attribute\+::\+Query\+Double\+Value (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{\+\_\+value}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_ac87b2a8489906a5d7aa2875f20be3513}
+
+
+Query\+Double\+Value examines the value string. See \hyperlink{class_ti_xml_attribute_ad6c93088ee21af41a107931223339344}{Query\+Int\+Value()}. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_ad6c93088ee21af41a107931223339344}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Query\+Int\+Value@{Query\+Int\+Value}}
+\index{Query\+Int\+Value@{Query\+Int\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Query\+Int\+Value}]{\setlength{\rightskip}{0pt plus 5cm}int Ti\+Xml\+Attribute\+::\+Query\+Int\+Value (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{\+\_\+value}
+\end{DoxyParamCaption}
+) const}}\label{class_ti_xml_attribute_ad6c93088ee21af41a107931223339344}
+Query\+Int\+Value examines the value string. It is an alternative to the \hyperlink{class_ti_xml_attribute_aa1a20ad59dc7e89a0ab265396360d50f}{Int\+Value()} method with richer error checking. If the value is an integer, it is stored in 'value' and the call returns T\+I\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+S\+S. If it is not an integer, it returns T\+I\+X\+M\+L\+\_\+\+W\+R\+O\+N\+G\+\_\+\+T\+Y\+P\+E.
+
+A specialized but useful call. Note that for success it returns 0, which is the opposite of almost all other Tiny\+Xml calls. 
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_ac12a94d4548302afb12f488ba101f7d1}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Set\+Document@{Set\+Document}}
+\index{Set\+Document@{Set\+Document}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Set\+Document}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Set\+Document (
+\begin{DoxyParamCaption}
+\item[{{\bf Ti\+Xml\+Document} $\ast$}]{doc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_ac12a94d4548302afb12f488ba101f7d1}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a0316da31373496c4368ad549bf711394}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Set\+Double\+Value@{Set\+Double\+Value}}
+\index{Set\+Double\+Value@{Set\+Double\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Set\+Double\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Set\+Double\+Value (
+\begin{DoxyParamCaption}
+\item[{double}]{\+\_\+value}
+\end{DoxyParamCaption}
+)}}\label{class_ti_xml_attribute_a0316da31373496c4368ad549bf711394}
+
+
+Set the value from a double. 
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a7e065df640116a62ea4f4b7da5449cc8}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Set\+Int\+Value@{Set\+Int\+Value}}
+\index{Set\+Int\+Value@{Set\+Int\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Set\+Int\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Set\+Int\+Value (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+value}
+\end{DoxyParamCaption}
+)}}\label{class_ti_xml_attribute_a7e065df640116a62ea4f4b7da5449cc8}
+
+
+Set the value from an integer. 
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_ab7fa3d21ff8d7c5764cf9af15b667a99}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Set\+Name@{Set\+Name}}
+\index{Set\+Name@{Set\+Name}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Set\+Name}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Set\+Name (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{\+\_\+name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_ab7fa3d21ff8d7c5764cf9af15b667a99}
+
+
+Set the name of this attribute. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a2dae44178f668b3cb48101be4f2236a0}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Set\+Value@{Set\+Value}}
+\index{Set\+Value@{Set\+Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Set\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void Ti\+Xml\+Attribute\+::\+Set\+Value (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{\+\_\+value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a2dae44178f668b3cb48101be4f2236a0}
+
+
+Set the value. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_ti_xml_attribute_a0f874490eac8ca00ee0070765d0e97e3}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Value@{Value}}
+\index{Value@{Value}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Ti\+Xml\+Attribute\+::\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_ti_xml_attribute_a0f874490eac8ca00ee0070765d0e97e3}
+
+
+Return the value of this attribute. 
+
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_ti_xml_attribute_a35a7b7f89f708527677d5078d41ce0bf}{\index{Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}!Ti\+Xml\+Attribute\+Set@{Ti\+Xml\+Attribute\+Set}}
+\index{Ti\+Xml\+Attribute\+Set@{Ti\+Xml\+Attribute\+Set}!Ti\+Xml\+Attribute@{Ti\+Xml\+Attribute}}
+\subsubsection[{Ti\+Xml\+Attribute\+Set}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Ti\+Xml\+Attribute\+Set}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_ti_xml_attribute_a35a7b7f89f708527677d5078d41ce0bf}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd\+Utilities/\+Utilities/\+Tiny\+Xml/\hyperlink{tinyxml_8h}{tinyxml.\+h}\item 
+src/\+Agmd\+Utilities/\+Utilities/\+Tiny\+Xml/\hyperlink{tinyxml_8cpp}{tinyxml.\+cpp}\item 
+src/\+Agmd\+Utilities/\+Utilities/\+Tiny\+Xml/\hyperlink{tinyxmlparser_8cpp}{tinyxmlparser.\+cpp}\end{DoxyCompactItemize}

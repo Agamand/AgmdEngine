@@ -3,7 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="AgmdNetwork::OpcodeMgr\l\< OpServerMgr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_opcode_mgr.html"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="OpServerMgr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_op_server_mgr.html"];
+  Node1 [label="Agmd::SceneMgr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_scene_mgr.html"];
 }

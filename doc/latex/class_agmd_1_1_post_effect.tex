@@ -1,0 +1,121 @@
+\hypertarget{class_agmd_1_1_post_effect}{\section{Agmd\+:\+:Post\+Effect Class Reference}
+\label{class_agmd_1_1_post_effect}\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+}
+
+
+{\ttfamily \#include $<$Post\+Effect.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Post\+Effect\+:
+
+
+Collaboration diagram for Agmd\+:\+:Post\+Effect\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_post_effect_a4e4092d7237f6992a339f186a9b4a033}{Post\+Effect} ()
+\item 
+virtual \hyperlink{class_agmd_1_1_post_effect_a0b7086103d480850b0d0f0c7833de85f}{$\sim$\+Post\+Effect} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_post_effect_a0fc04d1fa9c626d7afd1bb3ad9650fc7}{Init} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_post_effect_a7fa3e1ad3a588dce0f9f51db8b420c91}{Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64})=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_post_effect_a853f68fdefbb0450851bc8f4539ec4db}{Apply\+Effect} (\hyperlink{class_agmd_1_1_texture}{Texture} \&input, \hyperlink{class_agmd_1_1_texture}{Texture} \&output)=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_post_effect_a0b880bab27c99b780712ac1d93a92307}{Set\+Enable} (bool enable)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_shader_program}{Shader\+Program} \hyperlink{class_agmd_1_1_post_effect_af0555b6dbaa69901d113e8b88353c160}{m\+\_\+program}
+\item 
+\hyperlink{class_agmd_1_1_frame_buffer}{Frame\+Buffer} $\ast$ \hyperlink{class_agmd_1_1_post_effect_a13821c8d90685a9f75609d21953c3dab}{m\+\_\+framebuffer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_post_effect_a4e4092d7237f6992a339f186a9b4a033}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!Post\+Effect@{Post\+Effect}}
+\index{Post\+Effect@{Post\+Effect}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{Post\+Effect}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Post\+Effect\+::\+Post\+Effect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_post_effect_a4e4092d7237f6992a339f186a9b4a033}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_post_effect_a0b7086103d480850b0d0f0c7833de85f}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!````~Post\+Effect@{$\sim$\+Post\+Effect}}
+\index{````~Post\+Effect@{$\sim$\+Post\+Effect}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{$\sim$\+Post\+Effect}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Post\+Effect\+::$\sim$\+Post\+Effect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_post_effect_a0b7086103d480850b0d0f0c7833de85f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_post_effect_a853f68fdefbb0450851bc8f4539ec4db}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!Apply\+Effect@{Apply\+Effect}}
+\index{Apply\+Effect@{Apply\+Effect}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{Apply\+Effect}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Post\+Effect\+::\+Apply\+Effect (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture} \&}]{input, }
+\item[{{\bf Texture} \&}]{output}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_post_effect_a853f68fdefbb0450851bc8f4539ec4db}
+
+
+Implemented in \hyperlink{class_agmd_1_1_asci_effect_ac00621025bf283158a57290eff9829e6}{Agmd\+::\+Asci\+Effect}, \hyperlink{class_agmd_1_1_blur_effect_a5faf8cd49602dfc0b745b105d32c0e1f}{Agmd\+::\+Blur\+Effect}, \hyperlink{class_agmd_1_1_blur_motion_effect_a6286d0c1aea5f9560fa0da698995addb}{Agmd\+::\+Blur\+Motion\+Effect}, and \hyperlink{class_agmd_1_1_anti_aliasing_adb9b1c48992e92fac71727afcfae2edb}{Agmd\+::\+Anti\+Aliasing}.
+
+\hypertarget{class_agmd_1_1_post_effect_a0fc04d1fa9c626d7afd1bb3ad9650fc7}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!Init@{Init}}
+\index{Init@{Init}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Post\+Effect\+::\+Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_post_effect_a0fc04d1fa9c626d7afd1bb3ad9650fc7}
+
+
+Implemented in \hyperlink{class_agmd_1_1_asci_effect_aea65718dfabaf2864b642f4d6fd0fe4f}{Agmd\+::\+Asci\+Effect}, \hyperlink{class_agmd_1_1_blur_effect_a072b106d29c221ba95ef7fa03bd66d9a}{Agmd\+::\+Blur\+Effect}, \hyperlink{class_agmd_1_1_blur_motion_effect_a81459fa84cce7b8fb93c134a19217218}{Agmd\+::\+Blur\+Motion\+Effect}, and \hyperlink{class_agmd_1_1_anti_aliasing_a6e83a4740d7a8916b8652ef941a35403}{Agmd\+::\+Anti\+Aliasing}.
+
+\hypertarget{class_agmd_1_1_post_effect_a0b880bab27c99b780712ac1d93a92307}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!Set\+Enable@{Set\+Enable}}
+\index{Set\+Enable@{Set\+Enable}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{Set\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Post\+Effect\+::\+Set\+Enable (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_post_effect_a0b880bab27c99b780712ac1d93a92307}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_post_effect_a7fa3e1ad3a588dce0f9f51db8b420c91}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Post\+Effect\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_post_effect_a7fa3e1ad3a588dce0f9f51db8b420c91}
+
+
+Implemented in \hyperlink{class_agmd_1_1_asci_effect_a417d09c081e54e9d441a364116a82100}{Agmd\+::\+Asci\+Effect}, \hyperlink{class_agmd_1_1_blur_effect_a06b1dd244fec6e7ed24d436570db3f04}{Agmd\+::\+Blur\+Effect}, \hyperlink{class_agmd_1_1_blur_motion_effect_ac94fcea7a83905333956f22f719c1805}{Agmd\+::\+Blur\+Motion\+Effect}, and \hyperlink{class_agmd_1_1_anti_aliasing_a75119ac5199120cd1186b3a96fe18cbf}{Agmd\+::\+Anti\+Aliasing}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_post_effect_a13821c8d90685a9f75609d21953c3dab}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!m\+\_\+framebuffer@{m\+\_\+framebuffer}}
+\index{m\+\_\+framebuffer@{m\+\_\+framebuffer}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{m\+\_\+framebuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Frame\+Buffer}$\ast$ Agmd\+::\+Post\+Effect\+::m\+\_\+framebuffer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_post_effect_a13821c8d90685a9f75609d21953c3dab}
+\hypertarget{class_agmd_1_1_post_effect_af0555b6dbaa69901d113e8b88353c160}{\index{Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}!m\+\_\+program@{m\+\_\+program}}
+\index{m\+\_\+program@{m\+\_\+program}!Agmd\+::\+Post\+Effect@{Agmd\+::\+Post\+Effect}}
+\subsubsection[{m\+\_\+program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shader\+Program} Agmd\+::\+Post\+Effect\+::m\+\_\+program\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_post_effect_af0555b6dbaa69901d113e8b88353c160}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Effects/\hyperlink{_post_effect_8h}{Post\+Effect.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Effects/\hyperlink{_post_effect_8cpp}{Post\+Effect.\+cpp}\end{DoxyCompactItemize}

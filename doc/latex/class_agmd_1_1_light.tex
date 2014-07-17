@@ -1,0 +1,241 @@
+\hypertarget{class_agmd_1_1_light}{\section{Agmd\+:\+:Light Class Reference}
+\label{class_agmd_1_1_light}\index{Agmd\+::\+Light@{Agmd\+::\+Light}}
+}
+
+
+{\ttfamily \#include $<$Light.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_light_aa560a0216af49d495220863b1594ec0b}{Light} (vec3 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}, vec3 dir, \hyperlink{namespace_agmd_adacbee94d4dc3a4e858b543082fdab10}{Light\+Type} type)
+\item 
+\hyperlink{class_agmd_1_1_light_a3ac670a347c94a49d9ff1dfdb3dced7e}{$\sim$\+Light} ()
+\item 
+void \hyperlink{class_agmd_1_1_light_a32afdf3c81d2f8520b56fe1e14910ac7}{Prepare} ()
+\item 
+void \hyperlink{class_agmd_1_1_light_a9aeead6f02a79f039ce5d65cd922487b}{Bind} ()
+\item 
+void \hyperlink{class_agmd_1_1_light_a520076a8ae76e788063b137cc9539c42}{Begin\+Prepare\+Shadow} () const 
+\item 
+void \hyperlink{class_agmd_1_1_light_ae16674c0352a70fe69a8e1d9fc0a427c}{End\+Prepare\+Shadow} () const 
+\item 
+void \hyperlink{class_agmd_1_1_light_a6ec531e4b9c8c3f6e4d14e3c7ee29e27}{Begin\+Apply\+Shadow} () const 
+\item 
+void \hyperlink{class_agmd_1_1_light_a7f00fa32912c849560a0db13c61137b4}{End\+Apply\+Shadow} () const 
+\item 
+\hyperlink{class_agmd_maths_1_1_transform}{Transform} \& \hyperlink{class_agmd_1_1_light_a07f2a1540309aff3e639fbd6765e11b7}{Get\+Transform} ()
+\item 
+void \hyperlink{class_agmd_1_1_light_a19952c0f2db3523eab90f33d3fa79a1f}{Set\+Position} (vec3 \&position)
+\item 
+void \hyperlink{class_agmd_1_1_light_a9a6e84c576d06fafb67e67cc46d8de41}{Set\+Direction} (vec3 \&direction)
+\item 
+void \hyperlink{class_agmd_1_1_light_aa2c99bc875ea259730ff5a114d471de0}{Set\+Range} (float range)
+\item 
+const vec3 \& \hyperlink{class_agmd_1_1_light_a6c37d05d1a6f0c8bb8871e4b05691a93}{Get\+Position} ()
+\item 
+const vec3 \& \hyperlink{class_agmd_1_1_light_ad6c68cf85b55e3b84c1f6b547810f56e}{Get\+Direction} ()
+\item 
+\hyperlink{namespace_agmd_adacbee94d4dc3a4e858b543082fdab10}{Light\+Type} \hyperlink{class_agmd_1_1_light_aa2d23365a0491dda65b732844d533287}{Get\+Type} () const 
+\item 
+float \hyperlink{class_agmd_1_1_light_a4bb9bc1f2e826cefd3bea9965bf42825}{Get\+Range} () const 
+\item 
+float \hyperlink{class_agmd_1_1_light_a44125622c3caec7de1801caefa15b22f}{Get\+Outer\+Angle} () const 
+\item 
+float \hyperlink{class_agmd_1_1_light_ab603290a7df4e5c021114a05f8c89f1f}{Get\+Inner\+Angle} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_light_aa560a0216af49d495220863b1594ec0b}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Light@{Light}}
+\index{Light@{Light}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Light}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Light\+::\+Light (
+\begin{DoxyParamCaption}
+\item[{vec3}]{pos, }
+\item[{vec3}]{dir, }
+\item[{{\bf Light\+Type}}]{type}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_aa560a0216af49d495220863b1594ec0b}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a3ac670a347c94a49d9ff1dfdb3dced7e}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!````~Light@{$\sim$\+Light}}
+\index{````~Light@{$\sim$\+Light}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{$\sim$\+Light}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Light\+::$\sim$\+Light (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a3ac670a347c94a49d9ff1dfdb3dced7e}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_light_a6ec531e4b9c8c3f6e4d14e3c7ee29e27}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Begin\+Apply\+Shadow@{Begin\+Apply\+Shadow}}
+\index{Begin\+Apply\+Shadow@{Begin\+Apply\+Shadow}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Begin\+Apply\+Shadow}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Begin\+Apply\+Shadow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_a6ec531e4b9c8c3f6e4d14e3c7ee29e27}
+\hypertarget{class_agmd_1_1_light_a520076a8ae76e788063b137cc9539c42}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Begin\+Prepare\+Shadow@{Begin\+Prepare\+Shadow}}
+\index{Begin\+Prepare\+Shadow@{Begin\+Prepare\+Shadow}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Begin\+Prepare\+Shadow}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Begin\+Prepare\+Shadow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_a520076a8ae76e788063b137cc9539c42}
+\hypertarget{class_agmd_1_1_light_a9aeead6f02a79f039ce5d65cd922487b}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Bind@{Bind}}
+\index{Bind@{Bind}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Bind}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Bind (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a9aeead6f02a79f039ce5d65cd922487b}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a7f00fa32912c849560a0db13c61137b4}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!End\+Apply\+Shadow@{End\+Apply\+Shadow}}
+\index{End\+Apply\+Shadow@{End\+Apply\+Shadow}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{End\+Apply\+Shadow}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+End\+Apply\+Shadow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_a7f00fa32912c849560a0db13c61137b4}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_ae16674c0352a70fe69a8e1d9fc0a427c}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!End\+Prepare\+Shadow@{End\+Prepare\+Shadow}}
+\index{End\+Prepare\+Shadow@{End\+Prepare\+Shadow}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{End\+Prepare\+Shadow}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+End\+Prepare\+Shadow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_ae16674c0352a70fe69a8e1d9fc0a427c}
+\hypertarget{class_agmd_1_1_light_ad6c68cf85b55e3b84c1f6b547810f56e}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Direction@{Get\+Direction}}
+\index{Get\+Direction@{Get\+Direction}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}const vec3 \& Agmd\+::\+Light\+::\+Get\+Direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_ad6c68cf85b55e3b84c1f6b547810f56e}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_ab603290a7df4e5c021114a05f8c89f1f}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Inner\+Angle@{Get\+Inner\+Angle}}
+\index{Get\+Inner\+Angle@{Get\+Inner\+Angle}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Inner\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Light\+::\+Get\+Inner\+Angle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_ab603290a7df4e5c021114a05f8c89f1f}
+\hypertarget{class_agmd_1_1_light_a44125622c3caec7de1801caefa15b22f}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Outer\+Angle@{Get\+Outer\+Angle}}
+\index{Get\+Outer\+Angle@{Get\+Outer\+Angle}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Outer\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Light\+::\+Get\+Outer\+Angle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_a44125622c3caec7de1801caefa15b22f}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a6c37d05d1a6f0c8bb8871e4b05691a93}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const vec3 \& Agmd\+::\+Light\+::\+Get\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a6c37d05d1a6f0c8bb8871e4b05691a93}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a4bb9bc1f2e826cefd3bea9965bf42825}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Range@{Get\+Range}}
+\index{Get\+Range@{Get\+Range}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Range}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Light\+::\+Get\+Range (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_a4bb9bc1f2e826cefd3bea9965bf42825}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a07f2a1540309aff3e639fbd6765e11b7}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Transform} \& Agmd\+::\+Light\+::\+Get\+Transform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a07f2a1540309aff3e639fbd6765e11b7}
+\hypertarget{class_agmd_1_1_light_aa2d23365a0491dda65b732844d533287}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Get\+Type@{Get\+Type}}
+\index{Get\+Type@{Get\+Type}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Type} Agmd\+::\+Light\+::\+Get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_light_aa2d23365a0491dda65b732844d533287}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a32afdf3c81d2f8520b56fe1e14910ac7}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Prepare@{Prepare}}
+\index{Prepare@{Prepare}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Prepare}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Prepare (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a32afdf3c81d2f8520b56fe1e14910ac7}
+\hypertarget{class_agmd_1_1_light_a9a6e84c576d06fafb67e67cc46d8de41}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Set\+Direction@{Set\+Direction}}
+\index{Set\+Direction@{Set\+Direction}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Set\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Set\+Direction (
+\begin{DoxyParamCaption}
+\item[{vec3 \&}]{direction}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a9a6e84c576d06fafb67e67cc46d8de41}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_a19952c0f2db3523eab90f33d3fa79a1f}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Set\+Position (
+\begin{DoxyParamCaption}
+\item[{vec3 \&}]{position}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_a19952c0f2db3523eab90f33d3fa79a1f}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_light_aa2c99bc875ea259730ff5a114d471de0}{\index{Agmd\+::\+Light@{Agmd\+::\+Light}!Set\+Range@{Set\+Range}}
+\index{Set\+Range@{Set\+Range}!Agmd\+::\+Light@{Agmd\+::\+Light}}
+\subsubsection[{Set\+Range}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Light\+::\+Set\+Range (
+\begin{DoxyParamCaption}
+\item[{float}]{range}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_light_aa2c99bc875ea259730ff5a114d471de0}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Object/\hyperlink{_light_8h}{Light.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Scene\+Object/\hyperlink{_light_8cpp}{Light.\+cpp}\end{DoxyCompactItemize}

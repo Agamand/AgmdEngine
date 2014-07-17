@@ -1,0 +1,230 @@
+\hypertarget{list_8cpp}{\section{src/\+Demo/\+Loader/list.cpp File Reference}
+\label{list_8cpp}\index{src/\+Demo/\+Loader/list.\+cpp@{src/\+Demo/\+Loader/list.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+Include dependency graph for list.\+cpp\+:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{list_8cpp_a8cb975f75e8368843679eef819bf3411}{list\+\_\+is\+\_\+full} (\hyperlink{structlist}{list} $\ast$listo)
+\item 
+void \hyperlink{list_8cpp_a7b5b2552eb48045e21a9604c352495f3}{list\+\_\+grow} (\hyperlink{structlist}{list} $\ast$old\+\_\+listo)
+\item 
+void \hyperlink{list_8cpp_a3e209c08118e7372be7a2a17e4c7da84}{list\+\_\+make} (\hyperlink{structlist}{list} $\ast$listo, int start\+\_\+size, char growable)
+\item 
+int \hyperlink{list_8cpp_a70152164fde596bd03c6659b1312cad9}{list\+\_\+add\+\_\+item} (\hyperlink{structlist}{list} $\ast$listo, void $\ast$item, char $\ast$name)
+\item 
+char $\ast$ \hyperlink{list_8cpp_a3e6548d02e2dc70201ecd0d64881e6cb}{list\+\_\+print\+\_\+items} (\hyperlink{structlist}{list} $\ast$listo)
+\item 
+void $\ast$ \hyperlink{list_8cpp_acdcb5d974d4a373c3cdb4d4fbf0d0987}{list\+\_\+get\+\_\+index} (\hyperlink{structlist}{list} $\ast$listo, int indx)
+\item 
+void $\ast$ \hyperlink{list_8cpp_a8e8e6c73ab98a3e35d854a336f312053}{list\+\_\+get\+\_\+item} (\hyperlink{structlist}{list} $\ast$listo, void $\ast$item\+\_\+to\+\_\+find)
+\item 
+void $\ast$ \hyperlink{list_8cpp_a5b191ac9368ec0143dd6dea9689c943c}{list\+\_\+get\+\_\+name} (\hyperlink{structlist}{list} $\ast$listo, char $\ast$name\+\_\+to\+\_\+find)
+\item 
+int \hyperlink{list_8cpp_a1a5e2a8cd1b91d8ccda6a3c08b08ccdb}{list\+\_\+find} (\hyperlink{structlist}{list} $\ast$listo, char $\ast$name\+\_\+to\+\_\+find)
+\item 
+void \hyperlink{list_8cpp_ab38171029b668fe85990e7a329adba4d}{list\+\_\+delete\+\_\+item} (\hyperlink{structlist}{list} $\ast$listo, void $\ast$item)
+\item 
+void \hyperlink{list_8cpp_a95b5b9660bbb85b0c19fd8b853bc960e}{list\+\_\+delete\+\_\+name} (\hyperlink{structlist}{list} $\ast$listo, char $\ast$name)
+\item 
+void \hyperlink{list_8cpp_a3f4a9bc319227ff077e7d74343e9950a}{list\+\_\+delete\+\_\+index} (\hyperlink{structlist}{list} $\ast$listo, int indx)
+\item 
+void \hyperlink{list_8cpp_aa324cc75820e2e5835b20d58c25afaeb}{list\+\_\+delete\+\_\+all} (\hyperlink{structlist}{list} $\ast$listo)
+\item 
+void \hyperlink{list_8cpp_a71fb06615f2fcabad215b107af43d1c3}{list\+\_\+free} (\hyperlink{structlist}{list} $\ast$listo)
+\item 
+void \hyperlink{list_8cpp_a159bdb76b5a81bce272c3280aa43acb6}{list\+\_\+print\+\_\+list} (\hyperlink{structlist}{list} $\ast$listo)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{list_8cpp_a70152164fde596bd03c6659b1312cad9}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+add\+\_\+item@{list\+\_\+add\+\_\+item}}
+\index{list\+\_\+add\+\_\+item@{list\+\_\+add\+\_\+item}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+add\+\_\+item}]{\setlength{\rightskip}{0pt plus 5cm}int list\+\_\+add\+\_\+item (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{void $\ast$}]{item, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a70152164fde596bd03c6659b1312cad9}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_aa324cc75820e2e5835b20d58c25afaeb}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+delete\+\_\+all@{list\+\_\+delete\+\_\+all}}
+\index{list\+\_\+delete\+\_\+all@{list\+\_\+delete\+\_\+all}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+delete\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+delete\+\_\+all (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_aa324cc75820e2e5835b20d58c25afaeb}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_a3f4a9bc319227ff077e7d74343e9950a}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+delete\+\_\+index@{list\+\_\+delete\+\_\+index}}
+\index{list\+\_\+delete\+\_\+index@{list\+\_\+delete\+\_\+index}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+delete\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+delete\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{int}]{indx}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a3f4a9bc319227ff077e7d74343e9950a}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_ab38171029b668fe85990e7a329adba4d}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+delete\+\_\+item@{list\+\_\+delete\+\_\+item}}
+\index{list\+\_\+delete\+\_\+item@{list\+\_\+delete\+\_\+item}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+delete\+\_\+item}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+delete\+\_\+item (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{void $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_ab38171029b668fe85990e7a329adba4d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{list_8cpp_a95b5b9660bbb85b0c19fd8b853bc960e}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+delete\+\_\+name@{list\+\_\+delete\+\_\+name}}
+\index{list\+\_\+delete\+\_\+name@{list\+\_\+delete\+\_\+name}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+delete\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+delete\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a95b5b9660bbb85b0c19fd8b853bc960e}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{list_8cpp_a1a5e2a8cd1b91d8ccda6a3c08b08ccdb}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+find@{list\+\_\+find}}
+\index{list\+\_\+find@{list\+\_\+find}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int list\+\_\+find (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{char $\ast$}]{name\+\_\+to\+\_\+find}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a1a5e2a8cd1b91d8ccda6a3c08b08ccdb}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_a71fb06615f2fcabad215b107af43d1c3}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+free@{list\+\_\+free}}
+\index{list\+\_\+free@{list\+\_\+free}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+free}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a71fb06615f2fcabad215b107af43d1c3}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_acdcb5d974d4a373c3cdb4d4fbf0d0987}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+get\+\_\+index@{list\+\_\+get\+\_\+index}}
+\index{list\+\_\+get\+\_\+index@{list\+\_\+get\+\_\+index}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+get\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ list\+\_\+get\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{int}]{indx}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_acdcb5d974d4a373c3cdb4d4fbf0d0987}
+\hypertarget{list_8cpp_a8e8e6c73ab98a3e35d854a336f312053}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+get\+\_\+item@{list\+\_\+get\+\_\+item}}
+\index{list\+\_\+get\+\_\+item@{list\+\_\+get\+\_\+item}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+get\+\_\+item}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ list\+\_\+get\+\_\+item (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{void $\ast$}]{item\+\_\+to\+\_\+find}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a8e8e6c73ab98a3e35d854a336f312053}
+\hypertarget{list_8cpp_a5b191ac9368ec0143dd6dea9689c943c}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+get\+\_\+name@{list\+\_\+get\+\_\+name}}
+\index{list\+\_\+get\+\_\+name@{list\+\_\+get\+\_\+name}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+get\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ list\+\_\+get\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{char $\ast$}]{name\+\_\+to\+\_\+find}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a5b191ac9368ec0143dd6dea9689c943c}
+\hypertarget{list_8cpp_a7b5b2552eb48045e21a9604c352495f3}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+grow@{list\+\_\+grow}}
+\index{list\+\_\+grow@{list\+\_\+grow}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+grow}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+grow (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{old\+\_\+listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a7b5b2552eb48045e21a9604c352495f3}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_a8cb975f75e8368843679eef819bf3411}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+is\+\_\+full@{list\+\_\+is\+\_\+full}}
+\index{list\+\_\+is\+\_\+full@{list\+\_\+is\+\_\+full}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+is\+\_\+full}]{\setlength{\rightskip}{0pt plus 5cm}char list\+\_\+is\+\_\+full (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a8cb975f75e8368843679eef819bf3411}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_a3e209c08118e7372be7a2a17e4c7da84}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+make@{list\+\_\+make}}
+\index{list\+\_\+make@{list\+\_\+make}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+make}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+make (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo, }
+\item[{int}]{start\+\_\+size, }
+\item[{char}]{growable}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a3e209c08118e7372be7a2a17e4c7da84}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{list_8cpp_a3e6548d02e2dc70201ecd0d64881e6cb}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+print\+\_\+items@{list\+\_\+print\+\_\+items}}
+\index{list\+\_\+print\+\_\+items@{list\+\_\+print\+\_\+items}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+print\+\_\+items}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ list\+\_\+print\+\_\+items (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a3e6548d02e2dc70201ecd0d64881e6cb}
+\hypertarget{list_8cpp_a159bdb76b5a81bce272c3280aa43acb6}{\index{list.\+cpp@{list.\+cpp}!list\+\_\+print\+\_\+list@{list\+\_\+print\+\_\+list}}
+\index{list\+\_\+print\+\_\+list@{list\+\_\+print\+\_\+list}!list.\+cpp@{list.\+cpp}}
+\subsubsection[{list\+\_\+print\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void list\+\_\+print\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf list} $\ast$}]{listo}
+\end{DoxyParamCaption}
+)}}\label{list_8cpp_a159bdb76b5a81bce272c3280aa43acb6}

@@ -1,0 +1,29 @@
+digraph "Agmd::AgmdApp::WindowProc"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::AgmdApp::WindowProc",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Singleton\< GUIMgr \>\l::Instance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_singleton.html#a131e87528259529400d58b6df5d9743c"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Agmd::Camera::getCurrent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_camera.html#ad7540ca1559b046eeb41beaffca4c36d"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Agmd::AgmdApp::Exit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_agmd_app.html#a6150fa7d962c30ac4b6e82b01ed686a6"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Agmd::Camera::onKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_camera.html#a63fae187423be21161d39da11039e3ba"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Agmd::RenderingMode\l::getRenderingMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_rendering_mode.html#a7f71cb957d3b5f86419d2dd89f31f0d7"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Agmd::RenderingMode\l::setRenderMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_rendering_mode.html#a841947427249a9762ce7d57f9a3f9c9f"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Agmd::AgmdApp::OnClick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_agmd_app.html#a913ddd866a4970d64cc37305544b84d8"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Agmd::GUIMgr::AddEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_u_i_mgr.html#aa36edc13d8e792777de37b12b0899b6e"];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Agmd::Camera::onMouseWheel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_camera.html#aa372ea65985a59ede956ad731f5e06d1"];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Agmd::Camera::onMouseMotion",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_camera.html#a2a4fe292c83654aa7f2011f7f43c3635"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="Agmd::AgmdApp::OnMove",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_agmd_app.html#a22c840f51f2aff2962ee8662d6b9755d"];
+}

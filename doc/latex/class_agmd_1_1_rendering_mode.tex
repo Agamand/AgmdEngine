@@ -1,0 +1,153 @@
+\hypertarget{class_agmd_1_1_rendering_mode}{\section{Agmd\+:\+:Rendering\+Mode Class Reference}
+\label{class_agmd_1_1_rendering_mode}\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+}
+
+
+{\ttfamily \#include $<$Rendering\+Mode.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Rendering\+Mode\+:
+
+
+Collaboration diagram for Agmd\+:\+:Rendering\+Mode\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_rendering_mode_af13f0a62f876c1a08ae0490cea246869}{Rendering\+Mode} (\hyperlink{_common_defines_8h_ae2e4316e0b924774484a728669bebc9b}{a\+\_\+int32} width, \hyperlink{_common_defines_8h_ae2e4316e0b924774484a728669bebc9b}{a\+\_\+int32} heigth)
+\item 
+\hyperlink{class_agmd_1_1_rendering_mode_a553cfd81c1ef6caddcb8859e56b0a1eb}{Rendering\+Mode} (ivec2 \&screen\+Size)
+\item 
+virtual void \hyperlink{class_agmd_1_1_rendering_mode_a6a558c71d87ba840745d347832c2c77c}{compute} ()=0
+\item 
+void \hyperlink{class_agmd_1_1_rendering_mode_a841947427249a9762ce7d57f9a3f9c9f}{set\+Render\+Mode} (\hyperlink{namespace_agmd_aa4cbd15e55e815e187c31a8f435addae}{T\+Render\+Mode} mode)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_agmd_1_1_rendering_mode_a5f40f8fb26c586a54f5dd97bedda478e}{set\+Rendering\+Mode} (\hyperlink{class_agmd_1_1_rendering_mode}{Rendering\+Mode} $\ast$)
+\item 
+static \hyperlink{class_agmd_1_1_rendering_mode}{Rendering\+Mode} $\ast$ \hyperlink{class_agmd_1_1_rendering_mode_a7f71cb957d3b5f86419d2dd89f31f0d7}{get\+Rendering\+Mode} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_agmd_1_1_rendering_mode_a725fdff706bd725df5b4ab3caadbaf02}{start} ()=0
+\item 
+virtual void \hyperlink{class_agmd_1_1_rendering_mode_ab9adff57a79f04a589aad0146425fbc4}{end} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ivec2 \hyperlink{class_agmd_1_1_rendering_mode_a235cb3db6faec56369f13bdaa75282ae}{m\+\_\+screen}
+\item 
+\hyperlink{namespace_agmd_aa4cbd15e55e815e187c31a8f435addae}{T\+Render\+Mode} \hyperlink{class_agmd_1_1_rendering_mode_a379cfc61b76ac3a58c5aa81db26fa5e6}{m\+\_\+mode}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_agmd_1_1_rendering_mode}{Rendering\+Mode} $\ast$ \hyperlink{class_agmd_1_1_rendering_mode_a5cf89e3c1db7cc337f8734dab3b4e4ca}{s\+\_\+current} = N\+U\+L\+L
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_rendering_mode_af13f0a62f876c1a08ae0490cea246869}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!Rendering\+Mode@{Rendering\+Mode}}
+\index{Rendering\+Mode@{Rendering\+Mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{Rendering\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Rendering\+Mode\+::\+Rendering\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+int32}}]{width, }
+\item[{{\bf a\+\_\+int32}}]{heigth}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_rendering_mode_af13f0a62f876c1a08ae0490cea246869}
+\hypertarget{class_agmd_1_1_rendering_mode_a553cfd81c1ef6caddcb8859e56b0a1eb}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!Rendering\+Mode@{Rendering\+Mode}}
+\index{Rendering\+Mode@{Rendering\+Mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{Rendering\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Rendering\+Mode\+::\+Rendering\+Mode (
+\begin{DoxyParamCaption}
+\item[{ivec2 \&}]{screen\+Size}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_rendering_mode_a553cfd81c1ef6caddcb8859e56b0a1eb}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_rendering_mode_a6a558c71d87ba840745d347832c2c77c}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!compute@{compute}}
+\index{compute@{compute}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{compute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Rendering\+Mode\+::compute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_1_1_rendering_mode_a6a558c71d87ba840745d347832c2c77c}
+
+
+Implemented in \hyperlink{class_agmd_1_1_deferred_rendering_a515c1e13b229417261fa43f77e594076}{Agmd\+::\+Deferred\+Rendering}, \hyperlink{class_agmd_1_1_forward_rendering_a439976e5f442bf382e827f786f3e34f1}{Agmd\+::\+Forward\+Rendering}, and \hyperlink{class_agmd_1_1_vertex_rendering_a380d35675521fa7b1b739c1c1214c882}{Agmd\+::\+Vertex\+Rendering}.
+
+\hypertarget{class_agmd_1_1_rendering_mode_ab9adff57a79f04a589aad0146425fbc4}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!end@{end}}
+\index{end@{end}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Rendering\+Mode\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_rendering_mode_ab9adff57a79f04a589aad0146425fbc4}
+
+
+Implemented in \hyperlink{class_agmd_1_1_deferred_rendering_aaa09f668d35aea7fb30c940fd658f733}{Agmd\+::\+Deferred\+Rendering}, \hyperlink{class_agmd_1_1_forward_rendering_a663d915f7286225648d33d92e9eb2d3f}{Agmd\+::\+Forward\+Rendering}, and \hyperlink{class_agmd_1_1_vertex_rendering_accf6f94aa1d549e225c8ca28607b35e0}{Agmd\+::\+Vertex\+Rendering}.
+
+\hypertarget{class_agmd_1_1_rendering_mode_a7f71cb957d3b5f86419d2dd89f31f0d7}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!get\+Rendering\+Mode@{get\+Rendering\+Mode}}
+\index{get\+Rendering\+Mode@{get\+Rendering\+Mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{get\+Rendering\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rendering\+Mode} $\ast$ Agmd\+::\+Rendering\+Mode\+::get\+Rendering\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_rendering_mode_a7f71cb957d3b5f86419d2dd89f31f0d7}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_rendering_mode_a5f40f8fb26c586a54f5dd97bedda478e}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!set\+Rendering\+Mode@{set\+Rendering\+Mode}}
+\index{set\+Rendering\+Mode@{set\+Rendering\+Mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{set\+Rendering\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Rendering\+Mode\+::set\+Rendering\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf Rendering\+Mode} $\ast$}]{render}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_agmd_1_1_rendering_mode_a5f40f8fb26c586a54f5dd97bedda478e}
+\hypertarget{class_agmd_1_1_rendering_mode_a841947427249a9762ce7d57f9a3f9c9f}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!set\+Render\+Mode@{set\+Render\+Mode}}
+\index{set\+Render\+Mode@{set\+Render\+Mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{set\+Render\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Rendering\+Mode\+::set\+Render\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_rendering_mode_a841947427249a9762ce7d57f9a3f9c9f}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_rendering_mode_a725fdff706bd725df5b4ab3caadbaf02}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!start@{start}}
+\index{start@{start}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+::\+Rendering\+Mode\+::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_agmd_1_1_rendering_mode_a725fdff706bd725df5b4ab3caadbaf02}
+
+
+Implemented in \hyperlink{class_agmd_1_1_deferred_rendering_ac6aaad52470c21daebdb59855e201b34}{Agmd\+::\+Deferred\+Rendering}, \hyperlink{class_agmd_1_1_forward_rendering_a2b3207d31479b4aabda32e0c7de8fc7a}{Agmd\+::\+Forward\+Rendering}, and \hyperlink{class_agmd_1_1_vertex_rendering_ac03dd545b910070c14d4c478e2c6d936}{Agmd\+::\+Vertex\+Rendering}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_rendering_mode_a379cfc61b76ac3a58c5aa81db26fa5e6}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!m\+\_\+mode@{m\+\_\+mode}}
+\index{m\+\_\+mode@{m\+\_\+mode}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{m\+\_\+mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+Render\+Mode} Agmd\+::\+Rendering\+Mode\+::m\+\_\+mode\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_rendering_mode_a379cfc61b76ac3a58c5aa81db26fa5e6}
+\hypertarget{class_agmd_1_1_rendering_mode_a235cb3db6faec56369f13bdaa75282ae}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!m\+\_\+screen@{m\+\_\+screen}}
+\index{m\+\_\+screen@{m\+\_\+screen}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{m\+\_\+screen}]{\setlength{\rightskip}{0pt plus 5cm}ivec2 Agmd\+::\+Rendering\+Mode\+::m\+\_\+screen\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_rendering_mode_a235cb3db6faec56369f13bdaa75282ae}
+\hypertarget{class_agmd_1_1_rendering_mode_a5cf89e3c1db7cc337f8734dab3b4e4ca}{\index{Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}!s\+\_\+current@{s\+\_\+current}}
+\index{s\+\_\+current@{s\+\_\+current}!Agmd\+::\+Rendering\+Mode@{Agmd\+::\+Rendering\+Mode}}
+\subsubsection[{s\+\_\+current}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rendering\+Mode} $\ast$ Agmd\+::\+Rendering\+Mode\+::s\+\_\+current = N\+U\+L\+L\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_agmd_1_1_rendering_mode_a5cf89e3c1db7cc337f8734dab3b4e4ca}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Rendering\+Mode/\hyperlink{_rendering_mode_8h}{Rendering\+Mode.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Rendering\+Mode/\hyperlink{_rendering_mode_8cpp}{Rendering\+Mode.\+cpp}\end{DoxyCompactItemize}

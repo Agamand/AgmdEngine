@@ -1,0 +1,11 @@
+digraph "Agmd::SceneNode::addChild"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::SceneNode::addChild",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Agmd::SceneMgr::AddNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_scene_mgr.html#a8ba20e6b3ae6e7c8f40ec1231b127c5f"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Planet::Planet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_planet.html#adbd5bfd2c35ff4b226a586ad9b2cf3a7"];
+}

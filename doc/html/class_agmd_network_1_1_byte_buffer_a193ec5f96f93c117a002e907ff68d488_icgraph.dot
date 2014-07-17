@@ -1,0 +1,19 @@
+digraph "AgmdNetwork::ByteBuffer::contents"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="AgmdNetwork::ByteBuffer\l::contents",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AgmdNetwork::Client\l::SendPacket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_client.html#aec350453a69e976c506b0728c5a5ff57"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AgmdNetwork::ByteBuffer\l::append",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_byte_buffer.html#a12e7c740a5c5b9376b59f22d9dd84d22"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="AgmdNetwork::Server\l::SendPacket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_network_1_1_server.html#a7144d57c804d9a4aa5dae4d83011d1b0"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_agmd_server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="App::Run",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_app.html#a92c5c3d8799fe937ea0179b4efb1f4d3"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627"];
+}

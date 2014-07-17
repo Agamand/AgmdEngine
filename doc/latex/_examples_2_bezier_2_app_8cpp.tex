@@ -1,0 +1,209 @@
+\hypertarget{_examples_2_bezier_2_app_8cpp}{\section{src/\+Examples/\+Bezier/\+App.cpp File Reference}
+\label{_examples_2_bezier_2_app_8cpp}\index{src/\+Examples/\+Bezier/\+App.\+cpp@{src/\+Examples/\+Bezier/\+App.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}App.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Media\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Enums.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Declaration.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Declaration\+Element.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Resource\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Scene\+Object\textbackslash{}\+Terrain.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Buffer\textbackslash{}\+Frame\+Buffer.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D\textbackslash{}\+Core\textbackslash{}\+Render\+Object\textbackslash{}\+Graphic\+String.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Utilities/\+Utilities/\+Color.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd\+Utilities/\+Debug/\+Profiler.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Shader/\+Shader\+Pipeline.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Statistics.\+h$>$}\\*
+{\ttfamily \#include $<$Renderer/\+Open\+G\+L/\+Gl\+Driver.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Tools/\+Fast2\+D\+Surface.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+Follow\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+Camera/\+F\+P\+Camera.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+G\+U\+I\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Agmd3\+D/\+Core/\+G\+U\+I/\+A\+Slider.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Shader/\+Shader\+Pre\+Compiler.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Rendering\+Mode/\+Deferred\+Rendering.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Object/\+Scene\+Mgr.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Object/\+Model.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Node/\+Mesh\+Node.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Object/\+Light.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Scene\+Object/\+Material.\+h$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+Include dependency graph for App.\+cpp\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_examples_2_bezier_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}
+\item 
+\#define \hyperlink{_examples_2_bezier_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{S\+E\+L\+E\+C\+T}(i, size)~((i) $>$= ((int)size) ? (i)\%((int)size) \+: (i))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_examples_2_bezier_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L} (\hyperlink{class_app}{App})
+\item 
+void \hyperlink{_examples_2_bezier_2_app_8cpp_a713ac1ca47e0ec74590d2fb9aedd9f4c}{\+\_\+\+Create\+Plane} (\hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p1, \hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p2, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index)
+\item 
+void \hyperlink{_examples_2_bezier_2_app_8cpp_a7ba1e514e3dcd356c4a1aa3d8487fdad}{lathe} (\hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p1, \hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p2, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index, int splice)
+\item 
+void \hyperlink{_examples_2_bezier_2_app_8cpp_ad39d90dc238fd94e74854efaf7cedf4e}{simple\+Extrusion} (\hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p1, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index, int slice, float \hyperlink{_examples_2_bezier_2_app_8cpp_a8e28906cfe47c7da5f52a199dcb1858e}{scalemin}, float \hyperlink{_examples_2_bezier_2_app_8cpp_a8b7ff52385dadb99acacb3e68a2a5c6d}{scalemax}, float \hyperlink{_examples_2_bezier_2_app_8cpp_a48083b65ac9a863566dc3e3fff09a5b4}{height})
+\item 
+void \hyperlink{_examples_2_bezier_2_app_8cpp_ae6fcb3b9436059137795889a4539b82d}{generalized\+Extrusion} (\hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p1, \hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p2, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index)
+\item 
+void \hyperlink{_examples_2_bezier_2_app_8cpp_ae31577dc61c972e62d96c8646cf8f786}{generalized\+Extrusion\+O\+L\+D} (\hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p1, \hyperlink{class_agmd_1_1_base_spline}{Base\+Spline} $\ast$p2, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{struct_agmd_1_1_model_1_1_t_vertex}{Model\+::\+T\+Vertex} $>$ \&vertices, \hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_model_aca4a6ee5402b386a0b9d0aea52c71eaa}{Model\+::\+T\+Index} $>$ \&index)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_scene_mgr}{Scene\+Mgr} $\ast$ \hyperlink{_examples_2_bezier_2_app_8cpp_a8b9efc2f41e702ec05aa89c567cd525a}{scene}
+\item 
+\hyperlink{class_agmd_1_1_a_slider}{A\+Slider} $\ast$ \hyperlink{_examples_2_bezier_2_app_8cpp_ab40207915c8945d1c9a261d141de6709}{debug\+Slider}
+\item 
+float \hyperlink{_examples_2_bezier_2_app_8cpp_ab27efb1e2e066d13658121de909209d1}{debug\+\_\+value} = 0
+\item 
+float \hyperlink{_examples_2_bezier_2_app_8cpp_a8e28906cfe47c7da5f52a199dcb1858e}{scalemin} = 1
+\item 
+float \hyperlink{_examples_2_bezier_2_app_8cpp_a8b7ff52385dadb99acacb3e68a2a5c6d}{scalemax} = 1
+\item 
+float \hyperlink{_examples_2_bezier_2_app_8cpp_a48083b65ac9a863566dc3e3fff09a5b4}{height} = 1
+\item 
+\hyperlink{class_agmd_1_1_model}{Model} $\ast$ \hyperlink{_examples_2_bezier_2_app_8cpp_a294c40564f429c5e459798a778ea2adf}{m} = N\+U\+L\+L
+\item 
+\hyperlink{class_agmd_1_1_material}{Material} $\ast$ \hyperlink{_examples_2_bezier_2_app_8cpp_a63e99cfa720724b1887a463ec6abd935}{surface\+\_\+mat}
+\item 
+vec2 \hyperlink{_examples_2_bezier_2_app_8cpp_a36172eddccc7845c2577e914c8cec16f}{screen\+Pos}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a525335710b53cb064ca56b936120431e}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}\label{_examples_2_bezier_2_app_8cpp_a525335710b53cb064ca56b936120431e}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!S\+E\+L\+E\+C\+T@{S\+E\+L\+E\+C\+T}}
+\index{S\+E\+L\+E\+C\+T@{S\+E\+L\+E\+C\+T}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{S\+E\+L\+E\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+L\+E\+C\+T(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{size}
+\end{DoxyParamCaption}
+)~((i) $>$= ((int)size) ? (i)\%((int)size) \+: (i))}}\label{_examples_2_bezier_2_app_8cpp_a8e1d08f59adf3a41959856f2084b15a2}
+
+
+\subsection{Function Documentation}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a713ac1ca47e0ec74590d2fb9aedd9f4c}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!\+\_\+\+Create\+Plane@{\+\_\+\+Create\+Plane}}
+\index{\+\_\+\+Create\+Plane@{\+\_\+\+Create\+Plane}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{\+\_\+\+Create\+Plane}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+\+Create\+Plane (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Spline} $\ast$}]{p1, }
+\item[{{\bf Base\+Spline} $\ast$}]{p2, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_a713ac1ca47e0ec74590d2fb9aedd9f4c}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_bezier_2_app_8cpp_ae6fcb3b9436059137795889a4539b82d}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!generalized\+Extrusion@{generalized\+Extrusion}}
+\index{generalized\+Extrusion@{generalized\+Extrusion}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{generalized\+Extrusion}]{\setlength{\rightskip}{0pt plus 5cm}void generalized\+Extrusion (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Spline} $\ast$}]{p1, }
+\item[{{\bf Base\+Spline} $\ast$}]{p2, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_ae6fcb3b9436059137795889a4539b82d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_bezier_2_app_8cpp_ae31577dc61c972e62d96c8646cf8f786}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!generalized\+Extrusion\+O\+L\+D@{generalized\+Extrusion\+O\+L\+D}}
+\index{generalized\+Extrusion\+O\+L\+D@{generalized\+Extrusion\+O\+L\+D}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{generalized\+Extrusion\+O\+L\+D}]{\setlength{\rightskip}{0pt plus 5cm}void generalized\+Extrusion\+O\+L\+D (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Spline} $\ast$}]{p1, }
+\item[{{\bf Base\+Spline} $\ast$}]{p2, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_ae31577dc61c972e62d96c8646cf8f786}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_bezier_2_app_8cpp_a7ba1e514e3dcd356c4a1aa3d8487fdad}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!lathe@{lathe}}
+\index{lathe@{lathe}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{lathe}]{\setlength{\rightskip}{0pt plus 5cm}void lathe (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Spline} $\ast$}]{p1, }
+\item[{{\bf Base\+Spline} $\ast$}]{p2, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index, }
+\item[{int}]{splice}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_a7ba1e514e3dcd356c4a1aa3d8487fdad}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_bezier_2_app_8cpp_ad39d90dc238fd94e74854efaf7cedf4e}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!simple\+Extrusion@{simple\+Extrusion}}
+\index{simple\+Extrusion@{simple\+Extrusion}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{simple\+Extrusion}]{\setlength{\rightskip}{0pt plus 5cm}void simple\+Extrusion (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Spline} $\ast$}]{p1, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Vertex} $>$ \&}]{vertices, }
+\item[{{\bf a\+\_\+vector}$<$ {\bf Model\+::\+T\+Index} $>$ \&}]{index, }
+\item[{int}]{slice, }
+\item[{float}]{scalemin, }
+\item[{float}]{scalemax, }
+\item[{float}]{height}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_ad39d90dc238fd94e74854efaf7cedf4e}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{_examples_2_bezier_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}}
+\index{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L@{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L}]{\setlength{\rightskip}{0pt plus 5cm}S\+I\+N\+G\+L\+E\+T\+O\+N\+\_\+\+I\+M\+P\+L (
+\begin{DoxyParamCaption}
+\item[{{\bf App}}]{}
+\end{DoxyParamCaption}
+)}}\label{_examples_2_bezier_2_app_8cpp_a6a2990316e2f17d593c7ea9044d82bba}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_examples_2_bezier_2_app_8cpp_ab27efb1e2e066d13658121de909209d1}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!debug\+\_\+value@{debug\+\_\+value}}
+\index{debug\+\_\+value@{debug\+\_\+value}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{debug\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}float debug\+\_\+value = 0}}\label{_examples_2_bezier_2_app_8cpp_ab27efb1e2e066d13658121de909209d1}
+\hypertarget{_examples_2_bezier_2_app_8cpp_ab40207915c8945d1c9a261d141de6709}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!debug\+Slider@{debug\+Slider}}
+\index{debug\+Slider@{debug\+Slider}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{debug\+Slider}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+Slider}$\ast$ debug\+Slider}}\label{_examples_2_bezier_2_app_8cpp_ab40207915c8945d1c9a261d141de6709}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a48083b65ac9a863566dc3e3fff09a5b4}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!height@{height}}
+\index{height@{height}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}float height = 1}}\label{_examples_2_bezier_2_app_8cpp_a48083b65ac9a863566dc3e3fff09a5b4}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a294c40564f429c5e459798a778ea2adf}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!m@{m}}
+\index{m@{m}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{m}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ m = N\+U\+L\+L}}\label{_examples_2_bezier_2_app_8cpp_a294c40564f429c5e459798a778ea2adf}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a8b7ff52385dadb99acacb3e68a2a5c6d}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!scalemax@{scalemax}}
+\index{scalemax@{scalemax}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{scalemax}]{\setlength{\rightskip}{0pt plus 5cm}float scalemax = 1}}\label{_examples_2_bezier_2_app_8cpp_a8b7ff52385dadb99acacb3e68a2a5c6d}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a8e28906cfe47c7da5f52a199dcb1858e}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!scalemin@{scalemin}}
+\index{scalemin@{scalemin}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{scalemin}]{\setlength{\rightskip}{0pt plus 5cm}float scalemin = 1}}\label{_examples_2_bezier_2_app_8cpp_a8e28906cfe47c7da5f52a199dcb1858e}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a8b9efc2f41e702ec05aa89c567cd525a}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!scene@{scene}}
+\index{scene@{scene}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Mgr}$\ast$ scene}}\label{_examples_2_bezier_2_app_8cpp_a8b9efc2f41e702ec05aa89c567cd525a}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a36172eddccc7845c2577e914c8cec16f}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!screen\+Pos@{screen\+Pos}}
+\index{screen\+Pos@{screen\+Pos}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{screen\+Pos}]{\setlength{\rightskip}{0pt plus 5cm}vec2 screen\+Pos}}\label{_examples_2_bezier_2_app_8cpp_a36172eddccc7845c2577e914c8cec16f}
+\hypertarget{_examples_2_bezier_2_app_8cpp_a63e99cfa720724b1887a463ec6abd935}{\index{Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}!surface\+\_\+mat@{surface\+\_\+mat}}
+\index{surface\+\_\+mat@{surface\+\_\+mat}!Examples/\+Bezier/\+App.\+cpp@{Examples/\+Bezier/\+App.\+cpp}}
+\subsubsection[{surface\+\_\+mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ surface\+\_\+mat}}\label{_examples_2_bezier_2_app_8cpp_a63e99cfa720724b1887a463ec6abd935}

@@ -1,0 +1,204 @@
+\hypertarget{class_agmd_1_1_shader_program}{\section{Agmd\+:\+:Shader\+Program Class Reference}
+\label{class_agmd_1_1_shader_program}\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+}
+
+
+{\ttfamily \#include $<$Shader\+Program.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_afcc519105b0c24a1da657d9d2abc0ed5}{Create} (\hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$vertex, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$eval, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$control, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$geom, \hyperlink{class_agmd_1_1_base_shader}{Base\+Shader} $\ast$frag)
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_ad3acc3c0bf03b73ee16393cdc52cffc9}{Load\+From\+File} (const std\+::string \&filename)
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_af96c1ac7447140051a586e7d5884c01c}{Reload\+From\+File} (const std\+::string \&filename)
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_ac58afd816450c490a1adcb69ac698971}{Unload} ()
+\item 
+const \hyperlink{class_agmd_1_1_base_shader_program}{Base\+Shader\+Program} $\ast$ \hyperlink{class_agmd_1_1_shader_program_ac91be6f67ed8fb319caf7d09acc9e606}{Get\+Shader\+Program} () const 
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_a82a91655d5eb69a8ab4c41238bf6fa01}{Enable} () const 
+\item 
+void \hyperlink{class_agmd_1_1_shader_program_a32eabc1c6e85ad21629757e93cc63973}{Disable} () const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}{Set\+Parameter} (\hyperlink{namespace_agmd_aa7eba958a8a0e3ac4586f75298e122b1}{T\+Matrix\+Type} type, T value) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}{Set\+Parameter} (const std\+::string \&name, T value) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_ac2f37712a1fc3dbcbfbc46172e56ff33}{Set\+Parameter} (const std\+::string \&name, T value, \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} size) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_a07c39f033dffdec78ac8650d1860458c}{Set\+Parameter} (const std\+::string \&name, \hyperlink{class_agmd_1_1_buffer}{Buffer}$<$ T $>$ buf)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}{Set\+Parameter} (\hyperlink{namespace_agmd_aa7eba958a8a0e3ac4586f75298e122b1}{T\+Matrix\+Type} type, T value) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}{Set\+Parameter} (const std\+::string \&name, T value) const 
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{class_agmd_1_1_shader_program_a7444df88d77bb62e7fe70d959eca5565}{Set\+Parameter} (const std\+::string \&name, T value, \hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} count) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_shader_program_afcc519105b0c24a1da657d9d2abc0ed5}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Create@{Create}}
+\index{Create@{Create}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Create}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Shader\+Program\+::\+Create (
+\begin{DoxyParamCaption}
+\item[{{\bf Base\+Shader} $\ast$}]{vertex, }
+\item[{{\bf Base\+Shader} $\ast$}]{eval, }
+\item[{{\bf Base\+Shader} $\ast$}]{control, }
+\item[{{\bf Base\+Shader} $\ast$}]{geom, }
+\item[{{\bf Base\+Shader} $\ast$}]{frag}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_shader_program_afcc519105b0c24a1da657d9d2abc0ed5}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_a32eabc1c6e85ad21629757e93cc63973}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Disable@{Disable}}
+\index{Disable@{Disable}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Disable}]{\setlength{\rightskip}{0pt plus 5cm}void Shader\+Program\+::\+Disable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a32eabc1c6e85ad21629757e93cc63973}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_a82a91655d5eb69a8ab4c41238bf6fa01}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Enable@{Enable}}
+\index{Enable@{Enable}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Shader\+Program\+::\+Enable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a82a91655d5eb69a8ab4c41238bf6fa01}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_ac91be6f67ed8fb319caf7d09acc9e606}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Get\+Shader\+Program@{Get\+Shader\+Program}}
+\index{Get\+Shader\+Program@{Get\+Shader\+Program}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Get\+Shader\+Program}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Base\+Shader\+Program} $\ast$ Agmd\+::\+Shader\+Program\+::\+Get\+Shader\+Program (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_shader_program_ac91be6f67ed8fb319caf7d09acc9e606}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_ad3acc3c0bf03b73ee16393cdc52cffc9}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Load\+From\+File@{Load\+From\+File}}
+\index{Load\+From\+File@{Load\+From\+File}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Load\+From\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Shader\+Program\+::\+Load\+From\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_shader_program_ad3acc3c0bf03b73ee16393cdc52cffc9}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_af96c1ac7447140051a586e7d5884c01c}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Reload\+From\+File@{Reload\+From\+File}}
+\index{Reload\+From\+File@{Reload\+From\+File}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Reload\+From\+File}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Shader\+Program\+::\+Reload\+From\+File (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_shader_program_af96c1ac7447140051a586e7d5884c01c}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Matrix\+Type}}]{type, }
+\item[{T}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}
+\hypertarget{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{T}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}
+\hypertarget{class_agmd_1_1_shader_program_a7444df88d77bb62e7fe70d959eca5565}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{T}]{value, }
+\item[{{\bf a\+\_\+uint32}}]{count}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a7444df88d77bb62e7fe70d959eca5565}
+\hypertarget{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Matrix\+Type}}]{type, }
+\item[{T}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_aacb8148fe622096be27a2dcdf01f2c29}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{T}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a4ddab7cd45f115e86421806a9ae5b14b}
+\hypertarget{class_agmd_1_1_shader_program_ac2f37712a1fc3dbcbfbc46172e56ff33}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{T}]{value, }
+\item[{{\bf a\+\_\+uint32}}]{size}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_ac2f37712a1fc3dbcbfbc46172e56ff33}
+\hypertarget{class_agmd_1_1_shader_program_a07c39f033dffdec78ac8650d1860458c}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Set\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Agmd\+::\+Shader\+Program\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name, }
+\item[{{\bf Buffer}$<$ T $>$}]{buf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_shader_program_a07c39f033dffdec78ac8650d1860458c}
+\hypertarget{class_agmd_1_1_shader_program_ac58afd816450c490a1adcb69ac698971}{\index{Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}!Unload@{Unload}}
+\index{Unload@{Unload}!Agmd\+::\+Shader\+Program@{Agmd\+::\+Shader\+Program}}
+\subsubsection[{Unload}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Shader\+Program\+::\+Unload (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_shader_program_ac58afd816450c490a1adcb69ac698971}
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Shader/\hyperlink{_shader_program_8h}{Shader\+Program.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Shader/\hyperlink{_shader_program_8cpp}{Shader\+Program.\+cpp}\item 
+src/\+Agmd3\+D/\+Core/\+Shader/\hyperlink{_shader_program_8inl}{Shader\+Program.\+inl}\end{DoxyCompactItemize}

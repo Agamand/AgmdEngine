@@ -1,0 +1,158 @@
+\hypertarget{class_agmd_1_1_g_u_i_mgr}{\section{Agmd\+:\+:G\+U\+I\+Mgr Class Reference}
+\label{class_agmd_1_1_g_u_i_mgr}\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+}
+
+
+{\ttfamily \#include $<$G\+U\+I\+Mgr.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:G\+U\+I\+Mgr\+:
+
+
+Collaboration diagram for Agmd\+:\+:G\+U\+I\+Mgr\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_a7155d8cdeb88dd8019143ab6480a3c9e}{Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} t\+\_\+diff)
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_af0678a95b5444ad446ddb527ce2645c8}{Draw\+G\+U\+I} () const 
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_ab5bc5a47bf76bf79c199b1690819de7b}{Set\+Selected} (\hyperlink{_common_defines_8h_a964296f9770051b9e4807b1f180dd416}{a\+\_\+uint32} i)
+\item 
+int \hyperlink{class_agmd_1_1_g_u_i_mgr_a9b687a342289b7a6f8e876abe69bc776}{Handle\+Event} (\hyperlink{struct_agmd_1_1_event_entry}{Event\+Entry} \&\+\_\+event)
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_aa36edc13d8e792777de37b12b0899b6e}{Add\+Event} (\hyperlink{struct_agmd_1_1_event_entry}{Event\+Entry} \&\+\_\+event)
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_a68435e0b3145e490e272d05e1583857b}{Add\+Widget} (\hyperlink{class_agmd_1_1_a_widget}{A\+Widget} $\ast$widget)
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_a487f36882f13c6fb2265d1f19d3e15cd}{Remove\+Widget} (\hyperlink{class_agmd_1_1_a_widget}{A\+Widget} $\ast$widget)
+\item 
+void \hyperlink{class_agmd_1_1_g_u_i_mgr_af61a60154925c3b07d65b313aaab1f1f}{Enable} (bool enable=true)
+\item 
+bool \hyperlink{class_agmd_1_1_g_u_i_mgr_aaa2e2b110abc392aa30d7728376326f6}{is\+Enable} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_agmd_a390261fa9cd4571caab83e2d7a34020c}{Vector\+Widget} \hyperlink{class_agmd_1_1_g_u_i_mgr_ae1298a740c306f7e9dd69f36a2624b89}{m\+\_\+vw\+Widget}
+\item 
+\hyperlink{namespace_agmd_a58e024c1af9bb8a40910c507a4602953}{Vector\+Event} \hyperlink{class_agmd_1_1_g_u_i_mgr_ae16fcf7d7182b769a9776f448c5d6e75}{m\+\_\+ve\+Events}
+\item 
+bool \hyperlink{class_agmd_1_1_g_u_i_mgr_a28d33ffc1d54a264c73df61abb69b1d8}{m\+\_\+render\+G\+U\+I}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_aa36edc13d8e792777de37b12b0899b6e}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Add\+Event@{Add\+Event}}
+\index{Add\+Event@{Add\+Event}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Add\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Add\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf Event\+Entry} \&}]{\+\_\+event}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_aa36edc13d8e792777de37b12b0899b6e}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_u_i_mgr_a68435e0b3145e490e272d05e1583857b}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Add\+Widget@{Add\+Widget}}
+\index{Add\+Widget@{Add\+Widget}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Add\+Widget}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Add\+Widget (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+Widget} $\ast$}]{widget}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_a68435e0b3145e490e272d05e1583857b}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_af0678a95b5444ad446ddb527ce2645c8}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Draw\+G\+U\+I@{Draw\+G\+U\+I}}
+\index{Draw\+G\+U\+I@{Draw\+G\+U\+I}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Draw\+G\+U\+I}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Draw\+G\+U\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_g_u_i_mgr_af0678a95b5444ad446ddb527ce2645c8}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_u_i_mgr_af61a60154925c3b07d65b313aaab1f1f}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Enable@{Enable}}
+\index{Enable@{Enable}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Enable (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_g_u_i_mgr_af61a60154925c3b07d65b313aaab1f1f}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_a9b687a342289b7a6f8e876abe69bc776}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Handle\+Event@{Handle\+Event}}
+\index{Handle\+Event@{Handle\+Event}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Handle\+Event}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+::\+G\+U\+I\+Mgr\+::\+Handle\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf Event\+Entry} \&}]{\+\_\+event}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_a9b687a342289b7a6f8e876abe69bc776}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_u_i_mgr_aaa2e2b110abc392aa30d7728376326f6}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!is\+Enable@{is\+Enable}}
+\index{is\+Enable@{is\+Enable}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{is\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+G\+U\+I\+Mgr\+::is\+Enable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_g_u_i_mgr_aaa2e2b110abc392aa30d7728376326f6}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_a487f36882f13c6fb2265d1f19d3e15cd}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Remove\+Widget@{Remove\+Widget}}
+\index{Remove\+Widget@{Remove\+Widget}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Remove\+Widget}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Remove\+Widget (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+Widget} $\ast$}]{widget}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_a487f36882f13c6fb2265d1f19d3e15cd}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_ab5bc5a47bf76bf79c199b1690819de7b}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Set\+Selected@{Set\+Selected}}
+\index{Set\+Selected@{Set\+Selected}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Set\+Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Set\+Selected (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint32}}]{i}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_ab5bc5a47bf76bf79c199b1690819de7b}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_g_u_i_mgr_a7155d8cdeb88dd8019143ab6480a3c9e}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+G\+U\+I\+Mgr\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{t\+\_\+diff}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_g_u_i_mgr_a7155d8cdeb88dd8019143ab6480a3c9e}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_a28d33ffc1d54a264c73df61abb69b1d8}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!m\+\_\+render\+G\+U\+I@{m\+\_\+render\+G\+U\+I}}
+\index{m\+\_\+render\+G\+U\+I@{m\+\_\+render\+G\+U\+I}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{m\+\_\+render\+G\+U\+I}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+::\+G\+U\+I\+Mgr\+::m\+\_\+render\+G\+U\+I\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_g_u_i_mgr_a28d33ffc1d54a264c73df61abb69b1d8}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_ae16fcf7d7182b769a9776f448c5d6e75}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!m\+\_\+ve\+Events@{m\+\_\+ve\+Events}}
+\index{m\+\_\+ve\+Events@{m\+\_\+ve\+Events}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{m\+\_\+ve\+Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+Event} Agmd\+::\+G\+U\+I\+Mgr\+::m\+\_\+ve\+Events\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_g_u_i_mgr_ae16fcf7d7182b769a9776f448c5d6e75}
+\hypertarget{class_agmd_1_1_g_u_i_mgr_ae1298a740c306f7e9dd69f36a2624b89}{\index{Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}!m\+\_\+vw\+Widget@{m\+\_\+vw\+Widget}}
+\index{m\+\_\+vw\+Widget@{m\+\_\+vw\+Widget}!Agmd\+::\+G\+U\+I\+Mgr@{Agmd\+::\+G\+U\+I\+Mgr}}
+\subsubsection[{m\+\_\+vw\+Widget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+Widget} Agmd\+::\+G\+U\+I\+Mgr\+::m\+\_\+vw\+Widget\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_1_1_g_u_i_mgr_ae1298a740c306f7e9dd69f36a2624b89}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+G\+U\+I/\hyperlink{_g_u_i_mgr_8h}{G\+U\+I\+Mgr.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+G\+U\+I/\hyperlink{_g_u_i_mgr_8cpp}{G\+U\+I\+Mgr.\+cpp}\end{DoxyCompactItemize}

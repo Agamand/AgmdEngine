@@ -1,0 +1,36 @@
+digraph "TiXmlBase::StringEqual"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlBase::StringEqual",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlElement::QueryBoolAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#af4a1d3f88c28eb0f3115dc39ebd83fff"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlBase::ReadText",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_base.html#aa646c74921aa33156968b802bbf5566e"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TiXmlAttribute::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_attribute.html#ad62774421b814894b995af3b5d231dda"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TiXmlElement::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#af95c9165159fd9dfdcc5b894a3fcf85b"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TiXmlDeclaration::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#a9839ea97ed687a2b7342fd7b0f04361b"];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TiXmlText::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_text.html#a8d2dcfa41fc73d3e62dacc2fcf633819"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TiXmlElement::ReadValue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#ac786bce103042d3837c4cc2ff6967d41"];
+  Node8 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TiXmlDocument::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_document.html#a789ad2f06f93d52bdb5570b2f3670289"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="TiXmlDocument::LoadFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_document.html#a41f6fe7200864d1dca663d230caf8db6"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TiXmlNode::Identify",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_node.html#ac1e3a8e7578be463b04617786120c2bb"];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="TiXmlComment::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_comment.html#a43bddc18ac057734b41d84653b71d3e0"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

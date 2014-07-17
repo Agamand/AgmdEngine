@@ -1,0 +1,143 @@
+\hypertarget{class_agmd_network_1_1_server}{\section{Agmd\+Network\+:\+:Server Class Reference}
+\label{class_agmd_network_1_1_server}\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+}
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+Network\+:\+:Server\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_agmd_network_1_1_server_1_1thread__param}{thread\+\_\+param}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_network_1_1_server_abe7fee464a83053160a5fa3582edbe0e}{Server} (int port)
+\item 
+int \hyperlink{class_agmd_network_1_1_server_aaa22556f45862d01defd56405fb3f8f9}{Init} ()
+\item 
+int \hyperlink{class_agmd_network_1_1_server_ab2ae12e4bc684bb19eba1601bb6a90d5}{Start} ()
+\item 
+int \hyperlink{class_agmd_network_1_1_server_ae406babf7e440f99f010d60c95f29a8b}{Pause} ()
+\item 
+bool \hyperlink{class_agmd_network_1_1_server_a5413800e8d5dd1b5483f910c6163d5e7}{is\+Started} ()
+\item 
+void \hyperlink{class_agmd_network_1_1_server_a7144d57c804d9a4aa5dae4d83011d1b0}{Send\+Packet} (\hyperlink{class_agmd_network_1_1_packet}{Packet} \&packet)
+\item 
+virtual void \hyperlink{class_agmd_network_1_1_server_afb8e79ab1d6e342cbdd301ae60fd185d}{Recv\+Packet} (\hyperlink{class_agmd_network_1_1_packet}{Packet} \&packet)=0
+\item 
+void \hyperlink{class_agmd_network_1_1_server_aa462f1e230f1d3961db3f847703ecc34}{Remove\+Client} (S\+O\+C\+K\+E\+T sock)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static D\+W\+O\+R\+D W\+I\+N\+A\+P\+I \hyperlink{class_agmd_network_1_1_server_ad90ad6331adf7c85426cea93b45d245e}{Thread\+Launcher} (void $\ast$p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_network_1_1_server_abe7fee464a83053160a5fa3582edbe0e}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Server@{Server}}
+\index{Server@{Server}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Server}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Network\+::\+Server\+::\+Server (
+\begin{DoxyParamCaption}
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_abe7fee464a83053160a5fa3582edbe0e}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_network_1_1_server_aaa22556f45862d01defd56405fb3f8f9}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Init@{Init}}
+\index{Init@{Init}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+Network\+::\+Server\+::\+Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_aaa22556f45862d01defd56405fb3f8f9}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_network_1_1_server_a5413800e8d5dd1b5483f910c6163d5e7}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!is\+Started@{is\+Started}}
+\index{is\+Started@{is\+Started}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{is\+Started}]{\setlength{\rightskip}{0pt plus 5cm}bool Agmd\+Network\+::\+Server\+::is\+Started (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_network_1_1_server_a5413800e8d5dd1b5483f910c6163d5e7}
+\hypertarget{class_agmd_network_1_1_server_ae406babf7e440f99f010d60c95f29a8b}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Pause@{Pause}}
+\index{Pause@{Pause}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Pause}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+Network\+::\+Server\+::\+Pause (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_ae406babf7e440f99f010d60c95f29a8b}
+\hypertarget{class_agmd_network_1_1_server_afb8e79ab1d6e342cbdd301ae60fd185d}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Recv\+Packet@{Recv\+Packet}}
+\index{Recv\+Packet@{Recv\+Packet}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Recv\+Packet}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Agmd\+Network\+::\+Server\+::\+Recv\+Packet (
+\begin{DoxyParamCaption}
+\item[{{\bf Packet} \&}]{packet}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_network_1_1_server_afb8e79ab1d6e342cbdd301ae60fd185d}
+
+
+Implemented in \hyperlink{class_agmd_server_a4d24b46573a90478ebcdb8dc51ff86c3}{Agmd\+Server}.
+
+\hypertarget{class_agmd_network_1_1_server_aa462f1e230f1d3961db3f847703ecc34}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Remove\+Client@{Remove\+Client}}
+\index{Remove\+Client@{Remove\+Client}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Remove\+Client}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+Network\+::\+Server\+::\+Remove\+Client (
+\begin{DoxyParamCaption}
+\item[{S\+O\+C\+K\+E\+T}]{sock}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_aa462f1e230f1d3961db3f847703ecc34}
+\hypertarget{class_agmd_network_1_1_server_a7144d57c804d9a4aa5dae4d83011d1b0}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Send\+Packet@{Send\+Packet}}
+\index{Send\+Packet@{Send\+Packet}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Send\+Packet}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+Network\+::\+Server\+::\+Send\+Packet (
+\begin{DoxyParamCaption}
+\item[{{\bf Packet} \&}]{packet}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_a7144d57c804d9a4aa5dae4d83011d1b0}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_network_1_1_server_ab2ae12e4bc684bb19eba1601bb6a90d5}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Start@{Start}}
+\index{Start@{Start}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+Network\+::\+Server\+::\+Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_network_1_1_server_ab2ae12e4bc684bb19eba1601bb6a90d5}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_network_1_1_server_ad90ad6331adf7c85426cea93b45d245e}{\index{Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}!Thread\+Launcher@{Thread\+Launcher}}
+\index{Thread\+Launcher@{Thread\+Launcher}!Agmd\+Network\+::\+Server@{Agmd\+Network\+::\+Server}}
+\subsubsection[{Thread\+Launcher}]{\setlength{\rightskip}{0pt plus 5cm}static D\+W\+O\+R\+D W\+I\+N\+A\+P\+I Agmd\+Network\+::\+Server\+::\+Thread\+Launcher (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{class_agmd_network_1_1_server_ad90ad6331adf7c85426cea93b45d245e}
+
+
+Here is the caller graph for this function\+:
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd\+Network/\+Server/\hyperlink{_server_8h}{Server.\+h}\item 
+src/\+Agmd\+Network/\+Server/\hyperlink{_server_8cpp}{Server.\+cpp}\end{DoxyCompactItemize}

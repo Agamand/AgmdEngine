@@ -1,0 +1,22 @@
+digraph "TiXmlString::capacity"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlString::capacity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlString::reserve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_string.html#a88ecf9f0f00cb5c67b6b637958d7049c"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlString::append",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_string.html#ad44b21700d2ec24a511367b222b643fb"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="operator+",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tinystr_8h.html#ab77ef9617d62643b24e52118db159b7b"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TiXmlString::operator+=",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_string.html#ab56336ac2aa2a08d24a71eb9a2b502a5"];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="operator+",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tinystr_8h.html#a6ee35bce93b3aaf8a2353471c0dd2d58"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TiXmlString::assign",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_string.html#ac72f3d9149b7812c1e6c59402014d0d5"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TiXmlString::operator=",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_string.html#ae0bc6147afc0ec2aa0da3a3c0a8fcfb0"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

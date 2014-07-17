@@ -1,0 +1,331 @@
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map}{\section{noise\+:\+:utils\+:\+:Renderer\+Normal\+Map Class Reference}
+\label{classnoise_1_1utils_1_1_renderer_normal_map}\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+}
+
+
+{\ttfamily \#include $<$noiseutils.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ab960e0064ecc53d702566d3b8d7c0911}{Renderer\+Normal\+Map} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}{Enable\+Wrap} (bool enable=true)
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}{Get\+Bump\+Height} () const 
+\item 
+bool \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}{Is\+Wrap\+Enabled} () const 
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}{Render} ()
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}{Set\+Bump\+Height} (double bump\+Height)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{Set\+Dest\+Image} (\hyperlink{classnoise_1_1utils_1_1_image}{Image} \&dest\+Image)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{Set\+Source\+Noise\+Map} (const \hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} \&source\+Noise\+Map)
+\item 
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_af8278181daa0404e0d5a847593c82de4}{Renderer\+Normal\+Map} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}{Enable\+Wrap} (bool enable=true)
+\item 
+double \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}{Get\+Bump\+Height} () const 
+\item 
+bool \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}{Is\+Wrap\+Enabled} () const 
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ad5296d8827ea9f309f734914bc40c05c}{Render} ()
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}{Set\+Bump\+Height} (double bump\+Height)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{Set\+Dest\+Image} (\hyperlink{classnoise_1_1utils_1_1_image}{Image} \&dest\+Image)
+\item 
+void \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{Set\+Source\+Noise\+Map} (const \hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} \&source\+Noise\+Map)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Renders a normal map from a noise map.
+
+This class renders an image containing the normal vectors from a noise map object. This image can then be used as a bump map for a 3\+D application or game.
+
+This class encodes the (x, y, z) components of the normal vector into the (red, green, blue) channels of the image. Like any 24-\/bit true-\/color image, the channel values range from 0 to 255. 0 represents a normal coordinate of -\/1.\+0 and 255 represents a normal coordinate of +1.0.
+
+You should also specify the {\itshape bump height} before rendering the normal map. The bump height specifies the ratio of spatial resolution to elevation resolution. For example, if your noise map has a spatial resolution of 30 meters and an elevation resolution of one meter, set the bump height to 1.\+0 / 30.\+0.
+
+{\bfseries Rendering the normal map}
+
+To render the image containing the normal map, perform the following steps\+:
+\begin{DoxyItemize}
+\item Pass a \hyperlink{classnoise_1_1utils_1_1_noise_map}{Noise\+Map} object to the \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{Set\+Source\+Noise\+Map()} method.
+\item Pass an \hyperlink{classnoise_1_1utils_1_1_image}{Image} object to the \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{Set\+Dest\+Image()} method.
+\item Call the \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}{Render()} method. 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_ab960e0064ecc53d702566d3b8d7c0911}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Renderer\+Normal\+Map@{Renderer\+Normal\+Map}}
+\index{Renderer\+Normal\+Map@{Renderer\+Normal\+Map}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Renderer\+Normal\+Map}]{\setlength{\rightskip}{0pt plus 5cm}Renderer\+Normal\+Map\+::\+Renderer\+Normal\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_renderer_normal_map_ab960e0064ecc53d702566d3b8d7c0911}
+
+
+Constructor. 
+
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_af8278181daa0404e0d5a847593c82de4}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Renderer\+Normal\+Map@{Renderer\+Normal\+Map}}
+\index{Renderer\+Normal\+Map@{Renderer\+Normal\+Map}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Renderer\+Normal\+Map}]{\setlength{\rightskip}{0pt plus 5cm}noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Renderer\+Normal\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_renderer_normal_map_af8278181daa0404e0d5a847593c82de4}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Enable\+Wrap@{Enable\+Wrap}}
+\index{Enable\+Wrap@{Enable\+Wrap}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Enable\+Wrap}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Enable\+Wrap (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}
+Enables or disables noise-\/map wrapping.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & A flag that enables or disables noise-\/map wrapping.\\
+\hline
+\end{DoxyParams}
+This object requires three points (the initial point and the right and up neighbors) to calculate the normal vector at that point. If wrapping is/ enabled, and the initial point is on the edge of the noise map, the appropriate neighbors that lie outside of the noise map will \char`\"{}wrap\char`\"{} to the opposite side(s) of the noise map. Otherwise, the appropriate neighbors are cropped to the edge of the noise map.
+
+Enabling wrapping is useful when creating spherical and tileable normal maps. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Enable\+Wrap@{Enable\+Wrap}}
+\index{Enable\+Wrap@{Enable\+Wrap}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Enable\+Wrap}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Enable\+Wrap (
+\begin{DoxyParamCaption}
+\item[{bool}]{enable = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a3a998d79c28c5a302e71f3f9e512019e}
+Enables or disables noise-\/map wrapping.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & A flag that enables or disables noise-\/map wrapping.\\
+\hline
+\end{DoxyParams}
+This object requires three points (the initial point and the right and up neighbors) to calculate the normal vector at that point. If wrapping is/ enabled, and the initial point is on the edge of the noise map, the appropriate neighbors that lie outside of the noise map will \char`\"{}wrap\char`\"{} to the opposite side(s) of the noise map. Otherwise, the appropriate neighbors are cropped to the edge of the noise map.
+
+Enabling wrapping is useful when creating spherical and tileable normal maps. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Get\+Bump\+Height@{Get\+Bump\+Height}}
+\index{Get\+Bump\+Height@{Get\+Bump\+Height}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Get\+Bump\+Height}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Get\+Bump\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}
+Returns the bump height.
+
+\begin{DoxyReturn}{Returns}
+The bump height.
+\end{DoxyReturn}
+The bump height specifies the ratio of spatial resolution to elevation resolution. For example, if your noise map has a spatial resolution of 30 meters and an elevation resolution of one meter, set the bump height to 1.\+0 / 30.\+0.
+
+The spatial resolution and elevation resolution are determined by the application. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Get\+Bump\+Height@{Get\+Bump\+Height}}
+\index{Get\+Bump\+Height@{Get\+Bump\+Height}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Get\+Bump\+Height}]{\setlength{\rightskip}{0pt plus 5cm}double noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Get\+Bump\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a7934a97f130810598618d9a4fb75e4d8}
+Returns the bump height.
+
+\begin{DoxyReturn}{Returns}
+The bump height.
+\end{DoxyReturn}
+The bump height specifies the ratio of spatial resolution to elevation resolution. For example, if your noise map has a spatial resolution of 30 meters and an elevation resolution of one meter, set the bump height to 1.\+0 / 30.\+0.
+
+The spatial resolution and elevation resolution are determined by the application. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Is\+Wrap\+Enabled@{Is\+Wrap\+Enabled}}
+\index{Is\+Wrap\+Enabled@{Is\+Wrap\+Enabled}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Is\+Wrap\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Is\+Wrap\+Enabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}
+Determines if noise-\/map wrapping is enabled.
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item {\itshape true} if noise-\/map wrapping is enabled.
+\item {\itshape false} if noise-\/map wrapping is disabled.
+\end{DoxyItemize}
+\end{DoxyReturn}
+This object requires three points (the initial point and the right and up neighbors) to calculate the normal vector at that point. If wrapping is/ enabled, and the initial point is on the edge of the noise map, the appropriate neighbors that lie outside of the noise map will \char`\"{}wrap\char`\"{} to the opposite side(s) of the noise map. Otherwise, the appropriate neighbors are cropped to the edge of the noise map.
+
+Enabling wrapping is useful when creating spherical and tileable normal maps. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Is\+Wrap\+Enabled@{Is\+Wrap\+Enabled}}
+\index{Is\+Wrap\+Enabled@{Is\+Wrap\+Enabled}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Is\+Wrap\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Is\+Wrap\+Enabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a4b3ad9693bfab047e34a015139b9ccdc}
+Determines if noise-\/map wrapping is enabled.
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item {\itshape true} if noise-\/map wrapping is enabled.
+\item {\itshape false} if noise-\/map wrapping is disabled.
+\end{DoxyItemize}
+\end{DoxyReturn}
+This object requires three points (the initial point and the right and up neighbors) to calculate the normal vector at that point. If wrapping is/ enabled, and the initial point is on the edge of the noise map, the appropriate neighbors that lie outside of the noise map will \char`\"{}wrap\char`\"{} to the opposite side(s) of the noise map. Otherwise, the appropriate neighbors are cropped to the edge of the noise map.
+
+Enabling wrapping is useful when creating spherical and tileable normal maps. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Render@{Render}}
+\index{Render@{Render}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Render}]{\setlength{\rightskip}{0pt plus 5cm}void Renderer\+Normal\+Map\+::\+Render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}
+Renders the noise map to the destination image.
+
+\begin{DoxyPrecond}{Precondition}
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{Set\+Source\+Noise\+Map()} has been previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{Set\+Dest\+Image()} has been previously called.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The original contents of the destination image is destroyed.
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the preconditions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_ad5296d8827ea9f309f734914bc40c05c}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Render@{Render}}
+\index{Render@{Render}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Render}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classnoise_1_1utils_1_1_renderer_normal_map_ad5296d8827ea9f309f734914bc40c05c}
+Renders the noise map to the destination image.
+
+\begin{DoxyPrecond}{Precondition}
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{Set\+Source\+Noise\+Map()} has been previously called. 
+
+\hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{Set\+Dest\+Image()} has been previously called.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The original contents of the destination image is destroyed.
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em noise\+::\+Exception\+Invalid\+Param} & See the preconditions. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Bump\+Height@{Set\+Bump\+Height}}
+\index{Set\+Bump\+Height@{Set\+Bump\+Height}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Bump\+Height}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Bump\+Height (
+\begin{DoxyParamCaption}
+\item[{double}]{bump\+Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}
+Sets the bump height.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bump\+Height} & The bump height.\\
+\hline
+\end{DoxyParams}
+The bump height specifies the ratio of spatial resolution to elevation resolution. For example, if your noise map has a spatial resolution of 30 meters and an elevation resolution of one meter, set the bump height to 1.\+0 / 30.\+0.
+
+The spatial resolution and elevation resolution are determined by the application. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Bump\+Height@{Set\+Bump\+Height}}
+\index{Set\+Bump\+Height@{Set\+Bump\+Height}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Bump\+Height}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Bump\+Height (
+\begin{DoxyParamCaption}
+\item[{double}]{bump\+Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_acd9108556c634f1f7ed7a29978861cf8}
+Sets the bump height.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bump\+Height} & The bump height.\\
+\hline
+\end{DoxyParams}
+The bump height specifies the ratio of spatial resolution to elevation resolution. For example, if your noise map has a spatial resolution of 30 meters and an elevation resolution of one meter, set the bump height to 1.\+0 / 30.\+0.
+
+The spatial resolution and elevation resolution are determined by the application. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Dest\+Image@{Set\+Dest\+Image}}
+\index{Set\+Dest\+Image@{Set\+Dest\+Image}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Dest\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Dest\+Image (
+\begin{DoxyParamCaption}
+\item[{{\bf Image} \&}]{dest\+Image}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}
+Sets the destination image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Image} & The destination image.\\
+\hline
+\end{DoxyParams}
+The destination image will contain the normal map after a successful call to the \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}{Render()} method.
+
+The destination image must exist throughout the lifetime of this object unless another image replaces that image. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Dest\+Image@{Set\+Dest\+Image}}
+\index{Set\+Dest\+Image@{Set\+Dest\+Image}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Dest\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Dest\+Image (
+\begin{DoxyParamCaption}
+\item[{{\bf Image} \&}]{dest\+Image}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_ae897dedd021446330d2b2ea619008acc}
+Sets the destination image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Image} & The destination image.\\
+\hline
+\end{DoxyParams}
+The destination image will contain the normal map after a successful call to the \hyperlink{classnoise_1_1utils_1_1_renderer_normal_map_a4c99c9a3ebab17b5f2e0ff9b41d96cdf}{Render()} method.
+
+The destination image must exist throughout the lifetime of this object unless another image replaces that image. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Source\+Noise\+Map@{Set\+Source\+Noise\+Map}}
+\index{Set\+Source\+Noise\+Map@{Set\+Source\+Noise\+Map}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Source\+Noise\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Source\+Noise\+Map (
+\begin{DoxyParamCaption}
+\item[{const {\bf Noise\+Map} \&}]{source\+Noise\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}
+Sets the source noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Noise\+Map} & The source noise map.\\
+\hline
+\end{DoxyParams}
+The destination image must exist throughout the lifetime of this object unless another image replaces that image. \hypertarget{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}{\index{noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}!Set\+Source\+Noise\+Map@{Set\+Source\+Noise\+Map}}
+\index{Set\+Source\+Noise\+Map@{Set\+Source\+Noise\+Map}!noise\+::utils\+::\+Renderer\+Normal\+Map@{noise\+::utils\+::\+Renderer\+Normal\+Map}}
+\subsubsection[{Set\+Source\+Noise\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void noise\+::utils\+::\+Renderer\+Normal\+Map\+::\+Set\+Source\+Noise\+Map (
+\begin{DoxyParamCaption}
+\item[{const {\bf Noise\+Map} \&}]{source\+Noise\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classnoise_1_1utils_1_1_renderer_normal_map_a89c35a7cd1b307da714c7389d56c57db}
+Sets the source noise map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Noise\+Map} & The source noise map.\\
+\hline
+\end{DoxyParams}
+The destination image must exist throughout the lifetime of this object unless another image replaces that image. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8h}{noiseutils.\+h}\item 
+src/\+Demo/\hyperlink{_demo_2noiseutils_8cpp}{noiseutils.\+cpp}\end{DoxyCompactItemize}

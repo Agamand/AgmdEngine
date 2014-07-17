@@ -1,0 +1,205 @@
+\hypertarget{class_agmd_1_1_graphic_string}{\section{Agmd\+:\+:Graphic\+String Class Reference}
+\label{class_agmd_1_1_graphic_string}\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+}
+
+
+{\ttfamily \#include $<$Graphic\+String.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Graphic\+String\+:
+
+
+Collaboration diagram for Agmd\+:\+:Graphic\+String\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_graphic_string_a207dacb7edd1f65eaf283f16fc6f9873}{Graphic\+String} (const ivec2 \&string\+Position=ivec2(0), const std\+::string \&string\+Text=\char`\"{}\char`\"{}, const \hyperlink{class_agmd_utilities_1_1_color}{Color} \&string\+Color=Color\+::white, const std\+::string \&string\+Font=\char`\"{}Arial\char`\"{}, int string\+Size=20)
+\item 
+void \hyperlink{class_agmd_1_1_graphic_string_ab9d50266a34661bbf588d70b4b544ffa}{draw} () const 
+\item 
+void \hyperlink{class_agmd_1_1_graphic_string_a5dca6135a6e1b44a49ebe05e594bf1ed}{render} (\hyperlink{namespace_agmd_a893087981df53d0bf39466e9039aeb73}{T\+Render\+Pass}) const 
+\item 
+void \hyperlink{class_agmd_1_1_graphic_string_a49a622873a0db2884bf3559aa2d53018}{build\+Model} ()
+\item 
+ivec2 \hyperlink{class_agmd_1_1_graphic_string_aed7341e03f4993d89eb9684f03c910e3}{get\+Pixel\+Size} () const 
+\item 
+void \hyperlink{class_agmd_1_1_graphic_string_a0b5437cb0a60050e2238920bf73e6a06}{set\+Size} (int size)
+\item 
+int \hyperlink{class_agmd_1_1_graphic_string_a148a33e1076649d355619138a7fd2ac3}{get\+Size} () const 
+\item 
+void \hyperlink{class_agmd_1_1_graphic_string_af80769f95356e9efe0982171fc6fae55}{align} (unsigned long mode, const \hyperlink{class_agmd_maths_1_1_rectangle}{Agmd\+Maths\+::\+Rectangle} \&rect)
+\item 
+\hyperlink{class_agmd_1_1_graphic_string}{Graphic\+String} \& \hyperlink{class_agmd_1_1_graphic_string_aadc63a23f40a9a17a66a961a6d84e88e}{operator=} (const std\+::string \&str)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{class_agmd_1_1_graphic_string_aed2cd074b2c44f30386e9b611e0a8fad}{m\+\_\+text}
+\item 
+\hyperlink{class_agmd_utilities_1_1_color}{Color} \hyperlink{class_agmd_1_1_graphic_string_a71a19501502304fa5ed6727d8d07b1da}{m\+\_\+color}
+\item 
+std\+::string \hyperlink{class_agmd_1_1_graphic_string_a753dfe02c6197464de4b71f6cb8a0aa6}{m\+\_\+font}
+\item 
+int \hyperlink{class_agmd_1_1_graphic_string_a636e8c8552891a616c5ea59ad71349d4}{m\+\_\+size}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_agmd_1_1_graphic_string_a03f7887adc0b982b1900a4b92370f917}{Font\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_graphic_string_a207dacb7edd1f65eaf283f16fc6f9873}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!Graphic\+String@{Graphic\+String}}
+\index{Graphic\+String@{Graphic\+String}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{Graphic\+String}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Graphic\+String\+::\+Graphic\+String (
+\begin{DoxyParamCaption}
+\item[{const ivec2 \&}]{string\+Position = {\ttfamily ivec2(0)}, }
+\item[{const std\+::string \&}]{string\+Text = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const {\bf Color} \&}]{string\+Color = {\ttfamily Color\+:\+:white}, }
+\item[{const std\+::string \&}]{string\+Font = {\ttfamily \char`\"{}Arial\char`\"{}}, }
+\item[{int}]{string\+Size = {\ttfamily 20}}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_graphic_string_a207dacb7edd1f65eaf283f16fc6f9873}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_graphic_string_af80769f95356e9efe0982171fc6fae55}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!align@{align}}
+\index{align@{align}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{align}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Graphic\+String\+::align (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{mode, }
+\item[{const {\bf Agmd\+Maths\+::\+Rectangle} \&}]{rect}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_graphic_string_af80769f95356e9efe0982171fc6fae55}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_graphic_string_a49a622873a0db2884bf3559aa2d53018}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!build\+Model@{build\+Model}}
+\index{build\+Model@{build\+Model}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{build\+Model}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Graphic\+String\+::build\+Model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_graphic_string_a49a622873a0db2884bf3559aa2d53018}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_graphic_string_ab9d50266a34661bbf588d70b4b544ffa}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!draw@{draw}}
+\index{draw@{draw}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Graphic\+String\+::draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_graphic_string_ab9d50266a34661bbf588d70b4b544ffa}
+
+
+Implements \hyperlink{class_agmd_1_1_displayable_aa6bd5ead2497fe7dfee8c110219dc9a2}{Agmd\+::\+Displayable}.
+
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_graphic_string_aed7341e03f4993d89eb9684f03c910e3}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!get\+Pixel\+Size@{get\+Pixel\+Size}}
+\index{get\+Pixel\+Size@{get\+Pixel\+Size}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{get\+Pixel\+Size}]{\setlength{\rightskip}{0pt plus 5cm}ivec2 Agmd\+::\+Graphic\+String\+::get\+Pixel\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_agmd_1_1_graphic_string_aed7341e03f4993d89eb9684f03c910e3}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_graphic_string_a148a33e1076649d355619138a7fd2ac3}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+::\+Graphic\+String\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_graphic_string_a148a33e1076649d355619138a7fd2ac3}
+\hypertarget{class_agmd_1_1_graphic_string_aadc63a23f40a9a17a66a961a6d84e88e}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!operator=@{operator=}}
+\index{operator=@{operator=}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graphic\+String} \& Agmd\+::\+Graphic\+String\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_graphic_string_aadc63a23f40a9a17a66a961a6d84e88e}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_graphic_string_a5dca6135a6e1b44a49ebe05e594bf1ed}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!render@{render}}
+\index{render@{render}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Graphic\+String\+::render (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+Render\+Pass}}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_agmd_1_1_graphic_string_a5dca6135a6e1b44a49ebe05e594bf1ed}
+
+
+Implements \hyperlink{class_agmd_1_1_displayable_acf6e45b6cf747a2dd6a8ca7ebf6805fe}{Agmd\+::\+Displayable}.
+
+\hypertarget{class_agmd_1_1_graphic_string_a0b5437cb0a60050e2238920bf73e6a06}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!set\+Size@{set\+Size}}
+\index{set\+Size@{set\+Size}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{set\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Graphic\+String\+::set\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_graphic_string_a0b5437cb0a60050e2238920bf73e6a06}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_agmd_1_1_graphic_string_a03f7887adc0b982b1900a4b92370f917}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!Font\+Manager@{Font\+Manager}}
+\index{Font\+Manager@{Font\+Manager}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{Font\+Manager}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Font\+Manager}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_agmd_1_1_graphic_string_a03f7887adc0b982b1900a4b92370f917}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_graphic_string_a71a19501502304fa5ed6727d8d07b1da}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!m\+\_\+color@{m\+\_\+color}}
+\index{m\+\_\+color@{m\+\_\+color}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{m\+\_\+color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Color} Agmd\+::\+Graphic\+String\+::m\+\_\+color}}\label{class_agmd_1_1_graphic_string_a71a19501502304fa5ed6727d8d07b1da}
+\hypertarget{class_agmd_1_1_graphic_string_a753dfe02c6197464de4b71f6cb8a0aa6}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!m\+\_\+font@{m\+\_\+font}}
+\index{m\+\_\+font@{m\+\_\+font}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{m\+\_\+font}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Agmd\+::\+Graphic\+String\+::m\+\_\+font}}\label{class_agmd_1_1_graphic_string_a753dfe02c6197464de4b71f6cb8a0aa6}
+\hypertarget{class_agmd_1_1_graphic_string_a636e8c8552891a616c5ea59ad71349d4}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!m\+\_\+size@{m\+\_\+size}}
+\index{m\+\_\+size@{m\+\_\+size}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{m\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int Agmd\+::\+Graphic\+String\+::m\+\_\+size}}\label{class_agmd_1_1_graphic_string_a636e8c8552891a616c5ea59ad71349d4}
+\hypertarget{class_agmd_1_1_graphic_string_aed2cd074b2c44f30386e9b611e0a8fad}{\index{Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}!m\+\_\+text@{m\+\_\+text}}
+\index{m\+\_\+text@{m\+\_\+text}!Agmd\+::\+Graphic\+String@{Agmd\+::\+Graphic\+String}}
+\subsubsection[{m\+\_\+text}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Agmd\+::\+Graphic\+String\+::m\+\_\+text}}\label{class_agmd_1_1_graphic_string_aed2cd074b2c44f30386e9b611e0a8fad}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/\+Render\+Object/\hyperlink{_graphic_string_8h}{Graphic\+String.\+h}\item 
+src/\+Agmd3\+D/\+Core/\+Render\+Object/\hyperlink{_graphic_string_8cpp}{Graphic\+String.\+cpp}\end{DoxyCompactItemize}

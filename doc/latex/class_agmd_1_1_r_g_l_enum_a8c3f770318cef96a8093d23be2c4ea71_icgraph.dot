@@ -1,0 +1,15 @@
+digraph "Agmd::RGLEnum::GetAttachment"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::RGLEnum::GetAttachment",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Agmd::GLFrameBuffer\l::SetTexture",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_frame_buffer.html#af91869c72a294277dd3491e60115753a"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Agmd::GLFrameBuffer\l::SetTextureCube",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_frame_buffer.html#a7fb198c28e6e3d18243e4dd5db35de00"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Agmd::GLFrameBuffer\l::SetRender",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_frame_buffer.html#aedcf363dad623c9d1fb457f5da6b8d78"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Agmd::GLFrameBuffer\l::GenerateBufferFlags",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_g_l_frame_buffer.html#a93a42ffd26eedfd083c40937715bc80e"];
+}

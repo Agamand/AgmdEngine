@@ -1,0 +1,190 @@
+\hypertarget{class_agmd_1_1_drawable_plane}{\section{Agmd\+:\+:Drawable\+Plane Class Reference}
+\label{class_agmd_1_1_drawable_plane}\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+}
+
+
+{\ttfamily \#include $<$Drawable\+Plane.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Drawable\+Plane\+:
+
+
+Collaboration diagram for Agmd\+:\+:Drawable\+Plane\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_drawable_plane_a880fc03ecbf702687fbc1f49eadbb36a}{Drawable\+Plane} (ivec2 pixel\+Size, vec2 repere)
+\item 
+void \hyperlink{class_agmd_1_1_drawable_plane_a2391933443bed5f5ede7b1d3e432a7fe}{add\+Spline} (\hyperlink{class_agmd_1_1_line_renderer}{Line\+Renderer} $\ast$\hyperlink{class_agmd_1_1_drawable_plane_a0b7ad80f3bdb5bc7a38838ecc9f3c9af}{render})
+\item 
+void \hyperlink{class_agmd_1_1_drawable_plane_a0b7ad80f3bdb5bc7a38838ecc9f3c9af}{render} ()
+\item 
+const \hyperlink{class_agmd_1_1_texture}{Texture} \& \hyperlink{class_agmd_1_1_drawable_plane_a6d08c87bd7d97ffba48a01e729af7d7f}{get\+Texture} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_drawable_plane_afa0378c703f4c6829782b622c03ffdb2}{On\+Click} (int click, int state, const vec2 \&\hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos}, bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_drawable_plane_aac9621336d61d3fc92ef84ff6cf339df}{On\+Key} (char key, bool up)
+\item 
+virtual void \hyperlink{class_agmd_1_1_drawable_plane_a0c6c87999f5252cf3559b31212d32d62}{On\+Mouse\+Motion} (const vec2 \&\hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\item 
+void \hyperlink{class_agmd_1_1_drawable_plane_aec667a45b3c0bad09d83162da2619ac9}{clear} ()
+\item 
+virtual void \hyperlink{class_agmd_1_1_drawable_plane_a4014f7ff890cfc0940755f3628170060}{value\+Update} (float value, float cursor)
+\item 
+\hyperlink{_vector_8h_a3df82cea60ff4ad0acb44e58454406a5}{a\+\_\+vector}$<$ \hyperlink{class_agmd_1_1_line_renderer}{Line\+Renderer} $\ast$ $>$ \& \hyperlink{class_agmd_1_1_drawable_plane_aa369b21b311bf6c072104dce41513d4c}{get\+Render} ()
+\item 
+vec2 \hyperlink{class_agmd_1_1_drawable_plane_aa2b3d9098faa673d2e95b05aa0e412a7}{get\+Position\+From\+Screen\+Space} (vec2 \hyperlink{_examples_2_planet_2_app_8cpp_aa8a1c0491559faca4ebd0881575ae7f0}{pos})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_agmd_1_1_drawable_plane_a4f7de675a60284b412215de75b14800d}{degree}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_drawable_plane_a880fc03ecbf702687fbc1f49eadbb36a}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!Drawable\+Plane@{Drawable\+Plane}}
+\index{Drawable\+Plane@{Drawable\+Plane}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{Drawable\+Plane}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Drawable\+Plane\+::\+Drawable\+Plane (
+\begin{DoxyParamCaption}
+\item[{ivec2}]{pixel\+Size, }
+\item[{vec2}]{repere}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_drawable_plane_a880fc03ecbf702687fbc1f49eadbb36a}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_drawable_plane_a2391933443bed5f5ede7b1d3e432a7fe}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!add\+Spline@{add\+Spline}}
+\index{add\+Spline@{add\+Spline}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{add\+Spline}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::add\+Spline (
+\begin{DoxyParamCaption}
+\item[{{\bf Line\+Renderer} $\ast$}]{render}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_drawable_plane_a2391933443bed5f5ede7b1d3e432a7fe}
+\hypertarget{class_agmd_1_1_drawable_plane_aec667a45b3c0bad09d83162da2619ac9}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!clear@{clear}}
+\index{clear@{clear}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_drawable_plane_aec667a45b3c0bad09d83162da2619ac9}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_drawable_plane_aa2b3d9098faa673d2e95b05aa0e412a7}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!get\+Position\+From\+Screen\+Space@{get\+Position\+From\+Screen\+Space}}
+\index{get\+Position\+From\+Screen\+Space@{get\+Position\+From\+Screen\+Space}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{get\+Position\+From\+Screen\+Space}]{\setlength{\rightskip}{0pt plus 5cm}vec2 Agmd\+::\+Drawable\+Plane\+::get\+Position\+From\+Screen\+Space (
+\begin{DoxyParamCaption}
+\item[{vec2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_drawable_plane_aa2b3d9098faa673d2e95b05aa0e412a7}
+\hypertarget{class_agmd_1_1_drawable_plane_aa369b21b311bf6c072104dce41513d4c}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!get\+Render@{get\+Render}}
+\index{get\+Render@{get\+Render}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{get\+Render}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+vector}$<${\bf Line\+Renderer}$\ast$$>$\& Agmd\+::\+Drawable\+Plane\+::get\+Render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_drawable_plane_aa369b21b311bf6c072104dce41513d4c}
+\hypertarget{class_agmd_1_1_drawable_plane_a6d08c87bd7d97ffba48a01e729af7d7f}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!get\+Texture@{get\+Texture}}
+\index{get\+Texture@{get\+Texture}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{get\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Texture}\& Agmd\+::\+Drawable\+Plane\+::get\+Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_drawable_plane_a6d08c87bd7d97ffba48a01e729af7d7f}
+\hypertarget{class_agmd_1_1_drawable_plane_afa0378c703f4c6829782b622c03ffdb2}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!On\+Click@{On\+Click}}
+\index{On\+Click@{On\+Click}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{On\+Click}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::\+On\+Click (
+\begin{DoxyParamCaption}
+\item[{int}]{click, }
+\item[{int}]{state, }
+\item[{const vec2 \&}]{pos, }
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_drawable_plane_afa0378c703f4c6829782b622c03ffdb2}
+
+
+Implements \hyperlink{class_agmd_1_1_agmd_app_1_1_input_listener_a01156fd9561c7234122cc5b55074e870}{Agmd\+::\+Agmd\+App\+::\+Input\+Listener}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_drawable_plane_aac9621336d61d3fc92ef84ff6cf339df}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!On\+Key@{On\+Key}}
+\index{On\+Key@{On\+Key}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{On\+Key}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::\+On\+Key (
+\begin{DoxyParamCaption}
+\item[{char}]{key, }
+\item[{bool}]{up}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_drawable_plane_aac9621336d61d3fc92ef84ff6cf339df}
+
+
+Implements \hyperlink{class_agmd_1_1_agmd_app_1_1_input_listener_aa4679bd12478ade026710836dcea291e}{Agmd\+::\+Agmd\+App\+::\+Input\+Listener}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_drawable_plane_a0c6c87999f5252cf3559b31212d32d62}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!On\+Mouse\+Motion@{On\+Mouse\+Motion}}
+\index{On\+Mouse\+Motion@{On\+Mouse\+Motion}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{On\+Mouse\+Motion}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::\+On\+Mouse\+Motion (
+\begin{DoxyParamCaption}
+\item[{const vec2 \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_drawable_plane_a0c6c87999f5252cf3559b31212d32d62}
+
+
+Implements \hyperlink{class_agmd_1_1_agmd_app_1_1_input_listener_a1f4ef5ac31da58ae90d2c7b37243a5b4}{Agmd\+::\+Agmd\+App\+::\+Input\+Listener}.
+
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_drawable_plane_a0b7ad80f3bdb5bc7a38838ecc9f3c9af}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!render@{render}}
+\index{render@{render}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_drawable_plane_a0b7ad80f3bdb5bc7a38838ecc9f3c9af}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_drawable_plane_a4014f7ff890cfc0940755f3628170060}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!value\+Update@{value\+Update}}
+\index{value\+Update@{value\+Update}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{value\+Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Drawable\+Plane\+::value\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{value, }
+\item[{float}]{cursor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_1_1_drawable_plane_a4014f7ff890cfc0940755f3628170060}
+
+
+Implements \hyperlink{class_agmd_1_1_a_slider_1_1_slider_interface_ae6c98844c5f0ee73ff5eac7da47fa2c1}{Agmd\+::\+A\+Slider\+::\+Slider\+Interface}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_1_1_drawable_plane_a4f7de675a60284b412215de75b14800d}{\index{Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}!degree@{degree}}
+\index{degree@{degree}!Agmd\+::\+Drawable\+Plane@{Agmd\+::\+Drawable\+Plane}}
+\subsubsection[{degree}]{\setlength{\rightskip}{0pt plus 5cm}float Agmd\+::\+Drawable\+Plane\+::degree}}\label{class_agmd_1_1_drawable_plane_a4f7de675a60284b412215de75b14800d}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd3\+D/\+Core/2\+D\+Render/\hyperlink{_drawable_plane_8h}{Drawable\+Plane.\+h}\item 
+src/\+Agmd3\+D/\+Core/2\+D\+Render/\hyperlink{_drawable_plane_8cpp}{Drawable\+Plane.\+cpp}\end{DoxyCompactItemize}

@@ -6,5 +6,5 @@ digraph "AgmdUtilities::ScatteredHierarchy&lt; TypeList&lt; T1, T2 &gt;, Handler
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="Handler\< T1 \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node3 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="ScatteredHierarchy\l\< T2, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scattered_hierarchy.html"];
+  Node3 [label="AgmdUtilities::Scattered\lHierarchy\< T2, Handler \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_scattered_hierarchy.html"];
 }

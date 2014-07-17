@@ -1,0 +1,28 @@
+digraph "Agmd::MeshNode::MeshNode"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::MeshNode::MeshNode",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Agmd::Model::getBoundingBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_model.html#a0ad5bcf1b7f9947d9e54aa0a960e7628"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Agmd::DisplayNode::\lupdate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_display_node.html#ad82e625239b3c31f56a650703894e99e"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Agmd::SceneNode::update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_scene_node.html#a8ee2002fe5b30368f272d31ce0213d2e"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="AgmdMaths::Transform\l::needUpdate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_transform.html#a4b719bb99a251321827d33e90bebad61"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="AgmdMaths::Transform\l::update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_transform.html#abc27a93e3cac63e8222138b91d098310"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="AgmdMaths::Transform\l::modelMatrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_transform.html#a10bb16e4f3dc5555d2684384526da320"];
+  Node3 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Agmd::BoundingBox::mult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_bounding_box.html#a65e5cdcf9f9320a11e4e9816cd78083a"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Agmd::BoundingBox::\lGetMin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_bounding_box.html#af4cb7f98c2b6759b01e89115c297db1d"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Agmd::BoundingBox::\lGetMax",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_bounding_box.html#a016e74269a19c3692886199a8c36d9fc"];
+  Node3 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="AgmdMaths::Transform\l::localModelMatrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_maths_1_1_transform.html#a17a66b12dee563680c1f892c01d85942"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,153 @@
+\hypertarget{class_agmd_1_1_physics_mgr}{\section{Agmd\+:\+:Physics\+Mgr Class Reference}
+\label{class_agmd_1_1_physics_mgr}\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+}
+
+
+{\ttfamily \#include $<$Physics\+Mgr.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+:\+:Physics\+Mgr\+:
+
+
+Collaboration diagram for Agmd\+:\+:Physics\+Mgr\+:
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}{Physics\+Mgr} ()
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_af55b10a59198035e790c1713c8ebab3d}{Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} dt)
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_aff2bd4dfab3960c274d71fce7b4f17c4}{Add} (\hyperlink{class_agmd_1_1_entities}{Entities} $\ast$\+\_\+entities)
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_a56b400f17d6ac3c401f7b72ef9f086ac}{Remove} (\hyperlink{class_agmd_1_1_entities}{Entities} $\ast$\+\_\+entities)
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_ac7c84371d878852c80af08b7fccd8cb1}{Set\+Gravity} (vec3 \hyperlink{_examples_2_planet_2_app_8cpp_a8cf17d727651616de6f2b79ef32170cd}{g})
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_ac8096f3ccbac923cde88f6160b71b060}{Debug\+Draw} ()
+\item 
+\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} \hyperlink{class_agmd_1_1_physics_mgr_a343aba49763502d0ea4d6e4fcef3f52d}{Get\+D\+T} ()
+\item 
+bt\+Rigid\+Body $\ast$ \hyperlink{class_agmd_1_1_physics_mgr_aff67b70a599ce21b253095cc60644a3d}{create\+Rigid\+Body} (float mass, const bt\+Transform \&start\+Transform, bt\+Collision\+Shape $\ast$shape)
+\item 
+\hyperlink{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}{Physics\+Mgr} ()
+\item 
+\hyperlink{class_agmd_1_1_physics_mgr_abcf14beb1eb8d37f9126cdede01f9e6c}{$\sim$\+Physics\+Mgr} ()
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_a8288fff05fd378dc5b8d1af1ce9b96b7}{Add\+Rigid\+Body} (\hyperlink{class_agmd_1_1_rigid_body}{Rigid\+Body} $\ast$rigidbody)
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_ab8f2fe17bca890679583b682d0fe4f1f}{Remove\+Rigid\+Body} (\hyperlink{class_agmd_1_1_rigid_body}{Rigid\+Body} $\ast$rigidbody)
+\item 
+void \hyperlink{class_agmd_1_1_physics_mgr_acd83c345a83d3d5eebebb71d17548a7a}{Update} (\hyperlink{_common_defines_8h_a6c5192ec3c55d6e5b13d2dbaa082bdea}{a\+\_\+uint64} time\+\_\+diff)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Physics\+Mgr@{Physics\+Mgr}}
+\index{Physics\+Mgr@{Physics\+Mgr}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Physics\+Mgr}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Physics\+Mgr\+::\+Physics\+Mgr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}
+\hypertarget{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Physics\+Mgr@{Physics\+Mgr}}
+\index{Physics\+Mgr@{Physics\+Mgr}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Physics\+Mgr}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Physics\+Mgr\+::\+Physics\+Mgr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_a865b1468ecb44d77f18d5463abe5f1c5}
+\hypertarget{class_agmd_1_1_physics_mgr_abcf14beb1eb8d37f9126cdede01f9e6c}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!````~Physics\+Mgr@{$\sim$\+Physics\+Mgr}}
+\index{````~Physics\+Mgr@{$\sim$\+Physics\+Mgr}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{$\sim$\+Physics\+Mgr}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+::\+Physics\+Mgr\+::$\sim$\+Physics\+Mgr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_abcf14beb1eb8d37f9126cdede01f9e6c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_1_1_physics_mgr_aff2bd4dfab3960c274d71fce7b4f17c4}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Add@{Add}}
+\index{Add@{Add}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Add (
+\begin{DoxyParamCaption}
+\item[{{\bf Entities} $\ast$}]{\+\_\+entities}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_aff2bd4dfab3960c274d71fce7b4f17c4}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_1_1_physics_mgr_a8288fff05fd378dc5b8d1af1ce9b96b7}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Add\+Rigid\+Body@{Add\+Rigid\+Body}}
+\index{Add\+Rigid\+Body@{Add\+Rigid\+Body}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Add\+Rigid\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Add\+Rigid\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Rigid\+Body} $\ast$}]{rigidbody}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_a8288fff05fd378dc5b8d1af1ce9b96b7}
+\hypertarget{class_agmd_1_1_physics_mgr_aff67b70a599ce21b253095cc60644a3d}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!create\+Rigid\+Body@{create\+Rigid\+Body}}
+\index{create\+Rigid\+Body@{create\+Rigid\+Body}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{create\+Rigid\+Body}]{\setlength{\rightskip}{0pt plus 5cm}bt\+Rigid\+Body $\ast$ Agmd\+::\+Physics\+Mgr\+::create\+Rigid\+Body (
+\begin{DoxyParamCaption}
+\item[{float}]{mass, }
+\item[{const bt\+Transform \&}]{start\+Transform, }
+\item[{bt\+Collision\+Shape $\ast$}]{shape}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_aff67b70a599ce21b253095cc60644a3d}
+\hypertarget{class_agmd_1_1_physics_mgr_ac8096f3ccbac923cde88f6160b71b060}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Debug\+Draw@{Debug\+Draw}}
+\index{Debug\+Draw@{Debug\+Draw}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Debug\+Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Debug\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_ac8096f3ccbac923cde88f6160b71b060}
+\hypertarget{class_agmd_1_1_physics_mgr_a343aba49763502d0ea4d6e4fcef3f52d}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Get\+D\+T@{Get\+D\+T}}
+\index{Get\+D\+T@{Get\+D\+T}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Get\+D\+T}]{\setlength{\rightskip}{0pt plus 5cm}{\bf a\+\_\+uint64} Agmd\+::\+Physics\+Mgr\+::\+Get\+D\+T (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_agmd_1_1_physics_mgr_a343aba49763502d0ea4d6e4fcef3f52d}
+\hypertarget{class_agmd_1_1_physics_mgr_a56b400f17d6ac3c401f7b72ef9f086ac}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Remove@{Remove}}
+\index{Remove@{Remove}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Remove}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Remove (
+\begin{DoxyParamCaption}
+\item[{{\bf Entities} $\ast$}]{\+\_\+entities}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_a56b400f17d6ac3c401f7b72ef9f086ac}
+\hypertarget{class_agmd_1_1_physics_mgr_ab8f2fe17bca890679583b682d0fe4f1f}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Remove\+Rigid\+Body@{Remove\+Rigid\+Body}}
+\index{Remove\+Rigid\+Body@{Remove\+Rigid\+Body}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Remove\+Rigid\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Remove\+Rigid\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Rigid\+Body} $\ast$}]{rigidbody}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_ab8f2fe17bca890679583b682d0fe4f1f}
+\hypertarget{class_agmd_1_1_physics_mgr_ac7c84371d878852c80af08b7fccd8cb1}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Set\+Gravity@{Set\+Gravity}}
+\index{Set\+Gravity@{Set\+Gravity}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Set\+Gravity}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Set\+Gravity (
+\begin{DoxyParamCaption}
+\item[{vec3}]{g}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_ac7c84371d878852c80af08b7fccd8cb1}
+\hypertarget{class_agmd_1_1_physics_mgr_acd83c345a83d3d5eebebb71d17548a7a}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{time\+\_\+diff}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_acd83c345a83d3d5eebebb71d17548a7a}
+\hypertarget{class_agmd_1_1_physics_mgr_af55b10a59198035e790c1713c8ebab3d}{\index{Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}!Update@{Update}}
+\index{Update@{Update}!Agmd\+::\+Physics\+Mgr@{Agmd\+::\+Physics\+Mgr}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+::\+Physics\+Mgr\+::\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf a\+\_\+uint64}}]{dt}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_1_1_physics_mgr_af55b10a59198035e790c1713c8ebab3d}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd\+Bullet/\hyperlink{_agmd_bullet_2_physics_mgr_8h}{Physics\+Mgr.\+h}\item 
+src/\+Agmd\+Bullet/\hyperlink{_agmd_bullet_2_physics_mgr_8cpp}{Physics\+Mgr.\+cpp}\end{DoxyCompactItemize}

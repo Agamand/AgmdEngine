@@ -1,35 +1,41 @@
-\hypertarget{_camera_8h}{\section{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Camera/\-Camera.h File Reference}
-\label{_camera_8h}\index{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Camera/\-Camera.\-h@{J\-:/\-Projet Infographie/\-Moteur3\-D/\-Agmd\-Engine/src/\-Agmd3\-D/\-Core/\-Camera/\-Camera.\-h}}
+\hypertarget{_camera_8h}{\section{src/\+Agmd3\+D/\+Core/\+Camera/\+Camera.h File Reference}
+\label{_camera_8h}\index{src/\+Agmd3\+D/\+Core/\+Camera/\+Camera.\+h@{src/\+Agmd3\+D/\+Core/\+Camera/\+Camera.\+h}}
 }
-{\ttfamily \#include $<$Config\textbackslash{}\-Export.\-h$>$}\\*
-{\ttfamily \#include $<$Vector3.\-h$>$}\\*
-{\ttfamily \#include $<$Matrix4.\-h$>$}\\*
-{\ttfamily \#include $<$Utilities\textbackslash{}\-Singleton.\-h$>$}\\*
-{\ttfamily \#include $<$Agmd\-Defines.\-h$>$}\\*
+{\ttfamily \#include $<$Config/\+Export.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Buffer/\+Buffer.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Enums.\+h$>$}\\*
+{\ttfamily \#include $<$Vector3.\+h$>$}\\*
+{\ttfamily \#include $<$Matrix4.\+h$>$}\\*
+{\ttfamily \#include $<$Core/\+Tools/\+Frustum.\+h$>$}\\*
+{\ttfamily \#include $<$Common\+Defines.\+h$>$}\\*
+Include dependency graph for Camera.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class_agmd_1_1_camera}{Agmd\-::\-Camera}
+class \hyperlink{class_agmd_1_1_camera}{Agmd\+::\+Camera}
+\item 
+struct \hyperlink{struct_agmd_1_1_camera_1_1_camera_buffer}{Agmd\+::\+Camera\+::\+Camera\+Buffer}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \hyperlink{namespace_agmd}{Agmd}
+ \hyperlink{namespace_agmd}{Agmd}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424f}{Agmd\-::\-T\-Camera\-Move} \{ \\*
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424faee389384b7803728e8488c9dbcb88feb}{Agmd\-::\-M\-O\-V\-E\-\_\-\-N\-O\-N\-E} = 0x00, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa32b9518907e1ae944e0f604a40e9c3f4}{Agmd\-::\-M\-O\-V\-E\-\_\-\-F\-O\-R\-W\-A\-R\-D} = 0x01, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa3f9e219633d25af1d8c5f1114dfb9e90}{Agmd\-::\-M\-O\-V\-E\-\_\-\-B\-A\-C\-K} = 0x02, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa4615b4c9a22d0449115e5a7648451210}{Agmd\-::\-M\-O\-V\-E\-\_\-\-L\-E\-F\-T} = 0x04, 
+enum \hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424f}{Agmd\+::\+T\+Camera\+Move} \{ \\*
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424faee389384b7803728e8488c9dbcb88feb}{Agmd\+::\+M\+O\+V\+E\+\_\+\+N\+O\+N\+E} = 0x00, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa32b9518907e1ae944e0f604a40e9c3f4}{Agmd\+::\+M\+O\+V\+E\+\_\+\+F\+O\+R\+W\+A\+R\+D} = 0x01, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa3f9e219633d25af1d8c5f1114dfb9e90}{Agmd\+::\+M\+O\+V\+E\+\_\+\+B\+A\+C\+K} = 0x02, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa4615b4c9a22d0449115e5a7648451210}{Agmd\+::\+M\+O\+V\+E\+\_\+\+L\+E\+F\+T} = 0x04, 
 \\*
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa1141ed0def41679b78695fa23b53269d}{Agmd\-::\-M\-O\-V\-E\-\_\-\-R\-I\-G\-H\-T} = 0x08, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424faab74a6ff86a5d11fa24840b114e13166}{Agmd\-::\-M\-O\-V\-E\-\_\-\-U\-P} = 0x10, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa3cef1f46c60cff593159a67515545a36}{Agmd\-::\-M\-O\-V\-E\-\_\-\-D\-O\-W\-N} = 0x20, 
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa73260f27ee36b3d550c5dec4104241a8}{Agmd\-::\-Z\-O\-O\-M\-\_\-\-I\-N} = 0x40, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa1141ed0def41679b78695fa23b53269d}{Agmd\+::\+M\+O\+V\+E\+\_\+\+R\+I\+G\+H\+T} = 0x08, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424faab74a6ff86a5d11fa24840b114e13166}{Agmd\+::\+M\+O\+V\+E\+\_\+\+U\+P} = 0x10, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa3cef1f46c60cff593159a67515545a36}{Agmd\+::\+M\+O\+V\+E\+\_\+\+D\+O\+W\+N} = 0x20, 
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa73260f27ee36b3d550c5dec4104241a8}{Agmd\+::\+Z\+O\+O\+M\+\_\+\+I\+N} = 0x40, 
 \\*
-\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa5fc6381c0e0bdbfb400611d77c9ff307}{Agmd\-::\-Z\-O\-O\-M\-\_\-\-O\-U\-T} = 0x80
+\hyperlink{namespace_agmd_afacd7ff2b34d5b64625050e09d14424fa5fc6381c0e0bdbfb400611d77c9ff307}{Agmd\+::\+Z\+O\+O\+M\+\_\+\+O\+U\+T} = 0x80
  \}
 \end{DoxyCompactItemize}

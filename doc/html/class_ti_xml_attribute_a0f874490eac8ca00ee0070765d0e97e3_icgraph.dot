@@ -1,0 +1,21 @@
+digraph "TiXmlAttribute::Value"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlAttribute::Value",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlElement::Attribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#ac1e4691e9375ba4e665dce7e46a50a9c"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlElement::QueryBoolAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#af4a1d3f88c28eb0f3115dc39ebd83fff"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TiXmlElement::CopyTo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#a9e0c1983b840de4134f1f6bf7af00b0f"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TiXmlElement::TiXmlElement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#a1ca4465f3c2eac6a60e641cd7f1d9f7e"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TiXmlElement::operator=",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#ad58d300f4cfc0016ffa6861ebb718a0b"];
+  Node4 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TiXmlElement::Clone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_element.html#a13f6df105ebb1e8dc636e75cc883be32",tooltip="Creates a new Element and returns it - the returned element is a copy. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TiXmlDeclaration::Parse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#a9839ea97ed687a2b7342fd7b0f04361b"];
+}

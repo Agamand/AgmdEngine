@@ -1,0 +1,11 @@
+digraph "Agmd::BSpline::cdb"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Agmd::BSpline::cdb",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Agmd::BSpline::compute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_b_spline.html#a00da37dc51263b61be82f3ff933b392e"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Agmd::BSpline::BSpline",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_1_1_b_spline.html#a8046af3910354146765ff276d13671d4"];
+}

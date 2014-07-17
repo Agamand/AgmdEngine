@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="M2ModelTextureDef",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_m2_model_texture_def.html"];
+  Node1 [label="AgmdUtilities::List\l\< T, A \>::ConstIterator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_agmd_utilities_1_1_list_1_1_const_iterator.html"];
 }

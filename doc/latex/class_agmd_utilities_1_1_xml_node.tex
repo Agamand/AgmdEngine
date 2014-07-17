@@ -1,0 +1,173 @@
+\hypertarget{class_agmd_utilities_1_1_xml_node}{\section{Agmd\+Utilities\+:\+:Xml\+Node Class Reference}
+\label{class_agmd_utilities_1_1_xml_node}\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+}
+
+
+{\ttfamily \#include $<$Xml\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Agmd\+Utilities\+:\+:Xml\+Node\+:
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef vector$<$ \hyperlink{namespace_agmd_utilities_a5c62c53e06995bf0eddd56b55f44e62e}{Xml\+Node\+Ptr} $>$ \hyperlink{class_agmd_utilities_1_1_xml_node_a732265394a08c9960b72f0678c0272b7}{Xml\+Node\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_utilities_1_1_xml_node_ac9234f4d9fde5cfd94554f0fc8cfe7d1}{Xml\+Node} (\hyperlink{namespace_agmd_utilities_a1a5e5fd3ab8968a2b44d3aad938849cb}{Node\+Type} type)
+\item 
+\hyperlink{namespace_agmd_utilities_a5c62c53e06995bf0eddd56b55f44e62e}{Xml\+Node\+Ptr} \hyperlink{class_agmd_utilities_1_1_xml_node_af52b0e4648783987c2dcb2cb1e55811f}{Get\+Child} (\hyperlink{namespace_agmd_utilities_a1a5e5fd3ab8968a2b44d3aad938849cb}{Node\+Type} type)
+\item 
+\hyperlink{namespace_agmd_utilities_a5c62c53e06995bf0eddd56b55f44e62e}{Xml\+Node\+Ptr} \hyperlink{class_agmd_utilities_1_1_xml_node_afbc9e359df05b63051de0c62adcbccec}{Get\+Child} (string name)
+\item 
+\hyperlink{namespace_agmd_utilities_a5c62c53e06995bf0eddd56b55f44e62e}{Xml\+Node\+Ptr} $\ast$ \hyperlink{class_agmd_utilities_1_1_xml_node_afcf3ea19473ffedc3f0a45eac3519a36}{Get\+Childs} ()
+\item 
+\hyperlink{namespace_agmd_utilities_a1a5e5fd3ab8968a2b44d3aad938849cb}{Node\+Type} \hyperlink{class_agmd_utilities_1_1_xml_node_ab255d32a181daa76c79753ff57631084}{Get\+Type} ()
+\item 
+virtual string \hyperlink{class_agmd_utilities_1_1_xml_node_a896674ddea53e7375025c1458531b3d2}{To\+S\+Tring} ()=0
+\item 
+virtual \hyperlink{namespace_agmd_utilities_a93ce0bfe1d978003fb0319f5b3763e2c}{Argument} \hyperlink{class_agmd_utilities_1_1_xml_node_a75f297e23cf48cff73c1d8e61470bc28}{Get\+Args} ()
+\item 
+virtual string \hyperlink{class_agmd_utilities_1_1_xml_node_a1aad9baed2d9ad95a326ec83f96055e3}{Get\+Tx\+T} ()
+\item 
+virtual string \hyperlink{class_agmd_utilities_1_1_xml_node_a384029363d973e1b6cf7ffbf1562dd70}{Get\+Name} ()=0
+\item 
+void \hyperlink{class_agmd_utilities_1_1_xml_node_a1e02528a614db4ebc3ac8ddb5747cfc1}{Add\+Child} (\hyperlink{namespace_agmd_utilities_a5c62c53e06995bf0eddd56b55f44e62e}{Xml\+Node\+Ptr} node)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_agmd_utilities_1_1_xml_node_a732265394a08c9960b72f0678c0272b7}{Xml\+Node\+Vector} \hyperlink{class_agmd_utilities_1_1_xml_node_aa71154bbe16cd1d243ff17fa8555eeca}{m\+\_\+childnode}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_agmd_utilities_1_1_xml_node_a732265394a08c9960b72f0678c0272b7}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Xml\+Node\+Vector@{Xml\+Node\+Vector}}
+\index{Xml\+Node\+Vector@{Xml\+Node\+Vector}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Xml\+Node\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<${\bf Xml\+Node\+Ptr}$>$ {\bf Agmd\+Utilities\+::\+Xml\+Node\+::\+Xml\+Node\+Vector}}}\label{class_agmd_utilities_1_1_xml_node_a732265394a08c9960b72f0678c0272b7}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_agmd_utilities_1_1_xml_node_ac9234f4d9fde5cfd94554f0fc8cfe7d1}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Xml\+Node@{Xml\+Node}}
+\index{Xml\+Node@{Xml\+Node}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Xml\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Agmd\+Utilities\+::\+Xml\+Node\+::\+Xml\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Type}}]{type}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_ac9234f4d9fde5cfd94554f0fc8cfe7d1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_agmd_utilities_1_1_xml_node_a1e02528a614db4ebc3ac8ddb5747cfc1}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Add\+Child@{Add\+Child}}
+\index{Add\+Child@{Add\+Child}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Add\+Child}]{\setlength{\rightskip}{0pt plus 5cm}void Agmd\+Utilities\+::\+Xml\+Node\+::\+Add\+Child (
+\begin{DoxyParamCaption}
+\item[{{\bf Xml\+Node\+Ptr}}]{node}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_a1e02528a614db4ebc3ac8ddb5747cfc1}
+\hypertarget{class_agmd_utilities_1_1_xml_node_a75f297e23cf48cff73c1d8e61470bc28}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Args@{Get\+Args}}
+\index{Get\+Args@{Get\+Args}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Args}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Argument} Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Args (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_utilities_1_1_xml_node_a75f297e23cf48cff73c1d8e61470bc28}
+
+
+Reimplemented in \hyperlink{class_agmd_utilities_1_1_xml_balise_node_aa128f9076fc38c9cca05f628ef0eaf2c}{Agmd\+Utilities\+::\+Xml\+Balise\+Node}.
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_af52b0e4648783987c2dcb2cb1e55811f}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Child@{Get\+Child}}
+\index{Get\+Child@{Get\+Child}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Child}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Xml\+Node\+Ptr} Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Child (
+\begin{DoxyParamCaption}
+\item[{{\bf Node\+Type}}]{type}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_af52b0e4648783987c2dcb2cb1e55811f}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_afbc9e359df05b63051de0c62adcbccec}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Child@{Get\+Child}}
+\index{Get\+Child@{Get\+Child}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Child}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Xml\+Node\+Ptr} Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Child (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_afbc9e359df05b63051de0c62adcbccec}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_afcf3ea19473ffedc3f0a45eac3519a36}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Childs@{Get\+Childs}}
+\index{Get\+Childs@{Get\+Childs}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Childs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Xml\+Node\+Ptr} $\ast$ Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Childs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_afcf3ea19473ffedc3f0a45eac3519a36}
+\hypertarget{class_agmd_utilities_1_1_xml_node_a384029363d973e1b6cf7ffbf1562dd70}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Name@{Get\+Name}}
+\index{Get\+Name@{Get\+Name}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_utilities_1_1_xml_node_a384029363d973e1b6cf7ffbf1562dd70}
+
+
+Implemented in \hyperlink{class_agmd_utilities_1_1_xml_txt_node_a6d28ed2a63ee2acb5d84deb0f52def6b}{Agmd\+Utilities\+::\+Xml\+Txt\+Node}, and \hyperlink{class_agmd_utilities_1_1_xml_balise_node_a91c977e870558bed5f895fce2f6f36a2}{Agmd\+Utilities\+::\+Xml\+Balise\+Node}.
+
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_a1aad9baed2d9ad95a326ec83f96055e3}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Tx\+T@{Get\+Tx\+T}}
+\index{Get\+Tx\+T@{Get\+Tx\+T}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Tx\+T}]{\setlength{\rightskip}{0pt plus 5cm}string Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Tx\+T (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_agmd_utilities_1_1_xml_node_a1aad9baed2d9ad95a326ec83f96055e3}
+
+
+Reimplemented in \hyperlink{class_agmd_utilities_1_1_xml_txt_node_a2cd4e68ea1d0a364c88d9735fea44224}{Agmd\+Utilities\+::\+Xml\+Txt\+Node}.
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_ab255d32a181daa76c79753ff57631084}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!Get\+Type@{Get\+Type}}
+\index{Get\+Type@{Get\+Type}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{Get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\+Type} Agmd\+Utilities\+::\+Xml\+Node\+::\+Get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_agmd_utilities_1_1_xml_node_ab255d32a181daa76c79753ff57631084}
+
+
+Here is the caller graph for this function\+:
+
+
+\hypertarget{class_agmd_utilities_1_1_xml_node_a896674ddea53e7375025c1458531b3d2}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!To\+S\+Tring@{To\+S\+Tring}}
+\index{To\+S\+Tring@{To\+S\+Tring}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{To\+S\+Tring}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Agmd\+Utilities\+::\+Xml\+Node\+::\+To\+S\+Tring (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_agmd_utilities_1_1_xml_node_a896674ddea53e7375025c1458531b3d2}
+
+
+Implemented in \hyperlink{class_agmd_utilities_1_1_xml_txt_node_a30b8af526fdd3c74de577a9bab5c0580}{Agmd\+Utilities\+::\+Xml\+Txt\+Node}, and \hyperlink{class_agmd_utilities_1_1_xml_balise_node_a6e6275c37594b92185f3fec4bcd85f2d}{Agmd\+Utilities\+::\+Xml\+Balise\+Node}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_agmd_utilities_1_1_xml_node_aa71154bbe16cd1d243ff17fa8555eeca}{\index{Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}!m\+\_\+childnode@{m\+\_\+childnode}}
+\index{m\+\_\+childnode@{m\+\_\+childnode}!Agmd\+Utilities\+::\+Xml\+Node@{Agmd\+Utilities\+::\+Xml\+Node}}
+\subsubsection[{m\+\_\+childnode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Xml\+Node\+Vector} Agmd\+Utilities\+::\+Xml\+Node\+::m\+\_\+childnode\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_agmd_utilities_1_1_xml_node_aa71154bbe16cd1d243ff17fa8555eeca}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Agmd\+Utilities/\+Utilities/\hyperlink{_xml_parser_8h}{Xml\+Parser.\+h}\item 
+src/\+Agmd\+Utilities/\+Utilities/\hyperlink{_xml_parser_8cpp}{Xml\+Parser.\+cpp}\end{DoxyCompactItemize}

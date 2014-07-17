@@ -1,0 +1,13 @@
+digraph "TiXmlDeclaration::CopyTo"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TiXmlDeclaration::CopyTo",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TiXmlDeclaration::TiXmlDeclaration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#a58ac9042c342f7845c8491da0bb091e8"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TiXmlDeclaration::operator=",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#a3bc617efe11014ff2b1a9c5727c37a9a"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TiXmlDeclaration::Clone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ti_xml_declaration.html#aff8231266d735943d8a7514a9c9822b9",tooltip="Creates a copy of this Declaration and returns it. "];
+}

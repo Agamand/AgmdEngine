@@ -34,17 +34,17 @@ namespace Agmd
     public :
         SceneNode(NodeType, Transform*);
         virtual ~SceneNode();
-		virtual bool IsVisible(BoundingBox& bbox) { return true;}
-		virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light) {
+		virtual bool isVisible(BoundingBox& bbox) { return true;}
+		virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light) {
 			if(!m_children.empty())
 				for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
-					m_children[i]->FindVisible(cam,display,light);
+					m_children[i]->findVisible(cam,display,light);
 		}
 
-		virtual bool Update(Transform* transform, bool updateChildren, bool transformChanged);
-        Transform& GetTransform();
-		void AddChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->Update(m_transform,true,true);}
-		NodeType GetType() const {return m_type;}
+		virtual bool update(Transform* transform, bool updateChildren, bool transformChanged);
+        Transform& getTransform();
+		void addChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->update(m_transform,true,true);}
+		NodeType getType() const {return m_type;}
 		bool isEmpty();
 		void clear();
 	protected:

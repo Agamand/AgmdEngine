@@ -13,6 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Driver.h>
 #include <Core/Camera/Camera.h>
 #include <Core/Tools/BoundingBox.h>
+#include <Core/Shader/ShaderProgram.h>
 
 #include <Container/Vector.h>
 
@@ -25,11 +26,10 @@ namespace Agmd
     move(0.0f),
     moveFlags(MOVE_NONE),
     _position(pos),
-    _speed(100.0f),
-    _sensivity(0.2f),
+    m_speed(100.0f),
+    m_sensivity(0.2f),
 	recvInput(true),
-	m_frustum(new Frustum(projection)),
-    map(NULL)
+	m_frustum(new Frustum(projection))
     {
         m_transform.m_MatProjection = projection;
         m_transform.m_MatView = mat4(1.0f);
@@ -45,7 +45,7 @@ namespace Agmd
 	}
 
 
-    void Camera::UpdateBuffer(mat4& view)
+    void Camera::updateBuffer(mat4& view)
     {
         //m_cameraBuffer.WaitSync();
         m_transform.m_MatView = view;
@@ -60,12 +60,12 @@ namespace Agmd
         
     }
 
-    mat4 Camera::Look()
+    mat4 Camera::look()
     {
         return lookAt(_position,_target,vec3(0,0,1));
     }
 
-    void Camera::SetActive(TCamera type)
+    void Camera::setActive(TCamera type)
     {
         if(type == CAMERA_2D)
             m_cameraBuffer.Bind(UNIFORM_CAMERA2D_BIND);
@@ -73,24 +73,24 @@ namespace Agmd
             m_cameraBuffer.Bind(UNIFORM_CAMERA3D_BIND);   
     }
 
-    void Camera::SetCurrent(Camera* cam, TCamera type)
+    void Camera::setCurrent(Camera* cam, TCamera type)
     {
         if(type == CAMERA_2D)
             s_currentCamera2D = cam;
         else
             s_currentCamera3D = cam;
         if(cam)
-            cam->SetActive(type);
+            cam->setActive(type);
     }
 
-    Camera* Camera::GetCurrent(TCamera type)
+    Camera* Camera::getCurrent(TCamera type)
     {
         if(type == CAMERA_2D)
             return s_currentCamera2D;
         return s_currentCamera3D;
     }
 
-    bool Camera::UnProject(vec3& mouse)
+    bool Camera::unProject(vec3& mouse)
     {
         mat4 viewprojection = m_transform.m_MatProjection*m_transform.m_MatView;
         viewprojection = inverse(viewprojection);
@@ -117,14 +117,18 @@ namespace Agmd
         return true;
     }
 
-	const std::string Camera::ToString()
+	const std::string Camera::toString()
 	{
 		return "Camera(Abstract)";
 	}
 
 	bool Camera::isInFrustrum( const BoundingBox& boundingBox )
 	{
+		return true;
 		const BoundingBox bbox = boundingBox.getTransformedBoundingBox(m_transform.m_MatView);
+		ShaderProgram testShader;
+		testShader.LoadFromFile("Shader/debug_shader.glsl");
+		Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
 		return m_frustum->IsIn(bbox);
 	}
 

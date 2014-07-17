@@ -17,7 +17,7 @@ namespace AgmdMaths
 {
     class Plane
     {
-    public :
+    public :	
 
         Plane(float a = 0.0f, float b = 0.0f, float c = 0.0f, float d = 0.0f);
 
@@ -25,12 +25,12 @@ namespace AgmdMaths
 
         Plane(const vec3& normal, const vec3& point);
 
-        void BuildFromPoints(const vec3& v0, const vec3& v1, const vec3& v2);
+        void buildFromPoints(const vec3& v0, const vec3& v1, const vec3& v2);
 
-        float DistanceToPoint(const vec3& point) const;
-        float DistanceToPoint(const vec4& point) const;
+        float distanceToPoint(const vec3& point) const;
+        float distanceToPoint(const vec4& point) const;
 
-        void Normalize();
+		void normalize();
 
         bool operator ==(const Plane& p) const;
         bool operator !=(const Plane& p) const;

@@ -15,7 +15,7 @@ void main(){
 	v_Color = in_Color;
 	v_pos = in_Vertex;
 	v_texCoord0 = in_TexCoord0;
-	gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex+vec3(4,0,0),1);
+	gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1);
 }
 #endif
 

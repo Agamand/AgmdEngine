@@ -21,15 +21,15 @@ namespace Agmd
         RenderingMode(a_int32 width, a_int32 heigth);
         RenderingMode(ivec2& screenSize);
         
-        virtual void Compute() = 0;
-        void SetRenderMode(TRenderMode mode);
-        static void SetRenderingMode(RenderingMode*);
+        virtual void compute() = 0;
+        void setRenderMode(TRenderMode mode);
+        static void setRenderingMode(RenderingMode*);
 
-        static RenderingMode* GetRenderingMode();
+        static RenderingMode* getRenderingMode();
 
     protected:
-        virtual void Start() = 0;
-        virtual void End() = 0;
+        virtual void start() = 0;
+        virtual void end() = 0;
         ivec2 m_screen;
         TRenderMode m_mode;
         static RenderingMode* s_current;

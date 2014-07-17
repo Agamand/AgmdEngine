@@ -1,4 +1,5 @@
 #include <Core/2DRender/BSpline.h>
+#include <CommonDefines.h>
 
 namespace Agmd
 {
@@ -9,28 +10,28 @@ namespace Agmd
 	}
 
 	int findr(float  p, float u,  a_vector<float> U ) {
-		float n = U.size() - p - 1;
+		a_uint32 n = (a_uint32)(U.size() - p - 1);
 
 		if (u >= U[n]) {
 			return n - 1;
 		}
 
-		if (u <= U[p]) {
-			return p;
+		if (u <= U[(a_uint32)p]) {
+			return (a_uint32)p;
 		}
 		float low = p;
-		float high = n;
-		int mid = floor((low + high) / 2);
+		float high = (float)n;
+		int mid = (int)floorf((low + high) / 2);
 
 		while (u < U[mid] || u >= U[mid + 1]) {
 
 			if (u < U[mid]) {
-				high = mid;
+				high = (float)mid;
 			} else {
-				low = mid;
+				low = (float)mid;
 			}
 
-			mid = floor((low + high) / 2);
+			mid = (int)floorf((low + high) / 2);
 		}
 		return mid;
 	}
@@ -54,7 +55,7 @@ namespace Agmd
 
 		int n = m_controlPoints.size()+m_degree+1;
 		int max = n - m_degree - 1;
-		if(m_controlPoints.size() > m_controlPointsC)
+		if((int)m_controlPoints.size() > m_controlPointsC)
 		{
 			printf("\n");
 			m_knot.clear();
@@ -65,9 +66,9 @@ namespace Agmd
 			}
 			printf("\n");
 		}
-		if(m_controlPoints.size() <= m_degree)
+		if((int)m_controlPoints.size() <= m_degree)
 			return;
-		if(pointIndex < 0|| m_controlPoints.size() > m_controlPointsC || !m_localUpdate)
+		if(pointIndex < 0|| (int)m_controlPoints.size() > m_controlPointsC || !m_localUpdate)
 		{
 			// ok Update all points
 			//m_computedPoints.clear();
@@ -81,7 +82,7 @@ namespace Agmd
 
 
 			int max = n - m_degree - 1;
-			if(m_controlPoints.size() > m_controlPointsC)
+			if((int)m_controlPoints.size() > m_controlPointsC)
 			{
 				if(_points != NULL)
 					delete[] _points;
@@ -89,21 +90,21 @@ namespace Agmd
 			}
 			//_points = new vec2[(m_degree+1)*(max+1)];
 			//_points = new vec2[(m_degree+1)*(max+1)];
-			int m = 10*m_controlPoints.size();
+			int m = 10*(int)m_controlPoints.size();
 			float range = m_knot[m_knot.size()-1]-m_knot[0];
 			float p = 1.0f/m;
 
 			/*for(int r = m_degree; r < n-m_degree-1; r++)
 			{*/
-			float r = m_degree;
+			float r = (float)m_degree;
 
 			for(int i = 0; i <= m; i++)
 			{
-				while(m_knot[r+1] < i*p)
+				while(m_knot[(int)r+1] < i*p)
 					r++;
-				if(m_computedPoints.size() < i+1)
-					m_computedPoints.push_back(cdb(_points,m_knot,n,i*p,r));
-				else m_computedPoints[i] = (cdb(_points,m_knot,n,i*p,r));
+				if((int)m_computedPoints.size() < i+1)
+					m_computedPoints.push_back(cdb(_points,m_knot,n,i*p,(int)r));
+				else m_computedPoints[i] = (cdb(_points,m_knot,n,i*p,(int)r));
 			}
 			/*}*/
 			//delete _points;	
@@ -118,17 +119,17 @@ namespace Agmd
 			int _max = _clamp<int>(pointIndex+m_degree+1,m_degree,m_knot.size()-1);
 			float b = m_knot[_min];
 			float e = m_knot[_max];
-			int i = _clamp<float>(round((float)(b/p)),0,m);
-			m = _clamp<float>(round((float)(e/p)),0,m);
+			int i = (int)_clamp<float>(round((float)(b/p)),0,(float)m);
+			m = (int)_clamp<float>(round((float)(e/p)),0,(float)m);
 
-			float r = m_degree;
+			float r = (float)m_degree;
 			for(; i <= m; i++)
 			{
-				while(m_knot[r+1] < i*p)
+				while(m_knot[(int)r+1] < i*p)
 					r++;
-				if(m_computedPoints.size() < i+1)
-					m_computedPoints.push_back(cdb(_points,m_knot,n,i*p,r));
-				else m_computedPoints[i] = (cdb(_points,m_knot,n,i*p,r));
+				if((int)m_computedPoints.size() < i+1)
+					m_computedPoints.push_back(cdb(_points,m_knot,n,i*p,(int)r));
+				else m_computedPoints[i] = (cdb(_points,m_knot,n,i*p,(int)r));
 			}
 
 		}

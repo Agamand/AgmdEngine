@@ -81,7 +81,7 @@ void App::OnInit()
 	m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
 	Driver::Get().SetCullFace(2);
 	DeferredRendering* _renderer = new DeferredRendering(getScreen());
-	RenderingMode::SetRenderingMode(_renderer);
+	RenderingMode::setRenderingMode(_renderer);
 	surface_mat = new Material();
 	
 	Texture surface_texture;
@@ -138,8 +138,8 @@ void App::OnInit()
 	slider->SetSize(200,20);
 	slider->setValue(&height,0.1,1000);
 
-	Camera::SetCurrent(cam3D, CAMERA_3D);
-	Camera::SetCurrent(cam2D, CAMERA_2D);
+	Camera::setCurrent(cam3D, CAMERA_3D);
+	Camera::setCurrent(cam2D, CAMERA_2D);
 	printf("Loading end");
 }
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
@@ -161,7 +161,7 @@ void App::OnRender2D()
 {
 	Driver& render = Driver::Get();
 	*(m_fps) = StringBuilder(render.GetStatistics().ToString())("\n")("Spline degree : ")(floor(m_plane->degree))("\n Position : ")(screenPos.x)(" ")(screenPos.y);
-	m_fps->Draw();
+	m_fps->draw();
 
 }
 
@@ -196,7 +196,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 
 			p = new MeshNode(mo);
 			//p->GetMaterial().SetTexture(tex,0,(TRenderPass)((1<<RENDERPASS_DEFERRED)));
-			p->GetTransform().Scale(0.1f,0.1f,0.1f);
+			p->getTransform().scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 
 			//m->Generate(G_NORMAL,);
@@ -211,7 +211,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
 			p->setMaterial(surface_mat);
-			p->GetTransform().Scale(0.1f,0.1f,0.1f);
+			p->getTransform().scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			break;
 		case 'b':
@@ -221,7 +221,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
 			p->setMaterial(surface_mat);
-			p->GetTransform().Scale(0.1f,0.1f,0.1f);
+			p->getTransform().scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			m = mo;
 			break;
@@ -232,7 +232,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
 			p = new MeshNode(mo);
 			p->setMaterial(surface_mat);
-			p->GetTransform().Scale(0.1f,0.1f,0.1f);
+			p->getTransform().scale(0.1f,0.1f,0.1f);
 			scene->AddNode(p);
 			m = mo;
 			break;

@@ -45,13 +45,13 @@ namespace Agmd
         m_clipPlane[5] = Plane( clip[ 3]+clip[ 2], clip[ 7]+clip[ 6],
                         clip[11]+clip[10], clip[15]+clip[14] );
     for(int i = 0; i < 6; i++)
-        m_clipPlane[i].Normalize();
+        m_clipPlane[i].normalize();
     }
 
     bool Frustum::IsIn(const vec3& pos) const
     {
         for(int i = 0; i < 6; i++)
-            if( !(m_clipPlane[i].DistanceToPoint(pos) > 0.0f) )
+            if( !(m_clipPlane[i].distanceToPoint(pos) > 0.0f) )
                 return false;
         return true;
     }

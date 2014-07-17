@@ -14,7 +14,7 @@ m_currentBuffer(0),
 m_bufferCount(sizeof(m_Buffer)/sizeof(int)),
 m_sync (NULL)
 {
-    for(int i = 0; i < m_bufferCount; i++)
+    for(a_uint32 i = 0; i < m_bufferCount; i++)
         m_Buffer[i] = buffer[i]; //temp
 }
 

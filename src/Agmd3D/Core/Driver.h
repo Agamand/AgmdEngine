@@ -19,6 +19,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Declaration.h>
 #include <Core/Camera/Camera.h>
+#include <Core/Tools/BoundingBox.h>
+
 #include <Vector2.h>
 #include <Vector3.h>
 #include <Rectangle.h>
@@ -97,6 +99,8 @@ namespace Agmd
         virtual void SetViewPort(const ivec2& xy, const ivec2& size) = 0;
 
         virtual void SetCullFace(int face) = 0;
+
+		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram*) = 0;
 
     public :
 

@@ -99,10 +99,10 @@ namespace Agmd
     void ASlider::OnPosChanged()
     {
 		
-		m_gstring->GetTransform().SetPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
-		m_gstring->GetTransform().Update(NULL);
-		m_transform->SetPosition(vec3(m_vAbsolutePosition,0));
-		m_transform->Update(NULL);
+		m_gstring->getTransform().setPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
+		m_gstring->getTransform().update(NULL);
+		m_transform->setPosition(vec3(m_vAbsolutePosition,0));
+		m_transform->update(NULL);
     }
 
     void ASlider::Draw() const
@@ -116,7 +116,7 @@ namespace Agmd
 		m_Program.SetParameter("u_size",vec2(m_vSize.x,m_cursor));
 		Fast2DSurface::Instance().Draw();
 		render.SetCurrentProgram(NULL);
-        m_gstring->Draw();
+        m_gstring->draw();
     }
 
     

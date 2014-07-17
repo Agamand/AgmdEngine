@@ -337,8 +337,8 @@ void App::OnInit()
 	m_plane->addSpline(renderer);
 	//addInputListener(m_plane);
 
-    Camera::SetCurrent(cam3D, CAMERA_3D);
-    Camera::SetCurrent(cam2D, CAMERA_2D);
+    Camera::setCurrent(cam3D, CAMERA_3D);
+    Camera::setCurrent(cam2D, CAMERA_2D);
 	printf("Loading end");
 }
 float timespeed= 1.0f;
@@ -387,7 +387,7 @@ void App::OnRender2D()
 {
     Driver& render = Driver::Get();
     *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	);
-    m_fps->Draw();
+    m_fps->draw();
 
 }
 
@@ -445,8 +445,8 @@ void App::OnMove(vec2 pos)
 {
 
 	float f = Driver::Get().GetAspectRatio();
-	mouse_emitter->GetTransform()->SetPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
-	mouse_emitter->GetTransform()->Update(NULL);
+	mouse_emitter->GetTransform()->setPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
+	mouse_emitter->GetTransform()->update(NULL);
 }	
 
 

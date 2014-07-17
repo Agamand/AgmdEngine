@@ -35,12 +35,14 @@ Planet::Planet(PlanetModel* model, Material* mat,float offset) : m_offset(offset
 		m_model = new PlanetModel(0,0,0);
 	else m_model = model;
 	Transform* t = new Transform(vec3(0),quat(),vec3(1));
-	t->Scale(m_size,m_size,m_size);
+	t->scale(m_size,m_size,m_size);
 	m_root = new SceneNode(ROOT_NODE,t);
-	for(int i = 0; i < 1+0*MAX_PLANET_FACE; i++ )
-		m_root->AddChild(new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i])));
-	
-	
+	memset(m_faces,0,sizeof(m_faces));
+	for(int i = 0; i < 1*MAX_PLANET_FACE; i++ )
+	{
+		m_faces[i] = new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i]));
+		m_root->addChild(m_faces[i]);
+	}
 }
 
 Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/ )

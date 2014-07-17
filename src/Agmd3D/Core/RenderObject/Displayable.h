@@ -33,13 +33,13 @@ namespace Agmd
         Displayable(Transform*);
         virtual ~Displayable();
 
-        virtual void Render(TRenderPass pass) const = 0;
-        virtual void Draw() const = 0;
+        virtual void render(TRenderPass pass) const = 0;
+        virtual void draw() const = 0;
 
-        Transform& GetTransform();
+        Transform& getTransform();
 
-		Material* GetMaterial() const;
-		void SetMaterial(Material* val);
+		Material* getMaterial() const;
+		void setMaterial(Material* val);
     protected:
 
         Transform* m_transform;

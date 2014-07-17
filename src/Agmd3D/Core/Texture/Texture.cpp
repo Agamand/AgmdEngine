@@ -166,7 +166,7 @@ namespace Agmd
 
     void Texture::Update(const AgmdMaths::Rectangle& rect)
     {
-        if (rect.Width() == -1)
+        if (rect.width() == -1)
             m_Texture->Update(AgmdMaths::Rectangle(0, 0, GetSize().x, GetSize().y));
         else
             m_Texture->Update(rect);

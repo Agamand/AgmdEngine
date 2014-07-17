@@ -19,8 +19,8 @@ namespace Agmd
         MeshRender(Model* basemodel, Transform* transform = NULL);
         virtual ~MeshRender();
 
-        virtual void Render(TRenderPass pass) const;
-        virtual void Draw() const;
+        virtual void render(TRenderPass pass) const;
+        virtual void draw() const;
 
         void SetModel(Model*);
 

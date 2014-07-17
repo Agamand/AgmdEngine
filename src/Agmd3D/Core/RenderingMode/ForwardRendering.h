@@ -24,16 +24,16 @@ namespace Agmd
         ForwardRendering(ivec2& screen);
         ~ForwardRendering();
 
-        virtual void Compute();
+        virtual void compute();
 
-        virtual void Start();
-        virtual void End();
+        virtual void start();
+        virtual void end();
 
-        Texture GetDiffuseTexture();
-        Texture GetLightingTexture();
-        Texture GetDepthTexture();
+        Texture getDiffuseTexture();
+        Texture getLightingTexture();
+        Texture getDepthTexture();
     private:
-        void Init();
+        void init();
         FrameBuffer* m_framebuffer;
         RenderBuffer* m_depthbuffer;
         Texture m_textureBuffer[3];

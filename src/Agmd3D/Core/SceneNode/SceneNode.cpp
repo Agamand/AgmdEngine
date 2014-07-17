@@ -18,26 +18,26 @@ namespace Agmd
 		if(!transform)
 			m_transform = new Transform();
 		else m_transform = transform;
-		Update(NULL,false,true);
+		update(NULL,false,true);
 	}
 
     SceneNode::~SceneNode()
     {}
 
-    Transform& SceneNode::GetTransform() 
+    Transform& SceneNode::getTransform() 
     { 
         return *m_transform;
     }
 
-	bool SceneNode::Update( Transform* transform, bool updateChildren, bool transformChanged )
+	bool SceneNode::update( Transform* transform, bool updateChildren, bool transformChanged )
 	{
 		bool transformUpdate = transformChanged || m_transform->needUpdate();
 		if(transformUpdate)
-			m_transform->Update(transform);
+			m_transform->update(transform);
 		if(updateChildren && !m_children.empty())
 		{
 			for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
-				m_children[i]->Update(m_transform,updateChildren,transformUpdate);
+				m_children[i]->update(m_transform,updateChildren,transformUpdate);
 		}
 		return transformUpdate;
 	}

@@ -48,6 +48,7 @@
     <ClCompile Include="..\..\src\Examples\Planet\noiseutils.cpp" />
     <ClCompile Include="..\..\src\Examples\Planet\PerlinNoise.cpp" />
     <ClCompile Include="..\..\src\Examples\Planet\Planet\Planet.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetAtmosphereNode.cpp" />
     <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetModel.cpp" />
     <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.cpp" />
     <ClCompile Include="..\..\src\Examples\Planet\simplexnoise.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="..\..\src\Examples\Planet\noiseutils.h" />
     <ClInclude Include="..\..\src\Examples\Planet\PerlinNoise.h" />
     <ClInclude Include="..\..\src\Examples\Planet\Planet\Planet.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetAtmosphereNode.h" />
     <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetModel.h" />
     <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetTreeNode.h" />
     <ClInclude Include="..\..\src\Examples\Planet\simplexnoise.h" />

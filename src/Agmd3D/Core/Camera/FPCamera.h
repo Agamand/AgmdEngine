@@ -20,16 +20,16 @@ namespace Agmd
         FPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~FPCamera();
 
-        virtual void OnUpdate(a_uint64 time_diff);
+        virtual void onUpdate(a_uint64 time_diff);
 
-        virtual void OnMouseMotion(int x, int y);
+        virtual void onMouseMotion(int x, int y);
 
-        virtual void OnKeyboard(char key, bool up);
+        virtual void onKeyboard(char key, bool up);
 
-        virtual void OnMouseWheel(float delta);
+        virtual void onMouseWheel(float delta);
 
     protected:
-        virtual void UpdateVector();
+        virtual void updateVector();
 
         float _theta;
         float _phi;

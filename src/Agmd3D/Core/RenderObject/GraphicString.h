@@ -31,26 +31,33 @@ namespace Agmd
     public :
         friend class FontManager;
 
-        GraphicString(const ivec2 & stringPosition = ivec2(0), const std::string& stringText = "", const Color& stringColor = Color::white, const std::string& stringFont = "Arial", int stringSize = 16);
+        GraphicString(const ivec2 & stringPosition = ivec2(0), const std::string& stringText = "", const Color& stringColor = Color::white, const std::string& stringFont = "Arial", int stringSize = 20);
 
-        void Draw() const;
-        void Render(TRenderPass) const {}
-        void BuildModel();
-        ivec2 GetPixelSize() const;
-
-        void Align(unsigned long mode, const AgmdMaths::Rectangle& rect);
+        void draw() const;
+        void render(TRenderPass) const {}
+        void buildModel();
+        ivec2 getPixelSize() const;
+		void setSize(int size)
+		{
+			m_size = size;
+		}
+		int getSize() const
+		{
+			return m_size;
+		}
+        void align(unsigned long mode, const AgmdMaths::Rectangle& rect);
 
         GraphicString& operator=( const std::string& str);
 
-        //ivec2       m_Position;
-        std::string   m_Text;
+        //ivec2       m_position;
+        std::string   m_text;
 
         Color       m_color;
-        std::string m_Font;
-        int         m_Size;
+        std::string m_font;
+        int         m_size;
     private:
-        Buffer<FontManager::TVertex> m_VertexBuffer;
-        Buffer<FontManager::TIndex> m_IndexBuffer; 
+        Buffer<FontManager::TVertex> m_vertexBuffer;
+        Buffer<FontManager::TIndex> m_indexBuffer; 
     };
 
 }

@@ -75,7 +75,7 @@ namespace Agmd
 		int count = sizep1-1;
 		for(int i = 0; i < slice; i++)
 		{
-			for(size_t j = 0; j<  (_p1.size()-1);j++)
+			for(int j = 0; j <  ((int)_p1.size()-1);j++)
 			{
 				int _i = SELECT(i+1, slice+1), _j = SELECT(j+1, sizep1);
 				index.push_back(i*(count+1)+j);
@@ -131,9 +131,9 @@ namespace Agmd
 		}
 
 		int count = sizep1-1;
-		for(size_t i = 0; i < (_p2.size()-1); i++)
+		for(int i = 0; i < ((int)_p2.size()-1); i++)
 		{
-			for(size_t j = 0; j<  (_p1.size()-1);j++)
+			for(int j = 0; j<  ((int)_p1.size()-1);j++)
 			{
 				int _i = SELECT(i+1, sizep2), _j = SELECT(j+1, sizep1);
 				index.push_back(i*(count+1)+j);
@@ -357,7 +357,7 @@ namespace Agmd
 		for(a_uint32 i = 0; i < 6; i++)
 			createPlane(sOri[i],sRot[i],20,vertices.size(),vertices,indices);
 	
-		for(int i = 0; i < vertices.size(); i++)
+		for(int i = 0; i < (int)vertices.size(); i++)
 		{
 			vertices[i].position = r*normalize(vertices[i].position);
 			vertices[i].normal = vertices[i].position;

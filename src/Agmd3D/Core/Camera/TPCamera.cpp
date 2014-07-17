@@ -20,13 +20,13 @@ namespace Agmd
     m_mousewheel(false),
     Camera(projection,pos)
     {
-        UpdateVector();
+        updateVector();
     }
 
     TPCamera::~TPCamera()
     {}
 
-    void TPCamera::UpdateVector()
+    void TPCamera::updateVector()
     {
         
         if (_phi > 89)
@@ -61,7 +61,7 @@ namespace Agmd
            move -= vec3(0.0f,0.0f,1.0f);
 
     }
-    void TPCamera::OnMouseMotion(int x, int y)
+    void TPCamera::onMouseMotion(int x, int y)
     {
         if(m_mousewheel)
         {
@@ -70,14 +70,14 @@ namespace Agmd
         }
         else
         {
-            _theta += x*_sensivity;
-            _phi += y*_sensivity;
+            _theta += x*m_sensivity;
+            _phi += y*m_sensivity;
         
         }
-        UpdateVector();
+        updateVector();
     }
 
-    void TPCamera::OnKeyboard(char key, bool up)
+    void TPCamera::onKeyboard(char key, bool up)
     {
         a_uint32 tempFlags = MOVE_NONE;
         switch(key)
@@ -111,22 +111,22 @@ namespace Agmd
         if(!up)
             moveFlags |= tempFlags;
         else moveFlags &= ~tempFlags;
-        UpdateVector();
+        updateVector();
     }
 
-    void TPCamera::OnUpdate(a_uint64 time_diff)
+    void TPCamera::onUpdate(a_uint64 time_diff)
     {
         if(moveFlags & ZOOM_IN)
-            distance -= _speed*time_diff/1000.0f;
+            distance -= m_speed*time_diff/1000.0f;
         else if( moveFlags & ZOOM_OUT)
-            distance += _speed*time_diff/1000.0f;
+            distance += m_speed*time_diff/1000.0f;
 
         if(distance < 1.0f)
             distance = 1.0f;
 
-        _target += move*(_speed*time_diff)/1000.0f;
+        _target += move*(m_speed*time_diff)/1000.0f;
         _position = _target - distance*_forward;
-        UpdateBuffer(Look());
+        updateBuffer(look());
     }
 
     
@@ -149,23 +149,23 @@ namespace Agmd
         _phi *= 180/(float)M_PI;
         
 
-        UpdateVector();
+        updateVector();
 
     }
 
-    void TPCamera::OnMouseWheel(float delta)
+    void TPCamera::onMouseWheel(float delta)
     {
         distance += delta/30*0.1f;
-        UpdateVector();
+        updateVector();
     }
-    void TPCamera::OnMouseWheel(bool up)
+    void TPCamera::onMouseWheel(bool up)
     {
         m_mousewheel = up;
     }
 
     void TPCamera::setTarget(glm::vec3 pos)
     {
-        Camera::SetTarget(pos);
+        Camera::setTarget(pos);
         _position = _target - distance*_forward;
     }
 }

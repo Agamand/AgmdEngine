@@ -11,28 +11,28 @@ namespace Agmd
     m_baseModel(basemodel)
     {
 		m_baseBbox = m_baseModel->getBoundingBox();
-		Update(NULL,false,true);
+		update(NULL,false,true);
 	}
     MeshNode::~MeshNode()
     {}
 
-    void MeshNode::Draw() const
+    void MeshNode::draw() const
     {
         m_baseModel->Draw(m_transform);
     }
 
-	bool MeshNode::IsVisible(BoundingBox& bbox)
+	bool MeshNode::isVisible(BoundingBox& bbox)
 	{
 		return true;
 	}
 
-    void MeshNode::Render(TRenderPass pass) const
+    void MeshNode::render(TRenderPass pass) const
     {
 		
         if(!m_material || !m_material->Enable(pass))
             return;
 
-        Draw();
+        draw();
         m_material->Disable();
     }
 

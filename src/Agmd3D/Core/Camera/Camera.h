@@ -39,45 +39,45 @@ namespace Agmd
         Camera(mat4& projection, vec3& pos);
         virtual ~Camera();
 
-        virtual void OnUpdate(a_uint64 time_diff) = 0;
-        virtual void OnMouseMotion(int x, int y) = 0;
-        virtual void OnKeyboard(char key, bool up) = 0;
-        virtual void OnMouseWheel(float delta) = 0;
-        virtual void OnMouseWheel(bool up){};
-        virtual const glm::vec3 GetPosition() { return _position; }
+        virtual void onUpdate(a_uint64 time_diff) = 0;
+        virtual void onMouseMotion(int x, int y) = 0;
+        virtual void onKeyboard(char key, bool up) = 0;
+        virtual void onMouseWheel(float delta) = 0;
+        virtual void onMouseWheel(bool up){};
+        virtual const glm::vec3 getPosition() { return _position; }
         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
-        void GetPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
+        void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
         void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }
 
-        virtual void SetTarget(glm::vec3& pos) { _target = pos; } 
-        const glm::vec3& GetTarget() {return _target;}
+        virtual void setTarget(glm::vec3& pos) { _target = pos; } 
+        const glm::vec3& getTarget() {return _target;}
 
-        virtual mat4 Look();
+        virtual mat4 look();
 
-        void SetActive(TCamera type = CAMERA_3D);
-
-        static void SetCurrent(Camera* cam, TCamera type = CAMERA_3D);
-        static Camera* GetCurrent(TCamera type = CAMERA_3D);
-        bool UnProject(vec3& mousepos);
-		const mat4& GetView() { return m_transform.m_MatView;} 
-		virtual const std::string ToString();
+        void setActive(TCamera type = CAMERA_3D);
+        static void setCurrent(Camera* cam, TCamera type = CAMERA_3D);
+        static Camera* getCurrent(TCamera type = CAMERA_3D);
+        bool unProject(vec3& mousepos);
+		const mat4& getView() { return m_transform.m_MatView; } 
+		const mat4& getProjection() { return m_transform.m_MatProjection; }
+		virtual const std::string toString();
 		bool isInFrustrum(const BoundingBox& boundingBox);
-		void SetRecvInput(bool active = true)
-		{
-			recvInput = active;
-		}
-		float* GetSpeedPtr(){return &_speed;}
+		void SetRecvInput(bool active = true){	recvInput = active;	}
+		float* GetSpeedPtr(){return &m_speed;}
     protected:
-        struct CameraBuffer
-        {
-            mat4 m_MatProjectionView;
-            mat4 m_MatView;
+        
+        virtual void updateVector() = 0;
+        void updateBuffer(mat4& view);
+
+		struct CameraBuffer
+		{
+			mat4 m_MatProjectionView;
+			mat4 m_MatView;
 			mat4 m_MatProjection;
-        };
-        virtual void UpdateVector() = 0;
-        void UpdateBuffer(mat4& view);
-        float _speed;
-        float _sensivity;
+		};
+
+        float m_speed;
+        float m_sensivity;
 
         vec3 move;
         a_uint32 moveFlags;
@@ -89,9 +89,8 @@ namespace Agmd
         CameraBuffer m_transform;
         float _theta;
         float _phi;
-        mat4* map;
-		bool recvInput;
-		Frustum* m_frustum;
+		bool				recvInput;
+		Frustum*			m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
 		
     private:

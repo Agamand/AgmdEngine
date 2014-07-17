@@ -19,9 +19,9 @@ namespace Agmd
         MeshNode(Model* basemodel, Transform* transform = NULL);
         virtual ~MeshNode();
 
-        virtual void Render(TRenderPass pass) const;
-        virtual void Draw() const;
-		virtual bool IsVisible(BoundingBox& bbox);
+        virtual void render(TRenderPass pass) const;
+        virtual void draw() const;
+		virtual bool isVisible(BoundingBox& bbox);
 		void setModel(Model*model)
 		{
 			m_baseModel = model;

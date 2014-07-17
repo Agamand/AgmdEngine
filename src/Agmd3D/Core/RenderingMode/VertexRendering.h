@@ -20,10 +20,10 @@ namespace Agmd
         VertexRendering(ivec2& screen);
         ~VertexRendering();
 
-        virtual void Compute();
+        virtual void compute();
 
-        virtual void Start();
-        virtual void End();
+        virtual void start();
+        virtual void end();
 
     private:
 

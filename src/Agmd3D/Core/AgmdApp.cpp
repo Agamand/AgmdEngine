@@ -145,28 +145,28 @@ namespace Agmd
                 render.InitScene();
                 //Render 3D objects
                 timer.start();
-                RenderingMode* current = RenderingMode::GetRenderingMode();
+                RenderingMode* current = RenderingMode::getRenderingMode();
                 if(current != NULL)
-                    current->Compute();
+                    current->compute();
                 OnRender3D();
-                renderTime = timer.getElapsedTimeInMicroSec();
+                renderTime = (float)timer.getElapsedTimeInMicroSec();
                 timer.stop();
                 timer.start();
                 //Render 2D GUI
                 GUIMgr::Instance().DrawGUI();
                 OnRender2D();
                 timer.stop();
-                guiTime = timer.getElapsedTimeInMicroSec();
+                guiTime = (float)timer.getElapsedTimeInMicroSec();
                 
                 frame++;
-				if(time_diff < 15)
-					Sleep(15-time_diff);
+				//if(time_diff < 15)
+					//Sleep(15-time_diff);
                 render.EndScene();
                 if(fps_timer <= time_diff)
                 {
                     m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - fps_timer);
                     fps_timer = SECONDS_IN_MS;
-                    render.GetStatistics().SetMainTime(time_diff);
+                    render.GetStatistics().SetMainTime((float)time_diff);
                     render.GetStatistics().SetRenderingTime(renderTime);
                     render.GetStatistics().SetGuiTime(guiTime);
                     frame = 0;
@@ -185,7 +185,7 @@ namespace Agmd
     LRESULT CALLBACK AgmdApp::WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
     {
         GUIMgr& guimgr = GUIMgr::Instance();
-        camera = Camera::GetCurrent();
+        camera = Camera::getCurrent();
         if(Message == WM_CHAR)
         {
 
@@ -200,17 +200,17 @@ namespace Agmd
 
 				for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 					m_inputListener[i]->OnKey((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
-                camera->OnKeyboard((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
+                camera->onKeyboard((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
                 switch(LOWORD(WParam))
                 {
                 case VK_F1:
-                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_FILL);
+                    RenderingMode::getRenderingMode()->setRenderMode(MODE_FILL);
                     return 0;
                 case VK_F2:
-                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_LINE);
+                    RenderingMode::getRenderingMode()->setRenderMode(MODE_LINE);
                     return 0;
                 case VK_F3:
-                    RenderingMode::GetRenderingMode()->SetRenderMode(MODE_POINT);
+                    RenderingMode::getRenderingMode()->setRenderMode(MODE_POINT);
                     return 0;
                 }
                 return 0;
@@ -232,7 +232,7 @@ namespace Agmd
                 mouseState |= MOUSE_MIDDLE;
 				for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 					m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
-                camera->OnMouseWheel(true);
+                camera->onMouseWheel(true);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONDOWN:
@@ -260,7 +260,7 @@ namespace Agmd
                 mouseState &= ~MOUSE_MIDDLE;
 				for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 					m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
-                camera->OnMouseWheel(false);
+                camera->onMouseWheel(false);
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_LBUTTONUP:
@@ -270,14 +270,14 @@ namespace Agmd
                 guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
                 return 0;
             case WM_MOUSEWHEEL:
-                camera->OnMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
+                camera->onMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
                 return 0;
             case WM_MOUSEMOVE:
                 ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
 				for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 					m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1));
                 if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
-                    camera->OnMouseMotion(posDiff.x, posDiff.y);
+                    camera->onMouseMotion(posDiff.x, posDiff.y);
                 
 
 				

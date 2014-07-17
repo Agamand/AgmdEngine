@@ -15,7 +15,7 @@ namespace AgmdMaths
         TransformMgr();
         ~TransformMgr();
 
-        void Update();
+        void update();
 
     private:
         Transform* m_base;

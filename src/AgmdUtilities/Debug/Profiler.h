@@ -87,9 +87,9 @@ private:
 
 #ifdef PROFILING_TIME
 #define PROFILER(func) \
-    Profiler::Start(#func); \
+    Profiler::start(#func); \
     func;\
-    Profiler::End();
+    Profiler::end();
 #else
 #define PROFILER(func) func;
 #endif

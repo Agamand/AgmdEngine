@@ -28,16 +28,16 @@ namespace Agmd
 		DisplayNode(Transform* t,Material*mat);
 		virtual ~DisplayNode(){};
 
-		virtual void Render(TRenderPass pass) const = 0;
-		virtual void Draw() const = 0;
+		virtual void render(TRenderPass pass) const = 0;
+		virtual void draw() const = 0;
 
-		virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light);
-		Material& GetMaterial() const { return *m_material;}
-		const BoundingBox& GetBoundingBox() const { return m_localBBox;};
-		const BoundingBox& GetGlobalBoundingBox() const { return m_globalBbox;};
+		virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light);
+		Material& getMaterial() const { return *m_material;}
+		const BoundingBox& getBoundingBox() const { return m_localBBox;};
+		const BoundingBox& getGlobalBoundingBox() const { return m_globalBbox;};
 
-		virtual bool IsVisible( BoundingBox& bbox );
-		virtual bool Update(Transform* transform, bool updateChildren, bool transformChanged);
+		virtual bool isVisible( BoundingBox& bbox );
+		virtual bool update(Transform* transform, bool updateChildren, bool transformChanged);
 	protected:
 		BoundingBox m_baseBbox;
 		BoundingBox m_localBBox;

@@ -12,16 +12,16 @@ namespace Agmd
 	{
 		for(std::vector<DisplayNode*>::const_iterator itr= m_displayable.begin(); itr != m_displayable.end(); itr++)
 		{
-			(*itr)->Render(pass);
+			(*itr)->render(pass);
 		}
 		for(a_uint32 i = 0, len =m_displayable.size(); i < len;i++)
-			m_displayable[i]->Render(pass);
+			m_displayable[i]->render(pass);
 	}
 
 	void SceneMgr::Draw() const
 	{
 		for(a_uint32 i = 0, len =m_displayable.size(); i < len;i++)
-			m_displayable[i]->Draw();
+			m_displayable[i]->draw();
 	}
 
 	void SceneMgr::Compute()
@@ -34,17 +34,17 @@ namespace Agmd
 
 	void SceneMgr::Update()
 	{
-		m_root->Update(NULL,true,false);
+		m_root->update(NULL,true,false);
 	}
 
 	void SceneMgr::FindVisible( a_vector<DisplayNode*>& displayable,std::vector<LightNode*>& light)
 	{
-		m_root->FindVisible(Camera::GetCurrent(CAMERA_3D),displayable,light);
+		m_root->findVisible(Camera::getCurrent(CAMERA_3D),displayable,light);
 	}
 
 	void SceneMgr::AddNode( SceneNode *node )
 	{
-		m_root->AddChild(node);
+		m_root->addChild(node);
 	}
 
 	const a_vector<Light*>& SceneMgr::GetLights()

@@ -10,6 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#define MIN_DISTANCE 1.0f
 
 namespace Agmd
 {
@@ -43,7 +44,7 @@ namespace Agmd
     FollowCamera::~FollowCamera()
     {}
 
-    void FollowCamera::UpdateVector()
+    void FollowCamera::updateVector()
     {
 		move = vec3(0);
 		if(moveFlags & MOVE_FORWARD)
@@ -64,7 +65,7 @@ namespace Agmd
 		if(moveFlags & MOVE_DOWN)
 			move -= vec3(0.0f,0.0f,1.0f);
     }
-    void FollowCamera::OnMouseMotion(int x, int y)
+    void FollowCamera::onMouseMotion(int x, int y)
     {
 		if(!recvInput)
 			return;
@@ -75,14 +76,14 @@ namespace Agmd
         }
         else
         {
-            _theta += x*_sensivity;
-            _phi += y*_sensivity;
+            _theta += x*m_sensivity;
+            _phi += y*m_sensivity;
         
         }
-        UpdateVector();
+        updateVector();
     }
 
-    void FollowCamera::OnKeyboard(char key, bool up)
+    void FollowCamera::onKeyboard(char key, bool up)
     {
 		if(!recvInput)
 			return;
@@ -118,22 +119,22 @@ namespace Agmd
         if(!up)
             moveFlags |= tempFlags;
         else moveFlags &= ~tempFlags;
-        UpdateVector();
+        updateVector();
     }
 
-    void FollowCamera::OnUpdate(a_uint64 time_diff)
+    void FollowCamera::onUpdate(a_uint64 time_diff)
     {
         if(moveFlags & ZOOM_IN)
-            distance -= _speed*0.1f*time_diff/1000.0f;
+            distance -= m_speed*0.1f*time_diff/1000.0f;
         else if( moveFlags & ZOOM_OUT)
-            distance += _speed*0.1f*time_diff/1000.0f;
+            distance += m_speed*0.1f*time_diff/1000.0f;
 
-        //if(distance < 0.9f)
-            //distance = 0.9f;
-		angles += vec2(move*(_speed*time_diff)/(float)pow(2,4/distance)/1000.0f);
-        _target += move*(_speed*time_diff)/1000.0f;
+        if(distance < MIN_DISTANCE)
+            distance = MIN_DISTANCE;
+		angles += vec2(move*(m_speed*time_diff)/(float)pow(2,4/distance)/1000.0f);
+        _target += move*(m_speed*time_diff)/1000.0f;
         _position = _target - distance*_forward;
-        UpdateBuffer(Look());
+        updateBuffer(look());
     }
 
     
@@ -156,27 +157,27 @@ namespace Agmd
         _phi *= 180/(float)M_PI;
         
 
-        UpdateVector();
+        updateVector();
 
     }
 
-	mat4 FollowCamera::Look()
+	mat4 FollowCamera::look()
 	{
 		return lookAt(vec3(0,0,0),vec3(1,0,0),vec3(0,0,1))*rotate(mat4(1),_phi,vec3(0,1,0))*rotate(mat4(1),_theta,vec3(1,0,0))*translate(mat4(1.f),vec3(distance,0,0))*rotate(mat4(1),angles.x,vec3(0,1,0))*rotate(mat4(1),angles.y,vec3(0,0,1));
 	}
 
-    void FollowCamera::OnMouseWheel(float delta)
+    void FollowCamera::onMouseWheel(float delta)
     {
 		if(!recvInput)
 			return;
-		float f = pow(2,4/distance);
+		float f = powf(2,4/distance*2);
         distance += delta/f*0.001f;
-		//if(distance < 0.90f)
-			//distance = 0.90f;
+		if(distance < MIN_DISTANCE)
+			distance = MIN_DISTANCE;
 
-		UpdateVector();
+		updateVector();
     }
-    void FollowCamera::OnMouseWheel(bool up)
+    void FollowCamera::onMouseWheel(bool up)
     {
 		if(!recvInput)
 			return;
@@ -185,18 +186,18 @@ namespace Agmd
 
     void FollowCamera::setTarget(glm::vec3 pos)
     {
-        Camera::SetTarget(pos);
+        Camera::setTarget(pos);
         _position = _target - distance*_forward;
     }
 
-	const std::string FollowCamera::ToString()
+	const std::string FollowCamera::toString()
 	{
 		return StringBuilder("Follow Camera Theta(")(_theta)(") _phi(")(_phi)(") angles(")(angles.x)(",")(angles.y)(") distance(")(distance)(")\n");
 	}
 
-	const vec3 FollowCamera::GetPosition()
+	const vec3 FollowCamera::getPosition()
 	{
-		return vec3(inverse(Look())*vec4(0,0,0,1));
+		return vec3(inverse(look())*vec4(0,0,0,1));
 	}
 
 }

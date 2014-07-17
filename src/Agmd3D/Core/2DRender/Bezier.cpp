@@ -6,9 +6,9 @@ namespace Agmd
 
 	vec2 dc(a_vector<a_vector<vec2>>& points,const a_vector<vec2>& points_control,float t)
 	{
-		for(int j = 1; j < points_control.size(); j++)
+		for(int j = 1; j < (int)points_control.size(); j++)
 		{
-			for(int i = 0; i < points_control.size()-j; i++)
+			for(int i = 0; i < (int)points_control.size()-j; i++)
 			{
 				points[j][i] = points[j-1][i]*(1-t)+points[j-1][i+1]*t;
 			}
@@ -18,9 +18,9 @@ namespace Agmd
 
 	vec2 dc2(vec2* points,const a_vector<vec2>& points_control,float t)
 	{
-		for(int j = 1; j < points_control.size(); j++)
+		for(int j = 1; j < (int)points_control.size(); j++)
 		{
-			for(int i = 0; i < points_control.size()-j; i++)
+			for(int i = 0; i < (int)points_control.size()-j; i++)
 			{
 				points[j*points_control.size()+i] = points[(j-1)*points_control.size()+i]*(1-t)+points[(j-1)*points_control.size()+i+1]*t;
 			}

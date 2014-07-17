@@ -33,20 +33,20 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
-    extern "C" __declspec(dllexport) void LoadPlugin()
+    extern "C" OPENGL_EXPORT void LoadPlugin()
     {
         Driver::Change(&GLDriver::Instance());
     }
 
 
-    extern "C" __declspec(dllexport) void UnloadPlugin()
+    extern "C" OPENGL_EXPORT void UnloadPlugin()
     {
         Driver::Destroy();
     }
 
-    template <class T> inline void LoadExtension(T& Proc, const char* Name)
+    template <class T> inline void LoadExtension(T& proc, const char* name)
     {
-        Proc = reinterpret_cast<T>(wglGetProcAddress(Name));
+        proc = reinterpret_cast<T>(wglGetProcAddress(name));
     }
     #define LOAD_EXTENSION(Ext) LoadExtension(Ext, #Ext)
 
@@ -149,7 +149,7 @@ namespace Agmd
     m_CurrentDeclaration(NULL),
     m_Extensions        (""),
     m_CurrentProgram    (NULL),
-    last_unit           (TEXTURE_UNIT_0)
+    m_last_unit           (TEXTURE_UNIT_0)
     {
         std::memset(m_TextureBind,NULL,sizeof(void*)*MAX_TEXTUREUNIT);
     }
@@ -588,7 +588,7 @@ namespace Agmd
         if(!m_CurrentProgram)
             return;
 
-        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
+        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->modelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
         m_stats->IncrDrawCall();
         m_stats->IncrTriangleCount(count);
@@ -613,7 +613,7 @@ namespace Agmd
         unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
         const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
 
-        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->ModelMatrix() : mat4(1.0f));
+        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->modelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
         m_stats->IncrDrawCall();
         m_stats->IncrTriangleCount(count);
@@ -648,10 +648,10 @@ namespace Agmd
 
         const GLTexture* oGLTexture = static_cast<const GLTexture*>(texture);
 
-        if(last_unit != unit)
+        if(m_last_unit != unit)
         {
             glActiveTexture(GL_TEXTURE0+unit);
-            last_unit = unit;
+            m_last_unit = unit;
         }
 
         if (texture)
@@ -1044,6 +1044,59 @@ namespace Agmd
         else if(face & (FRONT | BACK))
             glCullFace(GL_FRONT_AND_BACK);
     }
+
+	void GLDriver::drawBoundingBox( const BoundingBox& bbox,const BaseShaderProgram* program )
+	{
+		const vec3& _max = bbox.GetMax(), _min = bbox.GetMin();
+		vec3 points_box[8] = {
+			_min,
+			_max,
+			vec3(_max.x,_min.y,_min.z),
+			vec3(_min.x,_max.y,_min.z),
+			vec3(_max.x,_max.y,_min.z),
+			vec3(_min.x,_min.y,_max.z),
+			vec3(_min.x,_max.y,_max.z),
+			vec3(_max.x,_min.y,_max.z)
+		};
+		
+		SetCurrentProgram(program);
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[0][0]);
+		glVertex3fv(&points_box[2][0]);
+		glEnd();
+
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[0][0]);
+		glVertex3fv(&points_box[3][0]);
+		glEnd();
+
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[0][0]);
+		glVertex3fv(&points_box[5][0]);
+		glEnd();
+		
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[1][0]);
+		glVertex3fv(&points_box[4][0]);
+		glEnd();
+		/*
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[1][0]);
+		glVertex3fv(&points_box[6][0]);
+		glEnd();
+
+		glBegin(GL_LINES);
+		glColor3f(1.0f,0,0);
+		glVertex3fv(&points_box[1][0]);
+		glVertex3fv(&points_box[7][0]);
+		glEnd();
+		*/
+	}
 
 }
 

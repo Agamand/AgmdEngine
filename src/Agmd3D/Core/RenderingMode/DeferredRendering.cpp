@@ -23,23 +23,23 @@ namespace Agmd
     DeferredRendering::DeferredRendering(int width, int height) :
     RenderingMode(width,height)
     {
-        Init();
+        init();
     }
 
     DeferredRendering::DeferredRendering(ivec2& screen) :
     RenderingMode(screen)
     {
-        Init();
+        init();
     }
 
     DeferredRendering::~DeferredRendering()
     {
-        if(bufferFlags)
-            delete bufferFlags;
+        if(m_bufferFlags)
+            delete m_bufferFlags;
         delete m_shadowRender;
     }
 
-    void DeferredRendering::Init()
+    void DeferredRendering::init()
    {
         Driver& render = Driver::Get();
         m_framebuffer = render.CreateFrameBuffer();
@@ -65,7 +65,7 @@ namespace Agmd
         m_framebuffer->SetTexture(m_textureBuffer[2], COLOR_ATTACHMENT+2);
         m_framebuffer->SetTexture(m_textureBuffer[5],DEPTH_ATTACHMENT);
         a_uint32 buffer[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT+1, COLOR_ATTACHMENT+2};
-        bufferFlags = m_framebuffer->GenerateBufferFlags(3,buffer);
+        m_bufferFlags = m_framebuffer->GenerateBufferFlags(3,buffer);
         m_light_program[DIRECTIONNAL].LoadFromFile("Shader/RenderingShader/DeferredDirLightShader.glsl");
         m_light_program[SPOT].LoadFromFile("Shader/RenderingShader/DeferredSpotLightShader.glsl");
         m_light_program[DIRECTIONNAL_WITH_SHADOW].LoadFromFile("Shader/RenderingShader/DeferredDirLightShaderWS.glsl");
@@ -74,12 +74,12 @@ namespace Agmd
     }
 
 
-    void DeferredRendering::Compute()
+    void DeferredRendering::compute()
     {
         Driver& render = Driver::Get();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		mat4 inverseCam = inverse(Camera::GetCurrent(CAMERA_3D)->Look());
+		mat4 inverseCam = inverse(Camera::getCurrent(CAMERA_3D)->look());
 		vec3 cameraPosition = vec3(inverseCam*vec4(0,0,0,1));
         const a_vector<Light*>& lights = sc->GetLights();
 
@@ -90,7 +90,7 @@ namespace Agmd
         
         a_uint32 maxLights = lights.size();
 
-        Start();
+        start();
         render.SetRenderMode(m_mode);
 		SkyBox* box = sc->GetSkyBox();
 		render.SetCullFace(1);
@@ -115,7 +115,7 @@ namespace Agmd
         render.SetupDepthTest(DEPTH_LESS);
         sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
 
-        m_framebuffer->DrawBuffers(3, bufferFlags);
+        m_framebuffer->DrawBuffers(3, m_bufferFlags);
         m_framebuffer->Clear(CLEAR_COLOR);
         m_framebuffer->Bind();
         render.SetupDepthTest(DEPTH_LEQUAL);
@@ -168,7 +168,7 @@ namespace Agmd
         }else
         {
             Texture::TextureRender(m_textureBuffer[0]);
-            End();
+            end();
             return;
         }
         if(PostEffectMgr::Instance().HaveEffect())
@@ -182,31 +182,31 @@ namespace Agmd
         }
             
 
-        End();
+        end();
     }
 
-    void DeferredRendering::Start()
+    void DeferredRendering::start()
     {}
 
-    void DeferredRendering::End()
+    void DeferredRendering::end()
     {}
 
-    Texture DeferredRendering::GetDiffuseTexture()
+    Texture DeferredRendering::getDiffuseTexture()
     {
         return m_textureBuffer[0];
     }
 
-    Texture DeferredRendering::GetNormalTexture()
+    Texture DeferredRendering::getNormalTexture()
     {
         return m_textureBuffer[1];
     }
 
-    Texture DeferredRendering::GetPositionTexture()
+    Texture DeferredRendering::getPositionTexture()
     {
         return m_textureBuffer[2];
     }
 
-    ShadowMapRenderer* DeferredRendering::GetShadowRenderer()
+    ShadowMapRenderer* DeferredRendering::getShadowRenderer()
     {
         return m_shadowRender;
     }

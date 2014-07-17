@@ -26,16 +26,16 @@ namespace Agmd
         {}
 
 
-        void MeshRender::Render(TRenderPass pass) const
+        void MeshRender::render(TRenderPass pass) const
         {
             if(!m_material->Enable(pass))
                 return;
 
-            Draw();
+            draw();
             m_material->Disable();
         }
 
-        void MeshRender::Draw() const
+        void MeshRender::draw() const
         {
             m_baseModel->Draw(m_transform);
         }

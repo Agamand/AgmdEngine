@@ -18,13 +18,13 @@ namespace Agmd
     ForwardRendering::ForwardRendering(int width, int height) :
     RenderingMode(width,height)
     {
-        Init();
+        init();
     }
 
     ForwardRendering::ForwardRendering(ivec2& screen) :
     RenderingMode(screen)
     {
-        Init();
+        init();
     }
 
     ForwardRendering::~ForwardRendering()
@@ -36,7 +36,7 @@ namespace Agmd
             delete bufferFlags[1];
     }
 
-    void ForwardRendering::Init()
+    void ForwardRendering::init()
     {
         Driver& render = Driver::Get();
         m_framebuffer = render.CreateFrameBuffer();
@@ -59,10 +59,10 @@ namespace Agmd
 
     }
 
-    void ForwardRendering::Compute()
+    void ForwardRendering::compute()
     {
         Driver& render = Driver::Get();
-        Start();
+        start();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
 		render.SetRenderMode(m_mode);
@@ -135,29 +135,29 @@ namespace Agmd
             Texture::TextureRender(m_textureBuffer[1]);
             render.Enable(RENDER_ALPHABLEND, false);
         }*/
-        End();
+        end();
     }
 
-    void ForwardRendering::Start()
+    void ForwardRendering::start()
     {
 
     }
 
-    void ForwardRendering::End()
+    void ForwardRendering::end()
     {
     }
 
-    Texture ForwardRendering::GetDiffuseTexture()
+    Texture ForwardRendering::getDiffuseTexture()
     {
         return m_textureBuffer[0];
     }
 
-    Texture ForwardRendering::GetLightingTexture()
+    Texture ForwardRendering::getLightingTexture()
     {
         return m_textureBuffer[1];
     }
 
-    Texture ForwardRendering::GetDepthTexture()
+    Texture ForwardRendering::getDepthTexture()
     {
         return m_textureBuffer[2];
     }

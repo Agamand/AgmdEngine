@@ -39,9 +39,9 @@ namespace Agmd
     {
         
         for(auto i = 0; i < iteration; i++)
-           !i%2 ? ApplyFxaa(input,output) : ApplyFxaa(output,input);
+           !(i%2) ? ApplyFxaa(input,output) : ApplyFxaa(output,input);
         
-        if(!iteration%2)
+        if(!(iteration%2))
             std::swap(input,output);
     }
     

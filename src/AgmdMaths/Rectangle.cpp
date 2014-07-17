@@ -13,83 +13,82 @@ namespace AgmdMaths
 {
 
     Rectangle::Rectangle(const ivec2& start, const ivec2& size) :
-    m_Origin(start),
-    m_End   (start + size)
+    m_origin(start),
+    m_end   (start + size)
     {
     }
 
 
     Rectangle::Rectangle(a_int32 left, a_int32 top, a_int32 width, a_int32 height) :
-    m_Origin(left, top),
-    m_End   (left + width, top + height)
+    m_origin(left, top),
+    m_end   (left + width, top + height)
     {}
 
 
     void Rectangle::Set(a_int32 left, a_int32 top, a_int32 width, a_int32 height)
     {
-        VEC2SET(m_Origin,left,top);
-        VEC2SET(m_End,left + width,top + height);
+        VEC2SET(m_origin,left,top);
+        VEC2SET(m_end,left + width,top + height);
     }
 
 
-    a_int32 Rectangle::Left() const
+    a_int32 Rectangle::left() const
     {
-        return m_Origin.x;
+        return m_origin.x;
     }
 
 
-    a_int32 Rectangle::Right() const
+    a_int32 Rectangle::right() const
     {
-        return m_End.x;
+        return m_end.x;
     }
 
 
-    a_int32 Rectangle::Top() const
+    a_int32 Rectangle::top() const
     {
-        return m_Origin.y;
+        return m_origin.y;
     }
 
 
-    a_int32 Rectangle::Bottom() const
-    {
-        return m_End.y;
+	a_int32 Rectangle::bottom() const
+	{
+        return m_end.y;
     }
 
 
-    a_int32 Rectangle::Width() const
-    {
-        return m_End.x - m_Origin.x;
+	a_int32 Rectangle::width() const
+	{
+        return m_end.x - m_origin.x;
     }
 
 
-    a_int32 Rectangle::Height() const
-    {
-        return m_End.y - m_Origin.y;
+	a_int32 Rectangle::height() const
+	{
+        return m_end.y - m_origin.y;
     }
 
-    ivec2 Rectangle::Size() const
-    {
-        return m_End - m_Origin;
+	glm::ivec2 Rectangle::size() const
+	{
+        return m_end - m_origin;
     }
 
-    TIntersection Rectangle::Intersects(const ivec2& point) const
+    TIntersection Rectangle::intersects(const ivec2& point) const
     {
-        if ((point.x >= m_Origin.x) && (point.y >= m_Origin.y) && (point.x <= m_End.x) && (point.y <= m_End.y))
+        if ((point.x >= m_origin.x) && (point.y >= m_origin.y) && (point.x <= m_end.x) && (point.y <= m_end.y))
             return INT_IN;
         else
             return INT_OUT;
     }
 
-    TIntersection Rectangle::Intersects(const Rectangle& rect) const
+    TIntersection Rectangle::intersects(const Rectangle& rect) const
     {
-        // Calcul du rectangle d'intersection
-        ivec2 start(std::max(m_Origin.x, rect.m_Origin.x), std::max(m_Origin.y, rect.m_Origin.y));
-        ivec2 m_End(std::min(m_End.x, rect.m_End.x), std::min(m_End.y, rect.m_End.y));
-        Rectangle Overlap(start, m_End - start);
+        ivec2 start(std::max(m_origin.x, rect.m_origin.x), std::max(m_origin.y, rect.m_origin.y));
+        ivec2 m_end(std::min(m_end.x, rect.m_end.x), std::min(m_end.y, rect.m_end.y));
+        Rectangle overlap(start, m_end - start);
 
-        if ((start.x > m_End.x) || (start.y > m_End.y))
+        if ((start.x > m_end.x) || (start.y > m_end.y))
             return INT_OUT;
-        else if ((Overlap == *this) || (Overlap == rect))
+        else if ((overlap == *this) || (overlap == rect))
             return INT_IN;
         else
             return INT_INTERSECTS;
@@ -97,7 +96,7 @@ namespace AgmdMaths
 
     bool Rectangle::operator ==(const Rectangle& rect) const
     {
-        return (m_Origin == rect.m_Origin) && (m_End == rect.m_End);
+        return (m_origin == rect.m_origin) && (m_end == rect.m_end);
     }
 
     bool Rectangle::operator !=(const Rectangle& rect) const
@@ -107,12 +106,12 @@ namespace AgmdMaths
 
     std::istream& operator >>(std::istream& stream, Rectangle& rect)
     {
-        return stream >> rect.m_Origin >> STREAMTOVEC2(rect.m_End);
+        return stream >> rect.m_origin >> STREAMTOVEC2(rect.m_end);
     }
 
     std::ostream& operator <<(std::ostream& stream, const Rectangle& rect)
     {
-        return stream << rect.m_Origin << " " << VEC2TOSTREAM(rect.m_End);
+        return stream << rect.m_origin << " " << VEC2TOSTREAM(rect.m_end);
     }
 
 }

@@ -122,49 +122,49 @@ namespace Agmd
     {        
         a_uint32 color = Driver::Get().ConvertColor(str.m_color);
 
-        if (str.m_Text == "")
+        if (str.m_text == "")
             return;
 
         if (!m_Declaration)
             Initialize();
 
-        if (m_Fonts.find(str.m_Font) == m_Fonts.end())
-            LoadFont(str.m_Font);
+        if (m_Fonts.find(str.m_font) == m_Fonts.end())
+            LoadFont(str.m_font);
 
-        const TFont& curFont = m_Fonts[str.m_Font];
+        const TFont& curFont = m_Fonts[str.m_font];
         
         Driver::Get().Enable(RENDER_ZTEST, false);
         Driver::Get().SetCurrentTransform(str.m_transform);
         Driver::Get().SetDeclaration(m_Declaration);
         Driver::Get().SetTexture(0, curFont.texture.GetTexture());
-        Driver::Get().SetVertexBuffer(0, str.m_VertexBuffer);
-        Driver::Get().SetIndexBuffer(str.m_IndexBuffer);
+        Driver::Get().SetVertexBuffer(0, str.m_vertexBuffer);
+        Driver::Get().SetIndexBuffer(str.m_indexBuffer);
         Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_IndexBuffer.GetCount());
+        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_indexBuffer.GetCount());
         Driver::Get().SetCurrentProgram(NULL);
     }
 
     void FontManager::GenerateStringMesh(GraphicString& str)
     {
-        if (str.m_Text == "")
+        if (str.m_text == "")
             return;
 
         if (!m_Declaration)
             Initialize();
 
-        if (m_Fonts.find(str.m_Font) == m_Fonts.end())
-            LoadFont(str.m_Font);
+        if (m_Fonts.find(str.m_font) == m_Fonts.end())
+            LoadFont(str.m_font);
 
-        const TFont& curFont = m_Fonts[str.m_Font];
+        const TFont& curFont = m_Fonts[str.m_font];
         float texUnit = 1.0f / 16.0f;
-        float ratio = str.m_Size * 16.0f / curFont.texture.GetSize().x;
+        float ratio = str.m_size * 16.0f / curFont.texture.GetSize().x;
         float offset  = 0.5f / curFont.texture.GetSize().x;
         float x, y = x = 0.0f;
 
 
         a_vector<TVertex> _vertex;
         int nbChars = 0;
-        for (std::string::const_iterator i = str.m_Text.begin(); (i != str.m_Text.end()) && (nbChars < nbCharMax); ++i)
+        for (std::string::const_iterator i = str.m_text.begin(); (i != str.m_text.end()) && (nbChars < nbCharMax); ++i)
         {
             unsigned char c = *i;
 
@@ -211,9 +211,9 @@ namespace Agmd
 
             TVertex v[] = {
                 {vec3(x,y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
-                {vec3(str.m_Size+x,y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
-                {vec3(x,str.m_Size+y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset)},
-                {vec3(str.m_Size+x,str.m_Size+y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset)}
+                {vec3(str.m_size+x,y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
+                {vec3(x,str.m_size+y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset)},
+                {vec3(str.m_size+x,str.m_size+y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset)}
             };
             _vertex.push_back(v[0]);
             _vertex.push_back(v[1]);
@@ -235,8 +235,8 @@ namespace Agmd
             x += curFont.charSize[c].x * ratio;
             ++nbChars;
         }
-        str.m_VertexBuffer.Release();
-        str.m_IndexBuffer.Release();
+        str.m_vertexBuffer.Release();
+        str.m_indexBuffer.Release();
 
         a_vector<TIndex> _indices;
         for(a_uint32 i = 0, len = _vertex.size()/4; i < len; i++)
@@ -248,23 +248,23 @@ namespace Agmd
             _indices.push_back(3+i*4);
             _indices.push_back(2+i*4);
         }
-        str.m_VertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
-        str.m_IndexBuffer = Driver::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
+        str.m_vertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
+        str.m_indexBuffer = Driver::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
     }
 
     ivec2 FontManager::GetStringPixelSize(const GraphicString& str)
     {
-        if (m_Fonts.find(str.m_Font) == m_Fonts.end())
-            LoadFont(str.m_Font);
+        if (m_Fonts.find(str.m_font) == m_Fonts.end())
+            LoadFont(str.m_font);
 
-        const TFont& curFont = m_Fonts[str.m_Font];
-        const float  ratio   = str.m_Size * 16.0f / curFont.texture.GetSize().x;
+        const TFont& curFont = m_Fonts[str.m_font];
+        const float  ratio   = str.m_size * 16.0f / curFont.texture.GetSize().x;
 
         a_vector<int> lengths;
 
-        ivec2 size(0, str.m_Size);
+        ivec2 size(0, str.m_size);
 
-        for (std::string::const_iterator i = str.m_Text.begin(); i != str.m_Text.end(); ++i)
+        for (std::string::const_iterator i = str.m_text.begin(); i != str.m_text.end(); ++i)
         {
             unsigned char c = *i;
 
@@ -273,7 +273,7 @@ namespace Agmd
                 // Retour à la ligne
                 case '\n' :
                     lengths.push_back(size.x);
-                    size.y += str.m_Size;
+                    size.y += str.m_size;
                     size.x = 0;
                     break;
 
@@ -290,7 +290,7 @@ namespace Agmd
 
                 // Tabulation verticale
                 case '\v' :
-                    size.y += 4 * str.m_Size;
+                    size.y += 4 * str.m_size;
                     break;
 
                 // Défaut

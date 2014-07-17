@@ -38,36 +38,36 @@ namespace Agmd
 
     void GLTextureCube::Update(const AgmdMaths::Rectangle& rect)
     {
-        Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).Intersects(rect) == INT_IN);
+        Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
 
         glBindTexture(GL_TEXTURE_CUBE_MAP,m_Texture);
         for(int i = 0; i < 6; i++)
         {
         RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
         RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data[i].GetFormat());
-        unsigned long dataSize = rect.Width() * rect.Height() * GetBytesPerPixel(m_Data[i].GetFormat());
+        unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data[i].GetFormat());
             if (FormatCompressed(m_Data[i].GetFormat()))
             {
-                if (rect.Width() == m_Size.x && rect.Height() == m_Size.y)
+                if (rect.width() == m_Size.x && rect.height() == m_Size.y)
                 {
-                    GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, m_Data[i].GetData());
+                    GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, dataSize, m_Data[i].GetData());
                 }
                 else
                 {
                     Image subData = m_Data[i].SubImage(rect);
-                    GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, dataSize, subData.GetData());
+                    GLDriver::glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, dataSize, subData.GetData());
                 }
             }
             else
             {
-                if ((rect.Width() == m_Size.x) && (rect.Height() == m_Size.y))
+                if ((rect.width() == m_Size.x) && (rect.height() == m_Size.y))
                 {
-                    glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, imgFmt.Type, m_Data[i].GetData());
+                    glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, imgFmt.Type, m_Data[i].GetData());
                 }
                 else
                 {
                     Image subData = m_Data[i].SubImage(rect);
-                    glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.Left(), rect.Top(), rect.Width(), rect.Height(), imgFmt.Format, imgFmt.Type, subData.GetData());
+                    glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, imgFmt.Type, subData.GetData());
                 }
             }
         }

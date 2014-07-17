@@ -17,13 +17,13 @@ namespace Agmd
     _theta(0),
     Camera(projection,pos)
     {
-        UpdateVector();
+        updateVector();
     }
 
     FPCamera::~FPCamera()
     {}
 
-    void FPCamera::UpdateVector()
+    void FPCamera::updateVector()
     {
         
         
@@ -59,14 +59,14 @@ namespace Agmd
        if(moveFlags & MOVE_DOWN)
            move -= vec3(0.0f,0.0f,1.0f);
     }
-    void FPCamera::OnMouseMotion(int x, int y)
+    void FPCamera::onMouseMotion(int x, int y)
     {
-        _theta += x*_sensivity;
-        _phi += y*_sensivity;
-        UpdateVector();
+        _theta += x*m_sensivity;
+        _phi += y*m_sensivity;
+        updateVector();
     }
 
-    void FPCamera::OnKeyboard(char key, bool up)
+    void FPCamera::onKeyboard(char key, bool up)
     {
         a_uint32 tempFlags = MOVE_NONE;
         switch(key)
@@ -94,19 +94,19 @@ namespace Agmd
         if(!up)
             moveFlags |= tempFlags;
         else moveFlags &= ~tempFlags;
-        UpdateVector();
+        updateVector();
     }
 
-    void FPCamera::OnMouseWheel(float delta)
+    void FPCamera::onMouseWheel(float delta)
     {
 
     }
     
 
-    void FPCamera::OnUpdate(a_uint64 time_diff)
+    void FPCamera::onUpdate(a_uint64 time_diff)
     {
-        _position += move*(_speed*time_diff)/1000.0f;
+        _position += move*(m_speed*time_diff)/1000.0f;
         _target = _position + _forward;
-        UpdateBuffer(Look());
+        updateBuffer(look());
     }
 }

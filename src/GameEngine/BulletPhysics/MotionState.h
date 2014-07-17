@@ -24,7 +24,7 @@ namespace Agmd
             btQuaternion rot = worldTrans.getRotation();
             btVector3 pos = worldTrans.getOrigin();
             mVisibleobj->SetRotation(quat(rot.w(), rot.x(), rot.y(), rot.z()));
-            mVisibleobj->SetPosition(vec3(pos.x(), pos.y(), pos.z()));
+            mVisibleobj->setPosition(vec3(pos.x(), pos.y(), pos.z()));
         }
 
     protected:

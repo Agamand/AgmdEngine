@@ -147,19 +147,19 @@ namespace Agmd
 
     Image Image::SubImage(const AgmdMaths::Rectangle& rect) const
     {
-        Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).Intersects(rect) == INT_IN);
+        Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
 
         // Création de la sous-image à remplir
-        Image Img(ivec2(rect.Width(), rect.Height()), m_Format);
+        Image Img(ivec2(rect.width(), rect.height()), m_Format);
 
         // Calcul de variables temporaires
-        const unsigned char* src       = &m_Pixels[(rect.Left() + rect.Top() * m_Size.x) * GetBytesPerPixel(m_Format)];
+        const unsigned char* src       = &m_Pixels[(rect.left() + rect.top() * m_Size.x) * GetBytesPerPixel(m_Format)];
         unsigned char*       dest      = &Img.m_Pixels[0];
         const unsigned int   srcPitch  = m_Size.x * GetBytesPerPixel(m_Format);
         const unsigned int   destPitch = Img.m_Size.x * GetBytesPerPixel(Img.m_Format);
 
         // Copie des pixels de l'image originale dans la sous-image
-        for (int i = rect.Left(); i < rect.Right(); ++i)
+        for (int i = rect.left(); i < rect.right(); ++i)
         {
             std::copy(src, src + destPitch, dest);
             src  += srcPitch;

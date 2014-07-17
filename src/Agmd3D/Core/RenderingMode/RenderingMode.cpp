@@ -19,17 +19,17 @@ namespace Agmd
     m_screen(screensize),m_mode(MODE_FILL)
     {}
 
-    void RenderingMode::SetRenderingMode(RenderingMode* render)
+    void RenderingMode::setRenderingMode(RenderingMode* render)
     {
         s_current = render;
     }
 
-    RenderingMode* RenderingMode::GetRenderingMode()
+    RenderingMode* RenderingMode::getRenderingMode()
     {
         return s_current;
     }
 
-    void RenderingMode::SetRenderMode(TRenderMode mode)
+    void RenderingMode::setRenderMode(TRenderMode mode)
     {
         m_mode = mode;
     }

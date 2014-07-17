@@ -32,29 +32,29 @@ namespace AgmdMaths
 
         void Set(a_int32 left, a_int32 top, a_int32 width, a_int32 height);
 
-        a_int32 Left() const;
+        a_int32 left() const;
 
-        a_int32 Right() const;
+        a_int32 right() const;
 
-        a_int32 Top() const;
+        a_int32 top() const;
 
-        a_int32 Bottom() const;
+		a_int32 bottom() const;
 
-        a_int32 Width() const;
+		a_int32 width() const;
 
-        a_int32 Height() const;
+		a_int32 height() const;
 
-        ivec2 Size() const;
+		ivec2 size() const;
 
-        TIntersection Intersects(const ivec2& point) const;
+        TIntersection intersects(const ivec2& point) const;
 
-        TIntersection Intersects(const Rectangle& rect) const;
+        TIntersection intersects(const Rectangle& rect) const;
 
         bool operator ==(const Rectangle& rect) const;
         bool operator !=(const Rectangle& rect) const;
 
-        ivec2 m_Origin;
-        ivec2 m_End;
+        ivec2 m_origin;
+        ivec2 m_end;
     };
 
     std::istream& operator >>(std::ostream& stream, Rectangle& rect);

@@ -20,19 +20,19 @@ namespace Agmd
         TPCamera(mat4& projection, vec3& pos = vec3());
         virtual ~TPCamera();
 
-        virtual void OnUpdate(a_uint64 time_diff);
+        virtual void onUpdate(a_uint64 time_diff);
 
-        virtual void OnMouseMotion(int x, int y);
+        virtual void onMouseMotion(int x, int y);
 
-        virtual void OnKeyboard(char key, bool up);
+        virtual void onKeyboard(char key, bool up);
 
-        virtual void OnMouseWheel(float delta);
-        virtual void OnMouseWheel(bool up);
+        virtual void onMouseWheel(float delta);
+        virtual void onMouseWheel(bool up);
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos); 
     protected:
-        virtual void UpdateVector();
+        virtual void updateVector();
 
         float _theta;
         float _phi;

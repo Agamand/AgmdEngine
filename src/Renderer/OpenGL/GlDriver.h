@@ -90,6 +90,11 @@ namespace Agmd
 
         virtual void SetCullFace(int face);
 
+
+		/* debug function */
+		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram* program);
+
+
     public :
 
         OPENGL_EXPORT static PFNGLGETSTRINGIPROC                      glGetStringi;
@@ -216,7 +221,7 @@ namespace Agmd
         ShaderProgram               m_DebugPipeline[4];
         const BaseShaderProgram*    m_CurrentProgram;
         const TextureBase*          m_TextureBind[MAX_TEXTUREUNIT];
-        a_uint32                      last_unit; // last used texture unit
+        a_uint32                    m_last_unit; // last used texture unit
 
     };
 

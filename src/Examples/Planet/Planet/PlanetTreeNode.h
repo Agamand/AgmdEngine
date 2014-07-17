@@ -23,11 +23,18 @@ public:
 	};
 	PlanetTreeNode(PlanetModel* model,Planet* controller,int face,const mat4& matrix = mat4(1),Transform* transform = NULL,int lod = 0);
 	~PlanetTreeNode();
-	virtual bool Update(Transform* transform, bool updateChildren,bool transformUpdate);
+	virtual bool update(Transform* transform, bool updateChildren,bool transformUpdate);
 
-	virtual void Render(TRenderPass pass) const;
-	virtual void FindVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light);
+	virtual void render(TRenderPass pass) const;
+	virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light);
 	void generateTexture();
+	void needRegenerateMaps()
+	{
+		m_needGenerate = true;
+		for(a_uint32 i = 0; i < MAX_FACE;i++)
+			if(m_faces[i])
+				m_faces[i]->needRegenerateMaps();
+	}
 private:
 	int m_lod;
 	int m_divisor;

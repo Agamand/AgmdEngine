@@ -20,17 +20,17 @@ namespace Agmd
     Displayable::~Displayable()
     {}
 
-    Transform& Displayable::GetTransform() 
+    Transform& Displayable::getTransform() 
     { 
         return *m_transform;
     }
 
-	Material* Displayable::GetMaterial() const
+	Material* Displayable::getMaterial() const
 	{
 		return m_material;
 	}
 
-	void Displayable::SetMaterial( Material* val )
+	void Displayable::setMaterial( Material* val )
 	{
 		m_material = val;
 	}

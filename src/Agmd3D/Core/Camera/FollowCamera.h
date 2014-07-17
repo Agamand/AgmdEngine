@@ -22,18 +22,18 @@ namespace Agmd
 		FollowCamera(mat4& projection, float a, float b, vec2 angle,float dist);
         virtual ~FollowCamera();
 
-        virtual void OnUpdate(a_uint64 time_diff);
+        virtual void onUpdate(a_uint64 time_diff);
 
-        virtual void OnMouseMotion(int x, int y);
+        virtual void onMouseMotion(int x, int y);
 
-        virtual void OnKeyboard(char key, bool up);
+        virtual void onKeyboard(char key, bool up);
 
-        virtual void OnMouseWheel(float delta);
-        virtual void OnMouseWheel(bool up);
+        virtual void onMouseWheel(float delta);
+        virtual void onMouseWheel(bool up);
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setTarget(glm::vec3 pos);
-		virtual const glm::vec3 GetPosition();
+		virtual const glm::vec3 getPosition();
 		void SetAngles(vec2 _angles)
 		{
 			angles = _angles;
@@ -42,10 +42,10 @@ namespace Agmd
 		{
 			return angles;
 		}
-		mat4 Look();
-		const std::string ToString();
+		mat4 look();
+		const std::string toString();
     protected:
-        virtual void UpdateVector();
+        virtual void updateVector();
 
         float _theta;
         float _phi;

@@ -319,6 +319,12 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\RenderQueue.h">
       <Filter>Core\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\SpriteNode.h">
+      <Filter>Core\SceneNode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneObject\Sprite.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -677,6 +683,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\RenderQueue.cpp">
       <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SpriteNode.cpp">
+      <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneObject\Sprite.cpp">
+      <Filter>Core\Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

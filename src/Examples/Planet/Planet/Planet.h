@@ -33,12 +33,17 @@ public:
 
 
 	float m_offset;
+	bool m_use_atmosphere;
+	vec3 lightDir;
 private:
 	SceneNode* m_root;
 	PlanetModel* m_model;
 	Material* m_material;
 	PlanetTreeNode* m_faces[MAX_PLANET_FACE];
+	vec3 m_cam_position;
+	float m_cam_dist;
 	
 	float m_size;
+	
 };
 #endif

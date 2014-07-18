@@ -35,6 +35,7 @@ private:
 	ShaderProgram m_ground_program;
 	ShaderProgram m_diffuse_program;
 	
+
 };
 
 #endif /* _PLANETMODEL_H_ */

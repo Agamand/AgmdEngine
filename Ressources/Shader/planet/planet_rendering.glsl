@@ -24,6 +24,7 @@ out vec3 v_position;
 out vec2 v_texCoord0;
 out float v_displacement;
 
+
 uniform sampler2D texture0;
 uniform float u_offset = 0.05f;
 uniform mat4 u_position_matrix;
@@ -86,6 +87,10 @@ uniform sampler2D texture2;
 uniform float u_divisor = 1;
 uniform float u_offset = 0.05f;
 uniform int u_normal_mapping = 1;
+uniform vec3 v3LightPos = vec3(1,0,0);
+uniform int u_use_atmosphere = 0;
+
+#include "ground_function.glsl"
 
 float texMult = 30f;
 
@@ -103,122 +108,29 @@ vec3 color2normal(vec3 color)
 {
 	return (color-vec3(0.5))*2;
 }
-const vec3 off = vec3(-1,0,1)*0.1f;
-const ivec3 _off = ivec3(-1,0,1);
 
-vec3 getNormal(vec2 angles)
-{
-	
-	vec4 displacementTable = texture(texture2,v_texCoord0);//texelFetch(texture2,ivec2(v_texCoord0.x*1024,v_texCoord0.x*1024));
-
-    vec3 vx1 = sphere2Cart(angles+off.xy);
-    vec3 vx2 = sphere2Cart(angles+off.zy);
-
-    vec3 vy1 = sphere2Cart(angles+off.yx);
-    vec3 vy2 = sphere2Cart(angles+off.yz);
-
-    vx1 *=1+displacementTable.r*u_offset*const_scalling;
-    vx2 *=1+displacementTable.g*u_offset*const_scalling;
-    
-    vy1 *=1+displacementTable.b*u_offset*const_scalling;
-    vy2 *=1+displacementTable.a*u_offset*const_scalling;
-
-    vec3 va = normalize(vx2-vx1);
-    vec3 vb = normalize(vy1-vy2);
-    return cross(va,vb);
-}
-
-
-
-float getDisplacementFor(vec2 angles, vec2 offset)
-{
-	vec3 vx1 = sphere2Cart(angles+offset);
-	return getDisplacement(vx1);
-}
-
-vec3 _getNormal(vec2 angles)
-{
-
-
-    vec3 vx1 = sphere2Cart(angles+off.xy);
-    vec3 vx2 = sphere2Cart(angles+off.zy);
-
-    vec3 vy1 = sphere2Cart(angles+off.yx);
-    vec3 vy2 = sphere2Cart(angles+off.yz);
-
-    vx1 *=1+getDisplacement(vx1)*u_offset*const_scalling;
-    vx2 *=1+getDisplacement(vx2)*u_offset*const_scalling;
- 
-    vy1 *=1+getDisplacement(vy1)*u_offset*const_scalling;
-    vy2 *=1+getDisplacement(vy2)*u_offset*const_scalling;
-
-    vec3 va = normalize(vx2-vx1);
-    vec3 vb = normalize(vy1-vy2);
-    return cross(va,vb);
-}
-
-
-vec3 getNormalv3(vec2 angles,float displacement)
-{
-	
-	vec4 displacementTable = texture(texture2,v_texCoord0);//texelFetch(texture2,ivec2(v_texCoord0.x*1024,v_texCoord0.x*1024));
-
-    vec3 vx1 = sphere2Cart(angles+off.xy);
-    vec3 vx2 = sphere2Cart(angles+off.zy);
-
-    vec3 vy1 = sphere2Cart(angles+off.yx);
-    vec3 vy2 = sphere2Cart(angles+off.yz);
-
-    vx1 *=1+(displacement+(displacementTable.r-0.5f)*0.1f)*u_offset*const_scalling;
-    vx2 *=1+(displacement+(displacementTable.g-0.5f)*0.1f)*u_offset*const_scalling;
-    
-    vy1 *=1+(displacement+(displacementTable.b-0.5f)*0.1f)*u_offset*const_scalling;
-    vy2 *=1+(displacement+(displacementTable.a-0.5f)*0.1f)*u_offset*const_scalling;
-
-    vec3 va = normalize(vx2-vx1);
-    vec3 vb = normalize(vy1-vy2);
-    return cross(va,vb);
-}
-
-bool isInFrustrum(vec4 position)
-{
-	if(position.x < -1.0f || position.x > 1.0f || position.y < -1.0f || position.y > 1.0f)
-		return false;
-	return true;
-}
-
-
-
-const vec3 l = normalize(vec3(1,0,0));
 void main()
 {
 	vec4 screen_pos = gl_FragCoord;
-	screen_pos.x /=1920.0f;
-	screen_pos.y /=1080.0f;
-	if(!isInFrustrum(screen_pos))
-	{
-		discard;
-		//out_Color = vec4(gl_FragCoord.y,0,0,1);
-		return;
-	}
-
-
 	vec3 color;
-	float offset = texture(texture0,v_texCoord0).x;//getDisplacement(v_normal); //rgb2grayscale(color = texture(texture0,v_texCoord0).rgb);
+	float offset = texture(texture0,v_texCoord0).x;
 	vec2 angles = cart2sphere(v_normal);
-	vec3 normal = normalize(mat3(u_matModel)*color2normal(texture(texture2,v_texCoord0).rgb));//_getNormalV3(angles);
-	//normal.z = 0;
+	vec3 normal = normalize(mat3(u_matModel)*color2normal(texture(texture2,v_texCoord0).rgb));
 
 	color = texture(texture1,vec2(clamp(offset,0,1),0)).rgb;
 	
-	float lambert =clamp(dot(normal,l),0,1),
-	lambert2 = clamp(dot(v_normal,l),0,1);
+	float lambert =clamp(dot(v3LightPos,normal),0,1),
+	lambert2 = clamp(dot(v3LightPos,v_normal),0,1);
 	//show color with normal mapping
 	if(u_normal_mapping > 0)
-		out_Color = vec4(vec3(color*lambert),1);
+		color *=lambert;
 	//show color without normal mapping
 	else
-		out_Color = vec4(vec3(color*lambert2),1);
+		color *=lambert2;
+
+	if(u_use_atmosphere > 0)
+		color = select_ground(v_position,color);
+	out_Color = vec4(color,1.0f);
 	//show heigth map
 	//out_Color = vec4(vec3(offset),1);
 }

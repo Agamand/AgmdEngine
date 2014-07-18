@@ -210,6 +210,49 @@ float km = 0.0015f;
 float eSun = 15.0f;
 vec3 rgb(0.650,0.570,0.475);
 float g = -0.98f;
+
+vec3 light_pos = vec3(100,100,0);
+ShaderProgram sun_program;
+Texture sunTex;
+Transform* sun_transform;
+Model* sunModel;
+void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
+{
+
+	PlanetModel* model = new PlanetModel(0,0,0);
+	Material* mat = new Material(pipe);
+	Texture gradient;
+	gradient.CreateFromFile("Texture/gradient/only_earth.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	Planet* p = new Planet(model,mat);
+	mgr->AddNode(p->getRoot());
+	p->getRoot()->getTransform().translate(-20,10,0);
+	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+
+	model = new PlanetModel(0,0,0);
+	mat = new Material(pipe);
+	gradient;
+	gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	p = new Planet(model,mat);
+	mgr->AddNode(p->getRoot());
+	p->getRoot()->getTransform().translate(30,0,0);
+	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+
+	model = new PlanetModel(0,0,0);
+	mat = new Material(pipe);
+	gradient;
+	gradient.CreateFromFile("Texture/gradient/rocky.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	p = new Planet(model,mat);
+	mgr->AddNode(p->getRoot());
+	p->getRoot()->getTransform().translate(-40,-20,10);
+	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+
+
+}
+
+
 void App::OnInit()
 { 
 	m_animated =false;
@@ -229,7 +272,7 @@ void App::OnInit()
 	if(gradient)
 		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8,TEX_WRAP_CLAMP);
 	else
-		color_gradiant.CreateFromFile("Texture/gradient_terra_desat.png",PXF_A8R8G8B8);
+		color_gradiant.CreateFromFile("Texture/gradient_terra_desaqt.png",PXF_A8R8G8B8);
 
 	int _seed;
 	if(seed)
@@ -248,10 +291,23 @@ void App::OnInit()
 	m_pmodel->m_octave = 1.0f;
 	m_pmodel->m_frequency = 3.f;
 	m_planet = new Planet(m_pmodel,mat,1.f);
+	m_planet->lightDir = -normalize(vec3(-20,10,0)-light_pos);
 	Planet* p2 = new Planet(m_pmodel,mat,1.f);
+	p2->lightDir = -normalize(vec3(10,0,0)-light_pos);
 	p2->getRoot()->getTransform().translate(10.0f,0,0);
 
+
+	Model::TVertex vert;
+
+
+	sunModel = new Model(&vert,1,PT_POINTLIST);
+	sunTex.CreateFromFile("texture/SunYello.bmp",PXF_A8R8G8B8);
+	sun_program.LoadFromFile("Shader/planet/sun.glsl");
+	sun_transform = new Transform(vec3(100,100,0));
 	sphere = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+	
+
+
 
 	PostEffectMgr::Instance().AddEffect(new AntiAliasing());
 
@@ -259,7 +315,11 @@ void App::OnInit()
 	test_transform = new Transform(vec3(4,0,0));
 	test_transform->rotate(30.f,vec3(0,1,0));//;rotate(quat(),90.0f,vec3(0,1,1)))
 	m_Scene->AddNode(m_planet->getRoot());
-	m_Scene->AddNode(p2->getRoot());
+
+
+	initManyPlanet(m_Scene,planetpipe);
+
+
 	std::cout << "init planet" << std::endl;
 	
 	m_persistanceSlider = new ASlider("Persistance",ivec2(1300.0f,800.0f),ivec2(200,20));
@@ -280,31 +340,31 @@ void App::OnInit()
 
 	slider_kr = new ASlider("kr",ivec2(1600,800),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_kr);
-	slider_kr->setValue(&kr,0,0.1);
+	slider_kr->setValue(&m_pmodel->kr,0,0.1);
 
 	slider_km = new ASlider("km",ivec2(1600,750),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_km);
-	slider_km->setValue(&km,0,0.1);
+	slider_km->setValue(&m_pmodel->km,0,0.1);
 
 	slider_esun = new ASlider("esun",ivec2(1600,700),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_esun);
-	slider_esun->setValue(&eSun,0,30);
+	slider_esun->setValue(&m_pmodel->eSun,0,30);
 
 	slider_r = new ASlider("red",ivec2(1600,650),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_r);
-	slider_r->setValue(&rgb.r,0,1);
+	slider_r->setValue(&m_pmodel->rgb.r,0,1);
 
 	slider_g = new ASlider("green",ivec2(1600,600),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_g);
-	slider_g->setValue(&rgb.g,0,1);
+	slider_g->setValue(&m_pmodel->rgb.g,0,1);
 
 	slider_b = new ASlider("blue",ivec2(1600,550),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_b);
-	slider_b->setValue(&rgb.b,0,1);
+	slider_b->setValue(&m_pmodel->rgb.b,0,1);
 
 	slider_gg = new ASlider("gg",ivec2(1600,500),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_gg);
-	slider_gg->setValue(&g,-1,-0.5);
+	slider_gg->setValue(&m_pmodel->g,-1,-0.5);
 
 
 
@@ -365,113 +425,20 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 void App::OnRender3D()
 {
 	return;
-	//pmodel->generateTexture(height_test,normal_test,translate(mat4(1),vec3(0,0,0.5f)));
-	vec3 ligp =normalize(vec3(1,0,0));	
-	a_vector<DisplayNode*> displayable;
-	a_vector<LightNode*> light;
 	Driver& driver = Driver::Get();
-	ivec2 screen = getScreen();
-	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
-	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
-	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
-	displayable.clear();
-	m_planet->getRoot()->update(NULL,true,false);
-	//m_planet->getRoot()->findVisible(cam3D,displayable,light);
-	
-	float inner = 1.0f*radius;
-	float outer = 1.025f*radius;
-
-	//if(pause)
-	//for(int i = 0; i < displayable.size(); i++)
-		//displayable[i]->render(RENDERPASS_DIFFUSE);
-
-	if(pause)
-		return;
-	vec3 campos = cam3D->getPosition();
-	//render sphere / planer
-	cam3D->setActive();
-	driver.SetCullFace(2);
-
-	driver.SetCurrentProgram(m_lightProgram.GetShaderProgram());
-	sphere->Draw(lightTransform);
-	driver.SetCurrentProgram(NULL);
-
-	
-
-	driver.SetCullFace(1);
-	int use;
-	float light_dist = length(campos);
-	if(light_dist > outer)
-	{
-		driver.Enable(TRenderParameter::RENDER_ZWRITE,false);
-		driver.Enable(TRenderParameter::RENDER_ALPHABLEND,true);
-		driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-		use = 0; 
-	}else use = 1;
-
-	driver.SetCurrentProgram(m_skyProgram[use].GetShaderProgram());
-	m_skyProgram[use].SetParameter("v3CameraPos",campos);
-	m_skyProgram[use].SetParameter("v3LightPos",ligp);
-	m_skyProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
-
-	m_skyProgram[use].SetParameter("fCameraHeight",length(campos));
-	m_skyProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
-
-	m_skyProgram[use].SetParameter("fInnerRadius",inner);
-	m_skyProgram[use].SetParameter("fInnerRadius2",inner*inner);
-	m_skyProgram[use].SetParameter("fOuterRadius",outer);
-	m_skyProgram[use].SetParameter("fOuterRadius2",outer*outer);
-	m_skyProgram[use].SetParameter("fKrESun", kr * eSun);
-	m_skyProgram[use].SetParameter("fKmESun", km * eSun);
-	m_skyProgram[use].SetParameter("fKr4PI",kr * 4.0f * 3.141592653f);
-	m_skyProgram[use].SetParameter("fKm4PI",km * 4.0f * 3.141592653f);
-	m_skyProgram[use].SetParameter("fScale", 1.0f / (outer - inner));
-	m_skyProgram[use].SetParameter("fScaleDepth",0.25f);
-	m_skyProgram[use].SetParameter("fScaleOverScaleDepth", 4.0f / (outer - inner));
-	m_skyProgram[use].SetParameter("g",g);
-	m_skyProgram[use].SetParameter("g2",g*g);
-	sphere->Draw(skyTransform);
-	driver.SetCurrentProgram(NULL);
-	driver.SetCullFace(2);
-	use = 0;
-	mat->Enable(RENDERPASS_DEFERRED);
-	driver.Enable(TRenderParameter::RENDER_ZWRITE,false);
-	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,true);
-	driver.Enable(TRenderParameter::RENDER_ZTEST,false);
-	driver.SetupAlphaBlending(BLEND_ONE, BLEND_SRCCOLOR);
-	driver.SetCurrentProgram(m_groundProgram[use].GetShaderProgram());
-	m_groundProgram[use].SetParameter("v3CameraPos",campos);
-	m_groundProgram[use].SetParameter("v3LightPos",ligp);
-	m_groundProgram[use].SetParameter("v3InvWavelength",vec3(1.0 / pow(rgb.r, 4.0f), 1.0 / pow(rgb.g, 4.0f), 1.0 / pow(rgb.b, 4.0f)));
-
-	m_groundProgram[use].SetParameter("fCameraHeight",length(campos));
-	m_groundProgram[use].SetParameter("fCameraHeight2",length(campos)*length(campos));
-
-	m_groundProgram[use].SetParameter("fInnerRadius",inner);
-	m_groundProgram[use].SetParameter("fInnerRadius2",inner*inner);
-	m_groundProgram[use].SetParameter("fOuterRadius",outer);
-	m_groundProgram[use].SetParameter("fOuterRadius2",outer*outer);
-	m_groundProgram[use].SetParameter("fKrESun", kr * eSun);
-	m_groundProgram[use].SetParameter("fKmESun", km * eSun);
-	m_groundProgram[use].SetParameter("fKr4PI",kr * 4.0f * 3.141592653f);
-	m_groundProgram[use].SetParameter("fKm4PI",km * 4.0f * 3.141592653f);
-	m_groundProgram[use].SetParameter("fScale", 1.0f / (outer - inner));
-	m_groundProgram[use].SetParameter("fScaleDepth",0.25f);
-	m_groundProgram[use].SetParameter("fScaleOverScaleDepth", 4.0f / (outer - inner));
-	m_groundProgram[use].SetParameter("g",g);
-	m_groundProgram[use].SetParameter("g2",g*g);
-	sphere->Draw(sphereTransform);
-	driver.SetCurrentProgram(NULL);
-	mat->Disable();
-	
-	//Fast2DSurface::Instance().Draw();
-	
-	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
-	driver.Enable(TRenderParameter::RENDER_ZWRITE,true);
-	driver.Enable(TRenderParameter::RENDER_ZTEST,true);
-
-	
-
+	driver.Enable(RENDER_POINTSIZE_SHADER,true);
+	driver.Enable(RENDER_POINTSPRITE,true);
+	driver.Enable(RENDER_ALPHABLEND,true);
+	driver.Enable(RENDER_ZTEST,true);
+	driver.Enable(RENDER_ALPHABLEND,true);
+	driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+	driver.SetCurrentProgram(sun_program.GetShaderProgram());
+	driver.SetTexture(0,sunTex.GetTexture());
+	sunModel->Draw(sun_transform);
+	driver.SetCurrentProgram(NULL);	
+	driver.Enable(RENDER_POINTSIZE_SHADER,false);
+	driver.Enable(RENDER_POINTSPRITE,false);
+	driver.Enable(RENDER_ALPHABLEND,false);
 }
 
 void App::OnRender2D()
@@ -499,6 +466,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         switch(LOWORD(wParam))
         {
         case 'P':
+			m_planet->m_use_atmosphere = !m_planet->m_use_atmosphere;
             pause = !pause;
             break;
 		case 'E':

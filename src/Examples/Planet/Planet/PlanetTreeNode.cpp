@@ -164,7 +164,7 @@ void PlanetTreeNode::findVisible( Camera*cam,RenderQueue& display,a_vector<Light
 }
 
 
-
+#define OUTER_INNER_OFFSET 1.025f
 void PlanetTreeNode::render( TRenderPass pass ) const
 {
 	//HACK FOR TEST
@@ -175,12 +175,40 @@ void PlanetTreeNode::render( TRenderPass pass ) const
 
 	if(!m_material || !m_material->Enable(pass))
 		return;
+	PlanetModel* model = m_controller->m_model;
 	Driver& driver = Driver::Get();
+	float outer = m_controller->m_size*OUTER_INNER_OFFSET, inner = m_controller->m_size;
 	m_material->setParameter("u_divisor",(float)m_divisor);
 	m_material->setParameter("u_offset",(float)m_controller->m_offset);
 	m_material->setParameter("u_position_matrix",m_positionMatrix);
 	m_material->setParameter("u_face",m_face);
 	m_material->setParameter("u_normal_mapping",m_controller->m_model->m_normal_mapping);
+	m_material->setParameter("v3LightPos",m_controller->lightDir);
+
+	m_material->setParameter("u_use_atmosphere", m_controller->m_use_atmosphere ? 1 : 0 );
+	m_material->setParameter("v3CameraPos",m_controller->m_cam_position);
+	if(m_controller->m_use_atmosphere)
+	{
+		m_material->setParameter("v3InvWavelength",vec3(1.0 / pow(model->rgb.r, 4.0f), 1.0 / pow(model->rgb.g, 4.0f), 1.0 / pow(model->rgb.b, 4.0f)));
+
+		m_material->setParameter("fCameraHeight",length(m_controller->m_cam_position));
+		m_material->setParameter("fCameraHeight2",length(m_controller->m_cam_position)*length(m_controller->m_cam_position));
+
+		m_material->setParameter("fInnerRadius",inner);
+		m_material->setParameter("fInnerRadius2",inner*inner);
+		m_material->setParameter("fOuterRadius",outer);
+		m_material->setParameter("fOuterRadius2",outer*outer);
+		m_material->setParameter("fKrESun", model->kr * model->eSun);
+		m_material->setParameter("fKmESun", model->km * model->eSun);
+		m_material->setParameter("fKr4PI",model->kr * 4.0f * 3.141592653f);
+		m_material->setParameter("fKm4PI",model->km * 4.0f * 3.141592653f);
+		m_material->setParameter("fScale", 1.0f / (outer - inner));
+		m_material->setParameter("fScaleDepth",0.25f);
+		m_material->setParameter("fScaleOverScaleDepth", 4.0f / (outer - inner));
+		m_material->setParameter("g",model->g);
+		m_material->setParameter("g2",model->g*model->g);
+		m_material->setParameter("isInAtmosphere",(m_controller->m_cam_dist > m_controller->m_size*OUTER_INNER_OFFSET) ? 0 : 1);
+	}
 	driver.SetTexture(0,m_heightTexture.GetTexture());
 	driver.SetTexture(2,m_normalTexture.GetTexture());
 	draw();

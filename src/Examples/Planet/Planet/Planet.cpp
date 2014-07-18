@@ -37,7 +37,7 @@ quat sRot[] = {
 	quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
 };
 
-Planet::Planet(PlanetModel* model, Material* mat,float size,bool atmosphere) : m_offset(0.f),m_size(size)
+Planet::Planet(PlanetModel* model, Material* mat,float size,bool atmosphere) : m_offset(0.f),m_size(size),lightDir(1,0,0),m_use_atmosphere(atmosphere)
 {
 	
 	m_material = mat;
@@ -53,8 +53,7 @@ Planet::Planet(PlanetModel* model, Material* mat,float size,bool atmosphere) : m
 		m_faces[i] = new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i]));
 		m_root->addChild(m_faces[i]);
 	}
-	if(atmosphere)
-		m_root->addChild(new PlanetAtmosphereNode(this));
+	m_root->addChild(new PlanetAtmosphereNode(this));
 }
 
 Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,int textureSize/* = 1024*/)

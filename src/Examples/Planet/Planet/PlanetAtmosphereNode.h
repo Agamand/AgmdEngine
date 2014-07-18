@@ -18,8 +18,6 @@ private:
 	ShaderProgram m_groundProgram[2];
 	ShaderProgram m_skyProgram[2];
 	Planet* m_controller;
-	float m_cam_dist;
-	vec3 m_cam_position;
 };
 
 

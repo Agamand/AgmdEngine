@@ -360,10 +360,10 @@ PlanetModel::PlanetModel(mat4 matrix) : Model(),
 	m_octave(1.0f),
 	m_normal_mapping(1),
 	kr(0.0025f),
-	km(0.0015f),
-	eSun(15.0f),
-	rgb(0.650,0.570,0.475),
-	g(-0.98f)
+	km(0.0010f),
+	eSun(20.0f),
+	rgb(0.650f,0.570f,0.475f),
+	g(-0.99f)
 {
 	a_vector<Model::TVertex> vertices;
 	a_vector<Model::TIndex> indices;

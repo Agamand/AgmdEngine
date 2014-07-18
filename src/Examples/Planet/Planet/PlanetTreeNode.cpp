@@ -157,7 +157,7 @@ void PlanetTreeNode::findVisible( Camera*cam,RenderQueue& display,a_vector<Light
 			{
 				if(!m_textureInit || m_needGenerate)
 					generateTexture();
-				DisplayNode::findVisible(cam,display,light);
+					DisplayNode::findVisible(cam,display,light);
 			}
 		}
 	}
@@ -253,7 +253,7 @@ bool PlanetTreeNode::update( Transform* transform, bool updateChildren, bool tra
 				m_faces[i]->Update(m_transform,updateChildren);
 		}*/
 }
-#define TEX_SIZE 512
+#define TEX_SIZE 256
 void PlanetTreeNode::generateTexture()
 {
 	if(!m_textureInit)

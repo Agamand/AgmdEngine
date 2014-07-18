@@ -25,8 +25,8 @@ status : in pause
 #include <map>
 #include <Container/Vector.h>
 
-#define SCREEN_WIDTH_PLANET 1920
-#define SCREEN_HEIGHT_PLANET 1080
+#define SCREEN_WIDTH_PLANET 1600
+#define SCREEN_HEIGHT_PLANET 900
 
 class App : public Agmd::AgmdApp, public Singleton<App>
 {

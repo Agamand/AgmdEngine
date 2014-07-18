@@ -233,6 +233,7 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 	mat = new Material(pipe);
 	gradient;
 	gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+	model->rgb = vec3(0.485f, 0.9f, 0.985f);
 	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	p = new Planet(model,mat);
 	mgr->AddNode(p->getRoot());
@@ -304,6 +305,7 @@ void App::OnInit()
 	sunTex.CreateFromFile("texture/SunYello.bmp",PXF_A8R8G8B8);
 	sun_program.LoadFromFile("Shader/planet/sun.glsl");
 	sun_transform = new Transform(vec3(100,100,0));
+	sun_transform->update(NULL);
 	sphere = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
 	
 
@@ -319,51 +321,51 @@ void App::OnInit()
 
 	initManyPlanet(m_Scene,planetpipe);
 
-
+	GUIMgr& guimgr = GUIMgr::Instance();
 	std::cout << "init planet" << std::endl;
 	
-	m_persistanceSlider = new ASlider("Persistance",ivec2(1300.0f,800.0f),ivec2(200,20));
+	m_persistanceSlider = new ASlider("Persistance",ivec2(5,425),ivec2(200,20));
 	m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
-	GUIMgr::Instance().AddWidget(m_persistanceSlider);
+	guimgr.AddWidget(m_persistanceSlider);
 
-	m_octaveCountSlider = new ASlider("Octave",ivec2(1300.f,750.0f),ivec2(200,20),true);
+	m_octaveCountSlider = new ASlider("Octave",ivec2(5,375),ivec2(200,20),true);
 	m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
-	GUIMgr::Instance().AddWidget(m_octaveCountSlider);
+	guimgr.AddWidget(m_octaveCountSlider);
 
-	m_frequencySlider = new ASlider("Frequency",ivec2(1300.0f,700.0f),ivec2(200,20));
+	m_frequencySlider = new ASlider("Frequency",ivec2(5,325),ivec2(200,20));
 	m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
-	GUIMgr::Instance().AddWidget(m_frequencySlider);
+	guimgr.AddWidget(m_frequencySlider);
 
-	ASlider *slder = new ASlider("Cam Speed",ivec2(1300.0f,600.0f),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slder);
+	ASlider *slder = new ASlider("Cam Speed",ivec2(5,275),ivec2(200,20));
+	guimgr.AddWidget(slder);
 
 
-	slider_kr = new ASlider("kr",ivec2(1600,800),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_kr);
+	slider_kr = new ASlider("kr",ivec2(5,225),ivec2(200,20));
+	guimgr.AddWidget(slider_kr);
 	slider_kr->setValue(&m_pmodel->kr,0,0.1);
 
-	slider_km = new ASlider("km",ivec2(1600,750),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_km);
+	slider_km = new ASlider("km",ivec2(5,175),ivec2(200,20));
+	guimgr.AddWidget(slider_km);
 	slider_km->setValue(&m_pmodel->km,0,0.1);
 
-	slider_esun = new ASlider("esun",ivec2(1600,700),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_esun);
+	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
+	guimgr.AddWidget(slider_esun);
 	slider_esun->setValue(&m_pmodel->eSun,0,30);
 
-	slider_r = new ASlider("red",ivec2(1600,650),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_r);
+	slider_r = new ASlider("red",ivec2(5,75),ivec2(200,20));
+	guimgr.AddWidget(slider_r);
 	slider_r->setValue(&m_pmodel->rgb.r,0,1);
 
-	slider_g = new ASlider("green",ivec2(1600,600),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_g);
+	slider_g = new ASlider("green",ivec2(5,25),ivec2(200,20));
+	guimgr.AddWidget(slider_g);
 	slider_g->setValue(&m_pmodel->rgb.g,0,1);
 
-	slider_b = new ASlider("blue",ivec2(1600,550),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_b);
+	slider_b = new ASlider("blue",ivec2(225,425),ivec2(200,20));
+	guimgr.AddWidget(slider_b);
 	slider_b->setValue(&m_pmodel->rgb.b,0,1);
 
-	slider_gg = new ASlider("gg",ivec2(1600,500),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slider_gg);
+	slider_gg = new ASlider("gg",ivec2(225,375),ivec2(200,20));
+	guimgr.AddWidget(slider_gg);
 	slider_gg->setValue(&m_pmodel->g,-1,-0.5);
 
 
@@ -374,7 +376,9 @@ void App::OnInit()
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
     m_light->SetRange(2000.0f);	
-	cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	//cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+	cam3D = new FPCamera(m_MatProj3D,vec3(3,0,0));
+	
 	slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
 	cam2D = new FPCamera(m_MatProj2D);
 	m_groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
@@ -386,16 +390,16 @@ void App::OnInit()
     Camera::setCurrent(cam2D, CAMERA_2D);
 
 
-	slder =  new ASlider("Offset",ivec2(1300.0f,550.0f),ivec2(200,20));
-	GUIMgr::Instance().AddWidget(slder);
+	slder =  new ASlider("Offset",ivec2(225,325),ivec2(200,20));
+	guimgr.AddWidget(slder);
 	slder->setValue(&m_planet->m_offset,-0.1,0.1);
 	
-	slder = new ASlider("Precision export",ivec2(1300.0f,500.0f),ivec2(200,20),true);
-	GUIMgr::Instance().AddWidget(slder);
+	slder = new ASlider("Precision export",ivec2(225,275),ivec2(200,20),true);
+	guimgr.AddWidget(slder);
 	slder->setValue(&layer,0,10);
 
-	slder = new ASlider("Resolution export",ivec2(1300.0f,450),ivec2(200,20),true);
-	GUIMgr::Instance().AddWidget(slder);
+	slder = new ASlider("Resolution export",ivec2(225,225),ivec2(200,20),true);
+	guimgr.AddWidget(slder);
 	slder->setValue(&reso,512,2048);
 
 	skyTransform->scale(1.025,1.025,1.025);
@@ -424,7 +428,7 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 void App::OnRender3D()
 {
-	return;
+	
 	Driver& driver = Driver::Get();
 	driver.Enable(RENDER_POINTSIZE_SHADER,true);
 	driver.Enable(RENDER_POINTSPRITE,true);
@@ -452,8 +456,10 @@ void App::OnRender2D()
 	("F1 : Solid")("\n")
 	("F2 : Wireframe")("\n")
 	("F3 : Points")("\n")
-	("G : Enable/Disable interfaces")("\n");
-    m_fps->draw();
+	("G : Enable/Disable interfaces")("\n")
+	("N : Enable/Disable normal")("\n")
+	("E : Export")("\n");
+	m_fps->draw();
 
 }
 //103 100 104 101 105 102

@@ -1,5 +1,5 @@
-#ifndef _DIFFUSE_GROUND_GLSL_
-#define _DIFFUSE_GROUND_GLSL_
+#ifndef _SUN_GLSL_
+#define _SUN_GLSL_
 
 #version 330
 
@@ -17,7 +17,7 @@ void main()
 	v_position = in_Vertex;
 	vec4 viewPos = u_matView*u_matModel*vec4(in_Vertex,1.0f);
 	float dist = length(viewPos.xyz);
-	gl_PointSize = 2.0f/dist;
+	gl_PointSize = 30000.0f/dist;
 	gl_Position = u_matProjection * viewPos;
 
 }
@@ -31,10 +31,10 @@ out vec4 out_Color0;
 
 void main ()
 {
-	vec4 color = texture(texture2,gl_PointCoord).rgba;
+	vec4 color = texture(texture0,gl_PointCoord).rgba;
 	color.a = color.g;
 	out_Color0 = vec4(color);
 }
 
 #endif
-#endif /* _DIFFUSE_GROUND_GLSL_ */
+#endif /* _SUN_GLSL_ */

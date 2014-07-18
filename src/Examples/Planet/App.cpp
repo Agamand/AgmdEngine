@@ -144,6 +144,7 @@ BaseShaderProgram* default_program;
 const char* gradient ="Texture/gradient_terra_desat.png";//superb_terra.png";
 const char* seed = NULL;
 float layer = 0;
+float reso = 512;
 
 Texture height_test;
 Texture normal_test;
@@ -246,7 +247,10 @@ void App::OnInit()
 	m_pmodel->m_persistance = 1.f;
 	m_pmodel->m_octave = 1.0f;
 	m_pmodel->m_frequency = 3.f;
-	m_planet = new Planet(m_pmodel,mat,0.05f);
+	m_planet = new Planet(m_pmodel,mat,1.f);
+	Planet* p2 = new Planet(m_pmodel,mat,1.f);
+	p2->getRoot()->getTransform().translate(10.0f,0,0);
+
 	sphere = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
 
 	PostEffectMgr::Instance().AddEffect(new AntiAliasing());
@@ -255,14 +259,14 @@ void App::OnInit()
 	test_transform = new Transform(vec3(4,0,0));
 	test_transform->rotate(30.f,vec3(0,1,0));//;rotate(quat(),90.0f,vec3(0,1,1)))
 	m_Scene->AddNode(m_planet->getRoot());
-
+	m_Scene->AddNode(p2->getRoot());
 	std::cout << "init planet" << std::endl;
 	
 	m_persistanceSlider = new ASlider("Persistance",ivec2(1300.0f,800.0f),ivec2(200,20));
 	m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
 	GUIMgr::Instance().AddWidget(m_persistanceSlider);
 
-	m_octaveCountSlider = new ASlider("Octave",ivec2(1300.f,750.0f),ivec2(200,20));
+	m_octaveCountSlider = new ASlider("Octave",ivec2(1300.f,750.0f),ivec2(200,20),true);
 	m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
 	GUIMgr::Instance().AddWidget(m_octaveCountSlider);
 
@@ -270,8 +274,7 @@ void App::OnInit()
 	m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
 	GUIMgr::Instance().AddWidget(m_frequencySlider);
 
-	ASlider *slder = new ASlider(NULL);
-	slder = new ASlider("Cam Speed",ivec2(1300.0f,600.0f),ivec2(200,20));
+	ASlider *slder = new ASlider("Cam Speed",ivec2(1300.0f,600.0f),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slder);
 
 
@@ -279,7 +282,7 @@ void App::OnInit()
 	GUIMgr::Instance().AddWidget(slider_kr);
 	slider_kr->setValue(&kr,0,0.1);
 
-	slider_km = new ASlider("kr",ivec2(1600,750),ivec2(200,20));
+	slider_km = new ASlider("km",ivec2(1600,750),ivec2(200,20));
 	GUIMgr::Instance().AddWidget(slider_km);
 	slider_km->setValue(&km,0,0.1);
 
@@ -327,9 +330,13 @@ void App::OnInit()
 	GUIMgr::Instance().AddWidget(slder);
 	slder->setValue(&m_planet->m_offset,-0.1,0.1);
 	
-	slder = new ASlider("Precision export",ivec2(1300.0f,500.0f),ivec2(200,20));
+	slder = new ASlider("Precision export",ivec2(1300.0f,500.0f),ivec2(200,20),true);
 	GUIMgr::Instance().AddWidget(slder);
 	slder->setValue(&layer,0,10);
+
+	slder = new ASlider("Resolution export",ivec2(1300.0f,450),ivec2(200,20),true);
+	GUIMgr::Instance().AddWidget(slder);
+	slder->setValue(&reso,512,2048);
 
 	skyTransform->scale(1.025,1.025,1.025);
 	//skyTransform->Translate(2,0,0);
@@ -357,6 +364,7 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 void App::OnRender3D()
 {
+	return;
 	//pmodel->generateTexture(height_test,normal_test,translate(mat4(1),vec3(0,0,0.5f)));
 	vec3 ligp =normalize(vec3(1,0,0));	
 	a_vector<DisplayNode*> displayable;
@@ -368,7 +376,7 @@ void App::OnRender3D()
 	driver.Enable(TRenderParameter::RENDER_ALPHABLEND,false);
 	displayable.clear();
 	m_planet->getRoot()->update(NULL,true,false);
-	m_planet->getRoot()->findVisible(cam3D,displayable,light);
+	//m_planet->getRoot()->findVisible(cam3D,displayable,light);
 	
 	float inner = 1.0f*radius;
 	float outer = 1.025f*radius;
@@ -494,7 +502,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             pause = !pause;
             break;
 		case 'E':
-			m_planet->exportToFile("planet",(int)layer);
+			m_planet->exportToFile("planet",(int)layer,(int)reso);
 			break;
 		case 'G':
 			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());

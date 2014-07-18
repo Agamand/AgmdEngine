@@ -2,15 +2,24 @@
 #define _PLANETATMOSPHERENODE_H_
 
 #include <Core/SceneNode/MeshNode.h>
-#include "Planet.h"
+#include "PlanetModel.h"
 
-class PlanetAtmosphereNode : MeshNode
+class Planet;
+class PlanetAtmosphereNode : public MeshNode
 {
 public:
 	PlanetAtmosphereNode(Planet* controller);
 
 	virtual void render( TRenderPass pass ) const;
 
+	virtual void findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light );
+
+private:
+	ShaderProgram m_groundProgram[2];
+	ShaderProgram m_skyProgram[2];
+	Planet* m_controller;
+	float m_cam_dist;
+	vec3 m_cam_position;
 };
 
 

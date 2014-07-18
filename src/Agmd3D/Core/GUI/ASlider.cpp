@@ -22,6 +22,7 @@ namespace Agmd
 	m_value(&m_cursor),
 	m_max(1.0f),
 	m_min(0),
+	m_isInteger(false),
 	updateListener(NULL)
     {
         BuildSlider();
@@ -31,9 +32,10 @@ namespace Agmd
 		m_gstring = new GraphicString();
     }
 
-	ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ):
+	ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ,bool integer):
 	AWidget(NULL),
 	hold(false),
+	m_isInteger(integer),
 	m_transform(new Transform()),
 	m_value(&m_cursor),
 	m_max(1.0f),
@@ -152,7 +154,7 @@ namespace Agmd
             m_cursor = 0.0f;
         else m_cursor = value;
 		*m_value = (m_max-m_min)*m_cursor+m_min;
-		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
+		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
 		if(updateListener)
 			updateListener->valueUpdate(*m_value,m_cursor);
     }
@@ -163,13 +165,13 @@ namespace Agmd
 		m_min = min;
 		m_max = max;
 		m_cursor = (*m_value-m_min)/(m_max-m_min);
-		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
+		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
 	}
 
 	void ASlider::setLabel( std::string& label )
 	{
 		m_label = label;
-		*m_gstring = StringBuilder(m_label)(" : ")(m_value ? *m_value : m_cursor);
+		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
 	}
 
 

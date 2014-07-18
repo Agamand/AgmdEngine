@@ -13,8 +13,8 @@ out vec3 v3Pos;
 
 void main(void)
 {
-	v3Pos = vec3(u_matModel * vec4(in_Vertex,1.0f));
-    gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1.0f);
+	v3Pos = in_Vertex;
+    gl_Position = u_matViewProjection * u_matModel * vec4(1.01*in_Vertex,1.0f);
 }
 #endif
 
@@ -91,6 +91,7 @@ void main()
     vec3 vRayleighColor = v3FrontColor * (v3InvWavelength * fKrESun + vec3(fKmESun));
     vec3 vMieColor = v3Attenuate;
     out_Color = vec4(vRayleighColor + vec3(0.25f, 0.25f, 0.3f) * vMieColor,1);
+
 
 }
 

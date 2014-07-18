@@ -15,6 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/SmartPtr.h>
 #include <Transform.h>
 #include <Core/SceneNode/SceneNode.h>
+#include <Core/Tools/RenderQueue.h>
 #include <Core/Tools/BoundingBox.h>
 
 using namespace AgmdMaths;
@@ -31,7 +32,7 @@ namespace Agmd
 		virtual void render(TRenderPass pass) const = 0;
 		virtual void draw() const = 0;
 
-		virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light);
+		virtual void findVisible(Camera*cam, RenderQueue& display, a_vector<LightNode*>& light);
 		Material& getMaterial() const { return *m_material;}
 		const BoundingBox& getBoundingBox() const { return m_localBBox;};
 		const BoundingBox& getGlobalBoundingBox() const { return m_globalBbox;};

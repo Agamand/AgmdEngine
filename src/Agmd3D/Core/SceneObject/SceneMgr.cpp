@@ -8,28 +8,27 @@ namespace Agmd
 		m_root = new SceneNode(ROOT_NODE,NULL);
 	}
 
-	void SceneMgr::Render( TRenderPass pass ) const
+	void SceneMgr::Render( TRenderPass pass, RenderQueue::TRenderType type /*= TYPE_DIFFUSE*/ ) const
 	{
-		for(std::vector<DisplayNode*>::const_iterator itr= m_displayable.begin(); itr != m_displayable.end(); itr++)
-		{
-			(*itr)->render(pass);
-		}
-		for(a_uint32 i = 0, len =m_displayable.size(); i < len;i++)
-			m_displayable[i]->render(pass);
+		if(type < 0 || type >= MAX_TYPE)
+			return;
+
+		for(a_uint32 i = 0, len =m_renderQueue.m_displayable[type].size(); i < len;i++)
+			m_renderQueue.m_displayable[type][i]->render(pass);
 	}
 
-	void SceneMgr::Draw() const
+	void SceneMgr::Draw( RenderQueue::TRenderType type /*= RenderQueue::TRenderType::TYPE_DIFFUSE*/ ) const
 	{
-		for(a_uint32 i = 0, len =m_displayable.size(); i < len;i++)
-			m_displayable[i]->draw();
+		for(a_uint32 i = 0, len =m_renderQueue.m_displayable[type].size(); i < len;i++)
+			m_renderQueue.m_displayable[type][i]->draw();
 	}
 
 	void SceneMgr::Compute()
 	{
 		a_vector<LightNode*> light;
-		m_displayable.clear();
+		m_renderQueue.clear();
 		
-		FindVisible(m_displayable,light);
+		FindVisible(m_renderQueue,light);
 	}
 
 	void SceneMgr::Update()
@@ -37,7 +36,7 @@ namespace Agmd
 		m_root->update(NULL,true,false);
 	}
 
-	void SceneMgr::FindVisible( a_vector<DisplayNode*>& displayable,std::vector<LightNode*>& light)
+	void SceneMgr::FindVisible( RenderQueue& displayable,std::vector<LightNode*>& light)
 	{
 		m_root->findVisible(Camera::getCurrent(CAMERA_3D),displayable,light);
 	}

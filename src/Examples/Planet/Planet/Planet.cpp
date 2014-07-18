@@ -37,7 +37,7 @@ quat sRot[] = {
 	quat(glm::rotate(mat4(1),90.f,vec3(1,0,0)))
 };
 
-Planet::Planet(PlanetModel* model, Material* mat,float offset) : m_offset(offset),m_size(1.0f)
+Planet::Planet(PlanetModel* model, Material* mat,float size,bool atmosphere) : m_offset(0.f),m_size(size)
 {
 	
 	m_material = mat;
@@ -53,6 +53,8 @@ Planet::Planet(PlanetModel* model, Material* mat,float offset) : m_offset(offset
 		m_faces[i] = new PlanetTreeNode(m_model,this,i,translate(mat4(1),0.5f*face[i])*mat4_cast(sRot[i]));
 		m_root->addChild(m_faces[i]);
 	}
+	if(atmosphere)
+		m_root->addChild(new PlanetAtmosphereNode(this));
 }
 
 Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,int textureSize/* = 1024*/)
@@ -88,7 +90,7 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,i
 			float displacement = grayScale;
 			if(displacement < 0 || displacement > 1.0f)
 				displacement = 0.0f;
-			vertices[j].position *= (float)m_size+vertices[j].normal*displacement*m_offset;
+			vertices[j].position *= m_size+displacement*m_offset;
 			out << "v " << vertices[j].position.x << " " << vertices[j].position.y << " " << vertices[j].position.z << std::endl;
 			out << "vn " << vertices[j].normal.x << " " << vertices[j].normal.y << " " << vertices[j].normal.z << std::endl;
 			out << "vt " << vertices[j].texCoords.x << " " << vertices[j].texCoords.y << std::endl;

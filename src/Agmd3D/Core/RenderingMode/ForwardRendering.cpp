@@ -95,6 +95,9 @@ namespace Agmd
         //render.SetupDepthTest(DEPTH_LEQUAL);
         //render.Enable(RENDER_ZWRITE,false);
         sc->Render(RENDERPASS_DIFFUSE);
+		render.Enable(RENDER_ALPHABLEND,true);
+		sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
+		render.Enable(RENDER_ALPHABLEND,false);
         //m_framebuffer->UnBind();
 
         /*

@@ -20,7 +20,7 @@ namespace Agmd
 		return true;
 	}
 
-	void DisplayNode::findVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light)
+	void DisplayNode::findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light )
 	{
 		if(!cam->isInFrustrum(m_globalBbox))
 			return;

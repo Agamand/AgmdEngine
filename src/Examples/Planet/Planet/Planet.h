@@ -5,6 +5,7 @@
 #include <core/SceneNode/SceneNode.h>
 
 #include "PlanetTreeNode.h"
+#include "PlanetAtmosphereNode.h"
 #include <map>
 #include <string>
 using namespace Agmd;
@@ -15,7 +16,7 @@ class Planet
 public:
 	friend class PlanetTreeNode;
 	friend class PlanetAtmosphereNode;
-	Planet(PlanetModel* model = NULL,Material*mat = NULL, float size = 0);
+	Planet(PlanetModel* model = NULL,Material*mat = NULL, float size = 1.0f,bool atmosphere = true);
 
 	SceneNode* getRoot()
 	{

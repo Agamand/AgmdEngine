@@ -9,7 +9,7 @@
 #include <Core/SceneObject/Light.h>
 #include <Core/SceneObject/SkyBox.h>
 #include <Container/Vector.h>
-#include <queue>
+#include <Core/Tools/RenderQueue.h>
 namespace Agmd
 {
 	class AGMD3D_EXPORT SceneMgr
@@ -17,12 +17,12 @@ namespace Agmd
 	public:
 		SceneMgr();
 
-		void Render(TRenderPass pass) const;
+		void Render(TRenderPass pass, RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
 
-		void Draw() const;
+		void Draw( RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
 		void Compute();
 		void Update();
-		void FindVisible(a_vector<DisplayNode*>&,a_vector<LightNode*>&);
+		void FindVisible(RenderQueue&,a_vector<LightNode*>&);
 
 		void AddNode(SceneNode *node); // add to root
 
@@ -39,7 +39,7 @@ namespace Agmd
 		void clear();
 	private:
 		a_vector<Light*> m_light; // static light
-		a_vector<DisplayNode*> m_displayable;
+		RenderQueue m_renderQueue;
 		SceneNode* m_root;
 		SkyBox* m_skybox;
 	};

@@ -24,14 +24,14 @@ namespace Agmd
     {
     public:
 
-		class SliderInterface
+		class ASliderListener
 		{
 		public:
 			virtual void valueUpdate(float value,float cursor) = 0;
 		};
 
         ASlider(AWidget* parent);
-        ASlider(const std::string& label, const ivec2& position, const ivec2& size);
+        ASlider(const std::string& label, const ivec2& position, const ivec2& size, bool integer = false);
 		virtual ~ASlider();
         virtual a_uint32 OnClick(ivec2& pos_mouse, a_uint32 mouseState);
         virtual a_uint32 OnMouseOver();
@@ -48,12 +48,17 @@ namespace Agmd
 		void setValue(float* value,float min,float max);
 		void setLabel(std::string& label);
 		
-		void setUpdateCallBack(SliderInterface* listener)
+		void setUpdateCallBack(ASliderListener* listener)
 		{
 			updateListener = listener;
 		}
+
+		void setInteger(bool enable)
+		{
+			m_isInteger = enable;
+		}
     private:
-		SliderInterface* updateListener;
+		ASliderListener* updateListener;
         void BuildSlider();
         struct TVertex
         {
@@ -78,6 +83,7 @@ namespace Agmd
         bool                hold; // hold = true if mouse is hold the cursor else hold = false
 		std::string			m_label;
 		GraphicString*		m_gstring;
+		bool				m_isInteger;
 	};
 }
 

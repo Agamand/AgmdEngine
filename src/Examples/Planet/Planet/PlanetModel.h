@@ -24,11 +24,17 @@ public:
 	float m_octave;
 	float m_frequency;
 	int m_normal_mapping;
+	float kr;
+	float eSun;
+	float km;
+	float g;
+	vec3 rgb;
 private:
 	Texture m_noiseTable;
 	
 	ShaderProgram m_ground_program;
 	ShaderProgram m_diffuse_program;
+	
 };
 
 #endif /* _PLANETMODEL_H_ */

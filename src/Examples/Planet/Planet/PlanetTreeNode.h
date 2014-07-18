@@ -28,7 +28,7 @@ public:
 	virtual bool update(Transform* transform, bool updateChildren,bool transformUpdate);
 
 	virtual void render(TRenderPass pass) const;
-	virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light);
+	virtual void findVisible(Camera*cam,RenderQueue& display,a_vector<LightNode*>& light);
 	void generateTexture();
 	void needRegenerateMaps()
 	{

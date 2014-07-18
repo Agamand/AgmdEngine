@@ -13,7 +13,7 @@ out vec3 v3Pos;
 
 void main(void)
 {
-	v3Pos = vec3(u_matModel * vec4(in_Vertex,1.0f));
+	v3Pos = in_Vertex;
     gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1.0f);
 }
 #endif

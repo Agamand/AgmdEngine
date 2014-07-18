@@ -13,8 +13,8 @@ out vec3 v3Pos;
 
 void main(void)
 {
-	v3Pos = vec3(u_matModel * vec4(in_Vertex,1.0f));
-    gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1.0f);
+	v3Pos = vec3(1.025f*in_Vertex);
+    gl_Position = u_matViewProjection * u_matModel * vec4(1.025f*in_Vertex,1.0f);
 }
 #endif
 
@@ -103,6 +103,7 @@ void main()
     out_Color = vec4(getRayleighPhase(fCos2) * vRayleighColor + getMiePhase(fCos, fCos2, g, g2)* vMieColor,1);
     //vec4(vRayleighColor + vec3(0.25f, 0.25f, 0.3f) * vMieColor,1);
     out_Color.a = out_Color.b;
+    //out_Color = vec4(1,0,0,1);
 
 }
 

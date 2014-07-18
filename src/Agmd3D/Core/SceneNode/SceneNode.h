@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Camera/Camera.h>
 #include <Utilities/SmartPtr.h>
 #include <Transform.h>
-
+#include <Core/Tools/RenderQueue.h>
 #include <Container/Vector.h>
 using namespace AgmdMaths;
 
@@ -35,7 +35,7 @@ namespace Agmd
         SceneNode(NodeType, Transform*);
         virtual ~SceneNode();
 		virtual bool isVisible(BoundingBox& bbox) { return true;}
-		virtual void findVisible(Camera*cam, a_vector<DisplayNode*>& display,a_vector<LightNode*>& light) {
+		virtual void findVisible(Camera*cam, RenderQueue& display,a_vector<LightNode*>& light) {
 			if(!m_children.empty())
 				for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
 					m_children[i]->findVisible(cam,display,light);

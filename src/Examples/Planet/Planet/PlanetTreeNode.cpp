@@ -80,7 +80,7 @@ PlanetTreeNode::~PlanetTreeNode()
 }
 
 
-void PlanetTreeNode::findVisible( Camera*cam, a_vector<DisplayNode*>& display, a_vector<LightNode*>& light )
+void PlanetTreeNode::findVisible( Camera*cam,RenderQueue& display,a_vector<LightNode*>& light )
 {
 	if(!cam->isInFrustrum(m_globalBbox))
 		return;

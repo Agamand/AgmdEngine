@@ -30,7 +30,7 @@ layout(location = 0) out vec4 out_Color0;
 
 void main ()
 {
-	float offset = texture(texture0,v_TexCoord);
+	float offset = texture(texture0,v_TexCoord).r;
 	vec3 color = texture(texture1,vec2(offset,0)).rgb;
 	out_Color0 = vec4(color,1.0f);
 }

@@ -14,7 +14,7 @@
 
 namespace Agmd
 {
-	class AGMD3D_EXPORT DrawablePlane : public AgmdApp::InputListener , public ASlider::SliderInterface
+	class AGMD3D_EXPORT DrawablePlane : public AgmdApp::InputListener , public ASlider::ASliderListener
 	{
 	public:
 		DrawablePlane(ivec2 pixelSize, vec2 repere);

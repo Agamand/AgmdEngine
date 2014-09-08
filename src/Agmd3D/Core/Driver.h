@@ -102,6 +102,7 @@ namespace Agmd
 
 		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram*) = 0;
 
+		virtual void clear( a_uint32 clear ) = 0;
     public :
 
         template <class T> Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
@@ -163,7 +164,7 @@ namespace Agmd
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
         virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const = 0;
-
+		
         std::map<TCapability, bool> m_Capabilities;
 
         a_uint32            m_TextureFlags;

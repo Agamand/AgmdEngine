@@ -187,6 +187,9 @@ void PlanetTreeNode::render( TRenderPass pass ) const
 
 	m_material->setParameter("u_use_atmosphere", m_controller->m_use_atmosphere ? 1 : 0 );
 	m_material->setParameter("v3CameraPos",m_controller->m_cam_position);
+	m_material->setParameter("u_octave",(int)model->m_octave);
+	m_material->setParameter("u_frequency",model->m_frequency);
+	//m_material->setParameter("u_octave",(int)model->m_octave);
 	if(m_controller->m_use_atmosphere)
 	{
 		m_material->setParameter("v3InvWavelength",vec3(1.0 / pow(model->rgb.r, 4.0f), 1.0 / pow(model->rgb.g, 4.0f), 1.0 / pow(model->rgb.b, 4.0f)));
@@ -256,6 +259,7 @@ bool PlanetTreeNode::update( Transform* transform, bool updateChildren, bool tra
 #define TEX_SIZE 256
 void PlanetTreeNode::generateTexture()
 {
+	return;
 	if(!m_textureInit)
 	{
 		m_heightTexture.Create(ivec2(TEX_SIZE),PXF_A8R8G8B8,TEXTURE_2D,TEX_WRAP_CLAMP | TEX_USE_FILTER);

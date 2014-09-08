@@ -93,7 +93,7 @@ namespace Agmd
 
 		/* debug function */
 		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram* program);
-
+		virtual void clear( a_uint32 clear );
 
     public :
 

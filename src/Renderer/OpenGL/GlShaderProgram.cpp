@@ -265,8 +265,9 @@ namespace Agmd
         {
             return itr->second;
         }
-		//try
 
+		//try... don't try :/
+		return m_defaultParameter;
 		int id = GLDriver::glGetUniformLocation(m_id,name.c_str());
 		if(id >= 0)
 		{

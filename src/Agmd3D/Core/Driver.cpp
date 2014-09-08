@@ -163,5 +163,4 @@ namespace Agmd
 		{
 			return ((float)m_Screen.x)/m_Screen.y;
 		}
-
 }

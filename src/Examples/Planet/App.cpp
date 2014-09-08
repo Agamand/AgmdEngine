@@ -141,7 +141,7 @@ void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 
 BaseShaderProgram* default_program;
 
-const char* gradient ="Texture/gradient_terra_desat.png";//superb_terra.png";
+const char* gradient ="Texture/gradient/gradient_superb_terra.png";//superb_terra.png";
 const char* seed = NULL;
 float layer = 0;
 float reso = 512;
@@ -283,15 +283,18 @@ void App::OnInit()
 	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
 	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
 	ShaderProgram diffuseShader;
-	diffuseShader.LoadFromFile("Shader/planet/planet_rendering.glsl");
+	diffuseShader.LoadFromFile("Shader/planet/planet_rendering2.glsl");
+	//ShaderProgram zpassShader;
+	//zpassShader.LoadFromFile("Shader/planet/planet_rendering_zpass.glsl");
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
+	//ssplanetpipe->setShader(zpassShader,RENDERPASS_ZBUFFER);
 	mat = new Material(planetpipe);
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	m_pmodel = new PlanetModel(0,0,0);
 	m_pmodel->m_persistance = 1.f;
 	m_pmodel->m_octave = 1.0f;
 	m_pmodel->m_frequency = 3.f;
-	m_planet = new Planet(m_pmodel,mat,1.f);
+	m_planet = new Planet(m_pmodel,mat,100.0f,true);
 	m_planet->lightDir = -normalize(vec3(-20,10,0)-light_pos);
 	Planet* p2 = new Planet(m_pmodel,mat,1.f);
 	p2->lightDir = -normalize(vec3(10,0,0)-light_pos);
@@ -319,7 +322,7 @@ void App::OnInit()
 	m_Scene->AddNode(m_planet->getRoot());
 
 
-	initManyPlanet(m_Scene,planetpipe);
+	//initManyPlanet(m_Scene,planetpipe);
 
 	GUIMgr& guimgr = GUIMgr::Instance();
 	std::cout << "init planet" << std::endl;

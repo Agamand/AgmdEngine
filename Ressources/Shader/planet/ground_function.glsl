@@ -25,7 +25,7 @@ const float fSamples = 5.0;
 vec3 ground_from_space(vec3 v3Pos,vec3 color)
 {
     
-    vec3 v3Ray = v3Pos - v3CameraPos;
+    vec3 v3Ray = 100*v3Pos - v3CameraPos;
     float fFar = length(v3Ray);
     v3Ray /= fFar;
 
@@ -80,6 +80,7 @@ vec3 ground_from_space(vec3 v3Pos,vec3 color)
 
 vec3 ground_from_atmo(vec3 v3Pos,vec3 color)
 {
+    v3Pos = 100*v3Pos;
 	vec3 _v3Pos = v3Pos;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fCameraHeight = length(v3CameraPos);					// The camera's current height

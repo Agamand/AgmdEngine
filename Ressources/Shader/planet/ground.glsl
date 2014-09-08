@@ -59,15 +59,14 @@ float _getDisplacement(vec3 position)
     vec3 noise = position*u_frequency;
     float w = 1;
     int seed = -5656;
-
     for (int curOctave = 0; curOctave < octave_count; curOctave++) {
-        value += (pnoise(noise+vec3(seed),vec3(100*curP))+(turbulence( .5 * noise)))*w;
+        value += (pnoise(noise+vec3(seed),vec3(100))+(turbulence( .5 * noise)))*w;
         value *=2.0f;
         curP *= u_persistance;
         w *= 0.5f;
     }
     value += 2;
-    return max(0,value)/2.0f;
+    return max(0,value)/2.f;
     //float b = 0.5f-1 * pnoise(position,vec3(10));
     //float _noise = 10.0f *  -.1f * turbulence( .5 * position );
     //return (b+_noise);

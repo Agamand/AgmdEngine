@@ -71,7 +71,7 @@ namespace Agmd
 
     void GLFrameBuffer::Clear(a_uint32 flags)
     {
-        a_uint32 _flags = 0;
+       /* a_uint32 _flags = 0;
 
         if(flags & CLEAR_COLOR)
             _flags |= GL_COLOR_BUFFER_BIT;
@@ -80,11 +80,12 @@ namespace Agmd
             _flags |= GL_DEPTH_BUFFER_BIT;
 
         if(flags & CLEAR_STENCIL)
-            _flags |= GL_STENCIL_BUFFER_BIT;
+            _flags |= GL_STENCIL_BUFFER_BIT;*/
 
         GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
-        glClear(_flags);
-        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        //glClear(_flags);
+        GLDriver::Get().clear(flags);
+		GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::DrawBuffer(a_uint32 flag)

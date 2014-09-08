@@ -72,11 +72,12 @@ namespace Agmd
            FirstPass, here is draw the ZBuffer(Only).
         */
         render.Enable(RENDER_ZWRITE,true);
+		//render.clear(CLEAR_DEPTH);
         //m_framebuffer->Clear(CLEAR_DEPTH);
         //m_framebuffer->DrawBuffer(0);
         //m_framebuffer->Bind();
         render.Enable(RENDER_ZTEST,true);
-        render.SetupDepthTest(DEPTH_LESS);
+        //render.SetupDepthTest(DEPTH_LESS);
         //sc->Render(RENDERPASS_ZBUFFER);
         //m_framebuffer->UnBind();
         /*
@@ -98,7 +99,7 @@ namespace Agmd
 		render.Enable(RENDER_ALPHABLEND,true);
 		sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
 		render.Enable(RENDER_ALPHABLEND,false);
-        //m_framebuffer->UnBind();
+        //m_framebuffer->UnBind();sqq
 
         /*
             Render lighting to color_attachment1

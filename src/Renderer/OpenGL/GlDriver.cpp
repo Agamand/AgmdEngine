@@ -1098,5 +1098,20 @@ namespace Agmd
 		*/
 	}
 
+	void GLDriver::clear( a_uint32 flags )
+	{
+		a_uint32 _flags = 0;
+
+        if(flags & CLEAR_COLOR)
+            _flags |= GL_COLOR_BUFFER_BIT;
+
+        if(flags & CLEAR_DEPTH)
+            _flags |= GL_DEPTH_BUFFER_BIT;
+
+        if(flags & CLEAR_STENCIL)
+            _flags |= GL_STENCIL_BUFFER_BIT;
+		glClear(_flags);
+	}
+
 }
 

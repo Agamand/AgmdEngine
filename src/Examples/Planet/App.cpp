@@ -141,7 +141,7 @@ void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 
 BaseShaderProgram* default_program;
 
-const char* gradient ="Texture/gradient/gradient_superb_terra.png";//superb_terra.png";
+const char* gradient ="Texture/gradient/martian.png";//superb_terra.png";
 const char* seed = NULL;
 float layer = 0;
 float reso = 512;

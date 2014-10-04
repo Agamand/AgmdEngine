@@ -99,9 +99,9 @@ void App::OnInit()
 	m_plane = new DrawablePlane(getScreen(),vec2(100*xy,100));
 	vec2 points[] = {vec2(-150,-50), vec2(-50,50), vec2(50,-50),vec2(50,50),vec2(50,50),vec2(50,50),vec2(50,50)};
 	BaseSpline* spline = new BaseSpline(points,3);
-	Bezier* bezier = new Bezier(points,7);
-	BSpline* bspline = new BSpline(points,7,3);
-	LineRenderer* renderer = new LineRenderer(bspline);
+	//Bezier* bezier = new Bezier(points,7);
+	//BSpline* bspline = new BSpline(points,7,3);
+	LineRenderer* renderer = new LineRenderer(spline);
 	m_plane->addSpline(renderer);
 	addInputListener(m_plane);
 	ASlider* slider = new ASlider(NULL);

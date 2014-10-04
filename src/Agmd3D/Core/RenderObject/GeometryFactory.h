@@ -20,7 +20,10 @@ namespace Agmd
 		static Model* createSphere(float r,float stack, float slice,float angle);
 		static Model* createBox(vec3 size);
 		static Model* createMetaSphere(float r, int stack, int slice);
-		
+		static void  jarvis(a_vector<vec2>& points,a_vector<vec2>& poly_out);
+		static void delaunay(a_vector<vec2>& points,a_vector<a_uint16>& triangles);
+		static void voronoi(a_vector<vec2>& points,a_vector<vec2>& out_points, a_vector<a_uint16>& triangles);
+		void GeometryFactory::BBox(a_vector<vec3>& vertices,a_vector<vec3> box);
 	};
 }
 

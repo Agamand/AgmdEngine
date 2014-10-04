@@ -364,5 +364,88 @@ namespace Agmd
 		}
 		return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
 	}
+
+	float angles(vec2 v1,vec2 v2)
+	{
+		return acosf(dot(v1,v2)/(length(v1)*length(v2)));
+	}
+
+	void GeometryFactory::jarvis( a_vector<vec2>& points, a_vector<vec2>& poly)
+	{
+		if(!points.size())
+			return;
+		
+		vec2 start = points[0];
+		int	i0 = 0;
+		for(size_t i = 1, size = points.size(); i < size; i++)
+		{
+			if(start.x > points[i].x)
+			{
+				start = points[i];
+				i0 = i;
+			}else if(start.x == points[i].x && start.y > points[i].y)
+			{
+				start = points[i];
+				i0=i;
+			}
+		}
+		
+		vec2 d = vec2(0,-1);
+		poly.clear();
+		int i = i0;
+		do 
+		{
+			poly.push_back(points[i]);
+			int j = !i? 1 : 0;
+			vec2 pIJ = points[j]-points[i];
+			float amin = angles(d,pIJ);
+			float lmax = length(pIJ);
+			int in = j;
+			for(int j=in+1, n = points.size();j < n; j++)
+			{
+				if (j != i )
+					
+				{
+					vec2 v = points[j]-points[i];
+					float a = angles(d,v);
+					if(amin > a || amin == a && lmax < length(v))
+					{
+						amin = a;
+						lmax = length(v);
+						in = j;
+					}
+
+				}
+			}
+			d=points[in]-points[i];
+			i=in;
+		} while (i!=i0);
+		poly.push_back(poly[0]);
+	}
+
+	bool isIn(vec2 a, vec2 b, vec3 c,vec3 d)
+	{
+		mat3 mat(a.x-d.x,b.x-d.x,c.x-d.x,a.y-d.y,b.y-d.y,c.y-d.y,(a.x*a.x-d.x*d.x)+(a.y*a.y-d.y*d.y),(b.x*b.x-d.x*d.x)+(b.y*b.y-d.y*d.y),(c.x*c.x-d.x*d.x)+(c.y*c.y-d.y*d.y));
+		return 
+			glm::determinant(mat) > 0
+
+	}
+
+	void GeometryFactory::delaunay( a_vector<vec2>& points,a_vector<a_uint16>& triangles )
+	{
+		
+	}
+
+	void GeometryFactory::voronoi( a_vector<vec2>& points,a_vector<vec2>& out_points, a_vector<a_uint16>& triangles )
+	{
+
+	}
+
+	void GeometryFactory::BBox(a_vector<vec3>& vertices,a_vector<vec3> box)
+	{
+		
+	}
+
+
 }
 

@@ -68,6 +68,7 @@ namespace Agmd
 				*(p) = ct_points[i]; 
 				++p;
 			}
+
 			m_vertexControl.Unlock();
 			m_vertexControlCount = ct_points.size();
 		}else

@@ -32,7 +32,8 @@ status : in pause
 
 #include <map>
 #include <Container/Vector.h>
-
+#define SCREEN_WIDTH_PLANET 800
+#define SCREEN_HEIGHT_PLANET 600
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
     MAKE_SINGLETON(App);
@@ -40,7 +41,8 @@ public:
 
     void Run(int argc, char** argv);
 private :
-
+	App() : AgmdApp(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
+	{}
     virtual void OnInit();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);

@@ -236,7 +236,6 @@ void App::Run(int argc, char** argv)
     AgmdApp::Run();
 }
 
-#include "Planet/Planet.h"
 SkyBox* boox;
 
 Texture tvelocity;
@@ -278,8 +277,6 @@ void App::OnInit()
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
-	Planet* p = new Planet(mat);
-    //m_Scene->AddNode(p->GetRoot());
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
 
@@ -433,7 +430,7 @@ void App::OnClick( int click, vec2 pos )
 		return;
 	if(click == 1)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),6000,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),10000	,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
 	if(click == 2)
 	{

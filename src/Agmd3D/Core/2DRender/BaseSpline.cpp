@@ -1,4 +1,5 @@
 #include <Core/2DRender/BaseSpline.h>
+#include <Core/RenderObject/GeometryFactory.h>
 #include <Container/Vector.h>
 #include <CommonDefines.h>
 namespace Agmd
@@ -28,8 +29,14 @@ namespace Agmd
 	void BaseSpline::compute( int pointIndex /*= -1*/ )
 	{
 		m_computedPoints.clear();
-		for(a_uint32 i = 0,len = m_controlPoints.size(); i < len; i++)
-			m_computedPoints.push_back(m_controlPoints[i]);
+		if(m_controlPoints.size() < 3)
+		{
+			for(a_uint32 i = 0,len = m_controlPoints.size(); i < len; i++)
+				m_computedPoints.push_back(m_controlPoints[i]);
+			return;
+		}
+		GeometryFactory::jarvis(m_controlPoints,m_computedPoints);
+		
 	}
 
 	void BaseSpline::updatePoint( int pointIndex  /*= -1*/)

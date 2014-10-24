@@ -149,7 +149,9 @@ float reso = 512;
 Texture height_test;
 Texture normal_test;
 
-
+const char* rock ="Texture/gradient/rock.jpg";
+const char* snow ="Texture/gradient/snow.jpg";
+const char* grass ="Texture/gradient/grass.jpg";
 
 
 
@@ -175,6 +177,8 @@ SkyBox* boox;
 Texture t;
 Texture test;
 Texture color_gradiant;
+
+Texture ground_tex[3];
 Material* mat;
 
 Model* sphere;
@@ -223,6 +227,9 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 	Material* mat = new Material(pipe);
 	Texture gradient;
 	gradient.CreateFromFile("Texture/gradient/only_earth.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+	ground_tex[0].CreateFromFile(grass,PXF_A8R8G8B8);
+	ground_tex[1].CreateFromFile(rock,PXF_A8R8G8B8);
+	ground_tex[2].CreateFromFile(snow,PXF_A8R8G8B8);
 	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	Planet* p = new Planet(model,mat);
 	mgr->AddNode(p->getRoot());
@@ -231,10 +238,12 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 
 	model = new PlanetModel(0,0,0);
 	mat = new Material(pipe);
-	gradient;
 	gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
 	model->rgb = vec3(0.485f, 0.9f, 0.985f);
 	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(ground_tex[0],2,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(ground_tex[1],3,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(ground_tex[2],4,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	p = new Planet(model,mat);
 	mgr->AddNode(p->getRoot());
 	p->getRoot()->getTransform().translate(30,0,0);

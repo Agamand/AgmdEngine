@@ -426,8 +426,7 @@ namespace Agmd
 	bool isIn(vec2 a, vec2 b, vec3 c,vec3 d)
 	{
 		mat3 mat(a.x-d.x,b.x-d.x,c.x-d.x,a.y-d.y,b.y-d.y,c.y-d.y,(a.x*a.x-d.x*d.x)+(a.y*a.y-d.y*d.y),(b.x*b.x-d.x*d.x)+(b.y*b.y-d.y*d.y),(c.x*c.x-d.x*d.x)+(c.y*c.y-d.y*d.y));
-		return 
-			glm::determinant(mat) > 0
+		return 	glm::determinant(mat) > 0;
 
 	}
 

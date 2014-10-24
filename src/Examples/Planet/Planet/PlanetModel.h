@@ -23,6 +23,8 @@ public:
 	float m_persistance;
 	float m_octave;
 	float m_frequency;
+	float m_amplitude;
+	float m_lacunarity;
 	int m_normal_mapping;
 	float kr;
 	float eSun;

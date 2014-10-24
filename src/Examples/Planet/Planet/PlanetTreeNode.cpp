@@ -184,11 +184,13 @@ void PlanetTreeNode::render( TRenderPass pass ) const
 	m_material->setParameter("u_face",m_face);
 	m_material->setParameter("u_normal_mapping",m_controller->m_model->m_normal_mapping);
 	m_material->setParameter("v3LightPos",m_controller->lightDir);
-
 	m_material->setParameter("u_use_atmosphere", m_controller->m_use_atmosphere ? 1 : 0 );
 	m_material->setParameter("v3CameraPos",m_controller->m_cam_position);
 	m_material->setParameter("u_octave",(int)model->m_octave);
 	m_material->setParameter("u_frequency",model->m_frequency);
+	m_material->setParameter("u_amplitude",(int)model->m_amplitude);
+	m_material->setParameter("u_lacunarity",model->m_lacunarity);
+
 	//m_material->setParameter("u_octave",(int)model->m_octave);
 	if(m_controller->m_use_atmosphere)
 	{

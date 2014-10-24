@@ -119,7 +119,7 @@ ParticlesEmitter::ParticlesEmitter( std::string &shaderpath, int particlesCount 
 void ParticlesEmitter::Init(int particlesCount)
 {
 	m_diffuse.LoadFromFile("Shader/particle_render.glsl");
-	m_diffuse_texture.CreateFromFile("Texture/particle.png",PXF_A8R8G8B8);
+	m_diffuse_texture.CreateFromFile("Texture/SunYello.bmp",PXF_A8R8G8B8);
 	TDeclarationElement Elements[] =
 	{
 		{0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT1}

@@ -64,17 +64,17 @@ void main()
 		float offset = 1.f/(u_particleCount);
 		if(v_TexCoord.x < offset)
 		{
-			out_Position = v_emitter_pos.xyz-vec3(dd,0,0);
-			out_Velocity = normalize(vec3(dd,0,0))*0.004f;
+			out_Position = v_emitter_pos.xyz-vec3(0,0,0);
+			out_Velocity = normalize(vec3(dd*3,0,0))*0.004f;
 			extra.y=0.7f;
 			extra.z=400.f;
-		}else if(v_TexCoord.x < offset*2)
+		}/*else if(v_TexCoord.x < offset*2)
 		{
 			out_Position = v_emitter_pos.xyz+vec3(dd,0,0);
 			out_Velocity = -normalize(vec3(dd,0,0))*0.004f;
 			extra.y=0.7f;
-			extra.z=-1000.f;
-		}/*
+			extra.z=1000.f;
+		}*//*
 		else if(v_TexCoord.x < offset*3)
 		{
 			out_Position = v_emitter_pos.xyz+vec3(0,10000.f,0);
@@ -87,22 +87,22 @@ void main()
 			float middle = offset*2+(1-offset*2)/2;
 			float rand7 = rand1f(vec2(1,0.5),u_seed+(v_TexCoord.x < middle ? 1 : -1)*568);
 			float angle2 =  rand7*M_PI;
-			float minDist = 300.f;
-			float randDist = 20.f;
+			float minDist = 0.f;
+			float randDist = 6000.f;
 			float i = v_TexCoord.x / offset;
 			
 			mat3 rotation = mat3(cos(angle2),0,-sin(angle2), 0,1,0, sin(angle2),0,cos(angle2));
 			extra.z=0.01f+rand4*0.09f;
 			extra.z *=1;
 			extra.y= (extra.z-0.01f)/0.010f;
-			vec3 center = v_emitter_pos.xyz+(v_TexCoord.x < middle ? 1.f: -1.f)*vec3(dd,0,0);
+			vec3 center = v_emitter_pos.xyz;//+(v_TexCoord.x < middle ? 1.f: -1.f)*vec3(dd,0,0);
 			vec3 pos = vec3(-sin(angle)*(minDist+int(randDist*rand5)),cos(angle)*(minDist+int(randDist*rand5)),rand6*20);
 			pos = rotation*pos;
 			pos +=center;
 			float speed = 400.f/(length(center-pos)*length(center-pos));
 			speed *=10;
 			out_Position = pos;
-			out_Velocity =rotation*(vec3(speed*cos(angle),speed*sin(angle),0)*2);
+			out_Velocity =rotation*(vec3(speed*cos(angle),speed*sin(angle),0)*2)+vec3(-10,0,0);
 		}
 		out_Extra = extra.xyz;
 		
@@ -112,7 +112,7 @@ void main()
 		int c = 0;
 		vec3 _velocity = vec3(0);
 
-		for(int i = 0; i < u_particleCount;i++)
+		/*for(int i = 0; i < u_particleCount;i++)
 		{
 			float offset = i/float(u_particleCount);
 			vec4 _extra = texture(texture2,vec2(offset,0));
@@ -125,11 +125,12 @@ void main()
 				continue;
 			c++;
 			_velocity +=normalize(d)*_extra.z/(l*l);
-		}
+		}*/
 		
 		//if(c > 0)
 			_velocity /=400;
 		velocity +=_velocity*time;
+		velocity*=0;
 		extra.y = clamp(length(velocity)*5,0,1.0f);
 		//extra.y = 0.8f;
 		if(extra.z > 100.f)

@@ -1,13 +1,17 @@
 #version 420
 
 
-#include <Core/noise/perlin.glsl>
+//include <Core/noise/perlin.glsl>
+
 uniform int u_octave = 1;
 uniform float u_frequency = 1.0f;
 uniform float u_persistance = 1.0f;
+uniform float u_amplitude = 0.4f;
+uniform float u_lacunarity = 2.510f;
+#include <Core/noise/simplexNoise3.glsl>
 float getDisplacement(vec3 normal)
 {
-	float noise = 10.0f *  -.10 * turbulence( 1 * normal );
+	/*float noise = 10.0f *  -.10 * turbulence( 1 * normal );
 	float noise2 = 10.0f *  -.10 * turbulence( 1 * normal );
     float b =  pnoise( 10 * normal, vec3( 1000.0 ) );
 
@@ -16,11 +20,13 @@ float getDisplacement(vec3 normal)
     float p = u_frequency*1.0f;
     for(int i  = 0; i < u_octave; i++)
     {
-    	value += pnoise( p*(i+1) * normal, vec3( 1000.0 ) )*w;//+turbulence( p*(i+1) * normal )*w;
+    	value += pnoise( p*(i+1) * normal, vec3( 1000.0 ) )*w+turbulence( p*(i+1) * normal )*w;
     	w*=0.5f;
-    }
+    }*/
 
-	return 0.5+(value)/2;
+
+   	float t =SimplexBillowed(normal, u_octave, vec3(0,0,0), u_frequency, u_amplitude,u_lacunarity, u_persistance);
+	return t;//SimplexBillowed(normal,u_octave,vec3(),u_frequency,0.4f,2.51f,u_persistance);//0.5+(value)/2;
 }
 uniform float u_offset;
 const float scaling = 1f;
@@ -33,8 +39,6 @@ in vec3 in_Vertex;
 in vec2 in_TexCoord0;
 out vec3 v_position;
 out vec2 v_texCoord0;
-
-
 
 void main()
 {
@@ -65,7 +69,7 @@ uniform int u_use_atmosphere = 0;
 layout(location = 0) out vec4 out_Color;
 #include <common/math.glsl>
 
-const vec3 off = vec3(-1,0,1)*0.001f;
+const vec3 off = vec3(-1,0,1)*0.0005f;
 vec3 _getNormal(vec2 angles)
 {
 
@@ -111,6 +115,6 @@ void main()
 		color = select_ground(v_position,color);
 	out_Color = vec4(color,1.0f);
 
-	//out_Color = vec4(vec3(),10);
+	out_Color = vec4(normal2color(normal),1);
 }
 #endif

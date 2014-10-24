@@ -343,13 +343,13 @@ void App::OnInit()
 	guimgr.AddWidget(slder);
 
 
-	slider_kr = new ASlider("kr",ivec2(5,225),ivec2(200,20));
+	slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
 	guimgr.AddWidget(slider_kr);
-	slider_kr->setValue(&m_pmodel->kr,0,0.1);
+	slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
 
-	slider_km = new ASlider("km",ivec2(5,175),ivec2(200,20));
+	slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
 	guimgr.AddWidget(slider_km);
-	slider_km->setValue(&m_pmodel->km,0,0.1);
+	slider_km->setValue(&m_pmodel->m_amplitude,0,10);
 
 	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
 	guimgr.AddWidget(slider_esun);

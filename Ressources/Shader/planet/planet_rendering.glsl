@@ -5,10 +5,11 @@
 #include <Core/noise/perlin.glsl>
 float getDisplacement(vec3 normal)
 {
-	float noise = 10.0f *  -.10 * turbulence( .5 * normal );
+	//float noise = 10.0f *  -.10 * turbulence( .5 * normal );
     float b = 5.0 * pnoise( 0.05 * normal, vec3( 100.0 ) );
 
-	return 10. * noise + b;
+	//return 10. * noise + b;
+	return b/5.0f;
 }
 const float const_scalling = 1.0f;
 #ifdef _VERTEX_
@@ -132,6 +133,6 @@ void main()
 		color = select_ground(v_position,color);
 	out_Color = vec4(color,1.0f);
 	//show heigth map
-	//out_Color = vec4(vec3(offset),1);
+	out_Color = vec4(vec3(offset),1);
 }
 #endif

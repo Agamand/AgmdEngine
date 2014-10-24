@@ -66,6 +66,8 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\AsciEffect.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\BlurEffect.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\BlurMotionEffect.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\DrugEffect.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Inverse.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\PostEffect.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\PostEffectMgr.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Enums.h" />
@@ -200,6 +202,8 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\AsciEffect.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\BlurEffect.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\BlurMotionEffect.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\DrugEffect.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Inverse.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\PostEffect.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\PostEffectMgr.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\FontManager.cpp" />

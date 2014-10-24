@@ -1,11 +1,10 @@
-#include <Allocator/MemPoolAllocator.h>
-#include <Utilities/SmartPtr.h>
+
 #include <vector>
 #include <Windows.h>
 #include <cstdio>
 #include <vector>
 
-using namespace AgmdUtilities;
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -41,10 +40,32 @@ void testSphere2Cart2Sphere()
 }
 
 
+#include <cassert>
+int v;
 
+struct C
+{
+	int a;
+	C()
+	{
+		a=1;
+
+	}
+};
+struct B
+{
+	
+
+};
+struct A
+{
+	B b;
+};
 
 int main(int _a, char** _b)
 {
+
+	A a;
     //MemPoolAllocator<int> allocator;
     
     //int*& i = allocator.Allocate();
@@ -52,7 +73,7 @@ int main(int _a, char** _b)
     //int v = 10;
     //int v2 = 15;
     //SharedPtr<int> a,b,c = a = b = &v;
-	testSphere2Cart2Sphere();
+	//testSphere2Cart2Sphere();
     /*int d = 10;
     SharedPtr<int>c(&d);
     SharedPtr<int>t(c);
@@ -63,6 +84,8 @@ int main(int _a, char** _b)
     printf("%i",e);
     int *& test = c;*/ 
 
-    system("pause");
-
+   // system("pause");
+	
+	assert(v==0);
+	return v;
 }

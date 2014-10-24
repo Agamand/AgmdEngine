@@ -42,7 +42,7 @@ namespace Agmd
         TDeclarationElement Elements[] =
         {
             {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2}
+            {0, ELT_USAGE_TEXCOORD0,       ELT_TYPE_FLOAT2}
         };
 
         m_VertexBuffer = render.CreateVertexBuffer<TVertex>(sizeof(_vertex),0, _vertex);

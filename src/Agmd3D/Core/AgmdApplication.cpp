@@ -74,10 +74,10 @@ bool Application::OnInit()
 		// Create the main frame window
 		if(!m_frame && m_dframe)
 		{
-			AgmdFrame* f;
-			m_frame = f=new AgmdFrame(NULL, m_name,
-				wxDefaultPosition, wxDefaultSize);
-			m_frame->Show(true);
+// 			AgmdFrame* f;
+// 			m_frame = f=new AgmdFrame(NULL, m_name,
+// 				wxDefaultPosition, wxDefaultSize);
+// 			m_frame->Show(true);
 		}
 		/* Show the frame */
 		
@@ -189,6 +189,8 @@ GLCanvas::~GLCanvas()
 
 void GLCanvas::OnPaint( wxPaintEvent& WXUNUSED(event) )
 {
+	if(!m_application->isReady())
+		return;
 	wxPaintDC dc(this);
 	SetCurrent(*m_glRC);
 	m_application->draw();
@@ -300,6 +302,7 @@ namespace Agmd
     m_fpsTimer       (SECONDS_IN_MS),
     m_ScreenSize    (screenSize),
 	m_createDefaultFrame(false),
+	m_isReady		(false),
 	m_frameName		("Agmd sample application")
     {
         assert(m_Instance != NULL);
@@ -324,9 +327,13 @@ namespace Agmd
 		m_lastTime      (0),
 		m_fps           (0),
 		m_fpsTimer      (SECONDS_IN_MS),
-
+		m_isReady		(false),
+		m_ScreenSize    (1920,1080),
 		m_frameName		(frameName)
 	{
+		assert(m_Instance != NULL);
+		s_application = this;
+		RegisterLoaders();
 	}
     AgmdApplication::~AgmdApplication()
     {
@@ -362,7 +369,14 @@ namespace Agmd
 		wxEntryStart( argc, argv );
 		
 		m_wxApplication->OnInit();
-		
+		if(!m_frame)
+		{
+
+			m_frame =new AgmdFrame(NULL, wxString(m_frameName),
+				wxDefaultPosition, wxDefaultSize);
+			m_frame->Show(true);
+
+		}
         Driver::Get().Initialize(NULL);
         Driver::Get().SetScreen(m_ScreenSize);
 
@@ -374,7 +388,9 @@ namespace Agmd
         mat->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
         ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);
         init();
-
+		if(m_frame)
+			m_isReady = true;
+		m_wxApplication->MainLoop();
         
 		//MainLoop();
 

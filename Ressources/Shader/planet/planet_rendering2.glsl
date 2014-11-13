@@ -48,7 +48,7 @@ void main()
 	//if(in_TexCoord0.x < 0.0f || in_TexCoord0.y < 0.0f || in_TexCoord0.x > 1.0f || in_TexCoord0.y > 1.0f)
 		//dis = (dis-1)*u_offset*scaling-0.1f;
 	//else 
-	dis = (1-dis)*u_offset*scaling;
+	dis = (dis)*u_offset*scaling;
 	
 
 	v_position = position.xyz;
@@ -63,8 +63,12 @@ void main()
 in vec2 v_texCoord0;
 in vec3 v_position;
 uniform sampler2D texture1;
+uniform sampler2D texture2;
+uniform sampler2D texture3;
+uniform sampler2D texture4;
 uniform vec3 v3LightPos = vec3(1,0,0);
 uniform int u_use_atmosphere = 0;
+uniform float u_divisor = 1;
 
 layout(location = 0) out vec4 out_Color;
 #include <common/math.glsl>
@@ -106,15 +110,23 @@ void main()
 {
 
 
-	float dis = getDisplacement(v_position.xyz)*0.1f;
+	float dis = getDisplacement(v_position.xyz);
 	vec3 normal = _getNormal(cart2sphere(v_position.xyz));
 	float lambert = clamp(dot(v3LightPos,normal),0,1);
 
 	vec3 color = texture(texture1,vec2(clamp(1-dis*2,0,1),0)).rgb*lambert;
+	if(dis < 0.3)
+		color = texture(texture2,v_texCoord0/u_divisor*10000).rgb;
+	else if(dis < 0.5)
+		color = mix(texture(texture2,v_texCoord0/u_divisor*10000).rgb,texture(texture3,v_texCoord0/u_divisor*10000).rgb,(dis-0.3)/0.2);
+	else if(dis < 0.8)
+		color = mix(texture(texture3,v_texCoord0/u_divisor*10000).rgb,texture(texture4,v_texCoord0/u_divisor*10000).rgb,(dis-0.5)/0.3);
+	else color = texture(texture4,v_texCoord0/u_divisor*10000).rgb;
+	color*=lambert;
 	if(u_use_atmosphere > 0)
 		color = select_ground(v_position,color);
 	out_Color = vec4(color,1.0f);
 
-	out_Color = vec4(normal2color(normal),1);
+	//out_Color = vec4(normal2color(normal),1);
 }
 #endif

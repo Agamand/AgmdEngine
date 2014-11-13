@@ -151,4 +151,22 @@
 			}
 			return sum;
 		}
+
+		float turbulence( vec3 p,int octaves,float frequency ,float amplitude,float lacunarity, float persistence) {
+    		float w = 100.0;
+    		float t = 0;
+    		float power = 1;
+    		for (int f = 0 ; f <= octaves ; f++ ){
+       			power *=2;
+        		t += abs( SimplexPerlin3D( vec3( power * p )/f));
+   		 		frequency *= lacunarity;
+				amplitude *= persistence;
+   		 	}
+
+    		return t*100	;
+		//return 1;
+		}
+
+
+
 #endif /* _SIMPLEXNOISE3_GLSL_ */

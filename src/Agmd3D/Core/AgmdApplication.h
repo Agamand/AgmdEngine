@@ -136,6 +136,7 @@ namespace Agmd{
 		void onResize( ivec2 size );
 		void draw();
 		static AgmdApplication* getApplication(){return s_application;}
+		bool isReady() const {return m_isReady;}
     private:
         void MakeWindow();
 		HINSTANCE				m_Instance;
@@ -180,6 +181,7 @@ namespace Agmd{
 		a_vector<InputListener*> m_inputListener;
 		std::string m_frameName;
 		bool m_createDefaultFrame;
+		bool m_isReady;
 	};
 }
 

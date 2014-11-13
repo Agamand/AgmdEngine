@@ -52,6 +52,7 @@ namespace Agmd
 
     #define BUFFER_OFFSET(n) ((byte*)NULL + (n))
 
+
     PFNGLGETSTRINGIPROC                 GLDriver::glGetStringi;
     PFNGLBINDBUFFERPROC                 GLDriver::glBindBuffer;
     PFNGLDELETEBUFFERSPROC              GLDriver::glDeleteBuffers;

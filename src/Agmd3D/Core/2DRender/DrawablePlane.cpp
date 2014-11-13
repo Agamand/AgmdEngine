@@ -95,7 +95,6 @@ namespace Agmd
 			{
 				//for(int i  =0 ; i < m_slider.size(); i++)
 					//m_slider[i]->setEnable(false);
-				BSpline* sp;
 				m_selectedSpline = new BaseSpline(m_bufferPoint);//sp = new BSpline(m_bufferPoint,(int)floorf(degree));
 				m_selectedPoint = m_selectedSpline->getLastPoint();
 				m_render.push_back(new LineRenderer(m_selectedSpline));

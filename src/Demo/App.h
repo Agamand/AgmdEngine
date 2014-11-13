@@ -40,19 +40,14 @@ status : in pause
 #include <vector>
 
 
-#define SCREEN_WIDTH_APP 1600
-#define SCREEN_HEIGHT_APP 900
+#define SCREEN_WIDTH_APP 1920
+#define SCREEN_HEIGHT_APP 1080	
 
 class App : public Agmd::AgmdApp, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
-	App(): AgmdApp(ivec2(1600,900)){}
-    static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, a_uint32 color = -1);
-    static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
-    static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
-    static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
-    static Agmd::Model* CreateMetaSphere(float r, int stack, int slice);
+	App(): AgmdApp(ivec2(SCREEN_WIDTH_APP,SCREEN_HEIGHT_APP)){}
     Agmd::GraphicString* m_text;
 
     void Run(int argc, char** argv);
@@ -90,13 +85,7 @@ private :
 	ParticlesEmitter* mouse_emitter;
     bool pause;
     bool fxaa;
-
-
-	//Bezier
-
-	DrawablePlane* m_plane;
-
-
+	
 };
 
 #endif // APP_H

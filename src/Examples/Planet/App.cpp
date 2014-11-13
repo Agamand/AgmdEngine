@@ -149,9 +149,9 @@ float reso = 512;
 Texture height_test;
 Texture normal_test;
 
-const char* rock ="Texture/gradient/rock.jpg";
-const char* snow ="Texture/gradient/snow.jpg";
-const char* grass ="Texture/gradient/grass.jpg";
+const char* rock ="Texture/rock.jpg";
+const char* snow ="Texture/snow.jpg";
+const char* grass ="Texture/grass.jpg";
 
 
 
@@ -227,9 +227,7 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 	Material* mat = new Material(pipe);
 	Texture gradient;
 	gradient.CreateFromFile("Texture/gradient/only_earth.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
-	ground_tex[0].CreateFromFile(grass,PXF_A8R8G8B8);
-	ground_tex[1].CreateFromFile(rock,PXF_A8R8G8B8);
-	ground_tex[2].CreateFromFile(snow,PXF_A8R8G8B8);
+
 	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	Planet* p = new Planet(model,mat);
 	mgr->AddNode(p->getRoot());
@@ -240,10 +238,8 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 	mat = new Material(pipe);
 	gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
 	model->rgb = vec3(0.485f, 0.9f, 0.985f);
+
 	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(ground_tex[0],2,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(ground_tex[1],3,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(ground_tex[2],4,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	p = new Planet(model,mat);
 	mgr->AddNode(p->getRoot());
 	p->getRoot()->getTransform().translate(30,0,0);
@@ -298,6 +294,12 @@ void App::OnInit()
 	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
 	//ssplanetpipe->setShader(zpassShader,RENDERPASS_ZBUFFER);
 	mat = new Material(planetpipe);
+	ground_tex[0].CreateFromFile(grass,PXF_A8R8G8B8);
+	ground_tex[1].CreateFromFile(rock,PXF_A8R8G8B8);
+	ground_tex[2].CreateFromFile(snow,PXF_A8R8G8B8);
+	mat->SetTexture(ground_tex[0],2,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(ground_tex[1],3,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+	mat->SetTexture(ground_tex[2],4,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	m_pmodel = new PlanetModel(0,0,0);
 	m_pmodel->m_persistance = 1.f;
@@ -352,13 +354,13 @@ void App::OnInit()
 	guimgr.AddWidget(slder);
 
 
-	slider_kr = new ASlider("kr",ivec2(5,225),ivec2(200,20));
+	slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
 	guimgr.AddWidget(slider_kr);
-	slider_kr->setValue(&m_pmodel->kr,0,0.1);
+	slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
 
-	slider_km = new ASlider("km",ivec2(5,175),ivec2(200,20));
+	slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
 	guimgr.AddWidget(slider_km);
-	slider_km->setValue(&m_pmodel->km,0,0.1);
+	slider_km->setValue(&m_pmodel->m_amplitude,0,10);
 
 	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
 	guimgr.AddWidget(slider_esun);

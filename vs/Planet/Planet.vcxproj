@@ -203,13 +203,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <BrowseInformation>false</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw30ud_gl.lib;opengl32.lib;glu32.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -220,7 +220,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -265,7 +265,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -285,7 +285,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -340,7 +340,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>

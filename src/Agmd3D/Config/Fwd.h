@@ -19,7 +19,7 @@ namespace Agmd
     class Resource;
     class ResourceManager;
     class Declaration;
-    class AgmdApp;
+    class AgmdApplication;
     class TextureBase;
     class Texture;
     class Image;

@@ -186,7 +186,7 @@ namespace Agmd
     {
         Logger::Instance().SetFilename("OpenGL");
 
-        PIXELFORMATDESCRIPTOR PixelDescriptor = 
+        /*PIXELFORMATDESCRIPTOR PixelDescriptor = 
         { 
             sizeof(PIXELFORMATDESCRIPTOR),   // size of this pfd 
             1,                               // version number 
@@ -217,7 +217,7 @@ namespace Agmd
         // Create Temp Glcontext for loading extentions
         m_Context = wglCreateContext(m_Handle);
         assert(wglMakeCurrent(m_Handle, m_Context));
-
+		*/
         int attribs[] =
         {
             WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
@@ -229,9 +229,9 @@ namespace Agmd
 
         // Load CreateContext function
         LOAD_EXTENSION(wglCreateContextAttribsARB);
-		LoadExtensions();
+		
         //Recreate a real GlContext (if possible)
-        if(wglCreateContextAttribsARB)
+        /*if(wglCreateContextAttribsARB)
         { 
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
@@ -240,11 +240,11 @@ namespace Agmd
             m_Context = temp;
 			assert(wglMakeCurrent(m_Handle, m_Context));
 
-        }
-
-		ShowWindow(m_Hwnd, SW_NORMAL);
-		UpdateWindow(m_Hwnd);
-		SetFocus(m_Hwnd);
+        }*/
+		LoadExtensions();
+		//ShowWindow(m_Hwnd, SW_NORMAL);
+		//UpdateWindow(m_Hwnd);
+		//SetFocus(m_Hwnd);
         // Load extensions
         
 
@@ -409,8 +409,9 @@ namespace Agmd
 
     void GLDriver::EndScene()
     {
-        //glFinish();
-        SwapBuffers(m_Handle); 
+		glFlush();
+		//glFinish();
+        //SwapBuffers(m_Handle); 
     }
 
 

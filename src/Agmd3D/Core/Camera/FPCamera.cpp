@@ -66,8 +66,8 @@ namespace Agmd
         updateVector();
     }
 
-    void FPCamera::onKeyboard(char key, bool up)
-    {
+	void FPCamera::onKeyboard( a_char key, bool up )
+	{
         a_uint32 tempFlags = MOVE_NONE;
         switch(key)
         {

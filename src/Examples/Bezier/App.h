@@ -15,7 +15,7 @@ status : in pause
 #define APP_H
 
 #include <Agmd3D\Config\Fwd.h>
-#include <Agmd3D\Core\AgmdApp.h>
+#include <Agmd3D\Core\AgmdApplication.h>
 #include <AgmdMaths\Vector2.h>
 #include <AgmdMaths\Vector3.h>
 #include <AgmdMaths\Matrix4.h>
@@ -34,16 +34,16 @@ status : in pause
 #include <Container/Vector.h>
 #define SCREEN_WIDTH_PLANET 800
 #define SCREEN_HEIGHT_PLANET 600
-class App : public Agmd::AgmdApp, public Singleton<App>
+class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
 
     void Run(int argc, char** argv);
 private :
-	App() : AgmdApp(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
+	App() : AgmdApplication(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
 	{}
-    virtual void OnInit();
+    virtual void init();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
     void OnClick(int click, vec2 pos);

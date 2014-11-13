@@ -10,8 +10,6 @@ https://github.com/Agamand/AgmdEngine
 status : in pause
 ============================================================================
 */
-
-#include <windows.h>
 #include <exception>
 #include "App.h"
 #include "Test/Circle.h"

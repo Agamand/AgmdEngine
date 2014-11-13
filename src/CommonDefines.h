@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _COMMOMDEFINES_H_
 
 #define ENGINE_REV      3
-#define ENGINE_NAME     "AgmdEngine"
+#define ENGINE_NAME     L"AgmdEngine"
 #define ENGINE_STATE    "Alpha"
 
 #define AGMD_MAJOR      0
@@ -42,5 +42,6 @@ typedef unsigned long long  a_uint64;
 typedef unsigned int        a_uint32;
 typedef unsigned short      a_uint16;
 typedef unsigned char       a_uint8;
+typedef wchar_t				a_char;
 
 #endif /* _COMMOMDEFINES_H_ */

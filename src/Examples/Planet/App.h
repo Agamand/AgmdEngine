@@ -15,7 +15,7 @@ status : in pause
 #define APP_H
 
 #include <Agmd3D/Config/Fwd.h>
-#include <Agmd3D/Core/AgmdApp.h>
+#include <Agmd3D/Core/AgmdApplication.h>
 #include <AgmdMaths/Vector2.h>
 #include <AgmdMaths/Matrix4.h>
 #include <AgmdUtilities/Utilities/Singleton.h>
@@ -28,7 +28,7 @@ status : in pause
 #define SCREEN_WIDTH_PLANET 1600
 #define SCREEN_HEIGHT_PLANET 900
 
-class App : public Agmd::AgmdApp, public Singleton<App>
+class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
@@ -37,16 +37,16 @@ public:
     static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateMetaSphere(float r, int stack, int slice);
-    void Run(int argc, char** argv);
+    virtual void Run(int argc, char** argv);
 private :
-	App() : AgmdApp(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
+	App() : AgmdApplication("StartBirth")
 	{}
-    virtual void OnInit();
+    virtual void init();
 
-    virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 
-    void OnClick(int click, vec2 pos);
-	void OnMove(vec2 pos);
+    virtual void OnClick(int click, vec2 pos, bool up);
+	virtual void OnMove(vec2 pos);
+	virtual void OnKey(a_char key, bool up);
 
     virtual void OnUpdate(a_uint64 time_diff);
 
@@ -76,6 +76,7 @@ private :
 	Agmd::ASlider*  m_octaveCountSlider;
 	Agmd::ASlider*  m_persistanceSlider;
 	bool m_animated;
+	ivec2 mousePos;
 };
 
 #endif // APP_H

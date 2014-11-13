@@ -60,7 +60,7 @@ void App::Run(int argc, char** argv)
 		MediaManager::Instance().AddSearchPath(main.Path());
 		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
 	}
-	AgmdApp::Run();
+	AgmdApplication::Run();
 }
 SceneMgr* scene;
 
@@ -71,7 +71,7 @@ float scalemax = 1;
 float height = 1;
 Model* m = NULL;
 Material* surface_mat;
-void App::OnInit()
+void App::init()
 {  
 	pause = true;
 	printf("Loading...");
@@ -241,7 +241,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		}
 
 	}
-	return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
+	return AgmdApplication::WindowProc(hwnd,message,wParam,lParam);
 }
 
 void App::OnClick( int click, vec2 pos )

@@ -1,5 +1,6 @@
 #ifndef _DRAWABLEPLANE_H_
 #define _DRAWABLEPLANE_H_
+#include <Core/AgmdApplication.h>
 #include <Vector2.h>
 #include <Core/Texture/Texture.h>
 #include <Core/2DRender/LineRenderer.h>
@@ -8,13 +9,13 @@
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/MediaManager.h>
 #include <Container/Vector.h>
-#include <Core/AgmdApp.h>
+
 #include <Config/Export.h>
 #include <core/gui/ASlider.h>
 
 namespace Agmd
 {
-	class AGMD3D_EXPORT DrawablePlane : public AgmdApp::InputListener , public ASlider::ASliderListener
+	class AGMD3D_EXPORT DrawablePlane : public AgmdApplication::InputListener , public ASlider::ASliderListener
 	{
 	public:
 		DrawablePlane(ivec2 pixelSize, vec2 repere);

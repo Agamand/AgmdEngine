@@ -7,14 +7,14 @@
     <Filter Include="Server">
       <UniqueIdentifier>{28801229-d2e7-44b9-ab29-ae861d367b5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Packet">
-      <UniqueIdentifier>{9bd8d6a0-d9a8-43ff-9b48-514e446f511a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Opcode">
       <UniqueIdentifier>{1e412cb2-d4d5-4efa-bdca-d28a4087fa19}</UniqueIdentifier>
     </Filter>
     <Filter Include="Protocol">
       <UniqueIdentifier>{11722b8a-6c8a-4509-89d9-4de336420c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opcode\Packet">
+      <UniqueIdentifier>{9bd8d6a0-d9a8-43ff-9b48-514e446f511a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -23,10 +23,10 @@
       <Filter>Client</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdNetwork\Packet\ByteBuffer.h">
-      <Filter>Packet</Filter>
+      <Filter>Opcode\Packet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdNetwork\Packet\Packet.h">
-      <Filter>Packet</Filter>
+      <Filter>Opcode\Packet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdNetwork\Server\Server.h">
       <Filter>Server</Filter>
@@ -40,7 +40,7 @@
       <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\AgmdNetwork\Packet\Packet.cpp">
-      <Filter>Packet</Filter>
+      <Filter>Opcode\Packet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\AgmdNetwork\Server\Server.cpp">
       <Filter>Server</Filter>

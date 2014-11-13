@@ -34,8 +34,6 @@ status : in pause
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
 #include <Agmd3D/Core/Camera/FPCamera.h>
 #include <Agmd3D/Core/Camera/FollowCamera.h>
-#include <AgmdNetwork\Client\Client.h>
-#include <AgmdNetwork\Opcode\OpcodeMgr.h>
 #include <AgmdUtilities/Utilities/Color.h>
 #include <AgmdUtilities/Debug/Profiler.h>
 #include <Agmd3D/Core/Effects/PostEffectMgr.h>
@@ -50,9 +48,6 @@ status : in pause
 #include <Agmd3D/Core/SceneNode/MeshNode.h>
 #include <Renderer/OpenGL/GlDriver.h>
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
-#include "btBulletDynamicsCommon.h"
-#include "btBulletCollisionCommon.h"
-#include "Loader/objLoader.h"
 #include <Demo/Loader/MeshLoader.h>
 #include <glm/ext.hpp>
 #include "PerlinNoise.h"
@@ -68,7 +63,6 @@ status : in pause
 #include <Agmd3D/Core/Effects/Inverse.h>
 #include <Agmd3D/Core/Effects/DrugEffect.h>
 using namespace Agmd;
-using namespace AgmdNetwork;
 using namespace AgmdUtilities;
 
 SINGLETON_IMPL(App);
@@ -84,7 +78,7 @@ void App::Run(int argc, char** argv)
 		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
 	}
 
-    AgmdApp::Run();
+    AgmdApplication::Run();
 }
 
 Texture tvelocity;
@@ -95,7 +89,7 @@ BlurMotionEffect* blur;
 DrugEffect* drug;
 Texture tex[2];
 
-void App::OnInit()
+void App::init()
 {  
     pause = true;
     m_timer = 1000;
@@ -111,9 +105,9 @@ void App::OnInit()
 	tex[1].Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
     m_fxaa = new AntiAliasing();
 	blur = new BlurMotionEffect(getScreen());
-	drug = new DrugEffect();
+	//drug = new DrugEffect();
 	//PostEffectMgr::Instance().AddEffect(drug);
-	//cPostEffectMgr::Instance().AddEffect(new BlurMotionEffect(getScreen()));
+	//PostEffectMgr::Instance().AddEffect(new BlurMotionEffect(getScreen()));
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
 	//PostEffectMgr::Instance().AddEffect(new Inverse());
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
@@ -168,6 +162,8 @@ void App::OnInit()
 
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
+
+	m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),2500	,new Transform(vec3((0),0.f,0)*30.f)));
 	printf("Loading end");
 }
 float timespeed= 1.0f;
@@ -176,7 +172,7 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 	
 	if(pause)
 		return;
-	drug->Update(time_diff*timespeed);
+	//drug->Update(time_diff*timespeed);
 	for(int i = 0; i < m_particles.size(); i++)
 		m_particles[i]->Update(time_diff*timespeed);
 
@@ -185,6 +181,7 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
     const vec2& angles = cam->GetAngles();
+	//cam3D->onMouseMotion(1,0);
 }
 
 void App::OnRender3D()
@@ -200,7 +197,7 @@ void App::OnRender3D()
 	Texture::EndRenderToTexture();
 	//blur->ApplyEffect(tex[0],tex[1]);
 	 PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
-	Texture::TextureRender(tex[1]);
+	Texture::TextureRender(tex[1],ivec2(0),m_ScreenSize);
 	/*
 	for(int i = 0; i < m_particles.size(); i++)
 	{
@@ -254,25 +251,26 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		}
 		
     }
-
-    return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
+	return 0;
+    //return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
 }
 
 int pCount = 6000;
-void App::OnClick( int click, vec2 pos )
+void App::OnClick( int click, vec2 pos, bool up)
 {
-	printf("click %i at pos (%f,%f)\n",click,pos.x,pos.y);
+	printf("click %i at pos (%f,%f), up: i\n",click,pos.x,pos.y,up);
 	float f = Driver::Get().GetAspectRatio();
 	if(!draw)
 		return;
-	if(click == 1)
+	if(click == 1 && up)
 	{
-		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),pCount	,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),pCount	,new Transform(vec3(0,0,0)*30.f)));
 	}
-	if(click == 2)
+	if(click == 2 && up)
 	{
 		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_2.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
 	}
+	AgmdApplication::OnClick(click,pos,up);
 }
 
 void App::OnMove(vec2 pos)
@@ -281,4 +279,38 @@ void App::OnMove(vec2 pos)
 	float f = Driver::Get().GetAspectRatio();
 	mouse_emitter->GetTransform()->setPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
 	mouse_emitter->GetTransform()->update(NULL);
+	AgmdApplication::OnMove(pos);
 }	
+
+void App::OnKey( a_char key, bool up )
+{
+	if(up)
+	{
+		printf("%c key, up: %i\n",key,up);
+		switch(key)
+		{
+		case 'P':
+			pause = !pause;
+			//cam3D->SetRecvInput(pause);
+			break;
+		case 'C':
+			for(int i =0; i< m_particles.size(); i++)
+				delete m_particles[i];
+			m_particles.clear();
+			break;
+		case 'M':
+			draw = !draw;
+			break;
+		case 'L':
+			drawMouse = !drawMouse;
+			break;
+		case WXK_ADD:
+			timespeed *=2.f;
+			break;
+		case WXK_SUBTRACT:
+			timespeed /=2.f;
+		}
+
+	}
+	AgmdApplication::OnKey(key,up);
+}

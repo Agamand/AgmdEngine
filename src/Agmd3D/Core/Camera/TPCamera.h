@@ -24,7 +24,7 @@ namespace Agmd
 
         virtual void onMouseMotion(int x, int y);
 
-        virtual void onKeyboard(char key, bool up);
+		virtual void onKeyboard(a_char key, bool up);
 
         virtual void onMouseWheel(float delta);
         virtual void onMouseWheel(bool up);

@@ -15,7 +15,7 @@ status : in pause
 #define APP_H
 
 #include <Agmd3D\Config\Fwd.h>
-#include <Agmd3D\Core\AgmdApp.h>
+#include <Agmd3D\Core\AgmdApplication.h>
 #include <AgmdMaths\Vector2.h>
 #include <AgmdMaths\Vector3.h>
 #include <AgmdMaths\Matrix4.h>
@@ -43,21 +43,22 @@ status : in pause
 #define SCREEN_WIDTH_APP 1920
 #define SCREEN_HEIGHT_APP 1080	
 
-class App : public Agmd::AgmdApp, public Singleton<App>
+class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
-	App(): AgmdApp(ivec2(SCREEN_WIDTH_APP,SCREEN_HEIGHT_APP)){}
+	App(): AgmdApplication(ivec2(SCREEN_WIDTH_APP,SCREEN_HEIGHT_APP)){}
     Agmd::GraphicString* m_text;
 
     void Run(int argc, char** argv);
 private :
 
-    virtual void OnInit();
+    virtual void init();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-    void OnClick(int click, vec2 pos);
-	void OnMove(vec2 pos);
+    virtual void OnClick(int click, vec2 pos,bool up);
+	virtual void OnKey(a_char key, bool up);
+	virtual void OnMove(vec2 pos);
     virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();

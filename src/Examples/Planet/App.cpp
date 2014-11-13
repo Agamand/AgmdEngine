@@ -169,7 +169,7 @@ void App::Run(int argc, char** argv)
 		gradient = argv[1];
 	if(argc > 2)
 		seed = argv[2];
-    AgmdApp::Run();
+    AgmdApplication::Run(argc,argv);
 }
 
 #include "Planet/Planet.h"
@@ -220,6 +220,8 @@ ShaderProgram sun_program;
 Texture sunTex;
 Transform* sun_transform;
 Model* sunModel;
+
+
 void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 {
 
@@ -259,7 +261,7 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 }
 
 
-void App::OnInit()
+void App::init()
 { 
 	m_animated =false;
     pause = true;
@@ -465,6 +467,7 @@ void App::OnRender2D()
 		return;
     Driver& render = Driver::Get();
 	*(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n")
+	("Mouse position x: ")(mousePos.x)(", y : ")(mousePos.y)("\n")
 	("U : Update tiles texture")("\n")
 	("P : Enable/Disable atmosphere")("\n")
 	("F1 : Solid")("\n")
@@ -473,22 +476,34 @@ void App::OnRender2D()
 	("G : Enable/Disable interfaces")("\n")
 	("N : Enable/Disable normal")("\n")
 	("E : Export")("\n");
+	
 	m_fps->draw();
 
 }
 //103 100 104 101 105 102
-LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+
+void App::OnClick( int click, vec2 pos,bool up)
 {
-	MeshNode *node;
-    if(message == WM_KEYDOWN)
-    {
-		char c = LOWORD(wParam);
-        switch(LOWORD(wParam))
-        {
-        case 'P':
+	AgmdApplication::OnClick(click,pos,up);
+}
+	
+
+void App::OnMove(vec2 pos)
+{
+	mousePos = ivec2(pos);
+	AgmdApplication::OnMove(pos);
+}
+
+void App::OnKey(a_char key, bool up)
+{
+	if(up)
+	{
+		switch(key)
+		{
+		case 'P':
 			m_planet->m_use_atmosphere = !m_planet->m_use_atmosphere;
-            pause = !pause;
-            break;
+			pause = !pause;
+			break;
 		case 'E':
 			m_planet->exportToFile("planet",(int)layer,(int)reso);
 			break;
@@ -501,28 +516,16 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 		case 'U':
 			m_planet->modelChange();
 			break;
-		case VK_F4:
+		case WXK_F4:
 			m_animated = !m_animated;
 			break;
 		}
 
 
-		
-    }
 
-    return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
+	}
+	AgmdApplication::OnKey(key,up);
 }
-
-void App::OnClick( int click, vec2 pos )
-{
-	
-}
-	
-
-void App::OnMove(vec2 pos)
-{
-
-}	
 
 
 

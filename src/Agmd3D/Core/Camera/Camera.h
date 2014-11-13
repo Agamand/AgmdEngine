@@ -41,7 +41,7 @@ namespace Agmd
 
         virtual void onUpdate(a_uint64 time_diff) = 0;
         virtual void onMouseMotion(int x, int y) = 0;
-        virtual void onKeyboard(char key, bool up) = 0;
+		virtual void onKeyboard(a_char key, bool up) = 0;
         virtual void onMouseWheel(float delta) = 0;
         virtual void onMouseWheel(bool up){};
         virtual const glm::vec3 getPosition() { return _position; }

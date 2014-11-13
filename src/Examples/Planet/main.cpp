@@ -10,13 +10,11 @@ https://github.com/Agamand/AgmdEngine
 status : in pause
 ============================================================================
 */
-
-#include <windows.h>
 #include <exception>
 #include "App.h"
 #include <iostream>
 
-using namespace AgmdUtilities;
+using namespace AgmdUtilities;/*
 int main(int argc, char** argv)
 {
    /* try
@@ -28,9 +26,19 @@ int main(int argc, char** argv)
 		std::cout << "Fail -> exception" << std::endl;
 		std::cout << e.what() << std::endl;
 		
-    }*/
+    }
 	App::Instance().Run(argc,argv);
 	App::Destroy();
 	system("pause");
+    return EXIT_SUCCESS;
+}*/
+
+AGMD_CONSOLE_IMPL
+
+int agmd_main(int argc, char** argv)
+{
+
+	App::Instance().Run(argc,argv);
+	App::Destroy();
     return EXIT_SUCCESS;
 }

@@ -108,9 +108,6 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.h">
       <Filter>Core\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Agmd3D\Core\AgmdApp.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Declaration.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -331,6 +328,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Effects\DrugEffect.h">
       <Filter>Core\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\AgmdApplication.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -509,9 +509,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.cpp">
       <Filter>Core\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApp.cpp">
-      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\FontManager.cpp">
       <Filter>Core</Filter>
@@ -701,6 +698,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\DrugEffect.cpp">
       <Filter>Core\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApplication.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

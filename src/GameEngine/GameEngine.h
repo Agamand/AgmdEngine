@@ -1,7 +1,7 @@
 
 #ifndef _GAMEENGINE_H_
 #define _GAMEENGINE_H_
-#include <Agmd3D/Core/AgmdApp.h>
+#include <Agmd3D/Core/AgmdApplication.h>
 #include <GameEngineConfig/ExportGameEngine.h>
 #include <GameEngineConfig/FwGameEngine.h>
 #include <Utilities/Singleton.h>
@@ -11,7 +11,7 @@ using namespace std;
 
 namespace Agmd
 {
-    class GAMEENGINE_EXPORT GameEngine : public AgmdApp//, public Singleton<GameEngine>
+    class GAMEENGINE_EXPORT GameEngine : public AgmdApplication//, public Singleton<GameEngine>
     {
     public:
     //MAKE_SINGLETON(GameEngine);

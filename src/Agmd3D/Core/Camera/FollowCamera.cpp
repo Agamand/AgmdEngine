@@ -83,8 +83,8 @@ namespace Agmd
         updateVector();
     }
 
-    void FollowCamera::onKeyboard(char key, bool up)
-    {
+	void FollowCamera::onKeyboard( a_char key, bool up )
+	{
 		if(!recvInput)
 			return;
         a_uint32 tempFlags = MOVE_NONE;

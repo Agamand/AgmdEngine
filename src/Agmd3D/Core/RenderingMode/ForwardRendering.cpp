@@ -99,7 +99,7 @@ namespace Agmd
 		render.Enable(RENDER_ALPHABLEND,true);
 		sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
 		render.Enable(RENDER_ALPHABLEND,false);
-        //m_framebuffer->UnBind();sqq
+        //m_framebuffer->UnBind();
 
         /*
             Render lighting to color_attachment1

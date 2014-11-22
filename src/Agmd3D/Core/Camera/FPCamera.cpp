@@ -9,6 +9,8 @@ https://github.com/Agamand/AgmdEngine
 #define _USE_MATH_DEFINES
 #include <Core\Camera\FPCamera.h>
 #include <math.h>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 namespace Agmd
 {
@@ -18,6 +20,7 @@ namespace Agmd
     Camera(projection,pos)
     {
         updateVector();
+		m_rotation = quat();
     }
 
     FPCamera::~FPCamera()
@@ -33,8 +36,8 @@ namespace Agmd
             _phi = -89;
         float r_temp = cos(_phi*((float)M_PI)/180);
             
-        vec3 _up(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),sin(_phi*M_PI/180)*sin(_theta*M_PI/180),r_temp);
-        _forward = glm::vec3(r_temp*cos(_theta*M_PI/180),r_temp*sin(_theta*M_PI/180),sin(_phi*M_PI/180));
+        vec3 _up = m_rotation*vec3(0,0,1);//(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),sin(_phi*M_PI/180)*sin(_theta*M_PI/180),r_temp);
+        _forward =  m_rotation*vec3(1,0,0);// glm::vec3(r_temp*cos(_theta*M_PI/180),r_temp*sin(_theta*M_PI/180),sin(_phi*M_PI/180));
         _left = glm::cross(_up,_forward);
         glm::normalize(_left);
 
@@ -61,9 +64,12 @@ namespace Agmd
     }
     void FPCamera::onMouseMotion(int x, int y)
     {
-        _theta += x*m_sensivity;
-        _phi += y*m_sensivity;
-        updateVector();
+        //_theta += x*m_sensivity;
+        //_phi += y*m_sensivity;
+        quat rot = glm::angleAxis( x*m_sensivity,vec3(,0,0));//*glm::angleAxis( y*m_sensivity,vec3(1,0,0));
+		m_rotation = m_rotation*rot;//*quat(0,1,1);
+		//m_view = m_view*toMat4(rot);
+		updateVector();
     }
 
 	void FPCamera::onKeyboard( a_char key, bool up )
@@ -84,10 +90,10 @@ namespace Agmd
             tempFlags = MOVE_RIGHT;
             break;
         case 'E':
-            tempFlags = MOVE_UP;
+            //tempFlags = MOVE_UP;
             break;
         case 'A':
-            tempFlags = MOVE_DOWN;
+            //tempFlags = MOVE_DOWN;
             break;
         }
 
@@ -107,6 +113,14 @@ namespace Agmd
     {
         _position += move*(m_speed*time_diff)/1000.0f;
         _target = _position + _forward;
+		//m_view *=m_view *translate(mat4(), move*(m_speed*time_diff)/1000.0f);
         updateBuffer(look());
     }
+
+	mat4 FPCamera::look()
+	{
+		//m_view = m_view*Camera::look();
+		return Camera::look();
+	}
+
 }

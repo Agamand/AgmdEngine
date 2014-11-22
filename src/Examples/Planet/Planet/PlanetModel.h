@@ -30,6 +30,7 @@ public:
 	float eSun;
 	float km;
 	float g;
+	float m_offset;
 	vec3 rgb;
 private:
 	Texture m_noiseTable;

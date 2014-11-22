@@ -179,7 +179,7 @@ void PlanetTreeNode::render( TRenderPass pass ) const
 	Driver& driver = Driver::Get();
 	float outer = m_controller->m_size*OUTER_INNER_OFFSET, inner = m_controller->m_size;
 	m_material->setParameter("u_divisor",(float)m_divisor);
-	m_material->setParameter("u_offset",(float)m_controller->m_offset);
+	m_material->setParameter("u_offset",(float)m_controller->m_model->m_offset);
 	m_material->setParameter("u_position_matrix",m_positionMatrix);
 	m_material->setParameter("u_face",m_face);
 	m_material->setParameter("u_normal_mapping",m_controller->m_model->m_normal_mapping);

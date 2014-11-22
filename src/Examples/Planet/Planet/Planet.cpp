@@ -44,6 +44,7 @@ Planet::Planet(PlanetModel* model, Material* mat,float size,bool atmosphere) : m
 	if(!model)
 		m_model = new PlanetModel(0,0,0);
 	else m_model = model;
+
 	Transform* t = new Transform(vec3(0),quat(),vec3(1));
 	t->scale(m_size,m_size,m_size);
 	m_root = new SceneNode(ROOT_NODE,t);
@@ -89,7 +90,7 @@ Model* Planet::exportToFile( const std::string& filename,int precision /*= 0*/,i
 			float displacement = grayScale;
 			if(displacement < 0 || displacement > 1.0f)
 				displacement = 0.0f;
-			vertices[j].position *= m_size+displacement*m_offset;
+			vertices[j].position *= m_size+displacement*m_model->m_offset;
 			out << "v " << vertices[j].position.x << " " << vertices[j].position.y << " " << vertices[j].position.z << std::endl;
 			out << "vn " << vertices[j].normal.x << " " << vertices[j].normal.y << " " << vertices[j].normal.z << std::endl;
 			out << "vt " << vertices[j].texCoords.x << " " << vertices[j].texCoords.y << std::endl;

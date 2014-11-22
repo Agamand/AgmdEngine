@@ -345,7 +345,8 @@ PlanetModel::PlanetModel( int layer, int x, int y ) : Model(),
 	km(0.0015f),
 	eSun(15.0f),
 	rgb(0.650,0.570,0.475),
-	g(-0.98f)
+	g(-0.98f),
+	m_offset(0.0f)
 {
 	a_vector<Model::TVertex> vertices;
 	a_vector<Model::TIndex> indices;

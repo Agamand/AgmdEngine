@@ -13,6 +13,7 @@ status : in pause
 
 
 #include "App.h"
+#include "PlanetFrame.h"
 #include <Agmd3D/Core/MediaManager.h>
 #include <Agmd3D/Core/Driver.h>
 #include <Agmd3D/Core/Enums.h>
@@ -169,8 +170,19 @@ void App::Run(int argc, char** argv)
 		gradient = argv[1];
 	if(argc > 2)
 		seed = argv[2];
+	wxEntryStart( argc, argv );
     AgmdApplication::Run(argc,argv);
 }
+
+
+void App::MakeWindow()
+{
+	wxApp::SetInstance(m_wxApplication);
+	PlanetFrame* frame;
+ 	m_frame = m_planetFrame = frame =  new PlanetFrame(NULL);
+ 	this->CreateGlCanvas(frame->m_viewPanel);
+}
+
 
 #include "Planet/Planet.h"
 SkyBox* boox;
@@ -312,7 +324,7 @@ void App::init()
 	Planet* p2 = new Planet(m_pmodel,mat,1.f);
 	p2->lightDir = -normalize(vec3(10,0,0)-light_pos);
 	p2->getRoot()->getTransform().translate(10.0f,0,0);
-
+	m_planetFrame->setPlanetModel(m_pmodel);
 
 	Model::TVertex vert;
 
@@ -340,49 +352,49 @@ void App::init()
 	GUIMgr& guimgr = GUIMgr::Instance();
 	std::cout << "init planet" << std::endl;
 	
-	m_persistanceSlider = new ASlider("Persistance",ivec2(5,425),ivec2(200,20));
-	m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
-	guimgr.AddWidget(m_persistanceSlider);
-
-	m_octaveCountSlider = new ASlider("Octave",ivec2(5,375),ivec2(200,20),true);
-	m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
-	guimgr.AddWidget(m_octaveCountSlider);
-
-	m_frequencySlider = new ASlider("Frequency",ivec2(5,325),ivec2(200,20));
-	m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
-	guimgr.AddWidget(m_frequencySlider);
-
-	ASlider *slder = new ASlider("Cam Speed",ivec2(5,275),ivec2(200,20));
-	guimgr.AddWidget(slder);
-
-
-	slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
-	guimgr.AddWidget(slider_kr);
-	slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
-
-	slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
-	guimgr.AddWidget(slider_km);
-	slider_km->setValue(&m_pmodel->m_amplitude,0,10);
-
-	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
-	guimgr.AddWidget(slider_esun);
-	slider_esun->setValue(&m_pmodel->eSun,0,30);
-
-	slider_r = new ASlider("red",ivec2(5,75),ivec2(200,20));
-	guimgr.AddWidget(slider_r);
-	slider_r->setValue(&m_pmodel->rgb.r,0,1);
-
-	slider_g = new ASlider("green",ivec2(5,25),ivec2(200,20));
-	guimgr.AddWidget(slider_g);
-	slider_g->setValue(&m_pmodel->rgb.g,0,1);
-
-	slider_b = new ASlider("blue",ivec2(225,425),ivec2(200,20));
-	guimgr.AddWidget(slider_b);
-	slider_b->setValue(&m_pmodel->rgb.b,0,1);
-
-	slider_gg = new ASlider("gg",ivec2(225,375),ivec2(200,20));
-	guimgr.AddWidget(slider_gg);
-	slider_gg->setValue(&m_pmodel->g,-1,-0.5);
+// 	m_persistanceSlider = new ASlider("Persistance",ivec2(5,425),ivec2(200,20));
+// 	m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
+// 	guimgr.AddWidget(m_persistanceSlider);
+// 
+// 	m_octaveCountSlider = new ASlider("Octave",ivec2(5,375),ivec2(200,20),true);
+// 	m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
+// 	guimgr.AddWidget(m_octaveCountSlider);
+// 
+// 	m_frequencySlider = new ASlider("Frequency",ivec2(5,325),ivec2(200,20));
+// 	m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
+// 	guimgr.AddWidget(m_frequencySlider);
+// 
+// 	ASlider *slder = new ASlider("Cam Speed",ivec2(5,275),ivec2(200,20));
+// 	guimgr.AddWidget(slder);
+// 
+// 
+// 	slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
+// 	guimgr.AddWidget(slider_kr);
+// 	slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
+// 
+// 	slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
+// 	guimgr.AddWidget(slider_km);
+// 	slider_km->setValue(&m_pmodel->m_amplitude,0,10);
+// 
+// 	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
+// 	guimgr.AddWidget(slider_esun);
+// 	slider_esun->setValue(&m_pmodel->eSun,0,30);
+// 
+// 	slider_r = new ASlider("red",ivec2(5,75),ivec2(200,20));
+// 	guimgr.AddWidget(slider_r);
+// 	slider_r->setValue(&m_pmodel->rgb.r,0,1);
+// 
+// 	slider_g = new ASlider("green",ivec2(5,25),ivec2(200,20));
+// 	guimgr.AddWidget(slider_g);
+// 	slider_g->setValue(&m_pmodel->rgb.g,0,1);
+// 
+// 	slider_b = new ASlider("blue",ivec2(225,425),ivec2(200,20));
+// 	guimgr.AddWidget(slider_b);
+// 	slider_b->setValue(&m_pmodel->rgb.b,0,1);
+// 
+// 	slider_gg = new ASlider("gg",ivec2(225,375),ivec2(200,20));
+// 	guimgr.AddWidget(slider_gg);
+// 	slider_gg->setValue(&m_pmodel->g,-1,-0.5);
 
 
 
@@ -394,8 +406,8 @@ void App::init()
     m_light->SetRange(2000.0f);	
 	//cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
 	cam3D = new FPCamera(m_MatProj3D,vec3(3,0,0));
-	
-	slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
+	m_planetFrame->setCamera(cam3D);
+	//slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
 	cam2D = new FPCamera(m_MatProj2D);
 	m_groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
 	m_groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
@@ -406,17 +418,17 @@ void App::init()
     Camera::setCurrent(cam2D, CAMERA_2D);
 
 
-	slder =  new ASlider("Offset",ivec2(225,325),ivec2(200,20));
-	guimgr.AddWidget(slder);
-	slder->setValue(&m_planet->m_offset,-0.1,0.1);
-	
-	slder = new ASlider("Precision export",ivec2(225,275),ivec2(200,20),true);
-	guimgr.AddWidget(slder);
-	slder->setValue(&layer,0,10);
-
-	slder = new ASlider("Resolution export",ivec2(225,225),ivec2(200,20),true);
-	guimgr.AddWidget(slder);
-	slder->setValue(&reso,512,2048);
+// 	slder =  new ASlider("Offset",ivec2(225,325),ivec2(200,20));
+// 	guimgr.AddWidget(slder);
+// 	slder->setValue(&m_planet->m_offset,-0.1,0.1);
+// 	
+// 	slder = new ASlider("Precision export",ivec2(225,275),ivec2(200,20),true);
+// 	guimgr.AddWidget(slder);
+// 	slder->setValue(&layer,0,10);
+// 
+// 	slder = new ASlider("Resolution export",ivec2(225,225),ivec2(200,20),true);
+// 	guimgr.AddWidget(slder);
+// 	slder->setValue(&reso,512,2048);
 
 	skyTransform->scale(1.025,1.025,1.025);
 	//skyTransform->Translate(2,0,0);
@@ -505,7 +517,7 @@ void App::OnKey(a_char key, bool up)
 			pause = !pause;
 			break;
 		case 'E':
-			m_planet->exportToFile("planet",(int)layer,(int)reso);
+			//m_planet->exportToFile("planet",(int)layer,(int)reso);
 			break;
 		case 'G':
 			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());

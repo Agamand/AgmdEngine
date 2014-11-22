@@ -31,8 +31,13 @@ namespace Agmd
     protected:
         virtual void updateVector();
 
+		virtual mat4 look();
+
+
         float _theta;
-        float _phi;
+		float _phi;
+		quat m_rotation;
+		mat4 m_view;
     };
 }
 

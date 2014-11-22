@@ -138,12 +138,10 @@ namespace Agmd{
 		static AgmdApplication* getApplication(){return s_application;}
 		bool isReady() const {return m_isReady;}
     private:
-        void MakeWindow();
+        
 		HINSTANCE				m_Instance;
 #if defined(USE_WX)
-		Application*			m_wxApplication;
-		wxFrame*				m_frame;
-		GLCanvas*				m_glcanvas;
+		
 #else 
         static LRESULT CALLBACK GlobalWindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		HWND					m_Hwnd;
@@ -161,6 +159,10 @@ namespace Agmd{
 		AgmdApplication(const std::string& frameName);
 #ifdef USE_WX
 		virtual bool OnInit();
+		wxFrame*				m_frame;
+		GLCanvas*				m_glcanvas;
+		Application*			m_wxApplication;
+		void CreateGlCanvas( wxWindow* m_viewPanel );
 #endif
 
         ~AgmdApplication();
@@ -168,7 +170,7 @@ namespace Agmd{
         virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		
 #endif
-		
+		virtual void MakeWindow();
 		virtual void init() = 0;
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;
@@ -223,7 +225,7 @@ inline void getArgs(int& argc,char** &argv)
 	}
 }
 
-#define AGMD_MAIN()													  \
+#define AGMD_MAIN													  \
 extern "C" int WINAPI WinMain(HINSTANCE hInstance,                    \
 							HINSTANCE hPrevInstance,                  \
 							wxCmdLineArgType WXUNUSED(lpCmdLine),     \

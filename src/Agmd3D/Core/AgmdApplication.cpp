@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 #include "wx/wxprec.h"
-
+#include <Examples/Planet/PlanetFrame.h>
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
@@ -72,13 +72,6 @@ bool Application::OnInit()
 			return false;
 
 		// Create the main frame window
-		if(!m_frame && m_dframe)
-		{
-// 			AgmdFrame* f;
-// 			m_frame = f=new AgmdFrame(NULL, m_name,
-// 				wxDefaultPosition, wxDefaultSize);
-// 			m_frame->Show(true);
-		}
 		/* Show the frame */
 		
 
@@ -179,6 +172,8 @@ GLCanvas::GLCanvas(wxWindow *parent,
 	m_application = Agmd::AgmdApplication::getApplication();
 	// Explicitly create a new rendering context instance for this canvas.
 	m_glRC = new wxGLContext(this);
+	this->SetExtraStyle( wxWS_EX_PROCESS_IDLE );
+	SetCurrent(*m_glRC);
 
 }
 
@@ -221,7 +216,7 @@ void GLCanvas::LoadDXF(const wxString& filename)
 void GLCanvas::OnMouse(wxMouseEvent& event)
 {
 	if(event.IsButton())
-		m_application->OnClick(event.GetButton(),vec2(event.m_x,event.m_y),event.ButtonDown(event.GetButton()));
+		m_application->OnClick(event.GetButton(),vec2(event.m_x,event.m_y),!event.ButtonDown(event.GetButton()));
 	else m_application->OnMove(vec2(event.m_x,event.m_y));
 	event.Skip();
 }
@@ -347,7 +342,6 @@ namespace Agmd
 
 	bool AgmdApplication::OnInit()
 	{
-
 		return true;
 	}
 
@@ -363,20 +357,25 @@ namespace Agmd
 		m_wxApplication = new Application(m_createDefaultFrame,wxString(m_frameName));
 		m_renderer = new Plugin("GLRender.dll");
 
-        MakeWindow();
+       
 
 		wxApp::SetInstance(m_wxApplication);
 		wxEntryStart( argc, argv );
-		
 		m_wxApplication->OnInit();
+		//new BaseFrame(NULL);
+		MakeWindow();
+
 		if(!m_frame)
 		{
 
-			m_frame =new AgmdFrame(NULL, wxString(m_frameName),
-				wxDefaultPosition, wxDefaultSize);
+			//m_frame =new AgmdFrame(NULL, wxString(m_frameName),
+				//wxDefaultPosition, wxDefaultSize);
+			//m_frame->Show(true);
+			PlanetFrame* frame;
+			m_frame = frame = new PlanetFrame(NULL);
+			CreateGlCanvas(frame->m_viewPanel);
 			m_frame->Show(true);
-
-		}
+		}else m_frame->Show(true);
         Driver::Get().Initialize(NULL);
         Driver::Get().SetScreen(m_ScreenSize);
 
@@ -659,9 +658,35 @@ namespace Agmd
 	{
 		GUIMgr& guimgr = GUIMgr::Instance();
 		camera = Camera::getCurrent();
+		printf("click %i, up : %i\n",click,up);
 		switch (click)
 		{
-		case WM_XBUTTONDOWN:
+		case 1:
+			if(up)
+			mouseState &= ~MOUSE_LEFT;
+			else mouseState |= MOUSE_LEFT;
+			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			return;
+
+		case 2:
+			if(up)
+				mouseState &= ~MOUSE_MIDDLE;
+			else mouseState |= MOUSE_MIDDLE;
+			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			return;
+		case 3:
+			if(up)
+				mouseState &= ~MOUSE_RIGHT;
+			else mouseState |= MOUSE_RIGHT;
+			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			return;
+		/*case WM_XBUTTONDOWN:
 			mouseState |= MOUSE_NONE;
 			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 				m_inputListener[i]->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
@@ -714,7 +739,7 @@ namespace Agmd
 			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 				m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
 			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-			return;
+			return;*/
 		}
 	}
 
@@ -760,6 +785,17 @@ namespace Agmd
 		Driver::Get().SetViewPort(ivec2(0,0),size);
 		Driver::Get().SetScreen(m_ScreenSize);
 	}
+
+#ifdef  USE_WX
+	void AgmdApplication::CreateGlCanvas( wxWindow* frame )
+	{
+		if(!m_frame)
+			return;
+		m_glcanvas = new GLCanvas(frame);
+		frame->GetSizer()->Add(m_glcanvas, 1, wxEXPAND | wxALL, 5);
+	}
+#endif //USE_WX
+
 
 
 

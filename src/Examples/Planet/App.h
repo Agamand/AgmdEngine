@@ -13,7 +13,7 @@ status : in pause
 
 #ifndef APP_H
 #define APP_H
-
+#include "PlanetFrame.h"
 #include <Agmd3D/Config/Fwd.h>
 #include <Agmd3D/Core/AgmdApplication.h>
 #include <AgmdMaths/Vector2.h>
@@ -24,6 +24,7 @@ status : in pause
 #include <Agmd3D/Core/GUI/ASlider.h>
 #include <map>
 #include <Container/Vector.h>
+
 
 #define SCREEN_WIDTH_PLANET 1600
 #define SCREEN_HEIGHT_PLANET 900
@@ -53,6 +54,9 @@ private :
     virtual void OnRender3D();
     virtual void OnRender2D();
 
+	virtual void MakeWindow();
+
+
     glm::mat4             m_MatProj2D;
     glm::mat4             m_MatProj3D;
     glm::mat3             m_MatNormal;
@@ -77,6 +81,7 @@ private :
 	Agmd::ASlider*  m_persistanceSlider;
 	bool m_animated;
 	ivec2 mousePos;
+	PlanetFrame* m_planetFrame;
 };
 
 #endif // APP_H

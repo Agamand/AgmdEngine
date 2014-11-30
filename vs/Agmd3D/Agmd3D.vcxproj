@@ -481,7 +481,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -492,7 +492,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>wxmsw30u_gl.lib;opengl32.lib;glu32.lib;wxmsw30u_core.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlibd.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">

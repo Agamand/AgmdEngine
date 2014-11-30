@@ -6,7 +6,6 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 #include "wx/wxprec.h"
-#include <Examples/Planet/PlanetFrame.h>
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
@@ -261,7 +260,6 @@ void GLCanvas::keyReleased(wxKeyEvent& event) {
 void GLCanvas::InitGL()
 {
 	SetCurrent(*m_glRC);
-	HGLRC a= wglGetCurrentContext();
 }
 
 void GLCanvas::ResetProjectionMode()
@@ -368,12 +366,8 @@ namespace Agmd
 		if(!m_frame)
 		{
 
-			//m_frame =new AgmdFrame(NULL, wxString(m_frameName),
-				//wxDefaultPosition, wxDefaultSize);
-			//m_frame->Show(true);
-			PlanetFrame* frame;
-			m_frame = frame = new PlanetFrame(NULL);
-			CreateGlCanvas(frame->m_viewPanel);
+			m_frame =new AgmdFrame(NULL, wxString(m_frameName),
+				wxDefaultPosition, wxDefaultSize);
 			m_frame->Show(true);
 		}else m_frame->Show(true);
         Driver::Get().Initialize(NULL);
@@ -767,13 +761,13 @@ namespace Agmd
 		camera->onKeyboard(key,up);
 		switch(key)
 		{
-		case VK_F1:
+		case WXK_F1:
 			RenderingMode::getRenderingMode()->setRenderMode(MODE_FILL);
 			return;
-		case VK_F2:
+		case WXK_F2:
 			RenderingMode::getRenderingMode()->setRenderMode(MODE_LINE);
 			return;
-		case VK_F3:
+		case WXK_F3:
 			RenderingMode::getRenderingMode()->setRenderMode(MODE_POINT);
 			return;
 		}		

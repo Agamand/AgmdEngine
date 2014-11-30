@@ -64,10 +64,9 @@ namespace Agmd
     }
     void FPCamera::onMouseMotion(int x, int y)
     {
-        //_theta += x*m_sensivity;
-        //_phi += y*m_sensivity;
-        quat rot = glm::angleAxis( x*m_sensivity,vec3(,0,0));//*glm::angleAxis( y*m_sensivity,vec3(1,0,0));
-		m_rotation = m_rotation*rot;//*quat(0,1,1);
+        _theta += x*m_sensivity;
+        _phi += y*m_sensivity;
+
 		//m_view = m_view*toMat4(rot);
 		updateVector();
     }

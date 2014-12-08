@@ -197,6 +197,7 @@ void GLCanvas::OnSize(wxSizeEvent& WXUNUSED(event))
 	SetCurrent(*m_glRC);
 	int w, h;
 	GetClientSize(&w, &h);
+	printf("%d, %d\n",w,h);
 	m_application->onResize(ivec2(w,h));
 	Refresh(false);
 }

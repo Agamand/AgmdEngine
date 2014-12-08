@@ -128,6 +128,7 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\QuadTree.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\RenderQueue.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Statistics.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\AssetLoader.h" />
     <ClInclude Include="..\..\src\Agmd3D\Loaders\ImagesLoader.h" />
     <ClInclude Include="..\..\src\Agmd3D\Loaders\Loaders.h" />
     <ClInclude Include="..\..\src\Agmd3D\Loaders\ObjLoader.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\QuadTree.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\RenderQueue.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\Statistics.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\AssetLoader.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Loaders\ImagesLoader.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Loaders\Loaders.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Loaders\ObjLoader.cpp" />
@@ -416,13 +418,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>wxmsw30ud_gl.lib;opengl32.lib;glu32.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -434,7 +436,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMD3D_EXPORTS;PROFILING_TIME;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;AGMD3D_EXPORTS;PROFILING_TIME;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -482,7 +484,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -502,7 +504,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMD3D_EXPORTS;PROFILING_TIME;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;AGMD3D_EXPORTS;PROFILING_TIME;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -559,7 +561,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;AGMD3D_EXPORTS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>

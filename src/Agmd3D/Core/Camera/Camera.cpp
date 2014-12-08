@@ -62,7 +62,7 @@ namespace Agmd
 
     mat4 Camera::look()
     {
-        return lookAt(_position,_target,vec3(0,0,1));
+        return lookAt(_position,_target,vec3(0,1,0));
     }
 
     void Camera::setActive(TCamera type)

@@ -65,7 +65,15 @@ namespace Agmd
         start();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
+		SkyBox* box = sc->GetSkyBox();
+		render.SetCullFace(1);
+		if(box)
+		{
+			render.Enable(RENDER_ZWRITE,false);
+			box->Render();
+		}
 		render.SetRenderMode(m_mode);
+		render.SetCullFace(0);
 		sc->Update();
 		sc->Compute();
         /*

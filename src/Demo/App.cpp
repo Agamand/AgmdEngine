@@ -196,7 +196,7 @@ void App::OnRender3D()
 	}
 	Texture::EndRenderToTexture();
 	//blur->ApplyEffect(tex[0],tex[1]);
-	 PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
+	 //PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
 	Texture::TextureRender(tex[1],ivec2(0),m_ScreenSize);
 	/*
 	for(int i = 0; i < m_particles.size(); i++)

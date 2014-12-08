@@ -331,6 +331,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\AgmdApplication.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Loaders\AssetLoader.h">
+      <Filter>Loaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -701,6 +704,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\AgmdApplication.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Loaders\AssetLoader.cpp">
+      <Filter>Loaders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

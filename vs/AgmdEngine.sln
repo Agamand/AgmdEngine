@@ -60,6 +60,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Planet", "Planet\Planet.vcx
 		{559D2DB9-42C9-40DA-A5DA-752F610DC378} = {559D2DB9-42C9-40DA-A5DA-752F610DC378}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{F500EEAD-9D4B-4050-98B3-BB1523CEEFFC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sample_reflexion", "..\samples\sample_reflexion\sample_reflexion.vcxproj", "{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{817B101F-A66F-4709-B9A6-7BE47A9D3648} = {817B101F-A66F-4709-B9A6-7BE47A9D3648}
+		{F8673B65-750A-4E24-A57F-157960E0D75A} = {F8673B65-750A-4E24-A57F-157960E0D75A}
+		{559D2DB9-42C9-40DA-A5DA-752F610DC378} = {559D2DB9-42C9-40DA-A5DA-752F610DC378}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Profiling|Any CPU = Debug_Profiling|Any CPU
@@ -498,8 +507,41 @@ Global
 		{3279626A-14AE-4ACC-871D-D44FB8C2C3FE}.Release|Win32.Build.0 = Release|Win32
 		{3279626A-14AE-4ACC-871D-D44FB8C2C3FE}.Release|x64.ActiveCfg = Release|x64
 		{3279626A-14AE-4ACC-871D-D44FB8C2C3FE}.Release|x64.Build.0 = Release|x64
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|Any CPU.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|Mixed Platforms.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|Mixed Platforms.Build.0 = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|Win32.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|Win32.Build.0 = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug_Profiling|x64.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|Win32.Build.0 = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Debug|x64.ActiveCfg = Debug|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|Any CPU.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|Mixed Platforms.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|Mixed Platforms.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|Win32.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|Win32.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_No_Opti|x64.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|Any CPU.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|Mixed Platforms.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|Mixed Platforms.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|Win32.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|Win32.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release_Profiling|x64.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|Any CPU.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|Win32.ActiveCfg = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|Win32.Build.0 = Release|Win32
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B} = {F500EEAD-9D4B-4050-98B3-BB1523CEEFFC}
 	EndGlobalSection
 EndGlobal

@@ -36,8 +36,8 @@ namespace Agmd
             _phi = -89;
         float r_temp = cos(_phi*((float)M_PI)/180);
             
-        vec3 _up = m_rotation*vec3(0,0,1);//(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),sin(_phi*M_PI/180)*sin(_theta*M_PI/180),r_temp);
-        _forward =  m_rotation*vec3(1,0,0);// glm::vec3(r_temp*cos(_theta*M_PI/180),r_temp*sin(_theta*M_PI/180),sin(_phi*M_PI/180));
+        vec3 _up = vec3(sin(_phi*M_PI/180)*cos(_theta*M_PI/180),r_temp,sin(_phi*M_PI/180)*sin(_theta*M_PI/180));
+        _forward =  glm::vec3(r_temp*cos(_theta*M_PI/180),sin(_phi*M_PI/180),r_temp*sin(_theta*M_PI/180));
         _left = glm::cross(_up,_forward);
         glm::normalize(_left);
 

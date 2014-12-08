@@ -309,7 +309,7 @@ namespace Agmd
     void Texture::BeginRenderToTexture(const Texture& texture0)
     {
 		Driver& render = Driver::Get();
-		render.SetViewPort(ivec2(0),ivec2(texture0.GetSize()));
+		
         if(!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
 		a_uint32 flags[] = {COLOR_ATTACHMENT};
@@ -318,6 +318,7 @@ namespace Agmd
         s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();
+		render.SetViewPort(ivec2(0),ivec2(texture0.GetSize()));
     }
 
 	void Texture::BeginRenderToTexture(const Texture& texture0,const Texture& texture1)

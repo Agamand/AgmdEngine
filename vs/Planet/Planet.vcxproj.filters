@@ -18,7 +18,8 @@
     <ClCompile Include="..\..\src\Examples\Planet\Planet\PlanetAtmosphereNode.cpp">
       <Filter>Planet</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Demo\Widgets.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\BaseFrame.cpp" />
+    <ClCompile Include="..\..\src\Examples\Planet\PlanetFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Examples\Planet\App.h" />
@@ -37,7 +38,8 @@
     <ClInclude Include="..\..\src\Examples\Planet\Planet\PlanetAtmosphereNode.h">
       <Filter>Planet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Demo\Widgets.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\BaseFrame.h" />
+    <ClInclude Include="..\..\src\Examples\Planet\PlanetFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Planet">

@@ -65,6 +65,7 @@ namespace Agmd
     class AButton;
 
     //Rendering Mode
+    
     class RenderingMode;
     class ForwardRendering;
     class VertexRendering;
@@ -75,7 +76,6 @@ namespace Agmd
     class Frustum;
     class BoundingBox;
     class Fast2DSurface;
-    class DeferredRendering;
 
 	//Scene Class
 
@@ -84,7 +84,14 @@ namespace Agmd
 	class DisplayNode;
 	class LightNode;
 	class MeshNode;
+    class CameraNode;
 
+    //Controller Class
+
+    class Controller;
+    class InputController;
+    class FirstPersonController;
+    class ThirdPersonController;
 }
 
 

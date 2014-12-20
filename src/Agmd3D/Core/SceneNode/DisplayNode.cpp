@@ -1,6 +1,6 @@
 
 #include <Core/SceneNode/DisplayNode.h>
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 #include <Core/ResourceManager.h>
 
 namespace Agmd

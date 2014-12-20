@@ -18,8 +18,8 @@ status : in pause
 #include <AgmdMaths/Vector2.h>
 #include <AgmdMaths/Matrix4.h>
 #include <AgmdUtilities/Utilities/Singleton.h>
-#include <Agmd3D/Core/SceneObject/Model.h>
-#include <Agmd3D/Core/SceneObject/SceneMgr.h>
+#include <Agmd3D/Core/Model/Model.h>
+#include <Agmd3D/Core/Model/SceneMgr.h>
 #include <Agmd3D/Core/GUI/ASlider.h>
 #include <map>
 #include <Container/Vector.h>

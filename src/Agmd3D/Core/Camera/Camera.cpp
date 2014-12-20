@@ -22,13 +22,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Camera::Camera(mat4& projection, vec3& pos) :
-    move(0.0f),
-    moveFlags(MOVE_NONE),
-    _position(pos),
-    m_speed(100.0f),
-    m_sensivity(0.2f),
-	recvInput(true),
+    Camera::Camera(mat4& projection) :
+//     move(0.0f),
+//     moveFlags(MOVE_NONE),
+//     _position(pos),
+//     m_speed(100.0f),
+//     m_sensivity(0.2f),
+// 	recvInput(true),
 	m_frustum(new Frustum(projection))
     {
         m_transform.m_MatProjection = projection;
@@ -38,9 +38,9 @@ namespace Agmd
         m_cameraBuffer.Fill(&m_transform,1);
     }
 
-
 	Camera::~Camera()
 	{
+		m_cameraBuffer.Release();
 		delete m_frustum;
 	}
 
@@ -62,7 +62,7 @@ namespace Agmd
 
     mat4 Camera::look()
     {
-        return lookAt(_position,_target,vec3(0,1,0));
+        return mat4();//lookAt(_position,_target,vec3(0,1,0));
     }
 
     void Camera::setActive(TCamera type)
@@ -111,7 +111,7 @@ namespace Agmd
         mouse = vec3(out);
         mouse /= out.x;
 
-        mouse -= _position;
+        //mouse -= _position;
         mouse = normalize(mouse);
 
         return true;
@@ -119,7 +119,7 @@ namespace Agmd
 
 	const std::string Camera::toString()
 	{
-		return "Camera(Abstract)";
+		return "Camera Object";
 	}
 
 	bool Camera::isInFrustrum( const BoundingBox& boundingBox )

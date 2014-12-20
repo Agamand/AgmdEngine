@@ -6,7 +6,7 @@
 // ============================================================================
 // */
 // 
-// #include <Core/SceneObject/Sky.h>
+// #include <Core/Model/Sky.h>
 // 
 // 
 // namespace Agmd

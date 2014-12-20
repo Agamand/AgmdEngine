@@ -1,6 +1,6 @@
 #include "PlanetAtmosphereNode.h"
 
-#include <Core/RenderObject/GeometryFactory.h>
+#include <Core/Model/GeometryFactory.h>
 #include <Core/Driver.h>
 #define _USE_MATH_DEFINES
 #include <math.h>

@@ -3,7 +3,7 @@
 
 #include <Core/Buffer/FrameBuffer.h>
 #include <Core/Texture/Texture.h>
-#include <Core/SceneObject/Light.h>
+#include <Core/Model/Light.h>
 #include <Core/Shader/ShaderProgram.h>
 #include <Vector2.h>
 

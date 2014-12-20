@@ -1,7 +1,7 @@
 #include "Planet.h"
 #include "PlanetModel.h"
 
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 #include <Core/Texture/Image.h>
 
 #include <Utilities/StringUtils.h>

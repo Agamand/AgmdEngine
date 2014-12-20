@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 
-#include <Core/SceneObject/Light.h>
+#include <Core/Model/Light.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Driver.h>
 #define _USE_MATH_DEFINES

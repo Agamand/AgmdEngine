@@ -28,7 +28,7 @@ status : in pause
 #include <Agmd3D\Core\SceneObject\Scene.h>
 #include <Agmd3D\Core\SceneObject\Water.h>
 #include <Agmd3D\Core\SceneObject\SkyBox.h>
-#include <Agmd3D/Core/SceneObject/Light.h>
+#include <Agmd3D/Core/Model/Light.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
@@ -44,7 +44,7 @@ status : in pause
 #include <Agmd3D/Core/GUI/ASlider.h>
 #include <Agmd3D/Core/Shader/ShaderPipeline.h>
 #include <Agmd3D/Core/Tools/Statistics.h>
-#include <Agmd3D/Core/SceneObject/Material.h>
+#include <Agmd3D/Core/Model/Material.h>
 #include <Agmd3D/Core/SceneNode/MeshNode.h>
 #include <Renderer/OpenGL/GlDriver.h>
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>

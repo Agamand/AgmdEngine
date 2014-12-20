@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _FOLLOWCAMERA_H_
+#ifdef _FOLLOWCAMERA_H_
 #define _FOLLOWCAMERA_H_
 
 #include <Core\Camera\Camera.h>

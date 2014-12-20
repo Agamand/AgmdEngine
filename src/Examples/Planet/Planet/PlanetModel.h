@@ -1,7 +1,7 @@
 #ifndef _PLANETMODEL_H_
 #define _PLANETMODEL_H_
 
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Shader/ShaderProgram.h>
 

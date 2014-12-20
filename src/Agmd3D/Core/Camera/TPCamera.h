@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef TPCAMERA_H
+#ifdef TPCAMERA_H
 #define TPCAMERA_H
 
 #include <Core\Camera\Camera.h>

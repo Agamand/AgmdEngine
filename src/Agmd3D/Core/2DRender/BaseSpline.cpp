@@ -1,5 +1,5 @@
 #include <Core/2DRender/BaseSpline.h>
-#include <Core/RenderObject/GeometryFactory.h>
+#include <Core/Model/GeometryFactory.h>
 #include <Container/Vector.h>
 #include <CommonDefines.h>
 namespace Agmd

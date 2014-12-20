@@ -1,6 +1,6 @@
 #include "PlanetTreeNode.h"
 #include "Planet.h"
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 #include <Core/Driver.h>
 #include <Core/Tools/Fast2DSurface.h>
 #include <Core/Tools/BoundingBox.h>

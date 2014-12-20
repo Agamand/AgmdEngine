@@ -5,17 +5,17 @@
 #include <Agmd3D/Core/Declaration.h>
 #include <Agmd3D/Core/DeclarationElement.h>
 #include <Agmd3D/Core/ResourceManager.h>
-#include <Agmd3D/Core/RenderObject/GeometryFactory.h>
+#include <Agmd3D/Core/Model/GeometryFactory.h>
 
 #include <Agmd3D/Core/Buffer/FrameBuffer.h>
 
 #include <Agmd3D/Core/RenderObject/GraphicString.h>
 
-#include <Agmd3D/Core/SceneObject/Scene.h>
-#include <Agmd3D/Core/SceneObject/Water.h>
-#include <Agmd3D/Core/SceneObject/SkyBox.h>
-#include <Agmd3D/Core/SceneObject/Light.h>
-#include <Agmd3D/Core/SceneObject/Material.h>
+#include <Agmd3D/Core/Model/Scene.h>
+#include <Agmd3D/Core/Model/Water.h>
+#include <Agmd3D/Core/Model/SkyBox.h>
+#include <Agmd3D/Core/Model/Light.h>
+#include <Agmd3D/Core/Model/Material.h>
 
 #include <Agmd3D/Core/SceneNode/MeshNode.h>
 

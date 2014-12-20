@@ -1,8 +1,8 @@
 
 
 #include <Core/SceneNode/MeshNode.h>
-#include <Core/SceneObject/Material.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Material.h>
+#include <Core/Model/Model.h>
 
 namespace Agmd
 {

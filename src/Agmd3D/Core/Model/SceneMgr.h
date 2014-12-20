@@ -6,8 +6,8 @@
 #include <Core/SceneNode/SceneNode.h>
 #include <Core/SceneNode/DisplayNode.h>
 #include <Core/SceneNode/LightNode.h>
-#include <Core/SceneObject/Light.h>
-#include <Core/SceneObject/SkyBox.h>
+#include <Core/Model/Light.h>
+#include <Core/Model/SkyBox.h>
 #include <Container/Vector.h>
 #include <Core/Tools/RenderQueue.h>
 namespace Agmd

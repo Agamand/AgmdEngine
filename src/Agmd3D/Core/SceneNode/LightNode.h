@@ -4,7 +4,7 @@
 #include <Config/Export.h>
 #include <Config/Fwd.h>
 #include <Core/SceneNode/SceneNode.h>
-#include <Core/SceneObject/Light.h>
+#include <Core/Model/Light.h>
 
 namespace Agmd{
 	class AGMD3D_EXPORT LightNode : public SceneNode

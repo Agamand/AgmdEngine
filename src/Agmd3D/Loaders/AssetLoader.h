@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define ASSETJLOADER_H
 
 #include <Core/Loader.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 #include <Core/Enums.h>
 #include <istream>
 

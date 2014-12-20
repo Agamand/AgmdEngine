@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 #include <Core/Driver.h>
 #include <Core/Shader/ShaderPipeline.h>
 

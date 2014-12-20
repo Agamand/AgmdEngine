@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/RenderingMode/VertexRendering.h>
 #include <Core/Driver.h>
-#include <Core/SceneObject/SceneMgr.h>
+#include <Core/Model/SceneMgr.h>
 
 namespace Agmd
 {

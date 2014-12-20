@@ -1,4 +1,4 @@
-#include <Core/RenderObject/GeometryFactory.h>
+#include <Core/Model/GeometryFactory.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>

@@ -7,8 +7,8 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Matrix4.h>
-#include <Core/SceneObject/Model.h>
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Model.h>
+#include <Core/Model/Material.h>
 #include <Core/Driver.h>
 #include <Debug/Exception.h>
 #include <Debug/New.h>

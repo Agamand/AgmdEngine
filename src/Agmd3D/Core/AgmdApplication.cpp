@@ -25,7 +25,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Camera/TPCamera.h>
 #include <Core/GUI/GUIMgr.h>
 #include <Core/RenderingMode/RenderingMode.h>
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 #include <Core/Shader/ShaderPipeline.h>
 #include <Core/Tools/Statistics.h>
 #include <Debug/Profiler.h>

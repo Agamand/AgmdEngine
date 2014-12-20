@@ -6,7 +6,7 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef FPCAMERA_H
+#ifdef FPCAMERA_H
 #define FPCAMERA_H
 
 #include <Core\Camera\Camera.h>

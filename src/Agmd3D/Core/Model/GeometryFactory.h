@@ -5,7 +5,7 @@
 #define _GEOMETRYFACTORY_H_
 
 #include <Core/2DRender/BaseSpline.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 
 namespace Agmd
 {

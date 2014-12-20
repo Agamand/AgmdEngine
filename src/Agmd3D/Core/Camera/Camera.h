@@ -19,38 +19,38 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    enum TCameraMove
-    {
-        MOVE_NONE        = 0x00,
-        MOVE_FORWARD    = 0x01,
-        MOVE_BACK        = 0x02,
-        MOVE_LEFT        = 0x04,
-        MOVE_RIGHT        = 0x08,
-        MOVE_UP            = 0x10,
-        MOVE_DOWN        = 0x20,
-        ZOOM_IN            = 0x40,
-        ZOOM_OUT        = 0x80
-    };
+//     enum TCameraMove
+//     {
+//         MOVE_NONE        = 0x00,
+//         MOVE_FORWARD    = 0x01,
+//         MOVE_BACK        = 0x02,
+//         MOVE_LEFT        = 0x04,
+//         MOVE_RIGHT        = 0x08,
+//         MOVE_UP            = 0x10,
+//         MOVE_DOWN        = 0x20,
+//         ZOOM_IN            = 0x40,
+//         ZOOM_OUT        = 0x80
+//     };
 
 
     class AGMD3D_EXPORT Camera
     {
     public:
-        Camera(mat4& projection, vec3& pos);
+        Camera(mat4& projection);
         virtual ~Camera();
 
-        virtual void onUpdate(a_uint64 time_diff) = 0;
-        virtual void onMouseMotion(int x, int y) = 0;
-		virtual void onKeyboard(a_char key, bool up) = 0;
-        virtual void onMouseWheel(float delta) = 0;
-        virtual void onMouseWheel(bool up){};
-        virtual const glm::vec3 getPosition() { return _position; }
-        virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
-        void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
-        void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }
+//         virtual void onUpdate(a_uint64 time_diff) = 0;
+//         virtual void onMouseMotion(int x, int y) = 0;
+// 		virtual void onKeyboard(a_char key, bool up) = 0;
+//         virtual void onMouseWheel(float delta) = 0;
+//         virtual void onMouseWheel(bool up){};
+//         virtual const glm::vec3 getPosition() { return _position; }
+//         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
+//         void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
+/*        void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }*/
 
-        virtual void setTarget(glm::vec3& pos) { _target = pos; } 
-        const glm::vec3& getTarget() {return _target;}
+        //virtual void setTarget(glm::vec3& pos) { _target = pos; } 
+        //const glm::vec3& getTarget() {return _target;}
 
         virtual mat4 look();
 
@@ -62,11 +62,11 @@ namespace Agmd
 		const mat4& getProjection() { return m_transform.m_MatProjection; }
 		virtual const std::string toString();
 		bool isInFrustrum(const BoundingBox& boundingBox);
-		void SetRecvInput(bool active = true){	recvInput = active;	}
-		float* GetSpeedPtr(){return &m_speed;}
+		//void SetRecvInput(bool active = true){	recvInput = active;	}
+		//float* GetSpeedPtr(){return &m_speed;}
     protected:
         
-        virtual void updateVector() = 0;
+        //virtual void updateVector() = 0;
         void updateBuffer(mat4& view);
 
 		struct CameraBuffer
@@ -76,20 +76,20 @@ namespace Agmd
 			mat4 m_MatProjection;
 		};
 
-        float m_speed;
-        float m_sensivity;
-
-        vec3 move;
-        a_uint32 moveFlags;
-
-        glm::vec3 _position;
-        glm::vec3 _target;
-        glm::vec3 _forward;
-        glm::vec3 _left;
+//         float m_speed;
+//         float m_sensivity;
+// 
+//         vec3 move;
+//         a_uint32 moveFlags;
+// 
+//         glm::vec3 _position;
+//         glm::vec3 _target;
+//         glm::vec3 _forward;
+//         glm::vec3 _left;
         CameraBuffer m_transform;
-        float _theta;
-        float _phi;
-		bool				recvInput;
+//         float _theta;
+//         float _phi;
+// 		bool				recvInput;
 		Frustum*			m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
 		

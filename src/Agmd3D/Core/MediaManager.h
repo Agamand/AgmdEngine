@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/StringUtils.h>
 #include <Utilities/SmartPtr.h>
 #include <Core/Loader.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 #include <Core/Texture/Image.h>
 #include <Debug/Exception.h>
 #include <Debug/Logger.h>

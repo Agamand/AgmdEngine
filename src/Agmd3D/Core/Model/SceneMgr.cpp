@@ -1,4 +1,4 @@
-#include <Core/SceneObject/SceneMgr.h>
+#include <Core/Model/SceneMgr.h>
 #include <Core/Driver.h>
 
 namespace Agmd

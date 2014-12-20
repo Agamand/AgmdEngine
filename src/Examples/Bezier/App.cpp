@@ -38,11 +38,11 @@ status : in pause
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
 #include <Core/RenderingMode/DeferredRendering.h>
-#include <Core/SceneObject/SceneMgr.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/SceneMgr.h>
+#include <Core/Model/Model.h>
 #include <Core/SceneNode/MeshNode.h>
-#include <Core/SceneObject/Light.h>
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Light.h>
+#include <Core/Model/Material.h>
 #include <random>
 
 

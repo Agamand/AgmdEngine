@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/RenderObject/Displayable.h>
-#include <Core/SceneObject/Material.h>
+#include <Core/Model/Material.h>
 
 
 namespace Agmd

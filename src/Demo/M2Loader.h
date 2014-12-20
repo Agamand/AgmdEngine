@@ -15,7 +15,7 @@ status : in pause
 #define OBJLOADER_H
 
 #include <Core/Loader.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 #include <Core/Enums.h>
 #include <istream>
 

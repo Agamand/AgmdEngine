@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/FontManager.h>
 #include <Core/RenderObject/GraphicString.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 #include <Core/Driver.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Texture/Image.h>

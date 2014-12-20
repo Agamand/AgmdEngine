@@ -6,27 +6,26 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef SKY_H
-#define SKY_H
+#ifndef _CONTROLLER_H_
+#define _CONTROLLER_H_
+
+#include <CommonDefines.h>
 
 #include <Config/Fwd.h>
 #include <Config/Export.h>
-//#include <Core/SceneObject/Displayable.h>
+
 
 namespace Agmd
 {
-//     class AGMD3D_EXPORT Sky : public Displayable
-//     {
-// 
-//     public:
-//         Sky(float size = 1.0f);
-//         virtual ~Sky();
-//         
-// 
-// 
-//     protected:
-//         float m_fSize;
-//     };
-// }
 
-#endif //SKY_H
+	class AGMD3D_EXPORT Controller
+	{
+	public:
+		Controller();
+		virtual void update(a_uint32 /*time_diff*/) = 0;
+	};
+
+}
+
+
+#endif /* _CONTROLLER_H_ */

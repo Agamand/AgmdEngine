@@ -14,8 +14,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/Texture.h>
 #include <Core/Shader/ShaderProgram.h>
 #include <Core/RenderObject/Displayable.h>
-#include <Core/SceneObject/SkyBox.h>
-#include <Core/SceneObject/Light.h>
+#include <Core/Model/SkyBox.h>
+#include <Core/Model/Light.h>
 
 #include <CommonDefines.h>
 

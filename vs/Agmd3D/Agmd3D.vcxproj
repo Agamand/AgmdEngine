@@ -203,9 +203,7 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\Camera\FollowCamera.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Camera\FPCamera.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Camera\TPCamera.cpp" />
-    <ClCompile Include="..\..\src\Agmd3D\Core\Controller\Controller.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Controller\FirstPersonController.cpp" />
-    <ClCompile Include="..\..\src\Agmd3D\Core\Controller\InputController.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Controller\ThirdPersonController.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\AntiAliasing.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Effects\AsciEffect.cpp" />

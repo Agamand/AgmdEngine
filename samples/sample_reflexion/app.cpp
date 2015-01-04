@@ -18,6 +18,7 @@
 #include <Agmd3D/Core/Model/Material.h>
 
 #include <Agmd3D/Core/SceneNode/MeshNode.h>
+#include <Agmd3D/Core/SceneNode/CameraNode.h>
 
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
@@ -37,6 +38,8 @@
 #include <Agmd3D/Core/GUI/AWindow.h>
 
 #include <Agmd3D/Core/Shader/ShaderPreCompiler.h>
+#include <Agmd3D/Core/Controller/FirstPersonController.h>
+
 
 #include <Agmd3D/Core/Tools/Statistics.h>
 #include <Renderer/OpenGL/GlDriver.h>
@@ -104,7 +107,7 @@ void App::init()
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
 	m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 	ForwardRendering* mode = new ForwardRendering(getScreen());
-
+	//DeferredRendering* mode = new DeferredRendering(getScreen());
 	RenderingMode::setRenderingMode(mode);
 	m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
 	m_Scene = new SceneMgr();
@@ -185,8 +188,13 @@ void App::init()
 
 	Driver::Get().SetActiveScene(m_Scene);
 	Driver::Get().SetCullFace(2);
-	cam3D = new FPCamera(m_MatProj3D,vec3(3,0,0));
-	cam2D = new FPCamera(m_MatProj2D);
+	cam3D = new Camera(m_MatProj3D);
+	
+	InputController* controller = new FirstPersonController();
+	camNode = new CameraNode(cam3D,controller);
+	camNode->setController(controller);
+	m_Scene->AddNode(camNode);
+	cam2D = new Camera(m_MatProj2D);
 	Camera::setCurrent(cam3D, CAMERA_3D);
 	Camera::setCurrent(cam2D, CAMERA_2D);
 }
@@ -209,7 +217,7 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
 	_time += time_diff/10000.0f;
 
-	refractionPipe->setParameter("u_camPosition",cam3D->getPosition());
+	refractionPipe->setParameter("u_camPosition",camNode->getTransform().getPosition());
 	generateNormalMap(water_normal,_time);
 }
 

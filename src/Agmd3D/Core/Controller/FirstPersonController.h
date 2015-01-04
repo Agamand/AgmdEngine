@@ -26,19 +26,17 @@ namespace Agmd
 	class AGMD3D_EXPORT FirstPersonController : public InputController
 	{
 	public:
-		FirstPersonController(Transform* _transform = NULL);
+		FirstPersonController();
 
-		virtual void onClick( int click, vec2 pos, bool up );
-
-		virtual void onMove( vec2 pos );
-
-		virtual void onKey( a_char key,bool up );
-
-		virtual void update( a_uint32 timeDiff);
-
-		void setBindTransform(Transform* transform){}
-		const Transform* getTransform() const {return m_bindedTransform;}
 		void updateMove();
+
+		virtual void update( a_uint32 );
+
+		virtual void OnClick( int click,int state, const vec2& pos, bool up );
+
+		virtual void OnKey( char key, bool up );
+
+		virtual void OnMouseMotion( const vec2& pos, const ivec2& posDiff);
 
 	private:
 		enum TMove
@@ -57,13 +55,16 @@ namespace Agmd
 		};
 
 
-		Transform*	m_bindedTransform;
+		
 		float		m_speed;
 		a_uint32	m_moveFlags;
 		vec3		_forward;
 		vec3		_up;
 		vec3		_left;
 		vec3		_move;
+
+		float m_sensivity;
+		a_int32 m_mouseState;
 	};
 
 };

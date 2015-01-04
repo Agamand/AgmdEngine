@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define WATER_H
 
 #include <Vector2.h>
-#include <Core/SceneObject/Model.h>
+#include <Core/Model/Model.h>
 
 
 #include <string>

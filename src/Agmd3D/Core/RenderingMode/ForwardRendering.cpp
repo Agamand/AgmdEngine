@@ -39,8 +39,14 @@ namespace Agmd
     void ForwardRendering::init()
     {
         Driver& render = Driver::Get();
-        m_framebuffer = render.CreateFrameBuffer();
-        m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+
+		if(!m_framebuffer)
+			m_framebuffer = render.CreateFrameBuffer();
+		if(m_depthbuffer)
+		{
+			delete m_depthbuffer;
+			m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+		}
 
         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
@@ -113,8 +119,8 @@ namespace Agmd
             Render lighting to color_attachment1
         */
 
-        /*const std::vector<Light*>&  lights = sc->GetLights();
-        uint32 maxLights = lights.size();
+        const std::vector<Light*>&  lights = sc->GetLights();
+        a_uint32 maxLights = lights.size();
         if(maxLights)
         {
             m_framebuffer->DrawBuffers(1,bufferFlags[1]);
@@ -126,14 +132,14 @@ namespace Agmd
             render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
         
             Light* const* _lights = &lights[0];
-            for(uint32 i = 0; i < maxLights; i++)
+            for(a_uint32 i = 0; i < maxLights; i++)
             {
                 _lights[i]->Bind();
                 //sc->Render(RENDERPASS_LIGHTING);
             }
             m_framebuffer->UnBind();
             render.Enable(RENDER_ALPHABLEND, false);
-        }*/
+        }
         /*
             Render to main framebuffer
         */

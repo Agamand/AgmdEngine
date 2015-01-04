@@ -38,7 +38,7 @@ namespace Agmd
 		const BoundingBox& getGlobalBoundingBox() const { return m_globalBbox;};
 
 		virtual bool isVisible( BoundingBox& bbox );
-		virtual bool update(Transform* transform, bool updateChildren, bool transformChanged);
+		virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
 	protected:
 		BoundingBox m_baseBbox;
 		BoundingBox m_localBBox;

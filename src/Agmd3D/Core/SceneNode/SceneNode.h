@@ -23,9 +23,16 @@ namespace Agmd
 {
 	enum NodeType
 	{
+		ROOT_NODE,
 		DISPLAYABLE_NODE,
 		LIGHT_NODE,
-		ROOT_NODE
+		CAMERA_NODE
+	};
+
+	enum UpdateFlags
+	{
+		UPDATE_CHILDREN = 0x01,
+		TRANSFORM_CHANGED = 0x02
 	};
 
 	class DisplayNode;
@@ -41,12 +48,14 @@ namespace Agmd
 					m_children[i]->findVisible(cam,display,light);
 		}
 
-		virtual bool update(Transform* transform, bool updateChildren, bool transformChanged);
+		virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
         Transform& getTransform();
-		void addChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->update(m_transform,true,true);}
+		void addChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->update(m_transform,0,TRANSFORM_CHANGED|UPDATE_CHILDREN);}
 		NodeType getType() const {return m_type;}
 		bool isEmpty();
 		void clear();
+		void setController( Controller* controller );
+		Controller* getController() const {return m_sceneController;}
 	protected:
 		
 
@@ -54,6 +63,7 @@ namespace Agmd
 		NodeType m_type;
 		a_vector<SceneNode*> m_children;
 		SceneNode* m_parent;
+		Controller* m_sceneController;
 	};
 
 }

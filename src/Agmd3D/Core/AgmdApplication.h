@@ -123,7 +123,7 @@ namespace Agmd{
 		public:
 			virtual void OnClick(int click,int state, const vec2& pos, bool up) = 0;
 			virtual void OnKey(char key, bool up) = 0;
-			virtual void OnMouseMotion(const vec2& pos) = 0;
+			virtual void OnMouseMotion(const vec2& pos, const ivec2& posdiff) = 0;
 		};
         virtual void Run(int argc = 0, char** argv=NULL);
         void Exit();
@@ -137,6 +137,8 @@ namespace Agmd{
 		void draw();
 		static AgmdApplication* getApplication(){return s_application;}
 		bool isReady() const {return m_isReady;}
+		InputController* m_sceneController;
+		a_uint32 getDeltaTime(){return m_deltaTime;}
     private:
         
 		HINSTANCE				m_Instance;
@@ -153,6 +155,7 @@ namespace Agmd{
         a_uint32				m_lastTime;
         a_uint32				m_fpsTimer;
         float					m_fps;
+		a_uint32				m_deltaTime;
 
     protected:
         AgmdApplication(ivec2 screenSize = ivec2(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -175,7 +178,7 @@ namespace Agmd{
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;
         virtual void OnRender2D() = 0;
-		
+
 		Camera*              camera;
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;
@@ -184,6 +187,7 @@ namespace Agmd{
 		std::string m_frameName;
 		bool m_createDefaultFrame;
 		bool m_isReady;
+		
 	};
 }
 

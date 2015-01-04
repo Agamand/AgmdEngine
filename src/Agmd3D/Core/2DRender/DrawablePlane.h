@@ -31,7 +31,7 @@ namespace Agmd
 
 		virtual void OnKey( char key, bool up );
 
-		virtual void OnMouseMotion( const vec2& pos );
+		virtual void OnMouseMotion( const vec2& pos, const ivec2& posDiff);
 		void clear();
 
 		virtual void valueUpdate( float value,float cursor );

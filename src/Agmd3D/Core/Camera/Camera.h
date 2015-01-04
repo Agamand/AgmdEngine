@@ -35,6 +35,7 @@ namespace Agmd
 
     class AGMD3D_EXPORT Camera
     {
+	friend class CameraNode;
     public:
         Camera(mat4& projection);
         virtual ~Camera();

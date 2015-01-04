@@ -6,8 +6,8 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _DISPLAYNODE_H_
-#define _DISPLAYNODE_H_
+#ifndef _CAMERANODE_H_
+#define _CAMERANODE_H_
 
 #include <Config/Fwd.h>
 #include <Core/Resource.h>
@@ -25,13 +25,15 @@ namespace Agmd
 	class AGMD3D_EXPORT CameraNode : public SceneNode
 	{
 	public :
-		CameraNode(Transform* t,Controller);
+		CameraNode(Camera* cam, InputController* c = NULL,Transform* t = NULL);
 		virtual ~CameraNode(){};
 
-		virtual void findVisible(Camera*cam, RenderQueue& display, a_vector<LightNode*>& light);
-
 		virtual bool isVisible( BoundingBox& bbox );
-		virtual bool update(Transform* transform, bool updateChildren, bool transformChanged);
+
+		virtual void findVisible( Camera*cam, RenderQueue& display,a_vector<LightNode*>& light );
+
+		virtual bool update( Transform* transform, a_uint32 time, a_uint32 updateFlags );
+		Camera* m_camera;
 	protected:
 
 	};
@@ -39,4 +41,4 @@ namespace Agmd
 }
 
 
-#endif /* _DISPLAYNODE_H_ */
+#endif /* _CAMERANODE_H_ */

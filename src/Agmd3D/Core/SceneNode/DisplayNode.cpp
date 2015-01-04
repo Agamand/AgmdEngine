@@ -29,9 +29,9 @@ namespace Agmd
 		SceneNode::findVisible(cam,display,light);
 	}
 
-	bool DisplayNode::update( Transform* transform, bool updateChildren, bool transformChanged )
+	bool DisplayNode::update( Transform* transform, a_uint32 time, a_uint32 updateFlags )
 	{
-		bool transformUpdate = SceneNode::update(transform,updateChildren,transformChanged);
+		bool transformUpdate = SceneNode::update(transform,time,updateFlags);
 		
 		if(transformUpdate) // need implement : m_baseBbox = modelbbox + (all children bbox), actually is only m_baseBbox = modelbbox
 		{

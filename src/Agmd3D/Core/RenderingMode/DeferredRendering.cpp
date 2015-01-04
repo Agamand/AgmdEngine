@@ -42,11 +42,8 @@ namespace Agmd
     void DeferredRendering::init()
    {
         Driver& render = Driver::Get();
-        m_framebuffer = render.CreateFrameBuffer();
-        m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-        m_colorbuffer = render.CreateRenderBuffer(m_screen, PXF_A8R8G8B8);
-        m_normalbuffer = render.CreateRenderBuffer(m_screen, PXF_R16G16B16);
-        m_positionbuffer = render.CreateRenderBuffer(m_screen, PXF_R32G32B32);
+		if(!m_framebuffer)
+			m_framebuffer = render.CreateFrameBuffer();
 
         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[1].Create(m_screen, PXF_R16G16B16, TEXTURE_2D, TEX_NOMIPMAP);
@@ -54,11 +51,6 @@ namespace Agmd
         m_textureBuffer[3].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[4].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[5].Create(m_screen,PXF_DEPTH,TEXTURE_2D,TEX_NOMIPMAP);
-        //m_depthCubemap.Create(ivec2(1024),PXF_R32G32B32,TEXTURE_CUBE,TEX_NOMIPMAP,"depth_cubemap");
-        m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
-        m_framebuffer->SetRender(m_colorbuffer, COLOR_ATTACHMENT);
-        m_framebuffer->SetRender(m_normalbuffer, COLOR_ATTACHMENT+1);
-        m_framebuffer->SetRender(m_positionbuffer, COLOR_ATTACHMENT+2);
 
         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
@@ -70,7 +62,8 @@ namespace Agmd
         m_light_program[SPOT].LoadFromFile("Shader/RenderingShader/DeferredSpotLightShader.glsl");
         m_light_program[DIRECTIONNAL_WITH_SHADOW].LoadFromFile("Shader/RenderingShader/DeferredDirLightShaderWS.glsl");
         m_light_program[SPOT_WITH_SHADOW].LoadFromFile("Shader/RenderingShader/DeferredSpotLightShaderWS.glsl");
-        m_shadowRender = new ShadowMapRenderer(ivec2(2048));
+		if(!m_shadowRender)
+			m_shadowRender = new ShadowMapRenderer(ivec2(2048));
     }
 
 
@@ -83,10 +76,6 @@ namespace Agmd
 		vec3 cameraPosition = vec3(inverseCam*vec4(0,0,0,1));
         const a_vector<Light*>& lights = sc->GetLights();
 
-        const Light*const*  t = &lights[0];
-        
-        Light ** test = (Light**)((int)t);
-        
         
         a_uint32 maxLights = lights.size();
 

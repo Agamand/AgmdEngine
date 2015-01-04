@@ -228,7 +228,7 @@ namespace Agmd
 			m_slider[i]->setEnable(false);*/
 	}
 
-	void DrawablePlane::OnMouseMotion( const vec2& pos )
+	void DrawablePlane::OnMouseMotion( const vec2& pos, const ivec2& posDiff )
 	{
 		if(m_selectedPoint && m_selectedSpline && !rightDown)
 		{

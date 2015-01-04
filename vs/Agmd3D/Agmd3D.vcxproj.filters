@@ -726,13 +726,7 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\Model\Sprite.cpp">
       <Filter>Core\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\Controller\Controller.cpp">
-      <Filter>Core\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Controller\FirstPersonController.cpp">
-      <Filter>Core\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Agmd3D\Core\Controller\InputController.cpp">
       <Filter>Core\Controller</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Controller\ThirdPersonController.cpp">

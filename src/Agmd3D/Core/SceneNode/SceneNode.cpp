@@ -8,38 +8,45 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/SceneNode/SceneNode.h>
 #include <Core/Model/Material.h>
-
+#include <Core/Controller/Controller.h>
 
 namespace Agmd
 {
 
-    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type), m_parent(NULL)
+    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type), m_parent(NULL),m_sceneController(NULL)
     {
 		if(!transform)
 			m_transform = new Transform();
 		else m_transform = transform;
-		update(NULL,false,true);
+		update(NULL,0,TRANSFORM_CHANGED);
 	}
 
     SceneNode::~SceneNode()
-    {}
+    {
+		if(m_sceneController)
+			m_sceneController->m_bindedNode = NULL;
+	}
 
     Transform& SceneNode::getTransform() 
     { 
         return *m_transform;
     }
 
-	bool SceneNode::update( Transform* transform, bool updateChildren, bool transformChanged )
+	bool SceneNode::update( Transform* transform, a_uint32 time, a_uint32 updateFlags )
 	{
-		bool transformUpdate = transformChanged || m_transform->needUpdate();
-		if(transformUpdate)
+		
+		if(m_transform->needUpdate())
+			updateFlags |= TRANSFORM_CHANGED;
+		if(updateFlags & TRANSFORM_CHANGED)
 			m_transform->update(transform);
-		if(updateChildren && !m_children.empty())
+		if(updateFlags & UPDATE_CHILDREN && !m_children.empty())
 		{
 			for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
-				m_children[i]->update(m_transform,updateChildren,transformUpdate);
+				m_children[i]->update(m_transform,time,updateFlags);
 		}
-		return transformUpdate;
+		if(m_sceneController)
+			m_sceneController->update(time);
+		return (bool)(updateFlags & TRANSFORM_CHANGED);
 	}
 
 	bool SceneNode::isEmpty()
@@ -51,6 +58,14 @@ namespace Agmd
 	void SceneNode::clear()
 	{
 		m_children.clear();
+	}
+
+	void SceneNode::setController( Controller* controller )
+	{
+		if(m_sceneController)
+			m_sceneController->m_bindedNode = NULL;
+		m_sceneController=controller;
+		m_sceneController->m_bindedNode = this;
 	}
 
 }

@@ -57,6 +57,13 @@ namespace AgmdMaths
 
 		void update(Transform* t,bool forcedUpdate = false);
 		bool needUpdate() const;
+
+		const vec3 getPosition() const
+		{
+			return vec3(m_globalMatrix*vec4(0,0,0,1));
+		}
+
+
 		const vec3&     position;
         const quat&     rotation;
 

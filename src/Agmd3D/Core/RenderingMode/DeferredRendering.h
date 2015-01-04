@@ -52,9 +52,9 @@ namespace Agmd
         }
 
         ShadowMapRenderer* getShadowRenderer();
-
+		void init();
     private:
-        void init();
+        
 
         FrameBuffer*		m_framebuffer;
         RenderBuffer*		m_depthbuffer;

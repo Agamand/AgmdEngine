@@ -1,3 +1,4 @@
+#include <Core/AgmdApplication.h>
 #include <Core/Model/SceneMgr.h>
 #include <Core/Driver.h>
 
@@ -33,7 +34,8 @@ namespace Agmd
 
 	void SceneMgr::Update()
 	{
-		m_root->update(NULL,true,false);
+		a_uint32 time = AgmdApplication::getApplication()->getDeltaTime();
+		m_root->update(NULL,time,UPDATE_CHILDREN);
 	}
 
 	void SceneMgr::FindVisible( RenderQueue& displayable,std::vector<LightNode*>& light)

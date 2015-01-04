@@ -7,26 +7,35 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/Controller/FirstPersonController.h>
-
+#include <Core/SceneNode/SceneNode.h>
 namespace Agmd
 {
-	FirstPersonController::FirstPersonController(Transform* _transform) : m_bindedTransform(_transform),m_speed(1.f),
+	FirstPersonController::FirstPersonController() : InputController(),m_speed(0.2f),
 		_forward(0,0,1),_up(0,1,0),m_moveFlags(0)
 	{
 		_left = glm::cross(_up,_forward);
+		m_sensivity = 0.2f;
 	}
 
-	void FirstPersonController::onClick( int click, vec2 pos, bool up )
+	void FirstPersonController::OnClick( int click,int state, const vec2& pos, bool up )
+	{
+		m_mouseState = state;
+	}
+
+	void FirstPersonController::OnMouseMotion( const vec2& pos, const ivec2& posDiff)
 	{
 		
+		if(m_bindedNode)
+		{
+			if(m_mouseState & MOUSE_LEFT)
+			{
+				m_bindedNode->getTransform().rotate(posDiff.x*m_sensivity,vec3(0,1,0));
+				m_bindedNode->getTransform().rotate(posDiff.y*m_sensivity,vec3(1,0,0));
+			}
+		}
 	}
 
-	void FirstPersonController::onMove( vec2 pos )
-	{
-		throw std::exception("The method or operation is not implemented.");
-	}
-
-	void FirstPersonController::onKey( a_char key,bool up )
+	void FirstPersonController::OnKey( char key, bool up )
 	{
         a_uint32 tempFlags = MOVE_NONE;
         switch(key)
@@ -44,10 +53,10 @@ namespace Agmd
             tempFlags = MOVE_RIGHT;
             break;
         case 'E':
-            //tempFlags = MOVE_UP;
+            tempFlags = ROLL_RIGHT;
             break;
         case 'A':
-            //tempFlags = MOVE_DOWN;
+            tempFlags = ROLL_LEFT;
             break;
         }
 
@@ -58,6 +67,7 @@ namespace Agmd
 	}
 	void FirstPersonController::updateMove()
 	{	
+	   _move = vec3(0);
        if(m_moveFlags & MOVE_FORWARD)
            _move += _forward;
 
@@ -78,9 +88,18 @@ namespace Agmd
 	}
 	void FirstPersonController::update( a_uint32 time )
 	{
-		if(!m_bindedTransform)
+		if(!m_bindedNode)
 			return;
-		m_bindedTransform->translate(_move*m_speed*(float)time,m_bindedTransform);
+		Transform& t = m_bindedNode->getTransform();
+		t.translate(-_move*m_speed*(float)time);
+		if(m_moveFlags & ROLL_LEFT  ^ m_moveFlags & ROLL_RIGHT)
+		{
+			if(m_moveFlags & ROLL_LEFT)
+				m_bindedNode->getTransform().rotate(m_speed*(float)time,vec3(0,0,1));
+			else
+				m_bindedNode->getTransform().rotate(-m_speed*(float)time,vec3(0,0,1));
+			
+		}
 	}
 }
 

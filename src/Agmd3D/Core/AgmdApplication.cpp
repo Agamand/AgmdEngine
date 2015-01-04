@@ -291,13 +291,15 @@ namespace Agmd
     camera          (NULL),
     last_mouse_pos  (0,0),
     mouseState      (MOUSE_NONE),
-    m_lastTime       (0),
+    m_lastTime      (0),
     m_fps           (0),
-    m_fpsTimer       (SECONDS_IN_MS),
+    m_fpsTimer      (SECONDS_IN_MS),
+	m_deltaTime		(0),
     m_ScreenSize    (screenSize),
 	m_createDefaultFrame(false),
 	m_isReady		(false),
-	m_frameName		("Agmd sample application")
+	m_frameName		("Agmd sample application"),
+	m_sceneController(NULL)
     {
         assert(m_Instance != NULL);
         s_application = this;
@@ -321,9 +323,11 @@ namespace Agmd
 		m_lastTime      (0),
 		m_fps           (0),
 		m_fpsTimer      (SECONDS_IN_MS),
+		m_deltaTime		(0),
 		m_isReady		(false),
 		m_ScreenSize    (1920,1080),
-		m_frameName		(frameName)
+		m_frameName		(frameName),
+		m_sceneController(NULL)
 	{
 		assert(m_Instance != NULL);
 		s_application = this;
@@ -611,6 +615,7 @@ namespace Agmd
 		float renderTime = 0, guiTime = 0;
 		a_uint32 time = clock();
 		a_uint32 time_diff = time - m_lastTime;
+		m_deltaTime = time_diff;
 		m_lastTime = time;
 		Driver& render =  Driver::Get();
 		render.GetStatistics().ResetStatistics();
@@ -744,9 +749,9 @@ namespace Agmd
 		camera = Camera::getCurrent();
 		ivec2 posDiff = last_mouse_pos - ivec2(pos);
 		for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-			m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1));
-		if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
-			camera->onMouseMotion(posDiff.x, posDiff.y);
+			m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),posDiff);
+		//if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
+			//camera->onMouseMotion(posDiff.x, posDiff.y);
 
 		last_mouse_pos.x = pos.x;
 		last_mouse_pos.y = pos.y;
@@ -759,7 +764,7 @@ namespace Agmd
 		camera = Camera::getCurrent();
 		for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 			m_inputListener[i]->OnKey(key,up);
-		camera->onKeyboard(key,up);
+		//camera->onKeyboard(key,up);
 		switch(key)
 		{
 		case WXK_F1:
@@ -779,6 +784,9 @@ namespace Agmd
 		m_ScreenSize = size;
 		Driver::Get().SetViewPort(ivec2(0,0),size);
 		Driver::Get().SetScreen(m_ScreenSize);
+		
+		if((RenderingMode* mode = RenderingMode::getRenderingMode()) != NULL)
+
 	}
 
 #ifdef  USE_WX
@@ -789,6 +797,9 @@ namespace Agmd
 		m_glcanvas = new GLCanvas(frame);
 		frame->GetSizer()->Add(m_glcanvas, 1, wxEXPAND | wxALL, 5);
 	}
+
+	
+
 #endif //USE_WX
 
 

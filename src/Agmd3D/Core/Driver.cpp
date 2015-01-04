@@ -81,9 +81,9 @@ namespace Agmd
 
     void Driver::OnUpdate(a_uint64 t_diff)
     {
-         Camera* cam = Camera::getCurrent();
-         if(cam)
-             cam->onUpdate(t_diff);
+         //Camera* cam = Camera::getCurrent();
+         //if(cam)
+             //cam->onUpdate(t_diff);
     }
 
         mat4 Driver::GetMatView() 

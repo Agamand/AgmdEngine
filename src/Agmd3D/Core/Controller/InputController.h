@@ -15,18 +15,16 @@ https://github.com/Agamand/AgmdEngine
 #include <Config/Export.h>
 
 #include <Core/Controller/Controller.h>
+#include <Core/AgmdApplication.h>
 
 #include <Vector2.h>
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT InputController : public Controller
+	class AGMD3D_EXPORT InputController : public Controller, public AgmdApplication::InputListener
 	{
 	public:
-		InputController();
-		virtual void onClick(int click, vec2 pos, bool up) = 0;
-		virtual void onMove(vec2 pos) = 0;
-		virtual void onKey(a_char key,bool up) = 0;
+		InputController(): Controller(){};
 	};
 
 }

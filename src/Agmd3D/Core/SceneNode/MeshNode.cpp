@@ -11,7 +11,7 @@ namespace Agmd
     m_baseModel(basemodel)
     {
 		m_baseBbox = m_baseModel->getBoundingBox();
-		update(NULL,false,true);
+		update(NULL,0,TRANSFORM_CHANGED);
 	}
     MeshNode::~MeshNode()
     {}

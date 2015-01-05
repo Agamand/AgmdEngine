@@ -784,8 +784,11 @@ namespace Agmd
 		m_ScreenSize = size;
 		Driver::Get().SetViewPort(ivec2(0,0),size);
 		Driver::Get().SetScreen(m_ScreenSize);
-		
-		if((RenderingMode* mode = RenderingMode::getRenderingMode()) != NULL)
+//		RenderingMode*mode;
+// 		if((mode = RenderingMode::getRenderingMode()) != NULL)
+// 		{
+// 			mode->init();
+// 		}
 
 	}
 

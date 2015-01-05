@@ -103,11 +103,19 @@ void App::init()
 	Model* mesh;
 	MeshNode* node;
 
-	mesh = GeometryFactory::createSphere(20,100,100,(float)M_PI*2);
+	mesh = GeometryFactory::createPlane(ivec2(100,100),ivec2(1));
 	node = new MeshNode(mesh);
+	//node->getTransform().translate(0,-10.0f,0);
+	node->getTransform().rotate(-90,vec3(1,0,0));
+	m_Scene->AddNode(node);
+	
+
+	mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+	node = new MeshNode(mesh);
+	
 	m_Scene->AddNode(node);
 
-	Light* l = new Light(vec3(0),vec3(0,1,1),LIGHT_DIR);
+	Light* l = new Light(vec3(0),normalize(vec3(0,-1,-5)),LIGHT_DIR);
 	m_Scene->AddLight(l);
 
 	GUIMgr& guimgr = GUIMgr::Instance();

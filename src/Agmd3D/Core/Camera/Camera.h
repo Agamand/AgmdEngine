@@ -65,6 +65,7 @@ namespace Agmd
 		bool isInFrustrum(const BoundingBox& boundingBox);
 		//void SetRecvInput(bool active = true){	recvInput = active;	}
 		//float* GetSpeedPtr(){return &m_speed;}
+		SceneNode* getNode() { return m_node;}
     protected:
         
         //virtual void updateVector() = 0;
@@ -93,7 +94,7 @@ namespace Agmd
 // 		bool				recvInput;
 		Frustum*			m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
-		
+		SceneNode*			m_node;
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

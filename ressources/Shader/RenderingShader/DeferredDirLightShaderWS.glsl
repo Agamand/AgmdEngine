@@ -18,6 +18,7 @@ void main(){
 #ifdef _FRAGMENT_
 
 #include "global_light_uniform.glsl"
+uniform vec3 u_cameraPosition;
 uniform sampler2D texture0;
 uniform sampler2D texture1;
 uniform sampler2D texture2;
@@ -29,7 +30,8 @@ in vec2 v_TexCoord0;
 
 out vec4 out_color;
 uniform float u_bias = -0.005f;
-uniform float u_offset = 0.4f;
+uniform float u_offset = 0.0f;
+
 #define PI 3.14159265359
 vec2 offsetTable[13] = vec2[]
 (
@@ -56,10 +58,11 @@ vec3 textureToNormal(vec3 tex)
 
 void main()
 {
+	float offset= 0.001f;
 	vec4 shadowCoord = depthVPBias*vec4(texture(texture2,v_TexCoord0).rgb,1.0f);
 	shadowCoord = shadowCoord/shadowCoord.w;
 	
-	float bias = 0.000005;
+	float bias = 0.0005;
 	shadowCoord.z += u_bias;
     float shadow = textureProj(texture3, shadowCoord,0);
 	float visibility = shadow;
@@ -67,18 +70,18 @@ void main()
 	{
 		for(int i = 0; i < 5; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;	
 		}
 		for(int i = 5; i < 9; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;
 		}
 		
 		for(int i = 9; i < 13; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/700.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;
 		}
 		
@@ -87,18 +90,34 @@ void main()
 	visibility /=13*4+1;
 	//visibility /=13.0f;
 	float lighting = 0.0f;
-	if(visibility > 0.0f)
-	{
-		vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
-		vec3 L = normalize(l_dir.xyz);
-		float lambertTerm = max(dot(N,L),0.0);
-		lighting = lambertTerm*visibility;
-	}
 	//alpha discard
 	vec4 color = texture(texture0, v_TexCoord0);
+	vec3 _color = color.rgb*0.1f; //ambient
+	//if(visibility > 0.0f)
+	{
+		vec3 N = normalize(textureToNormal(texture( texture1, v_TexCoord0 ).xyz));
+		vec3 L = -normalize(l_dir.xyz);
+		float lambertTerm = max(dot(N,L),0.0);
+		lambertTerm = clamp(lambertTerm,0,1);
+		lighting = lambertTerm*visibility;
+		if(lambertTerm > 0)
+		{
+			vec3 position = texture(texture2,v_TexCoord0).xyz;
+			_color += color.rgb*lambertTerm; //diffuse
+			vec3 eye = normalize(position-u_cameraPosition);
+			vec3 _reflect = reflect(L,N);
+			float specular = pow( max(dot(_reflect, eye), 0.0), 100);
+			_color += color.rgb*specular;
+		}
+	}
+	
+	
+
+	
+
 	if(color.a < 1.0f)
 		discard;
-	out_color = vec4(color.rgb*lighting,color.a);
+	out_color = vec4(_color.rgb*lighting,color.a);
 }
 
 #endif

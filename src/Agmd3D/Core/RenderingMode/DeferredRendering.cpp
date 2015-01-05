@@ -21,13 +21,17 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     DeferredRendering::DeferredRendering(int width, int height) :
-    RenderingMode(width,height)
+    RenderingMode(width,height),
+	m_framebuffer(NULL),
+	m_shadowRender(NULL)
     {
         init();
     }
 
     DeferredRendering::DeferredRendering(ivec2& screen) :
-    RenderingMode(screen)
+    RenderingMode(screen),
+	m_framebuffer(NULL),
+	m_shadowRender(NULL)
     {
         init();
     }
@@ -72,8 +76,7 @@ namespace Agmd
         Driver& render = Driver::Get();
 		render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		mat4 inverseCam = inverse(Camera::getCurrent(CAMERA_3D)->look());
-		vec3 cameraPosition = vec3(inverseCam*vec4(0,0,0,1));
+		vec3 cameraPosition = Camera::getCurrent(CAMERA_3D)->getNode()->getTransform().getPosition();
         const a_vector<Light*>& lights = sc->GetLights();
 
         
@@ -118,7 +121,7 @@ namespace Agmd
         render.SetRenderMode(MODE_FILL);
         //if(PostEffectMgr::Instance().HaveEffect())
         
-
+		bool shadow = true;
         if(maxLights)
         {
             //render.Enable(RENDER_ALPHABLEND, true);
@@ -126,7 +129,7 @@ namespace Agmd
             for(a_uint32 i = 0; i < maxLights; i++)
             {
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()].GetShaderProgram());
-                if(false)//if shadow is enable
+                if(shadow)//if shadow is enable
 				{
 					//Re-enable Z-Test for making shadow cast
 					render.Enable(RENDER_ZTEST,true);
@@ -145,9 +148,10 @@ namespace Agmd
                 render.SetTexture(0,m_textureBuffer[0].GetTexture());
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
-                render.SetCurrentProgram(m_light_program[lights[i]->GetType()/*+3 for use with SHADOW*/].GetShaderProgram());
+                render.SetCurrentProgram(m_light_program[lights[i]->GetType()+3/*+3 for use with SHADOW*/].GetShaderProgram());
 				render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
-                //m_shadowRender->SetupForRendering();
+				if(shadow)
+					m_shadowRender->SetupForRendering();
                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
                 Fast2DSurface::Instance().Draw();
             }
@@ -156,18 +160,18 @@ namespace Agmd
             Texture::EndRenderToTexture();
         }else
         {
-            Texture::TextureRender(m_textureBuffer[0]);
+            Texture::TextureRender(m_textureBuffer[0],ivec2(0),m_screen);
             end();
             return;
         }
         if(PostEffectMgr::Instance().HaveEffect())
         {
             PostEffectMgr::Instance().ApplyEffect(m_textureBuffer[3],m_textureBuffer[4]);
-            Texture::TextureRender(m_textureBuffer[4]);
+            Texture::TextureRender(m_textureBuffer[4],ivec2(0),m_screen);
         }
         else
         {
-           Texture::TextureRender(m_textureBuffer[3]);
+           Texture::TextureRender(m_textureBuffer[3],ivec2(0),m_screen);
         }
             
 

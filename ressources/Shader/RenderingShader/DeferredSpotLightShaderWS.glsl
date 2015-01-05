@@ -124,8 +124,8 @@ void main()
 	
 	
 	vec4 color = texture(texture0, v_TexCoord0);
-	if(color.a < 1.0f)
-		discard;
+	//if(color.a < 1.0f)
+		//discard;
 	out_color =  vec4(color);//vec4(vec3(lighting*visibility),color.a);
 }
 

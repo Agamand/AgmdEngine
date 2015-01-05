@@ -29,6 +29,7 @@ namespace Agmd
 //     m_speed(100.0f),
 //     m_sensivity(0.2f),
 // 	recvInput(true),
+	m_node(NULL),
 	m_frustum(new Frustum(projection))
     {
         m_transform.m_MatProjection = projection;

@@ -57,6 +57,7 @@ namespace Agmd
 
 		
 		float		m_speed;
+		float		m_angularSpeed;
 		a_uint32	m_moveFlags;
 		vec3		_forward;
 		vec3		_up;

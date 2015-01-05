@@ -10,8 +10,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/SceneNode/SceneNode.h>
 namespace Agmd
 {
-	FirstPersonController::FirstPersonController() : InputController(),m_speed(0.2f),
-		_forward(0,0,1),_up(0,1,0),m_moveFlags(0)
+	FirstPersonController::FirstPersonController() : InputController(),m_speed(0.02f),
+		_forward(0,0,1),_up(0,1,0),m_moveFlags(0),m_mouseState(0),m_angularSpeed(0.08f)
 	{
 		_left = glm::cross(_up,_forward);
 		m_sensivity = 0.2f;
@@ -27,7 +27,7 @@ namespace Agmd
 		
 		if(m_bindedNode)
 		{
-			if(m_mouseState & MOUSE_LEFT)
+			if(m_mouseState & MOUSE_RIGHT)
 			{
 				m_bindedNode->getTransform().rotate(posDiff.x*m_sensivity,vec3(0,1,0));
 				m_bindedNode->getTransform().rotate(posDiff.y*m_sensivity,vec3(1,0,0));
@@ -95,9 +95,9 @@ namespace Agmd
 		if(m_moveFlags & ROLL_LEFT  ^ m_moveFlags & ROLL_RIGHT)
 		{
 			if(m_moveFlags & ROLL_LEFT)
-				m_bindedNode->getTransform().rotate(m_speed*(float)time,vec3(0,0,1));
+				m_bindedNode->getTransform().rotate(m_angularSpeed*(float)time,vec3(0,0,1));
 			else
-				m_bindedNode->getTransform().rotate(-m_speed*(float)time,vec3(0,0,1));
+				m_bindedNode->getTransform().rotate(-m_angularSpeed*(float)time,vec3(0,0,1));
 			
 		}
 	}

@@ -57,8 +57,8 @@ namespace Agmd
         Driver::Get().SetViewPort(ivec2(0),ivec2(m_shadowSize));
         if(m_currentLightType == LightType::LIGHT_DIR)
         {
-            mat4 proj = ortho<float>(-1000,1000,-1000,1000,-100,5000);
-            m_shadow_matrix[0] = proj*lookAt(l->GetDirection()*1000.0f,vec3(0),vec3(0,0,1));
+            mat4 proj = ortho<float>(-50,50,-50,50,0.1f,200.0f);
+            m_shadow_matrix[0] = proj*lookAt(-l->GetDirection()*20.0f,vec3(0),vec3(0,0,1));
         
 
         }else if(m_currentLightType == LightType::LIGHT_POINT)

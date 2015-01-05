@@ -16,13 +16,17 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     ForwardRendering::ForwardRendering(int width, int height) :
-    RenderingMode(width,height)
+    RenderingMode(width,height),
+	m_framebuffer(NULL),
+	m_depthbuffer(NULL)
     {
         init();
     }
 
     ForwardRendering::ForwardRendering(ivec2& screen) :
-    RenderingMode(screen)
+    RenderingMode(screen),
+	m_framebuffer(NULL),
+	m_depthbuffer(NULL)
     {
         init();
     }
@@ -46,7 +50,7 @@ namespace Agmd
 		{
 			delete m_depthbuffer;
 			m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-		}
+		}else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
 
         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);

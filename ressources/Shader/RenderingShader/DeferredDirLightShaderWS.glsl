@@ -70,18 +70,18 @@ void main()
 	{
 		for(int i = 0; i < 5; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;	
 		}
 		for(int i = 5; i < 9; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;
 		}
 		
 		for(int i = 9; i < 13; i++)
 		{
-			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*offset*j/1.0f*shadowCoord.w,0, 0.0f));
+			shadow = textureProj(texture3,shadowCoord + vec4(offsetTable[i]*u_offset*j/1.0f*shadowCoord.w,0, 0.0f));
 			visibility += shadow;
 		}
 		

@@ -405,10 +405,10 @@ void App::init()
     m_Scene->AddLight(m_light);
     m_light->SetRange(2000.0f);	
 	//cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
-	cam3D = new FPCamera(m_MatProj3D,vec3(3,0,0));
+	cam3D = new Camera(m_MatProj3D);
 	m_planetFrame->setCamera(cam3D);
 	//slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
-	cam2D = new FPCamera(m_MatProj2D);
+	cam2D = new Camera(m_MatProj2D);
 	m_groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
 	m_groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
 	m_skyProgram[0].LoadFromFile("shader/planet/sky_from_space.glsl");
@@ -438,7 +438,7 @@ void App::init()
 	lightTransform->scale(0.2,0.2,0.2);
 	
 	lightTransform->update(NULL);
-	pos = cam3D->getPosition();
+//	pos = cam3D->getPosition();
 
 	std::cout << "Loading end" << std::endl;
 }

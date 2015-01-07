@@ -91,7 +91,7 @@ void PlanetAtmosphereNode::findVisible( Camera*cam, RenderQueue& display, a_vect
 		return;
 
 	PlanetModel* model = m_controller->m_model;
-	m_controller->m_cam_position = cam->getPosition();
+//	m_controller->m_cam_position = cam->getPosition();
 
 	vec4 my(0,0,0,1);
 	my = m_transform->modelMatrix()*my;

@@ -27,7 +27,7 @@ status : in pause
 
 #define SCREEN_WIDTH_PLANET 1600
 #define SCREEN_HEIGHT_PLANET 900
-
+class LightFrame;
 class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
@@ -60,7 +60,7 @@ private :
     Agmd::Camera*       cam3D;
     Agmd::Camera*       cam2D;
 	Agmd::SceneNode* camNode;
-
+	LightFrame* frame;
 
 
 };

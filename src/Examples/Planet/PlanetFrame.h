@@ -37,7 +37,7 @@ public:
 		
 		if(!m_camera)
 			return;
-		m_propertyCameraSpeed->SetValue(wxVariant(*m_camera->GetSpeedPtr()));
+		//m_propertyCameraSpeed->SetValue(wxVariant(*m_camera->GetSpeedPtr()));
 	}
 	virtual void OnPropertyChanged( wxPropertyGridEvent& event )
 	{
@@ -90,7 +90,7 @@ public:
 
 		}else if(property == m_propertyCameraSpeed)
 		{
-			*m_camera->GetSpeedPtr() = value.As<float>();
+			//*m_camera->GetSpeedPtr() = value.As<float>();
 		}else if(property == m_propertyAmplitude)
 		{
 			m_model->m_amplitude = value.As<float>();

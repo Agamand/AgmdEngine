@@ -52,7 +52,7 @@
 #include <random>
 
 #include <Core/Shader/ShaderPipeline.h>
-
+#include "LightFrame.h"
 
 using namespace Agmd;
 using namespace AgmdUtilities;
@@ -73,7 +73,10 @@ void App::Run(int argc, char** argv)
 
 void App::MakeWindow()
 {
-	//wxApp::SetInstance(m_wxApplication);
+	wxApp::SetInstance(m_wxApplication);
+	
+	m_frame = frame =  new LightFrame(NULL);
+	this->CreateGlCanvas(frame->m_viewPanel);
 }
 
 
@@ -81,7 +84,6 @@ void App::MakeWindow()
 
 void App::init()
 { 
-
 	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
 	m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
 	//ForwardRendering* mode = new ForwardRendering(getScreen());
@@ -89,7 +91,7 @@ void App::init()
 	RenderingMode::setRenderingMode(mode);
 	m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
 	m_Scene = new SceneMgr();
-	
+	frame->setModel(mode->getShadowRenderer());
 
 
 	Image img[6];

@@ -148,7 +148,7 @@ namespace Agmd
                 render.SetTexture(0,m_textureBuffer[0].GetTexture());
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
-                render.SetCurrentProgram(m_light_program[lights[i]->GetType()+3/*+3 for use with SHADOW*/].GetShaderProgram());
+                render.SetCurrentProgram(m_light_program[lights[i]->GetType()+(shadow? 3: 0)/*+3 for use with SHADOW*/].GetShaderProgram());
 				render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
 				if(shadow)
 					m_shadowRender->SetupForRendering();

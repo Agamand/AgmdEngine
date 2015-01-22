@@ -33,11 +33,66 @@ namespace Agmd
 //     };
 
 
+	enum TCameraProjection
+	{
+		PROJECTION_PERSPECTIVE,
+		PROJECTION_ORTHO
+	};
+
+
+	struct ProjectionOption
+	{
+		ProjectionOption(vec2 _size=vec2()):
+			znear(0.01f),
+			zfar(1000.f),
+			size(-_size.x,_size.x,-_size.y,_size.y)
+		{}
+		ProjectionOption(vec2 _size,float fov):
+			znear(0.01f),
+			zfar(1000.f),
+			size(_size.x,_size.y,fov,0)
+		{}
+		ProjectionOption(vec4 _size):
+			znear(0.01f),
+			zfar(1000.f),
+			size(_size)
+		{}
+		float znear;
+		float zfar;
+		vec4 size; // 
+	};
+
+
+
     class AGMD3D_EXPORT Camera
     {
 	friend class CameraNode;
     public:
-        Camera(mat4& projection);
+        //Camera(mat4& projection);
+		Camera(TCameraProjection proj_type,ProjectionOption);
+
+		void setProjection(TCameraProjection proj_type,const ProjectionOption& opt)
+		{
+			m_projOption = opt;
+			m_projType = proj_type;
+			if(m_projType == PROJECTION_PERSPECTIVE)
+				m_transform.m_MatProjection = m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
+			else m_transform.m_MatProjection = m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w,m_projOption.znear,m_projOption.zfar);
+			updateProjection();
+		}
+		const ProjectionOption& getProjectionOption() const { return m_projOption;}
+		const TCameraProjection getProjectionType() const {return m_projType;}
+
+		void resize(vec2 newScreen){ 
+			if(m_projType == PROJECTION_PERSPECTIVE)
+			{
+				m_projOption.size.x = newScreen.x;
+				m_projOption.size.y = newScreen.y;
+				m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
+				updateProjection();
+			} // if ortho nothing to do
+			
+		}
         virtual ~Camera();
 
 //         virtual void onUpdate(a_uint64 time_diff) = 0;
@@ -70,7 +125,7 @@ namespace Agmd
         
         //virtual void updateVector() = 0;
         void updateBuffer(mat4& view);
-
+		void updateProjection();
 		struct CameraBuffer
 		{
 			mat4 m_MatProjectionView;
@@ -98,6 +153,8 @@ namespace Agmd
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;
-    };
+		ProjectionOption m_projOption;
+		TCameraProjection m_projType;
+	};
 }
 #endif

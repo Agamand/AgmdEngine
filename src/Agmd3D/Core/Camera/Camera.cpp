@@ -22,7 +22,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Camera::Camera(mat4& projection) :
+	Camera::Camera(TCameraProjection proj_type,ProjectionOption opt) :
 //     move(0.0f),
 //     moveFlags(MOVE_NONE),
 //     _position(pos),
@@ -30,13 +30,12 @@ namespace Agmd
 //     m_sensivity(0.2f),
 // 	recvInput(true),
 	m_node(NULL),
-	m_frustum(new Frustum(projection))
+	m_frustum(NULL)
     {
-        m_transform.m_MatProjection = projection;
+       
         m_transform.m_MatView = mat4(1.0f);
         m_cameraBuffer = Driver::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
-        m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.Fill(&m_transform,1);
+		setProjection(proj_type,opt);
     }
 
 	Camera::~Camera()
@@ -131,6 +130,12 @@ namespace Agmd
 		testShader.LoadFromFile("Shader/debug_shader.glsl");
 		Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
 		return m_frustum->IsIn(bbox);
+	}
+
+	void Camera::updateProjection()
+	{
+		m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
+		m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*3);
 	}
 
 	Camera* Camera::s_currentCamera2D = NULL;

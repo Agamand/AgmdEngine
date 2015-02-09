@@ -87,6 +87,10 @@ namespace Agmd
 			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
 
 		};
+
+		//m_Declaration it's smartptr -> auto delete :D 
+		m_VertexBuffer.Release();
+		m_IndexBuffer.Release();
 		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
 		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);

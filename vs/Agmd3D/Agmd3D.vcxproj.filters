@@ -349,6 +349,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\CameraNode.h">
       <Filter>Core\SceneNode</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Model\IcosahedronModel.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -734,6 +737,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\CameraNode.cpp">
       <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Model\IcosahedronModel.cpp">
+      <Filter>Core\Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -39,27 +39,39 @@ namespace Agmd
 		PROJECTION_ORTHO
 	};
 
-
+	enum TCameraFlags
+	{
+		FLAG_KEEP_RESOLUTION_X = 0x1,
+		FLAG_KEEP_RESOLUTION_Y = 0x2,
+		FLAG_CENTER = 0x4,
+		FLAG_IGNORE_RESIZE = 0x8
+	};
 	struct ProjectionOption
 	{
-		ProjectionOption(vec2 _size=vec2()):
+		ProjectionOption(vec2 _size=vec2(),a_uint8 _flags = 0):
+			size(-_size.x,_size.x,-_size.y,_size.y),
 			znear(0.01f),
 			zfar(1000.f),
-			size(-_size.x,_size.x,-_size.y,_size.y)
+			flags(_flags)
 		{}
-		ProjectionOption(vec2 _size,float fov):
+		ProjectionOption(vec2 _size,float fov,a_uint8 _flags = 0):
+			size(_size.x,_size.y,fov,0),
 			znear(0.01f),
 			zfar(1000.f),
-			size(_size.x,_size.y,fov,0)
+			flags(_flags)
 		{}
-		ProjectionOption(vec4 _size):
+		ProjectionOption(vec4 _size,a_uint8 _flags=0):
+			size(_size),
 			znear(0.01f),
 			zfar(1000.f),
-			size(_size)
+			flags(_flags)
 		{}
+		vec4 size;
 		float znear;
 		float zfar;
-		vec4 size; // 
+		a_uint8 flags;
+		
+
 	};
 
 
@@ -83,16 +95,7 @@ namespace Agmd
 		const ProjectionOption& getProjectionOption() const { return m_projOption;}
 		const TCameraProjection getProjectionType() const {return m_projType;}
 
-		void resize(vec2 newScreen){ 
-			if(m_projType == PROJECTION_PERSPECTIVE)
-			{
-				m_projOption.size.x = newScreen.x;
-				m_projOption.size.y = newScreen.y;
-				m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
-				updateProjection();
-			} // if ortho nothing to do
-			
-		}
+		void resize(vec2 newScreen);
         virtual ~Camera();
 
 //         virtual void onUpdate(a_uint64 time_diff) = 0;

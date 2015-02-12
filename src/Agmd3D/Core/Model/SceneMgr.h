@@ -37,6 +37,9 @@ namespace Agmd
 			return !m_root || m_root->isEmpty();
 		}
 		void clear();
+
+		const RenderQueue& getRenderQueue(){return m_renderQueue;}
+
 	private:
 		a_vector<Light*> m_light; // static light
 		RenderQueue m_renderQueue;

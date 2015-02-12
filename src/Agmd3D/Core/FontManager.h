@@ -9,9 +9,8 @@ https://github.com/Agamand/AgmdEngine
 #ifndef FONTMANAGER_H
 #define FONTMANAGER_H
 
-#include <Utilities/Singleton.h>
 #include <Config/Export.h>
-#include <core/Shader/ShaderProgram.h>
+#include <Core/Shader/ShaderProgram.h>
 #include <Core/Texture/Texture.h>
 #include <Core/Buffer/Buffer.h>
 #include <Core/Declaration.h>
@@ -19,6 +18,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector3.h>
 #include <Transform.h>
 
+#include <Utilities/Singleton.h>
 #include <CommonDefines.h>
 
 #include <map>

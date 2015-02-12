@@ -55,6 +55,9 @@
     <Filter Include="Core\Controller">
       <UniqueIdentifier>{4fec4102-d3d8-43ea-82f7-68d08dce21b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor">
+      <UniqueIdentifier>{c033a826-63e3-4a7b-9b7b-0a765644e3b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Agmd3D\Config\Export.h">
@@ -351,6 +354,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Core\Model\IcosahedronModel.h">
       <Filter>Core\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\ColorPicking.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\EditorFrame.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\ObjectProperty.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\ObjectPropertyGrid.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\SceneTree.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\RootNode.h">
+      <Filter>Core\SceneNode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -740,6 +761,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Model\IcosahedronModel.cpp">
       <Filter>Core\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\ColorPicking.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\EditorFrame.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\ObjectProperty.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\ObjectPropertyGrid.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\SceneTree.cpp">
+      <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

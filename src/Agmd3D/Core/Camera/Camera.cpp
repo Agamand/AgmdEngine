@@ -92,13 +92,13 @@ namespace Agmd
 
     bool Camera::unProject(vec3& mouse)
     {
-        mat4 viewprojection = m_transform.m_MatProjection*m_transform.m_MatView;
-        viewprojection = inverse(viewprojection);
+        mat4  viewprojection = inverse(m_transform.m_MatProjectionView);
 
         /* Map x and y from window coordinates */
         ivec2 screen = Driver::Get().GetScreen();
         mouse.x = mouse.x / screen.x;
-        mouse.y = mouse.y / screen.y;
+        mouse.y = (screen.y-mouse.y) / screen.y;
+		mouse.z = mouse.z*2-1;
 
         /* Map to range -1 to 1 */
         mouse.x = mouse.x * 2 - 1;
@@ -107,12 +107,14 @@ namespace Agmd
         vec4 out = viewprojection*vec4(mouse,1.0f);
 
         if (out.w == 0.0) return false;
-   
+		
+		out.w = 1.0 / out.w;
+		out*=out.w;
         mouse = vec3(out);
-        mouse /= out.x;
+        //mouse /= out.x;
 
         //mouse -= _position;
-        mouse = normalize(mouse);
+        //mouse = normalize(mouse);
 
         return true;
     }
@@ -136,6 +138,40 @@ namespace Agmd
 	{
 		m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
 		m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*3);
+	}
+
+	void Camera::resize( vec2 newScreen )
+	{
+		if(m_projOption.flags & FLAG_IGNORE_RESIZE)
+			return;
+		if(m_projType == PROJECTION_PERSPECTIVE)
+		{
+			m_projOption.size.x = newScreen.x;
+			m_projOption.size.y = newScreen.y;
+			m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
+			updateProjection();
+		}else
+		{
+			float p = newScreen.y/newScreen.x;
+			if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
+			{
+				m_projOption.size.w = m_projOption.size.y*p;
+				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+			}else if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
+			{
+				m_projOption.size.y = m_projOption.size.w/p;
+				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+			}else
+			{
+				m_projOption.size.y = newScreen.x;
+				m_projOption.size.w = newScreen.y;
+				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+			}
+			
+			
+			m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w);
+			updateProjection();
+		}// if ortho nothing to do
 	}
 
 	Camera* Camera::s_currentCamera2D = NULL;

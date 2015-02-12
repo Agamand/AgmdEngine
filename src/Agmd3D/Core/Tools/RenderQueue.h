@@ -31,6 +31,9 @@ namespace Agmd
 			for(a_uint32 i = 0; i < MAX_TYPE; i++)
 				m_displayable[i].clear();
 		}
+		const a_vector<DisplayNode*>&  getDisplayable(TRenderType type = TYPE_DIFFUSE) const {
+			return m_displayable[type];
+		}
 	private:
 		a_vector<DisplayNode*> m_displayable[MAX_TYPE];
 	};

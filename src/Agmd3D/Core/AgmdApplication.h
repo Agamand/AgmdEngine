@@ -46,6 +46,7 @@ using namespace AgmdUtilities;
 //namespace Agmd
 //{
 	// Define a new application type
+#if defined(USE_WX)
 	class Application : public wxApp
 	{
 	public:
@@ -114,6 +115,7 @@ using namespace AgmdUtilities;
 		wxDECLARE_EVENT_TABLE();
 	
 	};
+#endif
 namespace Agmd{
     class AGMD3D_EXPORT AgmdApplication
     {

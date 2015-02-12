@@ -667,7 +667,7 @@ namespace Agmd
 			else mouseState |= MOUSE_LEFT;
 			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 				m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
-			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(0),mouseState,0));
 			return;
 
 		case 2:
@@ -676,7 +676,7 @@ namespace Agmd
 			else mouseState |= MOUSE_MIDDLE;
 			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 				m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
-			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(0),mouseState,0));
 			return;
 		case 3:
 			if(up)
@@ -684,7 +684,7 @@ namespace Agmd
 			else mouseState |= MOUSE_RIGHT;
 			for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 				m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
-			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(0),mouseState,0));
 			return;
 		/*case WM_XBUTTONDOWN:
 			mouseState |= MOUSE_NONE;
@@ -756,7 +756,7 @@ namespace Agmd
 		last_mouse_pos.x = pos.x;
 		last_mouse_pos.y = pos.y;
 		//OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.f-vec2(1));
-		guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,last_mouse_pos,posDiff,mouseState,0));
+		guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(posDiff.x,-posDiff.y),mouseState,0));
 	}
 
 	void AgmdApplication::OnKey( a_char key,bool up )
@@ -785,6 +785,7 @@ namespace Agmd
 		Driver::Get().SetViewPort(ivec2(0,0),size);
 		Driver::Get().SetScreen(m_ScreenSize);
 		Camera::getCurrent(CAMERA_3D)->resize(vec2(size));
+		Camera::getCurrent(CAMERA_2D)->resize(vec2(size));
 //		RenderingMode*mode;
 // 		if((mode = RenderingMode::getRenderingMode()) != NULL)
 // 		{

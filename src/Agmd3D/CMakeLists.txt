@@ -40,6 +40,11 @@ target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxpng.lib debu
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxzlib.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxzlibd.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxregexu.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxregexud.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxexpat.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxexpatd.lib)
+
+target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_propgrid.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_propgrid.lib)
+target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_aui.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_aui.lib)
+
+
 #target_link_libraries(Agmd3D ${WXWIDGET_DIR}/lib/vc_dll/winmm.lib)
 #target_link_libraries(Agmd3D ${WXWIDGET_DIR}/lib/vc_dll/comctl32.lib)
 #target_link_libraries(Agmd3D ${WXWIDGET_DIR}/lib/vc_dll/rpcrt4.lib)

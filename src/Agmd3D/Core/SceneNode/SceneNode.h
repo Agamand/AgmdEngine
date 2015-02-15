@@ -26,6 +26,7 @@ namespace Agmd
 		ROOT_NODE,
 		DISPLAYABLE_NODE,
 		LIGHT_NODE,
+		MESH_NODE,
 		CAMERA_NODE
 	};
 
@@ -36,10 +37,11 @@ namespace Agmd
 	};
 
 	class DisplayNode;
+	class RootNode;
     class AGMD3D_EXPORT SceneNode
     {
     public :
-        SceneNode(NodeType, Transform*);
+        SceneNode(NodeType, Transform* t = NULL);
         virtual ~SceneNode();
 		virtual bool isVisible(BoundingBox& bbox) { return true;}
 		virtual void findVisible(Camera*cam, RenderQueue& display,a_vector<LightNode*>& light) {
@@ -50,20 +52,25 @@ namespace Agmd
 
 		virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
         Transform& getTransform();
-		void addChild(SceneNode* node)	{ m_children.push_back(node); node->m_parent = this; node->update(m_transform,0,TRANSFORM_CHANGED|UPDATE_CHILDREN);}
+		void addChild(SceneNode* node);
 		NodeType getType() const {return m_type;}
 		bool isEmpty();
 		void clear();
 		void setController( Controller* controller );
+		void setRoot(RootNode* root){
+			m_root = root;
+		}
 		Controller* getController() const {return m_sceneController;}
+		void removeChild( SceneNode* node );
+		Agmd::SceneNode* getParent();
 	protected:
 		
-
-        Transform* m_transform;
-		NodeType m_type;
+		RootNode*			 m_root;
+        Transform*			 m_transform;
+		NodeType			 m_type;
 		a_vector<SceneNode*> m_children;
-		SceneNode* m_parent;
-		Controller* m_sceneController;
+		SceneNode*			 m_parent;
+		Controller*			 m_sceneController;
 	};
 
 }

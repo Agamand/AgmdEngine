@@ -1,12 +1,19 @@
 #include <Core/AgmdApplication.h>
+#include <Editor/EditorFrame.h>
 #include <Core/Model/SceneMgr.h>
 #include <Core/Driver.h>
+
 
 namespace Agmd
 {
 	SceneMgr::SceneMgr() : m_skybox(NULL)
 	{
-		m_root = new SceneNode(ROOT_NODE,NULL);
+		
+#if defined(USE_WX) && defined(USE_EDITOR)
+
+		m_frame = AgmdApplication::getApplication()->getWxFrame();
+#endif	
+		m_root = new RootNode(this);
 	}
 
 	void SceneMgr::Render( TRenderPass pass, RenderQueue::TRenderType type /*= TYPE_DIFFUSE*/ ) const
@@ -71,6 +78,24 @@ namespace Agmd
 	void SceneMgr::clear()
 	{
 		m_root->clear();
+	}
+
+	void SceneMgr::__addNode( SceneNode* node)
+	{
+#if defined(USE_WX) && defined(USE_EDITOR)
+
+		EditorFrame* frame =  (EditorFrame*)m_frame;
+		frame->__addNode(node);
+#endif	
+	}
+
+	void SceneMgr::__removeNode( SceneNode* node)
+	{
+#if defined(USE_WX) && defined(USE_EDITOR)
+
+		EditorFrame* frame =  (EditorFrame*)m_frame;
+		frame->__removeNode(node);
+#endif	
 	}
 
 }

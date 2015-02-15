@@ -29,7 +29,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Shader/ShaderPipeline.h>
 #include <Core/Tools/Statistics.h>
 #include <Debug/Profiler.h>
-
+#include <Editor/EditorFrame.h>
 
 /*
 bool MyApp::OnInit()
@@ -370,9 +370,12 @@ namespace Agmd
 
 		if(!m_frame)
 		{
-
+#ifdef USE_EDITOR
+			m_frame = new EditorFrame(NULL);
+#else
 			m_frame =new AgmdFrame(NULL, wxString(m_frameName),
 				wxDefaultPosition, wxDefaultSize);
+#endif // USE_EDITOR
 			m_frame->Show(true);
 		}else m_frame->Show(true);
         Driver::Get().Initialize(NULL);
@@ -659,6 +662,10 @@ namespace Agmd
 		GUIMgr& guimgr = GUIMgr::Instance();
 		camera = Camera::getCurrent();
 		printf("click %i, up : %i\n",click,up);
+#if defined(USE_EDITOR) && defined(USE_WX)
+		((EditorFrame*)m_frame)->OnClick(click,pos,up);
+
+#endif
 		switch (click)
 		{
 		case 1:
@@ -747,12 +754,16 @@ namespace Agmd
 	{
 		GUIMgr& guimgr = GUIMgr::Instance();
 		camera = Camera::getCurrent();
+
 		ivec2 posDiff = last_mouse_pos - ivec2(pos);
 		for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 			m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),posDiff);
 		//if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
 			//camera->onMouseMotion(posDiff.x, posDiff.y);
+#if defined(USE_EDITOR) && defined(USE_WX)
+		((EditorFrame*)m_frame)->OnMove(pos,posDiff,mouseState);
 
+#endif
 		last_mouse_pos.x = pos.x;
 		last_mouse_pos.y = pos.y;
 		//OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.f-vec2(1));
@@ -784,8 +795,11 @@ namespace Agmd
 		m_ScreenSize = size;
 		Driver::Get().SetViewPort(ivec2(0,0),size);
 		Driver::Get().SetScreen(m_ScreenSize);
-		Camera::getCurrent(CAMERA_3D)->resize(vec2(size));
-		Camera::getCurrent(CAMERA_2D)->resize(vec2(size));
+		Camera* c;
+		if(c = Camera::getCurrent(CAMERA_3D))
+			c->resize(vec2(size));
+		if(c = Camera::getCurrent(CAMERA_2D))
+			c->resize(vec2(size));
 //		RenderingMode*mode;
 // 		if((mode = RenderingMode::getRenderingMode()) != NULL)
 // 		{
@@ -797,10 +811,15 @@ namespace Agmd
 #ifdef  USE_WX
 	void AgmdApplication::CreateGlCanvas( wxWindow* frame )
 	{
-		if(!m_frame)
+		if(!frame)
 			return;
 		m_glcanvas = new GLCanvas(frame);
 		frame->GetSizer()->Add(m_glcanvas, 1, wxEXPAND | wxALL, 5);
+	}
+
+	wxFrame* AgmdApplication::getWxFrame()
+	{
+		return m_frame;
 	}
 
 	

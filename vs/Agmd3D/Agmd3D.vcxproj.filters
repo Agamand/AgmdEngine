@@ -373,6 +373,12 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\RootNode.h">
       <Filter>Core\SceneNode</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\ToolBar.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\ProceduralMaker.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -775,6 +781,12 @@
       <Filter>Editor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Editor\SceneTree.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\ToolBar.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\ProceduralMaker.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>

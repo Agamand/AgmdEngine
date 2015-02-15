@@ -5,7 +5,7 @@ Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
 https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
-
+#define FABS(x) (x>=0?x:-x)
 inline Plane::Plane(float a, float b, float c, float _d) :
 n(a, b, c),
 d(_d)
@@ -18,7 +18,7 @@ inline Plane::Plane(const vec3& v0, const vec3& v1, const vec3& v2)
 
 inline Plane::Plane(const vec3& normal, const vec3& point) :
 n(normal),
-d(glm::length(point))
+d(-glm::dot(normal,point))
 {}
 
 inline void Plane::buildFromPoints(const vec3& v0, const vec3& v1, const vec3& v2)
@@ -53,6 +53,21 @@ inline bool Plane::operator ==(const Plane& p) const
 inline bool Plane::operator !=(const Plane& p) const
 {
     return !(*this == p);
+}
+
+inline bool Plane::intersect(vec3 start, vec3 dir,vec3& res)
+{
+	if(FABS(glm::dot(dir,n)) < 0.0001f)
+		return false;
+
+	float _d = d;
+	float _C = glm::dot(n,dir);
+	float C = glm::dot(n,start) + _d;
+
+	float k = -C/_C;
+
+	res = dir*k + start;
+	return true;
 }
 
 inline std::istream& operator >>(std::istream& stream, Plane& plane)

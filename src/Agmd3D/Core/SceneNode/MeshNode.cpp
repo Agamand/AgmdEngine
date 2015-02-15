@@ -10,6 +10,7 @@ namespace Agmd
     DisplayNode(transform,NULL),
     m_baseModel(basemodel)
     {
+		m_type = MESH_NODE;
 		m_baseBbox = m_baseModel->getBoundingBox();
 		update(NULL,0,TRANSFORM_CHANGED);
 	}

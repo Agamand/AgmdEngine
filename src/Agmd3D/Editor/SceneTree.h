@@ -1,28 +1,32 @@
-///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Jun  5 2014)
-// http://www.wxformbuilder.org/
-//
-// PLEASE DO "NOT" EDIT THIS FILE!
-///////////////////////////////////////////////////////////////////////////
 
-#ifndef __EDITORFRAME_H__
-#define __EDITORFRAME_H__
+#ifndef _SCENETREE_H_
+#define _SCENETREE_H_
 #ifdef USE_EDITOR
 
 
 #include <Core/SceneNode/RootNode.h>
-
+#include <Editor/EditorFrame.h>
+#include <wx/aui/aui.h>
+#include <wx/aui/auibar.h>
 
 #include <wx/treectrl.h>
+#include <map>
+
+
 class SceneTree : public wxTreeCtrl
 {
 public:
-	SceneTree();
-
-	void setRootNode(Agmd::RootNode);
+	SceneTree(EditorFrame* editor,wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style);
+	void addSceneNode( Agmd::SceneNode* node );
+	void removeSceneNode( Agmd::SceneNode* node );
+	void setSelectedSceneNode( Agmd::SceneNode* pick );
+	Agmd::SceneNode* getSelectedSceneNode();
 private:
-	Agmd::RootNode* m_sceneTree;
+	virtual void OnSelect( wxTreeEvent& event );
+	std::map<Agmd::SceneNode*,wxTreeItemId> m_nodes;
+	std::map<wxTreeItemId,Agmd::SceneNode*> m_nodesId; //reverse search
+	EditorFrame* m_editor;
 };
 
 #endif
-#endif //__EDITORFRAME_H__
+#endif //_SCENETREE_H_

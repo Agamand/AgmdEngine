@@ -31,6 +31,7 @@ namespace AgmdMaths
         float distanceToPoint(const vec4& point) const;
 
 		void normalize();
+		bool intersect(vec3 start, vec3 dir,vec3& res);
 
         bool operator ==(const Plane& p) const;
         bool operator !=(const Plane& p) const;

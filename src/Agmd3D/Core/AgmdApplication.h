@@ -141,6 +141,11 @@ namespace Agmd{
 		bool isReady() const {return m_isReady;}
 		InputController* m_sceneController;
 		a_uint32 getDeltaTime(){return m_deltaTime;}
+#ifdef USE_WX
+
+		void CreateGlCanvas( wxWindow* m_viewPanel );
+		wxFrame* getWxFrame();
+#endif
     private:
         
 		HINSTANCE				m_Instance;
@@ -167,7 +172,6 @@ namespace Agmd{
 		wxFrame*				m_frame;
 		GLCanvas*				m_glcanvas;
 		Application*			m_wxApplication;
-		void CreateGlCanvas( wxWindow* m_viewPanel );
 #endif
 
         ~AgmdApplication();
@@ -180,7 +184,7 @@ namespace Agmd{
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;
         virtual void OnRender2D() = 0;
-
+		
 		Camera*              camera;
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;

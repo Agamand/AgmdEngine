@@ -123,7 +123,7 @@ namespace Agmd
 	}
 
 	Icosahedron::Icosahedron( a_uint8 subdiv /*= 0*/ ):
-		m_subdiv(subdiv > MAX_SUBDIV ? MAX_SUBDIV : MAX_SUBDIV)
+		m_subdiv(subdiv > MAX_SUBDIV ? MAX_SUBDIV : (subdiv < 0 ? 0 : subdiv))
 	{
 		std::vector<TVertex> vertices;
 		std::vector<TIndex> indices;

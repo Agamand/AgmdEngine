@@ -10,9 +10,12 @@
 #include <Core/Tools/ColorPicking.h>
 #include <Core/AgmdApplication.h>
 #include <Editor/SceneTree.h>
+#include <Core/Model/IcosahedronModel.h>
+#include <Core/Driver.h>
+#include <Core/Model/SceneMgr.h>
 ///////////////////////////////////////////////////////////////////////////
 
-EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style ), m_action(false)
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	m_mgr.SetManagedWindow(this);
@@ -64,7 +67,9 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
 
 	m_mgr.AddPane( m_auiToolBar1, wxAuiPaneInfo().Top().PinButton( true ).Dock().Resizable().FloatingSize( wxSize( 42,49 ) ).DockFixed( false ).Row( 0 ).Layer( 11 ) );
 
+	m_auiToolBar1->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( EditorFrame::onClick ), NULL, this );
 
+	this->Connect( m_auiToolBar1->m_createBox->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onclick ) );
 	m_mgr.Update();
 	this->Centre( wxBOTH );
 
@@ -106,7 +111,28 @@ void EditorFrame::__selectNode(Agmd::SceneNode* node){
 
 void EditorFrame::OnClick( int click, vec2 pos, bool up )
 {
+	if(m_action == TACTION::DRAW_ICOSAHEDRE && click == 1 && !up)
+	{
+		ivec2 screen = Agmd::AgmdApplication::getApplication()->getScreen()/2;
+		Agmd::Camera* cam = Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D);
+		Agmd::SceneNode* node = cam->getNode();
+		vec3 start(pos,0);
+		vec3 end(pos,1);
+		if(node && cam->unProject(start) &&	cam->unProject(end))
+		{
+			end = normalize(end - start);
+			Agmd::Icosahedron* ico =  new Agmd::Icosahedron(0);
+			Transform* t = new Transform();
+			t->setPosition(start+end*10.f);
+			Agmd::MeshNode* node = new Agmd::MeshNode(ico,t);
+			Agmd::SceneMgr* scene = Agmd::Driver::Get().GetActiveScene();
+			scene->AddNode(node);
 
+		}
+		return;
+	}
+
+	
 	if(click == 1 && !up)
 	{
 		Agmd::SceneNode* pick = Agmd::ColorPicking::Instance().pick(pos);
@@ -114,6 +140,37 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
 			m_sceneTree->setSelectedSceneNode(pick);
 	}
 }
+
+void EditorFrame::DoAction( float a )
+{
+	Agmd::SceneNode* node = m_sceneTree->getSelectedSceneNode();
+	if(!node)
+		return;
+	switch(m_action)
+	{
+	case TACTION::TRANSLATE_X:
+		node->getTransform().translate(a,0,0);
+		break;
+	case TACTION::TRANSLATE_Y:
+		node->getTransform().translate(a,0,0);
+		break;
+	case TACTION::TRANSLATE_Z:
+		node->getTransform().translate(a,0,0);
+		break;
+	case TACTION::ROTATION_X:
+		node->getTransform().rotate(a,vec3(1,0,0));
+		break;
+	case TACTION::ROTATION_Y:
+		node->getTransform().rotate(a,vec3(0,1,0));
+		break;
+	case TACTION::ROTATION_Z:
+		node->getTransform().rotate(a,vec3(0,0,1));
+		break;
+
+
+	}
+}
+
 
 void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
 {
@@ -155,7 +212,15 @@ void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
 
 void EditorFrame::OnKey( a_char key,bool up )
 {
-
+	if(key == 27 && !up)
+	{
+		m_action = 0;
+	}
+}
+void EditorFrame::onClick( wxCommandEvent& event  )
+{
+	
+	m_action = TACTION::DRAW_ICOSAHEDRE;
 }
 
 #endif

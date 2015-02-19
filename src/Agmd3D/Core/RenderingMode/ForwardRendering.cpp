@@ -71,6 +71,7 @@ namespace Agmd
 
     void ForwardRendering::compute()
     {
+		
         Driver& render = Driver::Get();
         start();
 		render.SetViewPort(ivec2(),render.GetScreen());

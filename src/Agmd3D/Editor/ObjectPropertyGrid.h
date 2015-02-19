@@ -16,8 +16,11 @@ class ObjectPropertyGrid : public wxPropertyGrid
 {
 public:
 	ObjectPropertyGrid(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style): wxPropertyGrid(parent,id,pos,size,style)
-	{}
+	{
+		Connect( wxEVT_PG_CHANGED, wxPropertyGridEventHandler( ObjectPropertyGrid::OnPropertyChanged ), NULL, this );
 
+	}
+	virtual void OnPropertyChanged( wxPropertyGridEvent& event );
 	void setCurrent(Agmd::SceneNode* node);
 	Agmd::SceneNode* getCurrent() const{
 		return m_current;

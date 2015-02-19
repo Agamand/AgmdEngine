@@ -167,6 +167,7 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLVERTEXATTRIB4FNVPROC                glVertexAttrib4f;
         OPENGL_EXPORT static PFNGLVERTEXATTRIBPOINTERPROC             glVertexAttribPointer;
         OPENGL_EXPORT static PFNGLENABLEVERTEXATTRIBARRAYPROC         glEnableVertexAttribArray;
+		OPENGL_EXPORT static PFNGLDISABLEVERTEXATTRIBARRAYPROC        glDisableVertexAttribArray;
         OPENGL_EXPORT static PFNGLBINDATTRIBLOCATIONPROC              glBindAttribLocation;
         OPENGL_EXPORT static PFNGLGENRENDERBUFFERSPROC                glGenRenderbuffers;
         OPENGL_EXPORT static PFNGLDELETERENDERBUFFERSPROC             glDeleteRenderbuffers;

@@ -17,6 +17,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector3.h>
 #include <Core/Tools/BoundingBox.h>
 #include <CommonDefines.h>
+
+/** DEBUG **/
+
+#include <Renderer/OpenGL/GlDriver.h>
+
+/** **/
 namespace Agmd
 {
 	Model::Model()
@@ -89,9 +95,10 @@ namespace Agmd
 		};
 
 		//m_Declaration it's smartptr -> auto delete :D 
-		m_VertexBuffer.Release();
-		m_IndexBuffer.Release();
-		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+// 		m_VertexBuffer.Release();
+// 		m_IndexBuffer.Release();
+		if(!m_Declaration)
+			m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
 		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
 		m_IndexBuffer  = Driver::Get().CreateIndexBuffer(indicesCount, 0, indices);
@@ -135,6 +142,7 @@ namespace Agmd
 			Driver::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
 		}else
 			Driver::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
+		
     }
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)

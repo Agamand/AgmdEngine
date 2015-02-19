@@ -21,8 +21,8 @@ m_sync (NULL)
 template <int Type, int bufferCount>
 inline GLBuffer<Type, bufferCount>::~GLBuffer()
 {
-    if (m_Buffer)
-        GLDriver::glDeleteBuffers(m_bufferCount, m_Buffer);
+//     if (m_Buffer) // fail 
+//         GLDriver::glDeleteBuffers(m_bufferCount, m_Buffer);
     if(m_sync)
         GLDriver::glDeleteSync(m_sync);
 }

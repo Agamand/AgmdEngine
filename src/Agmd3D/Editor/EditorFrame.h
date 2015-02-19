@@ -26,6 +26,8 @@
 
 class Agmd::SceneNode;
 class SceneTree;
+
+
 class EditorFrame : public wxFrame 
 {
 private:
@@ -36,6 +38,18 @@ protected:
 		wxID_VIEWPANEL = 1000,
 		wxID_PROPERTY
 	};
+	enum TACTION
+	{
+		DRAW_CUBE = 1,
+		DRAW_SPHERE,
+		DRAW_ICOSAHEDRE,
+		TRANSLATE_X,
+		TRANSLATE_Y,
+		TRANSLATE_Z,
+		ROTATION_X,
+		ROTATION_Y,
+		ROTATION_Z
+	};
 
 	wxMenuBar* m_mainMenu;
 	wxMenu* FileMenu;
@@ -44,13 +58,13 @@ protected:
 
 	ObjectPropertyGrid* m_objectProperties;
 	SceneTree* m_sceneTree;
-	wxAuiToolBar* m_auiToolBar1;
+	ToolBar* m_auiToolBar1;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
 	virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
-
-	
+	virtual void onClick( wxMouseEvent& event );
+	void DoAction(float a);
 public:
 	void OnClick(int click, vec2 pos, bool up);
 	void OnMove(vec2 pos,ivec2 posdiff,a_uint32 mouseState);
@@ -58,12 +72,14 @@ public:
 	wxPanel* m_viewPanel;
 
 	EditorFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1130,729 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+	
 	wxAuiManager m_mgr;
-
+	a_uint32 m_action;
 	~EditorFrame();
 	void __addNode( Agmd::SceneNode* node );
 	void __removeNode(  Agmd::SceneNode* node );
 	void __selectNode(Agmd::SceneNode* node);
+	
 };
 #endif
 #endif //_EDITORFRAME_H_

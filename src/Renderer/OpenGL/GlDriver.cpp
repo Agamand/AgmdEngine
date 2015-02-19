@@ -123,6 +123,7 @@ namespace Agmd
     PFNGLVERTEXATTRIB4FNVPROC           GLDriver::glVertexAttrib4f;
     PFNGLVERTEXATTRIBPOINTERPROC        GLDriver::glVertexAttribPointer;
     PFNGLENABLEVERTEXATTRIBARRAYPROC    GLDriver::glEnableVertexAttribArray;
+	PFNGLDISABLEVERTEXATTRIBARRAYPROC   GLDriver::glDisableVertexAttribArray;
     PFNGLBINDATTRIBLOCATIONPROC         GLDriver::glBindAttribLocation;
     PFNGLGENRENDERBUFFERSPROC           GLDriver::glGenRenderbuffers;
     PFNGLDELETERENDERBUFFERSPROC        GLDriver::glDeleteRenderbuffers;
@@ -382,7 +383,8 @@ namespace Agmd
         LOAD_EXTENSION(glVertexAttrib4f);
         LOAD_EXTENSION(glVertexAttribPointer);
         LOAD_EXTENSION(glBindAttribLocation);
-        LOAD_EXTENSION(glEnableVertexAttribArray);
+		LOAD_EXTENSION(glEnableVertexAttribArray);
+		LOAD_EXTENSION(glDisableVertexAttribArray);
         LOAD_EXTENSION(glGenRenderbuffers);
         LOAD_EXTENSION(glDeleteRenderbuffers);
         LOAD_EXTENSION(glBindRenderbuffer);
@@ -497,9 +499,14 @@ namespace Agmd
 
     void GLDriver::SetVB(unsigned int stream, const BaseBuffer* buffer, unsigned long stride, unsigned long minVertex, unsigned long maxVertex)
     {
+		if(!buffer)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			return;
+		}
         const GLVertexBuffer* VertexBuffer = static_cast<const GLVertexBuffer*>(buffer);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer->GetBuffer());
-
+		
         static const unsigned int Size[] = {1, 2, 3, 4, 4, 1};
         static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_SHORT};
 
@@ -568,7 +575,9 @@ namespace Agmd
                     glVertexAttribPointer(i->usage, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 
             }
+			//glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
+		
     }
 
     void GLDriver::SetIB(const BaseBuffer* buffer, unsigned long stride)

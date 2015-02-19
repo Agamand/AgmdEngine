@@ -1,6 +1,5 @@
 #include <Editor/ObjectPropertyGrid.h>
 #include <Core/Model/IcosahedronModel.h>
-
 void ObjectPropertyGrid::setCurrent( Agmd::SceneNode* node )
 {
 	Clear();
@@ -31,6 +30,9 @@ void ObjectPropertyGrid::setCurrent( Agmd::SceneNode* node )
 void ObjectPropertyGrid::buildProperty(Agmd::SceneNode* node)
 {
 	Append( new wxPropertyCategory( wxT("SceneNode"), wxT("SceneNode") ) ); 
+	Transform& t = node->getTransform();
+	wxString pos[] = {wxString::Format(wxT("%f"), t.getPosition().x),wxString::Format(wxT("%f"),t.getPosition().y),wxString::Format(wxT("%f"),t.getPosition().y)};
+	Append(new wxArrayStringProperty(wxT("Position"),wxT("Position"),wxArrayString(3,pos)));
 }
 
 void ObjectPropertyGrid::buildProperty(Agmd::RootNode* node)
@@ -64,4 +66,17 @@ void ObjectPropertyGrid::buildProperty(Agmd::CameraNode* node)
 {
 	buildProperty((Agmd::SceneNode*)node);
 	Append( new wxPropertyCategory( wxT("CameraNode"), wxT("CameraNode") ) );
+}
+
+void ObjectPropertyGrid::OnPropertyChanged( wxPropertyGridEvent& event )
+{
+	wxPGProperty* property = event.GetProperty();
+	if(property->GetBaseName() == "subdivision")
+	{
+		wxAny value = property->GetValue();
+		a_uint32 subdiv = value.As<int>();
+		Agmd::MeshNode* node = (Agmd::MeshNode*)m_current;
+		Agmd::Icosahedron *model = (Agmd::Icosahedron*)node->getModel();
+		model->setSubdiv(subdiv);
+	}
 }

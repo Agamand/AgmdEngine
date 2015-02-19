@@ -85,6 +85,7 @@ namespace Agmd
 			Model::TVertex vertex;
 			vertex.color = c[i%3].ToABGR();//-1;// it's white :D
 			vertex.position = base_vertex[i];
+			vertex.normal = normalize(vertex.position);
 			vertices.push_back(vertex);
 		}
 		std::list<Triangle> triangles(base_icosahdron,base_icosahdron+TRIANGLE_COUNT);
@@ -111,6 +112,7 @@ namespace Agmd
 					Model::TVertex vertex;
 					vertex.color = -1;// it's white :D
 					vertex.position = normalize(new_point[j]);
+					vertex.normal = normalize(vertex.position);
 					vertices.push_back(vertex);
 				}
 				

@@ -466,8 +466,8 @@ namespace Agmd
                 timer.start();
                 RenderingMode* current = RenderingMode::getRenderingMode();
                 if(current != NULL)
-                    current->compute();
-                OnRender3D();
+				current->compute();
+				OnRender3D();
                 renderTime = (float)timer.getElapsedTimeInMicroSec();
                 timer.stop();
                 timer.start();
@@ -775,6 +775,10 @@ namespace Agmd
 		camera = Camera::getCurrent();
 		for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
 			m_inputListener[i]->OnKey(key,up);
+#if defined(USE_EDITOR) && defined(USE_WX)
+		((EditorFrame*)m_frame)->OnKey(key,up);
+
+#endif
 		//camera->onKeyboard(key,up);
 		switch(key)
 		{

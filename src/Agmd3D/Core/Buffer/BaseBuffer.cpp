@@ -16,5 +16,8 @@ namespace Agmd
     {}
 
     BaseBuffer::~BaseBuffer()
-    {}
+    {
+		int a = 2;//("");
+
+	}
 }

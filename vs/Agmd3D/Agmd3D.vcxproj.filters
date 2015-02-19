@@ -58,6 +58,9 @@
     <Filter Include="Editor">
       <UniqueIdentifier>{c033a826-63e3-4a7b-9b7b-0a765644e3b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\Property">
+      <UniqueIdentifier>{977bb265-b23a-4f17-9ea0-ee0bf592d56b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Agmd3D\Config\Export.h">
@@ -378,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Agmd3D\Editor\ProceduralMaker.h">
       <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.h">
+      <Filter>Editor\Property</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -788,6 +794,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Editor\ProceduralMaker.cpp">
       <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.cpp">
+      <Filter>Editor\Property</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

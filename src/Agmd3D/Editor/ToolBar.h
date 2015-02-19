@@ -11,6 +11,7 @@ public:
 	ToolBar(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style);
 	
 private:
+	friend class EditorFrame;
 	void buildToolBar();
 	wxAuiToolBarItem* m_createBox; 
 	wxAuiToolBarItem* m_createSphere; 

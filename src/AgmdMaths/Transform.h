@@ -60,7 +60,7 @@ namespace AgmdMaths
 
 		const vec3 getPosition() const
 		{
-			return vec3(m_globalMatrix*vec4(0,0,0,1));
+			return vec3(m_worldMatrix*vec4(0,0,0,1));
 		}
 
 
@@ -74,7 +74,7 @@ namespace AgmdMaths
 		quat            m_rotation;
 
         mat4            m_localMatrix;
-		mat4			m_globalMatrix;
+		mat4			m_worldMatrix;
         TransformPtr    m_parent;
         TransformVector m_childs;
     };

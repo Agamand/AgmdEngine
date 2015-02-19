@@ -139,6 +139,7 @@
     <ClInclude Include="..\..\src\Agmd3D\Editor\ObjectProperty.h" />
     <ClInclude Include="..\..\src\Agmd3D\Editor\ObjectPropertyGrid.h" />
     <ClInclude Include="..\..\src\Agmd3D\Editor\ProceduralMaker.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.h" />
     <ClInclude Include="..\..\src\Agmd3D\Editor\SceneTree.h" />
     <ClInclude Include="..\..\src\Agmd3D\Editor\ToolBar.h" />
     <ClInclude Include="..\..\src\Agmd3D\Loaders\AssetLoader.h" />
@@ -280,6 +281,7 @@
     <ClCompile Include="..\..\src\Agmd3D\Editor\ObjectProperty.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Editor\ObjectPropertyGrid.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Editor\ProceduralMaker.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Editor\SceneTree.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Editor\ToolBar.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Loaders\AssetLoader.cpp" />

@@ -15,7 +15,7 @@ m_scale(_scale),
 position(m_position),
 rotation(m_rotation),
 m_localMatrix(glm::translate(mat4(1.0f),m_position)*mat4_cast(m_rotation)*glm::scale(mat4(1),m_scale)),
-m_globalMatrix(m_localMatrix)
+m_worldMatrix(m_localMatrix)
 {}
 
 inline Transform::Transform(Transform* parent, const vec3& _position, const quat& _rotation) :
@@ -27,13 +27,13 @@ m_scale(1),
 position(m_position),
 rotation(m_rotation),
 m_localMatrix(glm::translate(mat4(1.0f),m_position)*glm::mat4_cast(m_rotation)*glm::scale(mat4(1),m_scale)),
-m_globalMatrix(m_localMatrix)
+m_worldMatrix(m_localMatrix)
 
 {}
 
 inline mat4 Transform::modelMatrix() const
 {
-    return m_globalMatrix;//translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); 
+    return m_worldMatrix;//translate(mat4(1.0f),m_position)*mat4_cast(m_rotation); 
 }
 
 inline mat4 Transform::localModelMatrix() const
@@ -49,7 +49,7 @@ inline void Transform::setLocalModelMatrix(const mat4& matrix)
 
 inline void Transform::update(Transform* t,bool forcedUpdate)
 {
-	m_globalMatrix = t ? t->modelMatrix()*m_localMatrix: m_localMatrix;
+	m_worldMatrix = t ? t->modelMatrix()*m_localMatrix: m_localMatrix;
 	m_updateNeeded=false;
 }
 

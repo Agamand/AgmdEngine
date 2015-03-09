@@ -257,6 +257,7 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\CameraNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\DisplayNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\MeshNode.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\RootNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SceneNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SkinnedMeshSceneNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\SpriteNode.cpp" />
@@ -445,7 +446,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>USE_EDITOR;WXUSINGDLL;_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WXUSINGDLL;_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>

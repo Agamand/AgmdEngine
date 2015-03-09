@@ -67,9 +67,26 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
 
 	m_mgr.AddPane( m_auiToolBar1, wxAuiPaneInfo().Top().PinButton( true ).Dock().Resizable().FloatingSize( wxSize( 42,49 ) ).DockFixed( false ).Row( 0 ).Layer( 11 ) );
 
-	m_auiToolBar1->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( EditorFrame::onClick ), NULL, this );
+	//m_auiToolBar1->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( EditorFrame::onClick ), NULL, this );
 
-	this->Connect( m_auiToolBar1->m_createBox->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onclick ) );
+	this->Connect( m_auiToolBar1->m_createBox->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_createSphere->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_createIcosahedron->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_translate_x->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_translate_y->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_translate_z->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+
+	this->Connect( m_auiToolBar1->m_rotate_x->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_rotate_y->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
+	this->Connect( m_auiToolBar1->m_rotate_z->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
 	m_mgr.Update();
 	this->Centre( wxBOTH );
 
@@ -121,11 +138,13 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
 		if(node && cam->unProject(start) &&	cam->unProject(end))
 		{
 			end = normalize(end - start);
-			Agmd::Icosahedron* ico =  new Agmd::Icosahedron(0);
+			Agmd::Icosahedron* ico =  new Agmd::Icosahedron(4);
 			Transform* t = new Transform();
 			t->setPosition(start+end*10.f);
 			Agmd::MeshNode* node = new Agmd::MeshNode(ico,t);
+			
 			Agmd::SceneMgr* scene = Agmd::Driver::Get().GetActiveScene();
+
 			scene->AddNode(node);
 
 		}
@@ -141,21 +160,31 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
 	}
 }
 
-void EditorFrame::DoAction( float a )
+void EditorFrame::DoAction( vec2 pos,ivec2 posdiff )
 {
 	Agmd::SceneNode* node = m_sceneTree->getSelectedSceneNode();
 	if(!node)
 		return;
+	vec3 axe_x = vec3(1,0,0);
+	vec3 axe_y = vec3(0,1,0);
+	vec3 axe_z = vec3(0,0,1);
+
+	axe_x = node->getParent() ? mat3(node->getParent()->getTransform().modelMatrix())*axe_x : axe_x;
+	axe_y = node->getParent() ? mat3(node->getParent()->getTransform().modelMatrix())*axe_y : axe_y;
+	axe_z = node->getParent() ? mat3(node->getParent()->getTransform().modelMatrix())*axe_z : axe_z;
+	float a = posdiff.x/10.f;
 	switch(m_action)
 	{
 	case TACTION::TRANSLATE_X:
+
+		
 		node->getTransform().translate(a,0,0);
 		break;
 	case TACTION::TRANSLATE_Y:
-		node->getTransform().translate(a,0,0);
+		node->getTransform().translate(0,a,0);
 		break;
 	case TACTION::TRANSLATE_Z:
-		node->getTransform().translate(a,0,0);
+		node->getTransform().translate(0,0,a);
 		break;
 	case TACTION::ROTATION_X:
 		node->getTransform().rotate(a,vec3(1,0,0));
@@ -174,6 +203,12 @@ void EditorFrame::DoAction( float a )
 
 void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
 {
+	if(m_action >= TRANSLATE_X && mouseState & Agmd::TMouseState::MOUSE_LEFT)
+	{
+		DoAction(pos,posdiff);
+		return;
+	}
+		
 	if(Agmd::TMouseState::MOUSE_LEFT & mouseState)
 	{
 		Agmd::SceneNode* selected = m_sceneTree->getSelectedSceneNode();
@@ -212,15 +247,24 @@ void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
 
 void EditorFrame::OnKey( a_char key,bool up )
 {
+	
 	if(key == 27 && !up)
 	{
 		m_action = 0;
+		return;
+	}
+	Agmd::SceneNode* selected = m_sceneTree->getSelectedSceneNode();
+	if(key == 127 && selected && selected->getParent() && up)
+	{
+		selected->getParent()->removeChild(selected);
+		//delete selected;
+
 	}
 }
 void EditorFrame::onClick( wxCommandEvent& event  )
 {
+	m_action = 1+event.GetId();
 	
-	m_action = TACTION::DRAW_ICOSAHEDRE;
 }
 
 #endif

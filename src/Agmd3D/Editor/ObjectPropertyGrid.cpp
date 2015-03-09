@@ -1,5 +1,10 @@
 #include <Editor/ObjectPropertyGrid.h>
 #include <Core/Model/IcosahedronModel.h>
+
+#ifdef USE_EDITOR
+
+
+
 void ObjectPropertyGrid::setCurrent( Agmd::SceneNode* node )
 {
 	Clear();
@@ -80,3 +85,4 @@ void ObjectPropertyGrid::OnPropertyChanged( wxPropertyGridEvent& event )
 		model->setSubdiv(subdiv);
 	}
 }
+#endif // USE_EDITOR

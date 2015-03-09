@@ -55,33 +55,34 @@ inline void Transform::update(Transform* t,bool forcedUpdate)
 
 inline void Transform::rotate(float angle, const vec3& vector)
 {
-    //m_rotation = quat(rotate(m_rotation, angle, vector));
-	m_localMatrix = glm::rotate(m_localMatrix, angle, vector);
+    m_rotation = glm::rotate(quat(), angle, vector)*m_rotation;
+	m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
 	m_updateNeeded=true;
 }
 
 inline void Transform::translate(const vec3& move)
 {
-	m_localMatrix = glm::translate(m_localMatrix, move);
+	m_position +=move;
+	m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
 	m_updateNeeded=true;
 }
 
 inline void Transform::translate(float move_x, float move_y, float move_z)
 {
-    //m_position += vec3(move_x,move_y,move_z);
-	m_localMatrix = glm::translate(m_localMatrix, vec3(move_x,move_y,move_z));
+    m_position += vec3(move_x,move_y,move_z);
+	m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
 	m_updateNeeded=true;
 }
 
 inline void Transform::rotate(float angle, const vec3& vector, const Transform& base)
 {
-    m_localMatrix = glm::inverse(base.m_localMatrix)*glm::rotate(mat4(1.f), angle, vector)*base.m_localMatrix*m_localMatrix;
+    //m_localMatrix = glm::inverse(base.m_localMatrix)*glm::rotate(mat4(1.f), angle, vector)*base.m_localMatrix*m_localMatrix;
 	m_updateNeeded=true;
 }
 
 inline void Transform::rotate(quat q, const Transform& base)
 {
-	m_localMatrix = glm::inverse(base.m_localMatrix)*glm::mat4_cast(q)*base.m_localMatrix*m_localMatrix;
+	//m_localMatrix = glm::inverse(base.m_localMatrix)*glm::mat4_cast(q)*base.m_localMatrix*m_localMatrix;
 	m_updateNeeded=true;
 }
 
@@ -97,17 +98,34 @@ inline void Transform::translate(float move_x, float move_y, float move_z, const
 
 inline void Transform::setPosition(const vec3& position)
 {
-    m_localMatrix = glm::translate(mat4(1),position);
+	m_position = position;
+    m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
 	m_updateNeeded=true;
 }
 
 inline void Transform::SetRotation(const quat& rotation)
 {
     m_rotation = rotation;
+	m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
 	m_updateNeeded=true;
 }
 
 inline bool Transform::needUpdate() const
 {
 	return m_updateNeeded;
+}
+
+inline void Transform::rotateRelative(float angle, const vec3& vector)
+{
+	//m_rotation = glm::rotate(m_rotation, angle, vector);
+	m_localMatrix =  glm::rotate(m_localMatrix,angle,vector);
+	m_updateNeeded=true;
+}
+
+inline void Transform::translateRelative(const vec3& move)
+{
+	//m_position +=move;
+	//m_localMatrix = glm::translate(mat4(1),m_position)*mat4_cast(m_rotation);
+	m_localMatrix = glm::translate(m_localMatrix,move);
+	m_updateNeeded=true;
 }

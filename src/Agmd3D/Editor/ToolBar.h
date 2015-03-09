@@ -16,12 +16,12 @@ private:
 	wxAuiToolBarItem* m_createBox; 
 	wxAuiToolBarItem* m_createSphere; 
 	wxAuiToolBarItem* m_createIcosahedron; 
-	wxAuiToolBarItem* m_translate; 
-	wxAuiToolBarItem* m_; 
-	wxAuiToolBarItem* m_tool6; 
-	wxAuiToolBarItem* m_tool7; 
-	wxAuiToolBarItem* m_tool8; 
-	wxAuiToolBarItem* m_tool9; 
+	wxAuiToolBarItem* m_translate_x; 
+	wxAuiToolBarItem* m_translate_y; 
+	wxAuiToolBarItem* m_translate_z; 
+	wxAuiToolBarItem* m_rotate_x; 
+	wxAuiToolBarItem* m_rotate_y; 
+	wxAuiToolBarItem* m_rotate_z; 
 };
 #endif
 #endif

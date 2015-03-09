@@ -29,8 +29,8 @@ namespace Agmd
 		{
 			if(m_mouseState & MOUSE_RIGHT)
 			{
-				m_bindedNode->getTransform().rotate(posDiff.x*m_sensivity,vec3(0,1,0));
-				m_bindedNode->getTransform().rotate(posDiff.y*m_sensivity,vec3(1,0,0));
+				m_bindedNode->getTransform().rotateRelative(posDiff.x*m_sensivity,vec3(0,1,0));
+				m_bindedNode->getTransform().rotateRelative(posDiff.y*m_sensivity,vec3(1,0,0));
 			}
 		}
 	}
@@ -91,13 +91,13 @@ namespace Agmd
 		if(!m_bindedNode)
 			return;
 		Transform& t = m_bindedNode->getTransform();
-		t.translate(-_move*m_speed*(float)time);
+		t.translateRelative(-_move*m_speed*(float)time);
 		if(m_moveFlags & ROLL_LEFT  ^ m_moveFlags & ROLL_RIGHT)
 		{
 			if(m_moveFlags & ROLL_LEFT)
-				m_bindedNode->getTransform().rotate(m_angularSpeed*(float)time,vec3(0,0,1));
+				m_bindedNode->getTransform().rotateRelative(m_angularSpeed*(float)time,vec3(0,0,1));
 			else
-				m_bindedNode->getTransform().rotate(-m_angularSpeed*(float)time,vec3(0,0,1));
+				m_bindedNode->getTransform().rotateRelative(-m_angularSpeed*(float)time,vec3(0,0,1));
 			
 		}
 	}

@@ -63,8 +63,8 @@ protected:
 	// Virtual event handlers, overide them in your derived class
 	virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
 	virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
-	virtual void onClick( wxMouseEvent& event );
-	void DoAction(float a);
+	virtual void onClick( wxCommandEvent& event  );
+	void DoAction(vec2 pos,ivec2 posdiff);
 public:
 	void OnClick(int click, vec2 pos, bool up);
 	void OnMove(vec2 pos,ivec2 posdiff,a_uint32 mouseState);

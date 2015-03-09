@@ -31,7 +31,9 @@ namespace AgmdMaths
 
 		void setLocalModelMatrix(const mat4& matrix);
         void rotate(float angle, const vec3 &vector);
+		void rotateRelative(float angle, const vec3 &vector);
         void translate(const vec3 &move);
+		void translateRelative(const vec3 &move);
         void translate(float move_x, float move_y, float move_z);
 		
 		void scale(float x,float y,float z){
@@ -51,6 +53,7 @@ namespace AgmdMaths
         //Relative transformation
         void rotate(float angle, const vec3 &vector, const Transform& base);
         void rotate(quat q, const Transform& base);
+		
 		void translate(const vec3 &move, const Transform& base);
         
 		void translate(float move_x, float move_y, float move_z, const Transform& base);

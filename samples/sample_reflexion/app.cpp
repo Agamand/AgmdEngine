@@ -188,13 +188,13 @@ void App::init()
 
 	Driver::Get().SetActiveScene(m_Scene);
 	Driver::Get().SetCullFace(2);
-	cam3D = new Camera(m_MatProj3D);
+	cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
 	
 	InputController* controller = new FirstPersonController();
 	camNode = new CameraNode(cam3D,controller);
 	camNode->setController(controller);
 	m_Scene->AddNode(camNode);
-	cam2D = new Camera(m_MatProj2D);
+	cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
 	Camera::setCurrent(cam3D, CAMERA_3D);
 	Camera::setCurrent(cam2D, CAMERA_2D);
 }

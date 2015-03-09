@@ -798,5 +798,8 @@
     <ClCompile Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.cpp">
       <Filter>Editor\Property</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\RootNode.cpp">
+      <Filter>Core\SceneNode</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

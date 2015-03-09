@@ -67,6 +67,9 @@ namespace Agmd
 				if(node->m_root)
 					node->m_root->remove(node);
 				node->m_parent = node->m_root = NULL;
+				m_children.erase(m_children.begin()+i);
+				break;
+
 			}
 		}	
 	}

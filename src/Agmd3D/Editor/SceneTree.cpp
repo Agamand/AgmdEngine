@@ -1,4 +1,7 @@
 #include <Editor/SceneTree.h>
+#ifdef USE_EDITOR
+
+
 
 //static data
 /*
@@ -44,9 +47,12 @@ void SceneTree::removeSceneNode( Agmd::SceneNode* node )
 	{
 		wxTreeItemId id = m_nodes[node];
 		m_nodes.erase(itr);
-		m_nodesId.erase(m_nodesId.find(itr->second));
+		m_nodesId.erase(m_nodesId.find(id));
+		if(GetSelection() ==id)
+			UnselectAll();
 		Delete(id);
 	}
+	
 }
 
 void SceneTree::setSelectedSceneNode( Agmd::SceneNode* node )
@@ -86,3 +92,4 @@ void SceneTree::OnSelect( wxTreeEvent& event )
 	}else m_editor->__selectNode(NULL);
 }
 
+#endif

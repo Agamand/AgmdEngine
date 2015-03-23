@@ -197,7 +197,7 @@ void GLCanvas::OnSize(wxSizeEvent& WXUNUSED(event))
 	SetCurrent(*m_glRC);
 	int w, h;
 	GetClientSize(&w, &h);
-	printf("%d, %d\n",w,h);
+	//xprintf("%d, %d\n",w,h);
 	m_application->onResize(ivec2(w,h));
 	Refresh(false);
 }
@@ -251,11 +251,11 @@ void GLCanvas::OnKeyUp(wxKeyEvent& event)
 	}
 }
 void GLCanvas::keyPressed(wxKeyEvent& event) {
-	printf("%c pressed\n",event.GetKeyCode());
+	//printf("%c pressed\n",event.GetKeyCode());
 	m_application->OnKey(event.GetKeyCode(),false);
 }
 void GLCanvas::keyReleased(wxKeyEvent& event) {
-	printf("%c release\n",event.GetKeyCode());
+	//printf("%c release\n",event.GetKeyCode());
 	m_application->OnKey(event.GetKeyCode(),true);
 }
 void GLCanvas::InitGL()
@@ -661,7 +661,7 @@ namespace Agmd
 	{
 		GUIMgr& guimgr = GUIMgr::Instance();
 		camera = Camera::getCurrent();
-		printf("click %i, up : %i\n",click,up);
+		//printf("click %i, up : %i\n",click,up);
 #if defined(USE_EDITOR) && defined(USE_WX)
 		((EditorFrame*)m_frame)->OnClick(click,pos,up);
 

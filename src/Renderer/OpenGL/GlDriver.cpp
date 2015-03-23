@@ -133,7 +133,7 @@ namespace Agmd
     PFNGLDELETEFRAMEBUFFERSPROC         GLDriver::glDeleteFramebuffers;
     PFNGLBINDFRAMEBUFFERPROC            GLDriver::glBindFramebuffer;
     PFNGLDRAWBUFFERSPROC                GLDriver::glDrawBuffers;
-    PFNGLDRAWARRAYSEXTPROC              GLDriver::glDrawArrays;
+    //PFNGLDRAWARRAYSEXTPROC              GLDriver::glDrawArrays;
     PFNGLFRAMEBUFFERRENDERBUFFERPROC    GLDriver::glFramebufferRenderbuffer;
     PFNGLFRAMEBUFFERTEXTUREPROC         GLDriver::glFramebufferTexture;
     PFNGLFRAMEBUFFERTEXTURE2DPROC       GLDriver::glFramebufferTexture2D;
@@ -393,7 +393,7 @@ namespace Agmd
         LOAD_EXTENSION(glDeleteFramebuffers);
         LOAD_EXTENSION(glBindFramebuffer);
         LOAD_EXTENSION(glDrawBuffers);
-        LOAD_EXTENSION(glDrawArrays);
+        //LOAD_EXTENSION(glDrawArrays);
         LOAD_EXTENSION(glFramebufferRenderbuffer);
         LOAD_EXTENSION(glFramebufferTexture);
         LOAD_EXTENSION(glFramebufferTexture2D);

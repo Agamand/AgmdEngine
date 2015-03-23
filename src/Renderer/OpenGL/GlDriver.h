@@ -176,7 +176,7 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLGENFRAMEBUFFERSPROC                 glGenFramebuffers;
         OPENGL_EXPORT static PFNGLBINDFRAMEBUFFERPROC                 glBindFramebuffer;
         OPENGL_EXPORT static PFNGLDRAWBUFFERSPROC                     glDrawBuffers;
-        OPENGL_EXPORT static PFNGLDRAWARRAYSEXTPROC                   glDrawArrays;
+        //OPENGL_EXPORT static PFNGLDRAWARRAYSEXTPROC                   glDrawArrays;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERRENDERBUFFERPROC         glFramebufferRenderbuffer;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTUREPROC              glFramebufferTexture;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTURE2DPROC            glFramebufferTexture2D;

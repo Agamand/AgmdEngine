@@ -24,9 +24,9 @@ int main(int argc, char** argv)
         App::Destroy();
     }catch(std::exception e)
     {
-		std::cout << "Fail -> exception" << std::endl;
-		std::cout << e.what() << std::endl;
-		
+        std::cout << "Fail -> exception" << std::endl;
+        std::cout << e.what() << std::endl;
+        
     }
 
     /*Circle c1(Point(0,0),5);
@@ -40,6 +40,6 @@ int main(int argc, char** argv)
     std::cout << "p1 in c2 : " << c2.include(p) << std::endl;
     std::cout << "c1 intesect c2 : " << c1.intersect(c2) << std::endl;
     system("pause");*/
-	system("pause");
+    system("pause");
     return EXIT_SUCCESS;
 }

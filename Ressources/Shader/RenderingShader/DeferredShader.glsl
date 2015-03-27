@@ -19,11 +19,11 @@ uniform samplerCube texture0;
 void main()
 {
 
-	v_color = in_Color;
-	v_texCoord0 = in_TexCoord0;
-	v_normal = normalize(mat3(u_matModel)*in_Normal);
-	v_pos = u_matModel * vec4(in_Vertex,1);
-	gl_Position = u_matViewProjection * vec4(v_pos.xyz,1);
+    v_color = in_Color;
+    v_texCoord0 = in_TexCoord0;
+    v_normal = normalize(mat3(u_matModel)*in_Normal);
+    v_pos = u_matModel * vec4(in_Vertex,1);
+    gl_Position = u_matViewProjection * vec4(v_pos.xyz,1);
 }
 #endif
 
@@ -43,9 +43,9 @@ layout(location = 2) out vec3 out_Position;
 uniform sampler2D texture0;
 void main()
 {
-	out_Color = vec4(0.5f,0.5f,0.5f,1);//vec4(texture(texture0,v_texCoord0).rgb,1);
-	out_Normal = normal2rgb(v_normal);
-	out_Position = v_pos.xyz;
+    out_Color = vec4(0.5f,0.5f,0.5f,1);//vec4(texture(texture0,v_texCoord0).rgb,1);
+    out_Normal = normal2rgb(v_normal);
+    out_Position = v_pos.xyz;
 }
 
 

@@ -10,8 +10,8 @@ out vec2 v_TexCoord;
 
 void main()
 {
-	v_TexCoord = in_TexCoord0;
-	gl_Position = u_matProjection*vec4(in_Vertex,1.0f);
+    v_TexCoord = in_TexCoord0;
+    gl_Position = u_matProjection*vec4(in_Vertex,1.0f);
 }
 
 #endif
@@ -24,10 +24,10 @@ out vec4 out_Color;
 
 void main (void)
 {
-	vec4 input1 = texture(texture0, v_TexCoord);
-	if(input1.a < 1.0f)
-		discard;
-	out_Color = input1;
+    vec4 input1 = texture(texture0, v_TexCoord);
+    if(input1.a < 1.0f)
+        discard;
+    out_Color = input1;
 }
 
 #endif

@@ -37,11 +37,11 @@ namespace Agmd
         m_bufferMaterial.Unlock();
     }
 
-	Material::Material( const Material& mat ) : m_pipeline(mat.m_pipeline)
-	{
-		for(int i = 0 ; i < MAX_TEXTUREUNIT;i++)
-			m_texture[i] = mat.m_texture[i];
-	}
+    Material::Material( const Material& mat ) : m_pipeline(mat.m_pipeline)
+    {
+        for(int i = 0 ; i < MAX_TEXTUREUNIT;i++)
+            m_texture[i] = mat.m_texture[i];
+    }
 
     Material::~Material()
     {
@@ -78,9 +78,9 @@ namespace Agmd
         m_texture[unit] = TextureUnit(tex,pass);
     }
 
-	Texture Material::getTexture( int texUnit )
-	{
-		return m_texture[texUnit].tex;
-	}
+    Texture Material::getTexture( int texUnit )
+    {
+        return m_texture[texUnit].tex;
+    }
 
 }

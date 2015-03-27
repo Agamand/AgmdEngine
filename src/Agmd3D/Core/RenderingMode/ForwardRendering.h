@@ -32,7 +32,7 @@ namespace Agmd
         Texture getDiffuseTexture();
         Texture getLightingTexture();
         Texture getDepthTexture();
-		void init();
+        void init();
     private:
         
         FrameBuffer* m_framebuffer;

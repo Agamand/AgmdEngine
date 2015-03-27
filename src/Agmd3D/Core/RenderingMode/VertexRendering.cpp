@@ -49,8 +49,8 @@ namespace Agmd
     {
     }
 
-	void VertexRendering::init()
-	{
+    void VertexRendering::init()
+    {
 
-	}
+    }
 }

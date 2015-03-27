@@ -22,16 +22,16 @@ namespace Agmd
 {
     DeferredRendering::DeferredRendering(int width, int height) :
     RenderingMode(width,height),
-	m_framebuffer(NULL),
-	m_shadowRender(NULL)
+    m_framebuffer(NULL),
+    m_shadowRender(NULL)
     {
         init();
     }
 
     DeferredRendering::DeferredRendering(ivec2& screen) :
     RenderingMode(screen),
-	m_framebuffer(NULL),
-	m_shadowRender(NULL)
+    m_framebuffer(NULL),
+    m_shadowRender(NULL)
     {
         init();
     }
@@ -46,8 +46,8 @@ namespace Agmd
     void DeferredRendering::init()
    {
         Driver& render = Driver::Get();
-		if(!m_framebuffer)
-			m_framebuffer = render.CreateFrameBuffer();
+        if(!m_framebuffer)
+            m_framebuffer = render.CreateFrameBuffer();
 
         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D, TEX_NOMIPMAP);
         m_textureBuffer[1].Create(m_screen, PXF_R16G16B16, TEXTURE_2D, TEX_NOMIPMAP);
@@ -66,17 +66,17 @@ namespace Agmd
         m_light_program[SPOT].LoadFromFile("Shader/RenderingShader/DeferredSpotLightShader.glsl");
         m_light_program[DIRECTIONNAL_WITH_SHADOW].LoadFromFile("Shader/RenderingShader/DeferredDirLightShaderWS.glsl");
         m_light_program[SPOT_WITH_SHADOW].LoadFromFile("Shader/RenderingShader/DeferredSpotLightShaderWS.glsl");
-		if(!m_shadowRender)
-			m_shadowRender = new ShadowMapRenderer(ivec2(2048));
+        if(!m_shadowRender)
+            m_shadowRender = new ShadowMapRenderer(ivec2(2048));
     }
 
 
     void DeferredRendering::compute()
     {
         Driver& render = Driver::Get();
-		render.SetViewPort(ivec2(),render.GetScreen());
+        render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		vec3 cameraPosition = Camera::getCurrent(CAMERA_3D)->getNode()->getTransform().getPosition();
+        vec3 cameraPosition = Camera::getCurrent(CAMERA_3D)->getNode()->getTransform().getPosition();
         const a_vector<Light*>& lights = sc->GetLights();
 
         
@@ -84,21 +84,21 @@ namespace Agmd
 
         start();
         render.SetRenderMode(m_mode);
-		SkyBox* box = sc->GetSkyBox();
-		render.SetCullFace(1);
-		if(box)
-		{
-			render.Enable(RENDER_ZWRITE,false);
-			box->Render();
-		}
-		sc->Update();
-		sc->Compute();
-		/*if(sc->isEmpty())
-		{
-			End();
-			return;
-		}*/
-		render.SetCullFace(0);
+        SkyBox* box = sc->GetSkyBox();
+        render.SetCullFace(1);
+        if(box)
+        {
+            render.Enable(RENDER_ZWRITE,false);
+            box->Render();
+        }
+        sc->Update();
+        sc->Compute();
+        /*if(sc->isEmpty())
+        {
+            End();
+            return;
+        }*/
+        render.SetCullFace(0);
         render.Enable(RENDER_ZWRITE,true);
         m_framebuffer->Clear(CLEAR_DEPTH);
         m_framebuffer->DrawBuffer(0);
@@ -121,7 +121,7 @@ namespace Agmd
         render.SetRenderMode(MODE_FILL);
         //if(PostEffectMgr::Instance().HaveEffect())
         
-		bool shadow = true;
+        bool shadow = true;
         if(maxLights)
         {
             //render.Enable(RENDER_ALPHABLEND, true);
@@ -130,17 +130,17 @@ namespace Agmd
             {
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()].GetShaderProgram());
                 if(shadow)//if shadow is enable
-				{
-					//Re-enable Z-Test for making shadow cast
-					render.Enable(RENDER_ZTEST,true);
-					render.Enable(RENDER_ZWRITE,true);
-					render.SetupDepthTest(DEPTH_LESS);
-					lights[i]->Bind();
-					m_shadowRender->Reset();
-					m_shadowRender->BeginLight(lights[i]);
-					sc->Draw();
-					m_shadowRender->EndLight();
-				}
+                {
+                    //Re-enable Z-Test for making shadow cast
+                    render.Enable(RENDER_ZTEST,true);
+                    render.Enable(RENDER_ZWRITE,true);
+                    render.SetupDepthTest(DEPTH_LESS);
+                    lights[i]->Bind();
+                    m_shadowRender->Reset();
+                    m_shadowRender->BeginLight(lights[i]);
+                    sc->Draw();
+                    m_shadowRender->EndLight();
+                }
                 //Disable Z-Test for light rendering
                 render.SetupDepthTest(DEPTH_LEQUAL);
                 render.Enable(RENDER_ZWRITE,false);
@@ -149,9 +149,9 @@ namespace Agmd
                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()+(shadow? 3: 0)/*+3 for use with SHADOW*/].GetShaderProgram());
-				render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
-				if(shadow)
-					m_shadowRender->SetupForRendering();
+                render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
+                if(shadow)
+                    m_shadowRender->SetupForRendering();
                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
                 Fast2DSurface::Instance().Draw();
             }

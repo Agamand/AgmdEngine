@@ -21,11 +21,11 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT InputController : public Controller, public AgmdApplication::InputListener
-	{
-	public:
-		InputController(): Controller(){};
-	};
+    class AGMD3D_EXPORT InputController : public Controller, public AgmdApplication::InputListener
+    {
+    public:
+        InputController(): Controller(){};
+    };
 
 }
 

@@ -197,16 +197,16 @@ namespace Agmd
                     continue;
             }
             /*
-			texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
-			break;
-		case 1:
-			texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
-			break;
-		case 2:
-			texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
-			break;
-		case 3:
-			texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
+            texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
+            break;
+        case 1:
+            texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
+            break;
+        case 2:
+            texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
+            break;
+        case 3:
+            texCoord0 = vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset);
             */
 
             TVertex v[] = {

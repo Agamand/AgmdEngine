@@ -39,7 +39,7 @@ namespace Agmd
         virtual void DrawBuffer(a_uint32 flag) = 0;
         virtual void DrawBuffers(a_uint32 nbuffer, a_uint32 flag[]) = 0;
         virtual a_uint32* GenerateBufferFlags(a_uint32 count, a_uint32 flags[]) = 0;
-		virtual a_uint32* GenerateBufferFlags(a_uint32*,a_uint32 count, a_uint32 flags[]) = 0;
+        virtual a_uint32* GenerateBufferFlags(a_uint32*,a_uint32 count, a_uint32 flags[]) = 0;
         virtual void ReadBuffer(a_uint32 flag) = 0;
 
     protected:

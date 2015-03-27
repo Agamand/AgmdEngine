@@ -21,15 +21,15 @@ namespace Agmd
 
         virtual void render(TRenderPass pass) const;
         virtual void draw() const;
-		virtual bool isVisible(BoundingBox& bbox);
-		void setModel(Model*model)
-		{
-			m_baseModel = model;
-		}
-		void setMaterial( Material* surface_mat );
-		Model* getModel() {return m_baseModel;}
-		
-	private:
+        virtual bool isVisible(BoundingSphere& bbox);
+        void setModel(Model*model)
+        {
+            m_baseModel = model;
+        }
+        void setMaterial( Material* surface_mat );
+        Model* getModel() {return m_baseModel;}
+        
+    private:
         Model* m_baseModel;
     };
 }

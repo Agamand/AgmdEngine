@@ -4,9 +4,9 @@
 
 layout(std140) uniform cameraInfoBlock
 {
-    mat4 				u_matViewProjection;
-    mat4 				u_matView;
+    mat4                 u_matViewProjection;
+    mat4                 u_matView;
 };
-uniform mat4 			u_matModel = mat4(1.0);
+uniform mat4             u_matModel = mat4(1.0);
 
 #endif /* _GLOBAL_UNIFORM_GLSL_ */

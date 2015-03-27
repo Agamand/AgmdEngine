@@ -26,7 +26,7 @@ namespace Agmd
         static void setRenderingMode(RenderingMode*);
 
         static RenderingMode* getRenderingMode();
-		virtual void init() = 0;
+        virtual void init() = 0;
     protected:
         virtual void start() = 0;
         virtual void end() = 0;

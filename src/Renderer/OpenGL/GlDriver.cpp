@@ -85,7 +85,7 @@ namespace Agmd
     PFNGLGETSHADERINFOLOGPROC           GLDriver::glGetShaderInfoLog;
     PFNGLATTACHSHADERPROC               GLDriver::glAttachShader;
     PFNGLLINKPROGRAMPROC                GLDriver::glLinkProgram;
-	PFNGLVALIDATEPROGRAMPROC			GLDriver::glValidateProgram;
+    PFNGLVALIDATEPROGRAMPROC            GLDriver::glValidateProgram;
     PFNGLGETPROGRAMIVPROC               GLDriver::glGetProgramiv;
     PFNGLGETPROGRAMINFOLOGPROC          GLDriver::glGetProgramInfoLog;
     PFNGLGETACTIVEUNIFORMSIVPROC        GLDriver::glGetActiveUniformsiv;
@@ -123,7 +123,7 @@ namespace Agmd
     PFNGLVERTEXATTRIB4FNVPROC           GLDriver::glVertexAttrib4f;
     PFNGLVERTEXATTRIBPOINTERPROC        GLDriver::glVertexAttribPointer;
     PFNGLENABLEVERTEXATTRIBARRAYPROC    GLDriver::glEnableVertexAttribArray;
-	PFNGLDISABLEVERTEXATTRIBARRAYPROC   GLDriver::glDisableVertexAttribArray;
+    PFNGLDISABLEVERTEXATTRIBARRAYPROC   GLDriver::glDisableVertexAttribArray;
     PFNGLBINDATTRIBLOCATIONPROC         GLDriver::glBindAttribLocation;
     PFNGLGENRENDERBUFFERSPROC           GLDriver::glGenRenderbuffers;
     PFNGLDELETERENDERBUFFERSPROC        GLDriver::glDeleteRenderbuffers;
@@ -173,14 +173,14 @@ namespace Agmd
 
     std::string GLDriver::GetRendererDesc() const
     {
-		const char* gl_version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
-		const char* glsl_version = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-		std::string _const = GetConstant();
-		if(!gl_version)
-			gl_version ="GL version not found";
-		if(!glsl_version)
-			glsl_version = "GLSL version not found";
-		return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version)("\n")(_const);
+        const char* gl_version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
+        const char* glsl_version = reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+        std::string _const = GetConstant();
+        if(!gl_version)
+            gl_version ="GL version not found";
+        if(!glsl_version)
+            glsl_version = "GLSL version not found";
+        return StringBuilder("OpenGL ")(gl_version)(", GLSL ")(glsl_version)("\n")(_const);
     }
 
     void GLDriver::Setup(HWND Hwnd)
@@ -218,34 +218,34 @@ namespace Agmd
         // Create Temp Glcontext for loading extentions
         m_Context = wglCreateContext(m_Handle);
         assert(wglMakeCurrent(m_Handle, m_Context));
-		*/
+        */
         int attribs[] =
         {
             WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
-            WGL_CONTEXT_MINOR_VERSION_ARB, 2,	
-			WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_DEBUG_BIT_ARB | WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-			WGL_CONTEXT_PROFILE_MASK_ARB,WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
-			0
+            WGL_CONTEXT_MINOR_VERSION_ARB, 2,    
+            WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_DEBUG_BIT_ARB | WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+            WGL_CONTEXT_PROFILE_MASK_ARB,WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
+            0
         };
 
         // Load CreateContext function
         LOAD_EXTENSION(wglCreateContextAttribsARB);
-		
+        
         //Recreate a real GlContext (if possible)
         /*if(wglCreateContextAttribsARB)
         { 
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
-			wglMakeCurrent(NULL, NULL);
-			wglDeleteContext(m_Context);
+            wglMakeCurrent(NULL, NULL);
+            wglDeleteContext(m_Context);
             m_Context = temp;
-			assert(wglMakeCurrent(m_Handle, m_Context));
+            assert(wglMakeCurrent(m_Handle, m_Context));
 
         }*/
-		LoadExtensions();
-		//ShowWindow(m_Hwnd, SW_NORMAL);
-		//UpdateWindow(m_Hwnd);
-		//SetFocus(m_Hwnd);
+        LoadExtensions();
+        //ShowWindow(m_Hwnd, SW_NORMAL);
+        //UpdateWindow(m_Hwnd);
+        //SetFocus(m_Hwnd);
         // Load extensions
         
 
@@ -261,7 +261,7 @@ namespace Agmd
 
         // Default states
         glClearColor(0.0f,0.0f,0.0f,0);
-		//glClearColor(0.5f,0.5f,0.5f,0);
+        //glClearColor(0.5f,0.5f,0.5f,0);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -305,8 +305,8 @@ namespace Agmd
         str("\nGL_MAX_VARYING_FLOATS : ")(value);
 
 
-		 glGetIntegerv(0x826E, &value);
-		 str("\nMax Uniform location :")(value);
+         glGetIntegerv(0x826E, &value);
+         str("\nMax Uniform location :")(value);
 
         return str;
     }
@@ -346,7 +346,7 @@ namespace Agmd
         LOAD_EXTENSION(glGetShaderInfoLog);
         LOAD_EXTENSION(glAttachShader);
         LOAD_EXTENSION(glLinkProgram);
-		LOAD_EXTENSION(glValidateProgram);
+        LOAD_EXTENSION(glValidateProgram);
         LOAD_EXTENSION(glGetProgramiv);
         LOAD_EXTENSION(glGetProgramInfoLog);
         LOAD_EXTENSION(glGetActiveUniformsiv);
@@ -383,8 +383,8 @@ namespace Agmd
         LOAD_EXTENSION(glVertexAttrib4f);
         LOAD_EXTENSION(glVertexAttribPointer);
         LOAD_EXTENSION(glBindAttribLocation);
-		LOAD_EXTENSION(glEnableVertexAttribArray);
-		LOAD_EXTENSION(glDisableVertexAttribArray);
+        LOAD_EXTENSION(glEnableVertexAttribArray);
+        LOAD_EXTENSION(glDisableVertexAttribArray);
         LOAD_EXTENSION(glGenRenderbuffers);
         LOAD_EXTENSION(glDeleteRenderbuffers);
         LOAD_EXTENSION(glBindRenderbuffer);
@@ -411,8 +411,8 @@ namespace Agmd
 
     void GLDriver::EndScene()
     {
-		glFlush();
-		//glFinish();
+        glFlush();
+        //glFinish();
         //SwapBuffers(m_Handle); 
     }
 
@@ -499,14 +499,14 @@ namespace Agmd
 
     void GLDriver::SetVB(unsigned int stream, const BaseBuffer* buffer, unsigned long stride, unsigned long minVertex, unsigned long maxVertex)
     {
-		if(!buffer)
-		{
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-			return;
-		}
+        if(!buffer)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            return;
+        }
         const GLVertexBuffer* VertexBuffer = static_cast<const GLVertexBuffer*>(buffer);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer->GetBuffer());
-		
+        
         static const unsigned int Size[] = {1, 2, 3, 4, 4, 1};
         static const unsigned int Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_SHORT};
 
@@ -575,9 +575,9 @@ namespace Agmd
                     glVertexAttribPointer(i->usage, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 
             }
-			//glBindBuffer(GL_ARRAY_BUFFER, 0);
+            //glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
-		
+        
     }
 
     void GLDriver::SetIB(const BaseBuffer* buffer, unsigned long stride)
@@ -632,7 +632,7 @@ namespace Agmd
 
         switch (type)
         {
-			case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
+            case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
             case PT_TRIANGLESTRIP : glDrawElements(GL_TRIANGLE_STRIP, count, indicesType, offset); break;
             case PT_TRIANGLEFAN :   glDrawElements(GL_TRIANGLE_FAN,   count, indicesType, offset); break;
             case PT_LINELIST :      glDrawElements(GL_LINES,          count, indicesType, offset); break; 
@@ -653,7 +653,7 @@ namespace Agmd
         if(unit > MAX_TEXTUREUNIT)
             return;
         
-		// nope this fail :/
+        // nope this fail :/
         //if(m_TextureBind[unit] == texture) 
             //return; // NO CHANGE? -> return!
 
@@ -711,29 +711,29 @@ namespace Agmd
             nbMipmaps = 0;
         }else
         {
-			if(flags & TEX_WRAP_CLAMP)
-			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			}else
-			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			}
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            if(flags & TEX_WRAP_CLAMP)
+            {
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            }else
+            {
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            }
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
+            nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
 
-			if(flags & TEX_USE_FILTER)
-			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  flags & TEX_NOMIPMAP ? GL_LINEAR : GL_LINEAR_MIPMAP_LINEAR);
-			}else
-			{
-				
-			}
-			
+            if(flags & TEX_USE_FILTER)
+            {
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  flags & TEX_NOMIPMAP ? GL_LINEAR : GL_LINEAR_MIPMAP_LINEAR);
+            }else
+            {
+                
+            }
+            
             if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
                 glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
 
@@ -900,7 +900,7 @@ namespace Agmd
             source = source.substr(0,index)+define+source.substr(index,source.size()-1);
         std::replace(source.begin(), source.end(), '\r','\n');
         
-		const char* src = source.c_str();
+        const char* src = source.c_str();
         a_uint32 shader = glCreateShader(RGLEnum::Get(type));
         glShaderSource(shader, 1, (const char**)&src, NULL);
     
@@ -922,9 +922,9 @@ namespace Agmd
         {
             printf("\n source :\n %s \n error : \n%s\n",src,log);
             printf("on shader type : %i\n-----------------\n",type);
-			delete[] log;
+            delete[] log;
             glDeleteShader(shader);
-            return NULL;	
+            return NULL;    
         }
         delete[] log;
     
@@ -964,9 +964,9 @@ namespace Agmd
         glBindAttribLocation(id, 10, "in_BoneCount");
         /**/
 
-		glValidateProgram(id);
-		int valid = 0;
-		glGetProgramiv(id, GL_VALIDATE_STATUS, &valid);
+        glValidateProgram(id);
+        int valid = 0;
+        glGetProgramiv(id, GL_VALIDATE_STATUS, &valid);
 
         glLinkProgram(id);
 
@@ -985,7 +985,7 @@ namespace Agmd
         Logger::Log(LOGNORMAL, "%s", log);
 
         
-		
+        
         if(link != GL_TRUE)
         {
             printf("error : \n%s",log);
@@ -1044,7 +1044,7 @@ namespace Agmd
 
     void GLDriver::SetCullFace(int face)
     {
-			
+            
         if(face)
             glEnable(GL_CULL_FACE);
         else glDisable(GL_CULL_FACE);
@@ -1056,62 +1056,62 @@ namespace Agmd
             glCullFace(GL_FRONT_AND_BACK);
     }
 
-	void GLDriver::drawBoundingBox( const BoundingBox& bbox,const BaseShaderProgram* program )
-	{
-		const vec3& _max = bbox.GetMax(), _min = bbox.GetMin();
-		vec3 points_box[8] = {
-			_min,
-			_max,
-			vec3(_max.x,_min.y,_min.z),
-			vec3(_min.x,_max.y,_min.z),
-			vec3(_max.x,_max.y,_min.z),
-			vec3(_min.x,_min.y,_max.z),
-			vec3(_min.x,_max.y,_max.z),
-			vec3(_max.x,_min.y,_max.z)
-		};
-		
-		SetCurrentProgram(program);
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[0][0]);
-		glVertex3fv(&points_box[2][0]);
-		glEnd();
+    void GLDriver::drawBoundingBox( const BoundingSphere& bbox,const BaseShaderProgram* program )
+    {
+//         const vec3& _max = bbox.GetMax(), _min = bbox.GetMin();
+//         vec3 points_box[8] = {
+//             _min,
+//             _max,
+//             vec3(_max.x,_min.y,_min.z),
+//             vec3(_min.x,_max.y,_min.z),
+//             vec3(_max.x,_max.y,_min.z),
+//             vec3(_min.x,_min.y,_max.z),
+//             vec3(_min.x,_max.y,_max.z),
+//             vec3(_max.x,_min.y,_max.z)
+//         };
+//         
+//         SetCurrentProgram(program);
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[0][0]);
+//         glVertex3fv(&points_box[2][0]);
+//         glEnd();
+// 
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[0][0]);
+//         glVertex3fv(&points_box[3][0]);
+//         glEnd();
+// 
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[0][0]);
+//         glVertex3fv(&points_box[5][0]);
+//         glEnd();
+//         
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[1][0]);
+//         glVertex3fv(&points_box[4][0]);
+//         glEnd();
+//         /*
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[1][0]);
+//         glVertex3fv(&points_box[6][0]);
+//         glEnd();
+// 
+//         glBegin(GL_LINES);
+//         glColor3f(1.0f,0,0);
+//         glVertex3fv(&points_box[1][0]);
+//         glVertex3fv(&points_box[7][0]);
+//         glEnd();
+//         */
+    }
 
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[0][0]);
-		glVertex3fv(&points_box[3][0]);
-		glEnd();
-
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[0][0]);
-		glVertex3fv(&points_box[5][0]);
-		glEnd();
-		
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[1][0]);
-		glVertex3fv(&points_box[4][0]);
-		glEnd();
-		/*
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[1][0]);
-		glVertex3fv(&points_box[6][0]);
-		glEnd();
-
-		glBegin(GL_LINES);
-		glColor3f(1.0f,0,0);
-		glVertex3fv(&points_box[1][0]);
-		glVertex3fv(&points_box[7][0]);
-		glEnd();
-		*/
-	}
-
-	void GLDriver::clear( a_uint32 flags )
-	{
-		a_uint32 _flags = 0;
+    void GLDriver::clear( a_uint32 flags )
+    {
+        a_uint32 _flags = 0;
 
         if(flags & CLEAR_COLOR)
             _flags |= GL_COLOR_BUFFER_BIT;
@@ -1121,8 +1121,8 @@ namespace Agmd
 
         if(flags & CLEAR_STENCIL)
             _flags |= GL_STENCIL_BUFFER_BIT;
-		glClear(_flags);
-	}
+        glClear(_flags);
+    }
 
 }
 

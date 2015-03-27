@@ -57,17 +57,17 @@ inline bool Plane::operator !=(const Plane& p) const
 
 inline bool Plane::intersect(vec3 start, vec3 dir,vec3& res)
 {
-	if(FABS(glm::dot(dir,n)) < 0.0001f)
-		return false;
+    if(FABS(glm::dot(dir,n)) < 0.0001f)
+        return false;
 
-	float _d = d;
-	float _C = glm::dot(n,dir);
-	float C = glm::dot(n,start) + _d;
+    float _d = d;
+    float _C = glm::dot(n,dir);
+    float C = glm::dot(n,start) + _d;
 
-	float k = -C/_C;
+    float k = -C/_C;
 
-	res = dir*k + start;
-	return true;
+    res = dir*k + start;
+    return true;
 }
 
 inline std::istream& operator >>(std::istream& stream, Plane& plane)

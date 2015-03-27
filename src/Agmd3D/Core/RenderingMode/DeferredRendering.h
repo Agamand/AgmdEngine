@@ -52,23 +52,23 @@ namespace Agmd
         }
 
         ShadowMapRenderer* getShadowRenderer();
-		void init();
+        void init();
     private:
         
 
-        FrameBuffer*		m_framebuffer;
-        RenderBuffer*		m_depthbuffer;
-        RenderBuffer*		m_colorbuffer;
-        RenderBuffer*		m_normalbuffer;
-        RenderBuffer*		m_positionbuffer;
+        FrameBuffer*        m_framebuffer;
+        RenderBuffer*        m_depthbuffer;
+        RenderBuffer*        m_colorbuffer;
+        RenderBuffer*        m_normalbuffer;
+        RenderBuffer*        m_positionbuffer;
 
-        Texture				m_textureBuffer[6];
-        a_uint32*			m_bufferFlags;
+        Texture                m_textureBuffer[6];
+        a_uint32*            m_bufferFlags;
         
-        ShaderProgram		m_light_program[MAX_LIGHT_SHADER];
+        ShaderProgram        m_light_program[MAX_LIGHT_SHADER];
 
-        ShadowMapRenderer*	m_shadowRender;
-        Texture				m_depthCubemap;
+        ShadowMapRenderer*    m_shadowRender;
+        Texture                m_depthCubemap;
 
 
     }; 

@@ -53,22 +53,22 @@ namespace Agmd
         Driver::Get().Enable(RENDER_ZTEST,false);
 
         for(a_uint32 i = 0; i < m_vwWidget.size(); i++)
-			if(m_vwWidget[i]->m_enable)
-				m_vwWidget[i]->Draw();
+            if(m_vwWidget[i]->m_enable)
+                m_vwWidget[i]->Draw();
     }
 
-	int GUIMgr::HandleEvent( EventEntry& _event )
-	{
-		int value = 0;
+    int GUIMgr::HandleEvent( EventEntry& _event )
+    {
+        int value = 0;
         switch(_event.eventType)
         {
             case EV_ON_MOUSE_BUTTON:
                 for(a_uint32 i = 0; i < m_vwWidget.size() ; i++)
                 {
                     if(!m_vwWidget[m_vwWidget.size()-i-1]->m_enable)
-						continue;
+                        continue;
 
-					if(!(value = m_vwWidget[m_vwWidget.size()-i-1]->OnClick(_event.mousePosition,_event.mouseState)))
+                    if(!(value = m_vwWidget[m_vwWidget.size()-i-1]->OnClick(_event.mousePosition,_event.mouseState)))
                         continue;
                     SetSelected(i);
                     break;
@@ -79,10 +79,10 @@ namespace Agmd
             case EV_ON_MOUVE_MOVE:
                 for(a_int32 i = m_vwWidget.size()-1; i >= 0 ; i--)
                 {
-					
+                    
                     if(!m_vwWidget[i]->m_enable)
-						continue;
-					if(!(value = m_vwWidget[i]->OnMouseMove(_event.mouse_diff, _event.mouseState)))
+                        continue;
+                    if(!(value = m_vwWidget[i]->OnMouseMove(_event.mouse_diff, _event.mouseState)))
                         continue;
 
                     break;
@@ -103,9 +103,9 @@ namespace Agmd
         m_vwWidget.push_back(widget);
     }
 
-	void GUIMgr::RemoveWidget( AWidget* widget )
-	{
+    void GUIMgr::RemoveWidget( AWidget* widget )
+    {
 
-	}
+    }
 
 }

@@ -22,7 +22,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Quaternion.h>
 #include <Transform.h>
 
-#include <Core/Tools/BoundingBox.h>
+#include <Core/Tools/BoundingSphere.h>
 
 #include <vector>
 
@@ -46,34 +46,34 @@ namespace Agmd
         {
             vec3     position;
             vec3     normal;
-            a_uint32   color;
+            a_uint32 color;
             vec2     texCoords;
             vec4     tangent;
         };
         typedef unsigned short TIndex;
-		Model();
+        Model();
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
-		Model(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
+        Model(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
 
-		void GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
-		void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
+        void GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
+        void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
         void Draw(const Transform* transform) const;
 
         void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
-		void setMaxDraw( int param1 );
-		const BoundingBox& getBoundingBox() const;
+        void setMaxDraw( int param1 );
+        const BoundingSphere& getBounding() const;
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
-		
+        
 
 
         DeclarationPtr  m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
         Buffer<TIndex>  m_IndexBuffer;
         TPrimitiveType  m_PrimitiveType;
-		bool			m_indexed;
-		int m_maxDraw;
-		BoundingBox m_boundingBox;
+        bool            m_indexed;
+        int             m_maxDraw;
+        BoundingSphere  m_bounding;
 
     };
 

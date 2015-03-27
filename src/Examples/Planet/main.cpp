@@ -23,13 +23,13 @@ int main(int argc, char** argv)
         App::Destroy();
     }catch(std::exception e)
     {
-		std::cout << "Fail -> exception" << std::endl;
-		std::cout << e.what() << std::endl;
-		
+        std::cout << "Fail -> exception" << std::endl;
+        std::cout << e.what() << std::endl;
+        
     }
-	App::Instance().Run(argc,argv);
-	App::Destroy();
-	system("pause");
+    App::Instance().Run(argc,argv);
+    App::Destroy();
+    system("pause");
     return EXIT_SUCCESS;
 }*/
 
@@ -38,7 +38,7 @@ AGMD_CONSOLE_IMPL
 int agmd_main(int argc, char** argv)
 {
 
-	App::Instance().Run(argc,argv);
-	App::Destroy();
+    App::Instance().Run(argc,argv);
+    App::Destroy();
     return EXIT_SUCCESS;
 }

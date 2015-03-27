@@ -41,13 +41,13 @@ status : in pause
 
 
 #define SCREEN_WIDTH_APP 1920
-#define SCREEN_HEIGHT_APP 1080	
+#define SCREEN_HEIGHT_APP 1080    
 
 class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
-	App(): AgmdApplication(ivec2(SCREEN_WIDTH_APP,SCREEN_HEIGHT_APP)){}
+    App(): AgmdApplication(ivec2(SCREEN_WIDTH_APP,SCREEN_HEIGHT_APP)){}
     Agmd::GraphicString* m_text;
 
     void Run(int argc, char** argv);
@@ -57,8 +57,8 @@ private :
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
     virtual void OnClick(int click, vec2 pos,bool up);
-	virtual void OnKey(a_char key, bool up);
-	virtual void OnMove(vec2 pos);
+    virtual void OnKey(a_char key, bool up);
+    virtual void OnMove(vec2 pos);
     virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();
@@ -80,13 +80,13 @@ private :
     Agmd::AntiAliasing* m_fxaa;
     Agmd::Light* m_light;
     a_uint64  m_timer;
-	bool draw;
-	bool drawMouse;
-	std::vector<ParticlesEmitter*> m_particles;
-	ParticlesEmitter* mouse_emitter;
+    bool draw;
+    bool drawMouse;
+    std::vector<ParticlesEmitter*> m_particles;
+    ParticlesEmitter* mouse_emitter;
     bool pause;
     bool fxaa;
-	
+    
 };
 
 #endif // APP_H

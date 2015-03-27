@@ -7,7 +7,7 @@ in vec3 in_Vertex;
 
 
 void main(){
-	gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1);
+    gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1);
 }
 #endif
 
@@ -16,6 +16,6 @@ void main(){
 out float out_depth;
 
 void main(){
-	out_depth = gl_FragCoord.z;
+    out_depth = gl_FragCoord.z;
 }
 #endif

@@ -48,20 +48,20 @@ namespace Agmd
     public:
         Material();
         Material(ShaderPipeline* pipeline);
-		Material(const Material& mat);
-		~Material();
+        Material(const Material& mat);
+        ~Material();
 
         bool Enable(TRenderPass pass) const;
         void Disable() const;
 
         void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
-		template <typename T> void setParameter(std::string paramName,T value)
-		{
-			m_pipeline->setParameter(paramName,value);
-		}
-		Texture getTexture( int texUnit );
-	private:
-		
+        template <typename T> void setParameter(std::string paramName,T value)
+        {
+            m_pipeline->setParameter(paramName,value);
+        }
+        Texture getTexture( int texUnit );
+    private:
+        
         ShaderPipeline* m_pipeline;
         TextureUnit m_texture[MAX_TEXTUREUNIT];
         MaterialInfo m_materialInfo;

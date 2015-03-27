@@ -21,54 +21,54 @@
 //     Camera(projection,pos)
 //     {
 //         //UpdateVector();
-// 		_forward = vec3(1,0,0);
-// 		_left = vec3(0,-1,0);
-// 		_phi = 0;
-// 		_theta = 0;
+//         _forward = vec3(1,0,0);
+//         _left = vec3(0,-1,0);
+//         _phi = 0;
+//         _theta = 0;
 //     }
 // 
-// 	FollowCamera::FollowCamera( mat4& projection, float a, float b, vec2 angle,float dist ) :
-// 		_up(0,0,1),
-// 		distance(dist),
-// 		m_mousewheel(false),
-// 		angles(angle),
-// 		Camera(projection,vec3())
-// 	{
-// 		//UpdateVector();
-// 		_forward = vec3(1,0,0);
-// 		_left = vec3(0,-1,0);
-// 		_phi = b;
-// 		_theta = a;
-// 	}
+//     FollowCamera::FollowCamera( mat4& projection, float a, float b, vec2 angle,float dist ) :
+//         _up(0,0,1),
+//         distance(dist),
+//         m_mousewheel(false),
+//         angles(angle),
+//         Camera(projection,vec3())
+//     {
+//         //UpdateVector();
+//         _forward = vec3(1,0,0);
+//         _left = vec3(0,-1,0);
+//         _phi = b;
+//         _theta = a;
+//     }
 // 
 //     FollowCamera::~FollowCamera()
 //     {}
 // 
 //     void FollowCamera::updateVector()
 //     {
-// 		move = vec3(0);
-// 		if(moveFlags & MOVE_FORWARD)
-// 			move += _forward;
+//         move = vec3(0);
+//         if(moveFlags & MOVE_FORWARD)
+//             move += _forward;
 // 
-// 		if(moveFlags & MOVE_BACK)
-// 			move -= _forward;
+//         if(moveFlags & MOVE_BACK)
+//             move -= _forward;
 // 
-// 		if(moveFlags & MOVE_LEFT)
-// 			move += _left;
+//         if(moveFlags & MOVE_LEFT)
+//             move += _left;
 // 
-// 		if(moveFlags & MOVE_RIGHT)
-// 			move -= _left;
+//         if(moveFlags & MOVE_RIGHT)
+//             move -= _left;
 // 
-// 		if(moveFlags & MOVE_UP)
-// 			move += vec3(0.0f,0.0f,1.0f);
+//         if(moveFlags & MOVE_UP)
+//             move += vec3(0.0f,0.0f,1.0f);
 // 
-// 		if(moveFlags & MOVE_DOWN)
-// 			move -= vec3(0.0f,0.0f,1.0f);
+//         if(moveFlags & MOVE_DOWN)
+//             move -= vec3(0.0f,0.0f,1.0f);
 //     }
 //     void FollowCamera::onMouseMotion(int x, int y)
 //     {
-// 		if(!recvInput)
-// 			return;
+//         if(!recvInput)
+//             return;
 //         if(m_mousewheel)
 //         {
 //             _target += -_left*(float)x*0.1f;
@@ -83,10 +83,10 @@
 //         updateVector();
 //     }
 // 
-// 	void FollowCamera::onKeyboard( a_char key, bool up )
-// 	{
-// 		if(!recvInput)
-// 			return;
+//     void FollowCamera::onKeyboard( a_char key, bool up )
+//     {
+//         if(!recvInput)
+//             return;
 //         a_uint32 tempFlags = MOVE_NONE;
 //         switch(key)
 //         {
@@ -131,7 +131,7 @@
 // 
 //         if(distance < MIN_DISTANCE)
 //             distance = MIN_DISTANCE;
-// 		angles += vec2(move*(m_speed*time_diff)/(float)pow(2,4/distance)/1000.0f);
+//         angles += vec2(move*(m_speed*time_diff)/(float)pow(2,4/distance)/1000.0f);
 //         _target += move*(m_speed*time_diff)/1000.0f;
 //         _position = _target - distance*_forward;
 //         updateBuffer(look());
@@ -161,26 +161,26 @@
 // 
 //     }
 // 
-// 	mat4 FollowCamera::look()
-// 	{
-// 		return lookAt(vec3(0,0,0),vec3(1,0,0),vec3(0,0,1))*rotate(mat4(1),_phi,vec3(0,1,0))*rotate(mat4(1),_theta,vec3(1,0,0))*translate(mat4(1.f),vec3(distance,0,0))*rotate(mat4(1),angles.x,vec3(0,1,0))*rotate(mat4(1),angles.y,vec3(0,0,1));
-// 	}
+//     mat4 FollowCamera::look()
+//     {
+//         return lookAt(vec3(0,0,0),vec3(1,0,0),vec3(0,0,1))*rotate(mat4(1),_phi,vec3(0,1,0))*rotate(mat4(1),_theta,vec3(1,0,0))*translate(mat4(1.f),vec3(distance,0,0))*rotate(mat4(1),angles.x,vec3(0,1,0))*rotate(mat4(1),angles.y,vec3(0,0,1));
+//     }
 // 
 //     void FollowCamera::onMouseWheel(float delta)
 //     {
-// 		if(!recvInput)
-// 			return;
-// 		float f = powf(2,4/distance*2);
+//         if(!recvInput)
+//             return;
+//         float f = powf(2,4/distance*2);
 //         distance += delta/f*0.001f;
-// 		if(distance < MIN_DISTANCE)
-// 			distance = MIN_DISTANCE;
+//         if(distance < MIN_DISTANCE)
+//             distance = MIN_DISTANCE;
 // 
-// 		updateVector();
+//         updateVector();
 //     }
 //     void FollowCamera::onMouseWheel(bool up)
 //     {
-// 		if(!recvInput)
-// 			return;
+//         if(!recvInput)
+//             return;
 //         m_mousewheel = up;
 //     }
 // 
@@ -190,14 +190,14 @@
 //         _position = _target - distance*_forward;
 //     }
 // 
-// 	const std::string FollowCamera::toString()
-// 	{
-// 		return StringBuilder("Follow Camera Theta(")(_theta)(") _phi(")(_phi)(") angles(")(angles.x)(",")(angles.y)(") distance(")(distance)(")\n");
-// 	}
+//     const std::string FollowCamera::toString()
+//     {
+//         return StringBuilder("Follow Camera Theta(")(_theta)(") _phi(")(_phi)(") angles(")(angles.x)(",")(angles.y)(") distance(")(distance)(")\n");
+//     }
 // 
-// 	const vec3 FollowCamera::getPosition()
-// 	{
-// 		return vec3(inverse(look())*vec4(0,0,0,1));
-// 	}
+//     const vec3 FollowCamera::getPosition()
+//     {
+//         return vec3(inverse(look())*vec4(0,0,0,1));
+//     }
 // 
 // }

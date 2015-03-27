@@ -91,9 +91,9 @@ namespace Agmd
         virtual void SetCullFace(int face);
 
 
-		/* debug function */
-		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram* program);
-		virtual void clear( a_uint32 clear );
+        /* debug function */
+        virtual void drawBoundingBox(const BoundingSphere& bbox,const BaseShaderProgram* program);
+        virtual void clear( a_uint32 clear );
 
     public :
 
@@ -129,7 +129,7 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLGETSHADERINFOLOGPROC                glGetShaderInfoLog;
         OPENGL_EXPORT static PFNGLATTACHSHADERPROC                    glAttachShader;
         OPENGL_EXPORT static PFNGLLINKPROGRAMPROC                     glLinkProgram;
-		OPENGL_EXPORT static PFNGLVALIDATEPROGRAMPROC				  glValidateProgram;
+        OPENGL_EXPORT static PFNGLVALIDATEPROGRAMPROC                  glValidateProgram;
         OPENGL_EXPORT static PFNGLGETPROGRAMIVPROC                    glGetProgramiv;
         OPENGL_EXPORT static PFNGLGETPROGRAMINFOLOGPROC               glGetProgramInfoLog;
         OPENGL_EXPORT static PFNGLGETACTIVEUNIFORMSIVPROC             glGetActiveUniformsiv;
@@ -167,7 +167,7 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLVERTEXATTRIB4FNVPROC                glVertexAttrib4f;
         OPENGL_EXPORT static PFNGLVERTEXATTRIBPOINTERPROC             glVertexAttribPointer;
         OPENGL_EXPORT static PFNGLENABLEVERTEXATTRIBARRAYPROC         glEnableVertexAttribArray;
-		OPENGL_EXPORT static PFNGLDISABLEVERTEXATTRIBARRAYPROC        glDisableVertexAttribArray;
+        OPENGL_EXPORT static PFNGLDISABLEVERTEXATTRIBARRAYPROC        glDisableVertexAttribArray;
         OPENGL_EXPORT static PFNGLBINDATTRIBLOCATIONPROC              glBindAttribLocation;
         OPENGL_EXPORT static PFNGLGENRENDERBUFFERSPROC                glGenRenderbuffers;
         OPENGL_EXPORT static PFNGLDELETERENDERBUFFERSPROC             glDeleteRenderbuffers;
@@ -180,9 +180,9 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLFRAMEBUFFERRENDERBUFFERPROC         glFramebufferRenderbuffer;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTUREPROC              glFramebufferTexture;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTURE2DPROC            glFramebufferTexture2D;
-        static PFNGLFRAMEBUFFERTEXTURE3DPROC						  glFramebufferTexture3D;
-        static PFNGLCHECKFRAMEBUFFERSTATUSPROC						  glCheckFramebufferStatus;
-        static PFNGLDELETEFRAMEBUFFERSPROC							  glDeleteFramebuffers;
+        static PFNGLFRAMEBUFFERTEXTURE3DPROC                          glFramebufferTexture3D;
+        static PFNGLCHECKFRAMEBUFFERSTATUSPROC                          glCheckFramebufferStatus;
+        static PFNGLDELETEFRAMEBUFFERSPROC                              glDeleteFramebuffers;
         
         //CONTEXT
 

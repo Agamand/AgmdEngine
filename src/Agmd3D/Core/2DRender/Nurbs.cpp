@@ -4,9 +4,9 @@
 namespace Agmd
 {
 
-	void Nurbs::compute()
-	{
-		
-	}
+    void Nurbs::compute()
+    {
+        
+    }
 }
 

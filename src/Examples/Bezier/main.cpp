@@ -25,10 +25,10 @@ int main(int argc, char** argv)
         App::Destroy();
     }catch(std::exception e)
     {
-		std::cout << "Fail -> exception" << std::endl;
-		std::cout << e.what() << std::endl;
-		
+        std::cout << "Fail -> exception" << std::endl;
+        std::cout << e.what() << std::endl;
+        
     }
-	system("pause");
+    system("pause");
     return EXIT_SUCCESS;
 }

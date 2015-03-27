@@ -50,25 +50,25 @@ namespace AgmdMaths
     }
 
 
-	a_int32 Rectangle::bottom() const
-	{
+    a_int32 Rectangle::bottom() const
+    {
         return m_end.y;
     }
 
 
-	a_int32 Rectangle::width() const
-	{
+    a_int32 Rectangle::width() const
+    {
         return m_end.x - m_origin.x;
     }
 
 
-	a_int32 Rectangle::height() const
-	{
+    a_int32 Rectangle::height() const
+    {
         return m_end.y - m_origin.y;
     }
 
-	glm::ivec2 Rectangle::size() const
-	{
+    glm::ivec2 Rectangle::size() const
+    {
         return m_end - m_origin;
     }
 

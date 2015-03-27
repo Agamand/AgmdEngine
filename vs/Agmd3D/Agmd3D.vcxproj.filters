@@ -385,6 +385,12 @@
     <ClInclude Include="..\..\src\Agmd3D\Editor\Property\SceneNodeProps.h">
       <Filter>Editor\Property</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Bounding.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\BoundingSphere.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -800,6 +806,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\RootNode.cpp">
       <Filter>Core\SceneNode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Tools\BoundingSphere.cpp">
+      <Filter>Core\Tools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -85,57 +85,57 @@ SINGLETON_IMPL(App);
 void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds = vec4(0,1,0,1));
 void generateNoiseFace(Texture& t,int size,int seed,int face, vec4 bounds)
 {
-	//heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    //heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
 
-	//PerlinNoise p(1,0.1,1,6,seed);
-	noise::module::Perlin _perlin;
-	_perlin.SetOctaveCount(8);
-	_perlin.SetFrequency(0.2f);
-	_perlin.SetPersistence(0.5f);
-	_perlin.SetSeed(5465463);
-	_perlin.SetNoiseQuality(noise::NoiseQuality::QUALITY_FAST);
-	noise::utils::NoiseMap heightMap;
-	noise::utils::NoiseMapBuilderSphere heightMapBuilder;
-	heightMapBuilder.SetSourceModule (_perlin);
-	heightMapBuilder.SetDestSize (size, size);
-	heightMapBuilder.SetDestNoiseMap (heightMap);
-	heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
-	//heightMapBuilder.Build ();
+    //PerlinNoise p(1,0.1,1,6,seed);
+    noise::module::Perlin _perlin;
+    _perlin.SetOctaveCount(8);
+    _perlin.SetFrequency(0.2f);
+    _perlin.SetPersistence(0.5f);
+    _perlin.SetSeed(5465463);
+    _perlin.SetNoiseQuality(noise::NoiseQuality::QUALITY_FAST);
+    noise::utils::NoiseMap heightMap;
+    noise::utils::NoiseMapBuilderSphere heightMapBuilder;
+    heightMapBuilder.SetSourceModule (_perlin);
+    heightMapBuilder.SetDestSize (size, size);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetBounds (bounds.x,bounds.y,bounds.z,bounds.w);
+    //heightMapBuilder.Build ();
 
 
-	noise::utils::RendererImage renderer;
-	noise::utils::Image image(size,size);
-	renderer.SetSourceNoiseMap (heightMap);
-	renderer.SetDestImage (image);
-	//image.GetValue()
-	Image _img;
-	uint32 * img = new uint32[size*size];
-	float max,min = max = 0;
-	heightMapBuilder.Build(face);
-	renderer.Render ();
-	for(int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)	
-		{
-			//noise::utils::Color a= image.GetValue(i,j);
-			vec3 pos(-0.5f+i/(float)size,-0.5f+j/(float)size,0.5f);
-			pos = normalize(pos);
-			float value = _perlin.GetValue(pos.x,pos.y,pos.z);
-			a_uint8* c =(a_uint8*)&img[i*size+j];
-			c[0] = c[1] =c[2] =0;
-			if(value > 1)
-				c[0] = 255;
-			else if(value < 0)
-				c[1] = 255;
-			else c[2] = 255;
-			c[3] = 255;
-			
-		}
-	}
-	_img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
-	delete img;
+    noise::utils::RendererImage renderer;
+    noise::utils::Image image(size,size);
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (image);
+    //image.GetValue()
+    Image _img;
+    uint32 * img = new uint32[size*size];
+    float max,min = max = 0;
+    heightMapBuilder.Build(face);
+    renderer.Render ();
+    for(int i = 0; i < size; i++)
+    {
+        for(int j = 0; j < size; j++)    
+        {
+            //noise::utils::Color a= image.GetValue(i,j);
+            vec3 pos(-0.5f+i/(float)size,-0.5f+j/(float)size,0.5f);
+            pos = normalize(pos);
+            float value = _perlin.GetValue(pos.x,pos.y,pos.z);
+            a_uint8* c =(a_uint8*)&img[i*size+j];
+            c[0] = c[1] =c[2] =0;
+            if(value > 1)
+                c[0] = 255;
+            else if(value < 0)
+                c[1] = 255;
+            else c[2] = 255;
+            c[3] = 255;
+            
+        }
+    }
+    _img = Image(ivec2(size),PXF_A8R8G8B8,(uint8*)img);
+    delete img;
 
-	t.CreateFromImage(_img,PXF_A8R8G8B8);
+    t.CreateFromImage(_img,PXF_A8R8G8B8);
 }
 
 
@@ -161,26 +161,26 @@ const char* grass ="Texture/grass.jpg";
 void App::Run(int argc, char** argv)
 {
     if(argc > 0)
-	{
-		File main(argv[0]);
+    {
+        File main(argv[0]);
         MediaManager::Instance().AddSearchPath(main.Path());
-		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
-	}
-	if(argc > 1)
-		gradient = argv[1];
-	if(argc > 2)
-		seed = argv[2];
-	wxEntryStart( argc, argv );
+        ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
+    }
+    if(argc > 1)
+        gradient = argv[1];
+    if(argc > 2)
+        seed = argv[2];
+    wxEntryStart( argc, argv );
     AgmdApplication::Run(argc,argv);
 }
 
 
 void App::MakeWindow()
 {
-	wxApp::SetInstance(m_wxApplication);
-	PlanetFrame* frame;
- 	m_frame = m_planetFrame = frame =  new PlanetFrame(NULL);
- 	this->CreateGlCanvas(frame->m_viewPanel);
+    wxApp::SetInstance(m_wxApplication);
+    PlanetFrame* frame;
+     m_frame = m_planetFrame = frame =  new PlanetFrame(NULL);
+     this->CreateGlCanvas(frame->m_viewPanel);
 }
 
 
@@ -211,12 +211,12 @@ Transform* skyTransform = new Transform();
 Transform* lightTransform = new Transform();
 
 ASlider* slider_kr,
-	 *slider_km,
-	 *slider_esun,
-	 *slider_r,
-	 *slider_g,
-	 *slider_b,
-	 *slider_gg;
+     *slider_km,
+     *slider_esun,
+     *slider_r,
+     *slider_g,
+     *slider_b,
+     *slider_gg;
 Planet* m_planet;
 PlanetModel* m_pmodel;
 vec3 pos ;
@@ -237,37 +237,37 @@ Model* sunModel;
 void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 {
 
-	PlanetModel* model = new PlanetModel(0,0,0);
-	Material* mat = new Material(pipe);
-	Texture gradient;
-	gradient.CreateFromFile("Texture/gradient/only_earth.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+    PlanetModel* model = new PlanetModel(0,0,0);
+    Material* mat = new Material(pipe);
+    Texture gradient;
+    gradient.CreateFromFile("Texture/gradient/only_earth.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
 
-	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	Planet* p = new Planet(model,mat);
-	mgr->AddNode(p->getRoot());
-	p->getRoot()->getTransform().translate(-20,10,0);
-	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+    mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    Planet* p = new Planet(model,mat);
+    mgr->AddNode(p->getRoot());
+    p->getRoot()->getTransform().translate(-20,10,0);
+    p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
 
-	model = new PlanetModel(0,0,0);
-	mat = new Material(pipe);
-	gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
-	model->rgb = vec3(0.485f, 0.9f, 0.985f);
+    model = new PlanetModel(0,0,0);
+    mat = new Material(pipe);
+    gradient.CreateFromFile("Texture/gradient/martian.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+    model->rgb = vec3(0.485f, 0.9f, 0.985f);
 
-	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(model,mat);
-	mgr->AddNode(p->getRoot());
-	p->getRoot()->getTransform().translate(30,0,0);
-	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+    mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    p = new Planet(model,mat);
+    mgr->AddNode(p->getRoot());
+    p->getRoot()->getTransform().translate(30,0,0);
+    p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
 
-	model = new PlanetModel(0,0,0);
-	mat = new Material(pipe);
-	gradient;
-	gradient.CreateFromFile("Texture/gradient/rocky.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
-	mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	p = new Planet(model,mat);
-	mgr->AddNode(p->getRoot());
-	p->getRoot()->getTransform().translate(-40,-20,10);
-	p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+    model = new PlanetModel(0,0,0);
+    mat = new Material(pipe);
+    gradient;
+    gradient.CreateFromFile("Texture/gradient/rocky.png",PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+    mat->SetTexture(gradient,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    p = new Planet(model,mat);
+    mgr->AddNode(p->getRoot());
+    p->getRoot()->getTransform().translate(-40,-20,10);
+    p->lightDir = -normalize(vec3(-20,10,0)-light_pos);
 
 
 }
@@ -275,126 +275,126 @@ void initManyPlanet(SceneMgr* mgr,ShaderPipeline* pipe)
 
 void App::init()
 { 
-	m_animated =false;
+    m_animated =false;
     pause = true;
     m_timer = 1000;
-	std::cout << "Loading..." << std::endl;
-	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
+    std::cout << "Loading..." << std::endl;
+    m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
-	pause = true;
+    pause = true;
     ForwardRendering* mode = new ForwardRendering(getScreen());
-	
-	RenderingMode::setRenderingMode(mode);
+    
+    RenderingMode::setRenderingMode(mode);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
     m_Scene = new SceneMgr();
 
-	std::cout << "init scene" << std::endl;
-	if(gradient)
-		color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8,TEX_WRAP_CLAMP);
-	else
-		color_gradiant.CreateFromFile("Texture/gradient_terra_desaqt.png",PXF_A8R8G8B8);
+    std::cout << "init scene" << std::endl;
+    if(gradient)
+        color_gradiant.CreateFromFile(gradient,PXF_A8R8G8B8,TEX_WRAP_CLAMP);
+    else
+        color_gradiant.CreateFromFile("Texture/gradient_terra_desaqt.png",PXF_A8R8G8B8);
 
-	int _seed;
-	if(seed)
-		_seed = std::atoi(seed);
-	else _seed = rand();
-	
-	ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
-	ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
-	ShaderProgram diffuseShader;
-	diffuseShader.LoadFromFile("Shader/planet/planet_rendering2.glsl");
-	//ShaderProgram zpassShader;
-	//zpassShader.LoadFromFile("Shader/planet/planet_rendering_zpass.glsl");
-	planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
-	//ssplanetpipe->setShader(zpassShader,RENDERPASS_ZBUFFER);
-	mat = new Material(planetpipe);
-	ground_tex[0].CreateFromFile(grass,PXF_A8R8G8B8);
-	ground_tex[1].CreateFromFile(rock,PXF_A8R8G8B8);
-	ground_tex[2].CreateFromFile(snow,PXF_A8R8G8B8);
-	mat->SetTexture(ground_tex[0],2,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(ground_tex[1],3,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(ground_tex[2],4,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	m_pmodel = new PlanetModel(0,0,0);
-	m_pmodel->m_persistance = 1.f;
-	m_pmodel->m_octave = 1.0f;
-	m_pmodel->m_frequency = 3.f;
-	m_planet = new Planet(m_pmodel,mat,100.0f,true);
-	m_planet->lightDir = -normalize(vec3(-20,10,0)-light_pos);
-	Planet* p2 = new Planet(m_pmodel,mat,1.f);
-	p2->lightDir = -normalize(vec3(10,0,0)-light_pos);
-	p2->getRoot()->getTransform().translate(10.0f,0,0);
-	m_planetFrame->setPlanetModel(m_pmodel);
+    int _seed;
+    if(seed)
+        _seed = std::atoi(seed);
+    else _seed = rand();
+    
+    ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
+    ShaderPipeline * planetpipe = new ShaderPipeline(*_default);
+    ShaderProgram diffuseShader;
+    diffuseShader.LoadFromFile("Shader/planet/planet_rendering2.glsl");
+    //ShaderProgram zpassShader;
+    //zpassShader.LoadFromFile("Shader/planet/planet_rendering_zpass.glsl");
+    planetpipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
+    //ssplanetpipe->setShader(zpassShader,RENDERPASS_ZBUFFER);
+    mat = new Material(planetpipe);
+    ground_tex[0].CreateFromFile(grass,PXF_A8R8G8B8);
+    ground_tex[1].CreateFromFile(rock,PXF_A8R8G8B8);
+    ground_tex[2].CreateFromFile(snow,PXF_A8R8G8B8);
+    mat->SetTexture(ground_tex[0],2,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    mat->SetTexture(ground_tex[1],3,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    mat->SetTexture(ground_tex[2],4,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
+    m_pmodel = new PlanetModel(0,0,0);
+    m_pmodel->m_persistance = 1.f;
+    m_pmodel->m_octave = 1.0f;
+    m_pmodel->m_frequency = 3.f;
+    m_planet = new Planet(m_pmodel,mat,100.0f,true);
+    m_planet->lightDir = -normalize(vec3(-20,10,0)-light_pos);
+    Planet* p2 = new Planet(m_pmodel,mat,1.f);
+    p2->lightDir = -normalize(vec3(10,0,0)-light_pos);
+    p2->getRoot()->getTransform().translate(10.0f,0,0);
+    m_planetFrame->setPlanetModel(m_pmodel);
 
-	Model::TVertex vert;
-
-
-	sunModel = new Model(&vert,1,PT_POINTLIST);
-	sunTex.CreateFromFile("texture/SunYello.bmp",PXF_A8R8G8B8);
-	sun_program.LoadFromFile("Shader/planet/sun.glsl");
-	sun_transform = new Transform(vec3(100,100,0));
-	sun_transform->update(NULL);
-	sphere = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
-	
+    Model::TVertex vert;
 
 
+    sunModel = new Model(&vert,1,PT_POINTLIST);
+    sunTex.CreateFromFile("texture/SunYello.bmp",PXF_A8R8G8B8);
+    sun_program.LoadFromFile("Shader/planet/sun.glsl");
+    sun_transform = new Transform(vec3(100,100,0));
+    sun_transform->update(NULL);
+    sphere = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+    
 
-	PostEffectMgr::Instance().AddEffect(new AntiAliasing());
-
-	test_material = new Material();
-	test_transform = new Transform(vec3(4,0,0));
-	test_transform->rotate(30.f,vec3(0,1,0));//;rotate(quat(),90.0f,vec3(0,1,1)))
-	m_Scene->AddNode(m_planet->getRoot());
 
 
-	//initManyPlanet(m_Scene,planetpipe);
+    PostEffectMgr::Instance().AddEffect(new AntiAliasing());
 
-	GUIMgr& guimgr = GUIMgr::Instance();
-	std::cout << "init planet" << std::endl;
-	
-// 	m_persistanceSlider = new ASlider("Persistance",ivec2(5,425),ivec2(200,20));
-// 	m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
-// 	guimgr.AddWidget(m_persistanceSlider);
+    test_material = new Material();
+    test_transform = new Transform(vec3(4,0,0));
+    test_transform->rotate(30.f,vec3(0,1,0));//;rotate(quat(),90.0f,vec3(0,1,1)))
+    m_Scene->AddNode(m_planet->getRoot());
+
+
+    //initManyPlanet(m_Scene,planetpipe);
+
+    GUIMgr& guimgr = GUIMgr::Instance();
+    std::cout << "init planet" << std::endl;
+    
+//     m_persistanceSlider = new ASlider("Persistance",ivec2(5,425),ivec2(200,20));
+//     m_persistanceSlider->setValue(&m_pmodel->m_persistance,0.0f,20.0f);
+//     guimgr.AddWidget(m_persistanceSlider);
 // 
-// 	m_octaveCountSlider = new ASlider("Octave",ivec2(5,375),ivec2(200,20),true);
-// 	m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
-// 	guimgr.AddWidget(m_octaveCountSlider);
+//     m_octaveCountSlider = new ASlider("Octave",ivec2(5,375),ivec2(200,20),true);
+//     m_octaveCountSlider->setValue(&m_pmodel->m_octave,0.0f,20.0f);
+//     guimgr.AddWidget(m_octaveCountSlider);
 // 
-// 	m_frequencySlider = new ASlider("Frequency",ivec2(5,325),ivec2(200,20));
-// 	m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
-// 	guimgr.AddWidget(m_frequencySlider);
+//     m_frequencySlider = new ASlider("Frequency",ivec2(5,325),ivec2(200,20));
+//     m_frequencySlider->setValue(&m_pmodel->m_frequency,0.0f,20.0f);
+//     guimgr.AddWidget(m_frequencySlider);
 // 
-// 	ASlider *slder = new ASlider("Cam Speed",ivec2(5,275),ivec2(200,20));
-// 	guimgr.AddWidget(slder);
+//     ASlider *slder = new ASlider("Cam Speed",ivec2(5,275),ivec2(200,20));
+//     guimgr.AddWidget(slder);
 // 
 // 
-// 	slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
-// 	guimgr.AddWidget(slider_kr);
-// 	slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
+//     slider_kr = new ASlider("lacunarity",ivec2(5,225),ivec2(200,20));
+//     guimgr.AddWidget(slider_kr);
+//     slider_kr->setValue(&m_pmodel->m_lacunarity,0,10);
 // 
-// 	slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
-// 	guimgr.AddWidget(slider_km);
-// 	slider_km->setValue(&m_pmodel->m_amplitude,0,10);
+//     slider_km = new ASlider("Amplitude",ivec2(5,175),ivec2(200,20));
+//     guimgr.AddWidget(slider_km);
+//     slider_km->setValue(&m_pmodel->m_amplitude,0,10);
 // 
-// 	slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
-// 	guimgr.AddWidget(slider_esun);
-// 	slider_esun->setValue(&m_pmodel->eSun,0,30);
+//     slider_esun = new ASlider("esun",ivec2(5,125),ivec2(200,20));
+//     guimgr.AddWidget(slider_esun);
+//     slider_esun->setValue(&m_pmodel->eSun,0,30);
 // 
-// 	slider_r = new ASlider("red",ivec2(5,75),ivec2(200,20));
-// 	guimgr.AddWidget(slider_r);
-// 	slider_r->setValue(&m_pmodel->rgb.r,0,1);
+//     slider_r = new ASlider("red",ivec2(5,75),ivec2(200,20));
+//     guimgr.AddWidget(slider_r);
+//     slider_r->setValue(&m_pmodel->rgb.r,0,1);
 // 
-// 	slider_g = new ASlider("green",ivec2(5,25),ivec2(200,20));
-// 	guimgr.AddWidget(slider_g);
-// 	slider_g->setValue(&m_pmodel->rgb.g,0,1);
+//     slider_g = new ASlider("green",ivec2(5,25),ivec2(200,20));
+//     guimgr.AddWidget(slider_g);
+//     slider_g->setValue(&m_pmodel->rgb.g,0,1);
 // 
-// 	slider_b = new ASlider("blue",ivec2(225,425),ivec2(200,20));
-// 	guimgr.AddWidget(slider_b);
-// 	slider_b->setValue(&m_pmodel->rgb.b,0,1);
+//     slider_b = new ASlider("blue",ivec2(225,425),ivec2(200,20));
+//     guimgr.AddWidget(slider_b);
+//     slider_b->setValue(&m_pmodel->rgb.b,0,1);
 // 
-// 	slider_gg = new ASlider("gg",ivec2(225,375),ivec2(200,20));
-// 	guimgr.AddWidget(slider_gg);
-// 	slider_gg->setValue(&m_pmodel->g,-1,-0.5);
+//     slider_gg = new ASlider("gg",ivec2(225,375),ivec2(200,20));
+//     guimgr.AddWidget(slider_gg);
+//     slider_gg->setValue(&m_pmodel->g,-1,-0.5);
 
 
 
@@ -403,52 +403,52 @@ void App::init()
 
     m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
     m_Scene->AddLight(m_light);
-    m_light->SetRange(2000.0f);	
-	//cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
-	cam3D = new Camera(m_MatProj3D);
-	m_planetFrame->setCamera(cam3D);
-	//slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
-	cam2D = new Camera(m_MatProj2D);
-	m_groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
-	m_groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
-	m_skyProgram[0].LoadFromFile("shader/planet/sky_from_space.glsl");
-	m_skyProgram[1].LoadFromFile("shader/planet/sky_from_atmo.glsl");
-	m_lightProgram.LoadFromFile("shader/planet/light.glsl");
+    m_light->SetRange(2000.0f);    
+    //cam3D =new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.0f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
+    cam3D = new Camera(m_MatProj3D);
+    m_planetFrame->setCamera(cam3D);
+    //slder->setValue(cam3D->GetSpeedPtr(),0.1,20.0f);
+    cam2D = new Camera(m_MatProj2D);
+    m_groundProgram[0].LoadFromFile("shader/planet/ground_from_space.glsl");
+    m_groundProgram[1].LoadFromFile("shader/planet/ground_from_atmo.glsl");
+    m_skyProgram[0].LoadFromFile("shader/planet/sky_from_space.glsl");
+    m_skyProgram[1].LoadFromFile("shader/planet/sky_from_atmo.glsl");
+    m_lightProgram.LoadFromFile("shader/planet/light.glsl");
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
 
 
-// 	slder =  new ASlider("Offset",ivec2(225,325),ivec2(200,20));
-// 	guimgr.AddWidget(slder);
-// 	slder->setValue(&m_planet->m_offset,-0.1,0.1);
-// 	
-// 	slder = new ASlider("Precision export",ivec2(225,275),ivec2(200,20),true);
-// 	guimgr.AddWidget(slder);
-// 	slder->setValue(&layer,0,10);
+//     slder =  new ASlider("Offset",ivec2(225,325),ivec2(200,20));
+//     guimgr.AddWidget(slder);
+//     slder->setValue(&m_planet->m_offset,-0.1,0.1);
+//     
+//     slder = new ASlider("Precision export",ivec2(225,275),ivec2(200,20),true);
+//     guimgr.AddWidget(slder);
+//     slder->setValue(&layer,0,10);
 // 
-// 	slder = new ASlider("Resolution export",ivec2(225,225),ivec2(200,20),true);
-// 	guimgr.AddWidget(slder);
-// 	slder->setValue(&reso,512,2048);
+//     slder = new ASlider("Resolution export",ivec2(225,225),ivec2(200,20),true);
+//     guimgr.AddWidget(slder);
+//     slder->setValue(&reso,512,2048);
 
-	skyTransform->scale(1.025,1.025,1.025);
-	//skyTransform->Translate(2,0,0);
-	skyTransform->update(NULL);
+    skyTransform->scale(1.025,1.025,1.025);
+    //skyTransform->Translate(2,0,0);
+    skyTransform->update(NULL);
 
-	lightTransform->translate(50,50,50);
-	lightTransform->scale(0.2,0.2,0.2);
-	
-	lightTransform->update(NULL);
-//	pos = cam3D->getPosition();
+    lightTransform->translate(50,50,50);
+    lightTransform->scale(0.2,0.2,0.2);
+    
+    lightTransform->update(NULL);
+//    pos = cam3D->getPosition();
 
-	std::cout << "Loading end" << std::endl;
+    std::cout << "Loading end" << std::endl;
 }
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
-	if(!m_animated)
-		return;
+    if(!m_animated)
+        return;
 
-	m_planet->getRoot()->getTransform().rotate(0.01f*time_diff,vec3(0,0,1));
+    m_planet->getRoot()->getTransform().rotate(0.01f*time_diff,vec3(0,0,1));
 
 }
 
@@ -456,87 +456,87 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 
 void App::OnRender3D()
 {
-	
-	Driver& driver = Driver::Get();
-	driver.Enable(RENDER_POINTSIZE_SHADER,true);
-	driver.Enable(RENDER_POINTSPRITE,true);
-	driver.Enable(RENDER_ALPHABLEND,true);
-	driver.Enable(RENDER_ZTEST,true);
-	driver.Enable(RENDER_ALPHABLEND,true);
-	driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-	driver.SetCurrentProgram(sun_program.GetShaderProgram());
-	driver.SetTexture(0,sunTex.GetTexture());
-	sunModel->Draw(sun_transform);
-	driver.SetCurrentProgram(NULL);	
-	driver.Enable(RENDER_POINTSIZE_SHADER,false);
-	driver.Enable(RENDER_POINTSPRITE,false);
-	driver.Enable(RENDER_ALPHABLEND,false);
+    
+    Driver& driver = Driver::Get();
+    driver.Enable(RENDER_POINTSIZE_SHADER,true);
+    driver.Enable(RENDER_POINTSPRITE,true);
+    driver.Enable(RENDER_ALPHABLEND,true);
+    driver.Enable(RENDER_ZTEST,true);
+    driver.Enable(RENDER_ALPHABLEND,true);
+    driver.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+    driver.SetCurrentProgram(sun_program.GetShaderProgram());
+    driver.SetTexture(0,sunTex.GetTexture());
+    sunModel->Draw(sun_transform);
+    driver.SetCurrentProgram(NULL);    
+    driver.Enable(RENDER_POINTSIZE_SHADER,false);
+    driver.Enable(RENDER_POINTSPRITE,false);
+    driver.Enable(RENDER_ALPHABLEND,false);
 }
 
 void App::OnRender2D()
 {
-	if(!GUIMgr::Instance().isEnable())
-		return;
+    if(!GUIMgr::Instance().isEnable())
+        return;
     Driver& render = Driver::Get();
-	*(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n")
-	("Mouse position x: ")(mousePos.x)(", y : ")(mousePos.y)("\n")
-	("U : Update tiles texture")("\n")
-	("P : Enable/Disable atmosphere")("\n")
-	("F1 : Solid")("\n")
-	("F2 : Wireframe")("\n")
-	("F3 : Points")("\n")
-	("G : Enable/Disable interfaces")("\n")
-	("N : Enable/Disable normal")("\n")
-	("E : Export")("\n");
-	
-	m_fps->draw();
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n")
+    ("Mouse position x: ")(mousePos.x)(", y : ")(mousePos.y)("\n")
+    ("U : Update tiles texture")("\n")
+    ("P : Enable/Disable atmosphere")("\n")
+    ("F1 : Solid")("\n")
+    ("F2 : Wireframe")("\n")
+    ("F3 : Points")("\n")
+    ("G : Enable/Disable interfaces")("\n")
+    ("N : Enable/Disable normal")("\n")
+    ("E : Export")("\n");
+    
+    m_fps->draw();
 
 }
 //103 100 104 101 105 102
 
 void App::OnClick( int click, vec2 pos,bool up)
 {
-	AgmdApplication::OnClick(click,pos,up);
+    AgmdApplication::OnClick(click,pos,up);
 }
-	
+    
 
 void App::OnMove(vec2 pos)
 {
-	mousePos = ivec2(pos);
-	AgmdApplication::OnMove(pos);
+    mousePos = ivec2(pos);
+    AgmdApplication::OnMove(pos);
 }
 
 void App::OnKey(a_char key, bool up)
 {
-	if(up)
-	{
-		switch(key)
-		{
-		case 'P':
-			m_planet->m_use_atmosphere = !m_planet->m_use_atmosphere;
-			pause = !pause;
-			break;
-		case 'E':
-			//m_planet->exportToFile("planet",(int)layer,(int)reso);
-			break;
-		case 'G':
-			GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());
-			break;
-		case 'N':
-			m_pmodel->m_normal_mapping = m_pmodel->m_normal_mapping ? 0 : 1;
-			break;
-		case 'U':
-			m_planet->modelChange();
-			break;
-		case WXK_F4:
-			m_animated = !m_animated;
-			break;
-		}
+    if(up)
+    {
+        switch(key)
+        {
+        case 'P':
+            m_planet->m_use_atmosphere = !m_planet->m_use_atmosphere;
+            pause = !pause;
+            break;
+        case 'E':
+            //m_planet->exportToFile("planet",(int)layer,(int)reso);
+            break;
+        case 'G':
+            GUIMgr::Instance().Enable(!GUIMgr::Instance().isEnable());
+            break;
+        case 'N':
+            m_pmodel->m_normal_mapping = m_pmodel->m_normal_mapping ? 0 : 1;
+            break;
+        case 'U':
+            m_planet->modelChange();
+            break;
+        case WXK_F4:
+            m_animated = !m_animated;
+            break;
+        }
 
 
 
-	}
-	AgmdApplication::OnKey(key,up);
+    }
+    AgmdApplication::OnKey(key,up);
 }
 
 

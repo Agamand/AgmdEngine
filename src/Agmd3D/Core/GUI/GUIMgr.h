@@ -59,34 +59,34 @@ namespace Agmd
 
     MAKE_SINGLETON(GUIMgr); 
     public:
-		
+        
 
         void Update(a_uint64 t_diff);
         void DrawGUI() const;
         void SetSelected(a_uint32 i);
-		int HandleEvent(EventEntry& _event);
+        int HandleEvent(EventEntry& _event);
         void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);
-		void RemoveWidget(AWidget* widget);
-		void Enable(bool enable = true)
-		{
-			m_renderGUI = enable;
-		}
-		bool isEnable() const
-		{
-			return m_renderGUI;
-		}
+        void RemoveWidget(AWidget* widget);
+        void Enable(bool enable = true)
+        {
+            m_renderGUI = enable;
+        }
+        bool isEnable() const
+        {
+            return m_renderGUI;
+        }
 
     private:
         GUIMgr();
         ~GUIMgr();
-		
+        
 
     protected:
-        VectorWidget	m_vwWidget;
-        VectorEvent		m_veEvents;
-		bool			m_renderGUI;
-	};
+        VectorWidget    m_vwWidget;
+        VectorEvent        m_veEvents;
+        bool            m_renderGUI;
+    };
 }
 
 #endif /* _GUIMGR_H_ */

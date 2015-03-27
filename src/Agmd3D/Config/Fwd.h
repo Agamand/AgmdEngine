@@ -74,16 +74,18 @@ namespace Agmd
     //Tools Class
 
     class Frustum;
+    class Bounding;
     class BoundingBox;
+    class BoundingSphere;
     class Fast2DSurface;
 
-	//Scene Class
+    //Scene Class
 
-	class SceneMgr;
-	class SceneNode;
-	class DisplayNode;
-	class LightNode;
-	class MeshNode;
+    class SceneMgr;
+    class SceneNode;
+    class DisplayNode;
+    class LightNode;
+    class MeshNode;
     class CameraNode;
 
     //Controller Class

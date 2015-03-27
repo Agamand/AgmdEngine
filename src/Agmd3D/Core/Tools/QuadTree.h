@@ -16,24 +16,24 @@ status : abandon
 namespace Agmd
 {
 
-	enum QuadFace
-	{
-		TOP,
-		LEFT,
-		BOTTOM,
-		RIGHT
-	};
+    enum QuadFace
+    {
+        TOP,
+        LEFT,
+        BOTTOM,
+        RIGHT
+    };
 
-	struct QuadTree
-	{
-	public:
-		QuadTree();
-		~QuadTree();
+    struct QuadTree
+    {
+    public:
+        QuadTree();
+        ~QuadTree();
 
-	protected:
-		
-		QuadTree* m_children[MAX_QUADFACE];
-	};
+    protected:
+        
+        QuadTree* m_children[MAX_QUADFACE];
+    };
 }
 
 #endif // !_QUADTREE_H_

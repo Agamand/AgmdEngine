@@ -84,8 +84,8 @@ namespace Agmd
 
     void AWindow::OnPosChanged()
     {
-		m_transform->setPosition(vec3(m_vAbsolutePosition,0));
-		m_transform->update(NULL);
+        m_transform->setPosition(vec3(m_vAbsolutePosition,0));
+        m_transform->update(NULL);
     }
 
     void AWindow::Draw() const

@@ -35,9 +35,9 @@ namespace Agmd
 
     }
 
-	void AssetLoader::OnError()
-	{
+    void AssetLoader::OnError()
+    {
 
-	}
+    }
 
 }

@@ -13,8 +13,8 @@ inline void MediaManager::RegisterLoader(Loader<T>* loader, const std::string& e
     Split(extensions, ext, " /\\*.,;|-_\t\n'\"");
 
     SmartPtr<Loader<T> > ptr = loader;
-	for(a_uint32 i = 0, len =ext.size(); i < len; i++)
-		MediaHolder<T>::m_Loaders[ToLower(ext[i])] = ptr;
+    for(a_uint32 i = 0, len =ext.size(); i < len; i++)
+        MediaHolder<T>::m_Loaders[ToLower(ext[i])] = ptr;
 }
 
 template <class T>
@@ -23,8 +23,8 @@ inline void MediaManager::UnregisterLoader(const std::string& extensions)
     a_vector<std::string> ext;
     Split(extensions, ext, " /\\*.,;|-_\t\n'\"");
 
-	for(a_uint32 i = 0, len =ext.size(); i < len; i++)
-		MediaHolder<T>::m_Loaders.erase(ToLower(ext[i]));
+    for(a_uint32 i = 0, len =ext.size(); i < len; i++)
+        MediaHolder<T>::m_Loaders.erase(ToLower(ext[i]));
 
 }
 

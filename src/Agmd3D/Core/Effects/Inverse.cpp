@@ -27,12 +27,12 @@ namespace Agmd
     void Inverse::ApplyEffect(Texture& input, Texture& output)
     {
         
-		Texture::BeginRenderToTexture(output);
-		Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
-		Driver::Get().SetTexture(0,input.GetTexture());
-		Fast2DSurface::Instance().Draw();
-		Driver::Get().SetCurrentProgram(NULL);
-		Texture::EndRenderToTexture();
+        Texture::BeginRenderToTexture(output);
+        Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        Driver::Get().SetTexture(0,input.GetTexture());
+        Fast2DSurface::Instance().Draw();
+        Driver::Get().SetCurrentProgram(NULL);
+        Texture::EndRenderToTexture();
     }
     
 

@@ -25,8 +25,8 @@ namespace Agmd
         if (!m_ShaderProgram)
         {
             m_ShaderProgram = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>(filename);
-			if(NULL != m_ShaderProgram)
-				ResourceManager::Instance().Add(filename, m_ShaderProgram);
+            if(NULL != m_ShaderProgram)
+                ResourceManager::Instance().Add(filename, m_ShaderProgram);
         }
     }
 

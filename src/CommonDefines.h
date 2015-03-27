@@ -42,8 +42,8 @@ typedef unsigned long long  a_uint64;
 typedef unsigned int        a_uint32;
 typedef unsigned short      a_uint16;
 typedef unsigned char       a_uint8;
-typedef float				a_float;
-typedef double				a_double;
-typedef wchar_t				a_char;
+typedef float                a_float;
+typedef double                a_double;
+typedef wchar_t                a_char;
 
 #endif /* _COMMOMDEFINES_H_ */

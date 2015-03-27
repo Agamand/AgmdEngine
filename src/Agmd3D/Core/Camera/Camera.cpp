@@ -22,27 +22,27 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-	Camera::Camera(TCameraProjection proj_type,ProjectionOption opt) :
+    Camera::Camera(TCameraProjection proj_type,ProjectionOption opt) :
 //     move(0.0f),
 //     moveFlags(MOVE_NONE),
 //     _position(pos),
 //     m_speed(100.0f),
 //     m_sensivity(0.2f),
-// 	recvInput(true),
-	m_node(NULL),
-	m_frustum(NULL)
+//     recvInput(true),
+    m_node(NULL),
+    m_frustum(new Frustum())
     {
        
         m_transform.m_MatView = mat4(1.0f);
         m_cameraBuffer = Driver::Get().CreateUniformBuffer<CameraBuffer>(1,BUF_DYNAMIC,0,1,NULL);
-		setProjection(proj_type,opt);
+        setProjection(proj_type,opt);
     }
 
-	Camera::~Camera()
-	{
-		m_cameraBuffer.Release();
-		delete m_frustum;
-	}
+    Camera::~Camera()
+    {
+        m_cameraBuffer.Release();
+        delete m_frustum;
+    }
 
 
     void Camera::updateBuffer(mat4& view)
@@ -98,7 +98,7 @@ namespace Agmd
         ivec2 screen = Driver::Get().GetScreen();
         mouse.x = mouse.x / screen.x;
         mouse.y = (screen.y-mouse.y) / screen.y;
-		mouse.z = mouse.z*2-1;
+        mouse.z = mouse.z*2-1;
 
         /* Map to range -1 to 1 */
         mouse.x = mouse.x * 2 - 1;
@@ -106,10 +106,10 @@ namespace Agmd
 
         vec4 out = viewprojection*vec4(mouse,1.0f);
 
-        if (out.w == 0.0) return false;
-		
-		out.w = 1.0 / out.w;
-		out*=out.w;
+        if (out.w == 0.0f) return false;
+        
+        out.w = 1.0f / out.w;
+        out*=out.w;
         mouse = vec3(out);
         //mouse /= out.x;
 
@@ -119,61 +119,62 @@ namespace Agmd
         return true;
     }
 
-	const std::string Camera::toString()
-	{
-		return "Camera Object";
-	}
+    const std::string Camera::toString()
+    {
+        return "Camera Object";
+    }
 
-	bool Camera::isInFrustrum( const BoundingBox& boundingBox )
-	{
-		return true;
-		const BoundingBox bbox = boundingBox.getTransformedBoundingBox(m_transform.m_MatView);
-		ShaderProgram testShader;
-		testShader.LoadFromFile("Shader/debug_shader.glsl");
-		Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
-		return m_frustum->IsIn(bbox);
-	}
+    bool Camera::isInFrustrum( const BoundingSphere& bounding )
+    {
+        
+        const BoundingSphere bound = bounding.GetTransformedBounding(m_transform.m_MatView);
+        ShaderProgram testShader;
+        //testShader.LoadFromFile("Shader/debug_shader.glsl");
+        //Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
+        return m_frustum->IsIn(bound);
+    }
 
-	void Camera::updateProjection()
-	{
-		m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-		m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*3);
-	}
+    void Camera::updateProjection()
+    {
+        m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
+        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*3);
+        m_frustum->Setup(m_transform.m_MatProjection);
+    }
 
-	void Camera::resize( vec2 newScreen )
-	{
-		if(m_projOption.flags & FLAG_IGNORE_RESIZE)
-			return;
-		if(m_projType == PROJECTION_PERSPECTIVE)
-		{
-			m_projOption.size.x = newScreen.x;
-			m_projOption.size.y = newScreen.y;
-			m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
-			updateProjection();
-		}else
-		{
-			float p = newScreen.y/newScreen.x;
-			if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
-			{
-				m_projOption.size.w = m_projOption.size.y*p;
-				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
-			}else if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
-			{
-				m_projOption.size.y = m_projOption.size.w/p;
-				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
-			}else
-			{
-				m_projOption.size.y = newScreen.x;
-				m_projOption.size.w = newScreen.y;
-				m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
-			}
-			
-			
-			m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w);
-			updateProjection();
-		}// if ortho nothing to do
-	}
+    void Camera::resize( vec2 newScreen )
+    {
+        if(m_projOption.flags & FLAG_IGNORE_RESIZE)
+            return;
+        if(m_projType == PROJECTION_PERSPECTIVE)
+        {
+            m_projOption.size.x = newScreen.x;
+            m_projOption.size.y = newScreen.y;
+            m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
+            updateProjection();
+        }else
+        {
+            float p = newScreen.y/newScreen.x;
+            if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
+            {
+                m_projOption.size.w = m_projOption.size.y*p;
+                m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+            }else if(m_projOption.flags & FLAG_KEEP_RESOLUTION_X)
+            {
+                m_projOption.size.y = m_projOption.size.w/p;
+                m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+            }else
+            {
+                m_projOption.size.y = newScreen.x;
+                m_projOption.size.w = newScreen.y;
+                m_projOption.size.x = m_projOption.size.z = 0.0f;//-newScreen.y*p;
+            }
+            
+            
+            m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w);
+            updateProjection();
+        }// if ortho nothing to do
+    }
 
-	Camera* Camera::s_currentCamera2D = NULL;
+    Camera* Camera::s_currentCamera2D = NULL;
     Camera* Camera::s_currentCamera3D = NULL;
 }

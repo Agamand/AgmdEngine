@@ -22,19 +22,19 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT ColorPicking: public Singleton<ColorPicking> 
-	{
-		MAKE_SINGLETON(ColorPicking)
-	public:
-		ColorPicking();
-		SceneNode* pick(const vec3& position,const vec3& ray);
-		SceneNode* pick(const vec2& pos);
-		Texture& getPickingScreen();
-		ShaderProgram m_picking_shader;
-	private:
-		FrameBuffer* m_framebuffer;
-		RenderBuffer* m_depth;
-		Texture m_pickingScreen;
-	}; 
+    class AGMD3D_EXPORT ColorPicking: public Singleton<ColorPicking> 
+    {
+        MAKE_SINGLETON(ColorPicking)
+    public:
+        ColorPicking();
+        SceneNode* pick(const vec3& position,const vec3& ray);
+        SceneNode* pick(const vec2& pos);
+        Texture& getPickingScreen();
+        ShaderProgram m_picking_shader;
+    private:
+        FrameBuffer* m_framebuffer;
+        RenderBuffer* m_depth;
+        Texture m_pickingScreen;
+    }; 
 }
 #endif /* _COLORPICKING_H_ */

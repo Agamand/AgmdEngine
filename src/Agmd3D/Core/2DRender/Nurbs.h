@@ -6,18 +6,18 @@
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT Nurbs : public BaseSpline
-	{
-	public:
-		Nurbs(vec2 p[], int count) : BaseSpline(p,count)
-		{
-			compute();
-		}
-		Nurbs(const std::vector<vec2>& p) : BaseSpline(p)
-		{
-			compute();
-		}
-		virtual void compute();
-	};
+    class AGMD3D_EXPORT Nurbs : public BaseSpline
+    {
+    public:
+        Nurbs(vec2 p[], int count) : BaseSpline(p,count)
+        {
+            compute();
+        }
+        Nurbs(const std::vector<vec2>& p) : BaseSpline(p)
+        {
+            compute();
+        }
+        virtual void compute();
+    };
 }
 #endif /* _NURBS_H_ */

@@ -19,7 +19,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Declaration.h>
 #include <Core/Camera/Camera.h>
-#include <Core/Tools/BoundingBox.h>
+#include <Core/Tools/BoundingSphere.h>
 
 #include <Vector2.h>
 #include <Vector3.h>
@@ -100,9 +100,9 @@ namespace Agmd
 
         virtual void SetCullFace(int face) = 0;
 
-		virtual void drawBoundingBox(const BoundingBox& bbox,const BaseShaderProgram*) = 0;
+        virtual void drawBoundingBox(const BoundingSphere& bbox,const BaseShaderProgram*) = 0;
 
-		virtual void clear( a_uint32 clear ) = 0;
+        virtual void clear( a_uint32 clear ) = 0;
     public :
 
         template <class T> Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
@@ -128,7 +128,7 @@ namespace Agmd
         mat4 GetMatView();
         mat4 GetMatProjection();
         ivec2 GetScreen();
-		float GetAspectRatio();
+        float GetAspectRatio();
 
 
 
@@ -146,8 +146,8 @@ namespace Agmd
         void SetMatProjection(mat4 _MatProjection);
         void SetScreen(ivec2 _screen);
 
-		void SetActiveScene(SceneMgr* sc);
-		SceneMgr* GetActiveScene();
+        void SetActiveScene(SceneMgr* sc);
+        SceneMgr* GetActiveScene();
         Statistics& GetStatistics();
     protected :
 
@@ -164,7 +164,7 @@ namespace Agmd
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
         virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const = 0;
-		
+        
         std::map<TCapability, bool> m_Capabilities;
 
         a_uint32            m_TextureFlags;

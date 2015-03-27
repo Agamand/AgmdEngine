@@ -16,16 +16,16 @@
 class SceneTree : public wxTreeCtrl
 {
 public:
-	SceneTree(EditorFrame* editor,wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style);
-	void addSceneNode( Agmd::SceneNode* node );
-	void removeSceneNode( Agmd::SceneNode* node );
-	void setSelectedSceneNode( Agmd::SceneNode* pick );
-	Agmd::SceneNode* getSelectedSceneNode();
+    SceneTree(EditorFrame* editor,wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style);
+    void addSceneNode( Agmd::SceneNode* node );
+    void removeSceneNode( Agmd::SceneNode* node );
+    void setSelectedSceneNode( Agmd::SceneNode* pick );
+    Agmd::SceneNode* getSelectedSceneNode();
 private:
-	virtual void OnSelect( wxTreeEvent& event );
-	std::map<Agmd::SceneNode*,wxTreeItemId> m_nodes;
-	std::map<wxTreeItemId,Agmd::SceneNode*> m_nodesId; //reverse search
-	EditorFrame* m_editor;
+    virtual void OnSelect( wxTreeEvent& event );
+    std::map<Agmd::SceneNode*,wxTreeItemId> m_nodes;
+    std::map<wxTreeItemId,Agmd::SceneNode*> m_nodesId; //reverse search
+    EditorFrame* m_editor;
 };
 
 #endif

@@ -16,14 +16,14 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-	const char* _normal = "vec3 normal(){return vec3(1,0,0);}";
-	const char* _diffuse = "vec4 diffuse(){return vec4(1);}";
-	
+    const char* _normal = "vec3 normal(){return vec3(1,0,0);}";
+    const char* _diffuse = "vec4 diffuse(){return vec4(1);}";
+    
     ShaderPipelineLoader::ShaderPipelineLoader()
     {
-		d_subroutine["diffuse"] = _diffuse;
-		d_subroutine["normal"] = _normal;
-	}
+        d_subroutine["diffuse"] = _diffuse;
+        d_subroutine["normal"] = _normal;
+    }
 
     ShaderPipelineLoader::~ShaderPipelineLoader()
     {}

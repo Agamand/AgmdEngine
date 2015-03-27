@@ -18,21 +18,21 @@ using namespace AgmdMaths;
 #define MAX_SUBDIV 5
 namespace Agmd
 {
-	class AGMD3D_EXPORT Icosahedron : public Model
-	{
-	public :
-		typedef unsigned short TIndex;
-		Icosahedron(a_uint8 subdiv = 0);
+    class AGMD3D_EXPORT Icosahedron : public Model
+    {
+    public :
+        typedef unsigned short TIndex;
+        Icosahedron(a_uint8 subdiv = 0);
 
-		void setSubdiv(a_uint8);
-		a_uint8 getSubdiv() const;
+        void setSubdiv(a_uint8);
+        a_uint8 getSubdiv() const;
 
-	private:
-		a_uint8 m_subdiv;
+    private:
+        a_uint8 m_subdiv;
 
-	};
+    };
 
-	typedef SmartPtr<Icosahedron, ResourceCOM> TIcosahedronPtr;
+    typedef SmartPtr<Icosahedron, ResourceCOM> TIcosahedronPtr;
 
 }
 

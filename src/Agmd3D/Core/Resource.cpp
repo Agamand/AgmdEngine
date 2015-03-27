@@ -40,7 +40,7 @@ namespace Agmd
         int RefCount = --m_RefCount;
 
         if (RefCount == 0)
-	            delete this;
+                delete this;
 
         return RefCount;
     }

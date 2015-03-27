@@ -79,9 +79,9 @@ namespace Agmd
         return m_Data;
     }
 
-	void GLTextureCube::updatePixelFromTexture()
-	{
-		throw std::exception("The method or operation is not implemented.");
-	}
+    void GLTextureCube::updatePixelFromTexture()
+    {
+        throw std::exception("The method or operation is not implemented.");
+    }
 
 }

@@ -16,35 +16,35 @@ https://github.com/Agamand/AgmdEngine
 #include <Transform.h>
 #include <Core/SceneNode/SceneNode.h>
 #include <Core/Tools/RenderQueue.h>
-#include <Core/Tools/BoundingBox.h>
+#include <Core/Tools/BoundingSphere.h>
 
 using namespace AgmdMaths;
 
 namespace Agmd
 {
-	class LightNode;
-	class AGMD3D_EXPORT DisplayNode : public SceneNode
-	{
-	public :
-		DisplayNode(Transform* t,Material*mat);
-		virtual ~DisplayNode(){};
+    class LightNode;
+    class AGMD3D_EXPORT DisplayNode : public SceneNode
+    {
+    public :
+        DisplayNode(Transform* t,Material*mat);
+        virtual ~DisplayNode(){};
 
-		virtual void render(TRenderPass pass) const = 0;
-		virtual void draw() const = 0;
+        virtual void render(TRenderPass pass) const = 0;
+        virtual void draw() const = 0;
 
-		virtual void findVisible(Camera*cam, RenderQueue& display, a_vector<LightNode*>& light);
-		Material& getMaterial() const { return *m_material;}
-		const BoundingBox& getBoundingBox() const { return m_localBBox;};
-		const BoundingBox& getGlobalBoundingBox() const { return m_globalBbox;};
+        virtual void findVisible(Camera*cam, RenderQueue& display, a_vector<LightNode*>& light);
+        Material& getMaterial() const { return *m_material;}
+        const BoundingSphere& getBounding() const { return m_localBounds;};
+        const BoundingSphere& getGlobalBounding() const { return m_globalBounds;};
 
-		virtual bool isVisible( BoundingBox& bbox );
-		virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
-	protected:
-		BoundingBox m_baseBbox;
-		BoundingBox m_localBBox;
-		BoundingBox m_globalBbox;
-		Material* m_material;
-	};
+        virtual bool isVisible( BoundingSphere& bbox );
+        virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
+    protected:
+        BoundingSphere    m_baseBounds;
+        BoundingSphere    m_localBounds;
+        BoundingSphere    m_globalBounds;
+        Material*   m_material;
+    };
 
 }
 

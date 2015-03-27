@@ -10,10 +10,10 @@ namespace Agmd
     DisplayNode(transform,NULL),
     m_baseModel(basemodel)
     {
-		m_type = MESH_NODE;
-		m_baseBbox = m_baseModel->getBoundingBox();
-		update(NULL,0,TRANSFORM_CHANGED);
-	}
+        m_type = MESH_NODE;
+        m_baseBounds = m_baseModel->getBounding();
+        update(NULL,0,TRANSFORM_CHANGED);
+    }
     MeshNode::~MeshNode()
     {}
 
@@ -22,14 +22,14 @@ namespace Agmd
         m_baseModel->Draw(m_transform);
     }
 
-	bool MeshNode::isVisible(BoundingBox& bbox)
-	{
-		return true;
-	}
+    bool MeshNode::isVisible( BoundingSphere& bbox )
+    {
+        return true;
+    }
 
     void MeshNode::render(TRenderPass pass) const
     {
-		
+        
         if(!m_material || !m_material->Enable(pass))
             return;
 
@@ -37,9 +37,9 @@ namespace Agmd
         m_material->Disable();
     }
 
-	void MeshNode::setMaterial( Material* surface_mat )
-	{
-		m_material = surface_mat;
-	}
+    void MeshNode::setMaterial( Material* surface_mat )
+    {
+        m_material = surface_mat;
+    }
 
 }

@@ -83,13 +83,13 @@ namespace Agmd
         return &m_Data;
     }
 
-	void GLTexture2D::updatePixelFromTexture()
-	{
-		RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
-		RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
-		glBindTexture(GL_TEXTURE_2D, m_Texture);
-		glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,imgFmt.Type,m_Data.GetDataPtr());
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
+    void GLTexture2D::updatePixelFromTexture()
+    {
+        RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
+        RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
+        glBindTexture(GL_TEXTURE_2D, m_Texture);
+        glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,imgFmt.Type,m_Data.GetDataPtr());
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 
 }

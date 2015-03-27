@@ -20,7 +20,7 @@
 //     Camera(projection,pos)
 //     {
 //         updateVector();
-// 		m_rotation = quat();
+//         m_rotation = quat();
 //     }
 // 
 //     FPCamera::~FPCamera()
@@ -67,12 +67,12 @@
 //         _theta += x*m_sensivity;
 //         _phi += y*m_sensivity;
 // 
-// 		//m_view = m_view*toMat4(rot);
-// 		updateVector();
+//         //m_view = m_view*toMat4(rot);
+//         updateVector();
 //     }
 // 
-// 	void FPCamera::onKeyboard( a_char key, bool up )
-// 	{
+//     void FPCamera::onKeyboard( a_char key, bool up )
+//     {
 //         a_uint32 tempFlags = MOVE_NONE;
 //         switch(key)
 //         {
@@ -112,14 +112,14 @@
 //     {
 //         _position += move*(m_speed*time_diff)/1000.0f;
 //         _target = _position + _forward;
-// 		//m_view *=m_view *translate(mat4(), move*(m_speed*time_diff)/1000.0f);
+//         //m_view *=m_view *translate(mat4(), move*(m_speed*time_diff)/1000.0f);
 //         updateBuffer(look());
 //     }
 // 
-// 	mat4 FPCamera::look()
-// 	{
-// 		//m_view = m_view*Camera::look();
-// 		return Camera::look();
-// 	}
+//     mat4 FPCamera::look()
+//     {
+//         //m_view = m_view*Camera::look();
+//         return Camera::look();
+//     }
 // 
 // }

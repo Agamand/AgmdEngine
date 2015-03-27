@@ -19,12 +19,12 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT ThirdPersonController: public InputController
-	{
-	public:
-		ThirdPersonController();
+    class AGMD3D_EXPORT ThirdPersonController: public InputController
+    {
+    public:
+        ThirdPersonController();
 
-	};
+    };
 
 }
 

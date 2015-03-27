@@ -38,46 +38,46 @@ class BaseFrame : public wxFrame
 private:
 
 protected:
-	enum
-	{
-		wxID_VIEWPANEL = 1000,
-		wxID_PROPERTY
-	};
+    enum
+    {
+        wxID_VIEWPANEL = 1000,
+        wxID_PROPERTY
+    };
 
-	wxMenuBar* m_menubar1;
-	wxMenu* FileMenu;
-	wxNotebook* m_notebook1;
-	wxScrolledWindow* planetProperties;
-	wxPropertyGrid* m_propertyPlanet;
-	wxPGProperty* Planet;
-	wxPGProperty* m_propertyPersistance;
-	wxPGProperty* m_propertyAmplitude;
-	wxPGProperty* m_propertyOctave;
-	wxPGProperty* m_propertyFrequency;
-	wxPGProperty* m_propertyLacunarity;
-	wxPGProperty* m_propertyOffset;
-	wxPGProperty* Atmosphere;
-	wxPGProperty* m_propertyEsun;
-	wxPGProperty* m_propertyRed;
-	wxPGProperty* m_propertyBlue;
-	wxPGProperty* m_propertyGreen;
-	wxPGProperty* m_propertyGg;
-	wxPGProperty* Camera;
-	wxPGProperty* m_propertyCameraSpeed;
-	wxPanel* m_panel3;
+    wxMenuBar* m_menubar1;
+    wxMenu* FileMenu;
+    wxNotebook* m_notebook1;
+    wxScrolledWindow* planetProperties;
+    wxPropertyGrid* m_propertyPlanet;
+    wxPGProperty* Planet;
+    wxPGProperty* m_propertyPersistance;
+    wxPGProperty* m_propertyAmplitude;
+    wxPGProperty* m_propertyOctave;
+    wxPGProperty* m_propertyFrequency;
+    wxPGProperty* m_propertyLacunarity;
+    wxPGProperty* m_propertyOffset;
+    wxPGProperty* Atmosphere;
+    wxPGProperty* m_propertyEsun;
+    wxPGProperty* m_propertyRed;
+    wxPGProperty* m_propertyBlue;
+    wxPGProperty* m_propertyGreen;
+    wxPGProperty* m_propertyGg;
+    wxPGProperty* Camera;
+    wxPGProperty* m_propertyCameraSpeed;
+    wxPanel* m_panel3;
 
-	// Virtual event handlers, overide them in your derived class
-	virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
-	virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
+    // Virtual event handlers, overide them in your derived class
+    virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
+    virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
 
 
 public:
-	wxPanel* m_viewPanel;
+    wxPanel* m_viewPanel;
 
-	BaseFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("StartBirth"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1139,729 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-	wxAuiManager m_mgr;
+    BaseFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("StartBirth"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1139,729 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+    wxAuiManager m_mgr;
 
-	~BaseFrame();
+    ~BaseFrame();
 
 };
 

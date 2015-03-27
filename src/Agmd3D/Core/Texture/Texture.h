@@ -42,7 +42,7 @@ namespace Agmd
         void Update(const AgmdMaths::Rectangle& rect = AgmdMaths::Rectangle(-1, -1, -1, -1));
 
         Image& GetPixels();
-		Image* GetPixelsPtr();
+        Image* GetPixelsPtr();
 
         const ivec2& GetSize() const;
 
@@ -62,11 +62,11 @@ namespace Agmd
 
         static void TextureAdd(Texture output, Texture input1, Texture input2);
         static void TextureProd(Texture output, Texture input1, Texture input2);
-		static void TextureRender(Texture input,ivec2 pos = ivec2(0),ivec2 resolution=ivec2(-1));
+        static void TextureRender(Texture input,ivec2 pos = ivec2(0),ivec2 resolution=ivec2(-1));
         static void TextureRandom();
 
         static void BeginRenderToTexture(const Texture& texture0);
-		static void BeginRenderToTexture(const Texture& texture0,const Texture& texture1);
+        static void BeginRenderToTexture(const Texture& texture0,const Texture& texture1);
         static void EndRenderToTexture();
         static BaseShaderProgram* s_addTexture;
         static BaseShaderProgram* s_prodTexture;
@@ -75,15 +75,15 @@ namespace Agmd
         static FrameBuffer* s_framebuffer;
         static void BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face = -1);
         static void EndRenderToCubeMap();
-		void updatePixelFromTexture();
+        void updatePixelFromTexture();
 
     private :
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
         void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
-		
+        
 
-		SmartPtr<TextureBase, ResourceCOM> m_Texture;
+        SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };
 
 }

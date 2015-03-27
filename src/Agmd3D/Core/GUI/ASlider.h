@@ -24,15 +24,15 @@ namespace Agmd
     {
     public:
 
-		class ASliderListener
-		{
-		public:
-			virtual void valueUpdate(float value,float cursor) = 0;
-		};
+        class ASliderListener
+        {
+        public:
+            virtual void valueUpdate(float value,float cursor) = 0;
+        };
 
         ASlider(AWidget* parent);
         ASlider(const std::string& label, const ivec2& position, const ivec2& size, bool integer = false);
-		virtual ~ASlider();
+        virtual ~ASlider();
         virtual a_uint32 OnClick(ivec2& pos_mouse, a_uint32 mouseState);
         virtual a_uint32 OnMouseOver();
         virtual a_uint32 OnMouseMove(ivec2& pos_diff, a_uint32 mouseState);
@@ -45,20 +45,20 @@ namespace Agmd
         virtual bool In(ivec2& pos_mouse);
 
         void SetCursor(float value);
-		void setValue(float* value,float min,float max);
-		void setLabel(std::string& label);
-		
-		void setUpdateCallBack(ASliderListener* listener)
-		{
-			updateListener = listener;
-		}
+        void setValue(float* value,float min,float max);
+        void setLabel(std::string& label);
+        
+        void setUpdateCallBack(ASliderListener* listener)
+        {
+            updateListener = listener;
+        }
 
-		void setInteger(bool enable)
-		{
-			m_isInteger = enable;
-		}
+        void setInteger(bool enable)
+        {
+            m_isInteger = enable;
+        }
     private:
-		ASliderListener* updateListener;
+        ASliderListener* updateListener;
         void BuildSlider();
         struct TVertex
         {
@@ -68,23 +68,23 @@ namespace Agmd
         };
 
         typedef unsigned short TIndex;
-		Transform*          m_transform;
+        Transform*          m_transform;
         Buffer<TVertex>     m_VertexBuffer;
         Buffer<TIndex>      m_IndexBuffer;
         DeclarationPtr      m_Declaration;
         Texture             m_Texture;
         Texture             m_Font;
         ShaderProgram       m_Program;
-		ShaderProgram       m_ProgramCursor;
+        ShaderProgram       m_ProgramCursor;
         float               m_cursor;
-		float*				m_value;
-		float				m_max;
-		float				m_min;// range [0.0f-1.0f]
+        float*                m_value;
+        float                m_max;
+        float                m_min;// range [0.0f-1.0f]
         bool                hold; // hold = true if mouse is hold the cursor else hold = false
-		std::string			m_label;
-		GraphicString*		m_gstring;
-		bool				m_isInteger;
-	};
+        std::string            m_label;
+        GraphicString*        m_gstring;
+        bool                m_isInteger;
+    };
 }
 
 #endif /* _ASLIDER_H_ */

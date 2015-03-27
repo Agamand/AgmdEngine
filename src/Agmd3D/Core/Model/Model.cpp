@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/MatStack.h>
 #include <Core/ResourceManager.h>
 #include <Vector3.h>
-#include <Core/Tools/BoundingBox.h>
+#include <Core/Tools/BoundingSphere.h>
 #include <CommonDefines.h>
 
 /** DEBUG **/
@@ -25,106 +25,106 @@ https://github.com/Agamand/AgmdEngine
 /** **/
 namespace Agmd
 {
-	Model::Model()
-	{}
-	Model::Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type) :
+    Model::Model()
+    {}
+    Model::Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type) :
     m_PrimitiveType(type),m_indexed(true), m_maxDraw(-1)
     {
-		vec3 _max, _min;
-		if(verticesCount > 0)
-		{
-			_max = _min = vertices[0].position;
+        vec3 _max, _min;
+        if(verticesCount > 0)
+        {
+            _max = _min = vertices[0].position;
 
-			for(a_uint32 i = 1; i < verticesCount;i++)
-			{
-				_min.x = min(_min.x,vertices[i].position.x);
-				_min.y = min(_min.y,vertices[i].position.y);
-				_min.z = min(_min.z,vertices[i].position.z);
+            for(a_uint32 i = 1; i < verticesCount;i++)
+            {
+                _min.x = min(_min.x,vertices[i].position.x);
+                _min.y = min(_min.y,vertices[i].position.y);
+                _min.z = min(_min.z,vertices[i].position.z);
 
-				_max.x = max(_max.x,vertices[i].position.x);
-				_max.y = max(_max.y,vertices[i].position.y);
-				_max.z = max(_max.z,vertices[i].position.z);
-			}
+                _max.x = max(_max.x,vertices[i].position.x);
+                _max.y = max(_max.y,vertices[i].position.y);
+                _max.z = max(_max.z,vertices[i].position.z);
+            }
 
-			m_boundingBox = BoundingBox(_min,_max);
-		}
-		GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
+            m_bounding = BoundingSphere(_min,_max);
+        }
+        GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }
 
-	Model::Model( TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type/*= PT_TRIANGLELIST*/ ) : m_PrimitiveType(type),m_indexed(false)
-	{
-		vec3 _max, _min;
-		if(verticesCount > 0)
-		{
-			_max = _min = vertices[0].position;
+    Model::Model( TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type/*= PT_TRIANGLELIST*/ ) : m_PrimitiveType(type),m_indexed(false)
+    {
+        vec3 _max, _min;
+        if(verticesCount > 0)
+        {
+            _max = _min = vertices[0].position;
 
-			for(a_uint32 i = 1; i < verticesCount;i++)
-			{
-				_min.x = min(_min.x,vertices[i].position.x);
-				_min.y = min(_min.y,vertices[i].position.y);
-				_min.z = min(_min.z,vertices[i].position.z);
+            for(a_uint32 i = 1; i < verticesCount;i++)
+            {
+                _min.x = min(_min.x,vertices[i].position.x);
+                _min.y = min(_min.y,vertices[i].position.y);
+                _min.z = min(_min.z,vertices[i].position.z);
 
-				_max.x = max(_max.x,vertices[i].position.x);
-				_max.y = max(_max.y,vertices[i].position.y);
-				_max.z = max(_max.z,vertices[i].position.z);
-			}
+                _max.x = max(_max.x,vertices[i].position.x);
+                _max.y = max(_max.y,vertices[i].position.y);
+                _max.z = max(_max.z,vertices[i].position.z);
+            }
 
-			m_boundingBox = BoundingBox(_min,_max);
-		}
-		GenerateBuffer(vertices,verticesCount,type);
-	}
-	void Model::GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type)
-	{
-		m_PrimitiveType = type ,m_indexed =true;
-		Assert(vertices != NULL);
-		Assert(indices  != NULL);
+            m_bounding = BoundingSphere(_min,_max);
+        }
+        GenerateBuffer(vertices,verticesCount,type);
+    }
+    void Model::GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type)
+    {
+        m_PrimitiveType = type ,m_indexed =true;
+        Assert(vertices != NULL);
+        Assert(indices  != NULL);
 
-		Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
-		//Generate(G_TANGENT, vertices, verticesCount, indices, indicesCount);
+        Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
+        //Generate(G_TANGENT, vertices, verticesCount, indices, indicesCount);
 
-		TDeclarationElement Elements[] =
-		{
-			{0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
-			{0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
-			{0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
-			{0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
-			{0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
-			{0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
-			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
+        TDeclarationElement Elements[] =
+        {
+            {0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
+            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
+            {0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
+            {0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
+            {0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
 
-		};
+        };
 
-		//m_Declaration it's smartptr -> auto delete :D 
-// 		m_VertexBuffer.Release();
-// 		m_IndexBuffer.Release();
-		if(!m_Declaration)
-			m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+        //m_Declaration it's smartptr -> auto delete :D 
+//         m_VertexBuffer.Release();
+//         m_IndexBuffer.Release();
+        if(!m_Declaration)
+            m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
-		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
-		m_IndexBuffer  = Driver::Get().CreateIndexBuffer(indicesCount, 0, indices);
-	
-	}
-	void Model::GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type)
-	{
-		Assert(vertices != NULL);
-		m_PrimitiveType = type ,m_indexed =false;
-		//Generate(G_TANGENT, Vertices, VerticesCount, Indices, IndicesCount);
+        m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+        m_IndexBuffer  = Driver::Get().CreateIndexBuffer(indicesCount, 0, indices);
+    
+    }
+    void Model::GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type)
+    {
+        Assert(vertices != NULL);
+        m_PrimitiveType = type ,m_indexed =false;
+        //Generate(G_TANGENT, Vertices, VerticesCount, Indices, IndicesCount);
 
-		TDeclarationElement Elements[] =
-		{
-			{0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
-			{0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
-			{0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
-			{0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
-			{0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
-			{0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
-			{0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
+        TDeclarationElement Elements[] =
+        {
+            {0, ELT_USAGE_POSITION,     ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_NORMAL,       ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_DIFFUSE,      ELT_TYPE_COLOR},
+            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2},
+            {0, ELT_USAGE_BONE_WEIGHT,  ELT_TYPE_FLOAT4},
+            {0, ELT_USAGE_BONE_INDEX,   ELT_TYPE_FLOAT4},
+            {0, ELT_USAGE_BONE_COUNT,   ELT_TYPE_FLOAT1}
 
-		};
-		m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+        };
+        m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
 
-		m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
-	}
+        m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
+    }
 
 
 
@@ -132,24 +132,24 @@ namespace Agmd
 
     void Model::Draw(const Transform* transform) const
     {
-		if(transform)
-			Driver::Get().SetCurrentTransform(transform);
+        if(transform)
+            Driver::Get().SetCurrentTransform(transform);
         Driver::Get().SetDeclaration(m_Declaration);
         Driver::Get().SetVertexBuffer(0, m_VertexBuffer);
-		if(m_indexed)
-		{
-			Driver::Get().SetIndexBuffer(m_IndexBuffer);
-			Driver::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
-		}else
-			Driver::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
-		
+        if(m_indexed)
+        {
+            Driver::Get().SetIndexBuffer(m_IndexBuffer);
+            Driver::Get().DrawIndexedPrimitives(m_PrimitiveType,0,m_IndexBuffer.GetCount());
+        }else
+            Driver::Get().DrawPrimitives(m_PrimitiveType,0,m_VertexBuffer.GetCount());
+        
     }
 
     void Model::Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount)
     {
         a_vector<vec3> normal;
         normal.resize(verticesCount,vec3(0.0f));
-		std::vector<vec4> tangent;
+        std::vector<vec4> tangent;
         tangent.resize(verticesCount,vec4(0.0f));
 
         if(!type)
@@ -241,14 +241,14 @@ namespace Agmd
         m_IndexBuffer.Release();
     }
 
-	void Model::setMaxDraw( int param1 )
-	{
-		m_maxDraw = param1;
-	}
+    void Model::setMaxDraw( int param1 )
+    {
+        m_maxDraw = param1;
+    }
 
-	const BoundingBox& Model::getBoundingBox() const
-	{
-		return m_boundingBox;
-	}
+    const BoundingSphere& Model::getBounding() const
+    {
+        return m_bounding;
+    }
 
 }

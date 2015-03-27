@@ -59,8 +59,8 @@ namespace Agmd
 
         unsigned int bpp = GetBytesPerPixel(m_Format);
         a_uint32 begin = 0;
-		//for (a_uint32 i = begin + bpp,len = m_Pixels.size(); i < len; i += bpp)
-			//std::copy(&m_Pixels[begin], &m_Pixels[begin + bpp], i);
+        //for (a_uint32 i = begin + bpp,len = m_Pixels.size(); i < len; i += bpp)
+            //std::copy(&m_Pixels[begin], &m_Pixels[begin + bpp], i);
     }
 
     void Image::SetPixel(int x, int y, const unsigned char* pix)
@@ -200,17 +200,17 @@ namespace Agmd
             }
     }
 
-	void Image::saveToFile( const std::string& filename )
-	{
-		a_uint32 texture;
-		ilGenImages(1, &texture);
-		ilBindImage(texture);
-		ilTexImage(m_Size.x,m_Size.y,0,4,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
-		//ilSetPixels(0,0,0,m_Size.x,m_Size.y,0,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
-		ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
-		ilSaveImage(filename.c_str());
-		ilDeleteImages(1, &texture);
-	}
+    void Image::saveToFile( const std::string& filename )
+    {
+        a_uint32 texture;
+        ilGenImages(1, &texture);
+        ilBindImage(texture);
+        ilTexImage(m_Size.x,m_Size.y,0,4,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
+        //ilSetPixels(0,0,0,m_Size.x,m_Size.y,0,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
+        ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
+        ilSaveImage(filename.c_str());
+        ilDeleteImages(1, &texture);
+    }
 
 
 }

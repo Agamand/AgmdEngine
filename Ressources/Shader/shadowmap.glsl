@@ -9,8 +9,8 @@ uniform mat4 depthMVP;
 
 out vec3 v_position;
 void main(){
-	v_position = (u_matModel *vec4(in_Vertex,1)).xyz;
-	gl_Position =  depthMVP * u_matModel *vec4(in_Vertex,1);
+    v_position = (u_matModel *vec4(in_Vertex,1)).xyz;
+    gl_Position =  depthMVP * u_matModel *vec4(in_Vertex,1);
 }
 #endif
 
@@ -22,6 +22,6 @@ in vec3 v_position;
 
 void main(){
 
-	out_Color = vec4(v_position,1.0f);
+    out_Color = vec4(v_position,1.0f);
 }
 #endif

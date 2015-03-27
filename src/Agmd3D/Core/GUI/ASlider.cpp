@@ -17,40 +17,40 @@ namespace Agmd
 
     ASlider::ASlider( AWidget* parent) :
     AWidget(parent),
-	hold(false),
-	m_transform(new Transform()),
-	m_value(&m_cursor),
-	m_max(1.0f),
-	m_min(0),
-	m_isInteger(false),
-	updateListener(NULL)
+    hold(false),
+    m_transform(new Transform()),
+    m_value(&m_cursor),
+    m_max(1.0f),
+    m_min(0),
+    m_isInteger(false),
+    updateListener(NULL)
     {
         BuildSlider();
         //m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
         m_Program.LoadFromFile("Shader/gui/slider.glsl");
-		m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
-		m_gstring = new GraphicString();
+        m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
+        m_gstring = new GraphicString();
     }
 
-	ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ,bool integer):
-	AWidget(NULL),
-	hold(false),
-	m_isInteger(integer),
-	m_transform(new Transform()),
-	m_value(&m_cursor),
-	m_max(1.0f),
-	m_min(0),
-	m_label(label),
-	updateListener(NULL)
-	{
-		SetSize(size);
-		BuildSlider();
-		//m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
-		m_Program.LoadFromFile("Shader/gui/slider.glsl");
-		m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
-		m_gstring = new GraphicString();
-		SetPosition(position);
-	}
+    ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ,bool integer):
+    AWidget(NULL),
+    hold(false),
+    m_isInteger(integer),
+    m_transform(new Transform()),
+    m_value(&m_cursor),
+    m_max(1.0f),
+    m_min(0),
+    m_label(label),
+    updateListener(NULL)
+    {
+        SetSize(size);
+        BuildSlider();
+        //m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
+        m_Program.LoadFromFile("Shader/gui/slider.glsl");
+        m_ProgramCursor.LoadFromFile("Shader/gui/slider_cursor.glsl");
+        m_gstring = new GraphicString();
+        SetPosition(position);
+    }
 
     ASlider::~ASlider()
     {}
@@ -61,10 +61,10 @@ namespace Agmd
         if(!In(pos_mouse))
             return 0;
         hold = mouseState & MOUSE_LEFT;
-		if(hold)
-		{
-			SetCursor((pos_mouse-m_vAbsolutePosition).x/(float)m_vSize.x);
-		}
+        if(hold)
+        {
+            SetCursor((pos_mouse-m_vAbsolutePosition).x/(float)m_vSize.x);
+        }
         return 1;
     }
 
@@ -100,24 +100,24 @@ namespace Agmd
 
     void ASlider::OnPosChanged()
     {
-		
-		m_gstring->getTransform().setPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
-		m_gstring->getTransform().update(NULL);
-		m_transform->setPosition(vec3(m_vAbsolutePosition,0));
-		m_transform->update(NULL);
+        
+        m_gstring->getTransform().setPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
+        m_gstring->getTransform().update(NULL);
+        m_transform->setPosition(vec3(m_vAbsolutePosition,0));
+        m_transform->update(NULL);
     }
 
     void ASlider::Draw() const
     {
         Driver &render = Driver::Get();
-		render.SetCurrentProgram(m_Program.GetShaderProgram());
-		render.SetCurrentTransform(m_transform);
-		m_Program.SetParameter("u_size",vec2(m_vSize.x,0.2));
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(m_ProgramCursor.GetShaderProgram());
-		m_Program.SetParameter("u_size",vec2(m_vSize.x,m_cursor));
-		Fast2DSurface::Instance().Draw();
-		render.SetCurrentProgram(NULL);
+        render.SetCurrentProgram(m_Program.GetShaderProgram());
+        render.SetCurrentTransform(m_transform);
+        m_Program.SetParameter("u_size",vec2(m_vSize.x,0.2));
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(m_ProgramCursor.GetShaderProgram());
+        m_Program.SetParameter("u_size",vec2(m_vSize.x,m_cursor));
+        Fast2DSurface::Instance().Draw();
+        render.SetCurrentProgram(NULL);
         m_gstring->draw();
     }
 
@@ -153,26 +153,26 @@ namespace Agmd
         else if(value < 0.0f)
             m_cursor = 0.0f;
         else m_cursor = value;
-		*m_value = (m_max-m_min)*m_cursor+m_min;
-		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
-		if(updateListener)
-			updateListener->valueUpdate(*m_value,m_cursor);
+        *m_value = (m_max-m_min)*m_cursor+m_min;
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
+        if(updateListener)
+            updateListener->valueUpdate(*m_value,m_cursor);
     }
 
-	void ASlider::setValue( float* value,float min,float max )
-	{
-		m_value = value;
-		m_min = min;
-		m_max = max;
-		m_cursor = (*m_value-m_min)/(m_max-m_min);
-		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
-	}
+    void ASlider::setValue( float* value,float min,float max )
+    {
+        m_value = value;
+        m_min = min;
+        m_max = max;
+        m_cursor = (*m_value-m_min)/(m_max-m_min);
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
+    }
 
-	void ASlider::setLabel( std::string& label )
-	{
-		m_label = label;
-		*m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
-	}
+    void ASlider::setLabel( std::string& label )
+    {
+        m_label = label;
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
+    }
 
 
 

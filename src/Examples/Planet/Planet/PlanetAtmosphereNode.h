@@ -8,16 +8,16 @@ class Planet;
 class PlanetAtmosphereNode : public MeshNode
 {
 public:
-	PlanetAtmosphereNode(Planet* controller);
+    PlanetAtmosphereNode(Planet* controller);
 
-	virtual void render( TRenderPass pass ) const;
+    virtual void render( TRenderPass pass ) const;
 
-	virtual void findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light );
+    virtual void findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light );
 
 private:
-	ShaderProgram m_groundProgram[2];
-	ShaderProgram m_skyProgram[2];
-	Planet* m_controller;
+    ShaderProgram m_groundProgram[2];
+    ShaderProgram m_skyProgram[2];
+    Planet* m_controller;
 };
 
 

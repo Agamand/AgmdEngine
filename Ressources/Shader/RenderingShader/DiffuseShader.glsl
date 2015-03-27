@@ -11,11 +11,11 @@ out vec4 v_Color;
 out vec3 v_pos;
 
 void main(){
-	
-	v_Color = in_Color;
-	v_pos = in_Vertex;
-	v_texCoord0 = in_TexCoord0;
-	gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1);
+    
+    v_Color = in_Color;
+    v_pos = in_Vertex;
+    v_texCoord0 = in_TexCoord0;
+    gl_Position = u_matViewProjection * u_matModel * vec4(in_Vertex,1);
 }
 #endif
 
@@ -29,9 +29,9 @@ out vec4 out_color;
 
 void main()
 {
-	out_color = v_Color;
-	//float offset = (length(v_pos)-1)/0.05f;
+    out_color = v_Color;
+    //float offset = (length(v_pos)-1)/0.05f;
 
-	out_color = vec4(texture(texture0,v_texCoord0).rgb,1);	
+    out_color = vec4(texture(texture0,v_texCoord0).rgb,1);    
 }
 #endif

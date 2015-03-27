@@ -24,20 +24,20 @@ namespace Agmd
 
         virtual void onMouseMotion(int x, int y);
 
-		virtual void onKeyboard(a_char key, bool up);
+        virtual void onKeyboard(a_char key, bool up);
 
         virtual void onMouseWheel(float delta);
 
     protected:
         virtual void updateVector();
 
-		virtual mat4 look();
+        virtual mat4 look();
 
 
         float _theta;
-		float _phi;
-		quat m_rotation;
-		mat4 m_view;
+        float _phi;
+        quat m_rotation;
+        mat4 m_view;
     };
 }
 

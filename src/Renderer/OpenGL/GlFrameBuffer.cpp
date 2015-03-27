@@ -85,7 +85,7 @@ namespace Agmd
         GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,m_Id);
         //glClear(_flags);
         GLDriver::Get().clear(flags);
-		GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
+        GLDriver::glBindFramebuffer(GL_FRAMEBUFFER,0);
     }
 
     void GLFrameBuffer::DrawBuffer(a_uint32 flag)
@@ -103,10 +103,10 @@ namespace Agmd
     }
 
 
-	/*
-		OLD function
-		unsafe method (with pointer)
-	*/
+    /*
+        OLD function
+        unsafe method (with pointer)
+    */
     a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32 count, a_uint32 flags[])
     {
         if(!count)
@@ -117,14 +117,14 @@ namespace Agmd
         return buffer;
     }
 
-	a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32* buffer,a_uint32 count, a_uint32 flags[])
-	{
-		if(!count)
-			return NULL;
-		for(a_uint32 i = 0; i < count; i++)
-			buffer[i] = RGLEnum::GetAttachment(flags[i]);
-		return buffer;
-	}
+    a_uint32* GLFrameBuffer::GenerateBufferFlags(a_uint32* buffer,a_uint32 count, a_uint32 flags[])
+    {
+        if(!count)
+            return NULL;
+        for(a_uint32 i = 0; i < count; i++)
+            buffer[i] = RGLEnum::GetAttachment(flags[i]);
+        return buffer;
+    }
 
     void GLFrameBuffer::ReadBuffer(a_uint32 flag)
     {

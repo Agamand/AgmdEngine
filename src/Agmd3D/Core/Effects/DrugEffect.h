@@ -21,7 +21,7 @@ namespace Agmd
         virtual void Update( a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
     private:
-		float m_time;
+        float m_time;
     };
 }
 #endif /* _DRUGEFFECT_H_ */

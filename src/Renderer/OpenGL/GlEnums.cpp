@@ -101,8 +101,8 @@ namespace Agmd
         GL_BLEND,
         GL_DEPTH_TEST,
         GL_TEXTURE_COMPARE_MODE,
-		GL_VERTEX_PROGRAM_POINT_SIZE,
-		GL_POINT_SPRITE
+        GL_VERTEX_PROGRAM_POINT_SIZE,
+        GL_POINT_SPRITE
     };
 
     GLenum RGLEnum::RenderMode[] =

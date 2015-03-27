@@ -17,7 +17,7 @@ namespace AgmdMaths
 {
     class Plane
     {
-    public :	
+    public :    
 
         Plane(float a = 0.0f, float b = 0.0f, float c = 0.0f, float d = 0.0f);
 
@@ -30,8 +30,8 @@ namespace AgmdMaths
         float distanceToPoint(const vec3& point) const;
         float distanceToPoint(const vec4& point) const;
 
-		void normalize();
-		bool intersect(vec3 start, vec3 dir,vec3& res);
+        void normalize();
+        bool intersect(vec3 start, vec3 dir,vec3& res);
 
         bool operator ==(const Plane& p) const;
         bool operator !=(const Plane& p) const;

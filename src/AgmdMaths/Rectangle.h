@@ -38,13 +38,13 @@ namespace AgmdMaths
 
         a_int32 top() const;
 
-		a_int32 bottom() const;
+        a_int32 bottom() const;
 
-		a_int32 width() const;
+        a_int32 width() const;
 
-		a_int32 height() const;
+        a_int32 height() const;
 
-		ivec2 size() const;
+        ivec2 size() const;
 
         TIntersection intersects(const ivec2& point) const;
 

@@ -266,22 +266,22 @@ namespace Agmd
             return itr->second;
         }
 
-		//try... don't try :/
-		return m_defaultParameter;
-		int id = GLDriver::glGetUniformLocation(m_id,name.c_str());
-		if(id >= 0)
-		{
-			Parameter var;
-			var.loc = id;
-			var.type = PARAMETER_UNIFORM;
+        //try... don't try :/
+        return m_defaultParameter;
+        int id = GLDriver::glGetUniformLocation(m_id,name.c_str());
+        if(id >= 0)
+        {
+            Parameter var;
+            var.loc = id;
+            var.type = PARAMETER_UNIFORM;
 
-			//hack
+            //hack
 
-			GLShaderProgram* _this = const_cast<GLShaderProgram*>(this);
+            GLShaderProgram* _this = const_cast<GLShaderProgram*>(this);
 
-			_this->m_UniformMap[name] = var;
-			return _this->m_UniformMap[name];
-		}
+            _this->m_UniformMap[name] = var;
+            return _this->m_UniformMap[name];
+        }
 
         return m_defaultParameter;
     }

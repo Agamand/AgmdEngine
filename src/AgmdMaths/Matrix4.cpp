@@ -25,7 +25,7 @@ namespace AgmdMaths
         cl_program program = NULL;
         const size_t src_size = strlen(_mat4prod);
         program = clCreateProgramWithSource(m_context, 1, (const char **)&_mat4prod,
-			                            (const size_t *)&src_size, &ret);
+                                        (const size_t *)&src_size, &ret);
         
         ret = clBuildProgram(program, 1, &device_id, NULL, NULL, NULL);
         m_mat4prod_kernel = clCreateKernel(program, "_mat4prod", &ret);

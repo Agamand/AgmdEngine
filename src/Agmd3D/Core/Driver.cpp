@@ -68,8 +68,8 @@ namespace Agmd
 
         Logger::Instance().SetFilename("Agmd3D");
         m_stats = new Statistics();
-		m_CurrentTransform = NULL;
-		std::cout << "Renderer : "<< GetRendererDesc().c_str()<< std::endl;
+        m_CurrentTransform = NULL;
+        std::cout << "Renderer : "<< GetRendererDesc().c_str()<< std::endl;
         Logger::Log(LOGNORMAL,"Renderer : %s",GetRendererDesc().c_str());
         Logger::Log(LOGNORMAL,"Support function :");
         for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
@@ -145,13 +145,13 @@ namespace Agmd
             return m_TextureFlags;
         }
 
-		void Driver::SetActiveScene( SceneMgr* sc )
-		{
+        void Driver::SetActiveScene( SceneMgr* sc )
+        {
             m_ActiveScene = sc;
         }
 
-		SceneMgr* Driver::GetActiveScene()
-		{
+        SceneMgr* Driver::GetActiveScene()
+        {
             return m_ActiveScene;
         }
         Statistics& Driver::GetStatistics()
@@ -159,8 +159,8 @@ namespace Agmd
             return *m_stats;
         }
 
-		float Driver::GetAspectRatio()
-		{
-			return ((float)m_Screen.x)/m_Screen.y;
-		}
+        float Driver::GetAspectRatio()
+        {
+            return ((float)m_Screen.x)/m_Screen.y;
+        }
 }

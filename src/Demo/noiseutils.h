@@ -1737,7 +1737,7 @@ namespace noise
         NoiseMapBuilderSphere ();
 
         virtual void Build ();
-		void Build (int face);
+        void Build (int face);
         /// Returns the eastern boundary of the spherical noise map.
         ///
         /// @returns The eastern boundary of the noise map, in degrees.

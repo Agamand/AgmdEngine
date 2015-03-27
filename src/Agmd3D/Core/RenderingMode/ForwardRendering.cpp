@@ -17,16 +17,16 @@ namespace Agmd
 {
     ForwardRendering::ForwardRendering(int width, int height) :
     RenderingMode(width,height),
-	m_framebuffer(NULL),
-	m_depthbuffer(NULL)
+    m_framebuffer(NULL),
+    m_depthbuffer(NULL)
     {
         init();
     }
 
     ForwardRendering::ForwardRendering(ivec2& screen) :
     RenderingMode(screen),
-	m_framebuffer(NULL),
-	m_depthbuffer(NULL)
+    m_framebuffer(NULL),
+    m_depthbuffer(NULL)
     {
         init();
     }
@@ -44,13 +44,13 @@ namespace Agmd
     {
         Driver& render = Driver::Get();
 
-		if(!m_framebuffer)
-			m_framebuffer = render.CreateFrameBuffer();
-		if(m_depthbuffer)
-		{
-			delete m_depthbuffer;
-			m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-		}else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+        if(!m_framebuffer)
+            m_framebuffer = render.CreateFrameBuffer();
+        if(m_depthbuffer)
+        {
+            delete m_depthbuffer;
+            m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+        }else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
 
         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
@@ -71,27 +71,27 @@ namespace Agmd
 
     void ForwardRendering::compute()
     {
-		
+        
         Driver& render = Driver::Get();
         start();
-		render.SetViewPort(ivec2(),render.GetScreen());
+        render.SetViewPort(ivec2(),render.GetScreen());
         SceneMgr* sc = render.GetActiveScene();
-		SkyBox* box = sc->GetSkyBox();
-		render.SetCullFace(1);
-		if(box)
-		{
-			render.Enable(RENDER_ZWRITE,false);
-			box->Render();
-		}
-		render.SetRenderMode(m_mode);
-		render.SetCullFace(0);
-		sc->Update();
-		sc->Compute();
+        SkyBox* box = sc->GetSkyBox();
+        render.SetCullFace(1);
+        if(box)
+        {
+            render.Enable(RENDER_ZWRITE,false);
+            box->Render();
+        }
+        render.SetRenderMode(m_mode);
+        render.SetCullFace(0);
+        sc->Update();
+        sc->Compute();
         /*
            FirstPass, here is draw the ZBuffer(Only).
         */
         render.Enable(RENDER_ZWRITE,true);
-		//render.clear(CLEAR_DEPTH);
+        //render.clear(CLEAR_DEPTH);
         //m_framebuffer->Clear(CLEAR_DEPTH);
         //m_framebuffer->DrawBuffer(0);
         //m_framebuffer->Bind();
@@ -115,9 +115,9 @@ namespace Agmd
         //render.SetupDepthTest(DEPTH_LEQUAL);
         //render.Enable(RENDER_ZWRITE,false);
         sc->Render(RENDERPASS_DIFFUSE);
-		render.Enable(RENDER_ALPHABLEND,true);
-		sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
-		render.Enable(RENDER_ALPHABLEND,false);
+        render.Enable(RENDER_ALPHABLEND,true);
+        sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
+        render.Enable(RENDER_ALPHABLEND,false);
         //m_framebuffer->UnBind();
 
         /*

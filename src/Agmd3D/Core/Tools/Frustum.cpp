@@ -7,23 +7,23 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/Tools/Frustum.h>
-#include <Core/Tools/BoundingBox.h>
+#include <Core/Tools/BoundingSphere.h>
 
 namespace Agmd
 {
     Frustum::Frustum()
     {}
 
-	Frustum::Frustum( const mat4& clipMatrix ) 
-	{
-		Setup(clipMatrix);
-	}
+    Frustum::Frustum( const mat4& clipMatrix ) 
+    {
+        Setup(clipMatrix);
+    }
 
     Frustum::~Frustum()
     {} 
 
-	void Frustum::Setup( const mat4& clipMatrix )
-	{
+    void Frustum::Setup( const mat4& clipMatrix )
+    {
         const float* clip = &clipMatrix[0][0];
 
         m_clipPlane[0] = Plane(clip[ 3]-clip[ 0], clip[ 7]-clip[ 4],
@@ -55,36 +55,46 @@ namespace Agmd
         return true;
     }
 
-    bool Frustum::IsIn(const BoundingBox& box) const
+    bool Frustum::IsIn(const BoundingSphere& box) const
     {
-        vec3 max,min;
-        max = box.GetMin();
-        min = box.GetMax();
-
-        if( IsIn( vec3(min.x, min.y, min.z)) )
-            return true;
-
-        if( IsIn( vec3(max.x, min.y, min.z)) )
-            return true;
-
-        if( IsIn( vec3(min.x, max.y, min.z)) )
-            return true;
-
-        if( IsIn( vec3(max.x, max.y, min.z)) )
-            return true;
-
-        if( IsIn( vec3(min.x, min.y, max.z)) )
-            return true;
-
-        if( IsIn( vec3(max.x, min.y, max.z)) )
-            return true;
-
-        if( IsIn( vec3(min.x, max.y, max.z)) )
-            return true;
-
-        if( IsIn( vec3(max.x, max.y, max.z)) )
-            return true;
-
-        return false;
+       
+        float radius = box.GetRadius(),
+            distance;
+        for(int i = 0; i < 6; i++)
+        {
+            float distance = m_clipPlane[i].distanceToPoint(box.GetCenter());
+            if( distance < -radius )
+                return false;
+        }
+        return true;
+//         vec3 max,min;
+//         max = box.GetMin();
+//         min = box.GetMax();
+// 
+//         if( IsIn( vec3(min.x, min.y, min.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(max.x, min.y, min.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(min.x, max.y, min.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(max.x, max.y, min.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(min.x, min.y, max.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(max.x, min.y, max.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(min.x, max.y, max.z)) )
+//             return true;
+// 
+//         if( IsIn( vec3(max.x, max.y, max.z)) )
+//             return true;
+// 
+//         return false;
     }
 }

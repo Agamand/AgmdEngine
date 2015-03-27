@@ -18,16 +18,16 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-	class AGMD3D_EXPORT Controller
-	{
-	friend class SceneNode;
-	public:
-		Controller() : m_bindedNode((SceneNode*)(0)){};
-		virtual void update(a_uint32 /*time_diff*/) = 0;
-	protected:
-		SceneNode*	m_bindedNode;
-		
-	};
+    class AGMD3D_EXPORT Controller
+    {
+    friend class SceneNode;
+    public:
+        Controller() : m_bindedNode((SceneNode*)(0)){};
+        virtual void update(a_uint32 /*time_diff*/) = 0;
+    protected:
+        SceneNode*    m_bindedNode;
+        
+    };
 
 }
 

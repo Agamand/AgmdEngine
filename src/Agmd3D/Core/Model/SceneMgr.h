@@ -18,49 +18,51 @@ namespace Agmd
 
 
 
-	class AGMD3D_EXPORT SceneMgr
-	{
-	public:
-		SceneMgr();
+    class AGMD3D_EXPORT SceneMgr
+    {
+    public:
+        SceneMgr();
 
-		void Render(TRenderPass pass, RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
+        void Render(TRenderPass pass, RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
 
-		void Draw( RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
-		void Compute();
-		void Update();
-		void FindVisible(RenderQueue&,a_vector<LightNode*>&);
+        void Draw( RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
+        void Compute();
+        void Update();
+        void FindVisible(RenderQueue&,a_vector<LightNode*>&);
 
-		void AddNode(SceneNode *node); // add to root
+        void AddNode(SceneNode *node); // add to root
 
-	    const a_vector<Light*>& GetLights();
-		void AddLight(Light* l);
+        const a_vector<Light*>& GetLights();
+        void AddLight(Light* l);
 
-		void SetSkybox(SkyBox* skybox);
+        void SetSkybox(SkyBox* skybox);
 
-		SkyBox* GetSkyBox();
-		bool isEmpty() const
-		{
-			return !m_root || m_root->isEmpty();
-		}
-		void clear();
+        SkyBox* GetSkyBox();
+        bool isEmpty() const
+        {
+            return !m_root || m_root->isEmpty();
+        }
+        void clear();
 
-		const RenderQueue& getRenderQueue(){return m_renderQueue;}
+        const RenderQueue& getRenderQueue(){return m_renderQueue;}
+        SceneNode* GetRoot(){
+            return m_root;
+        }
+    private:
+        //event
+        friend class RootNode;
+        void __addNode(SceneNode*);
+        void __removeNode(SceneNode*);
 
-	private:
-		//event
-		friend class RootNode;
-		void __addNode(SceneNode*);
-		void __removeNode(SceneNode*);
 
-
-		a_vector<Light*> m_light; // static light
-		RenderQueue m_renderQueue;
-		RootNode* m_root;
-		SkyBox* m_skybox;
+        a_vector<Light*> m_light; // static light
+        RenderQueue m_renderQueue;
+        RootNode* m_root;
+        SkyBox* m_skybox;
 #if defined(USE_WX) && defined(USE_EDITOR)
-		wxFrame* m_frame;
+        wxFrame* m_frame;
 #endif
-	};
+    };
 
 }
 

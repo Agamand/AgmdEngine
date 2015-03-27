@@ -17,24 +17,24 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-	class SceneMgr;
-	class AGMD3D_EXPORT RootNode : public SceneNode
-	{
-	public :
-		RootNode(SceneMgr* mgr): SceneNode(ROOT_NODE),m_sceneMgr(mgr)
-		{
-			add(this);
-		}
+    class SceneMgr;
+    class AGMD3D_EXPORT RootNode : public SceneNode
+    {
+    public :
+        RootNode(SceneMgr* mgr): SceneNode(ROOT_NODE),m_sceneMgr(mgr)
+        {
+            add(this);
+        }
 
-		void remove(SceneNode*);
-		void add(SceneNode*);
-// 		void update(SceneNode*){
+        void remove(SceneNode*);
+        void add(SceneNode*);
+//         void update(SceneNode*){
 // 
-// 		}
+//         }
 
-	private:
-		SceneMgr* m_sceneMgr;
-	};
+    private:
+        SceneMgr* m_sceneMgr;
+    };
 
 }
 

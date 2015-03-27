@@ -62,7 +62,7 @@ void main()
     {
         out_Color = texture(texture1, texCoord3);
     }
-	//if(out_Color.a < 1.0f)
-		//discard; //avoid transparent or semi-transparent pixel
+    //if(out_Color.a < 1.0f)
+        //discard; //avoid transparent or semi-transparent pixel
 }
 #endif

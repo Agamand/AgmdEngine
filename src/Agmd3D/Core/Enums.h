@@ -85,8 +85,8 @@ namespace Agmd
     enum
     {
         TEX_NOMIPMAP = 1 << 0,
-		TEX_WRAP_CLAMP = 1 << 1,
-		TEX_USE_FILTER = 1 << 2
+        TEX_WRAP_CLAMP = 1 << 1,
+        TEX_USE_FILTER = 1 << 2
     };
 
     enum TCapability
@@ -165,11 +165,11 @@ namespace Agmd
         RENDER_ALPHABLEND,
         RENDER_ZTEST,
         RENDER_COMPARE_MODE,
-		RENDER_POINTSIZE_SHADER,
-		RENDER_POINTSPRITE,
+        RENDER_POINTSIZE_SHADER,
+        RENDER_POINTSPRITE,
         RENDER_TRANSPARENT,
         RENDER_RENDERING
-		
+        
     };
 
     enum TShaderType

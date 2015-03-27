@@ -9,9 +9,9 @@ out vec4 v_Color;
 out vec2 v_texCoord0;
 
 void main(){
-	
-	v_Color = in_Color;
-	gl_Position =  u_matProjection *  vec4(in_Vertex,1);
+    
+    v_Color = in_Color;
+    gl_Position =  u_matProjection *  vec4(in_Vertex,1);
 }
 #endif
 
@@ -21,6 +21,6 @@ in vec4 v_Color;
 out vec4 out_color;
 
 void main(){
-	out_color = v_Color;
+    out_color = v_Color;
 }
 #endif

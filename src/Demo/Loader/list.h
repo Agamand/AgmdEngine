@@ -3,12 +3,12 @@
 
 typedef struct
 {
-	int item_count;
-	int current_max_size;
-	char growable;
+    int item_count;
+    int current_max_size;
+    char growable;
 
-	void **items;
-	char **names;	
+    void **items;
+    char **names;    
 } list;
 
 void list_make(list *listo, int size, char growable);

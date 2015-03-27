@@ -23,101 +23,101 @@ namespace AgmdUtilities
         class ListNode;
         typedef ListNode* ListNodePtr;
 
-	    struct ListNode
-	    {
-		    ListNode(const T& e) : Next(NULL), Prev(NULL), Element(e) {}
+        struct ListNode
+        {
+            ListNode(const T& e) : Next(NULL), Prev(NULL), Element(e) {}
 
-		    ListNodePtr next;
-		    ListNodePtr prev;
-		    T element;
-	    };
+            ListNodePtr next;
+            ListNodePtr prev;
+            T element;
+        };
 
         class Iterator
         {
-	    public:
-		    Iterator() : current(NULL) {}
+        public:
+            Iterator() : current(NULL) {}
 
-		    Iterator& operator ++()    { current = current->next; return *this; }
-		    Iterator& operator --()    { current = current->prev; return *this; }
-		    Iterator  operator ++(a_int32) { Iterator tmp = *this; current = current->next; return tmp; }
-		    Iterator  operator --(a_int32) { Iterator tmp = *this; current = current->prev; return tmp; }
+            Iterator& operator ++()    { current = current->next; return *this; }
+            Iterator& operator --()    { current = current->prev; return *this; }
+            Iterator  operator ++(a_int32) { Iterator tmp = *this; current = current->next; return tmp; }
+            Iterator  operator --(a_int32) { Iterator tmp = *this; current = current->prev; return tmp; }
 
-		    Iterator& operator +=(a_int32 num)
-		    {
-			    if(num > 0)
-			    {
-				    while(num-- && this->current) ++(*this);
-			    }
-			    else
-			    {
-				    while(num++ && this->current) --(*this);
-			    }
-			    return *this;
-		    }
+            Iterator& operator +=(a_int32 num)
+            {
+                if(num > 0)
+                {
+                    while(num-- && this->current) ++(*this);
+                }
+                else
+                {
+                    while(num++ && this->current) --(*this);
+                }
+                return *this;
+            }
 
-		    Iterator  operator + (s32 num) const { Iterator tmp = *this; return tmp += num; }
-		    Iterator& operator -=(s32 num) const { return (*this)+=(-num); }
-		    Iterator  operator - (s32 num) const { return (*this)+ (-num); }
+            Iterator  operator + (s32 num) const { Iterator tmp = *this; return tmp += num; }
+            Iterator& operator -=(s32 num) const { return (*this)+=(-num); }
+            Iterator  operator - (s32 num) const { return (*this)+ (-num); }
 
-		    bool operator ==(const Iterator&      other) const { return current == other.current; }
-		    bool operator !=(const Iterator&      other) const { return current != other.current; }
-		    bool operator ==(const ConstIterator& other) const { return current == other.current; }
-		    bool operator !=(const ConstIterator& other) const { return current != other.current; }
+            bool operator ==(const Iterator&      other) const { return current == other.current; }
+            bool operator !=(const Iterator&      other) const { return current != other.current; }
+            bool operator ==(const ConstIterator& other) const { return current == other.current; }
+            bool operator !=(const ConstIterator& other) const { return current != other.current; }
 
-		    T & operator * () { return current->Element; }
-		    T * operator ->() { return &current->Element; }
+            T & operator * () { return current->Element; }
+            T * operator ->() { return &current->Element; }
 
-	    private:
-		    explicit Iterator(ListNodePtr begin) : current(begin) {}
+        private:
+            explicit Iterator(ListNodePtr begin) : current(begin) {}
 
-		    ListNodePtr current;
+            ListNodePtr current;
 
-		    friend class List<T>;
-		    friend class ConstIterator;
+            friend class List<T>;
+            friend class ConstIterator;
         };
 
         class ConstIterator
         {
-	    public:
-		    ConstIterator() : current(NULL) {}
+        public:
+            ConstIterator() : current(NULL) {}
 
-		    ConstIterator& operator ++()    { current = current->next; return *this; }
-		    ConstIterator& operator --()    { current = current->prev; return *this; }
-		    ConstIterator  operator ++(a_int32) { ConstIterator tmp = *this; current = current->next; return tmp; }
-		    ConstIterator  operator --(a_int32) { ConstIterator tmp = *this; current = current->prev; return tmp; }
+            ConstIterator& operator ++()    { current = current->next; return *this; }
+            ConstIterator& operator --()    { current = current->prev; return *this; }
+            ConstIterator  operator ++(a_int32) { ConstIterator tmp = *this; current = current->next; return tmp; }
+            ConstIterator  operator --(a_int32) { ConstIterator tmp = *this; current = current->prev; return tmp; }
 
-		    ConstIterator& operator +=(a_int32 num)
-		    {
-			    if(num > 0)
-			    {
-				    while(num-- && this->current) ++(*this);
-			    }
-			    else
-			    {
-				    while(num++ && this->current) --(*this);
-			    }
-			    return *this;
-		    }
+            ConstIterator& operator +=(a_int32 num)
+            {
+                if(num > 0)
+                {
+                    while(num-- && this->current) ++(*this);
+                }
+                else
+                {
+                    while(num++ && this->current) --(*this);
+                }
+                return *this;
+            }
 
-		    ConstIterator  operator + (s32 num) const { ConstIterator tmp = *this; return tmp += num; }
-		    ConstIterator& operator -=(s32 num) const { return (*this)+=(-num); }
-		    ConstIterator  operator - (s32 num) const { return (*this)+ (-num); }
+            ConstIterator  operator + (s32 num) const { ConstIterator tmp = *this; return tmp += num; }
+            ConstIterator& operator -=(s32 num) const { return (*this)+=(-num); }
+            ConstIterator  operator - (s32 num) const { return (*this)+ (-num); }
 
-		    bool operator ==(const ConstIterator&      other) const { return current == other.current; }
-		    bool operator !=(const ConstIterator&      other) const { return current != other.current; }
-		    bool operator ==(const ConstIterator& other) const { return current == other.current; }
-		    bool operator !=(const ConstIterator& other) const { return current != other.current; }
+            bool operator ==(const ConstIterator&      other) const { return current == other.current; }
+            bool operator !=(const ConstIterator&      other) const { return current != other.current; }
+            bool operator ==(const ConstIterator& other) const { return current == other.current; }
+            bool operator !=(const ConstIterator& other) const { return current != other.current; }
 
-		    T & operator * () { return current->Element; }
-		    T * operator ->() { return &current->Element; }
+            T & operator * () { return current->Element; }
+            T * operator ->() { return &current->Element; }
 
-	    private:
-		    explicit ConstIterator(ListNodePtr begin) : current(begin) {}
+        private:
+            explicit ConstIterator(ListNodePtr begin) : current(begin) {}
 
-		    ListNodePtr current;
+            ListNodePtr current;
 
-		    friend class List<T>;
-		    friend class Iterator;
+            friend class List<T>;
+            friend class Iterator;
         };
 
         List();

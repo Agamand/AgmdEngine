@@ -41,13 +41,13 @@ public:
 
     void Run(int argc, char** argv);
 private :
-	App() : AgmdApplication(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
-	{}
+    App() : AgmdApplication(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
+    {}
     virtual void init();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
     void OnClick(int click, vec2 pos);
-	void OnMove(vec2 pos);
+    void OnMove(vec2 pos);
     virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();
@@ -63,9 +63,9 @@ private :
     bool pause;
 
 
-	//Bezier
+    //Bezier
 
-	Agmd::DrawablePlane* m_plane;
+    Agmd::DrawablePlane* m_plane;
 
 
 };

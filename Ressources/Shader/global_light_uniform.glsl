@@ -4,15 +4,15 @@
 
 uniform layout(std140) lightInfoBlock
 {
-	vec4 l_position;
-	vec4 l_dir;
-	vec4 l_ambient;
-	vec4 l_diffuse;
-	vec4 l_specular;
-	float l_innerAngle;
-	float l_outerAngle;
-	float l_range;
-	int l_type;
+    vec4 l_position;
+    vec4 l_dir;
+    vec4 l_ambient;
+    vec4 l_diffuse;
+    vec4 l_specular;
+    float l_innerAngle;
+    float l_outerAngle;
+    float l_range;
+    int l_type;
 };
 
 

@@ -37,14 +37,14 @@ namespace Agmd
         void render(TRenderPass) const {}
         void buildModel();
         ivec2 getPixelSize() const;
-		void setSize(int size)
-		{
-			m_size = size;
-		}
-		int getSize() const
-		{
-			return m_size;
-		}
+        void setSize(int size)
+        {
+            m_size = size;
+        }
+        int getSize() const
+        {
+            return m_size;
+        }
         void align(unsigned long mode, const AgmdMaths::Rectangle& rect);
 
         GraphicString& operator=( const std::string& str);

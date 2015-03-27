@@ -61,22 +61,22 @@ SINGLETON_IMPL(App);
 
 void App::Run(int argc, char** argv)
 {
-	if(argc > 0)
-	{
-		File main(argv[0]);
-		MediaManager::Instance().AddSearchPath(main.Path());
-		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
-	}
-	wxEntryStart( argc, argv );
-	AgmdApplication::Run(argc,argv);
+    if(argc > 0)
+    {
+        File main(argv[0]);
+        MediaManager::Instance().AddSearchPath(main.Path());
+        ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
+    }
+    wxEntryStart( argc, argv );
+    AgmdApplication::Run(argc,argv);
 }
 
 void App::MakeWindow()
 {
-	wxApp::SetInstance(m_wxApplication);
-	
-	m_frame = frame =  new LightFrame(NULL);
-	this->CreateGlCanvas(frame->m_viewPanel);
+    wxApp::SetInstance(m_wxApplication);
+    
+    m_frame = frame =  new LightFrame(NULL);
+    this->CreateGlCanvas(frame->m_viewPanel);
 }
 
 
@@ -84,59 +84,59 @@ void App::MakeWindow()
 
 void App::init()
 { 
-	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
-	m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
-	//ForwardRendering* mode = new ForwardRendering(getScreen());
-	DeferredRendering* mode = new DeferredRendering(getScreen());
-	RenderingMode::setRenderingMode(mode);
-	m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
-	m_Scene = new SceneMgr();
-	frame->setModel(mode->getShadowRenderer());
+    m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
+    m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
+    //ForwardRendering* mode = new ForwardRendering(getScreen());
+    DeferredRendering* mode = new DeferredRendering(getScreen());
+    RenderingMode::setRenderingMode(mode);
+    m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
+    m_Scene = new SceneMgr();
+    frame->setModel(mode->getShadowRenderer());
 
 
-	Image img[6];
-	for(int i = 0; i < 6; i++)
-	{
-		img[i] = Image(ivec2(512));
-		img[i].LoadFromFile(StringBuilder("texture/watercube/")(i)(".tga"));
-	}
-	Texture texCube;
-	texCube.CreateFromImage(img,PXF_A8R8G8B8);
-	Model* mesh;
-	MeshNode* node;
+    Image img[6];
+    for(int i = 0; i < 6; i++)
+    {
+        img[i] = Image(ivec2(512));
+        img[i].LoadFromFile(StringBuilder("texture/watercube/")(i)(".tga"));
+    }
+    Texture texCube;
+    texCube.CreateFromImage(img,PXF_A8R8G8B8);
+    Model* mesh;
+    MeshNode* node;
 
-	mesh = GeometryFactory::createPlane(ivec2(100,100),ivec2(1));
-	node = new MeshNode(mesh);
-	//node->getTransform().translate(0,-10.0f,0);
-	node->getTransform().rotate(-90,vec3(1,0,0));
-	m_Scene->AddNode(node);
-	
+    mesh = GeometryFactory::createPlane(ivec2(100,100),ivec2(1));
+    node = new MeshNode(mesh);
+    //node->getTransform().translate(0,-10.0f,0);
+    node->getTransform().rotate(-90,vec3(1,0,0));
+    m_Scene->AddNode(node);
+    
 
-	mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
-	node = new MeshNode(mesh);
-	
-	m_Scene->AddNode(node);
+    mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+    node = new MeshNode(mesh);
+    
+    m_Scene->AddNode(node);
 
-	Light* l = new Light(vec3(0),normalize(vec3(0,-1,-5)),LIGHT_DIR);
-	m_Scene->AddLight(l);
+    Light* l = new Light(vec3(0),normalize(vec3(0,-1,-5)),LIGHT_DIR);
+    m_Scene->AddLight(l);
 
-	GUIMgr& guimgr = GUIMgr::Instance();
+    GUIMgr& guimgr = GUIMgr::Instance();
 
-	SkyBox* sk = new SkyBox();
-	sk->SetTexture(texCube);
-	m_Scene->SetSkybox(sk);
+    SkyBox* sk = new SkyBox();
+    sk->SetTexture(texCube);
+    m_Scene->SetSkybox(sk);
 
-	Driver::Get().SetActiveScene(m_Scene);
-	Driver::Get().SetCullFace(2);
-	cam3D = new Camera(m_MatProj3D);
-	
-	InputController* controller = new FirstPersonController();
-	camNode = new CameraNode(cam3D,controller);
-	camNode->setController(controller);
-	m_Scene->AddNode(camNode);
-	cam2D = new Camera(m_MatProj2D);
-	Camera::setCurrent(cam3D, CAMERA_3D);
-	Camera::setCurrent(cam2D, CAMERA_2D);
+    Driver::Get().SetActiveScene(m_Scene);
+    Driver::Get().SetCullFace(2);
+    cam3D = new Camera(m_MatProj3D);
+    
+    InputController* controller = new FirstPersonController();
+    camNode = new CameraNode(cam3D,controller);
+    camNode->setController(controller);
+    m_Scene->AddNode(camNode);
+    cam2D = new Camera(m_MatProj2D);
+    Camera::setCurrent(cam3D, CAMERA_3D);
+    Camera::setCurrent(cam2D, CAMERA_2D);
 }
 
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
@@ -163,18 +163,18 @@ void App::OnRender2D()
 
 void App::OnClick( int click, vec2 pos,bool up)
 {
-	AgmdApplication::OnClick(click,pos,up);
+    AgmdApplication::OnClick(click,pos,up);
 }
 
 
 void App::OnMove(vec2 pos)
 {
-	AgmdApplication::OnMove(pos);
+    AgmdApplication::OnMove(pos);
 }
 
 void App::OnKey(a_char key, bool up)
 {
-	AgmdApplication::OnKey(key,up);
+    AgmdApplication::OnKey(key,up);
 }
 
 

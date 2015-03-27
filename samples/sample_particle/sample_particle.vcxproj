@@ -11,14 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="app.cpp" />
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Particles\ParticlesEmitter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="app.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="Particles\ParticlesEmitter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{94B958A8-ECA6-4F8D-AAD2-66AC3A59372B}</ProjectGuid>
+    <ProjectGuid>{EB739155-2A18-468E-A392-3F6B3EDA83C3}</ProjectGuid>
     <RootNamespace>sample_reflexion</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

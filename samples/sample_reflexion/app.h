@@ -34,21 +34,21 @@ class App : public Agmd::AgmdApplication, public Singleton<App>
 public:
     virtual void Run(int argc, char** argv);
 private :
-	App() : AgmdApplication("Sample 1")
-	{}
+    App() : AgmdApplication("Sample 1")
+    {}
     virtual void init();
 
 
     virtual void OnClick(int click, vec2 pos, bool up);
-	virtual void OnMove(vec2 pos);
-	virtual void OnKey(a_char key, bool up);
+    virtual void OnMove(vec2 pos);
+    virtual void OnKey(a_char key, bool up);
 
     virtual void OnUpdate(a_uint64 time_diff);
 
     virtual void OnRender3D();
     virtual void OnRender2D();
 
-	virtual void MakeWindow();
+    virtual void MakeWindow();
 
 
     glm::mat4             m_MatProj2D;
@@ -59,7 +59,7 @@ private :
 
     Agmd::Camera*       cam3D;
     Agmd::Camera*       cam2D;
-	Agmd::SceneNode* camNode;
+    Agmd::SceneNode* camNode;
 
 
 

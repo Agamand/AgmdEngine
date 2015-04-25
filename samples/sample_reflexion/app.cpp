@@ -47,6 +47,8 @@
 #include <glm/ext.hpp>
 #include <libnoise/noise.h>
 
+#include <Agmd3D/Loaders/AssetLoader.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <random>
@@ -112,7 +114,8 @@ void App::init()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
     m_Scene = new SceneMgr();
     
-
+	AssetLoader assetLoader;
+	SceneNode* dragon = assetLoader.LoadFromFile("D:\\Moteur 3D\\AgmdEngine\\AgmdEngine\\bin\\Debug_Win32\\model\\dragon.obj");
 
     Image img[6];
     for(int i = 0; i < 6; i++)
@@ -133,15 +136,16 @@ void App::init()
     Material* mat = new Material(refractionPipe);
     mat->SetTexture(texCube,0,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
     mat->SetTexture(water_normal,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-    Model* mesh = GeometryFactory::createPlane(ivec2(100),ivec2(100));
-    MeshNode* node = new MeshNode(mesh);
-    node->setMaterial(mat);
-    node->getTransform().rotate(90.0f,vec3(1,0,0));
-    m_Scene->AddNode(node);
-    mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
-    node = new MeshNode(mesh);
-    node->setMaterial(mat);
-    m_Scene->AddNode(node);
+	m_Scene->AddNode(dragon);
+//     Model* mesh = GeometryFactory::createPlane(ivec2(100),ivec2(100));
+//     MeshNode* node = new MeshNode(mesh);
+//     node->setMaterial(mat);
+//     node->getTransform().rotate(90.0f,vec3(1,0,0));
+//     m_Scene->AddNode(node);
+//     mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+//     node = new MeshNode(mesh);
+//     node->setMaterial(mat);
+//     m_Scene->AddNode(node);
     
     tmp_program.LoadFromFile("shader/waterNormal.glsl");
     GUIMgr& guimgr = GUIMgr::Instance();

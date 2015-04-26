@@ -72,6 +72,103 @@ ShaderProgram velocity_program;
 ShaderProgram mass_program;
 Texture tex[2];
 
+
+
+#include <random>
+#include <iostream>
+
+#define MAX_KERNEL_SIZE 128
+#define PI 3.14159265
+
+int kernelSize = 30;
+vec3 kernel[MAX_KERNEL_SIZE];
+const int noiseSize = 16;
+vec3 noise[noiseSize];
+
+// float random(float a, float b) {
+//     return ( rand()/(double)RAND_MAX ) * (b-a) + a;
+// }
+// 
+// float lerp(float a, float b, float value) {
+//     return value / (b - a) + a;
+// }
+// 
+// void initKernel(vec3* kernel, int kernelSize,) {
+// 
+//     if (useHemisphere) {
+//         for (int i = 0; i < kernelSize; ++i) {
+//             kernel[i] = vec3(
+//                 random(-1.0f, 1.0f),
+//                 random(-1.0f, 1.0f),
+//                 random(0.1f, 1.0f)
+//                 );
+//             //clamp to unit hemisphere
+//             kernel[i] = normalize(kernel[i]);
+// 
+//             //What we actually want is for the distance from the origin to falloff as we generate more points
+//             float scale = float(i) / float(kernelSize);
+//             scale = lerp(0.1, 1.1, scale * scale);
+//             kernel[i] = kernel[i] * scale;
+//         }
+//     } else {
+// 
+//         for (int i = 0; i < MAX_KERNEL_SIZE; ++i) {
+//             kernel[i] = vec3(
+//                 random(-1.0f, 1.0f),
+//                 random(-1.0f, 1.0f),
+//                 random(-1.0f, 1.0f)
+//                 );
+//             //clamp to unit hemisphere
+//             kernel[i] = normalize(kernel[i]);
+// 
+//             //What we actually want is for the distance from the origin to falloff as we generate more points
+//             float scale = float(i) / float(kernelSize);
+//             scale = lerp(0.1, 1.1, scale * scale);
+//             kernel[i] = kernel[i] * scale;
+//         }
+//     }
+// }
+// 
+// void initNoiseTexture(vec3* noise,int size) {
+//     for (int i = 0; i < size; ++i) {
+//         noise[i] = vec3(
+//             random(0.0f, 1.0f),
+//             random(0.0f, 1.0f),
+//             0.0
+//             );
+// 
+//         noise[i] = normalize(noise[i]);
+// 
+//         //std::cout << noise[i].x << ", " << noise[i].y << ", " << noise[i].z << std::endl;
+//     }
+// }
+// 
+// Texture createTexture(int w, int h, bool isDepth = false)
+// {
+// //     unsigned int textureId;
+// //     glGenTextures(1, &textureId);
+// //     glBindTexture(GL_TEXTURE_2D, textureId);
+// //     glTexImage2D(GL_TEXTURE_2D, 0, isDepth ? GL_DEPTH_COMPONENT : GL_RGBA8, w, h, 0, isDepth ? GL_DEPTH_COMPONENT : GL_RGBA, GL_FLOAT, NULL);
+// //     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+// //     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+// //     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+// //     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+// // 
+// //     int i = glGetError();
+// //     if(i != 0) {
+// //         std::cout << "Error happened while loading the texture: " << i << std::endl;
+// //     }
+// // 
+// //     glBindTexture(GL_TEXTURE_2D, 0);
+// 
+// 
+//     Texture tex;
+//     tex.Create(ivec2(w,h),isDepth ? PXF_DEPTH : PXF_A8R8G8B8,TEXTURE_2D);
+//     return tex;
+// }
+
+
+
 void App::init()
 {  
 
@@ -135,6 +232,7 @@ void App::OnRender2D()
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    return 0;
 }
 
 void App::OnClick( int click, vec2 pos, bool up)

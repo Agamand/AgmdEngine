@@ -46,7 +46,7 @@ namespace Agmd
                 _max.z = max(_max.z,vertices[i].position.z);
             }
 
-            m_bounding = BoundingSphere(_min,_max);
+             m_bounding = BoundingSphere(_min,_max);
         }
         GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }

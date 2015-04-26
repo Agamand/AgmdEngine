@@ -70,6 +70,8 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\New.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\NewOff.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Debug\Profiler.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Thread\Thread.h" />
+    <ClInclude Include="..\..\src\AgmdUtilities\Thread\ThreadPool.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Color.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\File.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\GenHierarchies.h" />

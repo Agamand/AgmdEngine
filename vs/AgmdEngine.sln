@@ -81,6 +81,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sample_particle", "..\sampl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sample_ssao", "..\samples\sample_ssao\sample_ssao.vcxproj", "{033BC4FB-1279-4B02-9150-E67A54C5DDF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CC4AC2DE-2466-47BD-B01D-8F5B8C1CAC67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Profiling|Any CPU = Debug_Profiling|Any CPU
@@ -648,8 +650,5 @@ Global
 		{B953B789-7922-4952-AC2C-186E1845ABDC} = {F500EEAD-9D4B-4050-98B3-BB1523CEEFFC}
 		{EB739155-2A18-468E-A392-3F6B3EDA83C3} = {F500EEAD-9D4B-4050-98B3-BB1523CEEFFC}
 		{033BC4FB-1279-4B02-9150-E67A54C5DDF1} = {F500EEAD-9D4B-4050-98B3-BB1523CEEFFC}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

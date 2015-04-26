@@ -412,7 +412,7 @@ namespace Agmd
     void GLDriver::EndScene()
     {
         glFlush();
-        //glFinish();
+        glFinish();
         //SwapBuffers(m_Handle); 
     }
 
@@ -499,6 +499,7 @@ namespace Agmd
 
     void GLDriver::SetVB(unsigned int stream, const BaseBuffer* buffer, unsigned long stride, unsigned long minVertex, unsigned long maxVertex)
     {
+        const BaseBuffer* current  = buffer;
         if(!buffer)
         {
             glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -1029,9 +1030,13 @@ namespace Agmd
 
     void GLDriver::SetCurrentProgram(const BaseShaderProgram* prog)
     {
+        if(prog == m_CurrentProgram)
+            return;
+       
+        if(prog)
+            prog->Use(true);
+        else if(m_CurrentProgram) m_CurrentProgram->Use(false);
         m_CurrentProgram = prog;
-        if(m_CurrentProgram)
-            m_CurrentProgram->Use(true);
     }
 
     void GLDriver::SetViewPort(const ivec2& xy, const ivec2& size)

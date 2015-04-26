@@ -19,6 +19,9 @@
     <Filter Include="Container">
       <UniqueIdentifier>{78156720-6cb9-4ad8-be0a-da3c0f2487a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{ffa9a0b7-bedb-4f2b-8026-0db0717ecf3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AgmdUtilities\Debug\Exception.cpp">
@@ -145,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Container\Vector.h">
       <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Thread\Thread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgmdUtilities\Thread\ThreadPool.h">
+      <Filter>Thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

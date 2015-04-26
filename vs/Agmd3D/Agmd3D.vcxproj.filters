@@ -391,6 +391,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\BoundingSphere.h">
       <Filter>Core\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Effects\Ssao.h">
+      <Filter>Core\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">
@@ -809,6 +812,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Agmd3D\Core\Tools\BoundingSphere.cpp">
       <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Agmd3D\Core\Effects\Ssao.cpp">
+      <Filter>Core\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

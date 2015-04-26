@@ -18,19 +18,6 @@ AGMD_CONSOLE_IMPL
 
 
 
-class JJob : public CJob
-{
-public:
-    JJob(int v) : CJob(), value(v) {}
-    virtual void Run() 
-    {
-        printf("test %i",value);
-    }
-    int value;
-
-};
-
-
 int agmd_main(int argc, char** argv)
 {
 
@@ -39,7 +26,9 @@ int agmd_main(int argc, char** argv)
     tpool.start();
     for(a_uint32 i = 0; i < 32; i++)
     {
-        tpool.AddJobW(JJob(i));
+		tpool.AddJob([i](){
+			std::cout << i << std::endl;
+		});
     }
     system("pause");
 

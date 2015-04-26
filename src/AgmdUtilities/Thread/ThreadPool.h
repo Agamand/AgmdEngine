@@ -7,15 +7,15 @@
 
 #include <queue>
 #include <vector>
-
+#include <functional>
 
 typedef void (*Functor)();
 class CThreadPool;
 class CJob
 {
 public:
-    CJob(){}
-    virtual void Run() {/* do nothing*/};
+    CJob(Functor _run): run(_run) {}
+    Functor run;
     friend class CThreadPool;
 private:
 };
@@ -26,12 +26,13 @@ public:
     CThreadPool(a_uint32 poolSize = 2);
     //void init();
     void start();
-    void AddJob(CJob& job);
+	template<class J>
+    void AddJob(J&& j);
     Mutex& GetMutex() {return m_mutex;}
 
     friend class IThread;
 private:
-    std::queue<CJob> m_jobs;
+    std::queue<std::function<void()>> m_jobs;
     std::vector<IThread> m_threads;
     Mutex m_mutex;
 };
@@ -51,17 +52,17 @@ public:
             mutex.Lock();
             if(m_manager->m_jobs.empty()){
                 mutex.Unlock();
-                //sleep for a few seconds or wait for wake up
+                //sleep for  few seconds or wait for wake up
                 
                 continue;
             }
 
-            CJob& job = m_manager->m_jobs.front();
+            std::function<void()> job = m_manager->m_jobs.front();
             m_manager->m_jobs.pop();
             mutex.Unlock();
 
             // handle Job;
-            job.Run();
+            job();
         }
     }
 private:
@@ -87,8 +88,8 @@ void CThreadPool::start()
         m_threads[i].Init();
     }
 }
-
-void CThreadPool::AddJob( CJob& job )
+template<class Job>
+void CThreadPool::AddJob( Job&& job )
 {
     m_mutex.Lock();
     m_jobs.push(job);

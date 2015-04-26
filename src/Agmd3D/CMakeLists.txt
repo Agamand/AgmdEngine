@@ -5,6 +5,7 @@ INCLUDE_DIRECTORIES(
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdMaths
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdUtilities
 	${AGMDENGINE_SOURCE_DIR}/src
+	${WXWIDGET_DIR}/include/msvc
 	${WXWIDGET_DIR}/include
 	${WXWIDGET_DIR}/lib/vc_dll/mswud
 	${AGMDENGINE_SOURCE_DIR}/dep

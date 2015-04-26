@@ -46,7 +46,7 @@
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <glm/ext.hpp>
 #include <libnoise/noise.h>
-
+#include <Agmd3D/Loaders/AssetLoader.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <random>
@@ -84,6 +84,8 @@ void App::MakeWindow()
 
 void App::init()
 { 
+
+	
     m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
     m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
     //ForwardRendering* mode = new ForwardRendering(getScreen());
@@ -92,8 +94,7 @@ void App::init()
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
     m_Scene = new SceneMgr();
     frame->setModel(mode->getShadowRenderer());
-
-
+	
     Image img[6];
     for(int i = 0; i < 6; i++)
     {
@@ -128,13 +129,13 @@ void App::init()
 
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
-    cam3D = new Camera(m_MatProj3D);
-    
-    InputController* controller = new FirstPersonController();
-    camNode = new CameraNode(cam3D,controller);
-    camNode->setController(controller);
-    m_Scene->AddNode(camNode);
-    cam2D = new Camera(m_MatProj2D);
+	cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
+
+	InputController* controller = new FirstPersonController();
+	CameraNode* camNode = new CameraNode(cam3D,controller);
+	camNode->setController(controller);
+	m_Scene->AddNode(camNode);
+	cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
 }

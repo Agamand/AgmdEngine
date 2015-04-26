@@ -30,7 +30,8 @@ namespace Agmd
         DISPLAYABLE_NODE,
         LIGHT_NODE,
         MESH_NODE,
-        CAMERA_NODE
+        CAMERA_NODE,
+		TREE_NODE
     };
 
     enum UpdateFlags
@@ -44,7 +45,7 @@ namespace Agmd
     class AGMD3D_EXPORT SceneNode
     {
     public :
-        SceneNode(NodeType, Transform* t = NULL);
+        SceneNode(NodeType nodetype = TREE_NODE, Transform* t = NULL);
         virtual ~SceneNode();
         virtual bool isVisible(BoundingSphere& bbox) { return true;}
         virtual void findVisible(Camera*cam, RenderQueue& display,a_vector<LightNode*>& light) {
@@ -75,7 +76,6 @@ namespace Agmd
         SceneNode*             m_parent;
         Controller*             m_sceneController;
     };
-
 }
 
 

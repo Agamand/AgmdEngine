@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #ifndef ASSETJLOADER_H
 #define ASSETJLOADER_H
-
+#include <Config/Export.h>
 #include <Core/Loader.h>
 #include <Core/Model/Model.h>
 #include <Core/Enums.h>
@@ -17,7 +17,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    class AssetLoader : public Loader<SceneNode>
+    class AGMD3D_EXPORT AssetLoader : public Loader<SceneNode>
     {
     public :
 

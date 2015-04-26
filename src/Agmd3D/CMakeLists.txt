@@ -5,6 +5,7 @@ INCLUDE_DIRECTORIES(
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdMaths
 	${AGMDENGINE_SOURCE_DIR}/src/AgmdUtilities
 	${AGMDENGINE_SOURCE_DIR}/src
+	${WXWIDGET_DIR}/include/msvc
 	${WXWIDGET_DIR}/include
 	${WXWIDGET_DIR}/lib/vc_dll/mswud
 	${AGMDENGINE_SOURCE_DIR}/dep
@@ -31,6 +32,7 @@ target_link_libraries(Agmd3D AgmdUtilities)
 target_link_libraries(Agmd3D ${AGMDENGINE_SOURCE_DIR}/lib/DevIL/DevIL.lib)
 target_link_libraries(Agmd3D ${AGMDENGINE_SOURCE_DIR}/lib/DevIL/ILU.lib)
 target_link_libraries(Agmd3D ${AGMDENGINE_SOURCE_DIR}/lib/DevIL/ILUT.lib)
+target_link_libraries(Agmd3D ${AGMDENGINE_SOURCE_DIR}/lib/assimp/assimp.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_gl.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_gl.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_core.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_core.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxbase30u.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxbase30ud.lib)

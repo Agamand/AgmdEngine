@@ -171,7 +171,7 @@ namespace Agmd
         RENDER_RENDERING
         
     };
-
+    #define TSHADERTYPE_MAX 5
     enum TShaderType
     {
         SHADER_VERTEX,

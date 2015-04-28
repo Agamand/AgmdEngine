@@ -9,7 +9,6 @@ https://github.com/Agamand/AgmdEngine
 #ifndef AGMDAPP_H
 #define AGMDAPP_H
 
-#define USE_WX
 #ifdef USE_WX
 #include "wx/frame.h"
 #include "wx/defs.h"
@@ -32,7 +31,8 @@ https://github.com/Agamand/AgmdEngine
 #include <assert.h>
 #include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
-
+#include <Windows.h>
+#include <shellapi.h>
 
 #include <Container/Vector.h>
 #include <string>
@@ -40,6 +40,10 @@ https://github.com/Agamand/AgmdEngine
 
 using namespace AgmdUtilities;
 
+
+
+#define USE_WINAPI
+//#define USE_WX
 
 
 // Define a new frame type
@@ -117,6 +121,13 @@ using namespace AgmdUtilities;
     };
 #endif
 namespace Agmd{
+    
+    enum ADriverType
+    {
+        DRIVER_OPENGL,
+        DRIVER_DX11
+    };
+    
     class AGMD3D_EXPORT AgmdApplication
     {
     public:
@@ -165,10 +176,11 @@ namespace Agmd{
         a_uint32                m_deltaTime;
 
     protected:
-        AgmdApplication(ivec2 screenSize = ivec2(SCREEN_WIDTH,SCREEN_HEIGHT));
-        AgmdApplication(const std::string& frameName);
-#ifdef USE_WX
+        AgmdApplication(ivec2 screenSize = ivec2(SCREEN_WIDTH,SCREEN_HEIGHT),ADriverType d = DRIVER_OPENGL);
+        AgmdApplication(const std::string& frameName,ADriverType d = DRIVER_OPENGL);
         virtual bool OnInit();
+#ifdef USE_WX
+        
         wxFrame*                m_frame;
         GLCanvas*                m_glcanvas;
         Application*            m_wxApplication;
@@ -193,7 +205,8 @@ namespace Agmd{
         std::string m_frameName;
         bool m_createDefaultFrame;
         bool m_isReady;
-        
+        ADriverType m_driverType;
+
     };
 }
 
@@ -215,7 +228,7 @@ namespace Agmd{
 #define AGMD_MAIN_END(RETURNV) return RETURNV; }
 #define AGMD_MAIN_CONSOLE AGMD_MAIN
 #define AGMD_MAIN_CONSOLE_END AGMD_MAIN_END
-#elif defined(__WIN32__) || defined(__WIN64__)
+#else//elif defined(__WIN32__) || defined(__WIN64__)
 
 inline void getArgs(int& argc,char** &argv)
 {

@@ -1,2 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Renderer\DirectX\Config.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxBuffer.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxDeclaration.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxEnums.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxDriver.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxTexture.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxTexture2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Renderer\DirectX\DxBuffer.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxDeclaration.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxEnums.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxDriver.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxTexture.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxTexture2D.cpp" />
+  </ItemGroup>
+</Project>

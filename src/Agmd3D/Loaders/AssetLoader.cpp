@@ -34,11 +34,21 @@ namespace Agmd
 		{
 			Model::TVertex vertex;
 			aiVector3D& v =  mesh->mVertices[i];
-			aiVector3D& t =  mesh->mTextureCoords[0][i];
-			aiVector3D& n =  mesh->mNormals[i];
 			vertex.position = vec3(v.x,v.y,v.z);
-			vertex.texCoords = vec2(t.x,t.y);
-			vertex.normal = vec3(n.x,n.y,n.z);
+
+			if (mesh->HasTextureCoords(0)) {
+				aiVector3D& t =  mesh->mTextureCoords[0][i];
+				vertex.texCoords = vec2(t.x,t.y);
+			} else {
+				vertex.texCoords = vec2(0.f);
+			}
+
+			if (mesh->HasNormals()) {
+				aiVector3D& n =  mesh->mNormals[i];
+				vertex.normal = vec3(n.x,n.y,n.z);
+			} else {
+				vertex.normal = vec3(0.f);
+			}
 			vertex.color = -1;
 			vertices.push_back(vertex);
 		}
@@ -75,6 +85,7 @@ namespace Agmd
 		  aiProcess_CalcTangentSpace       | 
 		  aiProcess_Triangulate            |
 		  aiProcess_JoinIdenticalVertices  |
+		  aiProcess_GenNormals			   |
 		  aiProcess_SortByPType);
 	  if( !scene)
 		  return NULL;

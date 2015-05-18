@@ -6,18 +6,20 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _GLSHADERPROGRAM_H_
-#define _GLSHADERPROGRAM_H_
+#ifndef _DXSHADERPROGRAM_H_
+#define _DXSHADERPROGRAM_H_
 
 #include <Config\Fwd.h>
 #include <Core\Shader/BaseShaderProgram.h>
 #include <Core/Buffer/BaseBuffer.h>
-#include <Renderer/DirectX/GlShader.h>
+
 #include <Core\Enums.h>
 #include <CommonDefines.h>
 #include <string>
 #include <map>
 #include <Container/Vector.h>
+
+#include <Renderer/DirectX/DxShader.h>
 
 namespace Agmd
 {
@@ -89,4 +91,4 @@ namespace Agmd
     };
 }
 
-#endif /* _GLSHADERPROGRAM_H_ */
+#endif /* _DXSHADERPROGRAM_H_ */

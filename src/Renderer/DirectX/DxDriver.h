@@ -12,7 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Config\Fwd.h>
 #include <Renderer/DirectX/Config.h>
 #include <Core/Driver.h>
-#include <Renderer\DirectX\DxBuffer.h>
+
 #include <Renderer\DirectX\DxDeclaration.h>
 //#include <Renderer\DirectX\DxShaderProgram.h>
 #include <Renderer\DirectX\DxEnums.h>
@@ -99,6 +99,13 @@ namespace Agmd
         /* debug function */
         virtual void drawBoundingBox(const BoundingSphere& bbox,const BaseShaderProgram* program);
         virtual void clear( a_uint32 clear );
+
+
+        /* Dx context getter*/
+
+        ID3D11Device * Device() const { return m_device; }
+        ID3D11DeviceContext * DeviceContext() const { return m_deviceContext; }
+
     protected :
 
         virtual void Setup(HWND Hwnd);
@@ -126,7 +133,7 @@ namespace Agmd
         HWND                        m_Hwnd;
         HDC                         m_Handle;
         HGLRC                       m_Context;
-        const DXDeclaration*        m_CurrentDeclaration;
+        const DXDeclaration*        m_currentDeclaration;
         unsigned long               m_IndexStride;
         std::string                 m_Extensions;
         ShaderProgram               m_DebugPipeline[4];
@@ -136,8 +143,8 @@ namespace Agmd
         
         //Dx11 Variables
 
-        ID3D11Device                *dev;
-        ID3D11DeviceContext         *devcon;
+        ID3D11Device                *m_device;
+        ID3D11DeviceContext         *m_deviceContext;
         IDXGISwapChain              *swapchain;
         ID3D11RenderTargetView      *backbuffer;
     };

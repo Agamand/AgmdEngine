@@ -125,6 +125,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\template.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Profiling|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -189,13 +190,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdNetwork;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\wxwidget\lib\vc_dll\mswud;$(SolutionDir)..\wxwidget\include</AdditionalIncludeDirectories>
       <BrowseInformation>false</BrowseInformation>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;WSock32.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;BulletCollision_win32d.lib;BulletDynamics_win32d.lib;BulletSoftBody_win32d.lib;ConvexDecomposition_win32d.lib;HACD_win32d.lib;LinearMath_win32d.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;$(SolutionDir)..\wxwidget\lib\vc_dll</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw30ud_gl.lib;opengl32.lib;glu32.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib;GLRender.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

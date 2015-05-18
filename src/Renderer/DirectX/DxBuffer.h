@@ -6,26 +6,27 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _DXBuffer_H_
-#define _DXBuffer_H_
+#ifndef _DXBUFFER_H_
+#define _DXBUFFER_H_
 
 #include <Core/Buffer/BaseBuffer.h>
 #include <Renderer/DirectX/DxEnums.h>
-#include <gl/glext.h>
 #include <Debug/Profiler.h>
-
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
 namespace Agmd
 {
-    template <class Type, int bufferCount>
+    template <int bufferCount>
     class DXBuffer : public BaseBuffer
     {
     public :
 
-        DXBuffer(unsigned long count, unsigned int *buffer);
+        DXBuffer(unsigned long count, ID3D11Buffer** buffer);
 
         virtual ~DXBuffer();
 
-        unsigned int GetBuffer() const;
+        ID3D11Buffer* GetBuffer() const;
 
     protected:
 
@@ -44,18 +45,17 @@ namespace Agmd
         void FillByte(unsigned char* data, unsigned long offset, unsigned long size);
         void Flush();
 
-        Type m_Buffer[bufferCount];
-        Type m_currentBuffer;
+        ID3D11Buffer* m_Buffer[bufferCount];
+        a_uint32 m_currentBuffer;
         a_uint32 m_bufferCount;
-        GLsync m_sync;
     };
 
-    typedef DXBuffer<ID3D11Buffer*,1>         DXVertexBuffer;
-    typedef DXBuffer<GL_ELEMENT_ARRAY_BUFFER,1> DXIndexBuffer;
+    typedef DXBuffer<1>        DXVertexBuffer;
+    typedef DXBuffer<1>        DXIndexBuffer;
 
     #include "DxBuffer.inl"
 
 }
 
 
-#endif /* _DXBuffer_H_ */
+#endif /* _DXBUFFER_H_ */

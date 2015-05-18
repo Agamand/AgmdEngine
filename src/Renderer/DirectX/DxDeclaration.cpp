@@ -12,20 +12,16 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    DXDeclaration::DXDeclaration() : m_Elements(8)
+    DXDeclaration::DXDeclaration(ID3D11InputLayout* declaration) : m_declaration(declaration)
     {}
 
     DXDeclaration::~DXDeclaration()
     {}
 
-    void DXDeclaration::AddElement(unsigned int stream, const DXDeclaration::TElement& element)
+    ID3D11InputLayout* DXDeclaration::GetDeclaration() const
     {
-        m_Elements[stream].push_back(element);
+        return m_declaration;
     }
 
-    const DXDeclaration::TElementArray& DXDeclaration::GetStreamElements(unsigned int stream) const
-    {
-        return m_Elements[stream];
-    }
 
 }

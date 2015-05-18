@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-//     GLenum RGLEnum::MatrixType[] =
+//     GLenum DXEnum::MatrixType[] =
 //     {
 //         GL_MODELVIEW,
 //         GL_PROJECTION,
@@ -20,7 +20,7 @@ namespace Agmd
 //         GL_TEXTURE
 //     };
 // 
-//     std::string  RGLEnum::MatrixName[] =
+//     std::string  DXEnum::MatrixName[] =
 //     {
 //         "u_matModel",
 //         "u_matView",
@@ -34,7 +34,7 @@ namespace Agmd
 //         "rotationMatrix"
 //     };
 // 
-//     RGLEnum::TPixelFmt RGLEnum::PixelFormat[] =
+//     DXEnum::TPixelFmt DXEnum::PixelFormat[] =
 //     {
 //         {GL_LUMINANCE,       GL_LUMINANCE8,                    GL_UNSIGNED_BYTE,              GL_RGBA},
 //         {GL_LUMINANCE_ALPHA, GL_LUMINANCE8_ALPHA8,             GL_UNSIGNED_BYTE,              GL_RGBA},
@@ -50,7 +50,7 @@ namespace Agmd
 //         {GL_BGR,             GL_RGB32F,                        GL_UNSIGNED_BYTE,              GL_RGBA}
 //     };
 // 
-//     GLenum RGLEnum::Blend[] =
+//     GLenum DXEnum::Blend[] =
 //     {
 //         GL_SRC_ALPHA,
 //         GL_ONE_MINUS_SRC_ALPHA,
@@ -64,7 +64,7 @@ namespace Agmd
 //         GL_ZERO
 //     };
 // 
-//     GLenum RGLEnum::Depth[] =
+//     GLenum DXEnum::Depth[] =
 //     {
 //         GL_NEVER,
 //         GL_LESS,
@@ -76,7 +76,7 @@ namespace Agmd
 //         GL_ALWAYS
 //     };
 // 
-//     GLenum RGLEnum::TextureOp[] =
+//     GLenum DXEnum::TextureOp[] =
 //     {
 //         GL_REPLACE,
 //         GL_ADD,
@@ -86,7 +86,7 @@ namespace Agmd
 //         GL_MODULATE
 //     };
 // 
-//     GLenum RGLEnum::TextureArg[] =
+//     GLenum DXEnum::TextureArg[] =
 //     {
 //         GL_PRIMARY_COLOR_EXT,
 //         GL_TEXTURE,
@@ -94,7 +94,7 @@ namespace Agmd
 //         GL_CONSTANT_EXT
 //     };
 // 
-//     GLenum RGLEnum::RenderParameter[] =
+//     GLenum DXEnum::RenderParameter[] =
 //     {
 //         0,
 //         GL_BLEND,
@@ -104,14 +104,14 @@ namespace Agmd
 //         GL_POINT_SPRITE
 //     };
 // 
-//     GLenum RGLEnum::RenderMode[] =
+//     GLenum DXEnum::RenderMode[] =
 //     {
 //         GL_FILL,
 //         GL_LINE,
 //         GL_POINT
 //     };
 // 
-//     GLenum RGLEnum::ShaderType[] =
+//     GLenum DXEnum::ShaderType[] =
 //     {
 //         GL_VERTEX_SHADER,
 //         GL_TESS_CONTROL_SHADER,
@@ -120,7 +120,7 @@ namespace Agmd
 //         GL_FRAGMENT_SHADER
 //     };
 // 
-//     GLenum RGLEnum::AttachmentType[] =
+//     GLenum DXEnum::AttachmentType[] =
 //     {
 //         GL_COLOR_ATTACHMENT0,
 //         GL_COLOR_ATTACHMENT1,
@@ -142,13 +142,13 @@ namespace Agmd
 //         GL_STENCIL_ATTACHMENT
 //     };
 // 
-//     GLenum RGLEnum::TextureType[] = 
+//     GLenum DXEnum::TextureType[] = 
 //     {
 //         GL_TEXTURE_2D,
 //         GL_TEXTURE_CUBE_MAP
 //     };
 // 
-//     unsigned long RGLEnum::BufferFlags(unsigned long flags)
+//     unsigned long DXEnum::BufferFlags(unsigned long flags)
 //     {
 //         if(flags & BUF_STREAM)
 //             return GL_STREAM_DRAW;
@@ -156,7 +156,7 @@ namespace Agmd
 //         return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 //     }
 // 
-//     unsigned long RGLEnum::LockBitsFlags(unsigned long flags)
+//     unsigned long DXEnum::LockBitsFlags(unsigned long flags)
 //     {
 //         unsigned long lockFlags = 0;
 //         if (flags & LOCK_READONLY)  lockFlags |= GL_MAP_READ_BIT;
@@ -166,7 +166,7 @@ namespace Agmd
 //     }
 // 
 // 
-//     unsigned long RGLEnum::LockFlags(unsigned long flags)
+//     unsigned long DXEnum::LockFlags(unsigned long flags)
 //     {
 //         unsigned long lockFlags = GL_READ_WRITE;
 //         if (flags & LOCK_READONLY)  lockFlags = GL_READ_ONLY;
@@ -175,65 +175,92 @@ namespace Agmd
 //         return lockFlags;
 //     }
 // 
-//     GLenum RGLEnum::Get(TMatrixType value)
+//     GLenum DXEnum::Get(TMatrixType value)
 //     {
 //         return MatrixType[value];
 //     }
 // 
-//     std::string RGLEnum::GetName(TMatrixType value)
+//     std::string DXEnum::GetName(TMatrixType value)
 //     {
 //         return MatrixName[value];
 //     }
 // 
-//     RGLEnum::TPixelFmt RGLEnum::Get(TPixelFormat value)
+//     DXEnum::TPixelFmt DXEnum::Get(TPixelFormat value)
 //     {
 //         return PixelFormat[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TBlend value)
+//     GLenum DXEnum::Get(TBlend value)
 //     {
 //         return Blend[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TDepth value)
+//     GLenum DXEnum::Get(TDepth value)
 //     {
 //         return Depth[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TTextureOp value)
+//     GLenum DXEnum::Get(TTextureOp value)
 //     {
 //         return TextureOp[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TTextureArg value)
+//     GLenum DXEnum::Get(TTextureArg value)
 //     {
 //         return TextureArg[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TRenderParameter value)
+//     GLenum DXEnum::Get(TRenderParameter value)
 //     {
 //         if(value > 5)
 //             return RenderParameter[0];
 //         return RenderParameter[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TRenderMode value)
+//     GLenum DXEnum::Get(TRenderMode value)
 //     {
 //         return RenderMode[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TShaderType value)
+//     GLenum DXEnum::Get(TShaderType value)
 //     {
 //         return ShaderType[value];
 //     }
 // 
-//     GLenum RGLEnum::GetAttachment(a_uint32 value)
+//     GLenum DXEnum::GetAttachment(a_uint32 value)
 //     {
 //         return AttachmentType[value];
 //     }
 // 
-//     GLenum RGLEnum::Get(TTextureType value)
+//     GLenum DXEnum::Get(TTextureType value)
 //     {
 //         return TextureType[value];
 //     }
+
+    D3D_PRIMITIVE_TOPOLOGY DXEnum::PrimitiveType[] =
+    {
+
+        D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST,
+        D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP,
+        D3D_PRIMITIVE_TOPOLOGY_UNDEFINED, //triangle_fan
+        D3D_PRIMITIVE_TOPOLOGY_LINELIST,
+        D3D_PRIMITIVE_TOPOLOGY_LINESTRIP,
+        D3D_PRIMITIVE_TOPOLOGY_POINTLIST,
+        D3D_PRIMITIVE_TOPOLOGY_UNDEFINED //PATHLIST not handle :'(
+        /*
+        D3DPT_TRIANGLELIST,
+        D3DPT_TRIANGLESTRIP,
+        D3DPT_TRIANGLEFAN,
+        D3DPT_LINELIST,
+        D3DPT_LINESTRIP,
+        D3DPT_POINTLIST*/
+    };
+
+
+
+    D3D_PRIMITIVE_TOPOLOGY DXEnum::Get( TPrimitiveType value )
+    {
+        return PrimitiveType[value];
+    }
+
 }

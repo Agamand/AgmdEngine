@@ -6,26 +6,29 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _GLENUMS_H_
-#define _GLENUMS_H_
+#ifndef _DXENUMS_H_
+#define _DXENUMS_H_
 
 #include <Core/Enums.h>
 #include <windows.h>
-#include <gl/gl.h>
 #include <string>
 #include <CommonDefines.h>
 
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
+
 namespace Agmd
 {
-//     class RGLEnum
-//     {
-//     public :
-// 
+    class DXEnum
+    {
+    public :
+
 //         struct TPixelFmt {GLenum Format, Internal, Type, _Format;};
 //         
 //         static unsigned long BufferFlags(unsigned long flags);
 // 
-//         static unsigned long RGLEnum::LockBitsFlags(unsigned long flags);
+//         static unsigned long DXEnum::LockBitsFlags(unsigned long flags);
 // 
 //         static unsigned long LockFlags(unsigned long flags);
 // 
@@ -54,25 +57,15 @@ namespace Agmd
 //         static GLenum Get(TComponent value);
 // 
 //         static GLenum Get(TTextureType value);
-// 
-// 
-//     private :
-// 
-//         static GLenum       MatrixType[];
-//         static std::string  MatrixName[];
-//         static TPixelFmt    PixelFormat[];
-//         static GLenum       Blend[];
-//         static GLenum       Depth[];
-//         static GLenum       TextureOp[];
-//         static GLenum       TextureArg[];
-//         static GLenum       RenderParameter[];
-//         static GLenum       RenderMode[];
-//         static GLenum       ShaderType[];
-//         static GLenum       AttachmentType[];
-//         static GLenum       ComponentType[];
-//         static GLenum       TextureType[];
-//     };
+
+           static D3D_PRIMITIVE_TOPOLOGY        Get(TPrimitiveType value);
+
+
+    private :
+
+           static D3D_PRIMITIVE_TOPOLOGY        PrimitiveType[];
+    };
 
 }
 
-#endif /* _GLENUMS_H_ */
+#endif /* _DXENUMS_H_ */

@@ -14,6 +14,9 @@ https://github.com/Agamand/AgmdEngine
 
 #include <CommonDefines.h>
 
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
 
 namespace Agmd
 {
@@ -21,26 +24,13 @@ namespace Agmd
     {
     public :
 
-        struct TElement
-        {
-            a_uint32 usage;
-            TElementType  type;
-            unsigned int  offset;
-        };
-        typedef a_vector<TElement>      TElementArray;
-        typedef a_vector<TElementArray> TElementMatrix;
-
-        DXDeclaration();
+        DXDeclaration(ID3D11InputLayout* declaration);
 
         ~DXDeclaration();
-
-        void AddElement(unsigned int stream, const TElement& element);
-
-        const TElementArray& GetStreamElements(unsigned int stream) const;
-
+        ID3D11InputLayout* GetDeclaration() const;
     private :
 
-        TElementMatrix m_Elements;
+        ID3D11InputLayout* m_declaration;
     };
 
 }

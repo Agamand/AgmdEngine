@@ -1,7 +1,8 @@
 /*
 ============================================================================
 DXRender - DirectX Renderer specialization
-Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
+Author : Cyril Basset (b
+.cyril@gmail.com - https://github.com/Agamand)
 https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
@@ -9,6 +10,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Renderer/DirectX/DxDriver.h>
 #include <Renderer/DirectX/DxTexture2D.h>
 //#include <Renderer/DirectX/DxTextureCube.h>
+
+#include <Renderer/DirectX/DxBuffer.h>
 #include <Renderer/DirectX/DxShader.h>
 //#include <Renderer/DirectX/DxShaderProgram.h>
 #include <Renderer/DirectX/DxEnums.h>
@@ -27,6 +30,7 @@ https://github.com/Agamand/AgmdEngine
 
 #include <D3Dcompiler.h>
 
+#include <assert.h>
 
 
 SINGLETON_IMPL(Agmd::DXDriver)
@@ -60,7 +64,7 @@ namespace Agmd
     m_Hwnd              (NULL),
     m_Handle            (NULL),
     m_Context           (NULL),
-    m_CurrentDeclaration(NULL),
+    m_currentDeclaration(NULL),
     m_Extensions        (""),
     m_CurrentProgram    (NULL),
     m_last_unit           (TEXTURE_UNIT_0)
@@ -71,8 +75,8 @@ namespace Agmd
     DXDriver::~DXDriver()
     {
         swapchain->Release();
-        dev->Release();
-        devcon->Release();
+        m_device->Release();
+        m_deviceContext->Release();
 
         if (m_Hwnd && m_Handle)
         {
@@ -121,20 +125,20 @@ namespace Agmd
             D3D11_SDK_VERSION,
             &scd,
             &swapchain,
-            &dev,
+            &m_device,
             NULL,
-            &devcon);
+            &m_deviceContext);
 
 
         ID3D11Texture2D *pBackBuffer;
         swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 
         // use the back buffer address to create the render target
-        dev->CreateRenderTargetView(pBackBuffer, NULL, &backbuffer);
+        m_device->CreateRenderTargetView(pBackBuffer, NULL, &backbuffer);
         pBackBuffer->Release();
 
         // set the render target as the back buffer
-        devcon->OMSetRenderTargets(1, &backbuffer, NULL);
+        m_deviceContext->OMSetRenderTargets(1, &backbuffer, NULL);
         LoadExtensions();
     }
 
@@ -183,7 +187,7 @@ namespace Agmd
 
     void DXDriver::InitScene()
     {
-        devcon->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.0f, 0.2f, 0.4f, 1.0f));
+        m_deviceContext->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.0f, 0.2f, 0.4f, 1.0f));
     }
 
     void DXDriver::EndScene()
@@ -194,12 +198,34 @@ namespace Agmd
 
     BaseBuffer* DXDriver::CreateVB(unsigned long size, unsigned long stride, unsigned long flags) const
     {
-       return NULL;
+        ID3D11Buffer *pVBuffer;    // global
+
+        D3D11_BUFFER_DESC bd;
+        ZeroMemory(&bd, sizeof(bd));
+
+        bd.Usage = D3D11_USAGE_DYNAMIC;                // write access access by CPU and GPU
+        bd.ByteWidth = size*stride;             // size is the VERTEX struct * 3
+        bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;       // use as a vertex buffer
+        bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;    // allow CPU to write in buffer
+
+        m_device->CreateBuffer(&bd, NULL, &pVBuffer);       // create the buffer
+       return new DXVertexBuffer(size,&pVBuffer);
     }
 
     BaseBuffer* DXDriver::CreateIB(unsigned long size, unsigned long stride, unsigned long flags) const
     {
-        return NULL;
+        ID3D11Buffer *pIBuffer;    // global
+
+        D3D11_BUFFER_DESC bd;
+        ZeroMemory(&bd, sizeof(bd));
+
+        bd.Usage = D3D11_USAGE_DYNAMIC;                // write access access by CPU and GPU
+        bd.ByteWidth = size*stride;             // size is the VERTEX struct * 3
+        bd.BindFlags = D3D11_BIND_INDEX_BUFFER;       // use as a vertex buffer
+        bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;    // allow CPU to write in buffer
+
+        m_device->CreateBuffer(&bd, NULL, &pIBuffer);       // create the buffer
+        return new DXIndexBuffer(size,&pIBuffer);
     }
 
     BaseBuffer* DXDriver::CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint, int ubflags) const
@@ -212,23 +238,74 @@ namespace Agmd
         return NULL;
     }
 
-    Declaration* DXDriver::CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const
+    Declaration* DXDriver::CreateDeclaration(const TDeclarationElement* elts, std::size_t count) const
     {
-        return NULL;
+        ID3D11InputLayout *pLayout;
+        std::vector<D3D11_INPUT_ELEMENT_DESC> dxElements;
+        std::vector<int> offset(count, 0);
+
+        for (const TDeclarationElement* elt = elts; elt < elts + count; ++elt)
+        {
+            D3D11_INPUT_ELEMENT_DESC curElt;
+
+            curElt.InputSlot = elt->stream;
+            curElt.AlignedByteOffset = offset[elt->stream];
+            curElt.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+            curElt.InstanceDataStepRate = 0;
+
+            switch (elt->usage)
+            {
+            case ELT_USAGE_POSITION :  curElt.SemanticName = "POSITION"; curElt.SemanticIndex = 0; break;
+            case ELT_USAGE_NORMAL :    curElt.SemanticName = "NORMAL";   curElt.SemanticIndex = 0; break;
+            case ELT_USAGE_DIFFUSE :   curElt.SemanticName = "COLOR";    curElt.SemanticIndex = 0; break;
+            case ELT_USAGE_TEXCOORD0 : curElt.SemanticName = "TEXCOORD"; curElt.SemanticIndex = 0; break;
+            case ELT_USAGE_TEXCOORD1 : curElt.SemanticName = "TEXCOORD"; curElt.SemanticIndex = 1; break;
+            case ELT_USAGE_TEXCOORD2 : curElt.SemanticName = "TEXCOORD"; curElt.SemanticIndex = 2; break;
+            case ELT_USAGE_TEXCOORD3 : curElt.SemanticName = "TEXCOORD"; curElt.SemanticIndex = 3; break;
+            }
+
+            switch (elt->dataType)
+            {
+            case ELT_TYPE_FLOAT1 : curElt.Format = DXGI_FORMAT_R32_FLOAT;   offset[elt->stream] += 4;  break;
+            case ELT_TYPE_FLOAT2 : curElt.Format = DXGI_FORMAT_R32G32_FLOAT;   offset[elt->stream] += 8;  break;
+            case ELT_TYPE_FLOAT3 : curElt.Format = DXGI_FORMAT_R32G32B32_FLOAT;   offset[elt->stream] += 12; break;
+            case ELT_TYPE_FLOAT4 : curElt.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;   offset[elt->stream] += 16; break;
+            case ELT_TYPE_COLOR :  curElt.Format = DXGI_FORMAT_R8G8B8A8_UINT; offset[elt->stream] += 4;  break;
+            }
+
+            dxElements.push_back(curElt);
+        }
+
+        m_device->CreateInputLayout(&dxElements[0],dxElements.size(),NULL,0,&pLayout);
+        assert(pLayout != NULL);
+        return new DXDeclaration(pLayout);
     }
 
     void DXDriver::SetVB(unsigned int stream, const BaseBuffer* buffer, unsigned long stride, unsigned long minVertex, unsigned long maxVertex)
     {
- 
+        const DXVertexBuffer* vbuffer = static_cast<const DXVertexBuffer*>(buffer);
+        //a_uint32 offset = 0;
+        a_uint32 _stride = stride;
+        a_uint32 _offset = 0;
+        auto dxbuffer = vbuffer->GetBuffer();
+        m_deviceContext->IASetVertexBuffers(0,1,&dxbuffer,&_stride,&_offset);
     }
 
     void DXDriver::SetIB(const BaseBuffer* buffer, unsigned long stride)
     {
-
+        const DXIndexBuffer* vbuffer = static_cast<const DXIndexBuffer*>(buffer);
+        //a_uint32 offset = 0;
+        a_uint32 _stride = stride;
+        a_uint32 _offset = 0;
+        auto dxbuffer = vbuffer->GetBuffer();
+        m_deviceContext->IASetIndexBuffer(dxbuffer,stride == 2 ? DXGI_FORMAT_R16_UINT : DXGI_FORMAT_R32_UINT,_offset);
     }
     void DXDriver::SetDeclaration(const Declaration* declaration)
     {
-        m_CurrentDeclaration = static_cast<const DXDeclaration*>(declaration);
+        m_currentDeclaration = static_cast<const DXDeclaration*>(declaration);
+        if(m_currentDeclaration)
+            m_deviceContext->IASetInputLayout(m_currentDeclaration->GetDeclaration());
+
     }
 
     void DXDriver::DrawPrimitives(TPrimitiveType type, unsigned long firstVertex, unsigned long count)
@@ -240,17 +317,8 @@ namespace Agmd
         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
         m_stats->IncrDrawCall();
         m_stats->IncrTriangleCount(count);
-
-// 
-//         switch (type)
-//         {
-//         case PT_TRIANGLELIST :  glDrawArrays(GL_TRIANGLES,      firstVertex, count * 3); m_stats->IncrVertexCount(count*3); break;
-//         case PT_TRIANGLESTRIP : glDrawArrays(GL_TRIANGLE_STRIP, firstVertex, count + 2); break;
-//         case PT_TRIANGLEFAN :   glDrawArrays(GL_TRIANGLE_FAN,   firstVertex, count + 1); break;
-//         case PT_LINELIST :      glDrawArrays(GL_LINES,          firstVertex, count * 2); break; 
-//         case PT_LINESTRIP :     glDrawArrays(GL_LINE_STRIP,     firstVertex, count);     break;
-//         case PT_POINTLIST :     glDrawArrays(GL_POINTS,         firstVertex, count);     break;
-//         }
+        m_deviceContext->IASetPrimitiveTopology(DXEnum::Get(type));
+        m_deviceContext->Draw(count,firstVertex);
     }
 
     void DXDriver::DrawIndexedPrimitives(TPrimitiveType type, unsigned long firstIndex, unsigned long count)
@@ -258,25 +326,14 @@ namespace Agmd
         if(!m_CurrentProgram)
             return;
 
-//         unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
-//         const void*   offset      = BUFFER_OFFSET(firstIndex * m_IndexStride);
-// 
-//         m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->modelMatrix() : mat4(1.0f));
-//         m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
-//         m_stats->IncrDrawCall();
-//         m_stats->IncrTriangleCount(count);
-//         m_stats->IncrVertexCount(count*3);
-// 
-//         switch (type)
-//         {
-//             case PT_TRIANGLELIST :  glDrawElements(GL_TRIANGLES,      count, indicesType, offset); break;
-//             case PT_TRIANGLESTRIP : glDrawElements(GL_TRIANGLE_STRIP, count, indicesType, offset); break;
-//             case PT_TRIANGLEFAN :   glDrawElements(GL_TRIANGLE_FAN,   count, indicesType, offset); break;
-//             case PT_LINELIST :      glDrawElements(GL_LINES,          count, indicesType, offset); break; 
-//             case PT_LINESTRIP :     glDrawElements(GL_LINE_STRIP,     count, indicesType, offset); break;
-//             case PT_POINTLIST :     glDrawElements(GL_POINTS,         count, indicesType, offset); break;
-//             case PT_PATCHLIST :     glDrawElements(GL_PATCHES,        count, indicesType, offset); break;
-//         }
+        m_CurrentProgram->SetParameter(MAT_MODEL,m_CurrentTransform ? m_CurrentTransform->modelMatrix() : mat4(1.0f));
+        m_CurrentProgram->SetParameter("u_textureFlags",(int)m_TextureFlags);
+        m_stats->IncrDrawCall();
+        m_stats->IncrTriangleCount(count);
+        m_stats->IncrVertexCount(count*3);
+
+        m_deviceContext->IASetPrimitiveTopology(DXEnum::Get(type));
+        m_deviceContext->DrawIndexed(count,firstIndex,0);
     }
 
     a_uint32 DXDriver::ConvertColor(const Color& color) const
@@ -304,11 +361,11 @@ namespace Agmd
 
         if (texture)
         {
-            //glBindTexture(RGLEnum::Get(oDXTexture->GetType()), oDXTexture->GetDXTexture());
+            //glBindTexture(DXEnum::Get(oDXTexture->GetType()), oDXTexture->GetDXTexture());
         }
         else if(m_TextureBind[unit])
         {
-            //glBindTexture(RGLEnum::Get(m_TextureBind[unit]->GetType()), 0);
+            //glBindTexture(DXEnum::Get(m_TextureBind[unit]->GetType()), 0);
         }
 
         m_TextureBind[unit] = texture;
@@ -369,10 +426,12 @@ namespace Agmd
         if (errorMsg) {
             return NULL;
         }
+        void* shaderPtr;
         switch (type)
         {
         case Agmd::SHADER_VERTEX:
-            return new DXVertexShader(shaderBlob);
+            m_device->CreateVertexShader(shaderBlob->GetBufferPointer(),shaderBlob->GetBufferSize(),NULL,(ID3D11VertexShader**)&shaderPtr);
+            return new DXVertexShader((ID3D11VertexShader*)shaderPtr);
 //         case Agmd::SHADER_TESS_CONTROL:
 //             break;
 //         case Agmd::SHADER_TESS_EVALUATION:
@@ -380,7 +439,8 @@ namespace Agmd
 //         case Agmd::SHADER_GEOMETRY:
 //             break;
         case Agmd::SHADER_PIXEL:
-            return new DXVertexShader(shaderBlob);
+            m_device->CreatePixelShader(shaderBlob->GetBufferPointer(),shaderBlob->GetBufferSize(),NULL,(ID3D11PixelShader**)&shaderPtr);
+            return new DXPixelShader((ID3D11PixelShader*)shaderPtr);
         default:
             return NULL;
         }
@@ -419,7 +479,7 @@ namespace Agmd
         viewport.TopLeftY = xy.y;
         viewport.Width = size.x;
         viewport.Height = size.y;
-        devcon->RSSetViewports(1, &viewport);
+        m_deviceContext->RSSetViewports(1, &viewport);
     }
 
     #define FRONT 1

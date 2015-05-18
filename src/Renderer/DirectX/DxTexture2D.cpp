@@ -37,8 +37,8 @@ namespace Agmd
     {
 //         Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
 // 
-//         RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
-//         RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
+//         DXEnum::TPixelFmt texFmt = DXEnum::Get(m_Format);
+//         DXEnum::TPixelFmt imgFmt = DXEnum::Get(m_Data.GetFormat());
 //         unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data.GetFormat());
 // 
 //         glBindTexture(GL_TEXTURE_2D, m_Texture);
@@ -85,8 +85,8 @@ namespace Agmd
 
     void DXTexture2D::updatePixelFromTexture()
     {
-//         RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
-//         RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
+//         DXEnum::TPixelFmt texFmt = DXEnum::Get(m_Format);
+//         DXEnum::TPixelFmt imgFmt = DXEnum::Get(m_Data.GetFormat());
 //         glBindTexture(GL_TEXTURE_2D, m_Texture);
 //         glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,imgFmt.Type,m_Data.GetDataPtr());
 //         glBindTexture(GL_TEXTURE_2D, 0);

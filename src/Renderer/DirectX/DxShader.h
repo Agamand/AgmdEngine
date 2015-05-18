@@ -6,14 +6,15 @@ https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
 
-#ifndef _GLSHADER_H_
-#define _GLSHADER_H_
+#ifndef _DXSHADER_H_
+#define _DXSHADER_H_
 
 #include <CommonDefines.h>
 #include <Core/Shader/BaseShader.h>
 
-
-#include <Renderer/DirectX/DxDriver.h>
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
 
 #include <string>
 
@@ -23,7 +24,8 @@ namespace Agmd
     class DXShader : public BaseShader
     {
     public:
-        DXShader(ID3DBlob* shaderid)
+        DXShader(ShaderClass shaderid) : BaseShader(type), m_Shader(shaderid)
+        {}
         virtual ~DXShader()
         {
             m_Shader->Release();
@@ -33,8 +35,10 @@ namespace Agmd
     private:
         ShaderClass m_Shader;
     };
+
+
     typedef DXShader<ID3D11VertexShader*,SHADER_VERTEX> DXVertexShader;
     typedef DXShader<ID3D11PixelShader* ,SHADER_PIXEL>  DXPixelShader;
 }
 
-#endif /* _GLSHADER_H_ */
+#endif /* _DXSHADER_H_ */

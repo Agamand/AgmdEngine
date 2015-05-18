@@ -18,7 +18,7 @@ namespace Agmd
     m_depth(depth), m_normal(normal), m_position(position), m_noise(noise)
     {
         m_program.LoadFromFile("Shader/Effect/ssao.glsl");
-        m_blurProgram.LoadFromFile("Shader/common/blur4.glsl")
+        m_blurProgram.LoadFromFile("Shader/common/blur4.glsl");
     }
 
     void Ssao::Init()

@@ -260,8 +260,8 @@ namespace Agmd
 
 
         // Default states
-        glClearColor(0.0f,0.0f,0.0f,0);
-        //glClearColor(0.5f,0.5f,0.5f,0);
+        //glClearColor(0.0f,0.0f,0.0f,0);
+        glClearColor(0.5f,0.5f,0.5f,0);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);
@@ -514,7 +514,9 @@ namespace Agmd
         const GLDeclaration::TElementArray& StreamDesc = m_CurrentDeclaration->GetStreamElements(stream);
         for (GLDeclaration::TElementArray::const_iterator i = StreamDesc.begin(); i != StreamDesc.end(); ++i)
         {
-            switch (i->usage)
+            glEnableVertexAttribArray(i->usage);
+            glVertexAttribPointer(i->usage, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
+           /* switch (i->usage)
             {
                 case ELT_USAGE_POSITION :
                     glEnableVertexAttribArray(0);
@@ -575,7 +577,7 @@ namespace Agmd
                     glEnableVertexAttribArray(i->usage);
                     glVertexAttribPointer(i->usage, Size[i->type], Type[i->type], GL_FALSE, stride, BUFFER_OFFSET(i->offset + minVertex * stride));
 
-            }
+            }*/
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
         
@@ -665,6 +667,7 @@ namespace Agmd
             glActiveTexture(GL_TEXTURE0+unit);
             m_last_unit = unit;
         }
+        
 
         if (texture)
         {
@@ -721,8 +724,7 @@ namespace Agmd
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             }
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+           
             nbMipmaps = flags & TEX_NOMIPMAP ? 0 : GetNbMipLevels(size.x, size.y);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, nbMipmaps);
 
@@ -732,7 +734,9 @@ namespace Agmd
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,  flags & TEX_NOMIPMAP ? GL_LINEAR : GL_LINEAR_MIPMAP_LINEAR);
             }else
             {
-                
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+ 
             }
             
             if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
@@ -960,9 +964,10 @@ namespace Agmd
         glBindAttribLocation(id, 5,  "in_TexCoord2");
         glBindAttribLocation(id, 6,  "in_TexCoord3");
         glBindAttribLocation(id, 7,  "in_Tangent");
-        glBindAttribLocation(id, 8,  "in_BoneWeight");
-        glBindAttribLocation(id, 9,  "in_BoneIndex");
-        glBindAttribLocation(id, 10, "in_BoneCount");
+        glBindAttribLocation(id, 8,  "in_Binormal");
+        glBindAttribLocation(id, 9,  "in_BoneWeight");
+        glBindAttribLocation(id, 10, "in_BoneIndex");
+        glBindAttribLocation(id, 11, "in_BoneCount");
         /**/
 
         glValidateProgram(id);

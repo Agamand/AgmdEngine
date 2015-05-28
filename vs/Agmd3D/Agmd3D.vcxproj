@@ -452,14 +452,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WXUSINGDLL;_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\wxwidget\lib\vc_lib\mswud;$(SolutionDir)..\wxwidget\include;$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)\..\dep\Bullet\src\;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;$(SolutionDir)..\src\Agmd3D;C:\Program Files\Autodesk\FBX\FBX SDK\2016.0\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_SHARED;WXUSINGDLL;_SCL_SECURE_NO_WARNINGS;AGMD3D_EXPORTS;_WINDLL;_dDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>wxmsw30ud_gl.lib;opengl32.lib;glu32.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxmsw30ud_gl.lib;opengl32.lib;glu32.lib;wxmsw30ud_core.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;assimp.lib;libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\assimp;C:\Program Files\Autodesk\FBX\FBX SDK\2016.0\lib\vs2012\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
     </Link>
     <Bscmake>

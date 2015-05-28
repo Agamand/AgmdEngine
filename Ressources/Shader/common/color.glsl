@@ -8,6 +8,12 @@ float rgb2grayscale(vec3 color)
 	return 0.299f*color.r + 0.58f*color.g + 0.114f*color.b;
 }
 
+vec3 grayscale2rgb(float gray)
+{
+	return clamp(vec3(gray/0.299f,gray/0.58f,gray/0.114f),vec3(0),vec3(1));
+}
+
+
 vec3 normal2rgb(vec3 normal)
 {
 	return vec3(0.5f)+normal/2;

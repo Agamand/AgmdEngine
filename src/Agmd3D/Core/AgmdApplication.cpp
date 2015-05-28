@@ -385,7 +385,7 @@ namespace Agmd
         Image img = Image();    
         img.Fill(Color::white);
         Texture t = Texture();
-        t.CreateFromImage(img,PXF_A8R8G8B8);
+        t.CreateFromImage(img,PXF_A8R8G8B8,0,"white_texture");
         mat->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
         ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);
         init();

@@ -116,35 +116,40 @@ namespace Agmd
         //render.Enable(RENDER_ZWRITE,false);
         sc->Render(RENDERPASS_DIFFUSE);
         render.Enable(RENDER_ALPHABLEND,true);
-        sc->Render(RENDERPASS_DIFFUSE,RenderQueue::TRenderType::TYPE_BLEND);
+        render.Enable(RENDER_ZWRITE,false);
+        render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+        sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
         render.Enable(RENDER_ALPHABLEND,false);
+        render.Enable(RENDER_ZWRITE,true);
         //m_framebuffer->UnBind();
 
         /*
+            MultiPass lighting system
             Render lighting to color_attachment1
         */
 
-        const std::vector<Light*>&  lights = sc->GetLights();
-        a_uint32 maxLights = lights.size();
-        if(maxLights)
-        {
-            m_framebuffer->DrawBuffers(1,bufferFlags[1]);
-            m_framebuffer->Clear(CLEAR_COLOR);
-            m_framebuffer->Bind();
-            render.SetupDepthTest(DEPTH_LEQUAL);
-            render.Enable(RENDER_ZWRITE, false);
-            render.Enable(RENDER_ALPHABLEND, true);
-            render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
-        
-            Light* const* _lights = &lights[0];
-            for(a_uint32 i = 0; i < maxLights; i++)
-            {
-                _lights[i]->Bind();
-                //sc->Render(RENDERPASS_LIGHTING);
-            }
-            m_framebuffer->UnBind();
-            render.Enable(RENDER_ALPHABLEND, false);
-        }
+//         const a_vector<LightNode*>&  lights = sc->GetLightNodes();
+//         a_uint32 maxLights = lights.size();
+//         if(maxLights)
+//         {
+//             m_framebuffer->DrawBuffers(1,bufferFlags[1]);
+//             m_framebuffer->Clear(CLEAR_COLOR);
+//             m_framebuffer->Bind();
+//             render.SetupDepthTest(DEPTH_LEQUAL);
+//             render.Enable(RENDER_ZWRITE, false);
+//             render.Enable(RENDER_ALPHABLEND, true);
+//             render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
+//         
+//             LightNode*const* _lights = &lights[0];
+//             for(a_uint32 i = 0; i < maxLights; i++)
+//             {
+//                 LightNode* l = _lights[i];
+//                 l->GetLightModel()->Bind();
+//                 //sc->Render(RENDERPASS_FORWARD_LIGHTING);
+//             }
+//             m_framebuffer->UnBind();
+//             render.Enable(RENDER_ALPHABLEND, false);
+//         }
         /*
             Render to main framebuffer
         */

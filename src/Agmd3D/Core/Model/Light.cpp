@@ -15,22 +15,18 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Light::Light(vec3 pos, vec3 dir, LightType type) :
-    m_position(pos), m_dir(dir), m_Type(type), m_ambient(vec3(1)),
-    m_diffuse(vec3(1.0)), m_specular(vec3(1)), m_range(30.0f),m_innerAngle(cosf(50.0f/180.0f*(float)M_PI)),
-    m_outerAngle(cosf(60.0f/180.0f*(float)M_PI))
+    Light::Light(vec3 pos, vec3 dir, LightType type)
     {
-        LightBuffer lightBuffer;
-        lightBuffer.position = vec4(m_position,1.0f);
-        lightBuffer.dir = vec4(m_dir,1.0f);
-        lightBuffer.ambient = vec4(m_ambient,1.0f);
-        lightBuffer.diffuse = vec4(m_diffuse,1.0f);
-        lightBuffer.specular = vec4(m_specular,1.0f);
-        lightBuffer.innerAngle = m_innerAngle;
-        lightBuffer.outerAngle = m_outerAngle;
-        lightBuffer.range = m_range;
-        lightBuffer.type = m_Type;
-        m_uniformLightBuffer = Driver::Get().CreateUniformBuffer<LightBuffer>(1, BUF_DYNAMIC, UNIFORM_LIGHT_BIND, 0, &lightBuffer);
+        m_lightBuffer.position = vec4(pos,1.0f);
+        m_lightBuffer.dir = vec4(dir,1.0f);
+        m_lightBuffer.ambient = vec4(vec3(1),1.0f);
+        m_lightBuffer.diffuse = vec4(vec3(1),1.0f);
+        m_lightBuffer.specular = vec4(vec3(1),1.0f);
+        m_lightBuffer.innerAngle = cosf(50.0f/180.0f*(float)M_PI);
+        m_lightBuffer.outerAngle = cosf(60.0f/180.0f*(float)M_PI);
+        m_lightBuffer.range = 30.0f;
+        m_lightBuffer.type = type;
+        m_uniformLightBuffer = Driver::Get().CreateUniformBuffer<LightBuffer>(1, BUF_DYNAMIC, UNIFORM_LIGHT_BIND, 0, &m_lightBuffer);
     }
 
     void Light::Bind()
@@ -58,69 +54,123 @@ namespace Agmd
 
     void Light::SetPosition(vec3& position)
     {
-        if(position == m_position)
+        if(position == vec3(m_lightBuffer.position))
             return;
 
-        m_position = position;
+        m_lightBuffer.position = vec4(position,1);
         vec3* new_pos =  m_uniformLightBuffer.LockBits<vec3>(0,sizeof(vec3),LOCK_WRITEONLY);
-        *new_pos = m_position;
+        *new_pos = position;
         m_uniformLightBuffer.Unlock();
     }
 
     void Light::SetDirection(vec3& direction)
     {
-        if(m_dir == direction)
+        if(m_lightBuffer.dir == vec4(direction,1))
             return;
 
-        m_dir = direction;
+        m_lightBuffer.dir = vec4(direction,1);
         vec3* new_dir =  m_uniformLightBuffer.LockBits<vec3>(sizeof(vec4),sizeof(vec3), LOCK_WRITEONLY);
-        *new_dir = m_dir;
+        *new_dir = direction;
         m_uniformLightBuffer.Unlock();
     }
 
     void Light::SetRange(float range)
     {
-        if(m_range == range)
+        if(m_lightBuffer.range == range)
             return;
 
-        m_range = range;
+        m_lightBuffer.range = range;
         float* _range = m_uniformLightBuffer.LockBits<float>(22*sizeof(float),sizeof(float),LOCK_WRITEONLY);
-        *_range = m_range;
+        *_range = range;
         m_uniformLightBuffer.Unlock();
     }
     
     const vec3& Light::GetPosition()
     {
-        return m_position;
+        return vec3(m_lightBuffer.position);
     }
 
     const vec3& Light::GetDirection()
     {
-        return m_dir;
-    }
-
-    Transform& Light::GetTransform()
-    {
-        return m_Transform;
+        return vec3(m_lightBuffer.dir);
     }
 
     LightType Light::GetType() const
     {
-        return m_Type;
+        return (LightType)m_lightBuffer.type;
     }
 
     float Light::GetRange() const
     {
-        return m_range;
+        return m_lightBuffer.range;
     }
 
     float Light::GetOuterAngle() const
     {
-        return m_outerAngle;
+        return m_lightBuffer.outerAngle;
     }
 
     float Light::GetInnerAngle() const
     {
-        return m_innerAngle;
+        return m_lightBuffer.innerAngle;
     }
+
+    void Light::FillBuffer( LightBuffer*data )
+    {
+        *data = m_lightBuffer;
+    }
+
+    void Light::SetOuter( float angle )
+    {
+        if(angle > 180.0f)
+            angle = 180.0f;
+        else if(angle < 0)
+            angle = 0;
+        m_lightBuffer.outerAngle = cosf(angle/180.0f*(float)M_PI);
+        if(m_lightBuffer.outerAngle < m_lightBuffer.innerAngle)
+            m_lightBuffer.outerAngle = m_lightBuffer.innerAngle;
+        float* _outer = m_uniformLightBuffer.LockBits<float>((21)*sizeof(float),sizeof(float),LOCK_WRITEONLY);
+        *_outer = m_lightBuffer.outerAngle;
+        m_uniformLightBuffer.Unlock();
+    }
+
+    void Light::SetInner( float angle )
+    {
+        if(angle > 180.0f)
+            angle = 180.0f;
+        else if(angle < 0)
+            angle = 0;
+        
+
+        m_lightBuffer.innerAngle = cosf(angle/180.0f*(float)M_PI);
+        if(m_lightBuffer.innerAngle > m_lightBuffer.outerAngle)
+            m_lightBuffer.innerAngle = m_lightBuffer.outerAngle;
+        float* _inner = m_uniformLightBuffer.LockBits<float>((20)*sizeof(float),sizeof(float),LOCK_WRITEONLY);
+        *_inner = m_lightBuffer.innerAngle;
+        m_uniformLightBuffer.Unlock();
+    }
+
+    void Light::SetAngles( float inner,float outer )
+    {
+        if(inner > 180.0f)
+            inner = 180.0f;
+        else if(inner < 0)
+            inner = 0;
+        if(outer > 180.0f)
+            outer = 180.0f;
+        else if(outer < 0)
+            outer = 0;
+
+        if(inner > outer)
+            inner = outer;
+
+
+        m_lightBuffer.innerAngle = cosf(inner/180.0f*(float)M_PI);
+        m_lightBuffer.outerAngle = cosf(outer/180.0f*(float)M_PI);
+        float* angles = m_uniformLightBuffer.LockBits<float>((20)*sizeof(float),sizeof(float)*2,LOCK_WRITEONLY);
+        *angles = m_lightBuffer.innerAngle;
+        *(angles+1) = m_lightBuffer.outerAngle;
+        m_uniformLightBuffer.Unlock();
+    }
+
 }

@@ -13,6 +13,9 @@
 #if defined(USE_WX) && defined(USE_EDITOR)
 class wxFrame;
 #endif
+
+#define MAX_LIGHT 10
+
 namespace Agmd
 {
 
@@ -23,9 +26,9 @@ namespace Agmd
     public:
         SceneMgr();
 
-        void Render(TRenderPass pass, RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
+        void Render(TRenderPass pass, TRenderType type =  TRenderType::TYPE_DIFFUSE) const;
 
-        void Draw( RenderQueue::TRenderType type =  RenderQueue::TRenderType::TYPE_DIFFUSE) const;
+        void Draw( TRenderType type =  TRenderType::TYPE_DIFFUSE) const;
         void Compute();
         void Update();
         void FindVisible(RenderQueue&,a_vector<LightNode*>&);
@@ -33,6 +36,7 @@ namespace Agmd
         void AddNode(SceneNode *node); // add to root
 
         const a_vector<Light*>& GetLights();
+        const a_vector<LightNode*>& GetLightNodes();
         void AddLight(Light* l);
 
         void SetSkybox(SkyBox* skybox);
@@ -48,17 +52,20 @@ namespace Agmd
         SceneNode* GetRoot(){
             return m_root;
         }
+
+        Light::LightBuffer* GetLightBuffer();
     private:
         //event
         friend class RootNode;
         void __addNode(SceneNode*);
         void __removeNode(SceneNode*);
 
-
         a_vector<Light*> m_light; // static light
+        a_vector<LightNode*> m_lights;
         RenderQueue m_renderQueue;
         RootNode* m_root;
         SkyBox* m_skybox;
+        Light::LightBuffer m_lightBuffer[MAX_LIGHT];
 #if defined(USE_WX) && defined(USE_EDITOR)
         wxFrame* m_frame;
 #endif

@@ -45,12 +45,14 @@ namespace Agmd
     }
 
 
-    void Camera::updateBuffer(mat4& view)
+    void Camera::updateBuffer(mat4& inversedView)
     {
         //m_cameraBuffer.WaitSync();
-        m_transform.m_MatView = view;
+        m_transform.m_MatView = inverse(inversedView);
+        m_transform.m_ViewPosition = inversedView*vec4(0,0,0,1);
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*2);
+        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*2+sizeof(vec4));
+        
         /*if(map == NULL)
             map = m_cameraBuffer.LockBits<mat4>(0, sizeof(mat4),LOCK_WRITEONLY | LOCK_UNSYNCHRONOUS);
         mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
@@ -127,7 +129,7 @@ namespace Agmd
     bool Camera::isInFrustrum( const BoundingSphere& bounding )
     {
         
-        const BoundingSphere bound = bounding.GetTransformedBounding(m_transform.m_MatView);
+                const BoundingSphere bound = bounding.GetTransformedBounding(m_transform.m_MatView);
         ShaderProgram testShader;
         //testShader.LoadFromFile("Shader/debug_shader.glsl");
         //Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
@@ -137,7 +139,7 @@ namespace Agmd
     void Camera::updateProjection()
     {
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*3);
+        m_cameraBuffer.FillByte(&m_transform,sizeof(mat4)+sizeof(vec4),sizeof(mat4)*2);
         m_frustum->Setup(m_transform.m_MatProjection);
     }
 

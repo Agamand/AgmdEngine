@@ -48,7 +48,8 @@ namespace Agmd
             vec3     normal;
             a_uint32 color;
             vec2     texCoords;
-            vec4     tangent;
+            vec3     tangent;
+            vec3     binormal;
         };
         typedef unsigned short TIndex;
         Model();
@@ -64,7 +65,7 @@ namespace Agmd
         const BoundingSphere& getBounding() const;
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
-        
+        void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount);
 
 
         DeclarationPtr  m_Declaration;

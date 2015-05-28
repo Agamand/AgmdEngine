@@ -19,17 +19,17 @@ out vec4 pos;
 
 void main()
 {
-    vec3 vertex = in_Vertex;
+	vec3 vertex = in_Vertex;
 
-    
-    color = in_Color;
-    texCoord0 = in_TexCoord0;
-    normal = mat3(u_matModel)*in_Normal;
-    tangent = mat3(u_matModel) * in_Tangent.xyz;
-    binormal = cross(normal, tangent) * in_Tangent.w;
-    pos = u_matView * u_matModel * vec4(in_Vertex, 1.0f);
+	
+	color = in_Color;
+	texCoord0 = in_TexCoord0;
+	normal = mat3(u_matModel)*in_Normal;
+	tangent = mat3(u_matModel) * in_Tangent.xyz;
+	binormal = cross(normal, tangent) * in_Tangent.w;
+	pos = u_matView * u_matModel * vec4(in_Vertex, 1.0f);
 
-    gl_Position = u_matProjection * u_matView * u_matModel * vec4(vertex,1.0f);
+	gl_Position = u_matProjection * u_matView * u_matModel * vec4(vertex,1.0f);
 }
 #endif
 
@@ -52,9 +52,9 @@ uniform sampler2D texture0;
 
 void main()
 {
-    out_Color = vec4(1.0);
-    out_Normal = normal;
-    out_Position = pos.xyz;
+	out_Color = vec4(1.0);
+	out_Normal = normal;
+	out_Position = pos.xyz;
 }
 
 

@@ -52,10 +52,13 @@ namespace Agmd
 
     void Texture::CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name)
     {
-        m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
+        if(name.length())
+            m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
 
         if (!m_Texture)
             Load(image, format, TEXTURE_2D, flags, name);
+        if(m_Texture && name.length())
+            ResourceManager::Instance().Add(name,m_Texture);
     }
 
     void Texture::CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags)
@@ -368,5 +371,4 @@ namespace Agmd
     {
         m_Texture->updatePixelFromTexture();
     }
-
 }

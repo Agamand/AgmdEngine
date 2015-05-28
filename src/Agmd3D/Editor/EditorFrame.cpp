@@ -13,6 +13,9 @@
 #include <Core/Model/IcosahedronModel.h>
 #include <Core/Driver.h>
 #include <Core/Model/SceneMgr.h>
+#include <Core/MediaManager.h>
+#include <Loaders/FBXLoader.h>
+#include "wx/wxprec.h"
 ///////////////////////////////////////////////////////////////////////////
 
 EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style ), m_action(false)
@@ -23,9 +26,14 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
 
     m_mainMenu = new wxMenuBar( 0 );
     FileMenu = new wxMenu();
-    wxMenuItem* QuitItem;
+    wxMenuItem* OpenItem,
+        *QuitItem;
+    OpenItem = new wxMenuItem( FileMenu, wxID_ANY, wxString( wxT("Open model") ) , wxEmptyString, wxITEM_NORMAL );
     QuitItem = new wxMenuItem( FileMenu, wxID_ANY, wxString( wxT("Quit") ) , wxEmptyString, wxITEM_NORMAL );
+    FileMenu->Append(OpenItem);
     FileMenu->Append( QuitItem );
+    this->Connect(OpenItem->GetId(),wxEVT_COMMAND_MENU_SELECTED,
+        wxCommandEventHandler(EditorFrame::OnMenuFileOpen));
 
     m_mainMenu->Append( FileMenu, wxT("File") ); 
 
@@ -87,6 +95,7 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
     this->Connect( m_auiToolBar1->m_rotate_y->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
 
     this->Connect( m_auiToolBar1->m_rotate_z->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
+
     m_mgr.Update();
     this->Centre( wxBOTH );
 
@@ -95,6 +104,30 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
     m_objectProperties->Connect( wxEVT_PG_CHANGED, wxPropertyGridEventHandler( EditorFrame::OnPropertyChanged ), NULL, this );
     Agmd::AgmdApplication::getApplication()->CreateGlCanvas(m_viewPanel);
 }
+
+// File|Open... command
+void EditorFrame::OnMenuFileOpen( wxCommandEvent& WXUNUSED(event) )
+{
+    wxString filename = wxFileSelector(wxT("Choose Model"), wxT(""), wxT(""), wxT(""),
+        // #if wxUSE_ZLIB
+        //         wxT("DXF Drawing (*.o;*.dxf.gz)|*.dxf;*.dxf.gz|All files (*.*)|*.*"),
+        // #else
+        wxT("Model file (*.fbx)|*.FBX)|All files (*.*)|*.*"),
+        /*#endif*/
+        wxFD_OPEN);
+    if (!filename.IsEmpty())
+    {
+        //         m_canvas->LoadDXF(filename);
+        //         //                       
+        Agmd::SceneNode* node = Agmd::FBXLoader().LoadFromFile(filename.ToStdString());
+        if(!node)
+            return;
+         Agmd::SceneMgr* scene = Agmd::Driver::Get().GetActiveScene();
+         scene->AddNode(node);
+        //Agmd::MediaManager::Instance().LoadMediaFromFile<SceneNode>(filename)                                                                                                                                                        ->Refresh(false);
+    }
+}
+
 
 EditorFrame::~EditorFrame()
 {
@@ -142,7 +175,7 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
             Transform* t = new Transform();
             t->setPosition(start+end*10.f);
             Agmd::MeshNode* node = new Agmd::MeshNode(ico,t);
-            
+    
             Agmd::SceneMgr* scene = Agmd::Driver::Get().GetActiveScene();
 
             scene->AddNode(node);
@@ -151,12 +184,15 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
         return;
     }
 
-    
-    if(click == 1 && !up)
+    std::cout << "click " <<  click << " up? " << up << std::endl;
+    if(click == 1)
     {
-        Agmd::SceneNode* pick = Agmd::ColorPicking::Instance().pick(pos);
-        if(m_sceneTree)
-            m_sceneTree->setSelectedSceneNode(pick);
+        if(!m_sceneTree->getSelectedSceneNode() || up)
+        {
+            Agmd::SceneNode* pick = Agmd::ColorPicking::Instance().pick(pos);
+            if(m_sceneTree)
+                m_sceneTree->setSelectedSceneNode(pick);
+        }
     }
 }
 
@@ -215,28 +251,40 @@ void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
         ivec2 screen_2 = Agmd::AgmdApplication::getApplication()->getScreen()/2;
         if(selected)
         {
-            vec3 _start(screen_2,0), _ray(screen_2,1);
-            vec3 start(pos,0), ray(pos,1);
+            vec2 oldPos = pos-vec2(posdiff);
+            vec3 screen_start(screen_2,0), screen_ray(screen_2,1);
+            vec3 start(pos,0), ray(pos,1),
+                 old_start(oldPos,0), old_ray(oldPos,1);
             Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(start);
             Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(ray);
-            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(_start);
-            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(_ray);
+            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(old_start);
+            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(old_ray);
+            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(screen_start);
+            Agmd::Camera::getCurrent(Agmd::TCamera::CAMERA_3D)->unProject(screen_ray);
             ray -= start;
             ray = normalize(ray);
-            _ray -= _start;
-            _ray = normalize(_ray);
+            old_ray -= old_start;
+            old_ray = normalize(old_ray);
+            screen_ray -= screen_start;
+            screen_ray = normalize(screen_ray);
             vec3 center = selected->getTransform().getPosition();
 
                 
-            Plane p(_ray,center);
+            Plane p(screen_ray,center);
 
             
             
-            vec3 res;
-            if(p.intersect(start,ray,res))
+            vec3 res,_res;
+            if(p.intersect(start,ray,res) && p.intersect(old_start,old_ray,_res))
             {
-                vec3 t = res-center;
+                vec3 t = _res-res;
                 printf("%f %f %f\n",t.x,t.y,t.z);
+
+                if(selected->getParent())
+                {
+                    t = inverse(mat3(selected->getParent()->getTransform().modelMatrix()))*t;
+                }
+
                 selected->getTransform().translate(t);
 
             }
@@ -244,6 +292,8 @@ void EditorFrame::OnMove( vec2 pos,ivec2 posdiff,a_uint32 mouseState )
         }
     }
 }
+
+
 
 void EditorFrame::OnKey( a_char key,bool up )
 {

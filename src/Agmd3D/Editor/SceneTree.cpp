@@ -20,7 +20,8 @@ const char* static_string[] = {
     "DisplayNode",
     "Light",
     "Mesh",
-    "CameraNode"
+    "CameraNode",
+    "TreeNode"
 };
 
 void SceneTree::addSceneNode( Agmd::SceneNode* node )
@@ -32,6 +33,14 @@ void SceneTree::addSceneNode( Agmd::SceneNode* node )
         wxTreeItemId id = m_nodes[parent];
         m_nodes[node] = AppendItem(id,wxString(static_string[node->getType()]));
         m_nodesId[m_nodes[node]] = node;
+        if(!node->isEmpty())
+        {
+            const a_vector<Agmd::SceneNode*>& children = node->GetChilden();
+            for(auto i = 0; i < children.size(); ++i)
+            {
+                addSceneNode(children[i]);
+            }
+        }
     }else if(node->getType() ==  Agmd::NodeType::ROOT_NODE)
     {
         wxTreeItemId idRoot = GetRootItem();
@@ -78,7 +87,8 @@ Agmd::SceneNode* SceneTree::getSelectedSceneNode()
 SceneTree::SceneTree( EditorFrame* editor,wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size, long style ) : wxTreeCtrl(parent,id,pos,size,style),
     m_editor(editor)
 {
-    
+    Connect(this->GetId(),wxEVT_KEY_DOWN,wxKeyEventHandler(SceneTree::keyPressed));
+    Connect(this->GetId(),wxEVT_KEY_UP,wxKeyEventHandler(SceneTree::keyReleased));
     Connect( wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler( SceneTree::OnSelect ), NULL, this );
 }
 
@@ -90,6 +100,20 @@ void SceneTree::OnSelect( wxTreeEvent& event )
     {
         m_editor->__selectNode(itr->second);
     }else m_editor->__selectNode(NULL);
+}
+
+void SceneTree::keyPressed(wxKeyEvent& event) {
+    //printf("%c pressed\n",event.GetKeyCode());
+}
+void SceneTree::keyReleased(wxKeyEvent& event) {
+    //printf("%c release\n",event.GetKeyCode());
+    a_uint8 key = event.GetKeyCode();
+    Agmd::SceneNode* selected = getSelectedSceneNode();
+    if(key == 127 && selected && selected->getParent())
+    {
+        selected->getParent()->removeChild(selected);
+        //delete selected
+    }
 }
 
 #endif

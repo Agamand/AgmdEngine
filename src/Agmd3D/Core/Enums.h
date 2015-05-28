@@ -232,7 +232,7 @@ namespace Agmd
         TEXTURE_UNIT_31 = 1 << 31
     };
 
-    #define MAX_RENDERPASS 12
+    #define MAX_RENDERPASS 13
 
     enum TRenderPass
     {
@@ -247,7 +247,8 @@ namespace Agmd
         RENDERPASS_POINT_LIGHTING_WITH_SHADOW,
         RENDERPASS_DIRECTIONNAL_LIGHTING_WITH_SHADOW,
         RENDERPASS_SPOT_LIGHTING_WITH_SHADOW,
-        RENDERPASS_DEFERRED
+        RENDERPASS_DEFERRED,
+        RENDERPASS_FORWARD_LIGHTING
     };
 
     enum TUniformBind

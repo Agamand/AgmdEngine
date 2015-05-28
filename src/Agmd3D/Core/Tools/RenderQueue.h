@@ -8,16 +8,17 @@ namespace Agmd
 
 #define MAX_TYPE 2
     class DisplayNode;
+    enum TRenderType
+    {
+        TYPE_DIFFUSE,
+        TYPE_BLEND
+    };
     class AGMD3D_EXPORT RenderQueue
     {
         
     public:
         friend class SceneMgr;
-        enum TRenderType
-        {
-            TYPE_DIFFUSE,
-            TYPE_BLEND
-        };
+
 
         RenderQueue(){}
         void push_back(DisplayNode* node,TRenderType type = TYPE_DIFFUSE)

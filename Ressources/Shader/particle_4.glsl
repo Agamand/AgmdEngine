@@ -102,7 +102,7 @@ void main()
 			float speed = 400.f/(length(center-pos)*length(center-pos));
 			speed *=10;
 			out_Position = pos;
-			out_Velocity =rotation*(vec3(speed*cos(angle),speed*sin(angle),0)*2)+vec3(-10,0,0);
+			out_Velocity =rotation*(vec3(speed*cos(angle),speed*sin(angle),0)*2)+vec3(0,0,0);
 		}
 		out_Extra = extra.xyz;
 		

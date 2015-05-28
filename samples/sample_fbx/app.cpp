@@ -48,6 +48,7 @@
 #include <libnoise/noise.h>
 
 #include <Agmd3D/Loaders/AssetLoader.h>
+#include <Agmd3D/Loaders/FBXLoader.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -91,7 +92,29 @@ void App::init()
     RenderingMode::setRenderingMode(mode);
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
     m_Scene = new SceneMgr();
+    AssetLoader assetLoader;
+    FBXLoader fbxLoader;
+    
 
+   //
+    //SceneNode* ironMan = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\ironman\\ironman.fbx");
+    //Model* model = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\im\\im.fbx");
+    //Model* model = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\cube01.fbx");
+    //SceneNode* ironMan = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\Peacock\\6ft_Peacock.fbx");
+    //Model* model = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\TheWitcher\\watcher.FBX");
+    //
+
+    SceneNode* triss = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\Triss\\triss.FBX");
+    m_Scene->AddNode(triss);
+
+    SceneNode* geralt = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\TheWitcher2\\witcher.FBX");
+    geralt->getTransform().translate(-5.0f,0,0);
+    m_Scene->AddNode(geralt);
+   
+    //D:\projet Annuel\OGL_Thematique\OPENGL\Data\TheWitcher
+    //SceneNode* dragon = assetLoader.LoadFromFile("D:\\projet Annuel\\agmdengine\\bin\\Debug_Win32\\model\\dragon.obj");
+//    SceneNode* ironMan = assetLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\ironman\\ironman.fbx");
+    
    
     GUIMgr& guimgr = GUIMgr::Instance();
 

@@ -134,6 +134,7 @@ void App::init()
     normal.CreateFromFile("texture/water_normal.png",PXF_A8R8G8B8);
     refractionPipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
     Material* mat = new Material(refractionPipe);
+
     mat->SetTexture(texCube,0,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
     mat->SetTexture(water_normal,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
 	m_Scene->AddNode(dragon);

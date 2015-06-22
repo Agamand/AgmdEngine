@@ -55,7 +55,7 @@ namespace Agmd
         sc->Compute();
         const RenderQueue& queue = sc->getRenderQueue();
         const a_vector<DisplayNode*>& displayable = queue.getDisplayable();
-        
+        const a_vector<DisplayNode*>& displayable2 = queue.getDisplayable(TYPE_BLEND);
         driver.SetViewPort(ivec2(0),ivec2(SCREEN_SPACE));
         m_framebuffer->Clear();
         m_framebuffer->Bind();
@@ -73,6 +73,14 @@ namespace Agmd
             m_picking_shader.SetParameter("u_color",vec4(color[0]/255.f,color[1]/255.f,color[2]/255.f,color[3]/255.f));
             n->draw();
         }
+        for(a_uint32 i =0; i < displayable2.size(); ++i){
+            DisplayNode* n = displayable2[i];
+            a_uint32 icolor = (displayable.size()+i)+1;//test_Color[i%3].ToABGR();
+            a_uint8* color =(a_uint8*)&icolor;
+
+            m_picking_shader.SetParameter("u_color",vec4(color[0]/255.f,color[1]/255.f,color[2]/255.f,color[3]/255.f));
+            n->draw();
+        }
         driver.SetCurrentProgram(NULL);
         m_framebuffer->UnBind();
         m_pickingScreen.updatePixelFromTexture();
@@ -83,6 +91,9 @@ namespace Agmd
         
         if(index > 0 && index-1 < displayable.size())
             return displayable[index-1];
+        
+        if(index >= displayable.size() && index-1-displayable.size() < displayable2.size())
+                return displayable2[index-1-displayable.size()];
         return NULL;
     }
 

@@ -10,9 +10,9 @@ out vec2 v_texCoord;
 
 void main(void)
 {
-    v_texCoord = in_TexCoord0;
+	v_texCoord = in_TexCoord0;
 
-    gl_Position = u_matProjection*u_matModel*vec4(in_Vertex,1.0f);
+	gl_Position = u_matProjection*u_matModel*vec4(in_Vertex,1.0f);
 }
 #endif
 
@@ -37,66 +37,66 @@ out vec4 out_Color;
 
 vec3 normalToTexture(vec3 orgNormal)
 {
-    return vec3(orgNormal.xyz*0.5+vec3(0.5));
+	return vec3(orgNormal.xyz*0.5+vec3(0.5));
 }
 
 void main(void)
 {
-    vec3 vertex = vec3(v_texCoord.x*u_waterPlaneLength-u_waterPlaneLength/2.0 + 0.5, -v_texCoord.y*u_waterPlaneLength+u_waterPlaneLength/2.0 + 0.5, 0.0);
+	vec3 vertex = vec3(v_texCoord.x*u_waterPlaneLength-u_waterPlaneLength/2.0 + 0.5, -v_texCoord.y*u_waterPlaneLength+u_waterPlaneLength/2.0 + 0.5, 0.0);
 
-    vec4 finalVertex;
+	vec4 finalVertex;
 
-    finalVertex.x = vertex.x;
-    finalVertex.y = vertex.y;
-    finalVertex.z = vertex.z;
-    finalVertex.w = 1.0;
+	finalVertex.x = vertex.x;
+	finalVertex.y = vertex.y;
+	finalVertex.z = vertex.z;
+	finalVertex.w = 1.0;
 
-    vec3 finalNormal;
-    
-    finalNormal.x = 0;
-    finalNormal.y = 0;
-    finalNormal.z = 0;
+	vec3 finalNormal;
+	
+	finalNormal.x = 0;
+	finalNormal.y = 0;
+	finalNormal.z = 0;
 
-    for (int i = 0; i < NUMBERWAVES; i++)
-    {
-        vec2 direction = normalize(u_waveDirections[i]);
-        float speed = u_waveParameters[i].x;
-        float amplitude = u_waveParameters[i].y;
-        float wavelength = u_waveParameters[i].z;
-        float steepness = u_waveParameters[i].w;
+	for (int i = 0; i < NUMBERWAVES; i++)
+	{
+		vec2 direction = normalize(u_waveDirections[i]);
+		float speed = u_waveParameters[i].x;
+		float amplitude = u_waveParameters[i].y;
+		float wavelength = u_waveParameters[i].z;
+		float steepness = u_waveParameters[i].w;
 
-        float frequency = sqrt(G*2.0*PI/wavelength);
-        float phase = speed*frequency;
-        float alpha = frequency*dot(direction, vertex.xy)+phase*u_passedTime;
-        
-        finalVertex.x += steepness*amplitude*direction.x*cos(alpha);
-        finalVertex.y += steepness*amplitude*direction.y*cos(alpha);
-        finalVertex.z += amplitude*sin(alpha);
-    }
+		float frequency = sqrt(G*2.0*PI/wavelength);
+		float phase = speed*frequency;
+		float alpha = frequency*dot(direction, vertex.xy)+phase*u_passedTime;
+		
+		finalVertex.x += steepness*amplitude*direction.x*cos(alpha);
+		finalVertex.y += steepness*amplitude*direction.y*cos(alpha);
+		finalVertex.z += amplitude*sin(alpha);
+	}
 
-    for (int i = 0; i < NUMBERWAVES; i++)
-    {
-        vec2 direction = normalize(u_waveDirections[i]);
-        float speed = u_waveParameters[i].x;
-        float amplitude = u_waveParameters[i].y;
-        float wavelength = u_waveParameters[i].z;
-        float steepness = u_waveParameters[i].w;
+	for (int i = 0; i < NUMBERWAVES; i++)
+	{
+		vec2 direction = normalize(u_waveDirections[i]);
+		float speed = u_waveParameters[i].x;
+		float amplitude = u_waveParameters[i].y;
+		float wavelength = u_waveParameters[i].z;
+		float steepness = u_waveParameters[i].w;
 
-        float frequency = sqrt(G*2.0*PI/wavelength);
-        float phase = speed*frequency;
-        float alpha = frequency * dot(direction, finalVertex.xy) + phase*u_passedTime;
-                
-        finalNormal.x += direction.x * wavelength * amplitude * cos(alpha);
-        finalNormal.y += direction.y * wavelength * amplitude * cos(alpha);
-        finalNormal.z += steepness * wavelength * amplitude * sin(alpha);
-    }
+		float frequency = sqrt(G*2.0*PI/wavelength);
+		float phase = speed*frequency;
+		float alpha = frequency * dot(direction, finalVertex.xy) + phase*u_passedTime;
+				
+		finalNormal.x += direction.x * wavelength * amplitude * cos(alpha);
+		finalNormal.y += direction.y * wavelength * amplitude * cos(alpha);
+		finalNormal.z += steepness * wavelength * amplitude * sin(alpha);
+	}
 
-    finalNormal.x = -finalNormal.x;
-    finalNormal.y = -finalNormal.y;
-    finalNormal.z = 1.0-finalNormal.z;
-    
-    out_Color = vec4(normalToTexture(finalNormal), 1.0);
-    
+	finalNormal.x = -finalNormal.x;
+	finalNormal.y = -finalNormal.y;
+	finalNormal.z = 1.0-finalNormal.z;
+	
+	out_Color = vec4(normalToTexture(finalNormal), 1.0);
+	
 }
 
 #endif

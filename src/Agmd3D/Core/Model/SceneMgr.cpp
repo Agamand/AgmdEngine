@@ -16,7 +16,7 @@ namespace Agmd
         m_root = new RootNode(this);
     }
 
-    void SceneMgr::Render( TRenderPass pass, RenderQueue::TRenderType type /*= TYPE_DIFFUSE*/ ) const
+    void SceneMgr::Render( TRenderPass pass, TRenderType type /*= TYPE_DIFFUSE*/ ) const
     {
         if(type < 0 || type >= MAX_TYPE)
             return;
@@ -25,7 +25,7 @@ namespace Agmd
             m_renderQueue.m_displayable[type][i]->render(pass);
     }
 
-    void SceneMgr::Draw( RenderQueue::TRenderType type /*= RenderQueue::TRenderType::TYPE_DIFFUSE*/ ) const
+    void SceneMgr::Draw( TRenderType type /*= RenderQueue::TRenderType::TYPE_DIFFUSE*/ ) const
     {
         for(a_uint32 i = 0, len =m_renderQueue.m_displayable[type].size(); i < len;i++)
             m_renderQueue.m_displayable[type][i]->draw();
@@ -33,10 +33,15 @@ namespace Agmd
 
     void SceneMgr::Compute()
     {
-        a_vector<LightNode*> light;
+        m_lights.clear();
         m_renderQueue.clear();
         
-        FindVisible(m_renderQueue,light);
+        FindVisible(m_renderQueue,m_lights);
+
+        for(auto i = 0; i <m_lights.size() && i < MAX_LIGHT; ++i)
+        {
+            m_lights[i]->GetLightModel()->FillBuffer(m_lightBuffer+i);
+        }
     }
 
     void SceneMgr::Update()
@@ -62,7 +67,7 @@ namespace Agmd
 
     void SceneMgr::AddLight( Light* l )
     {
-        m_light.push_back(l);
+       // m_light.push_back(l);
     }
 
     void SceneMgr::SetSkybox( SkyBox* skybox )
@@ -96,6 +101,16 @@ namespace Agmd
         EditorFrame* frame =  (EditorFrame*)m_frame;
         frame->__removeNode(node);
 #endif    
+    }
+
+    Light::LightBuffer* SceneMgr::GetLightBuffer()
+    {
+        return m_lightBuffer;
+    }
+
+    const a_vector<LightNode*>& SceneMgr::GetLightNodes()
+    {
+        return m_lights;
     }
 
 }

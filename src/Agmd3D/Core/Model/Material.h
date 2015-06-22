@@ -18,7 +18,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Enums.h>
 #include <Core/Resource.h>
 #include <Utilities/Color.h>
-
+#include <Core/Tools/RenderQueue.h>
 namespace Agmd
 {
     struct AGMD3D_EXPORT TextureUnit
@@ -46,8 +46,8 @@ namespace Agmd
     class AGMD3D_EXPORT Material : public Resource
     {
     public:
-        Material();
-        Material(ShaderPipeline* pipeline);
+        Material(TRenderType type = TYPE_DIFFUSE);
+        Material(ShaderPipeline* pipeline,TRenderType type = TYPE_DIFFUSE);
         Material(const Material& mat);
         ~Material();
 
@@ -57,15 +57,18 @@ namespace Agmd
         void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
         template <typename T> void setParameter(std::string paramName,T value)
         {
-            m_pipeline->setParameter(paramName,value);
+            m_shaderPipeline->setParameter(paramName,value);
         }
         Texture getTexture( int texUnit );
+        void SetRenderQueue(TRenderType type);
+        TRenderType GetRenderQueue();
     private:
         
-        ShaderPipeline* m_pipeline;
+        ShaderPipeline* m_shaderPipeline;
         TextureUnit m_texture[MAX_TEXTUREUNIT];
         MaterialInfo m_materialInfo;
         Buffer<MaterialInfo> m_bufferMaterial;
+        TRenderType m_queueType;
     }; 
 }
 

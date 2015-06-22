@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/SceneNode/SceneNode.h>
 namespace Agmd
 {
-    FirstPersonController::FirstPersonController() : InputController(),m_speed(0.02f),
+    FirstPersonController::FirstPersonController() : InputController(),m_speed(0.002f),
         _forward(0,0,1),_up(0,1,0),m_moveFlags(0),m_mouseState(0),m_angularSpeed(0.08f)
     {
         _left = glm::cross(_up,_forward);

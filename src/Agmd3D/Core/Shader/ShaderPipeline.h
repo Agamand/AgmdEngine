@@ -23,7 +23,7 @@ namespace Agmd
     class AGMD3D_EXPORT ShaderPipeline
     {
     public:
-
+        friend class Material;
         ShaderPipeline();
         ShaderPipeline(const ShaderPipeline& copy);
         ~ShaderPipeline();

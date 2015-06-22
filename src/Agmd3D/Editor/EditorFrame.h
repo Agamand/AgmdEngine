@@ -8,19 +8,24 @@
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/menu.h>
+#include "wx/defs.h"
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/panel.h>
-
+#include "wx/wfstream.h"
 #include <wx/scrolwin.h>
 #include <wx/notebook.h>
 #include <wx/treectrl.h>
 #include <wx/aui/aui.h>
 #include <wx/aui/auibar.h>
 #include <wx/frame.h>
+#include "wx/app.h"
+#include "wx/menu.h"
+#include "wx/dcclient.h"
+#include "wx/wfstream.h"
 #include <Editor/Toolbar.h>
 #include <Editor/ObjectPropertyGrid.h>
 
@@ -65,6 +70,7 @@ protected:
     virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
     virtual void onClick( wxCommandEvent& event  );
     void DoAction(vec2 pos,ivec2 posdiff);
+    virtual void OnMenuFileOpen( wxCommandEvent& WXUNUSED(event) );
 public:
     void OnClick(int click, vec2 pos, bool up);
     void OnMove(vec2 pos,ivec2 posdiff,a_uint32 mouseState);
@@ -79,7 +85,8 @@ public:
     void __addNode( Agmd::SceneNode* node );
     void __removeNode(  Agmd::SceneNode* node );
     void __selectNode(Agmd::SceneNode* node);
-    
+
+
 };
 #endif
 #endif //_EDITORFRAME_H_

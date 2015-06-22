@@ -132,8 +132,9 @@ namespace Agmd
         void updateProjection();
         struct CameraBuffer
         {
-            mat4 m_MatProjectionView;
+            vec4 m_ViewPosition;
             mat4 m_MatView;
+            mat4 m_MatProjectionView;
             mat4 m_MatProjection;
         };
 
@@ -143,7 +144,7 @@ namespace Agmd
 //         vec3 move;
 //         a_uint32 moveFlags;
 // 
-//         glm::vec3 _position;
+//         glm::vec3 _position; 
 //         glm::vec3 _target;
 //         glm::vec3 _forward;
 //         glm::vec3 _left;

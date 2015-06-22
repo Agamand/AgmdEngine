@@ -37,24 +37,36 @@ namespace Agmd
         a_vector<vec3> normal;
 
         a_vector<Model::TVertex> vertices;
+        a_vector<FaceVertex> faceVertex;
         a_vector<Model::TIndex> indices;
 
         while(skipCommentLine(file))
         {
-            if(!processLine(position,texPos,normal,indices,file))
+            if(!processLine(position,texPos,normal,faceVertex,file))
                 break;
         }
 
-        for(a_uint32 i = 0; i < position.size(); i++)
+//         for(a_uint32 i = 0; i < position.size(); i++)
+//         {
+//             Model::TVertex vertex;
+//             vertex.position = position[i];
+//             vertex.texCoords = texPos.size() > i ? texPos[i] : vec2();
+//             vertex.normal = normal.size() > i ? normal[i] : vec3();
+//             vertices.push_back(vertex);
+//         }
+        for(a_uint32 i = 0; i < faceVertex.size(); i++)
         {
+
             Model::TVertex vertex;
-            vertex.position = position[i];
-            vertex.texCoords = texPos.size() > i ? texPos[i] : vec2();
-            vertex.normal = normal.size() > i ? normal[i] : vec3();
+            FaceVertex& face =faceVertex[i];
+            vertex.position = position[faceVertex[i].vindex];
+            vertex.texCoords = texPos.size() > faceVertex[i].tindex ? texPos[faceVertex[i].tindex] : vec2();
+            vertex.normal = normal.size() >faceVertex[i].nindex ? normal[faceVertex[i].nindex] : vec3();
             vertices.push_back(vertex);
         }
-
-        return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
+        if(indices.size())
+            return new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
+        return new Model(&vertices[0],vertices.size());
     }
 
     void ObjLoader::SaveToFile(const Model* object, const std::string& filename)
@@ -82,11 +94,19 @@ namespace Agmd
         file >> std::noskipws;
         while( (file >> next) && ('\n' != next) );
     }
-
-    bool ObjLoader::processLine(a_vector<vec3>& position,a_vector<vec2>& texPos,a_vector<vec3>& normal,a_vector<Model::TIndex>& indices, std::istream& is)
+    struct FaceVertex
+    {
+        int vindex;
+        int tindex;
+        int nindex;
+        
+    };
+    bool ObjLoader::processLine(a_vector<vec3>& position,a_vector<vec2>& texPos,a_vector<vec3>& normal,a_vector<FaceVertex>& faceVertex, std::istream& is)
     {
         std::string value;
-        a_int32 index = 0;
+        a_int32 index = 0,
+            tindex = 0,
+            nindex=0;
         a_int32 temp = 0;
 
         if (!(is >> value))
@@ -117,12 +137,17 @@ namespace Agmd
             for (char c; i<10; ++i) 
             {
                 //std::string str = is.;
-                is >> index >> c >> temp >> c >> temp;
+                is >> index >> c >> tindex >> c >> nindex;
                 
+                FaceVertex face;
+                face.vindex = index-1;
+                face.tindex = tindex-1;
+                face.nindex = nindex-1;
                 if(!is.good())
                     break;    
 
-                indices.push_back(index-1);
+                //indices.push_back(index-1);
+                faceVertex.push_back(face);
                 index = 0;
 
             }

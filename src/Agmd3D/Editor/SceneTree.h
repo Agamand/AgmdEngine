@@ -23,6 +23,8 @@ public:
     Agmd::SceneNode* getSelectedSceneNode();
 private:
     virtual void OnSelect( wxTreeEvent& event );
+    void keyReleased(wxKeyEvent& event);
+    void keyPressed(wxKeyEvent& event);
     std::map<Agmd::SceneNode*,wxTreeItemId> m_nodes;
     std::map<wxTreeItemId,Agmd::SceneNode*> m_nodesId; //reverse search
     EditorFrame* m_editor;

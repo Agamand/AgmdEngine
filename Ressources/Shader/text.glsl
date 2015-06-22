@@ -9,8 +9,8 @@ out vec2 texCoord0;
 
 void main()
 {
-    texCoord0 = in_TexCoord0;
-    gl_Position = u_matProjection * u_matModel * vec4(in_Vertex,1.0f);
+	texCoord0 = in_TexCoord0;
+	gl_Position = u_matProjection * u_matModel * vec4(in_Vertex,1.0f);
 }
 #endif
 
@@ -26,9 +26,9 @@ uniform sampler2D texture0;
 
 void main()
 {
-    out_Color = texture2D(texture0, texCoord0)*color;
-    if(out_Color.a < 0.5f)
-        discard;
+	out_Color = texture2D(texture0, texCoord0)*color;
+	if(out_Color.a < 0.5f)
+		discard;
 }
 
 

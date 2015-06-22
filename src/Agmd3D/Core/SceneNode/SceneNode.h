@@ -61,12 +61,15 @@ namespace Agmd
         bool isEmpty();
         void clear();
         void setController( Controller* controller );
-        void setRoot(RootNode* root){
+        void SetRoot(RootNode* root){
             m_root = root;
+            for(auto i  = 0; i < m_children.size(); i++)
+                m_children[i]->SetRoot(root);
         }
         Controller* getController() const {return m_sceneController;}
         void removeChild( SceneNode* node );
         Agmd::SceneNode* getParent();
+        const a_vector<SceneNode*> GetChilden() const;
     protected:
         
         RootNode*             m_root;

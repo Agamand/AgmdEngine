@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 2.6)
 PROJECT(AGMDENGINE)
 SET(AGMD_VERSION 0.0.5)
 FIND_PATH(WXWIDGET_DIR include/wx/wx.h PATH  ${AGMDENGINE_SOURCE_DIR}/wxwidget )
+FIND_PATH(FBX_DIR include/fbxsdk.h PATH C:/Program Files/Autodesk/FBX/FBX SDK/2016.0)
+
 
 IF(COMMAND cmake_policy)
    cmake_policy(SET CMP0003 NEW)

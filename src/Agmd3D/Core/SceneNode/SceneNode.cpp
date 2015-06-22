@@ -102,12 +102,21 @@ namespace Agmd
         if(this->m_type == ROOT_NODE)
             ((RootNode*)this)->add(node);
         else if(m_root) m_root->add(node);
+        for(auto i = 0; i < m_children.size(); i++)
+        {
+            m_children[i]->SetRoot(node->m_root);
+        }
         node->update(m_transform,0,TRANSFORM_CHANGED|UPDATE_CHILDREN);
     }
 
     Agmd::SceneNode* SceneNode::getParent()
     {
         return m_parent;
+    }
+
+    const a_vector<SceneNode*> SceneNode::GetChilden() const
+    {
+        return m_children;
     }
 
 

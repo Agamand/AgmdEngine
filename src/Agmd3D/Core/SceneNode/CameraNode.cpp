@@ -32,7 +32,7 @@ namespace Agmd
         //do nothing;
         bool update = SceneNode::update(transform,time,updateFlags);
         if(update)
-            m_camera->updateBuffer(inverse(this->getTransform().modelMatrix())*m_camera->look());
+            m_camera->updateBuffer(this->getTransform().modelMatrix()*m_camera->look());
         return update;
     }
 }

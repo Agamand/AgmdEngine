@@ -62,6 +62,8 @@ namespace Agmd
             s_defaultPipeline->m_pipeline[RENDERPASS_POINT_SHADOW_CAST] = defaultShader;
             defaultShader.LoadFromFile("Shader/RenderingShader/DeferredShader.glsl");
             s_defaultPipeline->m_pipeline[RENDERPASS_DEFERRED] = defaultShader;
+            //defaultShader.LoadFromFile("Shader/RenderingShader/forward_lighting.glsl");
+            //s_defaultPipeline->m_pipeline[RENDERPASS_FORWARD_LIGHTING] = defaultShader;
         }
 
         return s_defaultPipeline;

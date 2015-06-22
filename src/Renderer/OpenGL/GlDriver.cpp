@@ -741,7 +741,6 @@ namespace Agmd
             
             if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
                 glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP_SGIS, GL_TRUE);
-
         }
 
         for (int i = 0; i <= nbMipmaps; ++i)

@@ -116,11 +116,11 @@ namespace Agmd
         //render.Enable(RENDER_ZWRITE,false);
         sc->Render(RENDERPASS_DIFFUSE);
         render.Enable(RENDER_ALPHABLEND,true);
-        render.Enable(RENDER_ZWRITE,false);
+        render.SetupDepthTest(DEPTH_LEQUAL);
         render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
         sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
         render.Enable(RENDER_ALPHABLEND,false);
-        render.Enable(RENDER_ZWRITE,true);
+        
         //m_framebuffer->UnBind();
 
         /*

@@ -1,6 +1,6 @@
 #ifndef _PARTICLESEMITTER_H_
 #define _PARTICLESEMITTER_H_
-
+#pragma warning(disable:4996)
 #include <Core/Driver.h>
 #include <Core/Buffer/Buffer.h>
 #include <Transform.h>

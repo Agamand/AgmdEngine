@@ -23,7 +23,7 @@ namespace AgmdUtilities
         MemPoolAllocator(a_uint32 base_memory = 256);
         ~MemPoolAllocator();
 
-        T*& Allocate();
+        T* Allocate();
 
         void ReallocatePool(size_t count);
 
@@ -63,7 +63,7 @@ namespace AgmdUtilities
     
 
     template <typename T>
-    inline T*& MemPoolAllocator<T>::Allocate()
+    inline T* MemPoolAllocator<T>::Allocate()
     {
         memBlock b = memBlock(((T*)m_pool)+(++m_current_offset),m_current_offset);
         m_UsedBlocks.push(b);

@@ -46,6 +46,9 @@ void ParticlesEmitter::Draw() const
 	driver.SetViewPort(ivec2(),driver.GetScreen());
 	driver.Enable(RENDER_POINTSIZE_SHADER,true);
 	driver.Enable(RENDER_POINTSPRITE,true);
+    //driver.Enable(RENDER_ZTEST,true);
+    driver.SetupDepthTest(DEPTH_LEQUAL);
+    driver.Enable(RENDER_ZWRITE,true);
 	driver.SetDeclaration(m_declaration);
 	
 	driver.SetIndexBuffer(m_index);

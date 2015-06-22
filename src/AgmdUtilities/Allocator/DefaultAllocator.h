@@ -20,9 +20,9 @@ namespace AgmdUtilities
         DefaultAllocator();
         ~DefaultAllocator();
 
-        virtual T* Allocate(size_t count);
+        virtual T* Allocate(size_t count = 1);
 
-        virtual void UnAllocate(T* ptr, bool isArray = false);
+        virtual void UnAllocate(T* ptr, size_t count = 1);
     };
     #include "DefaultAllocator.inl"
 }

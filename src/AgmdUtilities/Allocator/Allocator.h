@@ -18,9 +18,9 @@ namespace AgmdUtilities
         Allocator() {}
         virtual ~Allocator() {}
 
-        virtual T* Allocate(size_t count) = 0;
+        virtual T* Allocate(size_t count = 1) = 0;
 
-        virtual void UnAllocate(T* ptr, bool isArray = false) = 0;
+        virtual void UnAllocate(T* ptr,size_t count = 1) = 0;
     };
 }
 

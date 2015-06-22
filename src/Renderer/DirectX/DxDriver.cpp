@@ -60,6 +60,23 @@ namespace Agmd
 
 
 
+    const char* shader_dummies = "struct VOut" \
+    "{" \
+    "    float4 position : SV_POSITION;" \
+    "    float4 color : COLOR;" \
+    "};" \
+    "VOut VShader(float4 position : POSITION, float4 color : COLOR)" \
+    "{" \
+    "    VOut output;" \
+    "    output.position = position;" \
+    "    output.color = color;" \
+    "    return output;" \
+    "}" \
+    "float4 PShader(float4 position : SV_POSITION, float4 color : COLOR) : SV_TARGET" \
+    "{" \
+    "    return color;" \
+    "}"; \
+    ID3D10Blob *VSdummies; // for creating VERTEX BUFFER :/
     DXDriver::DXDriver() :
     m_Hwnd              (NULL),
     m_Handle            (NULL),
@@ -139,6 +156,14 @@ namespace Agmd
 
         // set the render target as the back buffer
         m_deviceContext->OMSetRenderTargets(1, &backbuffer, NULL);
+
+
+
+       //D3DX11CompileFromFile("shaders.shader", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &VSdummies, 0, 0);
+        ID3DBlob* errorMsg = NULL;
+       HRESULT r = D3DCompile(shader_dummies,strlen(shader_dummies),NULL,NULL,NULL,"VShader", "vs_2_0",
+            0, 0, &VSdummies, &errorMsg);
+       //char* msg = (char*)errorMsg->GetBufferPointer();
         LoadExtensions();
     }
 
@@ -276,7 +301,7 @@ namespace Agmd
             dxElements.push_back(curElt);
         }
 
-        m_device->CreateInputLayout(&dxElements[0],dxElements.size(),NULL,0,&pLayout);
+        HRESULT r = m_device->CreateInputLayout(&dxElements[0],dxElements.size(),VSdummies->GetBufferPointer(),VSdummies->GetBufferSize(),&pLayout);
         assert(pLayout != NULL);
         return new DXDeclaration(pLayout);
     }

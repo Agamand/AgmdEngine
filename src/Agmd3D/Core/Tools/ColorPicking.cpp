@@ -22,13 +22,14 @@ namespace Agmd
     ColorPicking::ColorPicking()
     {
         m_framebuffer = Driver::Get().CreateFrameBuffer();
-        m_depth = Driver::Get().CreateRenderBuffer(ivec2(SCREEN_SPACE),PXF_DEPTH);
+        //m_depth = Driver::Get().CreateRenderBuffer(ivec2(SCREEN_SPACE),PXF_DEPTH);
+        m_depth.Create(ivec2(SCREEN_SPACE),PXF_DEPTH,TEXTURE_2D);
         m_pickingScreen.Create(ivec2(SCREEN_SPACE),PXF_A8R8G8B8,TEXTURE_2D);
         m_framebuffer->SetTexture(m_pickingScreen,COLOR_ATTACHMENT);
-        m_framebuffer->SetRender(m_depth,DEPTH_ATTACHMENT);
+        m_framebuffer->SetTexture(m_depth,DEPTH_ATTACHMENT);
         m_picking_shader.LoadFromFile("/Shader/core/picking.glsl");
     }
-    SceneNode* ColorPicking::pick(const vec2& screen){ //screen (0,0) to (1,1);
+    ColorPicking::PickingResult ColorPicking::pick(const vec2& screen){ //screen (0,0) to (1,1);
         vec3 ray,positon;
 
         Camera* cam = Camera::getCurrent(CAMERA_3D);
@@ -40,16 +41,18 @@ namespace Agmd
             end.y = end.y;
             start.y = start.y;
             return pick(start,normalize(end-start));
-        }else return NULL;
+        }else return PickingResult();
         
     }
-    SceneNode* ColorPicking::pick( const vec3& position,const vec3& ray )
+#define MIN_DEPTH 0.01f
+#define MAX_DEPTH 1000.f
+    ColorPicking::PickingResult ColorPicking::pick( const vec3& position,const vec3& ray )
     {
         vec3 _ray(ray.x,ray.y,ray.z); //WHY?
-        printf("positon %f %f %f,",position.x,position.y,position.z);
-        printf(" ray %f %f %f\n",_ray.x,_ray.y,_ray.z);
+        //printf("positon %f %f %f,",position.x,position.y,position.z);
+        //printf(" ray %f %f %f\n",_ray.x,_ray.y,_ray.z);
         //mat4 d = lookAt(vec3(0,0,0),vec3(0,0,-1),vec3(0,1,0));
-        mat4 proj = ortho(-0.1f,0.1f,-0.1f,0.1f,0.01f,1000.f)*lookAt(position,position+_ray,vec3(0,1,0));
+        mat4 proj = ortho(-0.1f,0.1f,-0.1f,0.1f,MIN_DEPTH,MAX_DEPTH)*lookAt(position,position+_ray,vec3(0,1,0));
         Driver& driver = Driver::Get();
         SceneMgr* sc = driver.GetActiveScene();
         sc->Compute();
@@ -84,17 +87,27 @@ namespace Agmd
         driver.SetCurrentProgram(NULL);
         m_framebuffer->UnBind();
         m_pickingScreen.updatePixelFromTexture();
+        m_depth.updatePixelFromTexture();
         Image& p = m_pickingScreen.GetPixels();
+
         //printf("ID %i\n",*((int*)p.GetData()));
-        
-        a_uint32 index = *((int*)p.GetData());
+        float depth = *((float*)m_depth.GetPixels().GetData());
+        printf("depth %f\n",depth);
+        float offset = MIN_DEPTH+(MAX_DEPTH-MIN_DEPTH)*depth;
+        PickingResult result;
+        result.hitPosition = position+ray*offset;
+        result.ray = ray;
+        a_uint32 index = *((a_uint32*)p.GetData());
         
         if(index > 0 && index-1 < displayable.size())
-            return displayable[index-1];
-        
-        if(index >= displayable.size() && index-1-displayable.size() < displayable2.size())
-                return displayable2[index-1-displayable.size()];
-        return NULL;
+        {
+            result.node = displayable[index-1];
+            //return displayable[index-1];
+        }else if(index >= displayable.size() && index-1-displayable.size() < displayable2.size())
+        {
+            result.node =  displayable2[index-1-displayable.size()];
+        }
+        return result;
     }
 
     Texture& ColorPicking::getPickingScreen()

@@ -10,27 +10,28 @@ https://github.com/Agamand/AgmdEngine
 #define _MESHNODE_H_
 
 #include <Core/SceneNode/DisplayNode.h>
+#include <Core/Model/AModel.h>
 
 namespace Agmd
 {
     class AGMD3D_EXPORT MeshNode : public DisplayNode
     {
     public:
-        MeshNode(Model* basemodel, Transform* transform = NULL);
+        MeshNode(AModel* basemodel, Transform* transform = NULL);
         virtual ~MeshNode();
 
         virtual void render(TRenderPass pass) const;
         virtual void draw() const;
         virtual bool isVisible(BoundingSphere& bbox);
-        void setModel(Model*model)
+        void setModel(AModel*model)
         {
             m_baseModel = model;
         }
         void setMaterial( Material* surface_mat );
-        Model* getModel() {return m_baseModel;}
+        AModel* getModel() {return m_baseModel;}
         
     private:
-        Model* m_baseModel;
+        AModel* m_baseModel;
     };
 }
 

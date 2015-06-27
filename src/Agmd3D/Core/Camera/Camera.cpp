@@ -139,7 +139,13 @@ namespace Agmd
     void Camera::updateProjection()
     {
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.FillByte(&m_transform,sizeof(mat4)+sizeof(vec4),sizeof(mat4)*2);
+        //m_cameraBuffer.FillByte(&m_transform,sizeof(mat4)+sizeof(vec4),sizeof(mat4)*2);
+        
+        auto a = m_cameraBuffer.Lock();
+        a->m_MatProjection = m_transform.m_MatProjection;
+        a->m_MatProjectionView = m_transform.m_MatProjectionView;
+        m_cameraBuffer.Unlock();
+        
         m_frustum->Setup(m_transform.m_MatProjection);
     }
 
@@ -172,7 +178,7 @@ namespace Agmd
             }
             
             
-            m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w);
+            m_transform.m_MatProjection = glm::ortho(-m_projOption.size.y/2.0f,m_projOption.size.y/2.0f,-m_projOption.size.w/2.0f,m_projOption.size.w/2.0f);
             updateProjection();
         }// if ortho nothing to do
     }

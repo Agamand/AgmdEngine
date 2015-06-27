@@ -92,6 +92,7 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\MatStack.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\MediaManager.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Driver.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Model\AModel.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Model\GeometryFactory.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Model\IcosahedronModel.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Model\Light.h" />

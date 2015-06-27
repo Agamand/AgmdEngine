@@ -48,6 +48,7 @@ namespace Agmd
 
              m_bounding = BoundingSphere(_min,_max);
         }
+        Generate(G_NORMAL,vertices,verticesCount,indices,indicesCount);
         GenerateBuffer(vertices,verticesCount,indices,indicesCount,type);
     }
 
@@ -129,6 +130,8 @@ namespace Agmd
 
     void Model::Draw(const Transform* transform) const
     {
+        if(!m_VertexBuffer.GetBuffer())
+            return;
         if(transform)
             Driver::Get().SetCurrentTransform(transform);
         Driver::Get().SetDeclaration(m_Declaration);
@@ -383,9 +386,5 @@ namespace Agmd
         m_maxDraw = param1;
     }
 
-    const BoundingSphere& Model::getBounding() const
-    {
-        return m_bounding;
-    }
 
 }

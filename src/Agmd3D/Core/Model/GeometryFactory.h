@@ -19,11 +19,15 @@ namespace Agmd
         static Model* createPlane(ivec2 size,ivec2 n_poly);
         static Model* createSphere(float r,float stack, float slice,float angle);
         static Model* createBox(vec3 size);
+        static void  createBox(a_vector<vec3>& vert, a_vector<a_uint16>& index, vec3 size);
         static Model* createMetaSphere(float r, int stack, int slice);
         static void  jarvis(a_vector<vec2>& points,a_vector<vec2>& poly_out);
         static void delaunay(a_vector<vec2>& points,a_vector<a_uint16>& triangles);
         static void voronoi(a_vector<vec2>& points,a_vector<vec2>& out_points, a_vector<a_uint16>& triangles);
-        void GeometryFactory::BBox(a_vector<vec3>& vertices,a_vector<vec3> box);
+        static void BBox(a_vector<vec3>& vertices,a_vector<vec3> box);
+        static void Indexize(a_vector<vec3>& in, a_vector<vec3>& out,a_vector<a_uint16>& index);
+        static void loopSubdivize(a_vector<vec3>& vert, a_vector<a_uint16>& index,a_vector<vec3>& out_vert, a_vector<a_uint16>& out_index);
+        static void createIndexedBox( a_vector<vec3>& vert, a_vector<a_uint16>& indices, vec3 size );
     };
 }
 

@@ -8,7 +8,7 @@ https://github.com/Agamand/AgmdEngine
 
 #ifndef _FBXLOADER_H_
 #define _FBXLOADER_H_
-
+#ifdef _FBX_DEFINED_
 #include <Config/Export.h>
 #include <Core/Loader.h>
 #include <Core/Model/Model.h>
@@ -33,6 +33,7 @@ namespace Agmd
     };
 
 }
+#endif
 
 
 #endif /* _FBXLOADER_H_ */

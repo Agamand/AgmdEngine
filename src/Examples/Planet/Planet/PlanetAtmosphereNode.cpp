@@ -87,7 +87,7 @@ void PlanetAtmosphereNode::render( TRenderPass pass ) const
 
 void PlanetAtmosphereNode::findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light )
 {
-    if(!m_controller->m_use_atmosphere || !cam->isInFrustrum(m_globalBbox))
+    if(!m_controller->m_use_atmosphere || !cam->isInFrustrum(m_globalBounds))
         return;
 
     PlanetModel* model = m_controller->m_model;
@@ -97,7 +97,7 @@ void PlanetAtmosphereNode::findVisible( Camera*cam, RenderQueue& display, a_vect
     my = m_transform->modelMatrix()*my;
     m_controller->m_cam_position = m_controller->m_cam_position-vec3(my);
     m_controller->m_cam_dist = length(m_controller->m_cam_position);
-    display.push_back(this,RenderQueue::TRenderType::TYPE_BLEND);
+    display.push_back(this,TRenderType::TYPE_BLEND);
 
     SceneNode::findVisible(cam,display,light);
 }

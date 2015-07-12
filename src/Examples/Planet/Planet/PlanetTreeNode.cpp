@@ -66,7 +66,7 @@ PlanetTreeNode::PlanetTreeNode( PlanetModel* model,Planet* controller,int face,c
         _max.y = max(_max.y,points[i].y*(1+0.1f));
         _max.z = max(_max.z,points[i].z*(1+0.1f));
     }
-    m_baseBounds = BoundingBox(_min,_max);
+    m_baseBounds = BoundingSphere(_min,_max);
     update(NULL,false,true);
 }
 

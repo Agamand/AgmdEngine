@@ -7,6 +7,8 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Loaders/FBXLoader.h>
+
+#ifdef _FBX_DEFINED_
 #include <Core/Driver.h>
 #include <Core/SceneNode/MeshNode.h>
 #include <Core/Model/Material.h>
@@ -541,3 +543,4 @@ namespace Agmd
 
 
 }
+#endif

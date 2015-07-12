@@ -13,21 +13,18 @@ status : in pause
 
 
 #include "App.h"
-#include "M2Model.h"
-#include "M2Loader.h"
+
 #include <Agmd3D\Core\MediaManager.h>
 #include <Agmd3D\Core\Driver.h>
 #include <Agmd3D\Core\Enums.h>
 #include <Agmd3D\Core\Declaration.h>
 #include <Agmd3D\Core\DeclarationElement.h>
 #include <Agmd3D\Core\ResourceManager.h>
-#include <Agmd3D\Core\SceneObject\Terrain.h>
 #include <Agmd3D\Core\MediaManager.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D\Core\RenderObject\GraphicString.h>
-#include <Agmd3D\Core\SceneObject\Scene.h>
-#include <Agmd3D\Core\SceneObject\Water.h>
-#include <Agmd3D\Core\SceneObject\SkyBox.h>
+#include <Agmd3D/Core/Controller/FirstPersonController.h>
+#include <Agmd3D/Core/SceneNode/CameraNode.h>
 #include <Agmd3D/Core/Model/Light.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
@@ -50,14 +47,11 @@ status : in pause
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <Demo/Loader/MeshLoader.h>
 #include <glm/ext.hpp>
-#include "PerlinNoise.h"
 #include <libnoise/noise.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
 #include <random>
-#include "simplexnoise.h"
-#include "noiseutils.h"
 
 #include <Agmd3D/Core/Effects/BlurMotionEffect.h>
 #include <Agmd3D/Core/Effects/Inverse.h>
@@ -149,8 +143,6 @@ void App::init()
 //	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
 	//box->SetTexture(tex_cubemap);
-	cam3D = new FollowCamera(m_MatProj3D,0,0,vec2(-65.7063446,0),10.f);//m_MatProj3D,4.8f,8.8f,vec2(0,-7.55264f),9.87785f); //Follow Camera Theta(4.8) _phi(8.8) angles(0,-7.55264) distance(9.87785)
-	cam2D = new FPCamera(m_MatProj2D);
 
 	velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
 	mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
@@ -158,7 +150,10 @@ void App::init()
 	tvelocity.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
 	position->SetBackground(tmass);
 	velocity->SetBackground(tvelocity);
-	
+	cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2((float)getScreen().x, (float)getScreen().y),35.0f));
+	cam2D = new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
+	InputController* controller = new FirstPersonController();
+	CameraNode* camNode = new CameraNode(cam3D,controller);
 
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
@@ -179,8 +174,8 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 	if(drawMouse)
 		mouse_emitter->Update(time_diff);
 
-	FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
-    const vec2& angles = cam->GetAngles();
+	//FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
+    //const vec2& angles = cam->GetAngles();
 	//cam3D->onMouseMotion(1,0);
 }
 

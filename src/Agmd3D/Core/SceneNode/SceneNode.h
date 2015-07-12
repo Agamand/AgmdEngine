@@ -55,7 +55,10 @@ namespace Agmd
         }
 
         virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
+        
         Transform& getTransform();
+        void SetTransform(Transform* t);
+
         void addChild(SceneNode* node);
         NodeType getType() const {return m_type;}
         bool isEmpty();

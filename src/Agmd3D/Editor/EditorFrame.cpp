@@ -184,14 +184,16 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
         return;
     }
 
-    std::cout << "click " <<  click << " up? " << up << std::endl;
+    //std::cout << "click " <<  click << " up? " << up << std::endl;
+    return;
     if(click == 1)
     {
         if(!m_sceneTree->getSelectedSceneNode() || up)
         {
-            Agmd::SceneNode* pick = Agmd::ColorPicking::Instance().pick(pos);
+            Agmd::ColorPicking::PickingResult pick = Agmd::ColorPicking::Instance().pick(pos);
             if(m_sceneTree)
-                m_sceneTree->setSelectedSceneNode(pick);
+                m_sceneTree->setSelectedSceneNode(pick.node);
+            
         }
     }
 }

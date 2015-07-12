@@ -9,11 +9,11 @@ namespace Agmd
     class AGMD3D_EXPORT Nurbs : public BaseSpline
     {
     public:
-        Nurbs(vec2 p[], int count) : BaseSpline(p,count)
+        Nurbs(vec3 p[], int count) : BaseSpline(p,count)
         {
             compute();
         }
-        Nurbs(const std::vector<vec2>& p) : BaseSpline(p)
+        Nurbs(const std::vector<vec3>& p) : BaseSpline(p)
         {
             compute();
         }

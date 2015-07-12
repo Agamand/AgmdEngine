@@ -9,6 +9,9 @@ https://github.com/Agamand/AgmdEngine
 #ifndef MODEL_H
 #define MODEL_H
 
+
+#include <Core/Model/AModel.h>
+
 #include <Config/Fwd.h>
 #include <Core/Resource.h>
 #include <Core/Buffer/Buffer.h>
@@ -39,7 +42,7 @@ namespace Agmd
         G_ALL = G_NORMAL | G_TANGENT
     };
 
-    class AGMD3D_EXPORT Model : public Resource
+    class AGMD3D_EXPORT Model : public AModel, public Resource
     {
     public :
         struct TVertex
@@ -58,11 +61,10 @@ namespace Agmd
 
         void GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
         void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
-        void Draw(const Transform* transform) const;
+        virtual void Draw(const Transform* transform) const;
 
         void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
         void setMaxDraw( int param1 );
-        const BoundingSphere& getBounding() const;
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount);
@@ -74,7 +76,6 @@ namespace Agmd
         TPrimitiveType  m_PrimitiveType;
         bool            m_indexed;
         int             m_maxDraw;
-        BoundingSphere  m_bounding;
 
     };
 

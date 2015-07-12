@@ -36,6 +36,10 @@ namespace Agmd
         return *m_transform;
     }
 
+    void SceneNode::SetTransform(Transform* t){
+        m_transform = t;
+    }
+
     bool SceneNode::update( Transform* transform, a_uint32 time, a_uint32 updateFlags )
     {
         

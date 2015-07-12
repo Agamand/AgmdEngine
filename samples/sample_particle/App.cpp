@@ -26,6 +26,8 @@ status : in pause
 #include <Agmd3D/Core/Controller/FirstPersonController.h>
 #include <Agmd3D/Core/SceneNode/CameraNode.h>
 #include <Agmd3D/Core/Model/Light.h>
+#include <Agmd3D/Core/SceneNode/CameraNode.h>
+#include <Agmd3D/Core/Controller/FirstPersonController.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D/Core/RenderingMode/DeferredRendering.h>
 #include <Agmd3D/Core/RenderingMode/ForwardRendering.h>
@@ -47,7 +49,7 @@ status : in pause
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <Demo/Loader/MeshLoader.h>
 #include <glm/ext.hpp>
-#include <libnoise/noise.h>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
@@ -93,8 +95,9 @@ void App::init()
 	drawMouse = false;
 	draw = true;
 	pause = false;
-    DeferredRendering* mode = new DeferredRendering(getScreen());
-    //RenderingMode::SetRenderingMode(mode);
+    //DeferredRendering* mode = new DeferredRendering(getScreen());
+    ForwardRendering* mode = new ForwardRendering(getScreen());
+    RenderingMode::setRenderingMode(mode);
 	tex[0].Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
 	tex[1].Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
     m_fxaa = new AntiAliasing();
@@ -115,9 +118,7 @@ void App::init()
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
 
-    m_light = new Light(vec3(0, 0 ,10),-normalize(vec3(0,0.2,-1)),LightType::LIGHT_DIR);//new Light(vec3(0,0,10),-normalize(vec3(0,0.5,-1)),LIGHT_SPOT);
-    m_Scene->AddLight(m_light);
-    m_light->SetRange(2000.0f);
+
 	ShaderProgram prog;
 	ShaderProgram prog2;
 	/*particles1 = new ParticlesEmitter("Shader/particle_1.glsl",250,new Transform(vec3(-6,0,0)));
@@ -135,14 +136,41 @@ void App::init()
 	AWindow* velocity = new AWindow();
 	AWindow* life = new AWindow();
 
-
-	//particles->velocity_buffer[1]);
-	//life->SetBackground(mouse_emitter->extra_buffer[0]);
-	//GUIMgr::Instance().AddWidget(position);
-	//GUIMgr::Instance().AddWidget(velocity);
-//	GUIMgr::Instance().AddWidget(life);
+    Image img[6];
+    static const char* cubemap_str[] = {
+        "right",
+        "left",
+        "down",
+        "up",
+        "back",
+        "front"
+    };
+    for(int i = 0; i < 6; i++)
+    {
+        img[i] = Image(ivec2(512));
+        img[i].LoadFromFile(StringBuilder("texture/skybox/")(cubemap_str[i])(".png"));
+    }
+    Texture texCube;
+    texCube.CreateFromImage(img,PXF_A8R8G8B8);
+    SkyBox* sk = new SkyBox();
+    sk->SetTexture(texCube);
+    m_Scene->SetSkybox(sk);
+    //particles->velocity_buffer[1]);
+    //life->SetBackground(mouse_emitter->extra_buffer[0]);
+//     GUIMgr::Instance().AddWidget(position);
+//     GUIMgr::Instance().AddWidget(velocity);
+// 	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
 	//box->SetTexture(tex_cubemap);
+
+    cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
+
+    InputController* controller = new FirstPersonController();
+    CameraNode* camNode = new CameraNode(cam3D,controller);
+    camNode->setController(controller);
+    m_Scene->AddNode(camNode);
+    cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
+
 
 	velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
 	mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
@@ -182,17 +210,17 @@ void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 void App::OnRender3D()
 {
 
-	Texture::BeginRenderToTexture(tex[0]);
+	//Texture::BeginRenderToTexture(tex[0]);
 	if(drawMouse)
 		mouse_emitter->Draw();
 	for(int i = 0; i < m_particles.size(); i++)
 	{
 		m_particles[i]->Draw();
 	}
-	Texture::EndRenderToTexture();
+	//Texture::EndRenderToTexture();
 	//blur->ApplyEffect(tex[0],tex[1]);
 	 //PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
-	Texture::TextureRender(tex[1],ivec2(0),m_ScreenSize);
+	//Texture::TextureRender(tex[0],ivec2(0),m_ScreenSize);
 	/*
 	for(int i = 0; i < m_particles.size(); i++)
 	{
@@ -299,10 +327,10 @@ void App::OnKey( a_char key, bool up )
 		case 'L':
 			drawMouse = !drawMouse;
 			break;
-		case WXK_ADD:
+		case 388:
 			timespeed *=2.f;
 			break;
-		case WXK_SUBTRACT:
+		case 390:
 			timespeed /=2.f;
 		}
 

@@ -18,39 +18,40 @@ namespace Agmd
         class UpdateListener
         {
         public:
-            virtual void onUpdate(a_vector<vec2>& points) = 0;
+            virtual void onUpdate(a_vector<vec3>& points) = 0;
         };
         friend class DrawablePlane;
         
-        BaseSpline(vec2 points[], int count);
+        BaseSpline(const vec3* points, int count);
         
-        BaseSpline(const a_vector<vec2>& points);
+        BaseSpline(const a_vector<vec3>& points);
         
-        void setUpdateListener(UpdateListener* context);
+        void addUpdateListener(UpdateListener* context);
 
-        a_vector<vec2>& getControlPoints() {
+        a_vector<vec3>& getControlPoints() {
             return m_controlPoints;
         }
 
-        a_vector<vec2>& getComputedPoints() {
+        a_vector<vec3>& getComputedPoints() {
             return m_computedPoints;
         }
 
-        vec2* getLastPoint()
+        vec3* getLastPoint()
         {
             return &m_controlPoints[m_controlPoints.size()-1];
         }
         void updatePoint(int pointIndex = -1);
-        vec2*getNearControlPoint( vec4 pos, int& pointindex, vec2* ignore=NULL );
+        vec3*getNearControlPoint( vec4 pos, int& pointindex, vec3* ignore=NULL );
         virtual void compute(int pointIndex = -1);
-        void addPoint(vec2& p);
+        virtual void compute( a_vector<vec3>& out,int size);
+        void addPoint(vec3& p);
         bool isClosed() const;
     protected:
-        a_vector<vec2> m_controlPoints;
-        a_vector<vec2> m_computedPoints;
-        UpdateListener* m_updateListener;
+        a_vector<vec3> m_controlPoints;
+        a_vector<vec3> m_computedPoints;
+        a_vector<UpdateListener*> m_updateListener;
         int m_controlPointsC;
-        vec2* _points;
+        vec3* _points;
         bool m_localUpdate;
     };
 }

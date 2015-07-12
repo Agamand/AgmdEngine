@@ -26,15 +26,22 @@ namespace Agmd
     {
         MAKE_SINGLETON(ColorPicking)
     public:
+        struct PickingResult {
+            PickingResult() : node(NULL)
+            {}
+            SceneNode*  node;
+            vec3        ray;
+            vec3        hitPosition;
+        };
         ColorPicking();
-        SceneNode* pick(const vec3& position,const vec3& ray);
-        SceneNode* pick(const vec2& pos);
+        PickingResult pick(const vec3& position,const vec3& ray);
+        PickingResult pick(const vec2& pos);
         Texture& getPickingScreen();
         ShaderProgram m_picking_shader;
     private:
         FrameBuffer* m_framebuffer;
-        RenderBuffer* m_depth;
         Texture m_pickingScreen;
+        Texture m_depth;
     }; 
 }
 #endif /* _COLORPICKING_H_ */

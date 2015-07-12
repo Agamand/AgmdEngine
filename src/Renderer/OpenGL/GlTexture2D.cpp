@@ -88,7 +88,7 @@ namespace Agmd
         RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
         RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
         glBindTexture(GL_TEXTURE_2D, m_Texture);
-        glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,imgFmt.Type,m_Data.GetDataPtr());
+        glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,m_Format == PXF_DEPTH ? GL_FLOAT : GL_UNSIGNED_BYTE,m_Data.GetDataPtr());
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 

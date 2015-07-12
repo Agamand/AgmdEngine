@@ -5,15 +5,15 @@ namespace Agmd
 {
     LineRenderer::LineRenderer( BaseSpline* spline ) : m_spline(spline),m_vertexCount(0),m_vertexControlCount(0)
     {
-        spline->setUpdateListener(this);
+        spline->addUpdateListener(this);
         TDeclarationElement elements[] =
         {
-            {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT2}
+            {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3}
         };
         Driver& driver = Driver::Get();
         m_declaration = driver.CreateVertexDeclaration(elements);
-        a_vector<vec2> &points = spline->getComputedPoints();
-        a_vector<vec2> &points_control = spline->getControlPoints();
+        a_vector<vec3> &points = spline->getComputedPoints();
+        a_vector<vec3> &points_control = spline->getControlPoints();
         if(points.size())
         {
             m_vertex = driver.CreateVertexBuffer(points.size(),BUF_STREAM,&points[0]);
@@ -28,26 +28,34 @@ namespace Agmd
         m_program_control.LoadFromFile("Shader/control_point.glsl");
     }
 
-    void LineRenderer::draw( const mat4& projection ) const
+    void LineRenderer::draw() const
     {
-        //m_spline->updatePoint();
+
+        drawLine();
+        drawPoints();
+    }
+    void LineRenderer::drawLine() const
+    {
         if(m_vertex.GetCount() < 2)
             return;
         Driver& driver = Driver::Get();
-        driver.SetCurrentProgram(m_program.GetShaderProgram());
-        m_program.SetParameter("u_projection",projection);
+        //driver.SetCurrentProgram(m_program.GetShaderProgram());
+        driver.GetCurrentProgram()->SetParameter("u_fcolor",vec4(1,0,0,1));
         driver.SetDeclaration(m_declaration);
         driver.SetVertexBuffer(0,m_vertex);
         driver.DrawPrimitives(PT_LINESTRIP,0,m_vertexCount);
     }
 
-    void LineRenderer::drawPoints( const mat4& projection ) const
+    void LineRenderer::drawPoints() const
     {
         if(!m_vertex.GetCount())
             return;
+
+
         Driver& driver = Driver::Get();
-        driver.SetCurrentProgram(m_program_control.GetShaderProgram());
-        m_program.SetParameter("u_projection",projection);
+        driver.Enable(RENDER_POINTSIZE_SHADER,true);
+        //driver.SetCurrentProgram(m_program_control.GetShaderProgram());
+        driver.GetCurrentProgram()->SetParameter("u_fcolor",vec4(0,1,0,1));
         driver.SetDeclaration(m_declaration);
         driver.SetVertexBuffer(0,m_vertexControl);
         driver.DrawPrimitives(PT_POINTLIST,0,m_vertexControlCount);
@@ -55,14 +63,14 @@ namespace Agmd
 
 
 
-    void LineRenderer::onUpdate( a_vector<vec2>& points )
+    void LineRenderer::onUpdate( a_vector<vec3>& points )
     {
         Driver& driver = Driver::Get();
         
-        a_vector<vec2>& ct_points = m_spline->getControlPoints();
+        a_vector<vec3>& ct_points = m_spline->getControlPoints();
         if(ct_points.size() <= m_vertexControl.GetCount())
         {
-            vec2* p= m_vertexControl.Lock();
+            vec3* p= m_vertexControl.Lock();
             for(a_uint32 i = 0, len = ct_points.size(); i < len;i++)
             {
                 *(p) = ct_points[i]; 
@@ -80,7 +88,7 @@ namespace Agmd
 
         if(points.size() <= m_vertex.GetCount())
         {
-            vec2* p= m_vertex.Lock();
+            vec3* p= m_vertex.Lock();
             for(a_uint32 i = 0, len = points.size(); i < len;i++)
             {
                 *(p) = points[i]; 
@@ -94,6 +102,12 @@ namespace Agmd
             m_vertex = driver.CreateVertexBuffer(points.size(),BUF_STREAM,&points[0]);
 
         }
+    }
+
+    void LineRenderer::Draw( const Transform* transform ) const
+    {
+        Driver::Get().SetCurrentTransform(transform);
+        draw();
     }
 
     

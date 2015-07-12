@@ -606,8 +606,8 @@ namespace Agmd
             mouseState &= ~MOUSE_LEFT;
             else mouseState |= MOUSE_LEFT;
             for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
-            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(0),mouseState,0));
+                m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
+            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(pos.x,m_ScreenSize.y-pos.y),ivec2(0),mouseState,0));
             return;
 
         case 2:
@@ -615,8 +615,8 @@ namespace Agmd
                 mouseState &= ~MOUSE_MIDDLE;
             else mouseState |= MOUSE_MIDDLE;
             for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
-            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(last_mouse_pos.x,m_ScreenSize.y-last_mouse_pos.y),ivec2(0),mouseState,0));
+                m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(pos)/vec2(m_ScreenSize)*2.0f-vec2(1),up);
+            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,ivec2(pos.x,m_ScreenSize.y-pos.y),ivec2(0),mouseState,0));
             return;
         case 3:
             if(up)

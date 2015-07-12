@@ -190,7 +190,7 @@ LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
         case 'I':
             if(render.size() < 2)
                 break;
-            _CreatePlane(render[0]->getSpline(),render[1]->getSpline(),vertices,index);
+                (render[0]->getSpline(),render[1]->getSpline(),vertices,index);
             mo= new Model(&vertices[0],vertices.size(),&index[0],index.size());
             //tex.CreateFromFile("Texture/debug.png",PXF_A8R8G8B8);
 

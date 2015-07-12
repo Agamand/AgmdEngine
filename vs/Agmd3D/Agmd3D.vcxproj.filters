@@ -397,6 +397,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Loaders\FBXLoader.h">
       <Filter>Loaders</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Agmd3D\Core\Model\AModel.h">
+      <Filter>Core\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Agmd3D\Core\Buffer\Buffer.inl">

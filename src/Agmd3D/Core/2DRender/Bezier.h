@@ -10,11 +10,11 @@ namespace Agmd
     class AGMD3D_EXPORT Bezier : public BaseSpline
     {
     public:
-        Bezier(vec2 p[], int count) : BaseSpline(p,count)
+        Bezier(vec3 p[], int count) : BaseSpline(p,count)
         {
             compute();
         }
-        Bezier(const std::vector<vec2>& p) : BaseSpline(p)
+        Bezier(const std::vector<vec3>& p) : BaseSpline(p)
         {
             compute();
         }

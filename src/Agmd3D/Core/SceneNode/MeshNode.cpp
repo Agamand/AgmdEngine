@@ -6,7 +6,7 @@
 
 namespace Agmd
 {
-    MeshNode::MeshNode(Model* basemodel, TransformPtr transform) :
+    MeshNode::MeshNode(AModel* basemodel, TransformPtr transform) :
     DisplayNode(transform,NULL),
     m_baseModel(basemodel)
     {

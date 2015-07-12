@@ -22,7 +22,7 @@ namespace Agmd
 
     void DisplayNode::findVisible( Camera*cam, RenderQueue& display, a_vector<LightNode*>& light )
     {
-        if(cam->isInFrustrum(m_globalBounds))
+        //if(cam->isInFrustrum(m_globalBounds))
             display.push_back(this,m_material->GetRenderQueue());
         
         SceneNode::findVisible(cam,display,light);

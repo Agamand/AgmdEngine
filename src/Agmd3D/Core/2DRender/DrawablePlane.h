@@ -40,9 +40,10 @@ namespace Agmd
             return m_render;
         }
         vec2 getPositionFromScreenSpace(vec2 pos);
+        vec3* getNearControlPoint( vec4 _pos, int pi, vec3* selectedPoint );
         float degree;
-    private:
-        a_vector<vec2> m_bufferPoint;
+    private:    
+        a_vector<vec3> m_bufferPoint;
         ShaderProgram m_renderProgram;
         ivec2 m_pixelSize;
         vec2  m_repere;
@@ -51,7 +52,7 @@ namespace Agmd
         a_vector<LineRenderer*> m_render;
         mat4 m_projection;
         mat4 m_reverse_projection;
-        vec2* m_selectedPoint;
+        vec3* m_selectedPoint;
         BaseSpline* m_selectedSpline;
         int m_pointIndex;
         int key;

@@ -13,6 +13,7 @@ status : in pause
 
 
 #include "App.h"
+
 #include <Agmd3D\Core\MediaManager.h>
 #include <Agmd3D\Core\Driver.h>
 #include <Agmd3D\Core\Enums.h>
@@ -22,6 +23,8 @@ status : in pause
 #include <Agmd3D\Core\MediaManager.h>
 #include <Agmd3D\Core\Buffer\FrameBuffer.h>
 #include <Agmd3D\Core\RenderObject\GraphicString.h>
+#include <Agmd3D/Core/Controller/FirstPersonController.h>
+#include <Agmd3D/Core/SceneNode/CameraNode.h>
 #include <Agmd3D/Core/Model/Light.h>
 #include <Agmd3D/Core/SceneNode/CameraNode.h>
 #include <Agmd3D/Core/Controller/FirstPersonController.h>
@@ -46,6 +49,7 @@ status : in pause
 #include <Agmd3D/Core/Tools/Fast2DSurface.h>
 #include <Demo/Loader/MeshLoader.h>
 #include <glm/ext.hpp>
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Core/Shader/ShaderPreCompiler.h>
@@ -158,6 +162,7 @@ void App::init()
 // 	GUIMgr::Instance().AddWidget(life);
 	SkyBox* box = new SkyBox();
 	//box->SetTexture(tex_cubemap);
+
     cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
 
     InputController* controller = new FirstPersonController();
@@ -166,13 +171,17 @@ void App::init()
     m_Scene->AddNode(camNode);
     cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
 
+
 	velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
 	mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
 	tmass.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
 	tvelocity.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
 	position->SetBackground(tmass);
 	velocity->SetBackground(tvelocity);
-	
+	cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2((float)getScreen().x, (float)getScreen().y),35.0f));
+	cam2D = new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
+	InputController* controller = new FirstPersonController();
+	CameraNode* camNode = new CameraNode(cam3D,controller);
 
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);

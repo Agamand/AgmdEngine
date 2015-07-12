@@ -36,7 +36,7 @@ namespace Agmd
         return mid;
     }
 
-    vec2 BSpline::cdb( vec2* data ,a_vector<float> knots,int n,float t, int r )
+    vec3 BSpline::cdb( vec3* data ,a_vector<float> knots,int n,float t, int r )
     {
         int max = n - m_degree - 1;
         for(int i =  r - m_degree; i <= r; i++)
@@ -61,7 +61,7 @@ namespace Agmd
             m_knot.clear();
             for ( int i = -m_degree-1, j=m_controlPoints.size(); i < j; i ++ ) {
                 float knot = ( i + 1 )/(float)( j - m_degree);
-                m_knot.push_back(knot);//clamp(knot,0,1));
+                m_knot.push_back(clamp(knot,0.f,1.f));
                 printf("%f ",knot);
             }
             printf("\n");
@@ -86,10 +86,10 @@ namespace Agmd
             {
                 if(_points != NULL)
                     delete[] _points;
-                _points = new vec2[(m_degree+1)*(max+1)];
+                _points = new vec3[(m_degree+1)*(max+1)];
             }
-            //_points = new vec2[(m_degree+1)*(max+1)];
-            //_points = new vec2[(m_degree+1)*(max+1)];
+            //_points = new vec3[(m_degree+1)*(max+1)];
+            //_points = new vec3[(m_degree+1)*(max+1)];
             int m = 10*(int)m_controlPoints.size();
             float range = m_knot[m_knot.size()-1]-m_knot[0];
             float p = 1.0f/m;
@@ -134,23 +134,55 @@ namespace Agmd
 
         }
     }
+    void BSpline::compute( a_vector<vec3>& out,int size){
 
-    BSpline::BSpline( vec2 p[], int count, int degree ) : BaseSpline(p,count), m_degree(degree)
+        int n = m_controlPoints.size()+m_degree+1;
+        int max = n - m_degree - 1;
+        a_vector<float> _knot;
+
+            for ( int i = -m_degree-1, j=m_controlPoints.size(); i < j; i ++ ) {
+                float knot = clamp(( i + 1 )/(float)( j - m_degree),0.0f,1.0f);
+                _knot.push_back(knot);
+            }
+        
+            
+            vec3* _points = new vec3[(m_degree+1)*(max+1)];
+            
+            int m = size;//10*(int)m_controlPoints.size();
+            float range = _knot[_knot.size()-1]-_knot[0];
+            float p = 1.0f/m;
+
+            /*for(int r = m_degree; r < n-m_degree-1; r++)
+            {*/
+            float r = (float)m_degree;
+
+            for(int i = 0; i <= m; i++)
+            {
+                while(_knot[(int)r+1] < i*p)
+                    r++;
+                if((int)out.size() < i+1)
+                    out.push_back(cdb(_points,_knot,n,i*p,(int)r));
+                else out[i] = (cdb(_points,_knot,n,i*p,(int)r));
+            }
+            delete[] _points;
+        
+    }
+    BSpline::BSpline( const vec3* p, int count, int degree ) : BaseSpline(p,count), m_degree(degree)
     {
-        _points = new vec2[(m_degree+1)*(count+1)];
+        _points = new vec3[(m_degree+1)*(count+1)];
         for ( int i = -m_degree-1, j=m_controlPoints.size(); i < j; i ++ ) {
             float knot = ( i + 1 )/(float)( j - m_degree);
-            m_knot.push_back(knot);
+            m_knot.push_back(clamp(knot,0.f,1.f));
         }
         compute();
     }
 
-    BSpline::BSpline( const a_vector<vec2>& p, int degree ) : BaseSpline(p), m_degree(degree)
+    BSpline::BSpline( const a_vector<vec3>& p, int degree ) : BaseSpline(p), m_degree(degree)
     {
-        _points = new vec2[(m_degree+1)*(p.size()+1)];
+        _points = new vec3[(m_degree+1)*(p.size()+1)];
         for ( int i = -m_degree-1, j=m_controlPoints.size(); i < j; i ++ ) {
             float knot = ( i + 1 )/(float)( j - m_degree);
-            m_knot.push_back(knot);
+            m_knot.push_back(clamp(knot,0.f,1.f));
         }
         compute();
     }

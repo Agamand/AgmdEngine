@@ -50,6 +50,26 @@ namespace Agmd
 //         {GL_BGR,             GL_RGB32F,                        GL_UNSIGNED_BYTE,              GL_RGBA}
 //     };
 // 
+	//struct TPixelFmt {GLenum Format, Internal, Type, _Format;};
+	DXGI_FORMAT DXEnum::PixelFormat[] =
+	{
+		DXGI_FORMAT_UNKNOWN,
+		DXGI_FORMAT_UNKNOWN,
+		DXGI_FORMAT_B5G5R5A1_UNORM,
+		DXGI_FORMAT_UNKNOWN,
+		DXGI_FORMAT_UNKNOWN,
+		DXGI_FORMAT_R8G8B8A8_UNORM,
+		DXGI_FORMAT_UNKNOWN,//D3DFMT_DXT1,
+		DXGI_FORMAT_UNKNOWN,//D3DFMT_DXT3,
+		DXGI_FORMAT_UNKNOWN,//D3DFMT_DXT5,
+		DXGI_FORMAT_D32_FLOAT,
+		DXGI_FORMAT_R16G16B16A16_FLOAT,
+		DXGI_FORMAT_R32G32B32A32_FLOAT
+
+	};
+
+
+
 //     GLenum DXEnum::Blend[] =
 //     {
 //         GL_SRC_ALPHA,
@@ -185,10 +205,10 @@ namespace Agmd
 //         return MatrixName[value];
 //     }
 // 
-//     DXEnum::TPixelFmt DXEnum::Get(TPixelFormat value)
-//     {
-//         return PixelFormat[value];
-//     }
+		DXGI_FORMAT DXEnum::Get(TPixelFormat value)
+		{
+			return PixelFormat[value];
+		}
 // 
 //     GLenum DXEnum::Get(TBlend value)
 //     {

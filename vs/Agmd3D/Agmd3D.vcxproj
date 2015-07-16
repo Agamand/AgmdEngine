@@ -112,6 +112,9 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\RenderObject\SkinnedMeshRender.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Resource.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\ResourceManager.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneMgr\Node.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneMgr\ARenderQueue.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\SceneMgr\ASceneMgr.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\CameraNode.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\DisplayNode.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\SceneNode\LightNode.h" />
@@ -136,6 +139,7 @@
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\ColorPicking.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Fast2DSurface.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Frustum.h" />
+    <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Octree.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\QuadTree.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\RenderQueue.h" />
     <ClInclude Include="..\..\src\Agmd3D\Core\Tools\Statistics.h" />
@@ -201,6 +205,7 @@
     <None Include="..\..\src\Agmd3D\Core\Driver.inl" />
     <None Include="..\..\src\Agmd3D\Core\ResourceManager.inl" />
     <None Include="..\..\src\Agmd3D\Core\Shader\ShaderProgram.inl" />
+    <None Include="..\..\src\Agmd3D\Core\Tools\Octree.inl" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +265,9 @@
     <ClCompile Include="..\..\src\Agmd3D\Core\RenderObject\SkinnedMeshRender.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\Resource.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\ResourceManager.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneMgr\Node.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneMgr\ARenderQueue.cpp" />
+    <ClCompile Include="..\..\src\Agmd3D\Core\SceneMgr\ASceneMgr.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\CameraNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\DisplayNode.cpp" />
     <ClCompile Include="..\..\src\Agmd3D\Core\SceneNode\MeshNode.cpp" />
@@ -530,7 +538,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>wxmsw30u_gl.lib;opengl32.lib;glu32.lib;wxmsw30u_core.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlibd.lib;wxregexu.lib;wxexpat.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;cg.lib;cgGL.lib;cgD3D9.lib;DevIL.lib;ILU.lib;ILUT.lib;AgmdMaths.lib;AgmdUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Profiling|Win32'">

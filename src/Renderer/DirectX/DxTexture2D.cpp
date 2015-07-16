@@ -20,7 +20,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    DXTexture2D::DXTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
+    DXTexture2D::DXTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, ID3D11Texture2D* texture) :
     DXTexture(size, format, hasMipmaps, autoMipmaps, texture),
     m_Data(size,format)
     {}
@@ -35,47 +35,28 @@ namespace Agmd
 
     void DXTexture2D::Update(const AgmdMaths::Rectangle& rect)
     {
-//         Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
-// 
-//         DXEnum::TPixelFmt texFmt = DXEnum::Get(m_Format);
-//         DXEnum::TPixelFmt imgFmt = DXEnum::Get(m_Data.GetFormat());
-//         unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data.GetFormat());
-// 
-//         glBindTexture(GL_TEXTURE_2D, m_Texture);
-// 
-//         if (FormatCompressed(m_Data.GetFormat()))
-//         {
-//             if (rect.width() == m_Size.x && rect.height() == m_Size.y)
-//             {
-//                 DXDriver::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, dataSize, m_Data.GetData());
-//             }
-//             else
-//             {
-//                 Image subData = m_Data.SubImage(rect);
-//                 DXDriver::glCompressedTexSubImage2D(GL_TEXTURE_2D, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, dataSize, subData.GetData());
-//             }
-//         }
-//         else
-//         {
-//             if (!m_HasMipmaps || m_AutoMipmaps)
-//             {
-//                 if ((rect.width() == m_Size.x) && (rect.height() == m_Size.y))
-//                 {
-//                     glTexSubImage2D(GL_TEXTURE_2D, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, imgFmt.Type, m_Data.GetData());
-//                 }
-//                 else
-//                 {
-//                     Image subData = m_Data.SubImage(rect);
-//                     glTexSubImage2D(GL_TEXTURE_2D, 0, rect.left(), rect.top(), rect.width(), rect.height(), imgFmt.Format, imgFmt.Type, subData.GetData());
-//                 }
-//             }
-//             else
-//             {
-//                 gluBuild2DMipmaps(GL_TEXTURE_2D, texFmt.Internal, m_Size.x, m_Size.y, imgFmt.Format, imgFmt.Type, m_Data.GetData());
-//             }
-//         }
-// 
-//         glBindTexture(GL_TEXTURE_2D, 0);
+         Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
+
+        auto texFmt = DXEnum::Get(m_Format);
+        auto imgFmt = DXEnum::Get(m_Data.GetFormat());
+		ID3D11Texture2D* tex = static_cast<ID3D11Texture2D*>(m_Texture);
+		DXDriver& driver = DXDriver::Instance();
+        unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data.GetFormat());
+        if (FormatCompressed(m_Data.GetFormat()))
+        {
+           //unsupported now
+        }
+        else
+        {
+			D3D11_BOX box;
+			box.left = rect.left();
+			box.right = rect.right();
+			box.top = rect.top();
+			box.bottom = rect.bottom();
+			box.front = 0;
+			box.back = 1;
+			driver.DeviceContext()->UpdateSubresource(m_Texture,0,&box,m_Data.GetData(),0,0);
+        }
     }
 
     Image* DXTexture2D::getPixels()
@@ -85,8 +66,8 @@ namespace Agmd
 
     void DXTexture2D::updatePixelFromTexture()
     {
-//         DXEnum::TPixelFmt texFmt = DXEnum::Get(m_Format);
-//         DXEnum::TPixelFmt imgFmt = DXEnum::Get(m_Data.GetFormat());
+         auto texFmt = DXEnum::Get(m_Format);
+         auto imgFmt = DXEnum::Get(m_Data.GetFormat());
 //         glBindTexture(GL_TEXTURE_2D, m_Texture);
 //         glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,imgFmt.Type,m_Data.GetDataPtr());
 //         glBindTexture(GL_TEXTURE_2D, 0);

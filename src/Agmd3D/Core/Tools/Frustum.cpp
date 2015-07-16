@@ -9,6 +9,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Tools/Frustum.h>
 #include <Core/Tools/BoundingSphere.h>
 
+#include <Core/Tools/BoundingBox.h>
+
 namespace Agmd
 {
     Frustum::Frustum()
@@ -97,4 +99,40 @@ namespace Agmd
 // 
 //         return false;
     }
+
+	bool Frustum::IsIn( const BoundingBox& bounds ) const
+	{
+		int out,in;
+
+		vec3 _min = bounds.GetMin(),_max = bounds.GetMax();
+
+		vec3 corners[8] = {
+			_min,
+			vec3(_min.x,_min.y,_max.z),
+			vec3(_max.x,_min.y,_max.z),
+			vec3(_max.x,_min.y,_min.z),
+			_max,
+			vec3(_min.x,_max.y,_max.z),
+			vec3(_min.x,_max.y,_min.z),
+			vec3(_max.x,_max.y,_min.z)
+		};
+
+		for(int i=0; i < 6; i++) {
+			out=0;in=0;
+			for (int k = 0; k < 8 && (in==0 || out==0); k++) {
+
+				// is the corner outside or inside
+				if ( m_clipPlane[i].distanceToPoint(corners[k]) < 0)
+					out++;
+				else
+					in++;
+			}
+			//if all corners are out
+			if (!in)
+				return false;
+			
+		}
+		return true;
+	}
+
 }

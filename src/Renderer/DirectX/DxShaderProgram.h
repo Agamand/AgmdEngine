@@ -46,7 +46,7 @@ namespace Agmd
         typedef std::map<std::string,Parameter> ParameterMap; 
         typedef a_vector<Parameter> APIMatrix;
 
-        DXShaderProgram();
+        DXShaderProgram(BaseShader* vertex,BaseShader* frag);
         virtual ~DXShaderProgram();
 
         virtual void SetParameter(const std::string& name, float value) const;
@@ -77,6 +77,7 @@ namespace Agmd
         void UniformShaderInfo();
         static int getUniformByteSize(int uniSize, int uniType, int uniArrayStride, int uniMatStride);
         static void Init();
+		BaseShader* const* GetShaders() const { return m_shader; }
     private:
         static std::map<int, std::string> DXShaderProgram::spGLSLType;
         static std::map<int, int> DXShaderProgram::spGLSLTypeSize;
@@ -86,8 +87,9 @@ namespace Agmd
         const Parameter& GetParameter(const std::string& name) const;
 
         Parameter    m_defaultParameter;
-        BaseShader* m_shader[TSHADERTYPE_MAX];
-
+		Parameter    m_APIMatrix[MAX_APIMATRIX];
+        BaseShader*  m_shader[TSHADERTYPE_MAX];
+		
     };
 }
 

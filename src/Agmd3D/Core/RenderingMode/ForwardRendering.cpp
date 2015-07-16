@@ -11,6 +11,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/RenderBuffer.h>
 #include <Core/Driver.h>
 #include <Core/Model/SceneMgr.h>
+#include <Core/Model/Material.h>
+#include <Core/Model/Model.h>
 #include <Utilities/Timer.h>
 
 namespace Agmd
@@ -44,58 +46,77 @@ namespace Agmd
     {
         Driver& render = Driver::Get();
 
-        if(!m_framebuffer)
-            m_framebuffer = render.CreateFrameBuffer();
-        if(m_depthbuffer)
-        {
-            delete m_depthbuffer;
-            m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-        }else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+//         if(!m_framebuffer)
+//             m_framebuffer = render.CreateFrameBuffer();
+//         if(m_depthbuffer)
+//         {
+//             delete m_depthbuffer;
+//             m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+//         }else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+// 
+//         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
+//         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
+//         m_textureBuffer[2].Create(m_screen, PXF_DEPTH, TEXTURE_2D,TEX_NOMIPMAP);
 
-        m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
-        m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
-        m_textureBuffer[2].Create(m_screen, PXF_DEPTH, TEXTURE_2D,TEX_NOMIPMAP);
+//         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
+// 
+//         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
+//         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
+//         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
 
-        m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
-
-        m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-        m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
-        m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
-
-        a_uint32 buffer[] = {COLOR_ATTACHMENT};
-        bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
-        a_uint32 buffer2[] = {COLOR_ATTACHMENT+1};
-        bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
+//         a_uint32 buffer[] = {COLOR_ATTACHMENT};
+//         bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
+//         a_uint32 buffer2[] = {COLOR_ATTACHMENT+1};
+//         bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
 
     }
 
-    void ForwardRendering::compute()
+    void ForwardRendering::compute(ARenderQueue& queue)
     {
-        
+        //
         Driver& render = Driver::Get();
         start();
-        render.SetViewPort(ivec2(),render.GetScreen());
-        SceneMgr* sc = render.GetActiveScene();
-        SkyBox* box = sc->GetSkyBox();
-        render.SetCullFace(1);
-        if(box)
-        {
-            render.Enable(RENDER_ZWRITE,false);
-            box->Render();
-        }
-        render.SetRenderMode(m_mode);
-        render.SetCullFace(0);
-        sc->Update();
-        sc->Compute();
+
+
+		a_vector<Drawable> drawable = queue.GetDrawable(TRenderType::TYPE_DIFFUSE);
+		render.SetViewPort(ivec2(),render.GetScreen());
+		Material* mat = NULL;
+		for(a_uint32 i = 0; i < drawable.size();i++)
+		{
+			Drawable& d = drawable[i];
+			if(mat != d.mat)
+			{
+				mat = d.mat;
+				mat->Enable(RENDERPASS_DIFFUSE);
+			}
+			d.model->Draw(&d.transform);
+		}
+
+
+
+		end();
+//         
+//         SceneMgr* sc = NULL;// render.GetActiveScene();
+//         SkyBox* box = sc->GetSkyBox();
+//         render.SetCullFace(1);
+//         if(box)
+//         {
+//             render.Enable(RENDER_ZWRITE,false);
+//             box->Render();
+//         }
+//         render.SetRenderMode(m_mode);
+//         render.SetCullFace(0);
+        //sc->Update();
+        //sc->Compute();
         /*
            FirstPass, here is draw the ZBuffer(Only).
         */
-        render.Enable(RENDER_ZWRITE,true);
+        //render.Enable(RENDER_ZWRITE,true);
         //render.clear(CLEAR_DEPTH);
         //m_framebuffer->Clear(CLEAR_DEPTH);
         //m_framebuffer->DrawBuffer(0);
         //m_framebuffer->Bind();
-        render.Enable(RENDER_ZTEST,true);
+        //render.Enable(RENDER_ZTEST,true);
         //render.SetupDepthTest(DEPTH_LESS);
         //sc->Render(RENDERPASS_ZBUFFER);
         //m_framebuffer->UnBind();
@@ -114,12 +135,12 @@ namespace Agmd
         //m_framebuffer->Bind();
         //render.SetupDepthTest(DEPTH_LEQUAL);
         //render.Enable(RENDER_ZWRITE,false);
-        sc->Render(RENDERPASS_DIFFUSE);
-        render.Enable(RENDER_ALPHABLEND,true);
-        render.SetupDepthTest(DEPTH_LEQUAL);
-        render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-        sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
-        render.Enable(RENDER_ALPHABLEND,false);
+//         sc->Render(RENDERPASS_DIFFUSE);
+//         render.Enable(RENDER_ALPHABLEND,true);
+//         render.SetupDepthTest(DEPTH_LEQUAL);
+//         render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+//         sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
+//         render.Enable(RENDER_ALPHABLEND,false);
         
         //m_framebuffer->UnBind();
 
@@ -153,7 +174,7 @@ namespace Agmd
         /*
             Render to main framebuffer
         */
-        render.Enable(RENDER_ZTEST,false);
+        //render.Enable(RENDER_ZTEST,false);
         //Texture::TextureRender(m_textureBuffer[0]);
 
         /*if(maxLights)
@@ -163,7 +184,7 @@ namespace Agmd
             Texture::TextureRender(m_textureBuffer[1]);
             render.Enable(RENDER_ALPHABLEND, false);
         }*/
-        end();
+        //end();
     }
 
     void ForwardRendering::start()

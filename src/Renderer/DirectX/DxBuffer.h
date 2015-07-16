@@ -52,6 +52,7 @@ namespace Agmd
 
     typedef DXBuffer<1>        DXVertexBuffer;
     typedef DXBuffer<1>        DXIndexBuffer;
+	typedef DXBuffer<1>		   DXConstantBuffer;
 
     #include "DxBuffer.inl"
 

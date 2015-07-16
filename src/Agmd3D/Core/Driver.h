@@ -33,6 +33,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+	class ASceneMgr;
     class AGMD3D_EXPORT Driver
     {
     public :
@@ -146,8 +147,8 @@ namespace Agmd
         void SetMatProjection(mat4 _MatProjection);
         void SetScreen(ivec2 _screen);
 
-        void SetActiveScene(SceneMgr* sc);
-        SceneMgr* GetActiveScene();
+        void SetActiveScene(ASceneMgr* sc);
+        ASceneMgr* GetActiveScene();
         Statistics& GetStatistics();
     protected :
 
@@ -171,7 +172,7 @@ namespace Agmd
         ivec2               m_Screen;
         const Transform*    m_CurrentTransform;
 
-        SceneMgr*           m_ActiveScene;
+        ASceneMgr*           m_ActiveScene;
         Camera*             m_Camera;
         Statistics*         m_stats;
     private :

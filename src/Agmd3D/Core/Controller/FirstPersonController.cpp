@@ -7,7 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/Controller/FirstPersonController.h>
-#include <Core/SceneNode/SceneNode.h>
+#include <Core/SceneMgr/Node.h>
 namespace Agmd
 {
     FirstPersonController::FirstPersonController() : InputController(),m_speed(0.002f),
@@ -29,8 +29,8 @@ namespace Agmd
         {
             if(m_mouseState & MOUSE_RIGHT)
             {
-                m_bindedNode->getTransform().rotateRelative(posDiff.x*m_sensivity,vec3(0,1,0));
-                m_bindedNode->getTransform().rotateRelative(posDiff.y*m_sensivity,vec3(1,0,0));
+                m_bindedNode->GetTransform().rotateRelative(posDiff.x*m_sensivity,vec3(0,1,0));
+                m_bindedNode->GetTransform().rotateRelative(posDiff.y*m_sensivity,vec3(1,0,0));
             }
         }
     }
@@ -90,14 +90,14 @@ namespace Agmd
     {
         if(!m_bindedNode)
             return;
-        Transform& t = m_bindedNode->getTransform();
+        Transform& t = m_bindedNode->GetTransform();
         t.translateRelative(-_move*m_speed*(float)time);
         if(m_moveFlags & ROLL_LEFT  ^ m_moveFlags & ROLL_RIGHT) // XOR 
         {
             if(m_moveFlags & ROLL_LEFT)
-                m_bindedNode->getTransform().rotateRelative(m_angularSpeed*(float)time,vec3(0,0,1));
+                m_bindedNode->GetTransform().rotateRelative(m_angularSpeed*(float)time,vec3(0,0,1));
             else
-                m_bindedNode->getTransform().rotateRelative(-m_angularSpeed*(float)time,vec3(0,0,1));
+                m_bindedNode->GetTransform().rotateRelative(-m_angularSpeed*(float)time,vec3(0,0,1));
             
         }
     }

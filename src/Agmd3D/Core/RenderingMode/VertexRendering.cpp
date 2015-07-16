@@ -28,15 +28,15 @@ namespace Agmd
     {
     }
 
-    void VertexRendering::compute()
+    void VertexRendering::compute(ARenderQueue& queue)
     {
         Driver& render = Driver::Get();
-        SceneMgr* sc = render.GetActiveScene();
-        start();
-
-        sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
-
-        sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
+//         SceneMgr* sc = render.GetActiveScene();
+//         start();
+// 
+// 		sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
+// 
+// 		sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
         end();
     }
 

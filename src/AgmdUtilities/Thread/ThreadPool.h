@@ -23,7 +23,7 @@ private:
 class CThreadPool
 {
 public:
-    CThreadPool(a_uint32 poolSize = 2);
+    CThreadPool(a_uint32 poolSize = 4);
     //void init();
     void start();
 	template<class J>
@@ -53,7 +53,7 @@ public:
             if(m_manager->m_jobs.empty()){
                 mutex.Unlock();
                 //sleep for  few seconds or wait for wake up
-                
+                Sleep(100);
                 continue;
             }
 
@@ -95,10 +95,4 @@ void CThreadPool::AddJob( Job&& job )
     m_jobs.push(job);
     m_mutex.Unlock();
 }
-
-
-
-
-
-
 #endif

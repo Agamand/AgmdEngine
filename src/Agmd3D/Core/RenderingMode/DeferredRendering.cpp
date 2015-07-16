@@ -71,111 +71,111 @@ namespace Agmd
     }
 
 
-    void DeferredRendering::compute()
+    void DeferredRendering::compute(ARenderQueue& queue)
     {
-        Driver& render = Driver::Get();
-        render.SetViewPort(ivec2(),render.GetScreen());
-        SceneMgr* sc = render.GetActiveScene();
-        vec3 cameraPosition = Camera::getCurrent(CAMERA_3D)->getNode()->getTransform().getPosition();
-        const a_vector<Light*>& lights = sc->GetLights();
+//         Driver& render = Driver::Get();
+//         render.SetViewPort(ivec2(),render.GetScreen());
+//         SceneMgr* sc = render.GetActiveScene();
+//         vec3 cameraPosition = Camera::getCurrent(CAMERA_3D)->getNode()->getTransform().getPosition();
+//         const a_vector<Light*>& lights = sc->GetLights();
+// 
+//         
+//         a_uint32 maxLights = lights.size();
+// 
+//         start();
+//         render.SetRenderMode(m_mode);
+//         SkyBox* box = sc->GetSkyBox();
+//         render.SetCullFace(1);
+//         if(box)
+//         {
+//             render.Enable(RENDER_ZWRITE,false);
+//             box->Render();
+//         }
+//         sc->Update();
+//         sc->Compute();
+//         /*if(sc->isEmpty())
+//         {
+//             End();
+//             return;
+//         }*/
+//         render.SetCullFace(0);
+//         render.Enable(RENDER_ZWRITE,true);
+//         m_framebuffer->Clear(CLEAR_DEPTH);
+//         m_framebuffer->DrawBuffer(0);
+//         m_framebuffer->Bind();
+//         render.Enable(RENDER_ZTEST,true);
+//         render.SetupDepthTest(DEPTH_LESS);
+//         sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
+// 
+//         m_framebuffer->DrawBuffers(3, m_bufferFlags);
+//         m_framebuffer->Clear(CLEAR_COLOR);
+//         m_framebuffer->Bind();
+//         render.SetupDepthTest(DEPTH_LEQUAL);
+//         render.Enable(RENDER_ZWRITE,false);
+//         sc->Render(TRenderPass::RENDERPASS_DEFERRED);
+//         m_framebuffer->UnBind();
+// 
+// 
+//         render.Enable(RENDER_ZTEST,false);
+//         
+//         render.SetRenderMode(MODE_FILL);
+//         //if(PostEffectMgr::Instance().HaveEffect())
+//         
+//         bool shadow = true;
+//         if(maxLights)
+//         {
+//             //render.Enable(RENDER_ALPHABLEND, true);
+//             //render.SetupAlphaBlending(BLEND_SRCCOLOR, BLEND_DESTCOLOR);
+//             for(a_uint32 i = 0; i < maxLights; i++)
+//             {
+//                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()].GetShaderProgram());
+//                 if(shadow)//if shadow is enable
+//                 {
+//                     //Re-enable Z-Test for making shadow cast
+//                     render.Enable(RENDER_ZTEST,true);
+//                     render.Enable(RENDER_ZWRITE,true);
+//                     render.SetupDepthTest(DEPTH_LESS);
+//                     lights[i]->Bind();
+//                     m_shadowRender->Reset();
+//                     m_shadowRender->BeginLight(lights[i]);
+//                     sc->Draw();
+//                     m_shadowRender->EndLight();
+//                 }
+//                 //Disable Z-Test for light rendering
+//                 render.SetupDepthTest(DEPTH_LEQUAL);
+//                 render.Enable(RENDER_ZWRITE,false);
+//                 render.Enable(RENDER_ZTEST,false);
+//                 render.SetTexture(0,m_textureBuffer[0].GetTexture());
+//                 render.SetTexture(1,m_textureBuffer[1].GetTexture());
+//                 render.SetTexture(2,m_textureBuffer[2].GetTexture());
+//                 render.SetCurrentProgram(m_light_program[lights[i]->GetType()+(shadow? 3: 0)/*+3 for use with SHADOW*/].GetShaderProgram());
+//                 render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
+//                 if(shadow)
+//                     m_shadowRender->SetupForRendering();
+//                 Texture::BeginRenderToTexture(m_textureBuffer[3]);
+//                 Fast2DSurface::Instance().Draw();
+//             }
+//             render.SetCurrentProgram(NULL);
+//             render.Enable(RENDER_ALPHABLEND, false);
+//             Texture::EndRenderToTexture();
+//         }else
+//         {
+//             Texture::TextureRender(m_textureBuffer[0],ivec2(0),m_screen);
+//             end();
+//             return;
+//         }
+//         if(PostEffectMgr::Instance().HaveEffect())
+//         {
+//             PostEffectMgr::Instance().ApplyEffect(m_textureBuffer[3],m_textureBuffer[4]);
+//             Texture::TextureRender(m_textureBuffer[4],ivec2(0),m_screen);
+//         }
+//         else
+//         {
+//            Texture::TextureRender(m_textureBuffer[3],ivec2(0),m_screen);
+//         }
+//             
 
-        
-        a_uint32 maxLights = lights.size();
-
-        start();
-        render.SetRenderMode(m_mode);
-        SkyBox* box = sc->GetSkyBox();
-        render.SetCullFace(1);
-        if(box)
-        {
-            render.Enable(RENDER_ZWRITE,false);
-            box->Render();
-        }
-        sc->Update();
-        sc->Compute();
-        /*if(sc->isEmpty())
-        {
-            End();
-            return;
-        }*/
-        render.SetCullFace(0);
-        render.Enable(RENDER_ZWRITE,true);
-        m_framebuffer->Clear(CLEAR_DEPTH);
-        m_framebuffer->DrawBuffer(0);
-        m_framebuffer->Bind();
-        render.Enable(RENDER_ZTEST,true);
-        render.SetupDepthTest(DEPTH_LESS);
-        sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
-
-        m_framebuffer->DrawBuffers(3, m_bufferFlags);
-        m_framebuffer->Clear(CLEAR_COLOR);
-        m_framebuffer->Bind();
-        render.SetupDepthTest(DEPTH_LEQUAL);
-        render.Enable(RENDER_ZWRITE,false);
-        sc->Render(TRenderPass::RENDERPASS_DEFERRED);
-        m_framebuffer->UnBind();
-
-
-        render.Enable(RENDER_ZTEST,false);
-        
-        render.SetRenderMode(MODE_FILL);
-        //if(PostEffectMgr::Instance().HaveEffect())
-        
-        bool shadow = true;
-        if(maxLights)
-        {
-            //render.Enable(RENDER_ALPHABLEND, true);
-            //render.SetupAlphaBlending(BLEND_SRCCOLOR, BLEND_DESTCOLOR);
-            for(a_uint32 i = 0; i < maxLights; i++)
-            {
-                render.SetCurrentProgram(m_light_program[lights[i]->GetType()].GetShaderProgram());
-                if(shadow)//if shadow is enable
-                {
-                    //Re-enable Z-Test for making shadow cast
-                    render.Enable(RENDER_ZTEST,true);
-                    render.Enable(RENDER_ZWRITE,true);
-                    render.SetupDepthTest(DEPTH_LESS);
-                    lights[i]->Bind();
-                    m_shadowRender->Reset();
-                    m_shadowRender->BeginLight(lights[i]);
-                    sc->Draw();
-                    m_shadowRender->EndLight();
-                }
-                //Disable Z-Test for light rendering
-                render.SetupDepthTest(DEPTH_LEQUAL);
-                render.Enable(RENDER_ZWRITE,false);
-                render.Enable(RENDER_ZTEST,false);
-                render.SetTexture(0,m_textureBuffer[0].GetTexture());
-                render.SetTexture(1,m_textureBuffer[1].GetTexture());
-                render.SetTexture(2,m_textureBuffer[2].GetTexture());
-                render.SetCurrentProgram(m_light_program[lights[i]->GetType()+(shadow? 3: 0)/*+3 for use with SHADOW*/].GetShaderProgram());
-                render.GetCurrentProgram()->SetParameter("u_cameraPosition",cameraPosition);
-                if(shadow)
-                    m_shadowRender->SetupForRendering();
-                Texture::BeginRenderToTexture(m_textureBuffer[3]);
-                Fast2DSurface::Instance().Draw();
-            }
-            render.SetCurrentProgram(NULL);
-            render.Enable(RENDER_ALPHABLEND, false);
-            Texture::EndRenderToTexture();
-        }else
-        {
-            Texture::TextureRender(m_textureBuffer[0],ivec2(0),m_screen);
-            end();
-            return;
-        }
-        if(PostEffectMgr::Instance().HaveEffect())
-        {
-            PostEffectMgr::Instance().ApplyEffect(m_textureBuffer[3],m_textureBuffer[4]);
-            Texture::TextureRender(m_textureBuffer[4],ivec2(0),m_screen);
-        }
-        else
-        {
-           Texture::TextureRender(m_textureBuffer[3],ivec2(0),m_screen);
-        }
-            
-
-        end();
+     //   end();
     }
 
     void DeferredRendering::start()

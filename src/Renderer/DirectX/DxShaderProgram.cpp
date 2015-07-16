@@ -25,10 +25,12 @@ namespace Agmd
             return;
     }
 
-    DXShaderProgram::DXShaderProgram()
+    DXShaderProgram::DXShaderProgram(BaseShader* vertex,BaseShader* frag)
     {
         std::memset(m_shader,sizeof(BaseShader*)*TSHADERTYPE_MAX,0);
-        m_defaultParameter.type = PARAMETER_NOFOUND;
+		m_shader[0] = vertex;
+		m_shader[4] = frag;
+		m_defaultParameter.type = PARAMETER_NOFOUND;
         SetupShader();
     }
 
@@ -36,7 +38,9 @@ namespace Agmd
     {}
 
     void DXShaderProgram::SetupShader()
-    {}
+    {
+
+	}
 
     const DXShaderProgram::Parameter& DXShaderProgram::GetParameter(const std::string& name) const
     {

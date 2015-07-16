@@ -20,7 +20,7 @@ namespace Agmd
         VertexRendering(ivec2& screen);
         ~VertexRendering();
 
-        virtual void compute();
+        virtual void compute(ARenderQueue& queue);
 
         virtual void start();
         virtual void end();

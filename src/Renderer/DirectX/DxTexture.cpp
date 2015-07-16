@@ -18,7 +18,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    DXTexture::DXTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
+    DXTexture::DXTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, ID3D11Resource* texture) :
     TextureBase(size,format, hasMipmaps,autoMipmaps),
     m_Texture  (texture)
     {
@@ -26,11 +26,10 @@ namespace Agmd
 
     DXTexture::~DXTexture()
     {
-//         if (m_Texture)
-//             glDeleteTextures(1, &m_Texture);
-    }
+		m_Texture->Release();
+	}
 
-    a_uint32 DXTexture::GetDXTexture() const
+    ID3D11Resource* DXTexture::GetDXTexture() const
     {
         return m_Texture;
     }

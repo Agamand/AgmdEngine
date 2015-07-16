@@ -38,7 +38,7 @@ namespace Agmd
         DeferredRendering(ivec2& screen);
         ~DeferredRendering();
 
-        virtual void compute();
+        virtual void compute(ARenderQueue& queue);
 
         virtual void start();
         virtual void end();

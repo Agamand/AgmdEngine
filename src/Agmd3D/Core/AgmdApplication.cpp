@@ -13,6 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #ifndef WX_PRECOMP
 #include "wx/wx.h"
 #endif
+#include <Core/SceneMgr/ASceneMgr.h>
 #include <Core/AgmdApplication.h>
 #include <Core/Driver.h>
 #include <Core/Enums.h>
@@ -30,7 +31,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Tools/Statistics.h>
 #include <Debug/Profiler.h>
 #include <Editor/EditorFrame.h>
+#include <Core/Controller/Controller.h>
+#include <Thread/ThreadPool.h>
 
+
+
+using namespace AgmdUtilities;
 
 #ifdef USE_WX
 /*
@@ -279,7 +285,8 @@ void GLCanvas::OnIdle( wxIdleEvent& event )
 
 namespace Agmd
 {
-
+	void UpdateJob();
+	void RenderJob();
     AgmdApplication* AgmdApplication::s_application = NULL;
     
     AgmdApplication::AgmdApplication(ivec2 screenSize,ADriverType d) : 
@@ -304,8 +311,10 @@ namespace Agmd
     m_isReady        (false),
     m_frameName        ("Agmd sample application"),
     m_sceneController(NULL)
+	
     {
         assert(m_Instance != NULL);
+		
         s_application = this;
         RegisterLoaders();
     }
@@ -355,13 +364,9 @@ namespace Agmd
 
     void AgmdApplication::Run(int argc,char** argv)
     {
+         
         
-        //if(m_RendererType = RENDERER_DIRECTX)
-        //m_Renderer = new Plugin("DXRender.dll");
-        //else
-        
-        
-
+		m_threadPool = new CThreadPool();
 #ifdef USE_WX
         m_wxApplication = new Application(m_createDefaultFrame,wxString(m_frameName));
 #endif        
@@ -398,13 +403,13 @@ namespace Agmd
         
         Driver::Get().SetScreen(m_ScreenSize);
 
-//         Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
-//         Image img = Image();    
-//         img.Fill(Color::white);
-//         Texture t = Texture();
-//         t.CreateFromImage(img,PXF_A8R8G8B8,0,"white_texture");
-//         mat->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
-//         ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);
+        Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
+        Image img = Image();    
+        img.Fill(Color::white);
+        Texture t = Texture();
+        t.CreateFromImage(img,PXF_A8R8G8B8,0,"white_texture");
+        mat->SetTexture(t,0,TRenderPass::RENDERPASS_DEFERRED);
+        ResourceManager::Instance().Add("DEFAULT_MATERIAL",mat);
 
         init();
 #ifdef USE_WX
@@ -412,6 +417,15 @@ namespace Agmd
             m_isReady = true;
         m_wxApplication->MainLoop();
 #else   
+
+		//allocate RenderQueue;
+
+		m_renderQueuePool = new ARenderQueue[2];
+		m_renderQueue[0] = m_renderQueuePool;
+		m_renderQueue[1] = m_renderQueuePool+1;
+		m_threadPool->start();
+		m_threadPool->AddJobW(UpdateJob);
+
         MainLoop();
 #endif
 
@@ -471,7 +485,13 @@ namespace Agmd
             }
             else
             {
-                draw();
+				
+                //draw();
+				
+				
+				//uncomment following to have monothread engine
+				//UpdateJob();
+				//Render();
             }
         }
     }
@@ -502,90 +522,270 @@ namespace Agmd
                 OnKey((char)LOWORD(WParam),Message == WM_KEYUP ? true : false);
                 return 0;
             case WM_XBUTTONDOWN:
-                OnClick(MOUSE_NONE,vec2(last_mouse_pos),false);
+                OnClick(0,vec2(last_mouse_pos),false);
                 return 0;
             case WM_RBUTTONDOWN:
-                OnClick(MOUSE_RIGHT,vec2(last_mouse_pos),false);
+                OnClick(3,vec2(last_mouse_pos),false);
                 return 0;
             case WM_MBUTTONDOWN:
-                OnClick(MOUSE_MIDDLE,vec2(last_mouse_pos),false);
+                OnClick(2,vec2(last_mouse_pos),false);
                 return 0;
             case WM_LBUTTONDOWN:
-                OnClick(MOUSE_LEFT,vec2(last_mouse_pos),false);
+                OnClick(1,vec2(last_mouse_pos),false);
                 return 0;
 
             case WM_XBUTTONUP:
-                OnClick(MOUSE_NONE,vec2(last_mouse_pos),true);
+                OnClick(0,vec2(last_mouse_pos),true);
                 return 0;
             case WM_RBUTTONUP:
-                OnClick(MOUSE_RIGHT,vec2(last_mouse_pos),true);
+                OnClick(3,vec2(last_mouse_pos),true);
                 return 0;
             case WM_MBUTTONUP:
 
-                OnClick(MOUSE_MIDDLE,vec2(last_mouse_pos),true);
+                OnClick(2,vec2(last_mouse_pos),true);
                 return 0;
             case WM_LBUTTONUP:
-                OnClick(MOUSE_NONE,vec2(last_mouse_pos),true);
+                OnClick(1,vec2(last_mouse_pos),true);
                 return 0;
             case WM_MOUSEWHEEL:
                 //camera->onMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
                 return 0;
             case WM_MOUSEMOVE:
                 ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));            
-                last_mouse_pos.x = GET_X_LPARAM(LParam);
-                last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
-                OnMove(vec2(last_mouse_pos));
+				vec2 pos(GET_X_LPARAM(LParam),m_ScreenSize.y-GET_Y_LPARAM(LParam));
+                OnMove(pos);
+				last_mouse_pos.x = GET_X_LPARAM(LParam);
+				last_mouse_pos.y = m_ScreenSize.y-GET_Y_LPARAM(LParam);
                 return 0;
         }
         return DefWindowProc(Hwnd, Message, WParam, LParam);
     }
 #endif
 
+
+
+	void AgmdApplication::Render( ARenderQueue* q )
+	{
+
+		RenderingMode* current = RenderingMode::getRenderingMode();
+		Driver& driver = Driver::Get();
+		driver.InitScene();
+        if(current != NULL)
+            current->compute(*q);
+		driver.EndScene();
+	}
+	void AgmdApplication::UpdateTransform()
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		for(a_uint32 i =0,len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if(node.GetTransform().needUpdate())
+			{
+				node.GetTransform().update(node.m_parent ? &node.m_parent->GetTransform() : NULL);
+				node.m_dirtyFlag |= DTRANSFORM_UPDATE;
+				//if(node.m_camera)
+					//node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
+			}	
+		}
+	}
+
+	void AgmdApplication::UpdateBounds(){
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+
+		//need to be reversed sceneTree;
+		for(a_uint32 i =0,len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if(node.m_dirtyFlag & DTRANSFORM_UPDATE)
+			{
+				node.m_dirtyFlag = (node.m_dirtyFlag & ~DTRANSFORM_UPDATE);//  | DBOUNDS_UPDATE; // DBOUNDS_UPDATE not used now 
+				node.m_localBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().localModelMatrix());
+				node.m_globalBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().modelMatrix());
+				if(node.m_model) //if node is renderable
+					scene->m_octree.InsertElement(&node);
+				//if(node.m_camera)
+				//node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
+			}	
+		}
+	}
+	void AgmdApplication::UpdateScript( a_uint32 time )
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		for(a_uint32 i =0,len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if(node.m_controller)
+				node.m_controller->update(time);
+		}
+	}
+	void AgmdApplication::Culling( ARenderQueue& queue )
+	{
+
+
+
+
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		Camera* cam = Camera::getCurrent(CAMERA_3D);
+		queue.Clear();
+		Frustum* frustrum = cam->GetFrustrum();
+
+
+		std::stack<OcTree<ANode>*> _stack;
+		_stack.push(scene->m_octree.Top());
+
+		while (_stack.size())
+		{
+			OcTree<ANode>* current = _stack.top();
+			_stack.pop();
+
+			if(frustrum->IsIn(current->m_bbox))
+			{
+
+				for(a_uint32 i = 0,len = current->m_data.size(); i < len; ++i)
+				{
+					ANode* node = current->m_data[i];
+					if(frustrum->IsIn(node->m_globalBounds))
+						queue.Push(node); // ok visible push to renderqueue
+				}
+
+
+				for(a_uint32 i = 0; i < 8; ++i)
+				{
+					if((a_uint32)(current->m_children[i]) == 0xcdcdcdcd)
+						printf("");
+					if(current->m_children[i])
+						_stack.push(current->m_children[i]);
+				}
+			}
+		}
+
+	}
+
+	
+	enum ProcessFlags
+	{
+		PROCESS_UPDATE = 0x01,
+		PROCESS_RENDER = 0x02,
+		ALL_PROCESS = PROCESS_UPDATE | PROCESS_RENDER
+	};
+	a_uint32 process_flag = PROCESS_UPDATE;
+	a_uint32 ujob = 0,
+			rjob = 0;
+
+	void RestartJob()
+	{
+		process_flag |= ALL_PROCESS;
+		auto app =  AgmdApplication::getApplication();
+		app->m_threadPool->AddJobW(UpdateJob);
+		app->m_threadPool->AddJobW(RenderJob);
+
+	}
+	void UpdateJob()
+	{
+		a_uint32 id  =++ujob;
+		//printf("UpdateJob, %i\n",id);
+		auto app =  AgmdApplication::getApplication();
+		
+
+		a_uint32 time = clock();
+		a_uint32 time_diff = time - app->m_lastTime;
+		app->m_deltaTime = time_diff;
+		//do some stuff
+		AgmdApplication::UpdateScript(time_diff);
+		AgmdApplication::UpdateTransform();
+		AgmdApplication::UpdateBounds();
+		ARenderQueue& queue = *app->m_renderQueue[0];
+		AgmdApplication::Culling(queue);
+		app->m_lastTime= time;
+		app->m_threadPool->GetMutex().Lock();
+		std::swap(app->m_renderQueue[0],app->m_renderQueue[1]);
+		process_flag &=~PROCESS_UPDATE;
+		//printf("UpdateJob, %i ended pflag : %i\n",id,process_flag);
+		if(!(process_flag & PROCESS_RENDER))
+		{
+			//printf("UpdateJob, %i start new job\n",id);
+			RestartJob();
+		}
+		app->m_threadPool->GetMutex().Unlock();
+	}
+
+	void RenderJob()
+	{
+		a_uint32 id  =++rjob;
+		//printf("RenderJob, %i\n",id);
+		auto app =  AgmdApplication::getApplication();
+		app->m_threadPool->GetMutex().Lock();
+		Camera* c = Camera::getCurrent();
+		c->updateBuffer(c->getNode()->GetTransform().modelMatrix()*c->look());
+		ARenderQueue* queue = app->m_renderQueue[1];
+		app->m_threadPool->GetMutex().Unlock();
+		AgmdApplication::Render(queue);
+		app->m_threadPool->GetMutex().Lock();
+		process_flag &=~PROCESS_RENDER;
+		
+
+		//printf("RenderJob, %i ended pflag : %i\n",id,process_flag);
+		if(!(process_flag & PROCESS_UPDATE))
+		{
+			//printf("RenderJob, %i start new job\n",id);
+			RestartJob();
+		}
+		app->m_threadPool->GetMutex().Unlock();
+		
+
+	}
+
+
     void AgmdApplication::draw()
     {
-        Timer timer;
-        Timer global_timer;
-        global_timer.start();
-        int frame = 0;
-        float renderTime = 0, guiTime = 0;
-        a_uint32 time = clock();
-        a_uint32 time_diff = time - m_lastTime;
-        m_deltaTime = time_diff;
-        m_lastTime = time;
-        Driver& render =  Driver::Get();
-        render.GetStatistics().ResetStatistics();
-        render.OnUpdate(time_diff);
-        GUIMgr::Instance().Update(time_diff);
-        OnUpdate(time_diff);
-        render.InitScene();
-        //Render 3D objects
-        timer.start();
-        RenderingMode* current = RenderingMode::getRenderingMode();
-        if(current != NULL)
-            current->compute();
-        OnRender3D();
-        renderTime = (float)timer.getElapsedTimeInMicroSec();
-        timer.stop();
-        timer.start();
-        //Render 2D GUI
-        GUIMgr::Instance().DrawGUI();
-        OnRender2D();
-        timer.stop();
-        guiTime = (float)timer.getElapsedTimeInMicroSec();
-
-        frame++;
-        //if(time_diff < 15)
-        //Sleep(15-time_diff);
-        render.EndScene();
-        global_timer.stop();
-        if(m_fpsTimer <= time_diff)
-        {
-            m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - m_fpsTimer);
-            m_fpsTimer = SECONDS_IN_MS;
-            render.GetStatistics().SetMainTime((float)time_diff);
-            render.GetStatistics().SetRenderingTime(renderTime);
-            render.GetStatistics().SetGuiTime(guiTime);
-        }else m_fpsTimer -= time_diff;
+//         Timer timer;
+//         Timer global_timer;
+//         global_timer.start();
+//         int frame = 0;
+//         float renderTime = 0, guiTime = 0;
+//         a_uint32 time = clock();
+//         a_uint32 time_diff = time - m_lastTime;
+//         m_deltaTime = time_diff;
+//         m_lastTime = time;
+//         Driver& render =  Driver::Get();
+//         render.GetStatistics().ResetStatistics();
+//         render.OnUpdate(time_diff);
+//         GUIMgr::Instance().Update(time_diff);
+//         OnUpdate(time_diff);
+//         render.InitScene();
+//         //Render 3D objects
+//         timer.start();
+//         RenderingMode* current = RenderingMode::getRenderingMode();
+//         if(current != NULL)
+//             current->compute();
+//         OnRender3D();
+//         renderTime = (float)timer.getElapsedTimeInMicroSec();
+//         timer.stop();
+//         timer.start();
+//         //Render 2D GUI
+//         GUIMgr::Instance().DrawGUI();
+//         OnRender2D();
+//         timer.stop();
+//         guiTime = (float)timer.getElapsedTimeInMicroSec();
+// 
+//         frame++;
+//         //if(time_diff < 15)
+//         //Sleep(15-time_diff);
+//         render.EndScene();
+//         global_timer.stop();
+//         if(m_fpsTimer <= time_diff)
+//         {
+//             m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - m_fpsTimer);
+//             m_fpsTimer = SECONDS_IN_MS;
+//             render.GetStatistics().SetMainTime((float)time_diff);
+//             render.GetStatistics().SetRenderingTime(renderTime);
+//             render.GetStatistics().SetGuiTime(guiTime);
+//         }else m_fpsTimer -= time_diff;
 
     
     }
@@ -758,6 +958,8 @@ namespace Agmd
     {
         return m_frame;
     }
+
+
 
     
 

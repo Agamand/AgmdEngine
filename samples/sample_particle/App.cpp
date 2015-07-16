@@ -109,13 +109,14 @@ void App::init()
 	//PostEffectMgr::Instance().AddEffect(new Inverse());
     m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
+	Driver::Get().SetActiveScene(m_Scene);
 	Texture t;
 	Texture color_gradiant;
 	
 	Material* mat = new Material();
 	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
 	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
-    Driver::Get().SetActiveScene(m_Scene);
+    
     Driver::Get().SetCullFace(2);
 
 

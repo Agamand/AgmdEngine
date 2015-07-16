@@ -24,7 +24,7 @@ namespace Agmd
         ForwardRendering(ivec2& screen);
         ~ForwardRendering();
 
-        virtual void compute();
+        virtual void compute(ARenderQueue& queue);
 
         virtual void start();
         virtual void end();

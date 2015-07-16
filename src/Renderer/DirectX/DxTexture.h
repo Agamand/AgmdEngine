@@ -12,17 +12,21 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/TextureBase.h>
 #include <CommonDefines.h>
 
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
+
 namespace Agmd
 {
     class DXTexture : public TextureBase
     {
     public :
-        DXTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture);
+        DXTexture(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, ID3D11Resource* texture);
         ~DXTexture();
 
-        a_uint32 GetDXTexture() const;
+        ID3D11Resource* GetDXTexture() const;
     protected :
-        a_uint32 m_Texture;
+        ID3D11Resource* m_Texture;
     };
 }
 

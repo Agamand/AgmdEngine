@@ -25,13 +25,13 @@ namespace AgmdUtilities
             T data;
         };
         FastList();
-        FastList(bool with_sort, a_uint32 capacity = 10); //with_sort is used for function Push
+        FastList(bool with_sort, a_uint32 capacity = 10); 
         ~FastList();
 
         const Iterator& Begin() const;
         const Iterator& End() const;
         
-        void push(T); // if sort is actived, Push() will sort the element else then Push use Push_Front()
+        void push(T); 
         void push_front(T);
         void push_back(T);
         

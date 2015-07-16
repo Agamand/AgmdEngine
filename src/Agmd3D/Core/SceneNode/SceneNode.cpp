@@ -94,7 +94,7 @@ namespace Agmd
         if(m_sceneController)
             m_sceneController->m_bindedNode = NULL;
         m_sceneController=controller;
-        m_sceneController->m_bindedNode = this;
+        //m_sceneController->m_bindedNode = this;
     }
 
     void SceneNode::addChild( SceneNode* node )

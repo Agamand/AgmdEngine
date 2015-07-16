@@ -12,6 +12,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Vector3.h>
 #include <Config/Export.h>
 #include <Container/Vector.h>
+#include <Core/Tools/BoundingSphere.h>
 
 using namespace AgmdMaths;
 
@@ -23,15 +24,20 @@ namespace Agmd
         BoundingBox();
         BoundingBox(const a_vector<vec3>& vertex_pos);
         BoundingBox(const vec3&, const vec3&);
+		BoundingBox(const BoundingBox& bbox);
         
 
         vec3 GetMin() const;
         vec3 GetMax() const;
+		vec3 GetCenter() const;
 
         const BoundingBox getTransformedBoundingBox(const mat4& mat) const;
         void mult(const mat4&, const BoundingBox& bbox);
-
-    private:
+		BoundingBox operator/(float value) const;
+		BoundingBox operator*(float value) const;
+		BoundingBox& operator+=(vec3 translate);
+		bool Within( BoundingSphere& bsphere );
+	private:
         vec3 m_max;
         vec3 m_min;
     }; 

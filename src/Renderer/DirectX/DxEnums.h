@@ -58,12 +58,14 @@ namespace Agmd
 // 
 //         static GLenum Get(TTextureType value);
 
-           static D3D_PRIMITIVE_TOPOLOGY        Get(TPrimitiveType value);
 
+		static DXGI_FORMAT					Get(TPixelFormat value);
+        static D3D_PRIMITIVE_TOPOLOGY       Get(TPrimitiveType value);
 
     private :
-
-           static D3D_PRIMITIVE_TOPOLOGY        PrimitiveType[];
+		static DXGI_FORMAT					PixelFormat[];
+        static D3D_PRIMITIVE_TOPOLOGY       PrimitiveType[];
+		   
     };
 
 }

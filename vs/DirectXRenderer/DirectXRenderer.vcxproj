@@ -229,7 +229,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <PreprocessorDefinitions>AGMDENGINE_EXPORTS;DIRECTX_EXPORTS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)\..\dep\;$(SolutionDir)..\src\Agmd3D;$(SolutionDir)..\src\AgmdMaths;$(SolutionDir)..\src\AgmdUtilities;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -324,6 +324,7 @@
     <ClInclude Include="..\..\src\Renderer\DirectX\DxShaderProgram.h" />
     <ClInclude Include="..\..\src\Renderer\DirectX\DxTexture.h" />
     <ClInclude Include="..\..\src\Renderer\DirectX\DxTexture2D.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Renderer\DirectX\DxBuffer.inl" />
@@ -336,6 +337,7 @@
     <ClCompile Include="..\..\src\Renderer\DirectX\DxShaderProgram.cpp" />
     <ClCompile Include="..\..\src\Renderer\DirectX\DxTexture.cpp" />
     <ClCompile Include="..\..\src\Renderer\DirectX\DxTexture2D.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxConstantBuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

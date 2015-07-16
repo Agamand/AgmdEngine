@@ -62,10 +62,10 @@ namespace Agmd
             return false;
         
 
-        SceneMgr* scene = render.GetActiveScene();
-        Light::LightBuffer* buffer = scene->GetLightBuffer();
-
-        float* _buffer = reinterpret_cast<float*>(buffer);
+//         SceneMgr* scene = render.GetActiveScene();
+//         Light::LightBuffer* buffer = scene->GetLightBuffer();
+// 
+//         float* _buffer = reinterpret_cast<float*>(buffer);
         //int size = sizeof(Light::LightBuffer)*10;
 
         /*
@@ -82,20 +82,20 @@ namespace Agmd
         int l_type;
         };        
         */
-        int lCount = scene->GetLightNodes().size();
-        for(int i = 0; i <lCount && i < MAX_LIGHT; ++i)
-        {
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_position"  ),buffer[i].position);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_dir")       ,buffer[i].dir);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_ambient")   ,buffer[i].ambient);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_diffuse")   ,buffer[i].diffuse);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_specular")  ,buffer[i].specular);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_innerAngle"),buffer[i].innerAngle);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_outerAngle"),buffer[i].outerAngle);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_range")     ,buffer[i].range);
-            (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_type")      ,buffer[i].type);
-        }
-        (m_shaderPipeline)->m_pipeline[pass].SetParameter("u_lightCount",lCount);
+//         int lCount = scene->GetLightNodes().size();
+//         for(int i = 0; i <lCount && i < MAX_LIGHT; ++i)
+//         {
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_position"  ),buffer[i].position);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_dir")       ,buffer[i].dir);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_ambient")   ,buffer[i].ambient);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_diffuse")   ,buffer[i].diffuse);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_specular")  ,buffer[i].specular);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_innerAngle"),buffer[i].innerAngle);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_outerAngle"),buffer[i].outerAngle);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_range")     ,buffer[i].range);
+//             (m_shaderPipeline)->m_pipeline[pass].SetParameter(StringBuilder("u_light[")(i)("].l_type")      ,buffer[i].type);
+//         }
+//         (m_shaderPipeline)->m_pipeline[pass].SetParameter("u_lightCount",lCount);
         for(a_uint32 i = 0; i < MAX_TEXTUREUNIT; i++)
         {
             if(m_texture[i].pass & (1<<pass))

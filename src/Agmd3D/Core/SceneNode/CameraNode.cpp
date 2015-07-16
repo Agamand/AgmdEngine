@@ -13,7 +13,7 @@ namespace Agmd
     {
         setController(c);
         AgmdApplication::getApplication()->addInputListener(c);
-        m_camera->m_node = this;
+        //m_camera->m_node = this;
     }
 
     bool CameraNode::isVisible( BoundingSphere& bounds )

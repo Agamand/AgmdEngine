@@ -51,8 +51,16 @@ namespace Agmd
         m_transform.m_MatView = inverse(inversedView);
         m_transform.m_ViewPosition = inversedView*vec4(0,0,0,1);
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
-        m_cameraBuffer.FillByte(&m_transform,0,sizeof(mat4)*2+sizeof(vec4));
-        
+
+		CameraBuffer buffer;
+		buffer.m_MatView = transpose(m_transform.m_MatView);
+		buffer.m_MatProjectionView = transpose(m_transform.m_MatProjectionView);
+		buffer.m_MatProjection = transpose(m_transform.m_MatProjection);
+		buffer.m_ViewPosition = m_transform.m_ViewPosition;
+
+        //m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));
+        m_cameraBuffer.Fill(&buffer,1);
+		m_frustum->Setup(m_transform.m_MatProjectionView);
         /*if(map == NULL)
             map = m_cameraBuffer.LockBits<mat4>(0, sizeof(mat4),LOCK_WRITEONLY | LOCK_UNSYNCHRONOUS);
         mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
@@ -129,7 +137,7 @@ namespace Agmd
     bool Camera::isInFrustrum( const BoundingSphere& bounding )
     {
         
-                const BoundingSphere bound = bounding.GetTransformedBounding(m_transform.m_MatView);
+        const BoundingSphere bound = bounding.GetTransformedBounding(m_transform.m_MatView);
         ShaderProgram testShader;
         //testShader.LoadFromFile("Shader/debug_shader.glsl");
         //Driver::Get().drawBoundingBox(boundingBox,testShader.GetShaderProgram());
@@ -141,12 +149,20 @@ namespace Agmd
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
         //m_cameraBuffer.FillByte(&m_transform,sizeof(mat4)+sizeof(vec4),sizeof(mat4)*2);
         
-        auto a = m_cameraBuffer.Lock();
-        a->m_MatProjection = m_transform.m_MatProjection;
-        a->m_MatProjectionView = m_transform.m_MatProjectionView;
-        m_cameraBuffer.Unlock();
-        
-        m_frustum->Setup(m_transform.m_MatProjection);
+//         auto a = m_cameraBuffer.Lock();
+//         a->m_MatProjection = transpose(m_transform.m_MatProjection);
+//         a->m_MatProjectionView = transpose(m_transform.m_MatProjectionView);
+//         m_cameraBuffer.Unlock();
+
+		CameraBuffer buffer;
+		buffer.m_MatView = transpose(m_transform.m_MatView);
+		buffer.m_MatProjectionView = transpose(m_transform.m_MatProjectionView);
+		buffer.m_MatProjection = transpose(m_transform.m_MatProjection);
+		buffer.m_ViewPosition = m_transform.m_ViewPosition;
+
+		//m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));
+        m_cameraBuffer.Fill(&buffer,1);
+		m_frustum->Setup(m_transform.m_MatProjectionView);
     }
 
     void Camera::resize( vec2 newScreen )
@@ -182,6 +198,11 @@ namespace Agmd
             updateProjection();
         }// if ortho nothing to do
     }
+
+	Frustum* Camera::GetFrustrum()
+	{
+		return m_frustum;
+	}
 
     Camera* Camera::s_currentCamera2D = NULL;
     Camera* Camera::s_currentCamera3D = NULL;

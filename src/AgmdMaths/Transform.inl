@@ -28,8 +28,23 @@ position(m_position),
 rotation(m_rotation),
 m_localMatrix(glm::translate(mat4(1.0f),m_position)*glm::mat4_cast(m_rotation)*glm::scale(mat4(1),m_scale)),
 m_worldMatrix(m_localMatrix)
-
 {}
+
+inline Transform::Transform (const Transform &t) :
+m_updateNeeded(t.m_updateNeeded),
+m_parent(t.m_parent),
+m_position(t.m_position),
+m_rotation(t.m_rotation),
+m_scale(t.m_scale),
+position(m_position),
+rotation(m_rotation),
+m_localMatrix(t.m_localMatrix),
+m_worldMatrix(t.m_worldMatrix)
+{
+
+}
+
+
 
 inline mat4 Transform::modelMatrix() const
 {

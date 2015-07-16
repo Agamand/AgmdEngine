@@ -145,12 +145,12 @@ namespace Agmd
             return m_TextureFlags;
         }
 
-        void Driver::SetActiveScene( SceneMgr* sc )
+        void Driver::SetActiveScene( ASceneMgr* sc )
         {
             m_ActiveScene = sc;
         }
 
-        SceneMgr* Driver::GetActiveScene()
+        ASceneMgr* Driver::GetActiveScene()
         {
             return m_ActiveScene;
         }

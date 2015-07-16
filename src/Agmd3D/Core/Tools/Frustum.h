@@ -32,7 +32,7 @@ namespace Agmd
 
         bool IsIn(const vec3& pos) const;
         bool IsIn(const Bounding& bounds) const{return true;}
-        bool IsIn(const BoundingBox& bounds) const{return true;}
+        bool IsIn(const BoundingBox& bounds) const;
         bool IsIn(const BoundingSphere& bounds) const;
 
     private:

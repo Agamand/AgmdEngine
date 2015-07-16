@@ -31,11 +31,17 @@ https://github.com/Agamand/AgmdEngine
 #include <assert.h>
 #include <CommonDefines.h>
 #include <Core/Camera/Camera.h>
+#include <Core/SceneMgr/ARenderQueue.h>
+
 #include <Windows.h>
 #include <shellapi.h>
 
 #include <Container/Vector.h>
 #include <string>
+#include <queue>
+
+
+
 #define SECONDS_IN_MS 1000
 
 using namespace AgmdUtilities;
@@ -120,14 +126,21 @@ using namespace AgmdUtilities;
     
     };
 #endif
+
+class CThreadPool;
 namespace Agmd{
     
     enum ADriverType
     {
         DRIVER_OPENGL,
         DRIVER_DX11
+		//DRIVER_DX10
+		//DRIVER_DX9
+		//DRIVER_DX12
+		//DRIVER_VUKAN 
+		
     };
-    
+   
     class AGMD3D_EXPORT AgmdApplication
     {
     public:
@@ -152,13 +165,25 @@ namespace Agmd{
         bool isReady() const {return m_isReady;}
         InputController* m_sceneController;
         a_uint32 getDeltaTime(){return m_deltaTime;}
+		ADriverType GetDriverType(){ return m_driverType;}
+
+		static void Render(ARenderQueue* q);
+		static void UpdateTransform();
+		static void UpdateScript(a_uint32 time);
+		static void UpdateBounds();
+		static void Culling(ARenderQueue& queue);
+		a_uint32                m_deltaTime;
+		a_uint32                m_lastTime;
+		ARenderQueue*			m_renderQueue[2];
+		ARenderQueue*			m_renderQueuePool;
+		CThreadPool*			m_threadPool;
 #ifdef USE_WX
 
         void CreateGlCanvas( wxWindow* m_viewPanel );
         wxFrame* getWxFrame();
 #endif
     private:
-        
+       
         HINSTANCE                m_Instance;
 #if defined(USE_WX)
         
@@ -170,10 +195,10 @@ namespace Agmd{
         bool                    m_isRunning;
         static AgmdApplication* s_application;
         SmartPtr<Plugin>        m_renderer;
-        a_uint32                m_lastTime;
+        
         a_uint32                m_fpsTimer;
-        float                    m_fps;
-        a_uint32                m_deltaTime;
+        float                   m_fps;
+
 
     protected:
         AgmdApplication(ivec2 screenSize = ivec2(SCREEN_WIDTH,SCREEN_HEIGHT),ADriverType d = DRIVER_OPENGL);
@@ -195,9 +220,11 @@ namespace Agmd{
         virtual void init() = 0;
         virtual void OnUpdate(a_uint64 time_diff) = 0;
         virtual void OnRender3D() = 0;
-        virtual void OnRender2D() = 0;
-        
-        Camera*              camera;
+		virtual void OnRender2D() = 0;
+		
+		
+
+        Camera*  camera;
         ivec2 last_mouse_pos;
         ivec2 m_ScreenSize;
         a_uint32 mouseState;

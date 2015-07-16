@@ -25,6 +25,9 @@ namespace AgmdMaths
     public:
         Transform(const vec3& _position = vec3(0.0f), const quat& _rotation = quat(1.0f,vec3(0.0f)),const vec3& scale = vec3(1));
         Transform(Transform* parent, const vec3& _position = vec3(0.0f), const quat& _rotation = quat(1.0f,vec3(0.0f)));
+		Transform (const Transform &t);
+		void operator=(const Transform& b){}
+
         mat4 modelMatrix() const;
         mat4 localModelMatrix() const;
 
@@ -66,7 +69,7 @@ namespace AgmdMaths
             return vec3(m_worldMatrix*vec4(0,0,0,1));
         }
 
-
+		
         const vec3&     position;
         const quat&     rotation;
 

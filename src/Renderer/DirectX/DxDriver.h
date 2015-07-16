@@ -147,7 +147,11 @@ namespace Agmd
         ID3D11DeviceContext         *m_deviceContext;
         IDXGISwapChain              *swapchain;
         ID3D11RenderTargetView      *backbuffer;
-    };
+		ID3D11DepthStencilView		*depthStencilView;
+		Buffer<mat4>				m_ModelMatrix;
+		ID3D11RasterizerState* m_defaultRasterizerState;
+		ID3D11DepthStencilState* m_depthStencilState;
+	};
 
 }
 #endif /* _DXDRIVER_H_ */

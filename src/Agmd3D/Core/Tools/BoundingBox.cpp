@@ -7,6 +7,7 @@ https://github.com/Agamand/AgmdEngine
 */
 
 #include <Core/Tools/BoundingBox.h>
+
 #include <CommonDefines.h>
 namespace Agmd
 {
@@ -33,6 +34,13 @@ namespace Agmd
 
     BoundingBox::BoundingBox(): m_min(0),m_max(0)
     {}
+
+	BoundingBox::BoundingBox( const BoundingBox& bbox ):
+		m_min(bbox.m_min),
+		m_max(bbox.m_max)
+	{
+
+	}
 
     vec3 BoundingBox::GetMin() const
     {
@@ -104,5 +112,50 @@ namespace Agmd
             m_max.z = max(m_max.z,points_box[i].z);
         }
     }
+
+	BoundingBox BoundingBox::operator/( float value ) const
+	{
+		float _length = length(m_max-m_min)/2.0f;
+		vec3 center = GetCenter(),
+			 dir = normalize(m_max-m_min),
+			 _min(center-_length/value*dir),
+			 _max(center+_length/value*dir);
+		return BoundingBox(_min,_max);
+	}
+
+	Agmd::BoundingBox BoundingBox::operator*( float value ) const
+	{
+		float _length = length(m_max-m_min);
+		vec3 center = GetCenter(),
+			dir = normalize(m_max-m_min),
+			_min(center-_length*value*dir),
+			_max(center+_length*value*dir);
+		return BoundingBox(_min,_max);
+	}
+
+	glm::vec3 BoundingBox::GetCenter() const
+	{
+		return m_min+(m_max-m_min)/2.f;
+	}
+
+	BoundingBox& BoundingBox::operator+=( vec3 translate )
+	{
+		this->m_max+=translate;
+		this->m_min+=translate;
+		return *this;
+	}
+
+
+
+	bool BoundingBox::Within( BoundingSphere& bsphere )
+	{
+		vec3 _min(bsphere.GetCenter()-vec3(bsphere.GetRadius())),
+			 _max(bsphere.GetCenter()+vec3(bsphere.GetRadius()));
+
+
+		return m_min.x <= _min.x && m_min.y <= _min.y && m_min.z <= _min.z
+			&& m_max.x >= _max.x && m_max.y >= _max.y && m_max.z >= _max.z;
+
+	}
 
 }

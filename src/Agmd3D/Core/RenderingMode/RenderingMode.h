@@ -13,6 +13,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Config/Export.h>
 #include <CommonDefines.h>
 #include <Core/Enums.h>
+#include <Core/SceneMgr/ARenderQueue.h>
 namespace Agmd
 {
     class AGMD3D_EXPORT RenderingMode
@@ -21,7 +22,7 @@ namespace Agmd
         RenderingMode(a_int32 width, a_int32 heigth);
         RenderingMode(ivec2& screenSize);
         
-        virtual void compute() = 0;
+		virtual void compute(ARenderQueue& queue) = 0;
         void setRenderMode(TRenderMode mode);
         static void setRenderingMode(RenderingMode*);
 

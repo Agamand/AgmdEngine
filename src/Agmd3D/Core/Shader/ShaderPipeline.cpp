@@ -50,18 +50,18 @@ namespace Agmd
             LoadDefaultFunction();
             s_defaultPipeline = new ShaderPipeline();
             ShaderProgram defaultShader;
-            defaultShader.LoadFromFile("Shader/RenderingShader/ZPassShader.glsl");
-            s_defaultPipeline->m_pipeline[RENDERPASS_ZBUFFER] = defaultShader;
-            defaultShader.LoadFromFile("Shader/RenderingShader/DiffuseShader.glsl");
+          //  defaultShader.LoadFromFile("Shader/RenderingShader/ZPassShader.glsl");
+            //s_defaultPipeline->m_pipeline[RENDERPASS_ZBUFFER] = defaultShader;
+            defaultShader.LoadFromFile("Shader/RenderingShader/DiffuseShader.shader");
             s_defaultPipeline->m_pipeline[RENDERPASS_DIFFUSE] = defaultShader;
             //defaultShader.LoadFromFile("Shader/RenderingShader/LightingShader.glsl");
             //s_defaultPipeline->m_pipeline[RENDERPASS_LIGHTING] = defaultShader;
-            defaultShader.LoadFromFile("Shader/RenderingShader/DirectionnalShadowCastShader.glsl");
-            s_defaultPipeline->m_pipeline[RENDERPASS_DIRECTIONNAL_LIGHTING_WITH_SHADOW] = defaultShader;
-            defaultShader.LoadFromFile("Shader/RenderingShader/PointShadowCastShader.glsl");
-            s_defaultPipeline->m_pipeline[RENDERPASS_POINT_SHADOW_CAST] = defaultShader;
-            defaultShader.LoadFromFile("Shader/RenderingShader/DeferredShader.glsl");
-            s_defaultPipeline->m_pipeline[RENDERPASS_DEFERRED] = defaultShader;
+//             defaultShader.LoadFromFile("Shader/RenderingShader/DirectionnalShadowCastShader.glsl");
+//             s_defaultPipeline->m_pipeline[RENDERPASS_DIRECTIONNAL_LIGHTING_WITH_SHADOW] = defaultShader;
+//             defaultShader.LoadFromFile("Shader/RenderingShader/PointShadowCastShader.glsl");
+//             s_defaultPipeline->m_pipeline[RENDERPASS_POINT_SHADOW_CAST] = defaultShader;
+//             defaultShader.LoadFromFile("Shader/RenderingShader/DeferredShader.glsl");
+//             s_defaultPipeline->m_pipeline[RENDERPASS_DEFERRED] = defaultShader;
             //defaultShader.LoadFromFile("Shader/RenderingShader/forward_lighting.glsl");
             //s_defaultPipeline->m_pipeline[RENDERPASS_FORWARD_LIGHTING] = defaultShader;
         }

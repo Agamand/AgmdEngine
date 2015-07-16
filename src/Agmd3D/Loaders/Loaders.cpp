@@ -30,7 +30,7 @@ namespace Agmd
         mediaManager.RegisterLoader(new ShadersLoader(SHADER_GEOMETRY),  "geom");
         mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_CONTROL),  "tessc");
         mediaManager.RegisterLoader(new ShadersLoader(SHADER_TESS_EVALUATION),  "tesse");
-        mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl");
+        mediaManager.RegisterLoader(new ShaderProgramsLoader(), "glsl, hlsl");
         //mediaManager.RegisterLoader(new TxtLoader(),"txt");
         mediaManager.RegisterLoader(new ObjLoader(), "obj");
         mediaManager.RegisterLoader(new ShaderPipelineLoader(), "shader");

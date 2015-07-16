@@ -10,6 +10,7 @@
     <ClInclude Include="..\..\src\Renderer\DirectX\DxTexture2D.h" />
     <ClInclude Include="..\..\src\Renderer\DirectX\DxShader.h" />
     <ClInclude Include="..\..\src\Renderer\DirectX\DxShaderProgram.h" />
+    <ClInclude Include="..\..\src\Renderer\DirectX\DxConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Renderer\DirectX\DxBuffer.inl" />
@@ -22,5 +23,6 @@
     <ClCompile Include="..\..\src\Renderer\DirectX\DxTexture2D.cpp" />
     <ClCompile Include="..\..\src\Renderer\DirectX\DxShader.cpp" />
     <ClCompile Include="..\..\src\Renderer\DirectX\DxShaderProgram.cpp" />
+    <ClCompile Include="..\..\src\Renderer\DirectX\DxConstantBuffer.cpp" />
   </ItemGroup>
 </Project>

@@ -75,7 +75,7 @@ namespace Agmd
     };
 
 
-
+	class ANode;
     class AGMD3D_EXPORT Camera
     {
     friend class CameraNode;
@@ -124,18 +124,22 @@ namespace Agmd
         bool isInFrustrum(const BoundingSphere& bounding);
         //void SetRecvInput(bool active = true){    recvInput = active;    }
         //float* GetSpeedPtr(){return &m_speed;}
-        SceneNode* getNode() { return m_node;}
+        ANode* getNode() { return m_node;}
+		void updateBuffer(mat4& view);
+		 ANode*            m_node;
+		 Frustum* GetFrustrum();
     protected:
         
         //virtual void updateVector() = 0;
-        void updateBuffer(mat4& view);
+        
         void updateProjection();
-        struct CameraBuffer
+		
+		struct CameraBuffer
         {
-            vec4 m_ViewPosition;
             mat4 m_MatView;
             mat4 m_MatProjectionView;
             mat4 m_MatProjection;
+			vec4 m_ViewPosition;
         };
 
 //         float m_speed;
@@ -154,7 +158,7 @@ namespace Agmd
 //         bool                recvInput;
         Frustum*            m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
-        SceneNode*            m_node;
+       
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

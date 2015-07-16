@@ -18,7 +18,7 @@ namespace Agmd
     {
     public :
 
-        DXTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture);
+        DXTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, ID3D11Texture2D* texture);
 
         ~DXTexture2D();
 

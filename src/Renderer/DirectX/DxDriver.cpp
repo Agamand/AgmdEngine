@@ -647,6 +647,8 @@ namespace Agmd
         viewport.TopLeftY = xy.y;
         viewport.Width = size.x;
         viewport.Height = size.y;
+		viewport.MinDepth = 0;
+		viewport.MaxDepth = 1;
         m_deviceContext->RSSetViewports(1, &viewport);
     }
 

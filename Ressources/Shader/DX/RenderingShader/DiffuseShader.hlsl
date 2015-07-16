@@ -29,6 +29,7 @@ PixelInput VShader(VertexInput input)
     output.position = input.position;
     output.position = mul(input.position, u_matModel);
     output.position = mul(output.position, u_matViewProjection);
+    //output.position.z = 1f;
     output.normal = normalize(input.position.xyz);
     output.color = float4(1,1,1,1);//input.color;
 

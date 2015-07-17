@@ -3,7 +3,7 @@
 #include <vector>
 #include <Core/SceneMgr/Node.h>
 #include <Core/Tools/Octree.h>
-#define POOL_SIZE 1000
+#define POOL_SIZE 100000
 
 
 namespace Agmd

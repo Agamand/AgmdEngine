@@ -123,22 +123,24 @@ void App::init()
 // 	node = new MeshNode();
 // 	m_Scene->AddNode(node);
 	Model* model = new Icosahedron(3);
+
+    Material* mat =  ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
 	for(a_uint32 i = 0; i < 10; i++)
 	{
 
 		for(a_uint32 j = 0; j < 10; j++)
 		{
 
-
+            for(a_uint32 k = 0; k < 10; k++)
+            {
 			
-			Material* mat =  ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
-			node = scene->AddNode(model,mat);
-			node->GetTransform().translate((i)*4,0,(j)*4);
+			    node = scene->AddNode(model,mat);
+			    node->GetTransform().translate((i)*4,k*4,(j)*4);
 // 				MeshNode* _node = new MeshNode(new Icosahedron(2));
 // 				_node->getTransform().translate((5-i)*2,(5-j)*2,0);
 // 				m_Scene->AddNode(_node);
 // 			
-
+            }
 		}
 
 
@@ -186,6 +188,15 @@ void App::OnMove(vec2 pos)
 
 void App::OnKey( a_char key, bool up )
 {
-
+    if(up)
+    {
+        if(key == 'F')
+        {
+            Camera::getCurrent()->FreezeFrustrum(true);
+        }else if(key == 'U')
+        {
+            Camera::getCurrent()->FreezeFrustrum(false);
+        }
+    }
 	AgmdApplication::OnKey(key,up);
 }

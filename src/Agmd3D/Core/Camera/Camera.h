@@ -128,12 +128,14 @@ namespace Agmd
 		void updateBuffer(mat4& view);
 		 ANode*            m_node;
 		 Frustum* GetFrustrum();
+
+         void FreezeFrustrum( bool active );
     protected:
         
         //virtual void updateVector() = 0;
         
         void updateProjection();
-		
+
 		struct CameraBuffer
         {
             mat4 m_MatView;
@@ -164,6 +166,7 @@ namespace Agmd
         static Camera* s_currentCamera2D;
         ProjectionOption m_projOption;
         TCameraProjection m_projType;
+        bool m_frustrumFreeze;
     };
 }
 #endif

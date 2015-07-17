@@ -30,7 +30,8 @@ namespace Agmd
 //     m_sensivity(0.2f),
 //     recvInput(true),
     m_node(NULL),
-    m_frustum(new Frustum())
+    m_frustum(new Frustum()),
+    m_frustrumFreeze(false)
     {
        
         m_transform.m_MatView = mat4(1.0f);
@@ -60,7 +61,8 @@ namespace Agmd
 
         //m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));
         m_cameraBuffer.Fill(&buffer,1);
-		m_frustum->Setup(m_transform.m_MatProjectionView);
+        if(!m_frustrumFreeze)
+		    m_frustum->Setup(m_transform.m_MatProjectionView);
         /*if(map == NULL)
             map = m_cameraBuffer.LockBits<mat4>(0, sizeof(mat4),LOCK_WRITEONLY | LOCK_UNSYNCHRONOUS);
         mat4 vp = m_transform.m_MatProjection*m_transform.m_MatView;
@@ -162,7 +164,8 @@ namespace Agmd
 
 		//m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));
         m_cameraBuffer.Fill(&buffer,1);
-		m_frustum->Setup(m_transform.m_MatProjectionView);
+        if(!m_frustrumFreeze)
+		    m_frustum->Setup(m_transform.m_MatProjectionView);
     }
 
     void Camera::resize( vec2 newScreen )
@@ -203,6 +206,11 @@ namespace Agmd
 	{
 		return m_frustum;
 	}
+
+    void Camera::FreezeFrustrum( bool active )
+    {
+        m_frustrumFreeze = active;
+    }
 
     Camera* Camera::s_currentCamera2D = NULL;
     Camera* Camera::s_currentCamera3D = NULL;

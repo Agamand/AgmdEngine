@@ -1,14 +1,5 @@
 #ifndef _OCTREE_H_
 #define _OCTREE_H_
-/*
-============================================================================
-Agmd3D - 3D Engine
-Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
-https://github.com/Agamand/AgmdEngine
-
-status : incomming
-============================================================================
-*/
 
 #include <vector>
 #include <stack>
@@ -20,7 +11,7 @@ status : incomming
 using namespace AgmdUtilities;
 
 #define MAX_OCSPACE 8
-#define OCTREE_POOL_SIZE 10000
+#define OCTREE_POOL_SIZE 100000
 namespace Agmd
 {
 

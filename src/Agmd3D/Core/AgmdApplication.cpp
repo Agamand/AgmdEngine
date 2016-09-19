@@ -5,14 +5,18 @@ Author : Cyril Basset (basset.cyril@gmail.com - https://github.com/Agamand)
 https://github.com/Agamand/AgmdEngine
 ============================================================================
 */
-#include "wx/wxprec.h"
+
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
+#ifdef USE_WX
 
+#include "wx/wxprec.h"
 #ifndef WX_PRECOMP
 #include "wx/wx.h"
 #endif
+
+#endif // DEBUG
 #include <Core/AgmdApplication.h>
 #include <Core/Driver.h>
 #include <Core/Enums.h>

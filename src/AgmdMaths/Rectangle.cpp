@@ -82,8 +82,8 @@ namespace AgmdMaths
 
     TIntersection Rectangle::intersects(const Rectangle& rect) const
     {
-        ivec2 start(std::max(m_origin.x, rect.m_origin.x), std::max(m_origin.y, rect.m_origin.y));
-        ivec2 m_end(std::min(m_end.x, rect.m_end.x), std::min(m_end.y, rect.m_end.y));
+        ivec2 start(max(m_origin.x, rect.m_origin.x),max(m_origin.y, rect.m_origin.y));
+        ivec2 m_end(min(m_end.x, rect.m_end.x), min(m_end.y, rect.m_end.y));
         Rectangle overlap(start, m_end - start);
 
         if ((start.x > m_end.x) || (start.y > m_end.y))

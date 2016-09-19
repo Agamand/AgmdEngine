@@ -218,7 +218,7 @@ namespace AgmdUtilities
     #define IS_SPACER(a) (a == ' ' || a == '\t')
 
     XmlParser::Element XmlParser::GetElement(stringstream& stream)
-    {
+    {/*
         char c;
         std:: string str;
         Element elt;
@@ -336,7 +336,8 @@ namespace AgmdUtilities
         {
                //
         }
-        return elt;
+        return elt;*/
+		return Element();
     }
     
     /** useless function **/

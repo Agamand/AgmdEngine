@@ -19,7 +19,7 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
 
-    typedef a_vector<const Texture> TextureMap;
+    typedef a_vector<Texture> TextureMap;
     typedef a_vector<RenderBuffer*> RenderBufferMap;
 
     class AGMD3D_EXPORT FrameBuffer

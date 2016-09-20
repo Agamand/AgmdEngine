@@ -626,6 +626,19 @@ namespace Agmd
 		}
 	}
 
+    void AgmdApplication::FillRenderQueue(ARenderQueue& queue)
+	{
+        Driver& driver = Driver::Get();
+        ASceneMgr* scene = driver.GetActiveScene();
+        queue.Clear();
+        for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
+        {
+            ANode& node = scene->m_nodePool[i];
+            if (node.m_model) //if node is renderable
+                queue.Push(&node);
+        }
+	}
+
 	void AgmdApplication::Culling(ARenderQueue& queue)
 	{
 		Driver& driver = Driver::Get();
@@ -634,6 +647,8 @@ namespace Agmd
 		queue.Clear();
 		Frustum* frustrum = cam->GetFrustrum();
 
+        if (scene->m_octree.Empty())
+            return;
 
 		std::stack<OcTree<ANode>*> _stack;
 		_stack.push(scene->m_octree.Top());

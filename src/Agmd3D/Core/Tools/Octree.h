@@ -206,6 +206,7 @@ namespace Agmd
 			
 		}
 		OcTree<T>* Top() { return m_top; }
+        bool Empty() { return nullptr == m_top; }
 	private:
 		std::map<T*,OcTree<T>*>   m_elements;
 		OcTree<T>*				  m_top; // top of octree

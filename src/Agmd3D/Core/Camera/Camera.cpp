@@ -14,14 +14,24 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Camera/Camera.h>
 #include <Core/Tools/BoundingBox.h>
 #include <Core/Shader/ShaderProgram.h>
+#include <Core/AgmdApplication.h>
 
 #include <Container/Vector.h>
 
 #include <Debug/Profiler.h>
 
 
+
 namespace Agmd
 {
+    mat4& _transpose (const mat4& source, mat4& dest)
+    {
+        if (ADriverType::DRIVER_DX11 == AgmdApplication::getApplication()->GetDriverType())
+            return dest = transpose(source);
+        return dest=source;
+    }
+
+
     Camera::Camera(TCameraProjection proj_type,ProjectionOption opt) :
 //     move(0.0f),
 //     moveFlags(MOVE_NONE),
@@ -29,7 +39,7 @@ namespace Agmd
 //     m_speed(100.0f),
 //     m_sensivity(0.2f),
 //     recvInput(true),
-    m_node(NULL),
+    m_node(nullptr),
     m_frustum(new Frustum()),
     m_frustrumFreeze(false)
     {
@@ -54,9 +64,9 @@ namespace Agmd
         m_transform.m_MatProjectionView = m_transform.m_MatProjection*m_transform.m_MatView;
 
 		CameraBuffer buffer;
-		buffer.m_MatView = transpose(m_transform.m_MatView);
-		buffer.m_MatProjectionView = transpose(m_transform.m_MatProjectionView);
-		buffer.m_MatProjection = transpose(m_transform.m_MatProjection);
+		buffer.m_MatView = _transpose(m_transform.m_MatView, buffer.m_MatView);
+		buffer.m_MatProjectionView = _transpose(m_transform.m_MatProjectionView, buffer.m_MatProjectionView);
+		buffer.m_MatProjection = _transpose(m_transform.m_MatProjection, buffer.m_MatProjection);
 		buffer.m_ViewPosition = m_transform.m_ViewPosition;
 
         //m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));
@@ -157,9 +167,9 @@ namespace Agmd
 //         m_cameraBuffer.Unlock();
 
 		CameraBuffer buffer;
-		buffer.m_MatView = transpose(m_transform.m_MatView);
-		buffer.m_MatProjectionView = transpose(m_transform.m_MatProjectionView);
-		buffer.m_MatProjection = transpose(m_transform.m_MatProjection);
+        buffer.m_MatView = _transpose(m_transform.m_MatView, buffer.m_MatView);
+        buffer.m_MatProjectionView = _transpose(m_transform.m_MatProjectionView, buffer.m_MatProjectionView);
+        buffer.m_MatProjection = _transpose(m_transform.m_MatProjection, buffer.m_MatProjection);
 		buffer.m_ViewPosition = m_transform.m_ViewPosition;
 
 		//m_cameraBuffer.FillByte(&buffer,0,sizeof(CameraBuffer));

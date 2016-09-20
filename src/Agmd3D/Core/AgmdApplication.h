@@ -172,6 +172,7 @@ namespace Agmd{
 		static void UpdateScript(a_uint32 time);
 		static void UpdateBounds();
 		static void Culling(ARenderQueue& queue);
+        static void FillRenderQueue(ARenderQueue& queue);
 		a_uint32                m_deltaTime;
 		a_uint32                m_lastTime;
 		ARenderQueue*			m_renderQueue[2];

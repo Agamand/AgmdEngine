@@ -84,6 +84,7 @@ void App::init()
     AgmdApplication::getApplication()->addInputListener(controller);
     node->m_camera = cam3D;
     cam3D->m_node = node;
+    node->GetTransform().translate(17.5f, 17.5f, 100);
     Driver::Get().SetActiveScene(scene);
     Model* model = new Icosahedron(3);
     Material* mat = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");

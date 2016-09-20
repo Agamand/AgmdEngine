@@ -15,10 +15,10 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
+
     struct Delete
     {
-        template <class T>
-        void operator ()(T*& p) const
+        template <class T> void operator ()(T*& p) const
         {
             delete p;
             p = NULL;
@@ -41,7 +41,8 @@ namespace AgmdUtilities
         return retval == value ? retval : retval << 1;
     }
 
-#include <Debug/NewOff.h>
+    #include <Debug/NewOff.h>
+
 }
 
 

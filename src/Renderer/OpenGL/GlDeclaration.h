@@ -24,11 +24,10 @@ namespace Agmd
         struct TElement
         {
             a_uint32 usage;
-            TElementType type;
-            unsigned int offset;
+            TElementType  type;
+            unsigned int  offset;
         };
-
-        typedef a_vector<TElement> TElementArray;
+        typedef a_vector<TElement>      TElementArray;
         typedef a_vector<TElementArray> TElementMatrix;
 
         GLDeclaration();
@@ -43,6 +42,7 @@ namespace Agmd
 
         TElementMatrix m_Elements;
     };
+
 }
 
 

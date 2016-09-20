@@ -65,13 +65,13 @@ namespace AgmdUtilities
             if (ptr)
                 ptr->Release();
         }
-
         static void Swap(ResourceCOM&)
         {
         }
     };
 
-#include <Debug/NewOff.h>
+    #include <Debug/NewOff.h>
+
 };
 
 #endif // SMARTPTRPOLICIES_H

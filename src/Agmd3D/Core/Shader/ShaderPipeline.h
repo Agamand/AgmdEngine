@@ -32,27 +32,23 @@ namespace Agmd
         void Disable() const;
 
         static ShaderPipeline* GetDefaultPipeline();
-
         void setShader(const ShaderProgram& program, TRenderPass pass)
         {
-            m_pipeline[pass] = program;
+                m_pipeline[pass] = program;
         }
-
-        template <typename T>
-        void setParameter(std::string paramName, T value)
+        template <typename T> void setParameter(std::string paramName, T value)
         {
-            for (int i = 0; i < MAX_RENDERPASS; i++)
-                if (m_pipeline[i].GetShaderProgram())
-                    m_pipeline[i].SetParameter(paramName, value);
+            for(int i = 0; i < MAX_RENDERPASS; i++)
+                if(m_pipeline[i].GetShaderProgram())
+                    m_pipeline[i].SetParameter(paramName,value);
         }
-
     private:
         ShaderProgram m_pipeline[MAX_RENDERPASS];
         static ShaderPipeline* s_defaultPipeline;
         static void LoadDefaultFunction();
-        static std::map<std::string, std::string> m_defaultFunction;
-    };
+        static std::map<std::string,std::string> m_defaultFunction;
 
+    };
     inline std::string LoadFromFile(std::string path)
     {
         std::ifstream stream(path);

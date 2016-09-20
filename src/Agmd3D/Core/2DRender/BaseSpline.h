@@ -14,40 +14,36 @@ namespace Agmd
     class AGMD3D_EXPORT BaseSpline
     {
     public:
-
+        
         class UpdateListener
         {
         public:
             virtual void onUpdate(a_vector<vec3>& points) = 0;
         };
-
         friend class DrawablePlane;
-
+        
         BaseSpline(const vec3* points, int count);
-
+        
         BaseSpline(const a_vector<vec3>& points);
-
+        
         void addUpdateListener(UpdateListener* context);
 
-        a_vector<vec3>& getControlPoints()
-        {
+        a_vector<vec3>& getControlPoints() {
             return m_controlPoints;
         }
 
-        a_vector<vec3>& getComputedPoints()
-        {
+        a_vector<vec3>& getComputedPoints() {
             return m_computedPoints;
         }
 
         vec3* getLastPoint()
         {
-            return &m_controlPoints[m_controlPoints.size() - 1];
+            return &m_controlPoints[m_controlPoints.size()-1];
         }
-
         void updatePoint(int pointIndex = -1);
-        vec3* getNearControlPoint(vec4 pos, int& pointindex, vec3* ignore = NULL);
+        vec3*getNearControlPoint( vec4 pos, int& pointindex, vec3* ignore=NULL );
         virtual void compute(int pointIndex = -1);
-        virtual void compute(a_vector<vec3>& out, int size);
+        virtual void compute( a_vector<vec3>& out,int size);
         void addPoint(vec3& p);
         bool isClosed() const;
     protected:

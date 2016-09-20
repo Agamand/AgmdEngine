@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #define _BLUREFFECT_H_
 
 #include <Core/Effects/PostEffect.h>
-
 namespace Agmd
 {
     class AGMD3D_EXPORT BlurEffect : public PostEffect
@@ -20,12 +19,13 @@ namespace Agmd
         //~BlurEffect();
 
         virtual void Init();
-        virtual void Update(a_uint64 /*t_diff*/);
+        virtual void Update( a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
 
         void SetNoiseOffset(float a);
     private:
         Texture m_depth;
+
     };
 }
 #endif /*_BLUREFFECT_H_*/

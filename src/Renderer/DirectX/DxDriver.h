@@ -31,9 +31,10 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     class DXDriver : public Driver, public Singleton<DXDriver>
     {
-        MAKE_SINGLETON(DXDriver)
+    MAKE_SINGLETON(DXDriver)
 
     public :
 
@@ -80,29 +81,29 @@ namespace Agmd
         virtual BaseShaderProgram* CreateShaderProgram(BaseShader* vertex, BaseShader* eval, BaseShader* control, BaseShader* geom, BaseShader* frag) const;
 
         virtual FrameBuffer* CreateFrameBuffer() const;
-
+        
         virtual RenderBuffer* CreateRenderBuffer(const ivec2& size, TPixelFormat format) const;
 
         virtual void SetRenderMode(TRenderMode mode);
 
         virtual const BaseShaderProgram* GetCurrentProgram();
 
-        virtual void SetCurrentProgram(const BaseShaderProgram* prog);
+        virtual void SetCurrentProgram( const BaseShaderProgram* prog);
 
-        virtual void SetViewPort(const ivec2& xy, const ivec2& size);
+        virtual void SetViewPort(const ivec2& xy,const ivec2& size);
 
         virtual void SetCullFace(int face);
 
 
         /* debug function */
-        virtual void drawBoundingBox(const BoundingSphere& bbox, const BaseShaderProgram* program);
-        virtual void clear(a_uint32 clear);
+        virtual void drawBoundingBox(const BoundingSphere& bbox,const BaseShaderProgram* program);
+        virtual void clear( a_uint32 clear );
 
 
         /* Dx context getter*/
 
-        ID3D11Device* Device() const { return m_device; }
-        ID3D11DeviceContext* DeviceContext() const { return m_deviceContext; }
+        ID3D11Device * Device() const { return m_device; }
+        ID3D11DeviceContext * DeviceContext() const { return m_deviceContext; }
 
     protected :
 
@@ -128,27 +129,28 @@ namespace Agmd
         bool CheckExtension(const std::string& Extension) const;
         void LoadExtensions();
 
-        HWND m_Hwnd;
-        HDC m_Handle;
-        HGLRC m_Context;
-        const DXDeclaration* m_currentDeclaration;
-        unsigned long m_IndexStride;
-        std::string m_Extensions;
-        ShaderProgram m_DebugPipeline[4];
-        const BaseShaderProgram* m_CurrentProgram;
-        const TextureBase* m_TextureBind[MAX_TEXTUREUNIT];
-        a_uint32 m_last_unit; // last used texture unit
-
+        HWND                        m_Hwnd;
+        HDC                         m_Handle;
+        HGLRC                       m_Context;
+        const DXDeclaration*        m_currentDeclaration;
+        unsigned long               m_IndexStride;
+        std::string                 m_Extensions;
+        ShaderProgram               m_DebugPipeline[4];
+        const BaseShaderProgram*    m_CurrentProgram;
+        const TextureBase*          m_TextureBind[MAX_TEXTUREUNIT];
+        a_uint32                    m_last_unit; // last used texture unit
+        
         //Dx11 Variables
 
-        ID3D11Device* m_device;
-        ID3D11DeviceContext* m_deviceContext;
-        IDXGISwapChain* swapchain;
-        ID3D11RenderTargetView* backbuffer;
-        ID3D11DepthStencilView* depthStencilView;
-        Buffer<mat4> m_ModelMatrix;
-        ID3D11RasterizerState* m_defaultRasterizerState;
-        ID3D11DepthStencilState* m_depthStencilState;
-    };
+        ID3D11Device                *m_device;
+        ID3D11DeviceContext         *m_deviceContext;
+        IDXGISwapChain              *swapchain;
+        ID3D11RenderTargetView      *backbuffer;
+		ID3D11DepthStencilView		*depthStencilView;
+		Buffer<mat4>				m_ModelMatrix;
+		ID3D11RasterizerState* m_defaultRasterizerState;
+		ID3D11DepthStencilState* m_depthStencilState;
+	};
+
 }
 #endif /* _DXDRIVER_H_ */

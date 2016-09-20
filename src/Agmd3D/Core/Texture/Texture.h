@@ -22,6 +22,7 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT Texture
     {
     public :
@@ -48,7 +49,7 @@ namespace Agmd
         TPixelFormat GetFormat() const;
 
         TTextureType GetType() const;
-
+    
         int GetActiveTexture() const;
 
         const std::string& GetName() const;
@@ -61,11 +62,11 @@ namespace Agmd
 
         static void TextureAdd(Texture output, Texture input1, Texture input2);
         static void TextureProd(Texture output, Texture input1, Texture input2);
-        static void TextureRender(Texture input, ivec2 pos = ivec2(0), ivec2 resolution = ivec2(-1));
+        static void TextureRender(Texture input,ivec2 pos = ivec2(0),ivec2 resolution=ivec2(-1));
         static void TextureRandom();
 
         static void BeginRenderToTexture(const Texture& texture0);
-        static void BeginRenderToTexture(const Texture& texture0, const Texture& texture1);
+        static void BeginRenderToTexture(const Texture& texture0,const Texture& texture1);
         static void EndRenderToTexture();
         static BaseShaderProgram* s_addTexture;
         static BaseShaderProgram* s_prodTexture;
@@ -80,10 +81,11 @@ namespace Agmd
 
         void Load(const Image& image, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
         void Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name);
-
+        
 
         SmartPtr<TextureBase, ResourceCOM> m_Texture;
     };
+
 }
 
 #endif //TEXTURE_H

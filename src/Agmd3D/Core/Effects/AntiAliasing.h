@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #define _ANTIALIASING_H_
 
 #include <Core/Effects/PostEffect.h>
-
 namespace Agmd
 {
     class AGMD3D_EXPORT AntiAliasing : public PostEffect
@@ -19,17 +18,18 @@ namespace Agmd
         AntiAliasing();
 
         virtual void Init();
-        virtual void Update(a_uint64 /*t_diff*/);
+        virtual void Update( a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
-
+        
         //void SetNoiseOffset(float a);
-        void SetItrCount(int itr) { iteration = itr >= 1 ? itr : 1; }
+        void SetItrCount(int itr){iteration = itr >= 1 ? itr : 1;}
     private:
 
         void ApplyFxaa(Texture& input, Texture& output);
 
         Texture m_depth;
         int iteration;
+
     };
 }
 #endif /* _ANTIALIASING_H_ */

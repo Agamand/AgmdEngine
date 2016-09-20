@@ -14,6 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <cstdlib>
 
 
+
 namespace Agmd
 {
     class AGMD3D_EXPORT BaseBuffer
@@ -26,11 +27,10 @@ namespace Agmd
 
         BaseBuffer(unsigned long count);
 
-        template <class T>
-        friend class Buffer;
+        template <class T> friend class Buffer;
 
         virtual void* Lock(unsigned long offset, unsigned long size, unsigned long flags) = 0;
-
+        
         virtual void* LockByte(unsigned long offset, unsigned long size, unsigned long flags) = 0;
 
         virtual void FillByte(unsigned char* data, unsigned long offset, unsigned long size) = 0;
@@ -47,6 +47,7 @@ namespace Agmd
 
         unsigned long m_Count;
     };
+
 }
 
 

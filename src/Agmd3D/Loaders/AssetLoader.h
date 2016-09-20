@@ -26,10 +26,11 @@ namespace Agmd
 
         virtual SceneNode* LoadFromFile(const std::string& filename);
         virtual void SaveToFile(const Model* object, const std::string& filename);
-
+        
     private:
         static void OnError();
     };
+
 }
 
 

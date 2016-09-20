@@ -17,10 +17,8 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
-    template <class, template <class> class>
-    class SmartPtr;
-    template <class T, template <class> class Ownership>
-    T*& GetPtr(SmartPtr<T, Ownership>& Ptr);
+    template <class, template <class> class> class SmartPtr;
+    template <class T, template <class> class Ownership> T*& GetPtr(SmartPtr<T, Ownership>& Ptr);
 
     template <class T, template <class> class Ownership = RefCount>
     class SmartPtr : public Ownership<T>
@@ -36,7 +34,7 @@ namespace AgmdUtilities
 
         ~SmartPtr();
 
-        T& operator *() const;
+        T& operator * () const;
         T* operator ->() const;
 
         const SmartPtr& operator =(const SmartPtr& sptr);
@@ -53,9 +51,8 @@ namespace AgmdUtilities
 
         T* m_Data;
     };
-
-#include "SmartPtr.inl"
-#include <Debug/NewOff.h>
+    #include "SmartPtr.inl"
+    #include <Debug/NewOff.h>
 }
 
 #endif // SMARTPTR_H

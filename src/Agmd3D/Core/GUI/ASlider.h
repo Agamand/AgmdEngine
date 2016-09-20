@@ -27,7 +27,7 @@ namespace Agmd
         class ASliderListener
         {
         public:
-            virtual void valueUpdate(float value, float cursor) = 0;
+            virtual void valueUpdate(float value,float cursor) = 0;
         };
 
         ASlider(AWidget* parent);
@@ -45,9 +45,9 @@ namespace Agmd
         virtual bool In(ivec2& pos_mouse);
 
         void SetCursor(float value);
-        void setValue(float* value, float min, float max);
+        void setValue(float* value,float min,float max);
         void setLabel(std::string& label);
-
+        
         void setUpdateCallBack(ASliderListener* listener)
         {
             updateListener = listener;
@@ -57,35 +57,33 @@ namespace Agmd
         {
             m_isInteger = enable;
         }
-
     private:
         ASliderListener* updateListener;
         void BuildSlider();
-
         struct TVertex
         {
-            vec3 Position;
-            a_uint32 Diffuse;
-            vec2 TexCoords0;
+            vec3     Position;
+            a_uint32   Diffuse;
+            vec2     TexCoords0; 
         };
 
         typedef unsigned short TIndex;
-        Transform* m_transform;
-        Buffer<TVertex> m_VertexBuffer;
-        Buffer<TIndex> m_IndexBuffer;
-        DeclarationPtr m_Declaration;
-        Texture m_Texture;
-        Texture m_Font;
-        ShaderProgram m_Program;
-        ShaderProgram m_ProgramCursor;
-        float m_cursor;
-        float* m_value;
-        float m_max;
-        float m_min;// range [0.0f-1.0f]
-        bool hold; // hold = true if mouse is hold the cursor else hold = false
-        std::string m_label;
-        GraphicString* m_gstring;
-        bool m_isInteger;
+        Transform*          m_transform;
+        Buffer<TVertex>     m_VertexBuffer;
+        Buffer<TIndex>      m_IndexBuffer;
+        DeclarationPtr      m_Declaration;
+        Texture             m_Texture;
+        Texture             m_Font;
+        ShaderProgram       m_Program;
+        ShaderProgram       m_ProgramCursor;
+        float               m_cursor;
+        float*                m_value;
+        float                m_max;
+        float                m_min;// range [0.0f-1.0f]
+        bool                hold; // hold = true if mouse is hold the cursor else hold = false
+        std::string            m_label;
+        GraphicString*        m_gstring;
+        bool                m_isInteger;
     };
 }
 

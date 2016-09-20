@@ -21,9 +21,9 @@ using namespace glm;
                           V.y = Y; \
                           V.z = Z; \
 
-
 namespace AgmdMaths
 {
+
     // INT VECTOR
     inline std::istream& operator >>(std::istream& stream, ivec3& vector)
     {
@@ -43,7 +43,7 @@ namespace AgmdMaths
 
     inline std::ostream& operator <<(std::ostream& stream, const vec3& vector)
     {
-        return stream << vector.x << " " << vector.y << " " << vector.z;
+        return stream << vector.x << " " << vector.y<< " " << vector.z;
     }
 }
 

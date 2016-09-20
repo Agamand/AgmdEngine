@@ -12,14 +12,12 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     RenderingMode::RenderingMode(a_int32 width, a_int32 height) :
-        m_screen(width, height), m_mode(MODE_FILL)
-    {
-    }
+    m_screen(width,height),m_mode(MODE_FILL)
+    {}
 
     RenderingMode::RenderingMode(ivec2& screensize) :
-        m_screen(screensize), m_mode(MODE_FILL)
-    {
-    }
+    m_screen(screensize),m_mode(MODE_FILL)
+    {}
 
     void RenderingMode::setRenderingMode(RenderingMode* render)
     {

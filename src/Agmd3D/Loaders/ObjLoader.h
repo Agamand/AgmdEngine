@@ -26,20 +26,21 @@ namespace Agmd
 
         virtual Model* LoadFromFile(const std::string& filename);
         virtual void SaveToFile(const Model* object, const std::string& filename);
-
+        
     private :
         struct FaceVertex
         {
             int vindex;
             int tindex;
             int nindex;
-        };
 
+        };
         bool skipCommentLine(std::istream& file);
         void skipLine(std::istream& file);
         bool processLine(a_vector<vec3>& position,a_vector<vec2>& texPos,a_vector<vec3>& normal,a_vector<FaceVertex>& face, std::istream& is);
         static void OnError();
     };
+
 }
 
 

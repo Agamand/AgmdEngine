@@ -16,7 +16,6 @@ https://github.com/Agamand/AgmdEngine
 
 using namespace AgmdMaths;
 #define MAX_SUBDIV 5
-
 namespace Agmd
 {
     class AGMD3D_EXPORT Icosahedron : public Model
@@ -30,9 +29,11 @@ namespace Agmd
 
     private:
         a_uint8 m_subdiv;
+
     };
 
     typedef SmartPtr<Icosahedron, ResourceCOM> TIcosahedronPtr;
+
 }
 
 

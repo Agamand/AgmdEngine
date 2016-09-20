@@ -20,16 +20,16 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     GLTextureCube::GLTextureCube(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
-        GLTexture(size, format, hasMipmaps, autoMipmaps, texture)
+    GLTexture(size, format, hasMipmaps, autoMipmaps, texture)
     {
-        for (a_int32 i = 0; i < MAX_CUBEFACE; i++)
-            m_Data[i] = Image(size, format);
+        for(a_int32 i = 0; i < MAX_CUBEFACE; i++)
+            m_Data[i] = Image(size,format);
     }
 
     GLTextureCube::~GLTextureCube()
-    {
-    }
+    {}
 
     TTextureType GLTextureCube::GetType() const
     {
@@ -40,12 +40,12 @@ namespace Agmd
     {
         Assert(AgmdMaths::Rectangle(0, 0, m_Size.x, m_Size.y).intersects(rect) == INT_IN);
 
-        glBindTexture(GL_TEXTURE_CUBE_MAP, m_Texture);
-        for (int i = 0; i < 6; i++)
+        glBindTexture(GL_TEXTURE_CUBE_MAP,m_Texture);
+        for(int i = 0; i < 6; i++)
         {
-            RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
-            RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data[i].GetFormat());
-            unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data[i].GetFormat());
+        RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
+        RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data[i].GetFormat());
+        unsigned long dataSize = rect.width() * rect.height() * GetBytesPerPixel(m_Data[i].GetFormat());
             if (FormatCompressed(m_Data[i].GetFormat()))
             {
                 if (rect.width() == m_Size.x && rect.height() == m_Size.y)
@@ -83,4 +83,5 @@ namespace Agmd
     {
         throw std::exception("The method or operation is not implemented.");
     }
+
 }

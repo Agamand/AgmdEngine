@@ -16,14 +16,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     template <class T>
     class Loader
     {
     public :
 
-        virtual ~Loader()
-        {
-        }
+        virtual ~Loader() {}
 
         virtual T* LoadFromFile(const std::string& filename)
         {
@@ -37,10 +36,9 @@ namespace Agmd
 
     protected :
 
-        Loader()
-        {
-        }
+        Loader() {}
     };
+
 }
 
 

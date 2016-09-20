@@ -8,33 +8,32 @@
 #define _ARENDERQUEUE_H_
 
 
+
 using namespace AgmdMaths;
+namespace Agmd{
 
-namespace Agmd
-{
-    class Model;
-    class ANode;
-    class Material;
+	class Model;
+	class ANode;
+	class Material;
+	struct AGMD3D_EXPORT Drawable
+	{
+		Drawable(ANode* node);
+		Model* model;
+		Material* mat;
+		Transform transform;
+	};
 
-    struct AGMD3D_EXPORT Drawable
-    {
-        Drawable(ANode* node);
-        Model* model;
-        Material* mat;
-        Transform transform;
-    };
+	class AGMD3D_EXPORT ARenderQueue
+	{
+	public:
+		ARenderQueue();
+		void  Push(ANode* node);
+		void Clear();
+		const a_vector<Drawable>&  GetDrawable(TRenderType type = TYPE_DIFFUSE) const;
+	private:
 
-    class AGMD3D_EXPORT ARenderQueue
-    {
-    public:
-        ARenderQueue();
-        void Push(ANode* node);
-        void Clear();
-        const a_vector<Drawable>& GetDrawable(TRenderType type = TYPE_DIFFUSE) const;
-    private:
-
-        a_vector<Drawable> m_drawable[MAX_TYPE];
-    };
+		a_vector<Drawable> m_drawable[MAX_TYPE];
+	};
 }
 
 

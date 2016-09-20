@@ -30,10 +30,11 @@ public :
 
     virtual Model* LoadFromFile(const std::string& filename);
     virtual void SaveToFile(const Model* object, const std::string& filename);
-
+        
 private :
     static void OnError();
 };
+
 
 
 #endif /* MESHLOADER_H */

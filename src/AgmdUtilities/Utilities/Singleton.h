@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #define SINGLETON_H
 
 #include <cstdlib>
-
 //#include <Debug/New.h>
 
 template <class T>
@@ -33,14 +32,8 @@ public :
     }
 
 protected :
-    Singleton()
-    {
-    }
-
-    ~Singleton()
-    {
-    }
-
+    Singleton() {}
+    ~Singleton() {}
 private :
 
     static T* Inst;

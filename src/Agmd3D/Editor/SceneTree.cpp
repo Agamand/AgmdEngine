@@ -2,6 +2,7 @@
 #ifdef USE_EDITOR
 
 
+
 //static data
 /*
 enum NodeType
@@ -102,16 +103,16 @@ void SceneTree::OnSelect( wxTreeEvent& event )
 }
 
 void SceneTree::keyPressed(wxKeyEvent& event) {
-//printf("%c pressed\n",event.GetKeyCode());
+    //printf("%c pressed\n",event.GetKeyCode());
 }
 void SceneTree::keyReleased(wxKeyEvent& event) {
-//printf("%c release\n",event.GetKeyCode());
+    //printf("%c release\n",event.GetKeyCode());
     a_uint8 key = event.GetKeyCode();
     Agmd::SceneNode* selected = getSelectedSceneNode();
     if(key == 127 && selected && selected->getParent())
     {
         selected->getParent()->removeChild(selected);
-//delete selected
+        //delete selected
     }
 }
 

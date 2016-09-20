@@ -75,7 +75,7 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
 
     m_mgr.AddPane( m_auiToolBar1, wxAuiPaneInfo().Top().PinButton( true ).Dock().Resizable().FloatingSize( wxSize( 42,49 ) ).DockFixed( false ).Row( 0 ).Layer( 11 ) );
 
-//m_auiToolBar1->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( EditorFrame::onClick ), NULL, this );
+    //m_auiToolBar1->Connect( wxEVT_LEFT_DOWN, wxMouseEventHandler( EditorFrame::onClick ), NULL, this );
 
     this->Connect( m_auiToolBar1->m_createBox->GetId(), wxEVT_COMMAND_TOOL_CLICKED, wxCommandEventHandler( EditorFrame::onClick ) );
 
@@ -99,7 +99,7 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
     m_mgr.Update();
     this->Centre( wxBOTH );
 
-// Connect Events
+    // Connect Events
     this->Connect( wxEVT_IDLE, wxIdleEventHandler( EditorFrame::OnIdle ) );
     m_objectProperties->Connect( wxEVT_PG_CHANGED, wxPropertyGridEventHandler( EditorFrame::OnPropertyChanged ), NULL, this );
     Agmd::AgmdApplication::getApplication()->CreateGlCanvas(m_viewPanel);
@@ -109,29 +109,29 @@ EditorFrame::EditorFrame( wxWindow* parent, wxWindowID id, const wxString& title
 void EditorFrame::OnMenuFileOpen( wxCommandEvent& WXUNUSED(event) )
 {
     wxString filename = wxFileSelector(wxT("Choose Model"), wxT(""), wxT(""), wxT(""),
-// #if wxUSE_ZLIB
-//         wxT("DXF Drawing (*.o;*.dxf.gz)|*.dxf;*.dxf.gz|All files (*.*)|*.*"),
-// #else
+        // #if wxUSE_ZLIB
+        //         wxT("DXF Drawing (*.o;*.dxf.gz)|*.dxf;*.dxf.gz|All files (*.*)|*.*"),
+        // #else
         wxT("Model file (*.fbx)|*.FBX)|All files (*.*)|*.*"),
-/*#endif*/
+        /*#endif*/
         wxFD_OPEN);
     if (!filename.IsEmpty())
     {
-//         m_canvas->LoadDXF(filename);
-//         //                       
+        //         m_canvas->LoadDXF(filename);
+        //         //                       
         Agmd::SceneNode* node = Agmd::FBXLoader().LoadFromFile(filename.ToStdString());
         if(!node)
             return;
          Agmd::SceneMgr* scene = Agmd::Driver::Get().GetActiveScene();
          scene->AddNode(node);
-//Agmd::MediaManager::Instance().LoadMediaFromFile<SceneNode>(filename)                                                                                                                                                        ->Refresh(false);
+        //Agmd::MediaManager::Instance().LoadMediaFromFile<SceneNode>(filename)                                                                                                                                                        ->Refresh(false);
     }
 }
 
 
 EditorFrame::~EditorFrame()
 {
-// Disconnect Events
+    // Disconnect Events
     this->Disconnect( wxEVT_IDLE, wxIdleEventHandler( EditorFrame::OnIdle ) );
     m_objectProperties->Disconnect( wxEVT_PG_CHANGED, wxPropertyGridEventHandler( EditorFrame::OnPropertyChanged ), NULL, this );
 
@@ -184,7 +184,7 @@ void EditorFrame::OnClick( int click, vec2 pos, bool up )
         return;
     }
 
-//std::cout << "click " <<  click << " up? " << up << std::endl;
+    //std::cout << "click " <<  click << " up? " << up << std::endl;
     return;
     if(click == 1)
     {
@@ -309,7 +309,7 @@ void EditorFrame::OnKey( a_char key,bool up )
     if(key == 127 && selected && selected->getParent() && up)
     {
         selected->getParent()->removeChild(selected);
-//delete selected;
+        //delete selected;
 
     }
 }

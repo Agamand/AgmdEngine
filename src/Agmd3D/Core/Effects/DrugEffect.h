@@ -10,7 +10,6 @@ https://github.com/Agamand/AgmdEngine
 #define _DRUGEFFECT_H_
 
 #include <Core/Effects/PostEffect.h>
-
 namespace Agmd
 {
     class AGMD3D_EXPORT DrugEffect : public PostEffect
@@ -19,7 +18,7 @@ namespace Agmd
         DrugEffect();
 
         virtual void Init();
-        virtual void Update(a_uint64 /*t_diff*/);
+        virtual void Update( a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
     private:
         float m_time;

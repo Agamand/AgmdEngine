@@ -17,12 +17,11 @@ namespace Agmd
     }
 
     MatStack::~MatStack()
-    {
-    }
+    {}
 
     void MatStack::push(mat4 _matrix)
     {
-        mat4 matrix = Instance().get() * _matrix;
+        mat4 matrix = Instance().get()*_matrix;
         Instance().m_matStack.push(matrix);
     }
 
@@ -43,7 +42,7 @@ namespace Agmd
 
     MatStack& MatStack::Instance()
     {
-        if (!m_instance)
+        if(!m_instance)
             m_instance = new MatStack();
 
         return *m_instance;

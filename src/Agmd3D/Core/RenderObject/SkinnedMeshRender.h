@@ -17,7 +17,7 @@ namespace Agmd
     {
     public:
         SkinnedMeshRender(Transform*);
-        ~SkinnedMeshRender();
+        ~SkinnedMeshRender(); 
     private:
         /*
         DeclarationPtr  m_Declaration;
@@ -25,7 +25,7 @@ namespace Agmd
         Buffer<TIndex>  m_IndexBuffer;
         Bone m_bonebase;
         */
-        TPrimitiveType m_PrimitiveType;
+        TPrimitiveType  m_PrimitiveType;
     }
 }
 

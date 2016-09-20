@@ -30,11 +30,12 @@ namespace AgmdUtilities
 
         ~SharedPtr();
 
-        T& operator *();
+        T& operator * ();
         T* operator ->();
         const SharedPtr& operator =(const SharedPtr& sptr);
 
         const SharedPtr& operator =(T* ptr);
+
 
 
         operator T*&();
@@ -43,11 +44,11 @@ namespace AgmdUtilities
         SmartPtr<T*> m_Data;
     };
 
-    template <typename T>
+    template<typename T>
     std::ostream operator<<(std::ostream, SharedPtr<T> ptr);
 
-#include "SharedPtr.inl"
-#include <Debug/NewOff.h>
+    #include "SharedPtr.inl"
+    #include <Debug/NewOff.h>
 }
 
 #endif /* _SHAREDPTR_H_ */

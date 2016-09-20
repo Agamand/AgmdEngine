@@ -5,50 +5,52 @@
 #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
 
-void PlanetModel::CreatePlane(int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index, mat4 matrix)
+void PlanetModel::CreatePlane(int size, int offset_index, a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& index,mat4 matrix)
 {
-    vec3 orientation = vec3(0, 0, 1);
+
+
+    vec3 orientation = vec3(0,0,1);
     float x_2 = 1;
     float y_2 = 1;
-    vec3 o = -vec3(0.5f, 0.5f, 0);
-    int count = size + 2;
-    float offset = 1.f / size;
+    vec3 o = -vec3(0.5f,0.5f,0);
+    int count = size+2;
+    float offset = 1.f/size;
     offset_index = vertices.size();
 
-    for (int i = 0; i <= count; i++)
+    for(int i = 0; i <= count; i++)
     {
-        for (int j = 0; j <= count; j++)
+        for(int j = 0; j <= count; j++)
         {
             Model::TVertex vertex;
             vertex.color = -1;
             vertex.normal = orientation;
-            vertex.position = vec3(matrix * vec4(o.x + offset * clamp(i - 1, 0, size), o.y + offset * clamp(j - 1, 0, size), 0.f, 1.f));
-            vertex.texCoords = vec2((i - 1) * offset, (j - 1) * offset);
+            vertex.position = vec3(matrix*vec4(o.x+offset*clamp(i-1,0,size),o.y+offset*clamp(j-1,0,size),0.f,1.f));
+            vertex.texCoords = vec2((i-1)*offset,(j-1)*offset);
             //vertex.texCoords = clamp(vertex.texCoords,0,1);
             vertices.push_back(vertex);
         }
     }
 
-    for (int i = 0; i < count; i++)
+    for(int i = 0; i < count;i++)
     {
-        for (int j = 0; j < count; j++)
+        for(int j = 0; j < count; j++)
         {
             int _i = SELECT(i+1, count+1), _j = SELECT(j+1, count+1);
-            index.push_back(offset_index + i * (count + 1) + j);
-            index.push_back(offset_index + _i * (count + 1) + j);
-            index.push_back(offset_index + _i * (count + 1) + _j);
+            index.push_back(offset_index+i*(count+1)+j);
+            index.push_back(offset_index+_i*(count+1)+j);
+            index.push_back(offset_index+_i*(count+1)+_j);
 
-            index.push_back(offset_index + i * (count + 1) + j);
-            index.push_back(offset_index + _i * (count + 1) + _j);
-            index.push_back(offset_index + i * (count + 1) + _j);
+            index.push_back(offset_index+i*(count+1)+j);
+            index.push_back(offset_index+_i*(count+1)+_j);
+            index.push_back(offset_index+i*(count+1)+_j);
         }
     }
 }
 
 
-void PlanetModel::CreateFaceMetaSphere(a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& indices, int layer, mat4 matrix)
+void PlanetModel::CreateFaceMetaSphere(a_vector<Model::TVertex>& vertices, a_vector<Model::TIndex>& indices,int layer,mat4 matrix)
 {
-    CreatePlane(20 * (1 + layer), 0, vertices, indices, matrix);
+    CreatePlane(20*(1+layer),0,vertices,indices,matrix);
     /*mat4 inv = inverse(matrix);
     for(a_vector<Model::TVertex>::iterator itr = vertices.begin(); itr != vertices.end(); itr++)
     {
@@ -322,85 +324,86 @@ const double _noiseTable[256 * 4] =
 
 void PlanetModel::initNoise()
 {
-    a_uint8 pixel[256 * 4];
-    for (a_uint32 i = 0; i < 256 * 4; i++)
-        pixel[i] = (a_uint8)round((1 + _noiseTable[i]) / 2);
-    Image img = Image(ivec2(16), PXF_A8R8G8B8, pixel);
-    m_noiseTable.CreateFromImage(img, PXF_A8R8G8B8, TEX_NOMIPMAP | TEX_WRAP_CLAMP);
+
+    a_uint8 pixel[256*4];
+    for(a_uint32 i = 0; i < 256*4; i++)
+        pixel[i] = (a_uint8)round((1+_noiseTable[i])/2);
+    Image img = Image(ivec2(16),PXF_A8R8G8B8,pixel);
+    m_noiseTable.CreateFromImage(img,PXF_A8R8G8B8,TEX_NOMIPMAP|TEX_WRAP_CLAMP);
     m_ground_program.LoadFromFile("shader/planet/ground.glsl");
     m_diffuse_program.LoadFromFile("shader/planet/diffuse_ground.glsl");
 }
 
-PlanetModel::PlanetModel(int layer, int x, int y) : Model(),
-                                                    m_frequency(1.0f),
-                                                    m_persistance(1.0f),
-                                                    m_octave(1.0f),
-                                                    m_amplitude(0.4f),
-                                                    m_lacunarity(2.510f),
-                                                    m_normal_mapping(1),
-                                                    kr(0.0025f),
-                                                    km(0.0015f),
-                                                    eSun(15.0f),
-                                                    rgb(0.650, 0.570, 0.475),
-                                                    g(-0.98f),
-                                                    m_offset(0.0f)
+PlanetModel::PlanetModel( int layer, int x, int y ) : Model(),
+    m_frequency(1.0f),
+    m_persistance(1.0f),
+    m_octave(1.0f),
+    m_amplitude(0.4f),
+    m_lacunarity(2.510f),
+    m_normal_mapping(1),
+    kr(0.0025f),
+    km(0.0015f),
+    eSun(15.0f),
+    rgb(0.650,0.570,0.475),
+    g(-0.98f),
+    m_offset(0.0f)
 {
     a_vector<Model::TVertex> vertices;
     a_vector<Model::TIndex> indices;
 
-    CreateFaceMetaSphere(vertices, indices, layer);
-    GenerateBuffer(&vertices[0], vertices.size(), &indices[0], indices.size());
+    CreateFaceMetaSphere(vertices,indices,layer);
+    GenerateBuffer(&vertices[0],vertices.size(),&indices[0],indices.size());
     //this->m_PrimitiveType = PT_PATCHLIST;
     initNoise();
 }
 
 PlanetModel::PlanetModel(mat4 matrix) : Model(),
-                                        m_frequency(1.0f),
-                                        m_persistance(1.0f),
-                                        m_octave(1.0f),
-                                        m_normal_mapping(1),
-                                        kr(0.0025f),
-                                        km(0.0010f),
-                                        eSun(20.0f),
-                                        rgb(0.650f, 0.570f, 0.475f),
-                                        g(-0.99f)
+    m_frequency(1.0f),
+    m_persistance(1.0f),
+    m_octave(1.0f),
+    m_normal_mapping(1),
+    kr(0.0025f),
+    km(0.0010f),
+    eSun(20.0f),
+    rgb(0.650f,0.570f,0.475f),
+    g(-0.99f)
 {
     a_vector<Model::TVertex> vertices;
     a_vector<Model::TIndex> indices;
 
-    CreateFaceMetaSphere(vertices, indices, 0, matrix);
-    GenerateBuffer(&vertices[0], vertices.size(), &indices[0], indices.size());
+    CreateFaceMetaSphere(vertices,indices,0,matrix);
+    GenerateBuffer(&vertices[0],vertices.size(),&indices[0],indices.size());
     initNoise();
     //this->m_PrimitiveType = PT_PATCHLIST;
 }
 
-void PlanetModel::generateTexture(const Texture& height, const Texture& normal, const mat4& postion_matrix)
+void PlanetModel::generateTexture(const Texture& height, const Texture& normal, const mat4& postion_matrix )
 {
-    Texture::BeginRenderToTexture(height, normal);
+    Texture::BeginRenderToTexture(height,normal);
 
     Driver& driver = Driver::Get();
     driver.SetCurrentProgram(m_ground_program.GetShaderProgram());
-    m_ground_program.SetParameter("u_position_matrix", postion_matrix);
-    m_ground_program.SetParameter("u_frequency", m_frequency);
-    m_ground_program.SetParameter("u_persistance", m_persistance);
-    m_ground_program.SetParameter("u_octave", (int)m_octave);
-    driver.SetTexture(0, m_noiseTable.GetTexture());
+    m_ground_program.SetParameter("u_position_matrix",postion_matrix);
+    m_ground_program.SetParameter("u_frequency",m_frequency);
+    m_ground_program.SetParameter("u_persistance",m_persistance);
+    m_ground_program.SetParameter("u_octave",(int)m_octave);
+    driver.SetTexture(0,m_noiseTable.GetTexture());
     Draw(NULL);
     Texture::EndRenderToTexture();
     driver.SetCurrentProgram(NULL);
-    driver.SetViewPort(ivec2(0), driver.GetScreen());
+    driver.SetViewPort(ivec2(0),driver.GetScreen());
 }
 
-void PlanetModel::generateTexture(const Texture& diffuse, const Texture& heightmap, const Texture& gradient)
+void PlanetModel::generateTexture( const Texture& diffuse,const Texture& heightmap, const Texture& gradient)
 {
     Texture::BeginRenderToTexture(diffuse);
 
     Driver& driver = Driver::Get();
     driver.SetCurrentProgram(m_diffuse_program.GetShaderProgram());
-    driver.SetTexture(0, heightmap.GetTexture());
-    driver.SetTexture(1, gradient.GetTexture());
+    driver.SetTexture(0,heightmap.GetTexture());
+    driver.SetTexture(1,gradient.GetTexture());
     Draw(NULL);
     Texture::EndRenderToTexture();
     driver.SetCurrentProgram(NULL);
-    driver.SetViewPort(ivec2(0), driver.GetScreen());
+    driver.SetViewPort(ivec2(0),driver.GetScreen());
 }

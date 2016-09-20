@@ -18,8 +18,8 @@ namespace AgmdUtilities
 
     MemoryMgr::MemoryMgr() : m_File("alloc.log")
     {
-        if (!m_File)
-            throw LoadingFailed("alloc.log", "Loading fail");
+        if(!m_File)
+            throw LoadingFailed("alloc.log","Loading fail");
 
         m_File << "  =============================================" << std::endl;
         m_File << "  AgmdEngine v0.1 Alpha - Memory leak tracker " << std::endl;
@@ -28,7 +28,7 @@ namespace AgmdUtilities
 
     MemoryMgr::~MemoryMgr()
     {
-        if (m_memBlock.empty())
+        if(m_memBlock.empty())
         {
             m_File << "  =============================================" << std::endl;
             m_File << "  No leak detected ! " << std::endl;
@@ -37,33 +37,31 @@ namespace AgmdUtilities
         else
         {
             m_File << "  =============================================" << std::endl;
-            m_File << "   " << m_memBlock.size() << " leak detected !   " << std::endl;
+            m_File << "   "<< m_memBlock.size() <<" leak detected !   " << std::endl;
             m_File << "  =============================================" << std::endl << std::endl;
         }
     }
 
     MemoryMgr& MemoryMgr::Instance()
     {
-        if (!_Instance)
+        if(!_Instance)
             _Instance = new MemoryMgr();
 
         assert(_Instance != NULL);
         return *_Instance;
     }
-
     void* MemoryMgr::Allocate(std::size_t size, File file, a_uint32 line, bool isArray)
     {
-        void* ptr = malloc(size);
+        void *ptr = malloc(size);
         assert(ptr != NULL);
-        memBlock block(size, file, line, isArray);
-        m_memBlock[ptr] = block;
+        memBlock block(size,file,line,isArray);
+        m_memBlock[ptr] = block; 
         m_File << "++ Alloc    | 0x" << ptr
-            << " | " << static_cast<int>(block.size) << " octets"
-            << " | " << std::endl;
+           << " | " << static_cast<int>(block.size) << " octets"
+           << " | " << std::endl;
         return ptr;
     }
-
-    void MemoryMgr::Free(void* ptr, bool isArray)
+    void MemoryMgr::Free(void *ptr, bool isArray)
     {
         memBlockMap::iterator It = m_memBlock.find(ptr);
 
@@ -79,14 +77,13 @@ namespace AgmdUtilities
         }*/
 
         m_File << "-- Unalloc | 0x" << ptr
-            << " | " << std::setw(7) << std::setfill(' ') << static_cast<int>(It->second.size) << " octets"
-            << " | " << m_DeleteStack.top().file.Filename() << " (" << m_DeleteStack.top().line << ")" << std::endl;
+               << " | " << std::setw(7) << std::setfill(' ') << static_cast<int>(It->second.size) << " octets"
+               << " | " << m_DeleteStack.top().file.Filename() << " (" << m_DeleteStack.top().line << ")" << std::endl;
         m_memBlock.erase(It);
         m_DeleteStack.pop();
 
         free(ptr);
     }
-
     void MemoryMgr::NextDelete(File file, a_uint32 line)
     {
         memBlock _delete;
@@ -95,4 +92,6 @@ namespace AgmdUtilities
 
         m_DeleteStack.push(_delete);
     }
+
+
 }

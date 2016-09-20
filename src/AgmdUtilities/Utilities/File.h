@@ -32,6 +32,7 @@ namespace AgmdUtilities
 
         std::string m_Name;
     };
+
 }
 
 

@@ -19,8 +19,7 @@ namespace Agmd
     }
 
     MediaManager::~MediaManager()
-    {
-    }
+    {}
 
     void MediaManager::AddSearchPath(const std::string& path)
     {
@@ -41,4 +40,5 @@ namespace Agmd
 
         throw LoadingFailed(filename.Fullname(), "Fichier introuvable dans les répertoires de recherche");
     }
+
 }

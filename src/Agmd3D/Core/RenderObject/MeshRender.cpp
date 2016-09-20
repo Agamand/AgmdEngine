@@ -13,36 +13,39 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    MeshRender::MeshRender(Model* basemodel, Transform* transform) :
+        MeshRender::MeshRender(Model* basemodel, Transform* transform) :
         Displayable(transform),
         m_baseModel(basemodel)
-    {
-        if (!m_transform)
-            m_transform = new Transform();
-        m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
-    }
+        {
+            if(!m_transform)
+                m_transform = new Transform();
+            m_material = ResourceManager::Instance().Get<Material>("DEFAULT_MATERIAL");
+        }
 
-    MeshRender::~MeshRender()
-    {
-    }
+        MeshRender::~MeshRender()
+        {}
 
 
-    void MeshRender::render(TRenderPass pass) const
-    {
-        if (!m_material->Enable(pass))
-            return;
+        void MeshRender::render(TRenderPass pass) const
+        {
+            if(!m_material->Enable(pass))
+                return;
 
-        draw();
-        m_material->Disable();
-    }
+            draw();
+            m_material->Disable();
+        }
 
-    void MeshRender::draw() const
-    {
-        m_baseModel->Draw(m_transform);
-    }
+        void MeshRender::draw() const
+        {
+            m_baseModel->Draw(m_transform);
+        }
 
-    void MeshRender::SetModel(Model* model)
-    {
-        m_baseModel = model;
-    }
+        void MeshRender::SetModel(Model*model)
+        {
+            m_baseModel = model;
+        }
+
 }
+
+
+

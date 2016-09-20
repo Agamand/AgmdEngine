@@ -63,16 +63,17 @@ using namespace AgmdUtilities;
 SINGLETON_IMPL(App);
 
 
+
 void App::Run(int argc, char** argv)
 {
-    if (argc > 0)
+    if(argc > 0)
     {
         File main(argv[0]);
         MediaManager::Instance().AddSearchPath(main.Path());
-        ShaderPreCompiler::Instance().AddSearchPath(main.Path() + "/Shader");
+        ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
     }
-    wxEntryStart(argc, argv);
-    AgmdApplication::Run(argc, argv);
+    wxEntryStart( argc, argv );
+    AgmdApplication::Run(argc,argv);
 }
 
 
@@ -82,19 +83,20 @@ void App::MakeWindow()
 }
 
 void App::init()
-{
+{ 
+
     m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
-    m_MatProj2D = ortho(0.0f, (float)getScreen().x, 0.0f, (float)getScreen().y);
+    m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
     ForwardRendering* mode = new ForwardRendering(getScreen());
     //DeferredRendering* mode = new DeferredRendering(getScreen());
     RenderingMode::setRenderingMode(mode);
-    m_fps = new GraphicString(ivec2(0, getScreen().y - 15), "", Color::black, "Arial", 20);
+    m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
     m_Scene = new SceneMgr();
     AssetLoader assetLoader;
     FBXLoader fbxLoader;
+    
 
-
-    //
+   //
     //SceneNode* ironMan = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\ironman\\ironman.fbx");
     //Model* model = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\im\\im.fbx");
     //Model* model = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\cube01.fbx");
@@ -106,47 +108,44 @@ void App::init()
     m_Scene->AddNode(triss);
 
     SceneNode* geralt = fbxLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\TheWitcher2\\witcher.FBX");
-    geralt->getTransform().translate(-5.0f, 0, 0);
+    geralt->getTransform().translate(-5.0f,0,0);
     m_Scene->AddNode(geralt);
-
+   
     //D:\projet Annuel\OGL_Thematique\OPENGL\Data\TheWitcher
     //SceneNode* dragon = assetLoader.LoadFromFile("D:\\projet Annuel\\agmdengine\\bin\\Debug_Win32\\model\\dragon.obj");
-    //    SceneNode* ironMan = assetLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\ironman\\ironman.fbx");
-
-
+//    SceneNode* ironMan = assetLoader.LoadFromFile("D:\\projet Annuel\\OGL_Thematique\\OPENGL\\Data\\ironman\\ironman.fbx");
+    
+   
     GUIMgr& guimgr = GUIMgr::Instance();
 
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
-    cam3D = new Camera(PROJECTION_PERSPECTIVE, ProjectionOption(vec2(getScreen()), 60.0f, 0));
+    cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
     InputController* controller = new FirstPersonController();
-    camNode = new CameraNode(cam3D, controller);
+    camNode = new CameraNode(cam3D,controller);
     camNode->setController(controller);
     m_Scene->AddNode(camNode);
-    cam2D = new Camera(PROJECTION_ORTHO, ProjectionOption(vec4(0, 100.0f, 0, 100.0f)));
+    cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
 }
 
 float _time = 0;
-
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
-    _time += time_diff / 10000.0f;
+    _time += time_diff/10000.0f;
 }
 
 void App::OnRender3D()
-{
-}
+{}
 
 void App::OnRender2D()
-{
-}
+{}
 
 
-void App::OnClick(int click, vec2 pos, bool up)
+void App::OnClick( int click, vec2 pos,bool up)
 {
-    AgmdApplication::OnClick(click, pos, up);
+    AgmdApplication::OnClick(click,pos,up);
 }
 
 
@@ -157,5 +156,13 @@ void App::OnMove(vec2 pos)
 
 void App::OnKey(a_char key, bool up)
 {
-    AgmdApplication::OnKey(key, up);
+    AgmdApplication::OnKey(key,up);
 }
+
+
+
+
+
+
+
+

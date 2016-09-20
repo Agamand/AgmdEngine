@@ -13,10 +13,10 @@ namespace Agmd
 {
     enum TMouseState
     {
-        MOUSE_NONE = 0x0,
-        MOUSE_LEFT = 0x1,
-        MOUSE_RIGHT = 0x2,
-        MOUSE_MIDDLE = 0x10
+        MOUSE_NONE        = 0x0,
+        MOUSE_LEFT        = 0x1,
+        MOUSE_RIGHT        = 0x2,
+        MOUSE_MIDDLE    = 0x10
     };
 
     enum TPrimitiveType
@@ -24,7 +24,7 @@ namespace Agmd
         PT_TRIANGLELIST,
         PT_TRIANGLESTRIP,
         PT_TRIANGLEFAN,
-        PT_LINELIST,
+        PT_LINELIST, 
         PT_LINESTRIP,
         PT_POINTLIST,
         PT_PATCHLIST
@@ -38,21 +38,20 @@ namespace Agmd
 
     enum
     {
-        BUF_STATIC = 1 << 0,
+        BUF_STATIC  = 1 << 0,
         BUF_DYNAMIC = 1 << 1,
-        BUF_STREAM = 1 << 2
+        BUF_STREAM  = 1 << 2
     };
 
     enum
     {
-        LOCK_READONLY = 1 << 0,
-        LOCK_WRITEONLY = 1 << 1,
-        LOCK_UNSYNCHRONOUS = 1 << 2,
-        LOCK_SYNC_WAIT = 1 << 3
+        LOCK_READONLY       = 1 << 0,
+        LOCK_WRITEONLY      = 1 << 1,
+        LOCK_UNSYNCHRONOUS  = 1 << 2,
+        LOCK_SYNC_WAIT      = 1 << 3
     };
 
-#define MAX_APIMATRIX 10
-
+    #define MAX_APIMATRIX 10
     enum TMatrixType
     {
         MAT_MODEL,
@@ -126,10 +125,10 @@ namespace Agmd
 
     enum TClear
     {
-        CLEAR_COLOR = 0x01,
-        CLEAR_DEPTH = 0x02,
-        CLEAR_STENCIL = 0x04,
-        CLEAR_ALL = CLEAR_COLOR | CLEAR_DEPTH | CLEAR_STENCIL
+        CLEAR_COLOR     = 0x01,
+        CLEAR_DEPTH     = 0x02,
+        CLEAR_STENCIL   = 0x04,
+        CLEAR_ALL       = CLEAR_COLOR | CLEAR_DEPTH | CLEAR_STENCIL
     };
 
     enum TTextureOp
@@ -152,12 +151,12 @@ namespace Agmd
 
     enum TAlign
     {
-        ALIGN_LEFT = 1 << 0,
+        ALIGN_LEFT    = 1 << 0,
         ALIGN_HCENTER = 1 << 1,
-        ALIGN_RIGHT = 1 << 2,
-        ALIGN_TOP = 1 << 3,
+        ALIGN_RIGHT   = 1 << 2, 
+        ALIGN_TOP     = 1 << 3,
         ALIGN_VCENTER = 1 << 4,
-        ALIGN_BOTTOM = 1 << 5
+        ALIGN_BOTTOM  = 1 << 5
     };
 
     enum TRenderParameter
@@ -170,10 +169,9 @@ namespace Agmd
         RENDER_POINTSPRITE,
         RENDER_TRANSPARENT,
         RENDER_RENDERING
+        
     };
-
-#define TSHADERTYPE_MAX 5
-
+    #define TSHADERTYPE_MAX 5
     enum TShaderType
     {
         SHADER_VERTEX,
@@ -200,16 +198,16 @@ namespace Agmd
 
     enum TTextureUnit
     {
-        TEXTURE_UNIT_0 = 1 << 0,
-        TEXTURE_UNIT_1 = 1 << 1,
-        TEXTURE_UNIT_2 = 1 << 2,
-        TEXTURE_UNIT_3 = 1 << 3,
-        TEXTURE_UNIT_4 = 1 << 4,
-        TEXTURE_UNIT_5 = 1 << 5,
-        TEXTURE_UNIT_6 = 1 << 6,
-        TEXTURE_UNIT_7 = 1 << 7,
-        TEXTURE_UNIT_8 = 1 << 8,
-        TEXTURE_UNIT_9 = 1 << 9,
+        TEXTURE_UNIT_0  = 1 << 0,
+        TEXTURE_UNIT_1  = 1 << 1,
+        TEXTURE_UNIT_2  = 1 << 2,
+        TEXTURE_UNIT_3  = 1 << 3,
+        TEXTURE_UNIT_4  = 1 << 4,
+        TEXTURE_UNIT_5  = 1 << 5,
+        TEXTURE_UNIT_6  = 1 << 6,
+        TEXTURE_UNIT_7  = 1 << 7,
+        TEXTURE_UNIT_8  = 1 << 8,
+        TEXTURE_UNIT_9  = 1 << 9,
         TEXTURE_UNIT_10 = 1 << 10,
         TEXTURE_UNIT_11 = 1 << 11,
         TEXTURE_UNIT_12 = 1 << 12,
@@ -234,7 +232,7 @@ namespace Agmd
         TEXTURE_UNIT_31 = 1 << 31
     };
 
-#define MAX_RENDERPASS 13
+    #define MAX_RENDERPASS 13
 
     enum TRenderPass
     {
@@ -268,9 +266,11 @@ namespace Agmd
 
     enum TComponent
     {
+    
     };
 
-#define MAX_TEXTUREUNIT 32
+    #define MAX_TEXTUREUNIT 32
+
 }
 
 

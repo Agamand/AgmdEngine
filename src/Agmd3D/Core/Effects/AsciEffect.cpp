@@ -15,38 +15,39 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    AsciEffect::AsciEffect() : m_speed(1), m_time(0)
+
+    AsciEffect::AsciEffect() : m_speed(1),m_time(0)
     {
         m_program.LoadFromFile("Shader/Effect/ascieffect.glsl");
-        m_asciTable.CreateFromFile("Texture/DC39_FS_Texture_0.png", PXF_A8R8G8B8);
+        m_asciTable.CreateFromFile("Texture/DC39_FS_Texture_0.png",PXF_A8R8G8B8);
     }
 
     void AsciEffect::Init()
-    {
-    }
+    {}
 
     void AsciEffect::Update(a_uint64 t_diff)
     {
-        m_time += (int)t_diff;
-        m_time %= (int)(1000 / m_speed);
+        m_time +=(int)t_diff;
+        m_time %=(int)(1000/m_speed);
     }
 
     void AsciEffect::ApplyEffect(Texture& input, Texture& output)
     {
         Texture::BeginRenderToTexture(output);
         Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Driver::Get().SetTexture(0, input.GetTexture());
-        Driver::Get().SetTexture(1, m_asciTable.GetTexture());
-        m_program.SetParameter("u_time", (float)m_time / 1000 * m_speed);
+        Driver::Get().SetTexture(0,input.GetTexture());
+        Driver::Get().SetTexture(1,m_asciTable.GetTexture());
+        m_program.SetParameter("u_time",(float)m_time/1000*m_speed);
         Fast2DSurface::Instance().Draw();
         Driver::Get().SetCurrentProgram(NULL);
         Texture::EndRenderToTexture();
     }
 
-    void AsciEffect::SetSpeed(float a)
+    void AsciEffect::SetSpeed( float a )
     {
         m_speed = a;
-        /*        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
-                m_program.SetParameter("u_speed",a);*/
+/*        Renderer::Get().SetCurrentProgram(m_program.GetShaderProgram());
+        m_program.SetParameter("u_speed",a);*/
     }
+
 }

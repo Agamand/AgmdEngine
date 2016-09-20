@@ -17,18 +17,17 @@ status : in pause
 #include <iostream>
 
 using namespace AgmdUtilities;
-
 int main(int argc, char** argv)
 {
     try
     {
-        App::Instance().Run(argc, argv);
+        App::Instance().Run(argc,argv);
         App::Destroy();
-    }
-    catch (std::exception e)
+    }catch(std::exception e)
     {
         std::cout << "Fail -> exception" << std::endl;
         std::cout << e.what() << std::endl;
+        
     }
     system("pause");
     return EXIT_SUCCESS;

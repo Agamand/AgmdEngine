@@ -10,9 +10,9 @@ https://github.com/Agamand/AgmdEngine
 #define _GLRENDERBUFFER_H_
 
 #include <Core/Buffer/RenderBuffer.h>
-
 namespace Agmd
 {
+
     class GLRenderBuffer : public RenderBuffer
     {
     public:
@@ -24,6 +24,7 @@ namespace Agmd
     private:
         a_uint32 m_Id;
     };
+
 }
 
 #endif /* _GLRENDERBUFFER_H_ */

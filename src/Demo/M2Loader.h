@@ -23,12 +23,9 @@ using namespace Agmd;
 
 struct Sphere
 {
-    /*0x00*/
-    vec3 min;
-    /*0x0C*/
-    vec3 max;
-    /*0x18*/
-    float radius;
+    /*0x00*/ vec3 min;
+    /*0x0C*/ vec3 max;
+    /*0x18*/float radius;
 };
 
 struct M2RenderFlags
@@ -38,33 +35,29 @@ struct M2RenderFlags
 };
 
 #define    TEXTURE_MAX    32
-
-struct M2ModelTextureDef
-{
+struct M2ModelTextureDef {
     a_uint32 type;
     a_uint32 flags;
     a_uint32 nameLen;
     a_uint32 nameOfs;
 };
 
-struct M2SkinHeader
-{
-    a_uint32 Padding; // Just some Padding.
-    a_uint32 nIndices;
-    a_uint32 ofsIndices; // Indices used in this View.
-    a_uint32 nTriangles;
-    a_uint32 ofsTriangles; // The triangles made with them.
-    a_uint32 nProperties;
-    a_uint32 ofsProperties; // Properties of the vertices.
-    a_uint32 nSubmeshes;
-    a_uint32 ofsSubmeshes; // Submeshes (Geosets) of this View.
-    a_uint32 nTextureUnits;
-    a_uint32 ofsTextureUnits; // Texture Units.
-    a_uint32 LOD; // LOD distance or something else
+struct M2SkinHeader {
+  a_uint32 Padding;        // Just some Padding.
+  a_uint32 nIndices;        
+  a_uint32 ofsIndices;        // Indices used in this View.
+  a_uint32 nTriangles;        
+  a_uint32 ofsTriangles;        // The triangles made with them.
+  a_uint32 nProperties;        
+  a_uint32 ofsProperties;        // Properties of the vertices.
+  a_uint32 nSubmeshes;        
+  a_uint32 ofsSubmeshes;        // Submeshes (Geosets) of this View.
+  a_uint32 nTextureUnits;    
+  a_uint32 ofsTextureUnits;    // Texture Units.
+  a_uint32 LOD;            // LOD distance or something else
 };
 
-struct M2ModelHeader
-{
+struct M2ModelHeader {
     a_int8 id[4];
     a_uint8 version[4];
     a_uint32 nameLength;
@@ -99,7 +92,7 @@ struct M2ModelHeader
     a_uint32 ofsTransparency; // Transparency of textures.
     //uint32 nI;   // always unused ?
     //uint32 ofsI;
-    a_uint32 nTexAnims; // J, TextureAndTheifAnimation
+    a_uint32 nTexAnims;    // J, TextureAndTheifAnimation
     a_uint32 ofsTexAnims;
     a_uint32 nTexReplace; // TextureAndTheifAnimation
     a_uint32 ofsTexReplace; // Replaceable Textures.
@@ -112,7 +105,7 @@ struct M2ModelHeader
     a_uint32 nTexLookup; // TextureAndTheifAnimation
     a_uint32 ofsTexLookup; // The same for textures.
 
-    a_uint32 nTexUnitLookup; // L, TextureAndTheifAnimation, seems gone after Cataclysm
+    a_uint32 nTexUnitLookup;        // L, TextureAndTheifAnimation, seems gone after Cataclysm
     a_uint32 ofsTexUnitLookup; // And texture units. Somewhere they have to be too.
     a_uint32 nTransparencyLookup; // M, ColorsAndTransparency
     a_uint32 ofsTransparencyLookup; // Everything needs its lookup. Here are the transparencies.
@@ -147,8 +140,7 @@ struct M2ModelHeader
     a_uint32 ofsParticleEmitters; // Spells and weapons, doodads and loginscreens use them. Blood dripping of a blade? Particles.
 };
 
-struct M2ModelVertex
-{
+struct M2ModelVertex {
     vec3 pos;
     a_uint8 weights[4];
     a_uint8 bones[4];
@@ -166,10 +158,11 @@ public :
 
     virtual Model* LoadFromFile(const std::string& filename);
     virtual void SaveToFile(const Model* object, const std::string& filename);
-
+        
 private :
     static void OnError();
 };
+
 
 
 #endif //OBJLOADER_H

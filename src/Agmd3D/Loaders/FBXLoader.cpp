@@ -33,7 +33,7 @@ namespace Agmd
     {
         int materialCount = pFbxChildNode->GetSrcObjectCount<FbxSurfaceMaterial>();
 
-// multiMaterial not supported
+        // multiMaterial not supported
         for (int index = 0;  index < materialCount && index < 1; index++)
         {
 
@@ -47,7 +47,7 @@ namespace Agmd
                 mat = new Material();
                 std::cout << "\nmaterial: " << material->GetName() << std::endl;
 
-//hack for test model
+                //hack for test model
                 if(std::string(material->GetName()).compare("12 - Default") == 0 ||std::string(material->GetName()).compare("_TrissModel001_Material003") == 0)
                     mat->SetRenderQueue(TYPE_BLEND);
                 LoadMaterial(material,mat,FbxSurfaceMaterial::sDiffuse,0);
@@ -153,7 +153,7 @@ namespace Agmd
         FbxNode* pFbxRootNode = pFbxScene->GetRootNode();
 
         SceneNode* root= NULL;
-//a_vector<Model::TIndex> indices;dd
+        //a_vector<Model::TIndex> indices;dd
         if(pFbxRootNode)
         {
                 
@@ -163,7 +163,7 @@ namespace Agmd
                 ProcessNode(pFbxRootNode,root);
 
         }
-//return S_OK;
+        //return S_OK;
         return root;
     }
     void ProcessUV(FbxMesh* mesh,FbxStringList& uvlist, int unit,Model::TVertex* out)
@@ -173,16 +173,16 @@ namespace Agmd
         if(!lUVElement)
             return;
 
-// only support mapping mode eByPolygonVertex and eByControlPoint
+        // only support mapping mode eByPolygonVertex and eByControlPoint
         if( lUVElement->GetMappingMode() != FbxGeometryElement::eByPolygonVertex &&
             lUVElement->GetMappingMode() != FbxGeometryElement::eByControlPoint )
             return;
 
-//index array, where holds the index referenced to the uv data
+        //index array, where holds the index referenced to the uv data
         const bool lUseIndex = lUVElement->GetReferenceMode() != FbxGeometryElement::eDirect;
         const int lIndexCount= (lUseIndex) ? lUVElement->GetIndexArray().GetCount() : 0;
 
-//iterating through the data by polygon
+        //iterating through the data by polygon
         const int lPolyCount = mesh->GetPolygonCount();
 
         if( lUVElement->GetMappingMode() == FbxGeometryElement::eByControlPoint )
@@ -265,7 +265,7 @@ namespace Agmd
 
             if( lNormalElement->GetMappingMode() != FbxGeometryElement::eByControlPoint)
             {
-//mesh->GenerateNormals(true,true);
+               //mesh->GenerateNormals(true,true);
             }
             if( lNormalElement->GetMappingMode() == FbxGeometryElement::eByControlPoint )
             {
@@ -300,7 +300,7 @@ namespace Agmd
 
                         FbxVector4 lNormal = lNormalElement->GetDirectArray().GetAt(lNormalIndex);
                     
-// std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
+                       // std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
                         out[_indices[lPolygonIndex*3+i]].normal += vec3(lNormal[0],lNormal[1],lNormal[2]);
                         lIndexByPolygonVertex++;
                     }
@@ -352,7 +352,7 @@ namespace Agmd
 
                         FbxVector4 lTangent = lTangentElement->GetDirectArray().GetAt(lTangentIndex);
 
-// std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
+                        // std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
                         out[_indices[lPolygonIndex*3+i]].tangent += vec3(lTangent[0],lTangent[1],lTangent[2]);
                         lIndexByPolygonVertex++;
                     }
@@ -395,7 +395,7 @@ namespace Agmd
 
                         FbxVector4 lBinormal = lBinormalElement->GetDirectArray().GetAt(lBinormalIndex);
 
-// std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
+                        // std::cout << lIndexByPolygonVertex << " " << lNormalIndex << std::endl;                           
                         out[_indices[lPolygonIndex*3+i]].binormal += vec3(lBinormal[0],lBinormal[1],lBinormal[2]);
                         lIndexByPolygonVertex++;
                     }
@@ -422,7 +422,7 @@ namespace Agmd
                 continue;
 
             FbxMesh* pMesh = (FbxMesh*) pFbxChildNode->GetNodeAttribute();
-//std::string name = StringBuilder(pMesh->GetName())(i);
+            //std::string name = StringBuilder(pMesh->GetName())(i);
 
              if(true)//(model = ResourceManager::Instance().Get<Model>(name.c_str())) == NULL){
              {
@@ -441,10 +441,10 @@ namespace Agmd
                      indices[j] = _indices[j];
                  }
 
-//for (int j = 0; j < pMesh->GetPolygonCount(); j++)
-//{
-//int iNumVertices = pMesh->GetPolygonSize(j);
-//assert( iNumVertices == 3 );
+                //for (int j = 0; j < pMesh->GetPolygonCount(); j++)
+                //{
+                    //int iNumVertices = pMesh->GetPolygonSize(j);
+                    //assert( iNumVertices == 3 );
             
                 ProcessNormal(pMesh,&vertices[0]);
                 ProcessUV(pMesh,UVSetNameList,0,&vertices[0]);
@@ -460,66 +460,66 @@ namespace Agmd
                     vertex.normal = normalize(vertex.normal);
                     vertex.binormal = normalize(vertex.binormal);
                     vertex.tangent = normalize(vertex.tangent);
-//                 vertex.texCoords[0] = (float)uvArray[j].mData[0];
-//                 vertex.texCoords[1] = (float)uvArray[j].mData[1];
-// 
-//                 vertex.normal[0] = (float)nArray[j].mData[0];
-//                 vertex.normal[1] = (float)nArray[j].mData[1];
-//                 vertex.normal[2] = (float)nArray[j].mData[2];
+    //                 vertex.texCoords[0] = (float)uvArray[j].mData[0];
+    //                 vertex.texCoords[1] = (float)uvArray[j].mData[1];
+    // 
+    //                 vertex.normal[0] = (float)nArray[j].mData[0];
+    //                 vertex.normal[1] = (float)nArray[j].mData[1];
+    //                 vertex.normal[2] = (float)nArray[j].mData[2];
 
-//                 FbxVector4 normal;
-//                 if(pMesh->Getcon(j,k,normal)){
-//                     vertex.normal[0] = normal[0];
-//                     vertex.normal[1] = normal[1];
-//                     vertex.normal[2] = normal[2];
-//                 }   
-// 
-//                 //if(pMesh->Gene)
-// 
-// 
-//                 FbxVector2 uv;
-//                 bool unmap;
-//                 if(UVSetNameList.GetCount() &&  pMesh->GetPolygonVertexUV(j,k,UVSetNameList.GetStringAt(0),uv,unmap)){
-//                     vertex.texCoords[0] = uv[0];
-//                     vertex.texCoords[1] = uv[1];
-//                 }
+    //                 FbxVector4 normal;
+    //                 if(pMesh->Getcon(j,k,normal)){
+    //                     vertex.normal[0] = normal[0];
+    //                     vertex.normal[1] = normal[1];
+    //                     vertex.normal[2] = normal[2];
+    //                 }   
+    // 
+    //                 //if(pMesh->Gene)
+    // 
+    // 
+    //                 FbxVector2 uv;
+    //                 bool unmap;
+    //                 if(UVSetNameList.GetCount() &&  pMesh->GetPolygonVertexUV(j,k,UVSetNameList.GetStringAt(0),uv,unmap)){
+    //                     vertex.texCoords[0] = uv[0];
+    //                     vertex.texCoords[1] = uv[1];
+    //                 }
 
-
-/*for (int k = 0; k < iNumVertices; k++)
-{
-    int iControlPointIndex = pMesh->GetPolygonVertex(j, k);
-
-
-    Model::TVertex vertex;
-    vertex.position[0] = (float)pVertices[iControlPointIndex].mData[0];
-    vertex.position[1] = (float)pVertices[iControlPointIndex].mData[1];
-    vertex.position[2] = (float)pVertices[iControlPointIndex].mData[2];
-
-    FbxVector4 normal;
-    if(pMesh->GetPolygonVertexNormal(j,k,normal)){
-        vertex.normal[0] = normal[0];
-        vertex.normal[1] = normal[1];
-        vertex.normal[2] = normal[2];
-    }   
-
-    //if(pMesh->Gene)
+                
+                    /*for (int k = 0; k < iNumVertices; k++)
+                    {
+                        int iControlPointIndex = pMesh->GetPolygonVertex(j, k);
 
 
-    FbxVector2 uv;
-    bool unmap;
-    if(UVSetNameList.GetCount() &&  pMesh->GetPolygonVertexUV(j,k,UVSetNameList.GetStringAt(0),uv,unmap)){
-        vertex.texCoords[0] = uv[0];
-        vertex.texCoords[1] = uv[1];
-    }
+                        Model::TVertex vertex;
+                        vertex.position[0] = (float)pVertices[iControlPointIndex].mData[0];
+                        vertex.position[1] = (float)pVertices[iControlPointIndex].mData[1];
+                        vertex.position[2] = (float)pVertices[iControlPointIndex].mData[2];
+                    
+                        FbxVector4 normal;
+                        if(pMesh->GetPolygonVertexNormal(j,k,normal)){
+                            vertex.normal[0] = normal[0];
+                            vertex.normal[1] = normal[1];
+                            vertex.normal[2] = normal[2];
+                        }   
 
-    vertices.push_back(vertex);
-}*/
+                        //if(pMesh->Gene)
+
+
+                        FbxVector2 uv;
+                        bool unmap;
+                        if(UVSetNameList.GetCount() &&  pMesh->GetPolygonVertexUV(j,k,UVSetNameList.GetStringAt(0),uv,unmap)){
+                            vertex.texCoords[0] = uv[0];
+                            vertex.texCoords[1] = uv[1];
+                        }
+
+                        vertices.push_back(vertex);
+                    }*/
                 }
                 model = new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
-//ResourceManager::Instance().Add(name.c_str(),model);
+                //ResourceManager::Instance().Add(name.c_str(),model);
             }
 
-//for(int j = 0; j < pMesh->getelementpo)
+            //for(int j = 0; j < pMesh->getelementpo)
             Material* mat = LoadMaterials(pFbxChildNode);
                 
 

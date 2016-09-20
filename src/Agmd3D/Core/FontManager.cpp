@@ -22,7 +22,7 @@ SINGLETON_IMPL(Agmd::FontManager);
 namespace Agmd
 {
     FontManager::FontManager() :
-        m_transform(new Transform())
+    m_transform(new Transform())
     {
         m_program.LoadFromFile("Shader/text.glsl");
     }
@@ -37,8 +37,8 @@ namespace Agmd
     {
         TDeclarationElement decl[] =
         {
-            {0, ELT_USAGE_POSITION, ELT_TYPE_FLOAT3},
-            {0, ELT_USAGE_TEXCOORD0, ELT_TYPE_FLOAT2}
+            {0, ELT_USAGE_POSITION,  ELT_TYPE_FLOAT3},
+            {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2}
         };
 
         m_Declaration = Driver::Get().CreateVertexDeclaration(decl);
@@ -62,11 +62,11 @@ namespace Agmd
 
         BITMAPINFO bitmapInfo;
         memset(&bitmapInfo, 0, sizeof(BITMAPINFO));
-        bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-        bitmapInfo.bmiHeader.biWidth = texSize;
-        bitmapInfo.bmiHeader.biHeight = texSize;
+        bitmapInfo.bmiHeader.biSize     = sizeof(BITMAPINFOHEADER);
+        bitmapInfo.bmiHeader.biWidth    = texSize;
+        bitmapInfo.bmiHeader.biHeight   = texSize;
         bitmapInfo.bmiHeader.biBitCount = 24;
-        bitmapInfo.bmiHeader.biPlanes = 1;
+        bitmapInfo.bmiHeader.biPlanes   = 1;
 
         unsigned char* data = NULL;
         HBITMAP bitmapHandle = CreateDIBSection(hdc, &bitmapInfo, DIB_RGB_COLORS, reinterpret_cast<void**>(&data), NULL, 0);
@@ -86,8 +86,9 @@ namespace Agmd
         ivec2 charSize[256];
         char character = 0;
         for (int j = 0; j < 16; ++j)
-            for (int i = 0; i < 16; ++i , ++character)
+            for (int i = 0; i < 16; ++i, ++character)
             {
+ 
                 SIZE size;
                 GetTextExtentPoint32(hdc, &character, 1, &size);
                 charSize[i + j * 16].x = size.cx;
@@ -114,11 +115,11 @@ namespace Agmd
 
         std::copy(charSize, charSize + 256, m_Fonts[fontName].charSize);
 
-        Logger::Log(LOGNORMAL, "Chargement de la police : %s ", fontName.c_str());
+        Logger::Log(LOGNORMAL,"Chargement de la police : %s ",fontName.c_str());
     }
 
     void FontManager::DrawString(const GraphicString& str)
-    {
+    {        
         a_uint32 color = Driver::Get().ConvertColor(str.m_color);
 
         if (str.m_text == "")
@@ -131,7 +132,7 @@ namespace Agmd
             LoadFont(str.m_font);
 
         const TFont& curFont = m_Fonts[str.m_font];
-
+        
         Driver::Get().Enable(RENDER_ZTEST, false);
         Driver::Get().SetCurrentTransform(str.m_transform);
         Driver::Get().SetDeclaration(m_Declaration);
@@ -139,7 +140,7 @@ namespace Agmd
         Driver::Get().SetVertexBuffer(0, str.m_vertexBuffer);
         Driver::Get().SetIndexBuffer(str.m_indexBuffer);
         Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, str.m_indexBuffer.GetCount());
+        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0, str.m_indexBuffer.GetCount());
         Driver::Get().SetCurrentProgram(NULL);
     }
 
@@ -157,7 +158,7 @@ namespace Agmd
         const TFont& curFont = m_Fonts[str.m_font];
         float texUnit = 1.0f / 16.0f;
         float ratio = str.m_size * 16.0f / curFont.texture.GetSize().x;
-        float offset = 0.5f / curFont.texture.GetSize().x;
+        float offset  = 0.5f / curFont.texture.GetSize().x;
         float x, y = x = 0.0f;
 
 
@@ -170,30 +171,30 @@ namespace Agmd
             switch (c)
             {
                 // Saut de ligne
-            case '\n':
-                x = 0.0f;
-                y -= curFont.charSize['\n'].y * ratio;
-                continue;
+                case '\n' :
+                    x = 0.0f;
+                    y -= curFont.charSize['\n'].y * ratio;
+                    continue;
 
                 // Retour au début de ligne
-            case '\r':
-                x = 0.0f;
-                continue;
+                case '\r' :
+                    x = 0.0f;
+                    continue;
 
                 // Tabulation horizontale
-            case '\t':
-                x += 4 * curFont.charSize[' '].x * ratio;
-                continue;
+                case '\t' :
+                    x += 4 * curFont.charSize[' '].x * ratio;
+                    continue;
 
                 // Tabulation verticale
-            case '\v':
-                y -= 4 * curFont.charSize['\n'].y * ratio;
-                continue;
+                case '\v' :
+                    y -= 4 * curFont.charSize['\n'].y * ratio;
+                    continue;
 
                 // Espace
-            case ' ':
-                x += curFont.charSize[' '].x * ratio;
-                continue;
+                case ' ' :
+                    x += curFont.charSize[' '].x * ratio;
+                    continue;
             }
             /*
             texCoord0 = vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset);
@@ -209,10 +210,10 @@ namespace Agmd
             */
 
             TVertex v[] = {
-                {vec3(x, y, 0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
-                {vec3(str.m_size + x, y, 0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
-                {vec3(x, str.m_size + y, 0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset)},
-                {vec3(str.m_size + x, str.m_size + y, 0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset)}
+                {vec3(x,y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
+                {vec3(str.m_size+x,y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 1) - offset)},
+                {vec3(x,str.m_size+y,0), vec2(texUnit * ((c % 16) + 0) + offset, 1.0f - texUnit * ((c / 16) + 0) + offset)},
+                {vec3(str.m_size+x,str.m_size+y,0), vec2(texUnit * ((c % 16) + 1) - offset, 1.0f - texUnit * ((c / 16) + 0) + offset)}
             };
             _vertex.push_back(v[0]);
             _vertex.push_back(v[1]);
@@ -238,17 +239,17 @@ namespace Agmd
         str.m_indexBuffer.Release();
 
         a_vector<TIndex> _indices;
-        for (a_uint32 i = 0, len = _vertex.size() / 4; i < len; i++)
+        for(a_uint32 i = 0, len = _vertex.size()/4; i < len; i++)
         {
-            _indices.push_back(0 + i * 4);
-            _indices.push_back(1 + i * 4);
-            _indices.push_back(2 + i * 4);
-            _indices.push_back(1 + i * 4);
-            _indices.push_back(3 + i * 4);
-            _indices.push_back(2 + i * 4);
+            _indices.push_back(0+i*4);
+            _indices.push_back(1+i*4);
+            _indices.push_back(2+i*4);
+            _indices.push_back(1+i*4);
+            _indices.push_back(3+i*4);
+            _indices.push_back(2+i*4);
         }
-        str.m_vertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(_vertex.size(), 0, &(_vertex[0]));
-        str.m_indexBuffer = Driver::Get().CreateIndexBuffer<TIndex>(_indices.size(), 0, &(_indices[0]));
+        str.m_vertexBuffer = Driver::Get().CreateVertexBuffer<TVertex>(_vertex.size(),0,&(_vertex[0]));
+        str.m_indexBuffer = Driver::Get().CreateIndexBuffer<TIndex>(_indices.size(),0,&(_indices[0]));
     }
 
     ivec2 FontManager::GetStringPixelSize(const GraphicString& str)
@@ -257,7 +258,7 @@ namespace Agmd
             LoadFont(str.m_font);
 
         const TFont& curFont = m_Fonts[str.m_font];
-        const float ratio = str.m_size * 16.0f / curFont.texture.GetSize().x;
+        const float  ratio   = str.m_size * 16.0f / curFont.texture.GetSize().x;
 
         a_vector<int> lengths;
 
@@ -270,32 +271,32 @@ namespace Agmd
             switch (c)
             {
                 // Retour à la ligne
-            case '\n':
-                lengths.push_back(size.x);
-                size.y += str.m_size;
-                size.x = 0;
-                break;
+                case '\n' :
+                    lengths.push_back(size.x);
+                    size.y += str.m_size;
+                    size.x = 0;
+                    break;
 
                 // Retour au début de ligne
-            case '\r':
-                lengths.push_back(size.x);
-                size.x = 0;
-                break;
+                case '\r' :
+                    lengths.push_back(size.x);
+                    size.x = 0;
+                    break;
 
                 // Tabulation horizontale
-            case '\t':
-                size.x += (int)(4 * curFont.charSize[' '].x * ratio);
-                break;
+                case '\t' :
+                    size.x += (int)(4 * curFont.charSize[' '].x * ratio);
+                    break;
 
                 // Tabulation verticale
-            case '\v':
-                size.y += 4 * str.m_size;
-                break;
+                case '\v' :
+                    size.y += 4 * str.m_size;
+                    break;
 
                 // Défaut
-            default:
-                size.x += (int)(curFont.charSize[c].x * ratio);
-                break;
+                default :
+                    size.x += (int)(curFont.charSize[c].x * ratio);
+                    break;
             }
         }
 
@@ -304,4 +305,5 @@ namespace Agmd
 
         return size;
     }
+
 }

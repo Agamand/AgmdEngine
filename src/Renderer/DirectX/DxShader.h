@@ -19,28 +19,25 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    template <class ShaderClass, TShaderType type>
+    template<class ShaderClass, TShaderType type>
     class DXShader : public BaseShader
     {
     public:
         DXShader(ShaderClass shaderid) : BaseShader(type), m_Shader(shaderid)
-        {
-        }
-
+        {}
         virtual ~DXShader()
         {
             m_Shader->Release();
         }
-
-        ShaderClass GetShader() { return m_Shader; }
-
+        ShaderClass GetShader() {return m_Shader;}
+        
     private:
         ShaderClass m_Shader;
     };
 
 
-    typedef DXShader<ID3D11VertexShader*, SHADER_VERTEX> DXVertexShader;
-    typedef DXShader<ID3D11PixelShader*, SHADER_PIXEL> DXPixelShader;
+    typedef DXShader<ID3D11VertexShader*,SHADER_VERTEX> DXVertexShader;
+    typedef DXShader<ID3D11PixelShader* ,SHADER_PIXEL>  DXPixelShader;
 }
 
 #endif /* _DXSHADER_H_ */

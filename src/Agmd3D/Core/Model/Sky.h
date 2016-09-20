@@ -11,23 +11,22 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Config/Fwd.h>
 #include <Config/Export.h>
-
 //#include <Core/Model/Displayable.h>
 
 namespace Agmd
 {
-    //     class AGMD3D_EXPORT Sky : public Displayable
-    //     {
-    // 
-    //     public:
-    //         Sky(float size = 1.0f);
-    //         virtual ~Sky();
-    //         
-    // 
-    // 
-    //     protected:
-    //         float m_fSize;
-    //     };
-    // }
+//     class AGMD3D_EXPORT Sky : public Displayable
+//     {
+// 
+//     public:
+//         Sky(float size = 1.0f);
+//         virtual ~Sky();
+//         
+// 
+// 
+//     protected:
+//         float m_fSize;
+//     };
+// }
 
 #endif //SKY_H

@@ -13,17 +13,17 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-#define COIN 30
+    #define COIN 30
 
-    ASlider::ASlider(AWidget* parent) :
-        AWidget(parent),
-        hold(false),
-        m_transform(new Transform()),
-        m_value(&m_cursor),
-        m_max(1.0f),
-        m_min(0),
-        m_isInteger(false),
-        updateListener(NULL)
+    ASlider::ASlider( AWidget* parent) :
+    AWidget(parent),
+    hold(false),
+    m_transform(new Transform()),
+    m_value(&m_cursor),
+    m_max(1.0f),
+    m_min(0),
+    m_isInteger(false),
+    updateListener(NULL)
     {
         BuildSlider();
         //m_Texture.CreateFromFile("Texture/slider.png",PXF_A8R8G8B8);
@@ -32,16 +32,16 @@ namespace Agmd
         m_gstring = new GraphicString();
     }
 
-    ASlider::ASlider(const std::string& label, const ivec2& position, const ivec2& size, bool integer):
-        AWidget(NULL),
-        hold(false),
-        m_isInteger(integer),
-        m_transform(new Transform()),
-        m_value(&m_cursor),
-        m_max(1.0f),
-        m_min(0),
-        m_label(label),
-        updateListener(NULL)
+    ASlider::ASlider( const std::string& label, const ivec2& position, const ivec2& size ,bool integer):
+    AWidget(NULL),
+    hold(false),
+    m_isInteger(integer),
+    m_transform(new Transform()),
+    m_value(&m_cursor),
+    m_max(1.0f),
+    m_min(0),
+    m_label(label),
+    updateListener(NULL)
     {
         SetSize(size);
         BuildSlider();
@@ -53,18 +53,17 @@ namespace Agmd
     }
 
     ASlider::~ASlider()
-    {
-    }
+    {}
 
 
     a_uint32 ASlider::OnClick(ivec2& pos_mouse, a_uint32 mouseState)
     {
-        if (!In(pos_mouse))
+        if(!In(pos_mouse))
             return 0;
         hold = mouseState & MOUSE_LEFT;
-        if (hold)
+        if(hold)
         {
-            SetCursor((pos_mouse - m_vAbsolutePosition).x / (float)m_vSize.x);
+            SetCursor((pos_mouse-m_vAbsolutePosition).x/(float)m_vSize.x);
         }
         return 1;
     }
@@ -77,14 +76,14 @@ namespace Agmd
 
     a_uint32 ASlider::OnMouseMove(ivec2& pos_diff, a_uint32 mouseState)
     {
-        if (!hold)
+        if(!hold)
             return 0;
 
         hold = mouseState & MOUSE_LEFT;
-        if (hold)
+        if(hold)
         {
-            float displacement = -(float)pos_diff.x / (float)m_vSize.x;
-            SetCursor(m_cursor + displacement);
+            float displacement = -(float)pos_diff.x/(float)m_vSize.x;
+            SetCursor(m_cursor+displacement);
         }
         return 1;
     }
@@ -96,32 +95,34 @@ namespace Agmd
 
     void ASlider::OnSizeChanged()
     {
+
     }
 
     void ASlider::OnPosChanged()
     {
-        m_gstring->getTransform().setPosition(vec3(m_vAbsolutePosition.x, m_vAbsolutePosition.y + 20, 0));
+        
+        m_gstring->getTransform().setPosition(vec3(m_vAbsolutePosition.x,m_vAbsolutePosition.y+20,0));
         m_gstring->getTransform().update(NULL);
-        m_transform->setPosition(vec3(m_vAbsolutePosition, 0));
+        m_transform->setPosition(vec3(m_vAbsolutePosition,0));
         m_transform->update(NULL);
     }
 
     void ASlider::Draw() const
     {
-        Driver& render = Driver::Get();
+        Driver &render = Driver::Get();
         render.SetCurrentProgram(m_Program.GetShaderProgram());
         render.SetCurrentTransform(m_transform);
-        m_Program.SetParameter("u_size", vec2(m_vSize.x, 0.2));
+        m_Program.SetParameter("u_size",vec2(m_vSize.x,0.2));
         Fast2DSurface::Instance().Draw();
         render.SetCurrentProgram(m_ProgramCursor.GetShaderProgram());
-        m_Program.SetParameter("u_size", vec2(m_vSize.x, m_cursor));
+        m_Program.SetParameter("u_size",vec2(m_vSize.x,m_cursor));
         Fast2DSurface::Instance().Draw();
         render.SetCurrentProgram(NULL);
         m_gstring->draw();
     }
 
-
-#define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
+    
+    #define SELECT(i, size) ((i) >= ((int)size) ? (i)%((int)size) : (i))
 
     struct texcoord
     {
@@ -133,11 +134,13 @@ namespace Agmd
 
     void ASlider::BuildSlider()
     {
+
     }
 
     bool ASlider::In(ivec2& pos)
     {
-        if (pos.x < (m_vAbsolutePosition.x) || pos.y < (m_vAbsolutePosition.y) || pos.x > (m_vAbsolutePosition.x + m_vSize.x) || pos.y > (m_vAbsolutePosition.y + m_vSize.y))
+
+        if(pos.x < (m_vAbsolutePosition.x) || pos.y < (m_vAbsolutePosition.y) || pos.x > (m_vAbsolutePosition.x+m_vSize.x) || pos.y > (m_vAbsolutePosition.y+m_vSize.y) )
             return false;
 
         return true;
@@ -145,29 +148,32 @@ namespace Agmd
 
     void ASlider::SetCursor(float value)
     {
-        if (value > 1.0f)
+        if(value > 1.0f)
             m_cursor = 1.0f;
-        else if (value < 0.0f)
+        else if(value < 0.0f)
             m_cursor = 0.0f;
         else m_cursor = value;
-        *m_value = (m_max - m_min) * m_cursor + m_min;
-        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) : (m_value ? *m_value : m_cursor));
-        if (updateListener)
-            updateListener->valueUpdate(*m_value, m_cursor);
+        *m_value = (m_max-m_min)*m_cursor+m_min;
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
+        if(updateListener)
+            updateListener->valueUpdate(*m_value,m_cursor);
     }
 
-    void ASlider::setValue(float* value, float min, float max)
+    void ASlider::setValue( float* value,float min,float max )
     {
         m_value = value;
         m_min = min;
         m_max = max;
-        m_cursor = (*m_value - m_min) / (m_max - m_min);
-        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) : (m_value ? *m_value : m_cursor));
+        m_cursor = (*m_value-m_min)/(m_max-m_min);
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
     }
 
-    void ASlider::setLabel(std::string& label)
+    void ASlider::setLabel( std::string& label )
     {
         m_label = label;
-        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) : (m_value ? *m_value : m_cursor));
+        *m_gstring = StringBuilder(m_label)(" : ")(m_isInteger ? (int)(m_value ? *m_value : m_cursor) :  (m_value ? *m_value : m_cursor));
     }
+
+
+
 }

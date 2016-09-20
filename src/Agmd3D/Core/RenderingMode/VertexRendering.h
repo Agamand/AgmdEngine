@@ -26,6 +26,7 @@ namespace Agmd
         virtual void end();
         void init();
     private:
+
     };
 }
 

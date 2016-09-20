@@ -50,8 +50,7 @@ namespace Agmd
         void RemoveChild(AWidget* child);
 
         virtual bool In(ivec2& pos);
-
-        void setEnable(bool enable = true)
+        void setEnable(bool enable=true)
         {
             m_enable = enable;
         }
@@ -64,6 +63,7 @@ namespace Agmd
         bool m_enable;
 
         WidgetVector m_WidgetChild;
+
     };
 }
 

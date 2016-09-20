@@ -12,13 +12,11 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     BaseShader::BaseShader(TShaderType type) :
-        m_Type(type)
-    {
-    }
+    m_Type(type)
+    {}
 
     BaseShader::~BaseShader()
-    {
-    }
+    {}
 
     TShaderType BaseShader::GetType() const
     {

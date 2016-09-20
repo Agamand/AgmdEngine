@@ -19,14 +19,14 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT ResourceManager : public Singleton<ResourceManager>
     {
-        MAKE_SINGLETON(ResourceManager)
+    MAKE_SINGLETON(ResourceManager)
 
     public :
 
-        template <class T>
-        T* Get(const std::string& name) const;
+        template <class T> T* Get(const std::string& name) const;
 
         void Add(const std::string& Name, Resource* resource);
 
@@ -43,7 +43,8 @@ namespace Agmd
         TResourcesMap m_Resources;
     };
 
-#include "ResourceManager.inl"
+    #include "ResourceManager.inl"
+
 }
 
 

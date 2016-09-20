@@ -27,7 +27,9 @@ using namespace std;
 
 namespace Agmd
 {
-    class AGMD3D_EXPORT ShaderPreCompiler : public Singleton<ShaderPreCompiler>
+    
+
+    class AGMD3D_EXPORT ShaderPreCompiler : public Singleton<ShaderPreCompiler>  
     {
         MAKE_SINGLETON(ShaderPreCompiler);
     public:
@@ -38,24 +40,24 @@ namespace Agmd
             PREPROCESSOR_REVISION
         };
 
-        const string LoadAndCompileShader(const string& current_file, string const* current_dir = NULL);
+        const string LoadAndCompileShader(const string& current_file, string const* current_dir=NULL);
 
-        void AddSearchPath(std::string path);
+        void AddSearchPath( std::string path);
     private:
         ShaderPreprocessor preprocessor(const std::string& instruction);
-
         inline bool escape_space(const char* c)
         {
-            while (ESCAPE_SPACE_COND(*c) && *c != 0)
+            while(ESCAPE_SPACE_COND(*c) && *c != 0)
                 c++;
             return true;
         }
-
         string SolvePath(string path);
 
         std::set<string> shader_path;
-        std::map<string, string> shader_map;
+        std::map<string,string> shader_map;
+
     };
+    
 }
 
 #endif /* _SHADERPRECOMPILER_H_ */

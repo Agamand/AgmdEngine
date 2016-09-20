@@ -26,9 +26,10 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT FontManager : public Singleton<FontManager>
     {
-        MAKE_SINGLETON(FontManager)
+    MAKE_SINGLETON(FontManager)
 
     public :
         friend class GraphicString;
@@ -52,28 +53,29 @@ namespace Agmd
 
         struct TVertex
         {
-            vec3 position;
-            vec2 texcoord;
+            vec3     position;
+            vec2     texcoord;
         };
 
         typedef a_uint16 TIndex;
 
         struct TFont
         {
-            Texture texture;
-            ivec2 charSize[256];
+            Texture  texture;
+            ivec2    charSize[256];
         };
 
         typedef std::map<std::string, TFont> TFontsMap;
         static const unsigned int nbCharMax = 512;
 
-        TFontsMap m_Fonts;
+        TFontsMap       m_Fonts;
         Buffer<TVertex> m_VertexBuffer;
-        Buffer<TIndex> m_IndexBuffer;
-        DeclarationPtr m_Declaration;
-        ShaderProgram m_program;
-        Transform* m_transform;
+        Buffer<TIndex>  m_IndexBuffer;
+        DeclarationPtr  m_Declaration;
+        ShaderProgram   m_program;
+        Transform*      m_transform;
     };
+
 }
 
 

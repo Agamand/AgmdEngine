@@ -19,24 +19,22 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Resource.h>
 #include <Utilities/Color.h>
 #include <Core/Tools/RenderQueue.h>
-
 namespace Agmd
 {
     struct AGMD3D_EXPORT TextureUnit
     {
         TextureUnit() :
-            pass(0)
-        {
-        }
+        pass(0)
+        {}
 
-        TextureUnit(Texture _tex, a_uint32 _pass = 0) :
-            tex(_tex),
-            pass(_pass)
-        {
-        }
+        TextureUnit(Texture _tex, a_uint32 _pass = 0) : 
+        tex(_tex),
+        pass(_pass)
+        {}
 
         Texture tex;
         a_uint32 pass;
+
     };
 
     struct MaterialInfo
@@ -49,7 +47,7 @@ namespace Agmd
     {
     public:
         Material(TRenderType type = TYPE_DIFFUSE);
-        Material(ShaderPipeline* pipeline, TRenderType type = TYPE_DIFFUSE);
+        Material(ShaderPipeline* pipeline,TRenderType type = TYPE_DIFFUSE);
         Material(const Material& mat);
         ~Material();
 
@@ -57,24 +55,21 @@ namespace Agmd
         void Disable() const;
 
         void SetTexture(Texture tex, a_uint32 unit, TRenderPass pass);
-
-        template <typename T>
-        void setParameter(std::string paramName, T value)
+        template <typename T> void setParameter(std::string paramName,T value)
         {
-            m_shaderPipeline->setParameter(paramName, value);
+            m_shaderPipeline->setParameter(paramName,value);
         }
-
-        Texture getTexture(int texUnit);
+        Texture getTexture( int texUnit );
         void SetRenderQueue(TRenderType type);
         TRenderType GetRenderQueue();
     private:
-
+        
         ShaderPipeline* m_shaderPipeline;
         TextureUnit m_texture[MAX_TEXTUREUNIT];
         MaterialInfo m_materialInfo;
         Buffer<MaterialInfo> m_bufferMaterial;
         TRenderType m_queueType;
-    };
+    }; 
 }
 
 #endif /* _MATERIAL_H_ */

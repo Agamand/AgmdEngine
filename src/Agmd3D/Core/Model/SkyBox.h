@@ -23,6 +23,9 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
+
+
     class AGMD3D_EXPORT SkyBox
     {
     public:
@@ -40,18 +43,20 @@ namespace Agmd
             vec3 position;
             //vec2 texcoord0;
         };
-
         typedef short TIndex;
-
+        
 
         void Generate();
 
-        Texture m_Texture;
-        DeclarationPtr m_Declaration;
-        Buffer<TVertex> m_VertexBuffer;
-        Buffer<TIndex> m_IndexBuffer;
-        BaseShaderProgram* m_Program;
+        Texture                 m_Texture;
+        DeclarationPtr          m_Declaration;
+        Buffer<TVertex>         m_VertexBuffer;
+        Buffer<TIndex>          m_IndexBuffer;
+        BaseShaderProgram*      m_Program;
+    
+
     };
+
 }
 
 

@@ -18,6 +18,7 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT RenderBuffer
     {
     public:
@@ -28,6 +29,7 @@ namespace Agmd
     };
 
     typedef SmartPtr<RenderBuffer> RenderBufferPtr;
+
 }
 
 #endif //RENDERBUFFER_H

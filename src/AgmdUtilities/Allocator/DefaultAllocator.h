@@ -24,8 +24,7 @@ namespace AgmdUtilities
 
         virtual void UnAllocate(T* ptr, size_t count = 1);
     };
-
-#include "DefaultAllocator.inl"
+    #include "DefaultAllocator.inl"
 }
 
 

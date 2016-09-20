@@ -49,69 +49,69 @@ all look identical.
 // For each octave, a higher frequency/lower amplitude function will be added to the original.
 // The higher the persistence [0-1], the more of each succeeding octave will be added.
 float octave_noise_2d(const float octaves,
-                      const float persistence,
-                      const float scale,
-                      const float x,
-                      const float y);
+                    const float persistence,
+                    const float scale,
+                    const float x,
+                    const float y);
 float octave_noise_3d(const float octaves,
-                      const float persistence,
-                      const float scale,
-                      const float x,
-                      const float y,
-                      const float z);
+                    const float persistence,
+                    const float scale,
+                    const float x,
+                    const float y,
+                    const float z);
 float octave_noise_4d(const float octaves,
-                      const float persistence,
-                      const float scale,
-                      const float x,
-                      const float y,
-                      const float z,
-                      const float w);
+                    const float persistence,
+                    const float scale,
+                    const float x,
+                    const float y,
+                    const float z,
+                    const float w);
 
 
 // Scaled Multi-octave Simplex noise
 // The result will be between the two parameters passed.
-float scaled_octave_noise_2d(const float octaves,
-                             const float persistence,
-                             const float scale,
-                             const float loBound,
-                             const float hiBound,
-                             const float x,
-                             const float y);
-float scaled_octave_noise_3d(const float octaves,
-                             const float persistence,
-                             const float scale,
-                             const float loBound,
-                             const float hiBound,
-                             const float x,
-                             const float y,
-                             const float z);
-float scaled_octave_noise_4d(const float octaves,
-                             const float persistence,
-                             const float scale,
-                             const float loBound,
-                             const float hiBound,
-                             const float x,
-                             const float y,
-                             const float z,
-                             const float w);
+float scaled_octave_noise_2d(  const float octaves,
+                            const float persistence,
+                            const float scale,
+                            const float loBound,
+                            const float hiBound,
+                            const float x,
+                            const float y);
+float scaled_octave_noise_3d(  const float octaves,
+                            const float persistence,
+                            const float scale,
+                            const float loBound,
+                            const float hiBound,
+                            const float x,
+                            const float y,
+                            const float z);
+float scaled_octave_noise_4d(  const float octaves,
+                            const float persistence,
+                            const float scale,
+                            const float loBound,
+                            const float hiBound,
+                            const float x,
+                            const float y,
+                            const float z,
+                            const float w);
 
 // Scaled Raw Simplex noise
 // The result will be between the two parameters passed.
-float scaled_raw_noise_2d(const float loBound,
-                          const float hiBound,
-                          const float x,
-                          const float y);
-float scaled_raw_noise_3d(const float loBound,
-                          const float hiBound,
-                          const float x,
-                          const float y,
-                          const float z);
-float scaled_raw_noise_4d(const float loBound,
-                          const float hiBound,
-                          const float x,
-                          const float y,
-                          const float z,
-                          const float w);
+float scaled_raw_noise_2d( const float loBound,
+                        const float hiBound,
+                        const float x,
+                        const float y);
+float scaled_raw_noise_3d( const float loBound,
+                        const float hiBound,
+                        const float x,
+                        const float y,
+                        const float z);
+float scaled_raw_noise_4d( const float loBound,
+                        const float hiBound,
+                        const float x,
+                        const float y,
+                        const float z,
+                        const float w);
 
 
 // Raw Simplex noise - a single noise value.
@@ -136,14 +136,14 @@ static const int grad3[12][3] = {
 
 
 // The gradients are the midpoints of the vertices of a hypercube.
-static const int grad4[32][4] = {
-    {0,1,1,1}, {0,1,1,-1}, {0,1,-1,1}, {0,1,-1,-1},
+static const int grad4[32][4]= {
+    {0,1,1,1},  {0,1,1,-1},  {0,1,-1,1},  {0,1,-1,-1},
     {0,-1,1,1}, {0,-1,1,-1}, {0,-1,-1,1}, {0,-1,-1,-1},
-    {1,0,1,1}, {1,0,1,-1}, {1,0,-1,1}, {1,0,-1,-1},
+    {1,0,1,1},  {1,0,1,-1},  {1,0,-1,1},  {1,0,-1,-1},
     {-1,0,1,1}, {-1,0,1,-1}, {-1,0,-1,1}, {-1,0,-1,-1},
-    {1,1,0,1}, {1,1,0,-1}, {1,-1,0,1}, {1,-1,0,-1},
+    {1,1,0,1},  {1,1,0,-1},  {1,-1,0,1},  {1,-1,0,-1},
     {-1,1,0,1}, {-1,1,0,-1}, {-1,-1,0,1}, {-1,-1,0,-1},
-    {1,1,1,0}, {1,1,-1,0}, {1,-1,1,0}, {1,-1,-1,0},
+    {1,1,1,0},  {1,1,-1,0},  {1,-1,1,0},  {1,-1,-1,0},
     {-1,1,1,0}, {-1,1,-1,0}, {-1,-1,1,0}, {-1,-1,-1,0}
 };
 

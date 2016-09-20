@@ -15,7 +15,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    class GLTextureBuffer : public GLBuffer<GL_TEXTURE_BUFFER, 1>
+    class GLTextureBuffer : public GLBuffer<GL_TEXTURE_BUFFER,1>
     {
     public :
         GLTextureBuffer(unsigned long count, unsigned int buffer, TextureBase* texture);
@@ -25,6 +25,7 @@ namespace Agmd
     private:
         TextureBase* m_textureBuffer;
     };
+
 }
 
 

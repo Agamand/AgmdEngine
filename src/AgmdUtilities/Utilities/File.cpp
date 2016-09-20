@@ -14,13 +14,13 @@ https://github.com/Agamand/AgmdEngine
 namespace AgmdUtilities
 {
     File::File(const std::string& name) :
-        m_Name(name)
+    m_Name(name)
     {
         std::replace(m_Name.begin(), m_Name.end(), '/', '\\');
     }
 
     File::File(const char* name) :
-        m_Name(name)
+    m_Name(name)
     {
         std::replace(m_Name.begin(), m_Name.end(), '/', '\\');
     }
@@ -69,4 +69,5 @@ namespace AgmdUtilities
         else
             return "";
     }
+
 }

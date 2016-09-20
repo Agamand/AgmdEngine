@@ -67,12 +67,12 @@ BaseShaderProgram* default_program;
 
 void App::Run(int argc, char** argv)
 {
-    if (argc > 0)
-    {
-        File main(argv[0]);
+    if(argc > 0)
+	{
+		File main(argv[0]);
         MediaManager::Instance().AddSearchPath(main.Path());
-        ShaderPreCompiler::Instance().AddSearchPath(main.Path() + "/Shader");
-    }
+		ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
+	}
 
     AgmdApplication::Run();
 }
@@ -86,56 +86,56 @@ DrugEffect* drug;
 Texture tex[2];
 
 void App::init()
-{
+{  
     pause = true;
     m_timer = 1000;
-    printf("Loading...");
-    m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
-    m_MatProj2D = ortho(0.0f, (float)getScreen().x, 0.0f, (float)getScreen().y);
-    drawMouse = false;
-    draw = true;
-    pause = false;
+	printf("Loading...");
+	m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 100.f);
+    m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
+	drawMouse = false;
+	draw = true;
+	pause = false;
     //DeferredRendering* mode = new DeferredRendering(getScreen());
     ForwardRendering* mode = new ForwardRendering(getScreen());
     RenderingMode::setRenderingMode(mode);
-    tex[0].Create(getScreen(), PXF_A8R8G8B8, TEXTURE_2D);
-    tex[1].Create(getScreen(), PXF_A8R8G8B8, TEXTURE_2D);
+	tex[0].Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
+	tex[1].Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
     m_fxaa = new AntiAliasing();
-    blur = new BlurMotionEffect(getScreen());
-    //drug = new DrugEffect();
-    //PostEffectMgr::Instance().AddEffect(drug);
-    //PostEffectMgr::Instance().AddEffect(new BlurMotionEffect(getScreen()));
+	blur = new BlurMotionEffect(getScreen());
+	//drug = new DrugEffect();
+	//PostEffectMgr::Instance().AddEffect(drug);
+	//PostEffectMgr::Instance().AddEffect(new BlurMotionEffect(getScreen()));
     //PostEffectMgr::Instance().AddEffect(m_fxaa);
-    //PostEffectMgr::Instance().AddEffect(new Inverse());
-    m_fps = new GraphicString(ivec2(0, getScreen().y - 15), "", Color::black);
+	//PostEffectMgr::Instance().AddEffect(new Inverse());
+    m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black);
     m_Scene = new SceneMgr();
-    Driver::Get().SetActiveScene(m_Scene);
-    Texture t;
-    Texture color_gradiant;
-
-    Material* mat = new Material();
-    mat->SetTexture(t, 0, (TRenderPass)((1 << RENDERPASS_DEFERRED) | (1 << RENDERPASS_ZBUFFER)));
-    mat->SetTexture(color_gradiant, 1, (TRenderPass)(1 << RENDERPASS_DEFERRED));
-
+	Driver::Get().SetActiveScene(m_Scene);
+	Texture t;
+	Texture color_gradiant;
+	
+	Material* mat = new Material();
+	mat->SetTexture(t,0,(TRenderPass)((1<<RENDERPASS_DEFERRED) | (1<<RENDERPASS_ZBUFFER)));
+	mat->SetTexture(color_gradiant,1,(TRenderPass)(1<<RENDERPASS_DEFERRED));
+    
     Driver::Get().SetCullFace(2);
 
 
-    ShaderProgram prog;
-    ShaderProgram prog2;
-    /*particles1 = new ParticlesEmitter("Shader/particle_1.glsl",250,new Transform(vec3(-6,0,0)));
-    particles2 = new ParticlesEmitter("Shader/particle_2.glsl",250,new Transform(vec3(6,0,0)));*/
-
-    string cubemap[6];
-    /*for(int i = 0; i < 6; i++)
-    {
-        cubemap[i] = StringBuilder("Texture/background/")(i+1)(".png");
-    }*/
-    //Texture tex_cubemap;
-    //tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
-    mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"), 2, new Transform());
-    AWindow* position = new AWindow();
-    AWindow* velocity = new AWindow();
-    AWindow* life = new AWindow();
+	ShaderProgram prog;
+	ShaderProgram prog2;
+	/*particles1 = new ParticlesEmitter("Shader/particle_1.glsl",250,new Transform(vec3(-6,0,0)));
+	particles2 = new ParticlesEmitter("Shader/particle_2.glsl",250,new Transform(vec3(6,0,0)));*/
+	
+	string cubemap[6];
+	/*for(int i = 0; i < 6; i++)
+	{
+		cubemap[i] = StringBuilder("Texture/background/")(i+1)(".png");
+	}*/
+	//Texture tex_cubemap;
+	//tex_cubemap.CreateFromFile(cubemap,PXF_A8R8G8B8);
+	mouse_emitter = new ParticlesEmitter(std::string("shader/particle_3.glsl"),2,new Transform());
+	AWindow* position =new AWindow();
+	AWindow* velocity = new AWindow();
+	AWindow* life = new AWindow();
 
     Image img[6];
     static const char* cubemap_str[] = {
@@ -146,192 +146,195 @@ void App::init()
         "back",
         "front"
     };
-    for (int i = 0; i < 6; i++)
+    for(int i = 0; i < 6; i++)
     {
         img[i] = Image(ivec2(512));
         img[i].LoadFromFile(StringBuilder("texture/skybox/")(cubemap_str[i])(".png"));
     }
     Texture texCube;
-    texCube.CreateFromImage(img, PXF_A8R8G8B8);
+    texCube.CreateFromImage(img,PXF_A8R8G8B8);
     SkyBox* sk = new SkyBox();
     sk->SetTexture(texCube);
     m_Scene->SetSkybox(sk);
     //particles->velocity_buffer[1]);
     //life->SetBackground(mouse_emitter->extra_buffer[0]);
-    //     GUIMgr::Instance().AddWidget(position);
-    //     GUIMgr::Instance().AddWidget(velocity);
-    // 	GUIMgr::Instance().AddWidget(life);
-    SkyBox* box = new SkyBox();
-    //box->SetTexture(tex_cubemap);
+//     GUIMgr::Instance().AddWidget(position);
+//     GUIMgr::Instance().AddWidget(velocity);
+// 	GUIMgr::Instance().AddWidget(life);
+	SkyBox* box = new SkyBox();
+	//box->SetTexture(tex_cubemap);
 
-    cam3D = new Camera(PROJECTION_PERSPECTIVE, ProjectionOption(vec2(getScreen()), 60.0f, 0));
+    cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
 
     InputController* controller = new FirstPersonController();
-    CameraNode* camNode = new CameraNode(cam3D, controller);
+    CameraNode* camNode = new CameraNode(cam3D,controller);
     camNode->setController(controller);
     m_Scene->AddNode(camNode);
-    cam2D = new Camera(PROJECTION_ORTHO, ProjectionOption(vec4(0, 100.0f, 0, 100.0f)));
+    cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
 
 
-    velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
-    mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
-    tmass.Create(getScreen(), PXF_A8R8G8B8, TEXTURE_2D);
-    tvelocity.Create(getScreen(), PXF_A8R8G8B8, TEXTURE_2D);
-    position->SetBackground(tmass);
-    velocity->SetBackground(tvelocity);
-    cam3D = new Camera(PROJECTION_PERSPECTIVE, ProjectionOption(vec2((float)getScreen().x, (float)getScreen().y), 35.0f));
-    cam2D = new Camera(PROJECTION_ORTHO, ProjectionOption(vec4(0, 100.0f, 0, 100.0f)));
-    InputController* controller = new FirstPersonController();
-    CameraNode* camNode = new CameraNode(cam3D, controller);
+	velocity_program.LoadFromFile("Shader/particle_velocity_render.glsl");
+	mass_program.LoadFromFile("Shader/particle_mass_render.glsl");
+	tmass.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
+	tvelocity.Create(getScreen(),PXF_A8R8G8B8,TEXTURE_2D);
+	position->SetBackground(tmass);
+	velocity->SetBackground(tvelocity);
+	cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2((float)getScreen().x, (float)getScreen().y),35.0f));
+	cam2D = new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
+	InputController* controller = new FirstPersonController();
+	CameraNode* camNode = new CameraNode(cam3D,controller);
 
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
 
-    m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"), 2500, new Transform(vec3((0), 0.f, 0) * 30.f)));
-    printf("Loading end");
+	m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),2500	,new Transform(vec3((0),0.f,0)*30.f)));
+	printf("Loading end");
 }
-
-float timespeed = 1.0f;
-
+float timespeed= 1.0f;
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
-    if (pause)
-        return;
-    //drug->Update(time_diff*timespeed);
-    for (int i = 0; i < m_particles.size(); i++)
-        m_particles[i]->Update(time_diff * timespeed);
+	
+	if(pause)
+		return;
+	//drug->Update(time_diff*timespeed);
+	for(int i = 0; i < m_particles.size(); i++)
+		m_particles[i]->Update(time_diff*timespeed);
 
-    if (drawMouse)
-        mouse_emitter->Update(time_diff);
+	if(drawMouse)
+		mouse_emitter->Update(time_diff);
 
-    //FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
+	//FollowCamera* cam = static_cast<FollowCamera*>(cam3D);
     //const vec2& angles = cam->GetAngles();
-    //cam3D->onMouseMotion(1,0);
+	//cam3D->onMouseMotion(1,0);
 }
 
 void App::OnRender3D()
 {
-    //Texture::BeginRenderToTexture(tex[0]);
-    if (drawMouse)
-        mouse_emitter->Draw();
-    for (int i = 0; i < m_particles.size(); i++)
-    {
-        m_particles[i]->Draw();
-    }
-    //Texture::EndRenderToTexture();
-    //blur->ApplyEffect(tex[0],tex[1]);
-    //PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
-    //Texture::TextureRender(tex[0],ivec2(0),m_ScreenSize);
-    /*
-    for(int i = 0; i < m_particles.size(); i++)
-    {
-        Texture::BeginRenderToTexture(tvelocity);
-        m_particles[i]->Draw(velocity_program.GetShaderProgram());
-        Texture::EndRenderToTexture();
-    }
-    for(int i = 0; i < m_particles.size(); i++)
-    {
-        Texture::BeginRenderToTexture(tmass);
-        m_particles[i]->Draw(mass_program.GetShaderProgram());
-        Texture::EndRenderToTexture();
-    }*/
+
+	//Texture::BeginRenderToTexture(tex[0]);
+	if(drawMouse)
+		mouse_emitter->Draw();
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		m_particles[i]->Draw();
+	}
+	//Texture::EndRenderToTexture();
+	//blur->ApplyEffect(tex[0],tex[1]);
+	 //PostEffectMgr::Instance().ApplyEffect(tex[0],tex[1]);
+	//Texture::TextureRender(tex[0],ivec2(0),m_ScreenSize);
+	/*
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		Texture::BeginRenderToTexture(tvelocity);
+		m_particles[i]->Draw(velocity_program.GetShaderProgram());
+		Texture::EndRenderToTexture();
+	}
+	for(int i = 0; i < m_particles.size(); i++)
+	{
+		Texture::BeginRenderToTexture(tmass);
+		m_particles[i]->Draw(mass_program.GetShaderProgram());
+		Texture::EndRenderToTexture();
+	}*/
 }
 
 void App::OnRender2D()
 {
     Driver& render = Driver::Get();
-    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed);
+    *(m_fps) = StringBuilder(render.GetStatistics().ToString())("\nTimer : ")(m_timer)("\n Speed : ")(timespeed	);
     m_fps->draw();
+
 }
 
 LRESULT CALLBACK App::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    if (message == WM_KEYDOWN)
+    if(message == WM_KEYDOWN)
     {
-        char c = LOWORD(wParam);
-        switch (LOWORD(wParam))
+		char c = LOWORD(wParam);
+        switch(LOWORD(wParam))
         {
         case 'P':
             pause = !pause;
-            //cam3D->SetRecvInput(pause);
+			//cam3D->SetRecvInput(pause);
             break;
-        case 'C':
-            for (int i = 0; i < m_particles.size(); i++)
-                delete m_particles[i];
-            m_particles.clear();
-            break;
-        case 'M':
-            draw = !draw;
-            break;
-        case 'L':
-            drawMouse = !drawMouse;
-            break;
-        case 107:
-            timespeed *= 2.f;
-            break;
-        case 109:
-            timespeed /= 2.f;
-        }
+		case 'C':
+			for(int i =0; i< m_particles.size(); i++)
+				delete m_particles[i];
+			m_particles.clear();
+			break;
+		case 'M':
+			draw = !draw;
+			break;
+		case 'L':
+			drawMouse = !drawMouse;
+			break;
+		case 107:
+			timespeed *=2.f;
+			break;
+		case 109:
+			timespeed /=2.f;
+		}
+		
     }
-    return 0;
+	return 0;
     //return AgmdApp::WindowProc(hwnd,message,wParam,lParam);
 }
 
 int pCount = 6000;
-
-void App::OnClick(int click, vec2 pos, bool up)
+void App::OnClick( int click, vec2 pos, bool up)
 {
-    printf("click %i at pos (%f,%f), up: i\n", click, pos.x, pos.y, up);
-    float f = Driver::Get().GetAspectRatio();
-    if (!draw)
-        return;
-    if (click == 1 && up)
-    {
-        m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"), pCount, new Transform(vec3(0, 0, 0) * 30.f)));
-    }
-    if (click == 2 && up)
-    {
-        m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_2.glsl"), 250, new Transform(vec3((pos.x - 0.5f) * f, pos.y - 0.5f, 0) * 30.f)));
-    }
-    AgmdApplication::OnClick(click, pos, up);
+	printf("click %i at pos (%f,%f), up: i\n",click,pos.x,pos.y,up);
+	float f = Driver::Get().GetAspectRatio();
+	if(!draw)
+		return;
+	if(click == 1 && up)
+	{
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_4.glsl"),pCount	,new Transform(vec3(0,0,0)*30.f)));
+	}
+	if(click == 2 && up)
+	{
+		m_particles.push_back(new ParticlesEmitter(std::string("shader/particle_2.glsl"),250,new Transform(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f)));
+	}
+	AgmdApplication::OnClick(click,pos,up);
 }
 
 void App::OnMove(vec2 pos)
 {
-    float f = Driver::Get().GetAspectRatio();
-    mouse_emitter->GetTransform()->setPosition(vec3((pos.x - 0.5f) * f, pos.y - 0.5f, 0) * 30.f);
-    mouse_emitter->GetTransform()->update(NULL);
-    AgmdApplication::OnMove(pos);
-}
 
-void App::OnKey(a_char key, bool up)
+	float f = Driver::Get().GetAspectRatio();
+	mouse_emitter->GetTransform()->setPosition(vec3((pos.x-0.5f)*f,pos.y-0.5f,0)*30.f);
+	mouse_emitter->GetTransform()->update(NULL);
+	AgmdApplication::OnMove(pos);
+}	
+
+void App::OnKey( a_char key, bool up )
 {
-    if (up)
-    {
-        printf("%c key, up: %i\n", key, up);
-        switch (key)
-        {
-        case 'P':
-            pause = !pause;
-            //cam3D->SetRecvInput(pause);
-            break;
-        case 'C':
-            for (int i = 0; i < m_particles.size(); i++)
-                delete m_particles[i];
-            m_particles.clear();
-            break;
-        case 'M':
-            draw = !draw;
-            break;
-        case 'L':
-            drawMouse = !drawMouse;
-            break;
-        case 388:
-            timespeed *= 2.f;
-            break;
-        case 390:
-            timespeed /= 2.f;
-        }
-    }
-    AgmdApplication::OnKey(key, up);
+	if(up)
+	{
+		printf("%c key, up: %i\n",key,up);
+		switch(key)
+		{
+		case 'P':
+			pause = !pause;
+			//cam3D->SetRecvInput(pause);
+			break;
+		case 'C':
+			for(int i =0; i< m_particles.size(); i++)
+				delete m_particles[i];
+			m_particles.clear();
+			break;
+		case 'M':
+			draw = !draw;
+			break;
+		case 'L':
+			drawMouse = !drawMouse;
+			break;
+		case 388:
+			timespeed *=2.f;
+			break;
+		case 390:
+			timespeed /=2.f;
+		}
+
+	}
+	AgmdApplication::OnKey(key,up);
 }

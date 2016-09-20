@@ -10,12 +10,12 @@ inline void Split(const std::string& str, a_vector<std::string>& tokens, const s
 {
     tokens.clear();
 
-    for (std::string::size_type p1 = 0, p2 = 0; p1 != std::string::npos;)
+    for (std::string::size_type p1 = 0, p2 = 0; p1 != std::string::npos; )
     {
         p1 = str.find_first_not_of(delim, p1);
         if (p1 != std::string::npos)
         {
-            p2 = str.find_first_of(delim, p1);
+            p2 = str.find_first_of(delim , p1);
             tokens.push_back(str.substr(p1, p2 - p1));
             p1 = p2;
         }
@@ -63,6 +63,7 @@ inline std::string ToUpper(const std::string& txt)
 
 inline StringBuilder::StringBuilder()
 {
+
 }
 
 template <typename T>
@@ -85,8 +86,9 @@ inline StringBuilder::operator std::string()
 }
 
 inline StringExtractor::StringExtractor(const std::string& txt) :
-    m_InStream(txt)
+m_InStream(txt)
 {
+
 }
 
 template <typename T>

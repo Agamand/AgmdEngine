@@ -14,22 +14,19 @@ T*& GetPtr(SmartPtr<T, Ownership>& sptr)
 
 template <class T, template <class> class Ownership>
 inline SmartPtr<T, Ownership>::SmartPtr() :
-    m_Data(NULL)
-{
-}
+m_Data(NULL)
+{}
 
 template <class T, template <class> class Ownership>
 inline SmartPtr<T, Ownership>::SmartPtr(const SmartPtr<T, Ownership>& sptrcpy) :
-    Ownership<T>(sptrcpy),
-    m_Data(Clone(sptrcpy.m_Data))
-{
-}
+Ownership<T>(sptrcpy),
+m_Data(Clone(sptrcpy.m_Data))
+{}
 
 template <class T, template <class> class Ownership>
 inline SmartPtr<T, Ownership>::SmartPtr(T* ptr) :
-    m_Data(ptr)
-{
-}
+m_Data(ptr)
+{}
 
 template <class T, template <class> class Ownership>
 inline SmartPtr<T, Ownership>::~SmartPtr()

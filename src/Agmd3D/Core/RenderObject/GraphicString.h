@@ -31,41 +31,35 @@ namespace Agmd
     public :
         friend class FontManager;
 
-        GraphicString(const ivec2& stringPosition = ivec2(0), const std::string& stringText = "", const Color& stringColor = Color::white, const std::string& stringFont = "Arial", int stringSize = 20);
+        GraphicString(const ivec2 & stringPosition = ivec2(0), const std::string& stringText = "", const Color& stringColor = Color::white, const std::string& stringFont = "Arial", int stringSize = 20);
 
         void draw() const;
-
-        void render(TRenderPass) const
-        {
-        }
-
+        void render(TRenderPass) const {}
         void buildModel();
         ivec2 getPixelSize() const;
-
         void setSize(int size)
         {
             m_size = size;
         }
-
         int getSize() const
         {
             return m_size;
         }
-
         void align(unsigned long mode, const AgmdMaths::Rectangle& rect);
 
-        GraphicString& operator=(const std::string& str);
+        GraphicString& operator=( const std::string& str);
 
         //ivec2       m_position;
-        std::string m_text;
+        std::string   m_text;
 
-        Color m_color;
+        Color       m_color;
         std::string m_font;
-        int m_size;
+        int         m_size;
     private:
         Buffer<FontManager::TVertex> m_vertexBuffer;
-        Buffer<FontManager::TIndex> m_indexBuffer;
+        Buffer<FontManager::TIndex> m_indexBuffer; 
     };
+
 }
 
 

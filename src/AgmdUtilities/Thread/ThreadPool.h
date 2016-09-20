@@ -11,14 +11,10 @@
 
 typedef void (*Functor)();
 class CThreadPool;
-
 class CJob
 {
 public:
-    CJob(Functor _run): run(_run)
-    {
-    }
-
+    CJob(Functor _run): run(_run) {}
     Functor run;
     friend class CThreadPool;
 private:
@@ -30,11 +26,11 @@ public:
     CThreadPool(a_uint32 poolSize = 4);
     //void init();
     void start();
-    template <typename T>
+	template<typename T>
     void AddJobToPool(const T& functor);
 
-    Mutex& GetMutex() { return m_mutex; }
-    void WaitQueue();
+    Mutex& GetMutex() {return m_mutex;}
+	void WaitQueue();
     friend class IThread;
 private:
     std::queue<std::function<void()>> m_jobs;
@@ -43,24 +39,19 @@ private:
 };
 
 
-class IThread : public CThread
-{
+class IThread :  public CThread{
 public:
-    IThread(CThreadPool* manager) : CThread(), m_manager(manager)
-    {
-    }
-
+    IThread(CThreadPool* manager) : CThread(), m_manager(manager) {}
     virtual a_uint32 Run()
     {
         Mutex& mutex = m_manager->GetMutex();
-        while (true)
+        while(true)
         {
             //if
 
             //get next jobs
             mutex.Lock();
-            if (m_manager->m_jobs.empty())
-            {
+            if(m_manager->m_jobs.empty()){
                 mutex.Unlock();
                 //sleep for  few seconds or wait for wake up
                 Sleep(100);
@@ -75,16 +66,17 @@ public:
             job();
         }
     }
-
 private:
     CThreadPool* m_manager;
 };
 
 
-CThreadPool::CThreadPool(a_uint32 poolSize /*= 2*/)
+
+
+CThreadPool::CThreadPool( a_uint32 poolSize /*= 2*/ )
 {
     m_threads.reserve(poolSize);
-    for (a_uint32 i = 0; i < poolSize; i++)
+    for(a_uint32 i = 0; i < poolSize; i++)
     {
         m_threads.push_back(IThread(this));
     }
@@ -92,36 +84,36 @@ CThreadPool::CThreadPool(a_uint32 poolSize /*= 2*/)
 
 void CThreadPool::start()
 {
-    for (a_uint32 i = 0; i < m_threads.size(); ++i)
+    for(a_uint32 i = 0; i < m_threads.size(); ++i)
     {
         m_threads[i].Init();
     }
 }
-
 inline void CThreadPool::WaitQueue()
 {
-    while (true)
-    {
-        //if
+	
+	while (true)
+	{
+		//if
 
-        //get next jobs
-        m_mutex.Lock();
-        if (m_jobs.empty())
-        {
-            m_mutex.Unlock();
-            return;
-        }
-        m_mutex.Unlock();
-        Sleep(1000);
-    }
+		//get next jobs
+		m_mutex.Lock();
+		if (m_jobs.empty())
+		{
+			m_mutex.Unlock();
+			return;
+		}
+		m_mutex.Unlock();
+		Sleep(1000);
+	}
 }
 
 #endif
 
-template <typename T>
-inline void CThreadPool::AddJobToPool(const T& functor)
+template<typename T>
+inline void CThreadPool::AddJobToPool(const T & functor)
 {
-    m_mutex.Lock();
-    m_jobs.push(functor);
-    m_mutex.Unlock();
+	m_mutex.Lock();
+	m_jobs.push(functor);
+	m_mutex.Unlock();
 }

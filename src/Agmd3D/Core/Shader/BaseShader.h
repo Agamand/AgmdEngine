@@ -17,6 +17,7 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT BaseShader : public Resource
     {
     public :

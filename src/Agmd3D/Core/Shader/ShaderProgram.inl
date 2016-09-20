@@ -16,21 +16,20 @@ inline void ShaderProgram::SetParameter(TMatrixType type, T value) const
 template <class T>
 inline void ShaderProgram::SetParameter(const std::string& name, T value) const
 {
-    m_ShaderProgram->SetParameter(name, value);
+    m_ShaderProgram->SetParameter(name,value);
 }
 
 template <class T>
 inline void ShaderProgram::SetParameter(const std::string& name, T value, a_uint32 count) const
 {
-    m_ShaderProgram->SetParameter(name, value, count);
+    m_ShaderProgram->SetParameter(name,value,count);
 }
 
-template <class T>
+template <class T> 
 inline void SetParameter(const std::string& name, Buffer<T> buf)
 {
     //DO NOTHING;
 }
-
 /*
 template <> 
 inline void SetParameter(std::string name, Buffer<G> buf)
@@ -38,7 +37,7 @@ inline void SetParameter(std::string name, Buffer<G> buf)
     //DO NOTHING;
 }*/
 
-inline void ShaderProgram::Enable() const
+inline void ShaderProgram::Enable()  const
 {
     m_ShaderProgram->Use(true);
 }

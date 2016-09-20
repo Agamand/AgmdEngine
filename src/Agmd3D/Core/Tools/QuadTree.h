@@ -13,9 +13,9 @@ status : abandon
 
 
 #define MAX_QUADFACE 4
-
 namespace Agmd
 {
+
     enum QuadFace
     {
         TOP,
@@ -31,7 +31,7 @@ namespace Agmd
         ~QuadTree();
 
     protected:
-
+        
         QuadTree* m_children[MAX_QUADFACE];
     };
 }

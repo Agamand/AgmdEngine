@@ -8,10 +8,10 @@ https://github.com/Agamand/AgmdEngine
 
 #define USE_STL_VECTOR
 #ifdef USE_STL_VECTOR
-#include <vector>
-#define a_vector std::vector
+    #include <vector>
+    #define a_vector std::vector
 #else
-#ifndef _VECTOR_H_
+    #ifndef _VECTOR_H_
     #define _VECTOR_H_
 
     #include <CommonDefines.h>
@@ -63,7 +63,7 @@ https://github.com/Agamand/AgmdEngine
     #define a_vector AgmdUtilities::Vector
     
 
-#endif /* _VECTOR_H_ */
-
-
+    #endif /* _VECTOR_H_ */
+    
+    
 #endif 

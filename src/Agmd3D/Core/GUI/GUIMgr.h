@@ -29,22 +29,20 @@ namespace Agmd
     };
 
     struct EventEntry
-    {
-        EventEntry() :
-            eventType(EV_NOTHING),
-            mousePosition(0),
-            var(0)
-        {
-        }
+    {    
+        EventEntry() : 
+        eventType(EV_NOTHING),
+        mousePosition(0),
+        var(0)
+        {}
 
-        EventEntry(EventType _event, ivec2& _mouse, ivec2& _mousediff, a_uint32 _mouseState, char _var) :
-            eventType(_event),
-            mousePosition(_mouse),
-            mouse_diff(_mousediff),
-            mouseState(_mouseState),
-            var(_var)
-        {
-        }
+        EventEntry(EventType _event, ivec2& _mouse, ivec2& _mousediff, a_uint32 _mouseState, char _var) : 
+        eventType(_event),
+        mousePosition(_mouse),
+        mouse_diff(_mousediff),
+        mouseState(_mouseState),
+        var(_var)
+        {}
 
         EventType eventType;
         ivec2 mousePosition;
@@ -58,9 +56,10 @@ namespace Agmd
 
     class AGMD3D_EXPORT GUIMgr : public Singleton<GUIMgr>
     {
-        MAKE_SINGLETON(GUIMgr);
-    public:
 
+    MAKE_SINGLETON(GUIMgr); 
+    public:
+        
 
         void Update(a_uint64 t_diff);
         void DrawGUI() const;
@@ -69,12 +68,10 @@ namespace Agmd
         void AddEvent(EventEntry& _event);
         void AddWidget(AWidget* widget);
         void RemoveWidget(AWidget* widget);
-
         void Enable(bool enable = true)
         {
             m_renderGUI = enable;
         }
-
         bool isEnable() const
         {
             return m_renderGUI;
@@ -83,12 +80,12 @@ namespace Agmd
     private:
         GUIMgr();
         ~GUIMgr();
-
+        
 
     protected:
-        VectorWidget m_vwWidget;
-        VectorEvent m_veEvents;
-        bool m_renderGUI;
+        VectorWidget    m_vwWidget;
+        VectorEvent        m_veEvents;
+        bool            m_renderGUI;
     };
 }
 

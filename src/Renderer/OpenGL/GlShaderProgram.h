@@ -41,7 +41,7 @@ namespace Agmd
             ParameterType type;
         };
 
-        typedef std::map<std::string, Parameter> ParameterMap;
+        typedef std::map<std::string,Parameter> ParameterMap; 
         typedef a_vector<Parameter> APIMatrix;
 
         GLShaderProgram(a_uint32 id);
@@ -62,10 +62,10 @@ namespace Agmd
         virtual void SetParameter(const std::string& name, const mat4& value) const;
 
         virtual void SetParameter(const std::string& name, float* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec2* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec3* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec4* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, mat4* value, a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec2* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec3* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec4* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, mat4* value,  a_uint32 count) const;
 
         virtual void SetParameter(TMatrixType type, const mat4& value) const;
 
@@ -80,13 +80,13 @@ namespace Agmd
         static std::map<int, int> GLShaderProgram::spGLSLTypeSize;
         static bool s_init;
         void SetupShader();
-
+        
         const Parameter& GetParameter(const std::string& name) const;
 
         ParameterMap m_UniformMap;
         ParameterMap m_AttributMap;
-        Parameter m_APIMatrix[MAX_APIMATRIX];
-        Parameter m_defaultParameter;
+        Parameter    m_APIMatrix[MAX_APIMATRIX];
+        Parameter    m_defaultParameter;
         a_uint32 m_id;
     };
 }

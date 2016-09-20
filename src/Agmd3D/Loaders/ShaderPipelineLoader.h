@@ -20,25 +20,26 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-#define STR_TOKEN_SHADERPIPELINE    "shaderpipeline"
-#define STR_TOKEN_SUBROUTINE        "subroutine"
-#define STR_TOKEN_UNIFORMINPUT      "uniforminput"
-#define STR_TOKEN_GLSLBEGIN         "glslbegin"
-#define STR_TOKEN_GLSLEND           "glslend"
-#define STR_TOKEN_PROPERTIES        "properties"
-#define STR_TOKEN_PASS              "pass"
-#define STR_TOKEN_BRACE_OPEN        "{"
-#define STR_TOKEN_BRACE_CLOSE       "}"
-#define STR_TOKEN_INSTRUCTION_END   ";"
+
+    #define STR_TOKEN_SHADERPIPELINE    "shaderpipeline"
+    #define STR_TOKEN_SUBROUTINE        "subroutine"
+    #define STR_TOKEN_UNIFORMINPUT      "uniforminput"
+    #define STR_TOKEN_GLSLBEGIN         "glslbegin"
+    #define STR_TOKEN_GLSLEND           "glslend"
+    #define STR_TOKEN_PROPERTIES        "properties"
+    #define STR_TOKEN_PASS              "pass"
+    #define STR_TOKEN_BRACE_OPEN        "{"
+    #define STR_TOKEN_BRACE_CLOSE       "}"
+    #define STR_TOKEN_INSTRUCTION_END   ";"
 
 
     // PROPERTIES TOKEN
-#define STR_TOKEN_RENDERTYPE        "rendertype"
-#define STR_TOKEN_USE               "use"
+    #define STR_TOKEN_RENDERTYPE        "rendertype"
+    #define STR_TOKEN_USE               "use"
 
     //UNIFORM TOKEN
-#define STR_TOKEN_FLOAT             "float"
-#define STR_TOKEN_TEXTURE2D         "texture2D"
+    #define STR_TOKEN_FLOAT             "float"
+    #define STR_TOKEN_TEXTURE2D         "texture2D"
 
     enum Token
     {
@@ -70,7 +71,6 @@ namespace Agmd
         PropertiesType _type;
         std::string value;
     };
-
     enum UniformType
     {
         UNIFORM_UNKNOWN,
@@ -78,10 +78,9 @@ namespace Agmd
         UNIFORM_SAMPLER2D
     };
 
-#define TYPE_TEXTURE2D "texture2D"
-#define TYPE_FLOAT "float"
-#define TYPE_INT "int"
-
+    #define TYPE_TEXTURE2D "texture2D"
+    #define TYPE_FLOAT "float"
+    #define TYPE_INT "int"
     struct Uniform
     {
         union Data
@@ -90,10 +89,10 @@ namespace Agmd
             int ivalue;
             char svalue[20];
         };
-
         UniformType _type;
         std::string varname;
         Data _defaultvalue;
+
     };
 
     class ShaderPipelineLoader : public Loader<ShaderPipeline>
@@ -116,9 +115,10 @@ namespace Agmd
 
 
         a_vector<Properties> m_properties;
-        std::map<std::string, std::string> m_subroutine;
-        std::map<std::string, const char*> d_subroutine;
+        std::map<std::string,std::string> m_subroutine;
+        std::map<std::string,const char*> d_subroutine;
     };
+
 }
 
 

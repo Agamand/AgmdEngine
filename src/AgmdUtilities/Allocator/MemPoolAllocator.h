@@ -14,7 +14,6 @@ https://github.com/Agamand/AgmdEngine
 #include <stack>
 #include <Utilities/SharedPtr.h>
 #include <Allocator/Allocator.h>
-
 namespace AgmdUtilities
 {
     template <typename T>
@@ -32,14 +31,12 @@ namespace AgmdUtilities
         struct memBlock
         {
             memBlock(T* mem, a_uint32 offset) :
-                _offset(offset), _mem(mem)
-            {
-            }
+            _offset(offset), _mem(mem)
+            {}
 
             SharedPtr<T> _mem;
             a_uint32 _offset;
         };
-
         a_uint32 m_allocate;
         T* m_pool;
         a_uint32 m_current_offset;
@@ -49,7 +46,7 @@ namespace AgmdUtilities
 
     template <typename T>
     inline MemPoolAllocator<T>::MemPoolAllocator(a_uint32 base_memory/* = 256*/):
-        m_allocate(base_memory), m_current_offset(0), m_pool(new T[m_allocate])
+    m_allocate(base_memory),m_current_offset(0),m_pool(new T[m_allocate])
     {
         /*for(int i = 0; i < base_memory; i++)
             m_UnusedBlocks.push(new MemPoolAllocator::memBlock(m_pool+i,i));*/
@@ -63,24 +60,24 @@ namespace AgmdUtilities
         while(--s !=0)
             m_UnusedBlocks.pop();*/
     }
-
+    
 
     template <typename T>
     inline T* MemPoolAllocator<T>::Allocate()
     {
-        memBlock b = memBlock(((T*)m_pool) + (++m_current_offset), m_current_offset);
+        memBlock b = memBlock(((T*)m_pool)+(++m_current_offset),m_current_offset);
         m_UsedBlocks.push(b);
-        int*& t = b._mem;
-        int** a = &t;
+        int *& t = b._mem;
+        int ** a = &t;
         return *a;//m_UnusedBlocks.pop();
     }
 
     template <typename T>
     inline void MemPoolAllocator<T>::ReallocatePool(size_t count)
     {
-        if (m_count <= m_allocate)
+        if(m_count <= m_allocate)
             return;
-        // T* pool = new[count];
+       // T* pool = new[count];
         /*
         for(int i = 0;  i < m_UnusedBlocks.size(), i++);
             m_UnusedBlocks[i]._mem = pool+m_UnusedBlocks[i]._offset;

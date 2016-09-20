@@ -43,10 +43,10 @@ namespace Agmd
             ParameterType type;
         };
 
-        typedef std::map<std::string, Parameter> ParameterMap;
+        typedef std::map<std::string,Parameter> ParameterMap; 
         typedef a_vector<Parameter> APIMatrix;
 
-        DXShaderProgram(BaseShader* vertex, BaseShader* frag);
+        DXShaderProgram(BaseShader* vertex,BaseShader* frag);
         virtual ~DXShaderProgram();
 
         virtual void SetParameter(const std::string& name, float value) const;
@@ -64,10 +64,10 @@ namespace Agmd
         virtual void SetParameter(const std::string& name, const mat4& value) const;
 
         virtual void SetParameter(const std::string& name, float* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec2* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec3* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, vec4* value, a_uint32 count) const;
-        virtual void SetParameter(const std::string& name, mat4* value, a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec2* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec3* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, vec4* value,  a_uint32 count) const;
+        virtual void SetParameter(const std::string& name, mat4* value,  a_uint32 count) const;
 
         virtual void SetParameter(TMatrixType type, const mat4& value) const;
 
@@ -77,18 +77,19 @@ namespace Agmd
         void UniformShaderInfo();
         static int getUniformByteSize(int uniSize, int uniType, int uniArrayStride, int uniMatStride);
         static void Init();
-        BaseShader* const* GetShaders() const { return m_shader; }
+		BaseShader* const* GetShaders() const { return m_shader; }
     private:
         static std::map<int, std::string> DXShaderProgram::spGLSLType;
         static std::map<int, int> DXShaderProgram::spGLSLTypeSize;
         static bool s_init;
         void SetupShader();
-
+        
         const Parameter& GetParameter(const std::string& name) const;
 
-        Parameter m_defaultParameter;
-        Parameter m_APIMatrix[MAX_APIMATRIX];
-        BaseShader* m_shader[TSHADERTYPE_MAX];
+        Parameter    m_defaultParameter;
+		Parameter    m_APIMatrix[MAX_APIMATRIX];
+        BaseShader*  m_shader[TSHADERTYPE_MAX];
+		
     };
 }
 

@@ -21,7 +21,7 @@ namespace Agmd
         GL_TEXTURE
     };
 
-    std::string RGLEnum::MatrixName[] =
+    std::string  RGLEnum::MatrixName[] =
     {
         "u_matModel",
         "u_matView",
@@ -37,18 +37,18 @@ namespace Agmd
 
     RGLEnum::TPixelFmt RGLEnum::PixelFormat[] =
     {
-        {GL_LUMINANCE, GL_LUMINANCE8, GL_UNSIGNED_BYTE, GL_RGBA},
-        {GL_LUMINANCE_ALPHA, GL_LUMINANCE8_ALPHA8, GL_UNSIGNED_BYTE, GL_RGBA},
-        {GL_BGRA, GL_RGB5_A1, GL_UNSIGNED_SHORT_1_5_5_5_REV, GL_RGBA},
-        {GL_BGRA, GL_RGBA4, GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_RGBA},
-        {GL_BGR, GL_RGB8, GL_UNSIGNED_BYTE, GL_RGBA},
-        {GL_BGRA, GL_RGBA8, GL_UNSIGNED_BYTE, GL_RGBA},
-        {GL_BGR, GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0, GL_RGBA},
-        {GL_BGRA, GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0, GL_RGBA},
-        {GL_BGRA, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, 0, GL_RGBA},
-        {GL_BGRA, GL_DEPTH_COMPONENT32, GL_UNSIGNED_BYTE, GL_DEPTH_COMPONENT},
-        {GL_BGR, GL_RGB16F, GL_UNSIGNED_BYTE, GL_RGBA},
-        {GL_BGR, GL_RGB32F, GL_UNSIGNED_BYTE, GL_RGBA}
+        {GL_LUMINANCE,       GL_LUMINANCE8,                    GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_LUMINANCE_ALPHA, GL_LUMINANCE8_ALPHA8,             GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_BGRA,            GL_RGB5_A1,                       GL_UNSIGNED_SHORT_1_5_5_5_REV, GL_RGBA},
+        {GL_BGRA,            GL_RGBA4,                         GL_UNSIGNED_SHORT_4_4_4_4_REV, GL_RGBA},
+        {GL_BGR,             GL_RGB8,                          GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_BGRA,            GL_RGBA8,                         GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_BGR,             GL_COMPRESSED_RGBA_S3TC_DXT1_EXT, 0,                             GL_RGBA},
+        {GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, 0,                             GL_RGBA},
+        {GL_BGRA,            GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, 0,                             GL_RGBA},
+        {GL_BGRA,            GL_DEPTH_COMPONENT32,             GL_UNSIGNED_BYTE,              GL_DEPTH_COMPONENT},
+        {GL_BGR,             GL_RGB16F,                        GL_UNSIGNED_BYTE,              GL_RGBA},
+        {GL_BGR,             GL_RGB32F,                        GL_UNSIGNED_BYTE,              GL_RGBA}
     };
 
     GLenum RGLEnum::Blend[] =
@@ -143,7 +143,7 @@ namespace Agmd
         GL_STENCIL_ATTACHMENT
     };
 
-    GLenum RGLEnum::TextureType[] =
+    GLenum RGLEnum::TextureType[] = 
     {
         GL_TEXTURE_2D,
         GL_TEXTURE_CUBE_MAP
@@ -151,7 +151,7 @@ namespace Agmd
 
     unsigned long RGLEnum::BufferFlags(unsigned long flags)
     {
-        if (flags & BUF_STREAM)
+        if(flags & BUF_STREAM)
             return GL_STREAM_DRAW;
 
         return (flags & BUF_DYNAMIC ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
@@ -160,7 +160,7 @@ namespace Agmd
     unsigned long RGLEnum::LockBitsFlags(unsigned long flags)
     {
         unsigned long lockFlags = 0;
-        if (flags & LOCK_READONLY) lockFlags |= GL_MAP_READ_BIT;
+        if (flags & LOCK_READONLY)  lockFlags |= GL_MAP_READ_BIT;
         if (flags & LOCK_WRITEONLY) lockFlags |= GL_MAP_WRITE_BIT;
         if (flags & LOCK_UNSYNCHRONOUS) lockFlags |= GL_MAP_UNSYNCHRONIZED_BIT;
         return lockFlags;
@@ -170,7 +170,7 @@ namespace Agmd
     unsigned long RGLEnum::LockFlags(unsigned long flags)
     {
         unsigned long lockFlags = GL_READ_WRITE;
-        if (flags & LOCK_READONLY) lockFlags = GL_READ_ONLY;
+        if (flags & LOCK_READONLY)  lockFlags = GL_READ_ONLY;
         if (flags & LOCK_WRITEONLY) lockFlags = GL_WRITE_ONLY;
 
         return lockFlags;
@@ -213,7 +213,7 @@ namespace Agmd
 
     GLenum RGLEnum::Get(TRenderParameter value)
     {
-        if (value > 5)
+        if(value > 5)
             return RenderParameter[0];
         return RenderParameter[value];
     }

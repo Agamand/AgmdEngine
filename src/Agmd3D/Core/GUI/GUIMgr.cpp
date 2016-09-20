@@ -17,12 +17,10 @@ SINGLETON_IMPL(Agmd::GUIMgr);
 namespace Agmd
 {
     GUIMgr::GUIMgr() : m_renderGUI(true)
-    {
-    }
+    {}
 
     GUIMgr::~GUIMgr()
-    {
-    }
+    {}
 
     void GUIMgr::SetSelected(a_uint32 i)
     {
@@ -35,10 +33,10 @@ namespace Agmd
     {
         /**/
 
-        if (m_veEvents.empty() || m_vwWidget.empty())
+        if(m_veEvents.empty() || m_vwWidget.empty())
             return;
-
-        for (a_uint32 i = 0; i < m_veEvents.size(); i++)
+        
+        for(a_uint32 i = 0; i < m_veEvents.size(); i++)
         {
             HandleEvent(m_veEvents[i]);
         }
@@ -48,48 +46,50 @@ namespace Agmd
 
     void GUIMgr::DrawGUI() const
     {
-        if (!m_renderGUI || m_vwWidget.empty())
+
+        if( !m_renderGUI || m_vwWidget.empty())
             return;
 
-        Driver::Get().Enable(RENDER_ZTEST, false);
+        Driver::Get().Enable(RENDER_ZTEST,false);
 
-        for (a_uint32 i = 0; i < m_vwWidget.size(); i++)
-            if (m_vwWidget[i]->m_enable)
+        for(a_uint32 i = 0; i < m_vwWidget.size(); i++)
+            if(m_vwWidget[i]->m_enable)
                 m_vwWidget[i]->Draw();
     }
 
-    int GUIMgr::HandleEvent(EventEntry& _event)
+    int GUIMgr::HandleEvent( EventEntry& _event )
     {
         int value = 0;
-        switch (_event.eventType)
+        switch(_event.eventType)
         {
-        case EV_ON_MOUSE_BUTTON:
-            for (a_uint32 i = 0; i < m_vwWidget.size(); i++)
-            {
-                if (!m_vwWidget[m_vwWidget.size() - i - 1]->m_enable)
-                    continue;
+            case EV_ON_MOUSE_BUTTON:
+                for(a_uint32 i = 0; i < m_vwWidget.size() ; i++)
+                {
+                    if(!m_vwWidget[m_vwWidget.size()-i-1]->m_enable)
+                        continue;
 
-                if (!(value = m_vwWidget[m_vwWidget.size() - i - 1]->OnClick(_event.mousePosition, _event.mouseState)))
-                    continue;
-                SetSelected(i);
-                break;
-            }
-            return value;
-        case EV_ON_KEY:
-            return value;
-        case EV_ON_MOUVE_MOVE:
-            for (a_int32 i = m_vwWidget.size() - 1; i >= 0; i--)
-            {
-                if (!m_vwWidget[i]->m_enable)
-                    continue;
-                if (!(value = m_vwWidget[i]->OnMouseMove(_event.mouse_diff, _event.mouseState)))
-                    continue;
+                    if(!(value = m_vwWidget[m_vwWidget.size()-i-1]->OnClick(_event.mousePosition,_event.mouseState)))
+                        continue;
+                    SetSelected(i);
+                    break;
+                }
+                return value;
+            case EV_ON_KEY:
+                return value;
+            case EV_ON_MOUVE_MOVE:
+                for(a_int32 i = m_vwWidget.size()-1; i >= 0 ; i--)
+                {
+                    
+                    if(!m_vwWidget[i]->m_enable)
+                        continue;
+                    if(!(value = m_vwWidget[i]->OnMouseMove(_event.mouse_diff, _event.mouseState)))
+                        continue;
 
-                break;
-            }
-            return value;
-        default:
-            return value;
+                    break;
+                }
+                return value;
+            default:
+                return value;
         }
     }
 
@@ -103,7 +103,9 @@ namespace Agmd
         m_vwWidget.push_back(widget);
     }
 
-    void GUIMgr::RemoveWidget(AWidget* widget)
+    void GUIMgr::RemoveWidget( AWidget* widget )
     {
+
     }
+
 }

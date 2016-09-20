@@ -83,43 +83,43 @@ typedef struct obj_light_quad
 
 typedef struct obj_growable_scene_data
 {
-    //    vector extreme_dimensions[2];
+//    vector extreme_dimensions[2];
     char scene_filename[OBJ_FILENAME_LENGTH];
     char material_filename[OBJ_FILENAME_LENGTH];
-
+    
     list vertex_list;
     list vertex_normal_list;
     list vertex_texture_list;
-
+    
     list face_list;
     list sphere_list;
     list plane_list;
-
+    
     list light_point_list;
     list light_quad_list;
     list light_disc_list;
-
+    
     list material_list;
-
-    obj_camera* camera;
+    
+    obj_camera *camera;
 };
 
 typedef struct obj_scene_data
 {
-    obj_vector** vertex_list;
-    obj_vector** vertex_normal_list;
-    obj_vector** vertex_texture_list;
-
-    obj_face** face_list;
-    obj_sphere** sphere_list;
-    obj_plane** plane_list;
-
-    obj_light_point** light_point_list;
-    obj_light_quad** light_quad_list;
-    obj_light_disc** light_disc_list;
-
-    obj_material** material_list;
-
+    obj_vector **vertex_list;
+    obj_vector **vertex_normal_list;
+    obj_vector **vertex_texture_list;
+    
+    obj_face **face_list;
+    obj_sphere **sphere_list;
+    obj_plane **plane_list;
+    
+    obj_light_point **light_point_list;
+    obj_light_quad **light_quad_list;
+    obj_light_disc **light_disc_list;
+    
+    obj_material **material_list;
+    
     int vertex_count;
     int vertex_normal_count;
     int vertex_texture_count;
@@ -134,10 +134,10 @@ typedef struct obj_scene_data
 
     int material_count;
 
-    obj_camera* camera;
+    obj_camera *camera;
 };
 
-int parse_obj_scene(obj_scene_data* data_out, char* filename);
-void delete_obj_data(obj_scene_data* data_out);
+int parse_obj_scene(obj_scene_data *data_out, char *filename);
+void delete_obj_data(obj_scene_data *data_out);
 
 #endif

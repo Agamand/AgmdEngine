@@ -17,13 +17,14 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
+
     class AGMD3D_EXPORT PostEffect
     {
     public:
         PostEffect();
         virtual ~PostEffect();
         virtual void Init() = 0;
-        virtual void Update(a_uint64 /*t_diff*/) = 0;
+        virtual void Update( a_uint64 /*t_diff*/) = 0;
         virtual void ApplyEffect(Texture& input, Texture& output) = 0;
         virtual void SetEnable(bool enable);
     protected:
@@ -32,6 +33,7 @@ namespace Agmd
     };
 
     typedef AgmdUtilities::SmartPtr<PostEffect> PostEffectPtr;
+
 }
 
 

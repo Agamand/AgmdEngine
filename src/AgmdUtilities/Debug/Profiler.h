@@ -35,16 +35,19 @@ private:
         double diff_time;
         double cur_time;
     };
-
     Profiler();
     Operation* cur_operation;
 
     static Profiler* GetProfiler();
-    static Profiler* s_Profiler;
+    static Profiler* s_Profiler; 
 
     a_vector<Operation> m_operations;
     Timer timer;
+
+
 };
+
+
 
 
 #ifdef PROFILING_TIME
@@ -100,6 +103,12 @@ private:
 #else
 #define PROFILE_TIME(func) ;
 #endif
+
+
+
+
+
+
 
 
 #endif

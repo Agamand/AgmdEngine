@@ -35,9 +35,10 @@ namespace Agmd
         Resource(Resource&);
         void operator =(Resource&);
 
-        std::string m_Name;
-        int m_RefCount;
+        std::string m_Name; 
+        int         m_RefCount;
     };
+
 }
 
 

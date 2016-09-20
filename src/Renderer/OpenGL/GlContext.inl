@@ -1,5 +1,6 @@
-template <class T>
-inline void GLContext::LoadExtension(T& Proc, const char* Name)
+
+
+template <class T> inline void GLContext::LoadExtension(T& Proc, const char* Name)
 {
     Proc = reinterpret_cast<T>(wglGetProcAddress(Name));
 }
@@ -71,7 +72,7 @@ inline void GLContext::LoadAllFunction()
     LOAD_EXTENSION(glUniform1f);
     LOAD_EXTENSION(glUniform2f);
     LOAD_EXTENSION(glUniform3f);
-    LOAD_EXTENSION(glUniform4f);
+    LOAD_EXTENSION(glUniform4f);    
     LOAD_EXTENSION(glUniform1fv);
     LOAD_EXTENSION(glUniform2fv);
     LOAD_EXTENSION(glUniform3fv);

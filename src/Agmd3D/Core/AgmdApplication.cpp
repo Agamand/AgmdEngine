@@ -289,95 +289,95 @@ void GLCanvas::OnIdle( wxIdleEvent& event )
 
 namespace Agmd
 {
-    void UpdateJob(); // JOB for multiTread
-    void RenderJob(); // JOB for multiTread
-    void UpdateAndRender(); // monothread render
-    AgmdApplication* AgmdApplication::s_application = NULL;
+	void UpdateJob(); // JOB for multiTread
+	void RenderJob(); // JOB for multiTread
+	void UpdateAndRender(); // monothread render
+	AgmdApplication* AgmdApplication::s_application = NULL;
 
-    AgmdApplication::AgmdApplication(ivec2 screenSize, ADriverType d) :
-        m_Instance(GetModuleHandle("Agmd3D.dll")),
+	AgmdApplication::AgmdApplication(ivec2 screenSize, ADriverType d) :
+		m_Instance(GetModuleHandle("Agmd3D.dll")),
 #ifndef USE_WX
-        m_Hwnd(NULL),
+		m_Hwnd(NULL),
 #else
     m_frame            (NULL),
     m_glcanvas        (NULL),
 #endif
-        m_driverType(d),
-        m_isRunning(true),
-        camera(NULL),
-        last_mouse_pos(0, 0),
-        mouseState(MOUSE_NONE),
-        m_lastTime(0),
-        m_fps(0),
-        m_fpsTimer(SECONDS_IN_MS),
-        m_deltaTime(0),
-        m_ScreenSize(screenSize),
-        m_createDefaultFrame(false),
-        m_isReady(false),
-        m_frameName("Agmd sample application"),
-        m_sceneController(NULL)
+		m_driverType(d),
+		m_isRunning(true),
+		camera(NULL),
+		last_mouse_pos(0, 0),
+		mouseState(MOUSE_NONE),
+		m_lastTime(0),
+		m_fps(0),
+		m_fpsTimer(SECONDS_IN_MS),
+		m_deltaTime(0),
+		m_ScreenSize(screenSize),
+		m_createDefaultFrame(false),
+		m_isReady(false),
+		m_frameName("Agmd sample application"),
+		m_sceneController(NULL)
 
-    {
-        assert(m_Instance != NULL);
+	{
+		assert(m_Instance != NULL);
 
-        s_application = this;
-        RegisterLoaders();
-    }
+		s_application = this;
+		RegisterLoaders();
+	}
 
-    AgmdApplication::AgmdApplication(const std::string& frameName, ADriverType d) :
-        m_Instance(GetModuleHandle("Agmd3D.dll")),
+	AgmdApplication::AgmdApplication(const std::string& frameName, ADriverType d) :
+		m_Instance(GetModuleHandle("Agmd3D.dll")),
 
 #ifndef USE_WX
-        m_Hwnd(NULL),
+		m_Hwnd(NULL),
 #else
         m_frame            (NULL),
         m_glcanvas        (NULL),
         m_createDefaultFrame(true),
 #endif
-        m_driverType(d),
-        m_isRunning(true),
-        camera(NULL),
-        last_mouse_pos(0, 0),
-        mouseState(MOUSE_NONE),
-        m_lastTime(0),
-        m_fps(0),
-        m_fpsTimer(SECONDS_IN_MS),
-        m_deltaTime(0),
-        m_isReady(false),
-        m_ScreenSize(1920, 1080),
-        m_frameName(frameName),
-        m_sceneController(NULL)
-    {
-        assert(m_Instance != NULL);
-        s_application = this;
-        RegisterLoaders();
-    }
+		m_driverType(d),
+		m_isRunning(true),
+		camera(NULL),
+		last_mouse_pos(0, 0),
+		mouseState(MOUSE_NONE),
+		m_lastTime(0),
+		m_fps(0),
+		m_fpsTimer(SECONDS_IN_MS),
+		m_deltaTime(0),
+		m_isReady(false),
+		m_ScreenSize(1920, 1080),
+		m_frameName(frameName),
+		m_sceneController(NULL)
+	{
+		assert(m_Instance != NULL);
+		s_application = this;
+		RegisterLoaders();
+	}
 
-    AgmdApplication::~AgmdApplication()
-    {
-        //         if (m_Hwnd)
-        //         {
-        //             DestroyWindow(m_Hwnd);
-        //             UnregisterClass(L"AgmdEngine", m_Instance);
-        //         }
-    }
+	AgmdApplication::~AgmdApplication()
+	{
+		//         if (m_Hwnd)
+		//         {
+		//             DestroyWindow(m_Hwnd);
+		//             UnregisterClass(L"AgmdEngine", m_Instance);
+		//         }
+	}
 
 
-    bool AgmdApplication::OnInit()
-    {
-        return true;
-    }
+	bool AgmdApplication::OnInit()
+	{
+		return true;
+	}
 
-    void AgmdApplication::Run(int argc, char** argv)
-    {
-        m_threadPool = new CThreadPool();
+	void AgmdApplication::Run(int argc, char** argv)
+	{
+		m_threadPool = new CThreadPool();
 #ifdef USE_WX
         m_wxApplication = new Application(m_createDefaultFrame,wxString(m_frameName));
 #endif        
-        if (m_driverType == DRIVER_DX11)
-            m_renderer = new Plugin("DXRender.dll");
-        else
-            m_renderer = new Plugin("GLRender.dll");
+		if (m_driverType == DRIVER_DX11)
+			m_renderer = new Plugin("DXRender.dll");
+		else
+			m_renderer = new Plugin("GLRender.dll");
 
 
 #ifdef USE_WX
@@ -385,8 +385,8 @@ namespace Agmd
         wxEntryStart( argc, argv );
         m_wxApplication->OnInit();
 #endif
-        //new BaseFrame(NULL);
-        MakeWindow();
+		//new BaseFrame(NULL);
+		MakeWindow();
 
 #ifdef USE_WX
         if(!m_frame)
@@ -401,563 +401,563 @@ namespace Agmd
         }else m_frame->Show(true);
         Driver::Get().Initialize(NULL);
 #else 
-        Driver::Get().Initialize(m_Hwnd);
+		Driver::Get().Initialize(m_Hwnd);
 #endif
 
-        Driver::Get().SetScreen(m_ScreenSize);
+		Driver::Get().SetScreen(m_ScreenSize);
 
-        Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
-        Image img = Image();
-        img.Fill(Color::white);
-        Texture t = Texture();
-        t.CreateFromImage(img, PXF_A8R8G8B8, 0, "white_texture");
-        mat->SetTexture(t, 0, TRenderPass::RENDERPASS_DEFERRED);
-        ResourceManager::Instance().Add("DEFAULT_MATERIAL", mat);
+		Material* mat = new Material(ShaderPipeline::GetDefaultPipeline());
+		Image img = Image();
+		img.Fill(Color::white);
+		Texture t = Texture();
+		t.CreateFromImage(img, PXF_A8R8G8B8, 0, "white_texture");
+		mat->SetTexture(t, 0, TRenderPass::RENDERPASS_DEFERRED);
+		ResourceManager::Instance().Add("DEFAULT_MATERIAL", mat);
 
-        init();
+		init();
 #ifdef USE_WX
         if(m_frame)
             m_isReady = true;
         m_wxApplication->MainLoop();
 #else   
 
-        //allocate RenderQueue;
+		//allocate RenderQueue;
 
-        m_renderQueuePool = new ARenderQueue[2];
-        m_renderQueue[0] = m_renderQueuePool;
-        m_renderQueue[1] = m_renderQueuePool + 1;
-        //m_threadPool->start();
-        //m_threadPool->AddJobToPool(UpdateJob);
+		m_renderQueuePool = new ARenderQueue[2];
+		m_renderQueue[0] = m_renderQueuePool;
+		m_renderQueue[1] = m_renderQueuePool + 1;
+		//m_threadPool->start();
+		//m_threadPool->AddJobToPool(UpdateJob);
 
-        MainLoop();
+		MainLoop();
 #endif
-    }
+	}
 
-    void AgmdApplication::Exit()
-    {
-        m_isRunning = false;
-    }
+	void AgmdApplication::Exit()
+	{
+		m_isRunning = false;
+	}
 
-    void AgmdApplication::MakeWindow()
-    {
-        const int left = (GetDeviceCaps(GetDC(NULL), HORZRES) - m_ScreenSize.x) / 2;
-        const int top = (GetDeviceCaps(GetDC(NULL), VERTRES) - m_ScreenSize.y) / 2;
+	void AgmdApplication::MakeWindow()
+	{
+		const int left = (GetDeviceCaps(GetDC(NULL), HORZRES) - m_ScreenSize.x) / 2;
+		const int top = (GetDeviceCaps(GetDC(NULL), VERTRES) - m_ScreenSize.y) / 2;
 
 
-        WNDCLASSEX WindowClass;
-        WindowClass.cbSize = sizeof(WNDCLASSEX);
-        WindowClass.style = 0;
-        WindowClass.lpfnWndProc = GlobalWindowProc;
-        WindowClass.cbClsExtra = 0;
-        WindowClass.cbWndExtra = 0;
-        WindowClass.hInstance = m_Instance;
-        WindowClass.hIcon = NULL;
-        WindowClass.hCursor = 0;
-        WindowClass.hbrBackground = 0;
-        WindowClass.lpszMenuName = NULL;
-        WindowClass.lpszClassName = ENGINE_NAME;
-        WindowClass.hIconSm = NULL;
-        ATOM a = RegisterClassEx(&WindowClass);
+		WNDCLASSEX WindowClass;
+		WindowClass.cbSize = sizeof(WNDCLASSEX);
+		WindowClass.style = 0;
+		WindowClass.lpfnWndProc = GlobalWindowProc;
+		WindowClass.cbClsExtra = 0;
+		WindowClass.cbWndExtra = 0;
+		WindowClass.hInstance = m_Instance;
+		WindowClass.hIcon = NULL;
+		WindowClass.hCursor = 0;
+		WindowClass.hbrBackground = 0;
+		WindowClass.lpszMenuName = NULL;
+		WindowClass.lpszClassName = ENGINE_NAME;
+		WindowClass.hIconSm = NULL;
+		ATOM a = RegisterClassEx(&WindowClass);
 
-        m_Hwnd = CreateWindow(ENGINE_NAME, ENGINE_NAME, 0, left, top, m_ScreenSize.x, m_ScreenSize.y, NULL, NULL, m_Instance, NULL);
-        auto err = GetLastError();
-        assert(m_Hwnd != NULL);
-        ShowWindow(m_Hwnd, SW_NORMAL);
-        LONG lStyle = GetWindowLong(m_Hwnd, GWL_STYLE);
-        lStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU);
-        SetWindowLong(m_Hwnd, GWL_STYLE, lStyle);
-        LONG lExStyle = GetWindowLong(m_Hwnd, GWL_EXSTYLE);
-        lExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE);
-        SetWindowLong(m_Hwnd, GWL_EXSTYLE, lExStyle);
-        SetWindowPos(m_Hwnd, NULL, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
-        ShowCursor(0);
-    }
+		m_Hwnd = CreateWindow(ENGINE_NAME, ENGINE_NAME, 0, left, top, m_ScreenSize.x, m_ScreenSize.y, NULL, NULL, m_Instance, NULL);
+		auto err = GetLastError();
+		assert(m_Hwnd != NULL);
+		ShowWindow(m_Hwnd, SW_NORMAL);
+		LONG lStyle = GetWindowLong(m_Hwnd, GWL_STYLE);
+		lStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU);
+		SetWindowLong(m_Hwnd, GWL_STYLE, lStyle);
+		LONG lExStyle = GetWindowLong(m_Hwnd, GWL_EXSTYLE);
+		lExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE);
+		SetWindowLong(m_Hwnd, GWL_EXSTYLE, lExStyle);
+		SetWindowPos(m_Hwnd, NULL, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+		ShowCursor(0);
+	}
 #ifdef USE_WINAPI
-    void AgmdApplication::MainLoop()
-    {
-        MSG Message;
-        while (m_isRunning)
-        {
-            if (PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
-            {
-                TranslateMessage(&Message);
-                DispatchMessage(&Message);
-            }
-            else
-            {
-                UpdateAndRender();
-                //draw();
+	void AgmdApplication::MainLoop()
+	{
+		MSG Message;
+		while (m_isRunning)
+		{
+			if (PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&Message);
+				DispatchMessage(&Message);
+			}
+			else
+			{
+				UpdateAndRender();
+				//draw();
 
 
-                //uncomment following to have monothread engine
-                //UpdateJob();
-                //Render();
-            }
-        }
-    }
+				//uncomment following to have monothread engine
+				//UpdateJob();
+				//Render();
+			}
+		}
+	}
 
 
-    LRESULT CALLBACK AgmdApplication::GlobalWindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
-    {
-        return s_application->WindowProc(Hwnd, Message, WParam, LParam);
-    }
+	LRESULT CALLBACK AgmdApplication::GlobalWindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
+	{
+		return s_application->WindowProc(Hwnd, Message, WParam, LParam);
+	}
 
 
-    LRESULT CALLBACK AgmdApplication::WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
-    {
-        GUIMgr& guimgr = GUIMgr::Instance();
-        camera = Camera::getCurrent();
-        if (Message == WM_CHAR)
-        {
-        }
-        switch (Message)
-        {
-        case WM_DESTROY:
-            Exit();
-            return 0;
-        case WM_KEYUP:
-        case WM_KEYDOWN:
+	LRESULT CALLBACK AgmdApplication::WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
+	{
+		GUIMgr& guimgr = GUIMgr::Instance();
+		camera = Camera::getCurrent();
+		if (Message == WM_CHAR)
+		{
+		}
+		switch (Message)
+		{
+		case WM_DESTROY:
+			Exit();
+			return 0;
+		case WM_KEYUP:
+		case WM_KEYDOWN:
 
-            OnKey((char)LOWORD(WParam), Message == WM_KEYUP ? true : false);
-            return 0;
-        case WM_XBUTTONDOWN:
-            OnClick(0, vec2(last_mouse_pos), false);
-            return 0;
-        case WM_RBUTTONDOWN:
-            OnClick(3, vec2(last_mouse_pos), false);
-            return 0;
-        case WM_MBUTTONDOWN:
-            OnClick(2, vec2(last_mouse_pos), false);
-            return 0;
-        case WM_LBUTTONDOWN:
-            OnClick(1, vec2(last_mouse_pos), false);
-            return 0;
+			OnKey((char)LOWORD(WParam), Message == WM_KEYUP ? true : false);
+			return 0;
+		case WM_XBUTTONDOWN:
+			OnClick(0, vec2(last_mouse_pos), false);
+			return 0;
+		case WM_RBUTTONDOWN:
+			OnClick(3, vec2(last_mouse_pos), false);
+			return 0;
+		case WM_MBUTTONDOWN:
+			OnClick(2, vec2(last_mouse_pos), false);
+			return 0;
+		case WM_LBUTTONDOWN:
+			OnClick(1, vec2(last_mouse_pos), false);
+			return 0;
 
-        case WM_XBUTTONUP:
-            OnClick(0, vec2(last_mouse_pos), true);
-            return 0;
-        case WM_RBUTTONUP:
-            OnClick(3, vec2(last_mouse_pos), true);
-            return 0;
-        case WM_MBUTTONUP:
+		case WM_XBUTTONUP:
+			OnClick(0, vec2(last_mouse_pos), true);
+			return 0;
+		case WM_RBUTTONUP:
+			OnClick(3, vec2(last_mouse_pos), true);
+			return 0;
+		case WM_MBUTTONUP:
 
-            OnClick(2, vec2(last_mouse_pos), true);
-            return 0;
-        case WM_LBUTTONUP:
-            OnClick(1, vec2(last_mouse_pos), true);
-            return 0;
-        case WM_MOUSEWHEEL:
-            //camera->onMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
-            return 0;
-        case WM_MOUSEMOVE:
-            ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam), m_ScreenSize.y - GET_Y_LPARAM(LParam));
-            vec2 pos(GET_X_LPARAM(LParam), m_ScreenSize.y - GET_Y_LPARAM(LParam));
-            OnMove(pos);
-            last_mouse_pos.x = GET_X_LPARAM(LParam);
-            last_mouse_pos.y = m_ScreenSize.y - GET_Y_LPARAM(LParam);
-            return 0;
-        }
-        return DefWindowProc(Hwnd, Message, WParam, LParam);
-    }
+			OnClick(2, vec2(last_mouse_pos), true);
+			return 0;
+		case WM_LBUTTONUP:
+			OnClick(1, vec2(last_mouse_pos), true);
+			return 0;
+		case WM_MOUSEWHEEL:
+			//camera->onMouseWheel((float)GET_WHEEL_DELTA_WPARAM(WParam));
+			return 0;
+		case WM_MOUSEMOVE:
+			ivec2 posDiff = last_mouse_pos - ivec2(GET_X_LPARAM(LParam), m_ScreenSize.y - GET_Y_LPARAM(LParam));
+			vec2 pos(GET_X_LPARAM(LParam), m_ScreenSize.y - GET_Y_LPARAM(LParam));
+			OnMove(pos);
+			last_mouse_pos.x = GET_X_LPARAM(LParam);
+			last_mouse_pos.y = m_ScreenSize.y - GET_Y_LPARAM(LParam);
+			return 0;
+		}
+		return DefWindowProc(Hwnd, Message, WParam, LParam);
+	}
 #endif
 
 
-    void AgmdApplication::Render(ARenderQueue& q)
-    {
-        RenderingMode* current = RenderingMode::getRenderingMode();
-        Driver& driver = Driver::Get();
-        driver.InitScene();
-        if (current != NULL)
-            current->compute(q);
-        driver.EndScene();
-    }
+	void AgmdApplication::Render(ARenderQueue& q)
+	{
+		RenderingMode* current = RenderingMode::getRenderingMode();
+		Driver& driver = Driver::Get();
+		driver.InitScene();
+		if (current != NULL)
+			current->compute(q);
+		driver.EndScene();
+	}
 
-    void AgmdApplication::UpdateTransform()
-    {
-        Driver& driver = Driver::Get();
-        ASceneMgr* scene = driver.GetActiveScene();
-        for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
-        {
-            ANode& node = scene->m_nodePool[i];
-            if (node.GetTransform().needUpdate())
-            {
-                node.GetTransform().update(node.m_parent ? &node.m_parent->GetTransform() : NULL);
-                node.m_dirtyFlag |= DTRANSFORM_UPDATE;
-                //if(node.m_camera)
-                //node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
-            }
-        }
-    }
+	void AgmdApplication::UpdateTransform()
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if (node.GetTransform().needUpdate())
+			{
+				node.GetTransform().update(node.m_parent ? &node.m_parent->GetTransform() : NULL);
+				node.m_dirtyFlag |= DTRANSFORM_UPDATE;
+				//if(node.m_camera)
+				//node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
+			}
+		}
+	}
 
-    void AgmdApplication::UpdateBounds()
-    {
-        Driver& driver = Driver::Get();
-        ASceneMgr* scene = driver.GetActiveScene();
+	void AgmdApplication::UpdateBounds()
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
 
-        //need to be reversed sceneTree;
-        for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
-        {
-            ANode& node = scene->m_nodePool[i];
-            if (node.m_dirtyFlag & DTRANSFORM_UPDATE)
-            {
-                node.m_dirtyFlag = (node.m_dirtyFlag & ~DTRANSFORM_UPDATE);//  | DBOUNDS_UPDATE; // DBOUNDS_UPDATE not used now 
-                node.m_localBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().localModelMatrix());
-                node.m_globalBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().modelMatrix());
-                if (node.m_model) //if node is renderable
-                    scene->m_octree.InsertElement(&node);
-                //if(node.m_camera)
-                //node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
-            }
-        }
-    }
+		//need to be reversed sceneTree;
+		for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if (node.m_dirtyFlag & DTRANSFORM_UPDATE)
+			{
+				node.m_dirtyFlag = (node.m_dirtyFlag & ~DTRANSFORM_UPDATE);//  | DBOUNDS_UPDATE; // DBOUNDS_UPDATE not used now 
+				node.m_localBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().localModelMatrix());
+				node.m_globalBounds = node.m_baseBounds.GetTransformedBounding(node.GetTransform().modelMatrix());
+				if (node.m_model) //if node is renderable
+					scene->m_octree.InsertElement(&node);
+				//if(node.m_camera)
+				//node.m_camera->updateBuffer(node.GetTransform().modelMatrix()*node.m_camera->look());
+			}
+		}
+	}
 
-    void AgmdApplication::UpdateScript(a_uint32 time)
-    {
-        Driver& driver = Driver::Get();
-        ASceneMgr* scene = driver.GetActiveScene();
-        for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
-        {
-            ANode& node = scene->m_nodePool[i];
-            if (node.m_controller)
-                node.m_controller->update(time);
-        }
-    }
+	void AgmdApplication::UpdateScript(a_uint32 time)
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		for (a_uint32 i = 0, len = scene->m_nodePool.size(); i < len; ++i)
+		{
+			ANode& node = scene->m_nodePool[i];
+			if (node.m_controller)
+				node.m_controller->update(time);
+		}
+	}
 
-    void AgmdApplication::Culling(ARenderQueue& queue)
-    {
-        Driver& driver = Driver::Get();
-        ASceneMgr* scene = driver.GetActiveScene();
-        Camera* cam = Camera::getCurrent(CAMERA_3D);
-        queue.Clear();
-        Frustum* frustrum = cam->GetFrustrum();
-
-
-        std::stack<OcTree<ANode>*> _stack;
-        _stack.push(scene->m_octree.Top());
-
-        while (_stack.size())
-        {
-            OcTree<ANode>* current = _stack.top();
-            _stack.pop();
-
-            if (frustrum->IsIn(current->m_bbox))
-            {
-                for (a_uint32 i = 0, len = current->m_data.size(); i < len; ++i)
-                {
-                    ANode* node = current->m_data[i];
-                    if (frustrum->IsIn(node->m_globalBounds))
-                        queue.Push(node); // ok visible push to renderqueue
-                }
+	void AgmdApplication::Culling(ARenderQueue& queue)
+	{
+		Driver& driver = Driver::Get();
+		ASceneMgr* scene = driver.GetActiveScene();
+		Camera* cam = Camera::getCurrent(CAMERA_3D);
+		queue.Clear();
+		Frustum* frustrum = cam->GetFrustrum();
 
 
-                for (a_uint32 i = 0; i < 8; ++i)
-                {
-                    if ((a_uint32)(current->m_children[i]) == 0xcdcdcdcd)
-                        printf("");
-                    if (current->m_children[i])
-                        _stack.push(current->m_children[i]);
-                }
-            }
-        }
-    }
+		std::stack<OcTree<ANode>*> _stack;
+		_stack.push(scene->m_octree.Top());
+
+		while (_stack.size())
+		{
+			OcTree<ANode>* current = _stack.top();
+			_stack.pop();
+
+			if (frustrum->IsIn(current->m_bbox))
+			{
+				for (a_uint32 i = 0, len = current->m_data.size(); i < len; ++i)
+				{
+					ANode* node = current->m_data[i];
+					if (frustrum->IsIn(node->m_globalBounds))
+						queue.Push(node); // ok visible push to renderqueue
+				}
 
 
-    enum ProcessFlags
-    {
-        PROCESS_UPDATE = 0x01,
-        PROCESS_RENDER = 0x02,
-        ALL_PROCESS = PROCESS_UPDATE | PROCESS_RENDER
-    };
-
-    a_uint32 process_flag = PROCESS_UPDATE;
-    a_uint32 ujob = 0,
-        rjob = 0;
-
-    void RestartJob()
-    {
-        process_flag |= ALL_PROCESS;
-        auto app = AgmdApplication::getApplication();
-        app->m_threadPool->AddJobToPool(UpdateJob);
-        app->m_threadPool->AddJobToPool(RenderJob);
-    }
-
-    void UpdateJob()
-    {
-        a_uint32 id = ++ujob;
-        //printf("UpdateJob, %i\n",id);
-        auto app = AgmdApplication::getApplication();
+				for (a_uint32 i = 0; i < 8; ++i)
+				{
+					if ((a_uint32)(current->m_children[i]) == 0xcdcdcdcd)
+						printf("");
+					if (current->m_children[i])
+						_stack.push(current->m_children[i]);
+				}
+			}
+		}
+	}
 
 
-        a_uint32 time = clock();
-        a_uint32 time_diff = time - app->m_lastTime;
-        app->m_deltaTime = time_diff;
-        //do some stuff
-        AgmdApplication::UpdateScript(time_diff);
-        AgmdApplication::UpdateTransform();
-        AgmdApplication::UpdateBounds();
-        ARenderQueue& queue = *app->m_renderQueue[0];
-        AgmdApplication::Culling(queue);
-        app->m_lastTime = time;
-        app->m_threadPool->GetMutex().Lock();
-        std::swap(app->m_renderQueue[0], app->m_renderQueue[1]);
-        process_flag &= ~PROCESS_UPDATE;
-        //printf("UpdateJob, %i ended pflag : %i\n",id,process_flag);
-        if (!(process_flag & PROCESS_RENDER))
-        {
-            //printf("UpdateJob, %i start new job\n",id);
-            RestartJob();
-        }
-        app->m_threadPool->GetMutex().Unlock();
-    }
+	enum ProcessFlags
+	{
+		PROCESS_UPDATE = 0x01,
+		PROCESS_RENDER = 0x02,
+		ALL_PROCESS = PROCESS_UPDATE | PROCESS_RENDER
+	};
 
-    void RenderJob()
-    {
-        a_uint32 id = ++rjob;
-        //printf("RenderJob, %i\n",id);
-        auto app = AgmdApplication::getApplication();
-        app->m_threadPool->GetMutex().Lock();
-        Camera* c = Camera::getCurrent();
-        c->updateBuffer(c->getNode()->GetTransform().modelMatrix() * c->look());
-        ARenderQueue& queue = *app->m_renderQueue[1];
-        app->m_threadPool->GetMutex().Unlock();
-        AgmdApplication::Render(queue);
-        app->m_threadPool->GetMutex().Lock();
-        process_flag &= ~PROCESS_RENDER;
+	a_uint32 process_flag = PROCESS_UPDATE;
+	a_uint32 ujob = 0,
+		rjob = 0;
+
+	void RestartJob()
+	{
+		process_flag |= ALL_PROCESS;
+		auto app = AgmdApplication::getApplication();
+		app->m_threadPool->AddJobToPool(UpdateJob);
+		app->m_threadPool->AddJobToPool(RenderJob);
+	}
+
+	void UpdateJob()
+	{
+		a_uint32 id = ++ujob;
+		//printf("UpdateJob, %i\n",id);
+		auto app = AgmdApplication::getApplication();
 
 
-        //printf("RenderJob, %i ended pflag : %i\n",id,process_flag);
-        if (!(process_flag & PROCESS_UPDATE))
-        {
-            //printf("RenderJob, %i start new job\n",id);
-            RestartJob();
-        }
-        app->m_threadPool->GetMutex().Unlock();
-    }
+		a_uint32 time = clock();
+		a_uint32 time_diff = time - app->m_lastTime;
+		app->m_deltaTime = time_diff;
+		//do some stuff
+		AgmdApplication::UpdateScript(time_diff);
+		AgmdApplication::UpdateTransform();
+		AgmdApplication::UpdateBounds();
+		ARenderQueue& queue = *app->m_renderQueue[0];
+		AgmdApplication::Culling(queue);
+		app->m_lastTime = time;
+		app->m_threadPool->GetMutex().Lock();
+		std::swap(app->m_renderQueue[0], app->m_renderQueue[1]);
+		process_flag &= ~PROCESS_UPDATE;
+		//printf("UpdateJob, %i ended pflag : %i\n",id,process_flag);
+		if (!(process_flag & PROCESS_RENDER))
+		{
+			//printf("UpdateJob, %i start new job\n",id);
+			RestartJob();
+		}
+		app->m_threadPool->GetMutex().Unlock();
+	}
 
-    void UpdateAndRender()
-    {
-        //Update Pass
-        auto app = AgmdApplication::getApplication();
-        a_uint32 time = clock();
-        a_uint32 time_diff = time - app->m_lastTime;
-        app->m_deltaTime = time_diff;
-        //do some stuff
-        AgmdApplication::UpdateScript(time_diff);
-        AgmdApplication::UpdateTransform();
-        AgmdApplication::UpdateBounds();
-        ARenderQueue& updateQueue = *app->m_renderQueue[0];
-        AgmdApplication::Culling(updateQueue);
-        app->m_lastTime = time;
-        std::swap(app->m_renderQueue[0], app->m_renderQueue[1]);
-
-        //Render Pass
-        Camera* c = Camera::getCurrent();
-        c->updateBuffer(c->getNode()->GetTransform().modelMatrix() * c->look());
-        ARenderQueue& renderQueue = *app->m_renderQueue[1];
-        AgmdApplication::Render(renderQueue);
-    }
+	void RenderJob()
+	{
+		a_uint32 id = ++rjob;
+		//printf("RenderJob, %i\n",id);
+		auto app = AgmdApplication::getApplication();
+		app->m_threadPool->GetMutex().Lock();
+		Camera* c = Camera::getCurrent();
+		c->updateBuffer(c->getNode()->GetTransform().modelMatrix() * c->look());
+		ARenderQueue& queue = *app->m_renderQueue[1];
+		app->m_threadPool->GetMutex().Unlock();
+		AgmdApplication::Render(queue);
+		app->m_threadPool->GetMutex().Lock();
+		process_flag &= ~PROCESS_RENDER;
 
 
-    void AgmdApplication::draw()
-    {
-        //         Timer timer;
-        //         Timer global_timer;
-        //         global_timer.start();
-        //         int frame = 0;
-        //         float renderTime = 0, guiTime = 0;
-        //         a_uint32 time = clock();
-        //         a_uint32 time_diff = time - m_lastTime;
-        //         m_deltaTime = time_diff;
-        //         m_lastTime = time;
-        //         Driver& render =  Driver::Get();
-        //         render.GetStatistics().ResetStatistics();
-        //         render.OnUpdate(time_diff);
-        //         GUIMgr::Instance().Update(time_diff);
-        //         OnUpdate(time_diff);
-        //         render.InitScene();
-        //         //Render 3D objects
-        //         timer.start();
-        //         RenderingMode* current = RenderingMode::getRenderingMode();
-        //         if(current != NULL)
-        //             current->compute();
-        //         OnRender3D();
-        //         renderTime = (float)timer.getElapsedTimeInMicroSec();
-        //         timer.stop();
-        //         timer.start();
-        //         //Render 2D GUI
-        //         GUIMgr::Instance().DrawGUI();
-        //         OnRender2D();
-        //         timer.stop();
-        //         guiTime = (float)timer.getElapsedTimeInMicroSec();
-        // 
-        //         frame++;
-        //         //if(time_diff < 15)
-        //         //Sleep(15-time_diff);
-        //         render.EndScene();
-        //         global_timer.stop();
-        //         if(m_fpsTimer <= time_diff)
-        //         {
-        //             m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - m_fpsTimer);
-        //             m_fpsTimer = SECONDS_IN_MS;
-        //             render.GetStatistics().SetMainTime((float)time_diff);
-        //             render.GetStatistics().SetRenderingTime(renderTime);
-        //             render.GetStatistics().SetGuiTime(guiTime);
-        //         }else m_fpsTimer -= time_diff;
-    }
+		//printf("RenderJob, %i ended pflag : %i\n",id,process_flag);
+		if (!(process_flag & PROCESS_UPDATE))
+		{
+			//printf("RenderJob, %i start new job\n",id);
+			RestartJob();
+		}
+		app->m_threadPool->GetMutex().Unlock();
+	}
 
-    void AgmdApplication::OnClick(int click, vec2 pos, bool up)
-    {
-        GUIMgr& guimgr = GUIMgr::Instance();
-        camera = Camera::getCurrent();
-        //printf("click %i, up : %i\n",click,up);
+	void UpdateAndRender()
+	{
+		//Update Pass
+		auto app = AgmdApplication::getApplication();
+		a_uint32 time = clock();
+		a_uint32 time_diff = time - app->m_lastTime;
+		app->m_deltaTime = time_diff;
+		//do some stuff
+		AgmdApplication::UpdateScript(time_diff);
+		AgmdApplication::UpdateTransform();
+		AgmdApplication::UpdateBounds();
+		ARenderQueue& updateQueue = *app->m_renderQueue[0];
+		AgmdApplication::Culling(updateQueue);
+		app->m_lastTime = time;
+		std::swap(app->m_renderQueue[0], app->m_renderQueue[1]);
+
+		//Render Pass
+		Camera* c = Camera::getCurrent();
+		c->updateBuffer(c->getNode()->GetTransform().modelMatrix() * c->look());
+		ARenderQueue& renderQueue = *app->m_renderQueue[1];
+		AgmdApplication::Render(renderQueue);
+	}
+
+
+	void AgmdApplication::draw()
+	{
+		//         Timer timer;
+		//         Timer global_timer;
+		//         global_timer.start();
+		//         int frame = 0;
+		//         float renderTime = 0, guiTime = 0;
+		//         a_uint32 time = clock();
+		//         a_uint32 time_diff = time - m_lastTime;
+		//         m_deltaTime = time_diff;
+		//         m_lastTime = time;
+		//         Driver& render =  Driver::Get();
+		//         render.GetStatistics().ResetStatistics();
+		//         render.OnUpdate(time_diff);
+		//         GUIMgr::Instance().Update(time_diff);
+		//         OnUpdate(time_diff);
+		//         render.InitScene();
+		//         //Render 3D objects
+		//         timer.start();
+		//         RenderingMode* current = RenderingMode::getRenderingMode();
+		//         if(current != NULL)
+		//             current->compute();
+		//         OnRender3D();
+		//         renderTime = (float)timer.getElapsedTimeInMicroSec();
+		//         timer.stop();
+		//         timer.start();
+		//         //Render 2D GUI
+		//         GUIMgr::Instance().DrawGUI();
+		//         OnRender2D();
+		//         timer.stop();
+		//         guiTime = (float)timer.getElapsedTimeInMicroSec();
+		// 
+		//         frame++;
+		//         //if(time_diff < 15)
+		//         //Sleep(15-time_diff);
+		//         render.EndScene();
+		//         global_timer.stop();
+		//         if(m_fpsTimer <= time_diff)
+		//         {
+		//             m_fps = ((float)frame*SECONDS_IN_MS)/(SECONDS_IN_MS + time_diff - m_fpsTimer);
+		//             m_fpsTimer = SECONDS_IN_MS;
+		//             render.GetStatistics().SetMainTime((float)time_diff);
+		//             render.GetStatistics().SetRenderingTime(renderTime);
+		//             render.GetStatistics().SetGuiTime(guiTime);
+		//         }else m_fpsTimer -= time_diff;
+	}
+
+	void AgmdApplication::OnClick(int click, vec2 pos, bool up)
+	{
+		GUIMgr& guimgr = GUIMgr::Instance();
+		camera = Camera::getCurrent();
+		//printf("click %i, up : %i\n",click,up);
 #if defined(USE_EDITOR) && defined(USE_WX)
         ((EditorFrame*)m_frame)->OnClick(click,pos,up);
 
 #endif
-        switch (click)
-        {
-        case 1:
-            if (up)
-                mouseState &= ~MOUSE_LEFT;
-            else mouseState |= MOUSE_LEFT;
-            for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                m_inputListener[i]->OnClick(MOUSE_LEFT, mouseState, vec2(pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
-            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(pos.x, m_ScreenSize.y - pos.y), ivec2(0), mouseState, 0));
-            return;
+		switch (click)
+		{
+		case 1:
+			if (up)
+				mouseState &= ~MOUSE_LEFT;
+			else mouseState |= MOUSE_LEFT;
+			for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_LEFT, mouseState, vec2(pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(pos.x, m_ScreenSize.y - pos.y), ivec2(0), mouseState, 0));
+			return;
 
-        case 2:
-            if (up)
-                mouseState &= ~MOUSE_MIDDLE;
-            else mouseState |= MOUSE_MIDDLE;
-            for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                m_inputListener[i]->OnClick(MOUSE_MIDDLE, mouseState, vec2(pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
-            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(pos.x, m_ScreenSize.y - pos.y), ivec2(0), mouseState, 0));
-            return;
-        case 3:
-            if (up)
-                mouseState &= ~MOUSE_RIGHT;
-            else mouseState |= MOUSE_RIGHT;
-            for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                m_inputListener[i]->OnClick(MOUSE_RIGHT, mouseState, vec2(last_mouse_pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
-            guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(last_mouse_pos.x, m_ScreenSize.y - last_mouse_pos.y), ivec2(0), mouseState, 0));
-            return;
-            /*case WM_XBUTTONDOWN:
-                mouseState |= MOUSE_NONE;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_RBUTTONDOWN:
-                mouseState |= MOUSE_RIGHT;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
-                //OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_MBUTTONDOWN:
-                mouseState |= MOUSE_MIDDLE;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
-                camera->onMouseWheel(true);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_LBUTTONDOWN:
-                mouseState |= MOUSE_LEFT;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
-                //OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-    
-            case WM_XBUTTONUP:
-                mouseState &= ~MOUSE_NONE;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_RBUTTONUP:
-                mouseState &= ~MOUSE_RIGHT;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_MBUTTONUP:
-    
-                mouseState &= ~MOUSE_MIDDLE;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
-                camera->onMouseWheel(false);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;
-            case WM_LBUTTONUP:
-                mouseState &= ~MOUSE_LEFT;
-                for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-                    m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
-                guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
-                return;*/
-        }
-    }
+		case 2:
+			if (up)
+				mouseState &= ~MOUSE_MIDDLE;
+			else mouseState |= MOUSE_MIDDLE;
+			for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_MIDDLE, mouseState, vec2(pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(pos.x, m_ScreenSize.y - pos.y), ivec2(0), mouseState, 0));
+			return;
+		case 3:
+			if (up)
+				mouseState &= ~MOUSE_RIGHT;
+			else mouseState |= MOUSE_RIGHT;
+			for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+				m_inputListener[i]->OnClick(MOUSE_RIGHT, mouseState, vec2(last_mouse_pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), up);
+			guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON, ivec2(last_mouse_pos.x, m_ScreenSize.y - last_mouse_pos.y), ivec2(0), mouseState, 0));
+			return;
+			/*case WM_XBUTTONDOWN:
+			    mouseState |= MOUSE_NONE;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_RBUTTONDOWN:
+			    mouseState |= MOUSE_RIGHT;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
+			    //OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_MBUTTONDOWN:
+			    mouseState |= MOUSE_MIDDLE;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
+			    camera->onMouseWheel(true);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_LBUTTONDOWN:
+			    mouseState |= MOUSE_LEFT;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),false);
+			    //OnClick(mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize));
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+	
+			case WM_XBUTTONUP:
+			    mouseState &= ~MOUSE_NONE;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_NONE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_RBUTTONUP:
+			    mouseState &= ~MOUSE_RIGHT;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_RIGHT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_MBUTTONUP:
+	
+			    mouseState &= ~MOUSE_MIDDLE;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_MIDDLE,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
+			    camera->onMouseWheel(false);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;
+			case WM_LBUTTONUP:
+			    mouseState &= ~MOUSE_LEFT;
+			    for(a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			        m_inputListener[i]->OnClick(MOUSE_LEFT,mouseState,vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.0f-vec2(1),true);
+			    guimgr.AddEvent(EventEntry(EV_ON_MOUSE_BUTTON,last_mouse_pos,ivec2(0),mouseState,0));
+			    return;*/
+		}
+	}
 
-    void AgmdApplication::OnMove(vec2 pos)
-    {
-        GUIMgr& guimgr = GUIMgr::Instance();
-        camera = Camera::getCurrent();
+	void AgmdApplication::OnMove(vec2 pos)
+	{
+		GUIMgr& guimgr = GUIMgr::Instance();
+		camera = Camera::getCurrent();
 
-        ivec2 posDiff = last_mouse_pos - ivec2(pos);
-        for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-            m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), posDiff);
-        //if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
-        //camera->onMouseMotion(posDiff.x, posDiff.y);
+		ivec2 posDiff = last_mouse_pos - ivec2(pos);
+		for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			m_inputListener[i]->OnMouseMotion(vec2(last_mouse_pos) / vec2(m_ScreenSize) * 2.0f - vec2(1), posDiff);
+		//if(mouseState & MOUSE_RIGHT || mouseState & MOUSE_MIDDLE)
+		//camera->onMouseMotion(posDiff.x, posDiff.y);
 #if defined(USE_EDITOR) && defined(USE_WX)
         ((EditorFrame*)m_frame)->OnMove(pos,posDiff,mouseState);
 
 #endif
-        last_mouse_pos.x = (int)pos.x;
-        last_mouse_pos.y = (int)pos.y;
-        //OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.f-vec2(1));
-        guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE, ivec2(last_mouse_pos.x, m_ScreenSize.y - last_mouse_pos.y), ivec2(posDiff.x, -posDiff.y), mouseState, 0));
-    }
+		last_mouse_pos.x = (int)pos.x;
+		last_mouse_pos.y = (int)pos.y;
+		//OnMove(vec2(last_mouse_pos)/vec2(m_ScreenSize)*2.f-vec2(1));
+		guimgr.AddEvent(EventEntry(EV_ON_MOUVE_MOVE, ivec2(last_mouse_pos.x, m_ScreenSize.y - last_mouse_pos.y), ivec2(posDiff.x, -posDiff.y), mouseState, 0));
+	}
 
-    void AgmdApplication::OnKey(a_char key, bool up)
-    {
-        camera = Camera::getCurrent();
-        for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
-            m_inputListener[i]->OnKey((char)key, up);
+	void AgmdApplication::OnKey(a_char key, bool up)
+	{
+		camera = Camera::getCurrent();
+		for (a_uint32 i = 0, len = m_inputListener.size(); i < len; i++)
+			m_inputListener[i]->OnKey((char)key, up);
 #if defined(USE_EDITOR) && defined(USE_WX)
         ((EditorFrame*)m_frame)->OnKey(key,up);
 
 #endif
-        //camera->onKeyboard(key,up);
-        switch (key)
-        {
-        case VK_F1:
-            RenderingMode::getRenderingMode()->setRenderMode(MODE_FILL);
-            return;
-        case VK_F2:
-            RenderingMode::getRenderingMode()->setRenderMode(MODE_LINE);
-            return;
-        case VK_F3:
-            RenderingMode::getRenderingMode()->setRenderMode(MODE_POINT);
-            return;
-        }
-    }
+		//camera->onKeyboard(key,up);
+		switch (key)
+		{
+		case VK_F1:
+			RenderingMode::getRenderingMode()->setRenderMode(MODE_FILL);
+			return;
+		case VK_F2:
+			RenderingMode::getRenderingMode()->setRenderMode(MODE_LINE);
+			return;
+		case VK_F3:
+			RenderingMode::getRenderingMode()->setRenderMode(MODE_POINT);
+			return;
+		}
+	}
 
-    void AgmdApplication::onResize(ivec2 size)
-    {
-        m_ScreenSize = size;
-        Driver::Get().SetViewPort(ivec2(0, 0), size);
-        Driver::Get().SetScreen(m_ScreenSize);
-        Camera* c;
-        if (c = Camera::getCurrent(CAMERA_3D))
-            c->resize(vec2(size));
-        if (c = Camera::getCurrent(CAMERA_2D))
-            c->resize(vec2(size));
-        //        RenderingMode*mode;
-        //         if((mode = RenderingMode::getRenderingMode()) != NULL)
-        //         {
-        //             mode->init();
-        //         }
-    }
+	void AgmdApplication::onResize(ivec2 size)
+	{
+		m_ScreenSize = size;
+		Driver::Get().SetViewPort(ivec2(0, 0), size);
+		Driver::Get().SetScreen(m_ScreenSize);
+		Camera* c;
+		if (c = Camera::getCurrent(CAMERA_3D))
+			c->resize(vec2(size));
+		if (c = Camera::getCurrent(CAMERA_2D))
+			c->resize(vec2(size));
+		//        RenderingMode*mode;
+		//         if((mode = RenderingMode::getRenderingMode()) != NULL)
+		//         {
+		//             mode->init();
+		//         }
+	}
 
 #ifdef  USE_WX
     void AgmdApplication::CreateGlCanvas( wxWindow* frame )

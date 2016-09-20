@@ -21,46 +21,31 @@ struct NthElement<0, List>
 template <class List>
 struct Size
 {
-    enum
-    {
-        Result = Size<typename List::Tail>::Result + 1
-    };
+    enum {Result = Size<typename List::Tail>::Result + 1};
 };
 
 template <>
 struct Size<NullType>
 {
-    enum
-    {
-        Result = 0
-    };
+    enum {Result = 0};
 };
 
 template <class ToFind, class ToCompare, class List>
 struct Find_
 {
-    enum
-    {
-        Result = Find<ToFind, List>::Result + 1
-    };
+    enum {Result = Find<ToFind, List>::Result + 1};
 };
 
 template <class ToFind, class List>
 struct Find_<ToFind, ToFind, List>
 {
-    enum
-    {
-        Result = 0
-    };
+    enum {Result = 0};
 };
 
 template <class ToFind, class List>
 struct Find
 {
-    enum
-    {
-        Result = Find_<ToFind, typename List::Head, typename List::Tail>::Result
-    };
+    enum {Result = Find_<ToFind, typename List::Head, typename List::Tail>::Result};
 };
 
 template <class T, class List>

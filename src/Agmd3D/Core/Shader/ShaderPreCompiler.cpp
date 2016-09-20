@@ -37,10 +37,10 @@ namespace Agmd
                 switch(cbuffer)
                 {
                 case '#':
-                    while(stream.read(&cbuffer,1)  && cbuffer != ' ')
+                    while(stream.read(&cbuffer,1) && cbuffer != ' ')
                         instruction += cbuffer;
 
-                    while(stream.read(&cbuffer,1)  && cbuffer != '\n')
+                    while(stream.read(&cbuffer,1) && cbuffer != '\n')
                         value += cbuffer;
 
                     value += '\n';
@@ -66,7 +66,7 @@ namespace Agmd
                     continue;
                 default:
                     buffer << cbuffer;
-                    while(stream.read(&cbuffer,1)   && cbuffer != '\n')
+                    while(stream.read(&cbuffer,1)  && cbuffer != '\n')
                         buffer <<cbuffer;
 
                     buffer << '\n';

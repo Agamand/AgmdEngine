@@ -177,3 +177,10 @@ Release_No_Opti
 *.lastbuildstate
 *.unsuccessfulbuild
 *.idb
+
+
+############
+## Git diff file
+############
+*.orig
+*.base

@@ -11,6 +11,7 @@ https://github.com/Agamand/AgmdEngine
 #endif
 #ifdef USE_WX
 #include "wx/wxprec.h"
+#include "wx/wxprec.h"
 #ifndef WX_PRECOMP
 #include "wx/wx.h"
 #endif

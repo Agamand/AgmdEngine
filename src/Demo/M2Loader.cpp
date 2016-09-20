@@ -19,18 +19,20 @@ status : in pause
 
 
 M2Loader::M2Loader()
-{}
+{
+}
 
 M2Loader::~M2Loader()
-{}
+{
+}
 
 Model* M2Loader::LoadFromFile(const std::string& filename)
 {
-    std::ifstream file(filename,std::ios::in | std::ios::ate | std::ios::binary);
+    std::ifstream file(filename, std::ios::in | std::ios::ate | std::ios::binary);
     if (!file)
-        throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ObjLoader)");
+        throw LoadingFailed(filename, "Erreur lors du chargement du fichier (ObjLoader)");
 
-    a_uint32 size =  (a_uint32)file.tellg();
+    a_uint32 size = (a_uint32)file.tellg();
     file.seekg(0, std::ios::beg);
 
 
@@ -38,46 +40,46 @@ Model* M2Loader::LoadFromFile(const std::string& filename)
     std::vector<Model::TIndex> indices;
 
     M2ModelHeader header;
-    if(size < sizeof(header))
+    if (size < sizeof(header))
         return NULL;
 
     M2ModelVertex* m2vertex;
 
     a_int8* buffer = new a_int8[size];
-    file.read(buffer,size);
+    file.read(buffer, size);
     file.close();
 
-    std::memcpy(&header,buffer,sizeof(header));
+    std::memcpy(&header, buffer, sizeof(header));
 
-    M2RenderFlags* flags = (M2RenderFlags*)(buffer+header.ofsTexFlags);
+    M2RenderFlags* flags = (M2RenderFlags*)(buffer + header.ofsTexFlags);
     m2vertex = new M2ModelVertex[header.nVertices];
-    std::memcpy(m2vertex,buffer+header.ofsVertices,sizeof(M2ModelVertex)*header.nVertices);
+    std::memcpy(m2vertex, buffer + header.ofsVertices, sizeof(M2ModelVertex) * header.nVertices);
     vertices.resize(header.nVertices);
 
-    std::ifstream file2(filename+".skin",std::ios::in | std::ios::ate | std::ios::binary);
+    std::ifstream file2(filename + ".skin", std::ios::in | std::ios::ate | std::ios::binary);
     if (!file2)
-        throw LoadingFailed(filename+".skin","Erreur lors du chargement du fichier (ObjLoader)");
+        throw LoadingFailed(filename + ".skin", "Erreur lors du chargement du fichier (ObjLoader)");
 
-    a_uint32 size2 =  (a_uint32)file2.tellg();
+    a_uint32 size2 = (a_uint32)file2.tellg();
     file2.seekg(0, std::ios::beg);
 
     a_int8* buffer2 = new a_int8[size2];
-    file2.read(buffer2,size2);
+    file2.read(buffer2, size2);
     file2.close();
 
     M2SkinHeader _header;
-    std::memcpy(&_header,buffer2,sizeof(_header));
-    M2ModelTextureDef *texdef = (M2ModelTextureDef*)(buffer + header.ofsTextures);
+    std::memcpy(&_header, buffer2, sizeof(_header));
+    M2ModelTextureDef* texdef = (M2ModelTextureDef*)(buffer + header.ofsTextures);
 
 
-    a_uint16* indexlook = (a_uint16*)(buffer2+_header.ofsIndices);
-    a_uint16* triangles = (a_uint16*)(buffer2+_header.ofsTriangles);
+    a_uint16* indexlook = (a_uint16*)(buffer2 + _header.ofsIndices);
+    a_uint16* triangles = (a_uint16*)(buffer2 + _header.ofsTriangles);
 
 
-    for(a_uint32 i = 0; i < _header.nTriangles; i++)
+    for (a_uint32 i = 0; i < _header.nTriangles; i++)
         indices.push_back(indexlook[triangles[i]]);
 
-    for(a_uint32 i = 0; i < header.nVertices; i++)
+    for (a_uint32 i = 0; i < header.nVertices; i++)
     {
         vertices[i].position = m2vertex[i].pos;
         vertices[i].normal = normalize(m2vertex[i].normal);
@@ -89,19 +91,17 @@ Model* M2Loader::LoadFromFile(const std::string& filename)
     delete[] m2vertex;
 
 
-    Model* model = new Model(&vertices[0],vertices.size(),&indices[0],indices.size());
+    Model* model = new Model(&vertices[0], vertices.size(), &indices[0], indices.size());
     Texture tex;
-    tex.CreateFromFile(filename + ".png",PXF_A8R8G8B8);
+    tex.CreateFromFile(filename + ".png", PXF_A8R8G8B8);
     return model;
 }
 
 void M2Loader::SaveToFile(const Model* object, const std::string& filename)
 {
-
 }
 
 void M2Loader::OnError()
 {
     throw Exception("");
 }
-

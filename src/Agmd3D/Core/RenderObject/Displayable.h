@@ -26,7 +26,6 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-
     class AGMD3D_EXPORT Displayable
     {
     public :
@@ -44,9 +43,7 @@ namespace Agmd
 
         Transform* m_transform;
         Material* m_material;
-
     };
-
 }
 
 

@@ -13,19 +13,19 @@ public:
 
     // Get
     double Persistence() const { return persistence; }
-    double Frequency()   const { return frequency;   }
-    double Amplitude()   const { return amplitude;   }
-    int    Octaves()     const { return octaves;     }
-    int    RandomSeed()  const { return randomseed;  }
+    double Frequency() const { return frequency; }
+    double Amplitude() const { return amplitude; }
+    int Octaves() const { return octaves; }
+    int RandomSeed() const { return randomseed; }
 
     // Set
     void Set(double _persistence, double _frequency, double _amplitude, int _octaves, int _randomseed);
 
     void SetPersistence(double _persistence) { persistence = _persistence; }
-    void SetFrequency(  double _frequency)   { frequency = _frequency;     }
-    void SetAmplitude(  double _amplitude)   { amplitude = _amplitude;     }
-    void SetOctaves(    int    _octaves)     { octaves = _octaves;         }
-    void SetRandomSeed( int    _randomseed)  { randomseed = _randomseed;   }
+    void SetFrequency(double _frequency) { frequency = _frequency; }
+    void SetAmplitude(double _amplitude) { amplitude = _amplitude; }
+    void SetOctaves(int _octaves) { octaves = _octaves; }
+    void SetRandomSeed(int _randomseed) { randomseed = _randomseed; }
 
 private:
 

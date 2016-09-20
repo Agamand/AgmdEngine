@@ -26,7 +26,7 @@ inline Buffer<T> Driver::CreateIndexBuffer(unsigned long size, unsigned long fla
     return buffer;
 }
 
-    template <class T>
+template <class T>
 inline Buffer<T> Driver::CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags, const T* data) const
 {
     Buffer<T> buffer(CreateUB(size, sizeof(T), flags, bindPoint, ubflags));

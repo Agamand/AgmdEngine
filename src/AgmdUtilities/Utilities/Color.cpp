@@ -12,7 +12,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
-
     const Color Color::white(255, 255, 255);
     const Color Color::black(0, 0, 0);
     const Color Color::red(255, 0, 0);
@@ -20,8 +19,9 @@ namespace AgmdUtilities
     const Color Color::blue(0, 0, 255);
 
     Color::Color(a_uint32 color) :
-    m_Color(color)
-    {}
+        m_Color(color)
+    {
+    }
 
     Color::Color(a_uint8 r, a_uint8 g, a_uint8 b, a_uint8 a)
     {
@@ -68,9 +68,9 @@ namespace AgmdUtilities
 
     const Color& Color::operator +=(const Color& c)
     {
-        int R = GetRed()   + c.GetRed();
+        int R = GetRed() + c.GetRed();
         int G = GetGreen() + c.GetGreen();
-        int B = GetBlue()  + c.GetBlue();
+        int B = GetBlue() + c.GetBlue();
         int A = GetAlpha() + c.GetAlpha();
 
         SetInt(R, G, B, A);
@@ -80,9 +80,9 @@ namespace AgmdUtilities
 
     const Color& Color::operator -=(const Color& c)
     {
-        int R = GetRed()   - c.GetRed();
+        int R = GetRed() - c.GetRed();
         int G = GetGreen() - c.GetGreen();
-        int B = GetBlue()  - c.GetBlue();
+        int B = GetBlue() - c.GetBlue();
         int A = GetAlpha() - c.GetAlpha();
 
         SetInt(R, G, B, A);
@@ -92,9 +92,9 @@ namespace AgmdUtilities
 
     Color Color::operator +(const Color& c) const
     {
-        int R = GetRed()   + c.GetRed();
+        int R = GetRed() + c.GetRed();
         int G = GetGreen() + c.GetGreen();
-        int B = GetBlue()  + c.GetBlue();
+        int B = GetBlue() + c.GetBlue();
         int A = GetAlpha() + c.GetAlpha();
 
         Color Ret;
@@ -105,9 +105,9 @@ namespace AgmdUtilities
 
     Color Color::operator -(const Color& c) const
     {
-        int R = GetRed()   - c.GetRed();
+        int R = GetRed() - c.GetRed();
         int G = GetGreen() - c.GetGreen();
-        int B = GetBlue()  - c.GetBlue();
+        int B = GetBlue() - c.GetBlue();
         int A = GetAlpha() - c.GetAlpha();
 
         Color Ret;
@@ -118,9 +118,9 @@ namespace AgmdUtilities
 
     Color Color::operator *(float v) const
     {
-        int R = static_cast<int>(GetRed()   * v);
+        int R = static_cast<int>(GetRed() * v);
         int G = static_cast<int>(GetGreen() * v);
-        int B = static_cast<int>(GetBlue()  * v);
+        int B = static_cast<int>(GetBlue() * v);
         int A = static_cast<int>(GetAlpha() * v);
 
         Color Ret;
@@ -131,9 +131,9 @@ namespace AgmdUtilities
 
     const Color& Color::operator *=(float v)
     {
-        int R = static_cast<int>(GetRed()   * v);
+        int R = static_cast<int>(GetRed() * v);
         int G = static_cast<int>(GetGreen() * v);
-        int B = static_cast<int>(GetBlue()  * v);
+        int B = static_cast<int>(GetBlue() * v);
         int A = static_cast<int>(GetAlpha() * v);
 
         SetInt(R, G, B, A);
@@ -158,9 +158,9 @@ namespace AgmdUtilities
 
     Color Color::Modulate(const Color& c) const
     {
-        a_uint8 R = static_cast<a_uint8>(GetRed()   * c.GetRed()   / 255);
+        a_uint8 R = static_cast<a_uint8>(GetRed() * c.GetRed() / 255);
         a_uint8 G = static_cast<a_uint8>(GetGreen() * c.GetGreen() / 255);
-        a_uint8 B = static_cast<a_uint8>(GetBlue()  * c.GetBlue()  / 255);
+        a_uint8 B = static_cast<a_uint8>(GetBlue() * c.GetBlue() / 255);
         a_uint8 A = static_cast<a_uint8>(GetAlpha() * c.GetAlpha() / 255);
 
         return Color(R, G, B, A);
@@ -188,9 +188,9 @@ namespace AgmdUtilities
 
     void Color::ToFloat(float Dest[]) const
     {
-        Dest[0] = GetRed()   / 255.0f;
+        Dest[0] = GetRed() / 255.0f;
         Dest[1] = GetGreen() / 255.0f;
-        Dest[2] = GetBlue()  / 255.0f;
+        Dest[2] = GetBlue() / 255.0f;
         Dest[3] = GetAlpha() / 255.0f;
     }
 
@@ -226,10 +226,9 @@ namespace AgmdUtilities
 
     std::ostream& operator <<(std::ostream& Stream, const Color& color)
     {
-        return Stream << static_cast<int>(color.GetRed())   << " "
-                      << static_cast<int>(color.GetGreen()) << " "
-                      << static_cast<int>(color.GetBlue())  << " "
-                      << static_cast<int>(color.GetAlpha());
+        return Stream << static_cast<int>(color.GetRed()) << " "
+            << static_cast<int>(color.GetGreen()) << " "
+            << static_cast<int>(color.GetBlue()) << " "
+            << static_cast<int>(color.GetAlpha());
     }
-
 }

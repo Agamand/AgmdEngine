@@ -20,7 +20,7 @@ namespace Agmd
         //~AsciEffect();
 
         virtual void Init();
-        virtual void Update( a_uint64 /*t_diff*/);
+        virtual void Update(a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
 
         void SetSpeed(float a);
@@ -28,7 +28,6 @@ namespace Agmd
         Texture m_asciTable;
         float m_speed;
         int m_time;
-
     };
 }
 #endif /*_ASCIEFFECT_H_*/

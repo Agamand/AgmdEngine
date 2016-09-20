@@ -35,12 +35,12 @@ namespace AgmdUtilities
         AssertException(const std::string& file, int line, const std::string& msg);
     };
 
-    #ifdef _DEBUG
-    #   define Assert(condition) if (!(condition)) throw AssertException(__FILE__, __LINE__, "Condition error" #condition)
-    #else
+#ifdef _DEBUG
+#   define Assert(condition) if (!(condition)) throw AssertException(__FILE__, __LINE__, "Condition error" #condition)
+#else
         inline void DoNothing(bool) {}
     #   define Assert(condition) DoNothing(!(condition))
-    #endif
+#endif
 
     struct BadDelete : public Exception
     {
@@ -71,7 +71,6 @@ namespace AgmdUtilities
     {
         ParserFail(const std::string& filename, const std::string& error);
     };
-
 }
 
 #endif //EXCEPTION_H

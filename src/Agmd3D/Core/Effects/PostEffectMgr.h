@@ -31,7 +31,6 @@ namespace Agmd
     private:
         a_vector<PostEffectPtr> m_Effects;
     };
-
 }
 
 #endif /* _POSTEFFECTMGR_H_ */

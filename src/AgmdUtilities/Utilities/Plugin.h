@@ -26,7 +26,6 @@ namespace AgmdUtilities
 
         HMODULE m_Library;
     };
-
 }
 
 

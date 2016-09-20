@@ -2,11 +2,11 @@
 #include "obj_parser.h"
 
 
-int objLoader::load(char *filename)
+int objLoader::load(char* filename)
 {
     int no_error = 1;
     no_error = parse_obj_scene(&data, filename);
-    if(no_error)
+    if (no_error)
     {
         this->vertexCount = data.vertex_count;
         this->normalCount = data.vertex_normal_count;

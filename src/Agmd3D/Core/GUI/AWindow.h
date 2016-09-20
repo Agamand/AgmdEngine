@@ -38,35 +38,34 @@ namespace Agmd
 
         virtual bool In(ivec2& pos_mouse);
 
-        
 
     private:
 
         struct TVertex
         {
-            vec3     Position;
-            a_uint32   Diffuse;
-            vec2     TexCoords0; 
-            vec2     TexCoords1;
-            vec2     TexCoords2;
-            vec2     TexCoords3;
+            vec3 Position;
+            a_uint32 Diffuse;
+            vec2 TexCoords0;
+            vec2 TexCoords1;
+            vec2 TexCoords2;
+            vec2 TexCoords3;
         };
 
         typedef unsigned short TIndex;
 
         void BuildWindow();
-    
 
-        Buffer<TVertex>     m_VertexBuffer;
-        Buffer<TIndex>      m_IndexBuffer;
-        DeclarationPtr      m_Declaration;
-        Texture             m_Texture;
-        Texture             m_Background;
-        BaseShaderProgram*  m_Program;
 
-        bool                hold;
-        bool                extend;
-        Transform*          m_transform;
+        Buffer<TVertex> m_VertexBuffer;
+        Buffer<TIndex> m_IndexBuffer;
+        DeclarationPtr m_Declaration;
+        Texture m_Texture;
+        Texture m_Background;
+        BaseShaderProgram* m_Program;
+
+        bool hold;
+        bool extend;
+        Transform* m_transform;
     };
 }
 

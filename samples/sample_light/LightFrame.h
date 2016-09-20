@@ -1,5 +1,3 @@
-
-
 #ifndef __PLANETFRAME_H__
 #define __PLANETFRAME_H__
 
@@ -7,6 +5,7 @@
 #include <Agmd3D/Core/ShadowMapRenderer.h>
 #include <Core/Camera/Camera.h>
 using namespace Agmd;
+
 class LightFrame : public BaseFrame
 {
 public:
@@ -15,27 +14,29 @@ public:
     }
 
 
-    void setModel(ShadowMapRenderer* model){ 
+    void setModel(ShadowMapRenderer* model)
+    {
         m_model = model;
-        if(!m_model)
+        if (!m_model)
             return;
         wxPropertyGrid* grid = (wxPropertyGrid*)this->FindWindowById(wxID_PROPERTY);
-
     }
-    virtual void OnPropertyChanged( wxPropertyGridEvent& event )
+
+    virtual void OnPropertyChanged(wxPropertyGridEvent& event)
     {
-        if(!m_model)
+        if (!m_model)
             return;
         wxPGProperty* property = event.GetProperty();
 
         wxAny value = property->GetValue();
-        if ( value.IsNull() )
+        if (value.IsNull())
             return;
         // Handle changes in values, as needed
-        if(property==m_bias)
+        if (property == m_bias)
         {
             m_model->SetBias(value.As<float>());
-        }else if(property == m_offset)
+        }
+        else if (property == m_offset)
         {
             m_model->SetOffset(value.As<float>());
         }

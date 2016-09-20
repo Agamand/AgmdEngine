@@ -1,29 +1,29 @@
-
-
-
 template <typename T>
 inline SharedPtr<T>::SharedPtr() :
-m_Data(new T*())
-{}
+    m_Data(new T*())
+{
+}
 
 template <typename T>
 inline SharedPtr<T>::SharedPtr(const SharedPtr<T>& sptrcpy) :
-m_Data(sptrcpy.m_Data)
-{}
+    m_Data(sptrcpy.m_Data)
+{
+}
 
 template <typename T>
 inline SharedPtr<T>::SharedPtr(T* ptr) :
-m_Data(new T*())
+    m_Data(new T*())
 {
     *m_Data = ptr;
 }
 
 template <typename T>
 inline SharedPtr<T>::~SharedPtr()
-{}
+{
+}
 
 template <typename T>
-inline T& SharedPtr<T>::operator * ()
+inline T& SharedPtr<T>::operator *()
 {
     return **m_Data;
 }

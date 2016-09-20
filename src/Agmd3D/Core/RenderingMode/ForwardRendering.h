@@ -34,12 +34,11 @@ namespace Agmd
         Texture getDepthTexture();
         void init();
     private:
-        
+
         FrameBuffer* m_framebuffer;
         RenderBuffer* m_depthbuffer;
         Texture m_textureBuffer[3];
         a_uint32* bufferFlags[2];
-
     };
 }
 

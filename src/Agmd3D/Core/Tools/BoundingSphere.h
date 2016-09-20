@@ -19,26 +19,26 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-
-    class AGMD3D_EXPORT BoundingSphere{
+    class AGMD3D_EXPORT BoundingSphere
+    {
     public:
         BoundingSphere();
         BoundingSphere(const a_vector<vec3>& vertex_pos);
         BoundingSphere(const vec3& min, const vec3& max);
         BoundingSphere(const vec3& center, float radius);
-        
-
-        vec3  GetCenter() const {return m_center;}
-        float GetRadius() const {return m_radius;}
 
 
-        bool IsInFrustrum( Frustum* ft ) const;
+        vec3 GetCenter() const { return m_center; }
+        float GetRadius() const { return m_radius; }
 
-        const BoundingSphere GetTransformedBounding( const mat4& mat ) const;
+
+        bool IsInFrustrum(Frustum* ft) const;
+
+        const BoundingSphere GetTransformedBounding(const mat4& mat) const;
 
     private:
-        vec3  m_center;
+        vec3 m_center;
         float m_radius;
-    }; 
+    };
 }
 #endif /* _BOUNDINGSPHERE_H_ */

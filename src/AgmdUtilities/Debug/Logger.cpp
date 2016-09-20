@@ -22,7 +22,7 @@ namespace AgmdUtilities
         m_File.close();
     }
 
-    void Logger::Log(LogLevel loglevel,const char* format, ...)
+    void Logger::Log(LogLevel loglevel, const char* format, ...)
     {
         char sBuffer[4096];
         va_list params;
@@ -32,7 +32,7 @@ namespace AgmdUtilities
 
         Logger::Instance().Write(sBuffer);
     }
-    
+
     void Logger::Write(const std::string& msg)
     {
         m_File << /*CurrentDate() << CurrentTime() << " " <<*/ msg << "\n";
@@ -54,6 +54,7 @@ namespace AgmdUtilities
 
         return sTime;
     }
+
     std::string Logger::CurrentTime() const
     {
         char sTime[24];

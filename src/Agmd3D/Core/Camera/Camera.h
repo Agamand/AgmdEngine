@@ -19,18 +19,18 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-//     enum TCameraMove
-//     {
-//         MOVE_NONE        = 0x00,
-//         MOVE_FORWARD    = 0x01,
-//         MOVE_BACK        = 0x02,
-//         MOVE_LEFT        = 0x04,
-//         MOVE_RIGHT        = 0x08,
-//         MOVE_UP            = 0x10,
-//         MOVE_DOWN        = 0x20,
-//         ZOOM_IN            = 0x40,
-//         ZOOM_OUT        = 0x80
-//     };
+    //     enum TCameraMove
+    //     {
+    //         MOVE_NONE        = 0x00,
+    //         MOVE_FORWARD    = 0x01,
+    //         MOVE_BACK        = 0x02,
+    //         MOVE_LEFT        = 0x04,
+    //         MOVE_RIGHT        = 0x08,
+    //         MOVE_UP            = 0x10,
+    //         MOVE_DOWN        = 0x20,
+    //         ZOOM_IN            = 0x40,
+    //         ZOOM_OUT        = 0x80
+    //     };
 
 
     enum TCameraProjection
@@ -46,68 +46,74 @@ namespace Agmd
         FLAG_CENTER = 0x4,
         FLAG_IGNORE_RESIZE = 0x8
     };
+
     struct ProjectionOption
     {
-        ProjectionOption(vec2 _size=vec2(),a_uint8 _flags = 0):
-            size(-_size.x,_size.x,-_size.y,_size.y),
+        ProjectionOption(vec2 _size = vec2(), a_uint8 _flags = 0):
+            size(-_size.x, _size.x, -_size.y, _size.y),
             znear(0.01f),
             zfar(1000.f),
             flags(_flags)
-        {}
-        ProjectionOption(vec2 _size,float fov,a_uint8 _flags = 0):
-            size(_size.x,_size.y,fov,0),
+        {
+        }
+
+        ProjectionOption(vec2 _size, float fov, a_uint8 _flags = 0):
+            size(_size.x, _size.y, fov, 0),
             znear(0.01f),
             zfar(1000.f),
             flags(_flags)
-        {}
-        ProjectionOption(vec4 _size,a_uint8 _flags=0):
+        {
+        }
+
+        ProjectionOption(vec4 _size, a_uint8 _flags = 0):
             size(_size),
             znear(0.01f),
             zfar(1000.f),
             flags(_flags)
-        {}
+        {
+        }
+
         vec4 size;
         float znear;
         float zfar;
         a_uint8 flags;
-        
-
     };
 
 
-	class ANode;
+    class ANode;
+
     class AGMD3D_EXPORT Camera
     {
-    friend class CameraNode;
+        friend class CameraNode;
     public:
         //Camera(mat4& projection);
-        Camera(TCameraProjection proj_type,ProjectionOption);
+        Camera(TCameraProjection proj_type, ProjectionOption);
 
-        void setProjection(TCameraProjection proj_type,const ProjectionOption& opt)
+        void setProjection(TCameraProjection proj_type, const ProjectionOption& opt)
         {
             m_projOption = opt;
             m_projType = proj_type;
-            if(m_projType == PROJECTION_PERSPECTIVE)
-                m_transform.m_MatProjection = m_transform.m_MatProjection = glm::perspective(m_projOption.size.z,m_projOption.size.x/m_projOption.size.y,m_projOption.znear,m_projOption.zfar);
-            else m_transform.m_MatProjection = m_transform.m_MatProjection = glm::ortho(m_projOption.size.x,m_projOption.size.y,m_projOption.size.z,m_projOption.size.w,m_projOption.znear,m_projOption.zfar);
+            if (m_projType == PROJECTION_PERSPECTIVE)
+                m_transform.m_MatProjection = m_transform.m_MatProjection = glm::perspective(m_projOption.size.z, m_projOption.size.x / m_projOption.size.y, m_projOption.znear, m_projOption.zfar);
+            else m_transform.m_MatProjection = m_transform.m_MatProjection = glm::ortho(m_projOption.size.x, m_projOption.size.y, m_projOption.size.z, m_projOption.size.w, m_projOption.znear, m_projOption.zfar);
             updateProjection();
-
         }
-        const ProjectionOption& getProjectionOption() const { return m_projOption;}
-        const TCameraProjection getProjectionType() const {return m_projType;}
+
+        const ProjectionOption& getProjectionOption() const { return m_projOption; }
+        const TCameraProjection getProjectionType() const { return m_projType; }
 
         void resize(vec2 newScreen);
         virtual ~Camera();
 
-//         virtual void onUpdate(a_uint64 time_diff) = 0;
-//         virtual void onMouseMotion(int x, int y) = 0;
-//         virtual void onKeyboard(a_char key, bool up) = 0;
-//         virtual void onMouseWheel(float delta) = 0;
-//         virtual void onMouseWheel(bool up){};
-//         virtual const glm::vec3 getPosition() { return _position; }
-//         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
-//         void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
-/*        void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }*/
+        //         virtual void onUpdate(a_uint64 time_diff) = 0;
+        //         virtual void onMouseMotion(int x, int y) = 0;
+        //         virtual void onKeyboard(a_char key, bool up) = 0;
+        //         virtual void onMouseWheel(float delta) = 0;
+        //         virtual void onMouseWheel(bool up){};
+        //         virtual const glm::vec3 getPosition() { return _position; }
+        //         virtual void SetPosition(glm::vec3& pos) { _position = pos; } 
+        //         void getPosition(float &x, float &y, float &z) { x = _position.x; y = _position.y; z = _position.z; }
+        /*        void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x,y,z)); }*/
 
         //virtual void setTarget(glm::vec3& pos) { _target = pos; } 
         //const glm::vec3& getTarget() {return _target;}
@@ -118,49 +124,49 @@ namespace Agmd
         static void setCurrent(Camera* cam, TCamera type = CAMERA_3D);
         static Camera* getCurrent(TCamera type = CAMERA_3D);
         bool unProject(vec3& mousepos);
-        const mat4& getView() { return m_transform.m_MatView; } 
+        const mat4& getView() { return m_transform.m_MatView; }
         const mat4& getProjection() { return m_transform.m_MatProjection; }
         virtual const std::string toString();
         bool isInFrustrum(const BoundingSphere& bounding);
         //void SetRecvInput(bool active = true){    recvInput = active;    }
         //float* GetSpeedPtr(){return &m_speed;}
-        ANode* getNode() { return m_node;}
-		void updateBuffer(mat4& view);
-		 ANode*            m_node;
-		 Frustum* GetFrustrum();
+        ANode* getNode() { return m_node; }
+        void updateBuffer(mat4& view);
+        ANode* m_node;
+        Frustum* GetFrustrum();
 
-         void FreezeFrustrum( bool active );
+        void FreezeFrustrum(bool active);
     protected:
-        
+
         //virtual void updateVector() = 0;
-        
+
         void updateProjection();
 
-		struct CameraBuffer
+        struct CameraBuffer
         {
             mat4 m_MatView;
             mat4 m_MatProjectionView;
             mat4 m_MatProjection;
-			vec4 m_ViewPosition;
+            vec4 m_ViewPosition;
         };
 
-//         float m_speed;
-//         float m_sensivity;
-// 
-//         vec3 move;
-//         a_uint32 moveFlags;
-// 
-//         glm::vec3 _position; 
-//         glm::vec3 _target;
-//         glm::vec3 _forward;
-//         glm::vec3 _left;
+        //         float m_speed;
+        //         float m_sensivity;
+        // 
+        //         vec3 move;
+        //         a_uint32 moveFlags;
+        // 
+        //         glm::vec3 _position; 
+        //         glm::vec3 _target;
+        //         glm::vec3 _forward;
+        //         glm::vec3 _left;
         CameraBuffer m_transform;
-//         float _theta;
-//         float _phi;
-//         bool                recvInput;
-        Frustum*            m_frustum;
+        //         float _theta;
+        //         float _phi;
+        //         bool                recvInput;
+        Frustum* m_frustum;
         Buffer<CameraBuffer> m_cameraBuffer;
-       
+
     private:
         static Camera* s_currentCamera3D;
         static Camera* s_currentCamera2D;

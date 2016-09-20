@@ -13,24 +13,25 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     BlurEffect::BlurEffect(const Texture& depth) :
-    m_depth(depth)
+        m_depth(depth)
     {
         m_program.LoadFromFile("Shader/Effect/blureffect.glsl");
     }
 
     void BlurEffect::Init()
-    {}
+    {
+    }
 
     void BlurEffect::Update(a_uint64 /*t_diff*/)
-    {}
+    {
+    }
 
     void BlurEffect::ApplyEffect(Texture& input, Texture& output)
     {
         Texture::BeginRenderToTexture(output);
         Driver::Get().SetCurrentProgram(m_program.GetShaderProgram());
-        Driver::Get().SetTexture(0,input.GetTexture());
+        Driver::Get().SetTexture(0, input.GetTexture());
         Fast2DSurface::Instance().Draw();
         Driver::Get().SetCurrentProgram(NULL);
         Texture::EndRenderToTexture();
@@ -39,7 +40,7 @@ namespace Agmd
     void BlurEffect::SetNoiseOffset(float a)
     {
         m_program.Enable();
-        m_program.SetParameter("offset",a);
+        m_program.SetParameter("offset", a);
         m_program.Disable();
     }
 }

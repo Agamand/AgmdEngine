@@ -8,16 +8,17 @@ https://github.com/Agamand/AgmdEngine
 
 #include <Core/Resource.h>
 #include <Core/ResourceManager.h>
+
 //#include <Debug/New.h>
 
 
 namespace Agmd
 {
-
     Resource::Resource() :
-    m_Name    (""),
-    m_RefCount(1)
-    {}
+        m_Name(""),
+        m_RefCount(1)
+    {
+    }
 
     Resource::~Resource()
     {
@@ -40,9 +41,8 @@ namespace Agmd
         int RefCount = --m_RefCount;
 
         if (RefCount == 0)
-                delete this;
+            delete this;
 
         return RefCount;
     }
-
 }

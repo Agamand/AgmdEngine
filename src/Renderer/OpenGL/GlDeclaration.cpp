@@ -11,12 +11,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     GLDeclaration::GLDeclaration() : m_Elements(8)
-    {}
+    {
+    }
 
     GLDeclaration::~GLDeclaration()
-    {}
+    {
+    }
 
     void GLDeclaration::AddElement(unsigned int stream, const GLDeclaration::TElement& element)
     {
@@ -27,5 +28,4 @@ namespace Agmd
     {
         return m_Elements[stream];
     }
-
 }

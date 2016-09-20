@@ -18,15 +18,16 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/AgmdApplication.h>
 
 #include <Vector2.h>
+
 namespace Agmd
 {
-
     class AGMD3D_EXPORT InputController : public Controller, public AgmdApplication::InputListener
     {
     public:
-        InputController(): Controller(){};
+        InputController(): Controller()
+        {
+        };
     };
-
 }
 
 

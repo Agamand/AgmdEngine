@@ -17,7 +17,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     class AGMD3D_EXPORT TextureBase : public Resource
     {
     public :
@@ -25,7 +24,7 @@ namespace Agmd
         virtual ~TextureBase();
 
         virtual TTextureType GetType() const = 0;
-    
+
         virtual Image* getPixels() = 0;
 
     protected :
@@ -37,11 +36,10 @@ namespace Agmd
         virtual void updatePixelFromTexture() = 0;
 
         TPixelFormat m_Format;
-        ivec2         m_Size;
-        bool         m_HasMipmaps;
-        bool         m_AutoMipmaps;
+        ivec2 m_Size;
+        bool m_HasMipmaps;
+        bool m_AutoMipmaps;
     };
-
 }
 
 

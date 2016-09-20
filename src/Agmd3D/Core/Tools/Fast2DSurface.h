@@ -24,15 +24,12 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-
-    
-
     class AGMD3D_EXPORT Fast2DSurface : public Singleton<Fast2DSurface>
     {
         MAKE_SINGLETON(Fast2DSurface);
     public:
 
-        
+
         void Draw();
 
     private:
@@ -51,9 +48,9 @@ namespace Agmd
         Fast2DSurface();
         ~Fast2DSurface();
         void Init();
-        DeclarationPtr  m_Declaration;
+        DeclarationPtr m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
-        Buffer<short>  m_IndexBuffer;
+        Buffer<short> m_IndexBuffer;
         Buffer<TMatrixBuffer> m_MatrixBuffer;
     };
 }

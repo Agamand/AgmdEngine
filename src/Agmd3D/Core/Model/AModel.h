@@ -30,11 +30,10 @@ namespace Agmd
     {
     public:
         virtual void Draw(const Transform* transform) const = 0;
-        const BoundingSphere& getBounding() const {return m_bounding;}
+        const BoundingSphere& getBounding() const { return m_bounding; }
     protected:
 
-        BoundingSphere  m_bounding;
-
+        BoundingSphere m_bounding;
     };
 }
 

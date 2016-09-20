@@ -31,7 +31,6 @@ namespace Agmd
 
         ID3D11InputLayout* m_declaration;
     };
-
 }
 
 

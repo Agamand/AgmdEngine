@@ -20,7 +20,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
-
     void Split(const std::string& str, a_vector<std::string>& tokens, const std::string& delim = " \t\n");
 
     std::string ReadFile(const std::string& filename);
@@ -38,9 +37,11 @@ namespace AgmdUtilities
 
         StringBuilder();
 
-        template <typename T> StringBuilder(const T& value);
+        template <typename T>
+        StringBuilder(const T& value);
 
-        template <typename T> StringBuilder& operator ()(const T& value);
+        template <typename T>
+        StringBuilder& operator ()(const T& value);
 
         operator std::string();
 
@@ -55,7 +56,8 @@ namespace AgmdUtilities
 
         StringExtractor(const std::string& txt);
 
-        template <typename T> StringExtractor& operator ()(T& value);
+        template <typename T>
+        StringExtractor& operator ()(T& value);
 
         void ThrowIfEOF();
 
@@ -64,9 +66,7 @@ namespace AgmdUtilities
         std::istringstream m_InStream;
     };
 
-    #include "StringUtils.inl"
-
-
+#include "StringUtils.inl"
 }
 
 

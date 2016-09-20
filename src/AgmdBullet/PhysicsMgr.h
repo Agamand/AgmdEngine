@@ -24,14 +24,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    
     class Entities;
 
     typedef std::vector<Entities*> EntitiesVector;
 
     class PhysicsMgr : public Singleton<PhysicsMgr>
     {
-    MAKE_SINGLETON(PhysicsMgr);
+        MAKE_SINGLETON(PhysicsMgr);
     public:
         PhysicsMgr();
 
@@ -45,7 +44,7 @@ namespace Agmd
 
         a_uint64 GetDT() { return m_uidt; }
 
-        btRigidBody* createRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
+        btRigidBody* createRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape);
 
     private:
         EntitiesVector m_evEntities;
@@ -53,8 +52,6 @@ namespace Agmd
         btScalar m_defaultContactProcessingThreshold;
         a_uint64 m_uidt;
     };
-
 }
 
 #endif
-

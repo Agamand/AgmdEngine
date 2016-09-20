@@ -33,7 +33,8 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-	class ASceneMgr;
+    class ASceneMgr;
+
     class AGMD3D_EXPORT Driver
     {
     public :
@@ -86,7 +87,7 @@ namespace Agmd
         virtual BaseShaderProgram* CreateShaderProgram(BaseShader* vertex, BaseShader* eval, BaseShader* control, BaseShader* geom, BaseShader* frag) const = 0;
 
         virtual FrameBuffer* CreateFrameBuffer() const = 0;
-        
+
         virtual RenderBuffer* CreateRenderBuffer(const ivec2& size, TPixelFormat format) const = 0;
 
         virtual void SetRenderMode(TRenderMode mode) = 0;
@@ -101,24 +102,31 @@ namespace Agmd
 
         virtual void SetCullFace(int face) = 0;
 
-        virtual void drawBoundingBox(const BoundingSphere& bbox,const BaseShaderProgram*) = 0;
+        virtual void drawBoundingBox(const BoundingSphere& bbox, const BaseShaderProgram*) = 0;
 
-        virtual void clear( a_uint32 clear ) = 0;
+        virtual void clear(a_uint32 clear) = 0;
     public :
 
-        template <class T> Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
+        template <class T>
+        Buffer<T> CreateVertexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
-        template <class T> Buffer<T> CreateIndexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
+        template <class T>
+        Buffer<T> CreateIndexBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
-        template <class T> Buffer<T> CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags = 0, const T* data = NULL) const;
+        template <class T>
+        Buffer<T> CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags = 0, const T* data = NULL) const;
 
-        template <class T> Buffer<T> CreateTextureBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
+        template <class T>
+        Buffer<T> CreateTextureBuffer(unsigned long size, unsigned long flags, const T* data = NULL) const;
 
-        template <class T> void SetVertexBuffer(unsigned int stream, const Buffer<T>& buffer, unsigned long minVertex = 0, unsigned long maxVertex = 0);
+        template <class T>
+        void SetVertexBuffer(unsigned int stream, const Buffer<T>& buffer, unsigned long minVertex = 0, unsigned long maxVertex = 0);
 
-        template <class T> void SetIndexBuffer(const Buffer<T>& buffer);
+        template <class T>
+        void SetIndexBuffer(const Buffer<T>& buffer);
 
-        template <std::size_t N> Declaration* CreateVertexDeclaration(const TDeclarationElement (&elt)[N]) const;
+        template <std::size_t N>
+        Declaration* CreateVertexDeclaration(const TDeclarationElement (&elt)[N]) const;
 
         bool HasCapability(TCapability Cap) const;
 
@@ -130,7 +138,6 @@ namespace Agmd
         mat4 GetMatProjection();
         ivec2 GetScreen();
         float GetAspectRatio();
-
 
 
         void SetCamera(Camera* cam);
@@ -165,22 +172,22 @@ namespace Agmd
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const = 0;
 
         virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const = 0;
-        
+
         std::map<TCapability, bool> m_Capabilities;
 
-        a_uint32            m_TextureFlags;
-        ivec2               m_Screen;
-        const Transform*    m_CurrentTransform;
+        a_uint32 m_TextureFlags;
+        ivec2 m_Screen;
+        const Transform* m_CurrentTransform;
 
-        ASceneMgr*           m_ActiveScene;
-        Camera*             m_Camera;
-        Statistics*         m_stats;
+        ASceneMgr* m_ActiveScene;
+        Camera* m_Camera;
+        Statistics* m_stats;
     private :
 
-        static Driver*    s_Instance;
+        static Driver* s_Instance;
     };
-    #include "Driver.inl"
 
+#include "Driver.inl"
 }
 
 

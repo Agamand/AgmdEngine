@@ -10,15 +10,16 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    AWidget::AWidget(AWidget* parent) : 
-    m_wParent(parent)
+    AWidget::AWidget(AWidget* parent) :
+        m_wParent(parent)
     {
-        if(parent)
+        if (parent)
             parent->AddChild(parent);
     }
 
     AWidget::~AWidget()
-    {}
+    {
+    }
 
 
     const ivec2& AWidget::GetAbsPostion()
@@ -34,7 +35,7 @@ namespace Agmd
     void AWidget::SetPosition(const ivec2& pos)
     {
         m_vPosition = pos;
-        if(m_wParent)
+        if (m_wParent)
             m_vAbsolutePosition = m_wParent->m_vAbsolutePosition + pos;
         else m_vAbsolutePosition = pos;
         OnPosChanged();
@@ -42,16 +43,16 @@ namespace Agmd
 
     void AWidget::SetPosition(a_uint32 x, a_uint32 y)
     {
-        SetPosition(ivec2(x,y));
+        SetPosition(ivec2(x, y));
     }
 
     void AWidget::SetSize(const ivec2& size)
     {
         m_vSize = size;
-        if(m_vSize.x < 0)
+        if (m_vSize.x < 0)
             m_vSize.x = 0;
 
-        if(m_vSize.y < 0)
+        if (m_vSize.y < 0)
             m_vSize.y = 0;
 
         OnSizeChanged();
@@ -59,25 +60,25 @@ namespace Agmd
 
     void AWidget::SetSize(a_uint32 x, a_uint32 y)
     {
-        SetSize(ivec2(x,y));
+        SetSize(ivec2(x, y));
     }
 
     void AWidget::AddChild(AWidget* child)
     {
-        if(child != NULL)
+        if (child != NULL)
             m_WidgetChild.push_back(child);
     }
 
     void AWidget::RemoveChild(AWidget* child)
     {
-        if(child == NULL)
+        if (child == NULL)
             return;
 
-        for(a_uint32 i = 0; i < m_WidgetChild.size(); i++)
+        for (a_uint32 i = 0; i < m_WidgetChild.size(); i++)
         {
-            if(m_WidgetChild[i] = child)
+            if (m_WidgetChild[i] = child)
             {
-                m_WidgetChild.erase(m_WidgetChild.begin()+i);
+                m_WidgetChild.erase(m_WidgetChild.begin() + i);
                 child->m_wParent = NULL;
                 child->m_vPosition = child->m_vAbsolutePosition;
                 break;
@@ -87,11 +88,9 @@ namespace Agmd
 
     bool AWidget::In(ivec2& pos)
     {
-
-        if(pos.x < m_vAbsolutePosition.x || pos.y < m_vAbsolutePosition.y || pos.x > (m_vAbsolutePosition.x+m_vSize.x) || pos.y > (m_vAbsolutePosition.y+m_vSize.y) )
+        if (pos.x < m_vAbsolutePosition.x || pos.y < m_vAbsolutePosition.y || pos.x > (m_vAbsolutePosition.x + m_vSize.x) || pos.y > (m_vAbsolutePosition.y + m_vSize.y))
             return false;
 
         return true;
     }
-
 }

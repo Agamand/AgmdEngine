@@ -16,14 +16,15 @@ https://github.com/Agamand/AgmdEngine
 using namespace AgmdMaths;
 
 
-
 namespace Agmd
 {
     class Frustum;
-    class AGMD3D_EXPORT Bounding{
+
+    class AGMD3D_EXPORT Bounding
+    {
     public:
-        virtual const Bounding GetTransformedBounding(const mat4& mat) const {return *this;}
-        virtual bool IsInFrustrum(Frustum* ft) const {return true;}
-    }; 
+        virtual const Bounding GetTransformedBounding(const mat4& mat) const { return *this; }
+        virtual bool IsInFrustrum(Frustum* ft) const { return true; }
+    };
 }
 #endif /* _BOUNDING_H_ */

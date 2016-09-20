@@ -19,34 +19,36 @@ namespace Agmd
     {
     public:
         DrawablePlane(ivec2 pixelSize, vec2 repere);
+
         void addSpline(LineRenderer* render)
         {
             m_render.push_back(render);
         }
 
         void render();
-        const Texture& getTexture(){ return m_texture;}
+        const Texture& getTexture() { return m_texture; }
 
-        virtual void OnClick( int click,int state, const vec2& pos, bool up );
+        virtual void OnClick(int click, int state, const vec2& pos, bool up);
 
-        virtual void OnKey( char key, bool up );
+        virtual void OnKey(char key, bool up);
 
-        virtual void OnMouseMotion( const vec2& pos, const ivec2& posDiff);
+        virtual void OnMouseMotion(const vec2& pos, const ivec2& posDiff);
         void clear();
 
-        virtual void valueUpdate( float value,float cursor );
+        virtual void valueUpdate(float value, float cursor);
         a_vector<LineRenderer*>& getRender()
         {
             return m_render;
         }
+
         vec2 getPositionFromScreenSpace(vec2 pos);
-        vec3* getNearControlPoint( vec4 _pos, int pi, vec3* selectedPoint );
+        vec3* getNearControlPoint(vec4 _pos, int pi, vec3* selectedPoint);
         float degree;
-    private:    
+    private:
         a_vector<vec3> m_bufferPoint;
         ShaderProgram m_renderProgram;
         ivec2 m_pixelSize;
-        vec2  m_repere;
+        vec2 m_repere;
         Texture m_texture;
         FrameBuffer* m_frame;
         a_vector<LineRenderer*> m_render;
@@ -58,12 +60,12 @@ namespace Agmd
         int key;
         bool rightDown;
         a_vector<ASlider*> m_slider;
+
         enum KEY
         {
             CTRL =0x1,
             MAJ =0x2
         };
-        
     };
 }
 #endif /* _DRAWABLEPLANE_H_ */

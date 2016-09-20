@@ -10,6 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _INVERSE_H_
 
 #include <Core/Effects/PostEffect.h>
+
 namespace Agmd
 {
     class AGMD3D_EXPORT Inverse : public PostEffect
@@ -18,10 +19,9 @@ namespace Agmd
         Inverse();
 
         virtual void Init();
-        virtual void Update( a_uint64 /*t_diff*/);
+        virtual void Update(a_uint64 /*t_diff*/);
         virtual void ApplyEffect(Texture& input, Texture& output);
     private:
-
     };
 }
 #endif /* _INVERSE_H_ */

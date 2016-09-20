@@ -65,7 +65,7 @@ protected:
     SceneTree* m_sceneTree;
     ToolBar* m_auiToolBar1;
 
-    // Virtual event handlers, overide them in your derived class
+// Virtual event handlers, overide them in your derived class
     virtual void OnIdle( wxIdleEvent& event ) { event.Skip(); }
     virtual void OnPropertyChanged( wxPropertyGridEvent& event ) { event.Skip(); }
     virtual void onClick( wxCommandEvent& event  );

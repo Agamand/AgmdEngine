@@ -33,7 +33,6 @@ using namespace AgmdMaths;
 
 namespace Agmd
 {
-
     enum GenerateType
     {
         G_NONE = 0x0,
@@ -47,40 +46,39 @@ namespace Agmd
     public :
         struct TVertex
         {
-            vec3     position;
-            vec3     normal;
+            vec3 position;
+            vec3 normal;
             a_uint32 color;
-            vec2     texCoords;
-            vec3     tangent;
-            vec3     binormal;
+            vec2 texCoords;
+            vec3 tangent;
+            vec3 binormal;
         };
+
         typedef unsigned short TIndex;
         Model();
         Model(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
-        Model(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
+        Model(TVertex* vertices, a_uint32 verticesCount, TPrimitiveType type = PT_TRIANGLELIST);
 
         void GenerateBuffer(TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount, TPrimitiveType type = PT_TRIANGLELIST);
-        void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount,TPrimitiveType type = PT_TRIANGLELIST);
+        void GenerateBuffer(TVertex* vertices, a_uint32 verticesCount, TPrimitiveType type = PT_TRIANGLELIST);
         virtual void Draw(const Transform* transform) const;
 
-        void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
-        void setMaxDraw( int param1 );
+        void Export(TVertex*& vertices, TIndex*& index, int& vcount, int& icount);
+        void setMaxDraw(int param1);
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount);
 
 
-        DeclarationPtr  m_Declaration;
+        DeclarationPtr m_Declaration;
         Buffer<TVertex> m_VertexBuffer;
-        Buffer<TIndex>  m_IndexBuffer;
-        TPrimitiveType  m_PrimitiveType;
-        bool            m_indexed;
-        int             m_maxDraw;
-
+        Buffer<TIndex> m_IndexBuffer;
+        TPrimitiveType m_PrimitiveType;
+        bool m_indexed;
+        int m_maxDraw;
     };
 
     typedef SmartPtr<Model, ResourceCOM> TModelPtr;
-
 }
 
 

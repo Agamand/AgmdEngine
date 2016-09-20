@@ -42,9 +42,6 @@
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\Plugin.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.cpp">
       <Filter>Utilities\TinyXml</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Util.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\XmlParser.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinystr.h">

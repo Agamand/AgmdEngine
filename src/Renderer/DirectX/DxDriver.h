@@ -21,13 +21,12 @@ https://github.com/Agamand/AgmdEngine
 #include <Container/Vector.h>
 #include <windows.h>
 #include <windowsx.h>
+#include <dxgi.h>
 #include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dx10.h>
+#include <d3dtypes.h>
+
 
 #pragma comment (lib, "x86/d3d11.lib")
-#pragma comment (lib, "x86/d3dx11.lib")
-#pragma comment (lib, "x86/d3dx10.lib")
 
 
 namespace Agmd

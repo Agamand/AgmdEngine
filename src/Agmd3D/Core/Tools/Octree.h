@@ -142,7 +142,7 @@ namespace Agmd
 			std::stack<OcTree<T>*> stack;
 			if(!m_top)
 			{
-				float size = NearestPowerOfTwo(length(bsphere.GetRadius()+bsphere.GetCenter()));
+				float size = (float)NearestPowerOfTwo(length(bsphere.GetRadius()+bsphere.GetCenter()));
 				OcTree<T>* t = Allocate();
 				*t = OcTree<T>(this,BoundingBox(vec3(-size,-size,-size),vec3(size,size,size)));
 				m_top = t;

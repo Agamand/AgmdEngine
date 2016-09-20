@@ -12,9 +12,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Buffer/BaseBuffer.h>
 #include <Renderer/DirectX/DxEnums.h>
 #include <Debug/Profiler.h>
+#include <dxgi.h>
 #include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dx10.h>
 namespace Agmd
 {
     template <int bufferCount>

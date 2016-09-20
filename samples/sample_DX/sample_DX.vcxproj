@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AgmdMaths.lib;AgmdUtilities.lib;Agmd3D.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\wxwidget\lib\vc_dll;$(SolutionDir)\..\bin\$(Configuration)_$(Platform)\;$(SolutionDir)\..\lib\Cg;$(SolutionDir)\..\lib\Glew32;$(SolutionDir)\..\lib\DevIL;$(SolutionDir)\..\lib\Bullet;$(SolutionDir)\..\lib\libnoise;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

@@ -26,10 +26,11 @@ public:
     CThreadPool(a_uint32 poolSize = 4);
     //void init();
     void start();
-	template<class J>
-    void AddJob(J&& j);
-    Mutex& GetMutex() {return m_mutex;}
+	template<typename T>
+    void AddJobToPool(const T& functor);
 
+    Mutex& GetMutex() {return m_mutex;}
+	void WaitQueue();
     friend class IThread;
 private:
     std::queue<std::function<void()>> m_jobs;
@@ -88,11 +89,31 @@ void CThreadPool::start()
         m_threads[i].Init();
     }
 }
-template<class Job>
-void CThreadPool::AddJob( Job&& job )
+inline void CThreadPool::WaitQueue()
 {
-    m_mutex.Lock();
-    m_jobs.push(job);
-    m_mutex.Unlock();
+	
+	while (true)
+	{
+		//if
+
+		//get next jobs
+		m_mutex.Lock();
+		if (m_jobs.empty())
+		{
+			m_mutex.Unlock();
+			return;
+		}
+		m_mutex.Unlock();
+		Sleep(1000);
+	}
 }
+
 #endif
+
+template<typename T>
+inline void CThreadPool::AddJobToPool(const T & functor)
+{
+	m_mutex.Lock();
+	m_jobs.push(functor);
+	m_mutex.Unlock();
+}

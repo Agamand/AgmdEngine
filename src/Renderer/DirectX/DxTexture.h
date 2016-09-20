@@ -12,9 +12,8 @@ https://github.com/Agamand/AgmdEngine
 #include <Core/Texture/TextureBase.h>
 #include <CommonDefines.h>
 
+#include <dxgi.h>
 #include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dx10.h>
 
 namespace Agmd
 {

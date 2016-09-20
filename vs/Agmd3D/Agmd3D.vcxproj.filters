@@ -546,7 +546,6 @@
     <None Include="..\..\src\Agmd3D\Core\Driver.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
     <None Include="..\..\src\Agmd3D\Core\Tools\Octree.inl">
       <Filter>Core\Tools</Filter>
     </None>

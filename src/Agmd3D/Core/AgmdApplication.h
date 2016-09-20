@@ -167,7 +167,7 @@ namespace Agmd{
         a_uint32 getDeltaTime(){return m_deltaTime;}
 		ADriverType GetDriverType(){ return m_driverType;}
 
-		static void Render(ARenderQueue* q);
+		static void Render(ARenderQueue& q);
 		static void UpdateTransform();
 		static void UpdateScript(a_uint32 time);
 		static void UpdateBounds();

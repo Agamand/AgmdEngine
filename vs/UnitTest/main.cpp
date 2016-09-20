@@ -5,6 +5,7 @@
 #include <vector>
 
 
+#include <Thread\ThreadPool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -65,7 +66,6 @@ struct A
 int main(int _a, char** _b)
 {
 
-    A a;
     //MemPoolAllocator<int> allocator;
     
     //int*& i = allocator.Allocate();
@@ -85,7 +85,13 @@ int main(int _a, char** _b)
     int *& test = c;*/ 
 
    // system("pause");
-    
+	CThreadPool pool;
+	pool.start();
+	int a = 1;
+	pool.AddJobToPool([&a]() {a = a + 1;});
+	pool.AddJobToPool([&a]() {a = a + 1;});
+
+	pool.WaitQueue();
     assert(v==0);
     return v;
 }

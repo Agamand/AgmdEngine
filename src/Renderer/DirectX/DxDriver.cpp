@@ -277,7 +277,8 @@ namespace Agmd
 
     void DXDriver::InitScene()
     {
-        m_deviceContext->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.0f, 0.2f, 0.4f, 1.0f));
+		const float colors[] = {0.0f, 0.2f, 0.4f, 1.0f };
+        m_deviceContext->ClearRenderTargetView(backbuffer, colors);
 		m_deviceContext->ClearDepthStencilView(depthStencilView,  D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0 );
     }
 

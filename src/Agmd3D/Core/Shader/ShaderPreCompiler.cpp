@@ -29,7 +29,7 @@ namespace Agmd
         try
         {
         
-            while (stream.read(&cbuffer,1) > 0)
+            while (stream.read(&cbuffer,1))
             {
                 std::string instruction = "";
                 std::string value = "";
@@ -37,10 +37,10 @@ namespace Agmd
                 switch(cbuffer)
                 {
                 case '#':
-                    while(stream.read(&cbuffer,1) > 0 && cbuffer != ' ')
+                    while(stream.read(&cbuffer,1)  && cbuffer != ' ')
                         instruction += cbuffer;
 
-                    while(stream.read(&cbuffer,1) > 0 && cbuffer != '\n')
+                    while(stream.read(&cbuffer,1)  && cbuffer != '\n')
                         value += cbuffer;
 
                     value += '\n';
@@ -66,7 +66,7 @@ namespace Agmd
                     continue;
                 default:
                     buffer << cbuffer;
-                    while(stream.read(&cbuffer,1) > 0  && cbuffer != '\n')
+                    while(stream.read(&cbuffer,1)   && cbuffer != '\n')
                         buffer <<cbuffer;
 
                     buffer << '\n';

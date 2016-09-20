@@ -55,7 +55,6 @@
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxml.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxmlparser.cpp" />
-    <ClCompile Include="..\..\src\AgmdUtilities\Utilities\XmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\AgmdUtilities\Allocator\Allocator.h" />
@@ -87,7 +86,6 @@
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\TinyXml\tinyxml.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Typelist.h" />
     <ClInclude Include="..\..\src\AgmdUtilities\Utilities\Util.h" />
-    <ClInclude Include="..\..\src\AgmdUtilities\Utilities\XmlParser.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\AgmdUtilities\Allocator\DefaultAllocator.inl" />

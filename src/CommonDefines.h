@@ -10,7 +10,7 @@ https://github.com/Agamand/AgmdEngine
 #define _COMMOMDEFINES_H_
 
 #define ENGINE_REV      3
-#define ENGINE_NAME     L"AgmdEngine"
+#define ENGINE_NAME     "AgmdEngine"
 #define ENGINE_STATE    "Alpha"
 
 #define AGMD_MAJOR      0

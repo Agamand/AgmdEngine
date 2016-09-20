@@ -11,12 +11,11 @@ https://github.com/Agamand/AgmdEngine
 #endif
 #ifdef USE_WX
 #include "wx/wxprec.h"
-#include "wx/wxprec.h"
 #ifndef WX_PRECOMP
 #include "wx/wx.h"
 #endif
 #endif // USE_WX
-
+//#define MULTITHREADING
 
 #include <Core/SceneMgr/ASceneMgr.h>
 #include <Core/AgmdApplication.h>
@@ -427,9 +426,10 @@ namespace Agmd
 		m_renderQueuePool = new ARenderQueue[2];
 		m_renderQueue[0] = m_renderQueuePool;
 		m_renderQueue[1] = m_renderQueuePool + 1;
-		//m_threadPool->start();
-		//m_threadPool->AddJobToPool(UpdateJob);
-
+#ifdef MULTITHREADING
+		m_threadPool->start();
+		m_threadPool->AddJobToPool(UpdateJob);
+#endif
 		MainLoop();
 #endif
 	}
@@ -486,7 +486,9 @@ namespace Agmd
 			}
 			else
 			{
+#ifndef MULTITHREADING
 				UpdateAndRender();
+#endif
 				//draw();
 
 

@@ -187,7 +187,7 @@ namespace Agmd
     {
         Logger::Instance().SetFilename("OpenGL");
 
-        /*PIXELFORMATDESCRIPTOR PixelDescriptor = 
+        PIXELFORMATDESCRIPTOR PixelDescriptor = 
         { 
             sizeof(PIXELFORMATDESCRIPTOR),   // size of this pfd 
             1,                               // version number 
@@ -218,7 +218,7 @@ namespace Agmd
         // Create Temp Glcontext for loading extentions
         m_Context = wglCreateContext(m_Handle);
         assert(wglMakeCurrent(m_Handle, m_Context));
-        */
+        
         int attribs[] =
         {
             WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
@@ -232,7 +232,7 @@ namespace Agmd
         LOAD_EXTENSION(wglCreateContextAttribsARB);
         
         //Recreate a real GlContext (if possible)
-        /*if(wglCreateContextAttribsARB)
+        if(wglCreateContextAttribsARB)
         { 
             
             HGLRC temp =  wglCreateContextAttribsARB(m_Handle,0,attribs);
@@ -241,13 +241,13 @@ namespace Agmd
             m_Context = temp;
             assert(wglMakeCurrent(m_Handle, m_Context));
 
-        }*/
-        LoadExtensions();
-        //ShowWindow(m_Hwnd, SW_NORMAL);
-        //UpdateWindow(m_Hwnd);
-        //SetFocus(m_Hwnd);
-        // Load extensions
+        }
         
+        ShowWindow(m_Hwnd, SW_NORMAL);
+        UpdateWindow(m_Hwnd);
+        SetFocus(m_Hwnd);
+        // Load extensions
+        LoadExtensions();
 
         // Get Supported extensions
         int n;
@@ -261,7 +261,7 @@ namespace Agmd
 
         // Default states
         //glClearColor(0.0f,0.0f,0.0f,0);
-        glClearColor(0.5f,0.5f,0.5f,0);
+        glClearColor(0.0f,0.2f,0.4f,1.0f);
         glClearDepth(1.0f);
         glDepthFunc(GL_LESS);
         glDepthRange(0.0, 1.0);

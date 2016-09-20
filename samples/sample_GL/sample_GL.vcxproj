@@ -18,7 +18,7 @@
     <ClInclude Include="App.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{78E20B08-CFB7-4D56-9CF8-4D79522660D3}</ProjectGuid>
+    <ProjectGuid>{CA725857-7E42-4480-BF1D-33F3568B78B2}</ProjectGuid>
     <RootNamespace>sample_reflexion</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>

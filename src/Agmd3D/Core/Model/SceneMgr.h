@@ -34,6 +34,7 @@ namespace Agmd
         void FindVisible(RenderQueue&,a_vector<LightNode*>&);
 
         void AddNode(SceneNode *node); // add to root
+		void RemoveNode(SceneNode *node);
 
         const a_vector<Light*>& GetLights();
         const a_vector<LightNode*>& GetLightNodes();

@@ -47,7 +47,7 @@ target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxexpat.lib de
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_propgrid.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_propgrid.lib)
 target_link_libraries(Agmd3D optimized ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30u_aui.lib debug ${WXWIDGET_DIR}/lib/vc_dll/wxmsw30ud_aui.lib)
 
-target_link_libraries(Agmd3D optimized ${FBX_DIR}/lib/vs2012/x86/release/libfbxsdk.lib debug ${FBX_DIR}/lib/vs2012/x86/debug/libfbxsdk.lib)
+target_link_libraries(Agmd3D optimized ${FBX_DIR}/lib/vs2013/x86/release/libfbxsdk.lib debug ${FBX_DIR}/lib/vs2013/x86/debug/libfbxsdk.lib)
 
 
 #target_link_libraries(Agmd3D ${WXWIDGET_DIR}/lib/vc_dll/winmm.lib)

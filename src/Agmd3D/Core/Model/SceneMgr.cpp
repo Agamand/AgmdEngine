@@ -60,6 +60,11 @@ namespace Agmd
         m_root->addChild(node);
     }
 
+	void SceneMgr::RemoveNode(SceneNode *node)
+	{
+		m_root->removeChild(node);
+	}
+
     const a_vector<Light*>& SceneMgr::GetLights()
     {
         return m_light;

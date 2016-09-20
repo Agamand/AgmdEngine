@@ -65,10 +65,16 @@ namespace Agmd
 
         void Export(TVertex*& vertices,TIndex*& index,int& vcount,int& icount);
         void setMaxDraw( int param1 );
+		Buffer<Model::TVertex> GetVertexBuffer(){
+			return m_VertexBuffer;
+		}
+		Buffer<Model::TIndex> GetIndexBuffer(){
+			return m_IndexBuffer;
+		}
     protected:
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount, TIndex* indices, unsigned long indicesCount);
         void Generate(GenerateType type, TVertex* vertices, unsigned long verticesCount);
-
+		
 
         DeclarationPtr  m_Declaration;
         Buffer<TVertex> m_VertexBuffer;

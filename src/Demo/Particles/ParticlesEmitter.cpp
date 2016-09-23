@@ -125,7 +125,7 @@ void ParticlesEmitter::Init(int particlesCount)
         {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT1}
     };
     Driver& driver = Driver::Get();
-    m_declaration = driver.CreateVertexDeclaration(Elements);
+    m_declaration = driver.CreateVertexDeclaration(Elements, sizeof(float));
 
 
     float* buffer = new float[particlesCount];

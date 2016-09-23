@@ -47,7 +47,7 @@ namespace Agmd
 
         m_VertexBuffer = render.CreateVertexBuffer<TVertex>(sizeof(_vertex),0, _vertex);
         m_IndexBuffer = render.CreateIndexBuffer<short>(sizeof(_index), 0, _index);
-        m_Declaration  = render.CreateVertexDeclaration(Elements);
+        m_Declaration  = render.CreateVertexDeclaration(Elements,sizeof(TVertex));
     }
 
     void Fast2DSurface::Draw()

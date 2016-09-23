@@ -171,7 +171,7 @@ namespace Agmd
             {vec2(1.0f,0.75f),    vec2(0.0f,0.0f),  vec2(0.0f,0.0f),  vec2(0.0f,0.0f)}
         };
 
-        m_Declaration = Driver::Get().CreateVertexDeclaration(Decl);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(Decl,sizeof(TVertex));
 
         a_vector<TVertex> vertices;
         a_vector<TIndex> indices;

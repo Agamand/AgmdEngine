@@ -59,9 +59,9 @@ inline void Driver::SetIndexBuffer(const Buffer<T>& buffer)
 }
 
 template <std::size_t N>
-Declaration* Driver::CreateVertexDeclaration(const TDeclarationElement (&elt)[N]) const
+Declaration* Driver::CreateVertexDeclaration(const TDeclarationElement (&elt)[N], a_uint32 stride) const
 {
-    return CreateDeclaration(elt, N);
+    return CreateDeclaration(elt, N, stride,);
 }
 
 inline void Driver::SetCurrentTransform(const Transform* transform)

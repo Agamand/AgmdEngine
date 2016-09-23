@@ -119,7 +119,7 @@ namespace Agmd
 
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const;
 
-        virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const;
+        virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count, BaseBuffer* buffer, a_uint32 stride) const;
 
     private :
 

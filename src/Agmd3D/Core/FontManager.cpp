@@ -41,7 +41,7 @@ namespace Agmd
             {0, ELT_USAGE_TEXCOORD0,    ELT_TYPE_FLOAT2}
         };
 
-        m_Declaration = Driver::Get().CreateVertexDeclaration(decl);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(decl,sizeof(FontManager::TVertex));
     }
 
     void FontManager::UnloadFonts()

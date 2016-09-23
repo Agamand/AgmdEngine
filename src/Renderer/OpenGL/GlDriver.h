@@ -9,10 +9,10 @@ https://github.com/Agamand/AgmdEngine
 #ifndef _GLRENDERER_H_
 #define _GLRENDERER_H_
 
-#include <Config\Fwd.h>
+#include <Config/Fwd.h>
 #include <Renderer/OpenGL/Config.h>
 #include <Core/Driver.h>
-#include <Renderer\OpenGL\GlBuffer.h>
+#include <Renderer/OpenGL\GlBuffer.h>
 #include <Renderer\OpenGL\GlDeclaration.h>
 #include <Renderer\OpenGL\GlShaderProgram.h>
 #include <Renderer\OpenGL\GlEnums.h>
@@ -20,7 +20,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Utilities/Singleton.h>
 #include <Container/Vector.h>
 #include <windows.h>
-#include <gl/GL.h>
 #include <gl/glext.h>
 #include <gl/wglew.h>
 
@@ -181,8 +180,11 @@ namespace Agmd
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTUREPROC              glFramebufferTexture;
         OPENGL_EXPORT static PFNGLFRAMEBUFFERTEXTURE2DPROC            glFramebufferTexture2D;
         static PFNGLFRAMEBUFFERTEXTURE3DPROC                          glFramebufferTexture3D;
-        static PFNGLCHECKFRAMEBUFFERSTATUSPROC                          glCheckFramebufferStatus;
-        static PFNGLDELETEFRAMEBUFFERSPROC                              glDeleteFramebuffers;
+        static PFNGLCHECKFRAMEBUFFERSTATUSPROC                        glCheckFramebufferStatus;
+        static PFNGLDELETEFRAMEBUFFERSPROC                            glDeleteFramebuffers;
+        static PFNGLGENVERTEXARRAYSPROC                               glGenVertexArrays;
+        static PFNGLBINDVERTEXARRAYPROC                               glBindVertexArray;
+        static PFNGLDELETEVERTEXARRAYSPROC                            glDeteVertexArrays;
         
         //CONTEXT
 
@@ -203,7 +205,7 @@ namespace Agmd
 
         virtual BaseBuffer* CreateTB(unsigned long size, unsigned long stride, unsigned long flags) const;
 
-        virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count) const;
+        virtual Declaration* CreateDeclaration(const TDeclarationElement* elt, std::size_t count, BaseBuffer* buffer) const;
 
     private :
 

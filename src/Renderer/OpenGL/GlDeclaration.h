@@ -30,17 +30,18 @@ namespace Agmd
         typedef a_vector<TElement>      TElementArray;
         typedef a_vector<TElementArray> TElementMatrix;
 
-        GLDeclaration();
+        GLDeclaration(a_uint32 vaoID);
 
         ~GLDeclaration();
 
         void AddElement(unsigned int stream, const TElement& element);
 
         const TElementArray& GetStreamElements(unsigned int stream) const;
-
+        const a_uint32 GetVertexArray() const;
     private :
 
         TElementMatrix m_Elements;
+        a_uint32 m_vertexArray; // contains vertex definition
     };
 
 }

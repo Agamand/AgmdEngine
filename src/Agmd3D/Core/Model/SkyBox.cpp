@@ -87,7 +87,7 @@ namespace Agmd
             {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3}
         };
 
-        m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(Elements, sizeof(TVertex));
 
         m_VertexBuffer = Driver::Get().CreateVertexBuffer(4*6,0,vertex);
         m_IndexBuffer = Driver::Get().CreateIndexBuffer(6*6,0,&indices[0]);

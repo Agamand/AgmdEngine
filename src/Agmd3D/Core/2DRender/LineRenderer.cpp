@@ -11,7 +11,7 @@ namespace Agmd
             {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3}
         };
         Driver& driver = Driver::Get();
-        m_declaration = driver.CreateVertexDeclaration(elements);
+        m_declaration = driver.CreateVertexDeclaration(elements,sizeof(glm::vec3));
         a_vector<vec3> &points = spline->getComputedPoints();
         a_vector<vec3> &points_control = spline->getControlPoints();
         if(points.size())

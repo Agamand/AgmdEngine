@@ -97,7 +97,7 @@ namespace Agmd
 //         m_VertexBuffer.Release();
 //         m_IndexBuffer.Release();
         if(!m_Declaration)
-            m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+            m_Declaration = Driver::Get().CreateVertexDeclaration(Elements, sizeof(TVertex));
 
         m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
         m_IndexBuffer  = Driver::Get().CreateIndexBuffer(indicesCount, 0, indices);
@@ -119,7 +119,7 @@ namespace Agmd
             {0, ELT_USAGE_BINORMAL,     ELT_TYPE_FLOAT3}
 
         };
-        m_Declaration = Driver::Get().CreateVertexDeclaration(Elements);
+        m_Declaration = Driver::Get().CreateVertexDeclaration(Elements, sizeof(TVertex));
 
         m_VertexBuffer = Driver::Get().CreateVertexBuffer(verticesCount, 0, vertices);
     }

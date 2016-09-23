@@ -41,7 +41,7 @@ namespace AgmdUtilities
         a_uint8 GetBlue() const;
 
         void SetFloats(float r, float g, float b, float a = 1.0f);
- 
+
         void Set(a_uint8 r, a_uint8 g, a_uint8 b, a_uint8 a = 0xFF);
 
         void ToFloat(float Dest[]) const;
@@ -85,7 +85,6 @@ namespace AgmdUtilities
 
         unsigned long m_Color;
     };
-
 }
 
 

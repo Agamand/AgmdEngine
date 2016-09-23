@@ -26,7 +26,6 @@ https://github.com/Agamand/AgmdEngine
 #include <Debug/New.h>
 
 
-
 SINGLETON_IMPL(Agmd::GLDriver)
 
 using namespace AgmdUtilities;
@@ -44,7 +43,8 @@ namespace Agmd
         Driver::Destroy();
     }
 
-    template <class T> inline void LoadExtension(T& proc, const char* name)
+    template <class T>
+    inline void LoadExtension(T& proc, const char* name)
     {
         proc = reinterpret_cast<T>(wglGetProcAddress(name));
         if (nullptr == proc)
@@ -53,103 +53,104 @@ namespace Agmd
             Logger::Log(LogLevel::LOGERROR, log.c_str());
         }
     }
+
 #define LOAD_EXTENSION(Ext) LoadExtension(Ext, #Ext)
 
 #define BUFFER_OFFSET(n) ((byte*)NULL + (n))
 
 
-    PFNGLGETSTRINGIPROC                 GLDriver::glGetStringi;
-    PFNGLBINDBUFFERPROC                 GLDriver::glBindBuffer;
-    PFNGLDELETEBUFFERSPROC              GLDriver::glDeleteBuffers;
-    PFNGLGENBUFFERSPROC                 GLDriver::glGenBuffers;
-    PFNGLBUFFERDATAPROC                 GLDriver::glBufferData;
-    PFNGLBUFFERSUBDATAPROC              GLDriver::glBufferSubData;
-    PFNGLGETBUFFERSUBDATAPROC           GLDriver::glGetBufferSubData;
-    PFNGLMAPBUFFERPROC                  GLDriver::glMapBuffer;
-    PFNGLMAPBUFFERRANGEPROC             GLDriver::glMapBufferRange;
-    PFNGLUNMAPBUFFERPROC                GLDriver::glUnmapBuffer;
-    PFNGLDELETESYNCPROC                 GLDriver::glDeleteSync;
-    PFNGLGETSYNCIVPROC                  GLDriver::glGetSynciv;
-    PFNGLWAITSYNCPROC                   GLDriver::glWaitSync;
-    PFNGLCLIENTWAITSYNCPROC             GLDriver::glClientWaitSync;
-    PFNGLFENCESYNCPROC                  GLDriver::glFenceSync;
-    PFNGLACTIVETEXTUREPROC              GLDriver::glActiveTexture;
-    PFNGLCLIENTACTIVETEXTUREPROC        GLDriver::glClientActiveTexture;
-    PFNGLCOMPRESSEDTEXIMAGE2DPROC       GLDriver::glCompressedTexImage2D;
-    PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC    GLDriver::glCompressedTexSubImage2D;
-    PFNGLPATCHPARAMETERIPROC            GLDriver::glPatchParameteri;
-    PFNGLGENPROGRAMPIPELINESPROC        GLDriver::glGenProgramPipelines;
-    PFNGLBINDPROGRAMPIPELINEPROC        GLDriver::glBindProgramPipelines;
-    PFNGLCREATEPROGRAMPROC              GLDriver::glCreateProgram;
-    PFNGLDELETEPROGRAMPROC              GLDriver::glDeleteProgram;
-    PFNGLCREATESHADERPROC               GLDriver::glCreateShader;
-    PFNGLDELETESHADERPROC               GLDriver::glDeleteShader;
-    PFNGLSHADERSOURCEPROC               GLDriver::glShaderSource;
-    PFNGLCOMPILESHADERPROC              GLDriver::glCompileShader;
-    PFNGLGETSHADERIVPROC                GLDriver::glGetShaderiv;
-    PFNGLGETSHADERINFOLOGPROC           GLDriver::glGetShaderInfoLog;
-    PFNGLATTACHSHADERPROC               GLDriver::glAttachShader;
-    PFNGLLINKPROGRAMPROC                GLDriver::glLinkProgram;
-    PFNGLVALIDATEPROGRAMPROC            GLDriver::glValidateProgram;
-    PFNGLGETPROGRAMIVPROC               GLDriver::glGetProgramiv;
-    PFNGLGETPROGRAMINFOLOGPROC          GLDriver::glGetProgramInfoLog;
-    PFNGLGETACTIVEUNIFORMSIVPROC        GLDriver::glGetActiveUniformsiv;
-    PFNGLGETACTIVEUNIFORMNAMEPROC       GLDriver::glGetActiveUniformName;
-    PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC  GLDriver::glGetActiveUniformBlockName;
-    PFNGLGETACTIVEUNIFORMBLOCKIVPROC    GLDriver::glGetActiveUniformBlockiv;
-    PFNGLGETINTEGERI_VPROC              GLDriver::glGetIntegeri_v;
-    PFNGLGETACTIVEUNIFORMPROC           GLDriver::glGetActiveUniform;
-    PFNGLGETUNIFORMLOCATIONPROC         GLDriver::glGetUniformLocation;
-    PFNGLGETACTIVEATTRIBPROC            GLDriver::glGetActiveAttrib;
-    PFNGLGETATTRIBLOCATIONPROC          GLDriver::glGetAttribLocation;
-    PFNGLGETACTIVEUNIFORMBLOCKIVPROC    GLDriver::glGetActiveUniformBlock;
-    PFNGLGETUNIFORMBLOCKINDEXPROC       GLDriver::glGetUniformBlockIndex;
-    PFNGLUNIFORMBLOCKBINDINGPROC        GLDriver::glUniformBlockBinding;
-    PFNGLBINDBUFFERBASEPROC             GLDriver::glBindBufferBase;
-    PFNGLUSEPROGRAMPROC                 GLDriver::glUseProgram;
-    PFNGLUNIFORM1IPROC                  GLDriver::glUniform1i;
-    PFNGLUNIFORM2IPROC                  GLDriver::glUniform2i;
-    PFNGLUNIFORM3IPROC                  GLDriver::glUniform3i;
-    PFNGLUNIFORM4IPROC                  GLDriver::glUniform4i;
-    PFNGLUNIFORM1FPROC                  GLDriver::glUniform1f;
-    PFNGLUNIFORM2FPROC                  GLDriver::glUniform2f;
-    PFNGLUNIFORM3FPROC                  GLDriver::glUniform3f;
-    PFNGLUNIFORM4FPROC                  GLDriver::glUniform4f;
-    PFNGLUNIFORM4FVPROC                 GLDriver::glUniform1fv;
-    PFNGLUNIFORM4FVPROC                 GLDriver::glUniform2fv;
-    PFNGLUNIFORM4FVPROC                 GLDriver::glUniform3fv;
-    PFNGLUNIFORM4FVPROC                 GLDriver::glUniform4fv;
-    PFNGLUNIFORMMATRIX2FVPROC           GLDriver::glUniformMatrix2fv;
-    PFNGLUNIFORMMATRIX3FVPROC           GLDriver::glUniformMatrix3fv;
-    PFNGLUNIFORMMATRIX4FVPROC           GLDriver::glUniformMatrix4fv;
-    PFNGLVERTEXATTRIB1FNVPROC           GLDriver::glVertexAttrib1f;
-    PFNGLVERTEXATTRIB2FNVPROC           GLDriver::glVertexAttrib2f;
-    PFNGLVERTEXATTRIB3FNVPROC           GLDriver::glVertexAttrib3f;
-    PFNGLVERTEXATTRIB4FNVPROC           GLDriver::glVertexAttrib4f;
-    PFNGLVERTEXATTRIBPOINTERPROC        GLDriver::glVertexAttribPointer;
-    PFNGLENABLEVERTEXATTRIBARRAYPROC    GLDriver::glEnableVertexAttribArray;
-    PFNGLDISABLEVERTEXATTRIBARRAYPROC   GLDriver::glDisableVertexAttribArray;
-    PFNGLBINDATTRIBLOCATIONPROC         GLDriver::glBindAttribLocation;
-    PFNGLGENRENDERBUFFERSPROC           GLDriver::glGenRenderbuffers;
-    PFNGLDELETERENDERBUFFERSPROC        GLDriver::glDeleteRenderbuffers;
-    PFNGLBINDRENDERBUFFERPROC           GLDriver::glBindRenderbuffer;
-    PFNGLRENDERBUFFERSTORAGEPROC        GLDriver::glRenderbufferStorage;
-    PFNGLGENFRAMEBUFFERSPROC            GLDriver::glGenFramebuffers;
-    PFNGLDELETEFRAMEBUFFERSPROC         GLDriver::glDeleteFramebuffers;
-    PFNGLBINDFRAMEBUFFERPROC            GLDriver::glBindFramebuffer;
-    PFNGLDRAWBUFFERSPROC                GLDriver::glDrawBuffers;
+    PFNGLGETSTRINGIPROC GLDriver::glGetStringi;
+    PFNGLBINDBUFFERPROC GLDriver::glBindBuffer;
+    PFNGLDELETEBUFFERSPROC GLDriver::glDeleteBuffers;
+    PFNGLGENBUFFERSPROC GLDriver::glGenBuffers;
+    PFNGLBUFFERDATAPROC GLDriver::glBufferData;
+    PFNGLBUFFERSUBDATAPROC GLDriver::glBufferSubData;
+    PFNGLGETBUFFERSUBDATAPROC GLDriver::glGetBufferSubData;
+    PFNGLMAPBUFFERPROC GLDriver::glMapBuffer;
+    PFNGLMAPBUFFERRANGEPROC GLDriver::glMapBufferRange;
+    PFNGLUNMAPBUFFERPROC GLDriver::glUnmapBuffer;
+    PFNGLDELETESYNCPROC GLDriver::glDeleteSync;
+    PFNGLGETSYNCIVPROC GLDriver::glGetSynciv;
+    PFNGLWAITSYNCPROC GLDriver::glWaitSync;
+    PFNGLCLIENTWAITSYNCPROC GLDriver::glClientWaitSync;
+    PFNGLFENCESYNCPROC GLDriver::glFenceSync;
+    PFNGLACTIVETEXTUREPROC GLDriver::glActiveTexture;
+    PFNGLCLIENTACTIVETEXTUREPROC GLDriver::glClientActiveTexture;
+    PFNGLCOMPRESSEDTEXIMAGE2DPROC GLDriver::glCompressedTexImage2D;
+    PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC GLDriver::glCompressedTexSubImage2D;
+    PFNGLPATCHPARAMETERIPROC GLDriver::glPatchParameteri;
+    PFNGLGENPROGRAMPIPELINESPROC GLDriver::glGenProgramPipelines;
+    PFNGLBINDPROGRAMPIPELINEPROC GLDriver::glBindProgramPipelines;
+    PFNGLCREATEPROGRAMPROC GLDriver::glCreateProgram;
+    PFNGLDELETEPROGRAMPROC GLDriver::glDeleteProgram;
+    PFNGLCREATESHADERPROC GLDriver::glCreateShader;
+    PFNGLDELETESHADERPROC GLDriver::glDeleteShader;
+    PFNGLSHADERSOURCEPROC GLDriver::glShaderSource;
+    PFNGLCOMPILESHADERPROC GLDriver::glCompileShader;
+    PFNGLGETSHADERIVPROC GLDriver::glGetShaderiv;
+    PFNGLGETSHADERINFOLOGPROC GLDriver::glGetShaderInfoLog;
+    PFNGLATTACHSHADERPROC GLDriver::glAttachShader;
+    PFNGLLINKPROGRAMPROC GLDriver::glLinkProgram;
+    PFNGLVALIDATEPROGRAMPROC GLDriver::glValidateProgram;
+    PFNGLGETPROGRAMIVPROC GLDriver::glGetProgramiv;
+    PFNGLGETPROGRAMINFOLOGPROC GLDriver::glGetProgramInfoLog;
+    PFNGLGETACTIVEUNIFORMSIVPROC GLDriver::glGetActiveUniformsiv;
+    PFNGLGETACTIVEUNIFORMNAMEPROC GLDriver::glGetActiveUniformName;
+    PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC GLDriver::glGetActiveUniformBlockName;
+    PFNGLGETACTIVEUNIFORMBLOCKIVPROC GLDriver::glGetActiveUniformBlockiv;
+    PFNGLGETINTEGERI_VPROC GLDriver::glGetIntegeri_v;
+    PFNGLGETACTIVEUNIFORMPROC GLDriver::glGetActiveUniform;
+    PFNGLGETUNIFORMLOCATIONPROC GLDriver::glGetUniformLocation;
+    PFNGLGETACTIVEATTRIBPROC GLDriver::glGetActiveAttrib;
+    PFNGLGETATTRIBLOCATIONPROC GLDriver::glGetAttribLocation;
+    PFNGLGETACTIVEUNIFORMBLOCKIVPROC GLDriver::glGetActiveUniformBlock;
+    PFNGLGETUNIFORMBLOCKINDEXPROC GLDriver::glGetUniformBlockIndex;
+    PFNGLUNIFORMBLOCKBINDINGPROC GLDriver::glUniformBlockBinding;
+    PFNGLBINDBUFFERBASEPROC GLDriver::glBindBufferBase;
+    PFNGLUSEPROGRAMPROC GLDriver::glUseProgram;
+    PFNGLUNIFORM1IPROC GLDriver::glUniform1i;
+    PFNGLUNIFORM2IPROC GLDriver::glUniform2i;
+    PFNGLUNIFORM3IPROC GLDriver::glUniform3i;
+    PFNGLUNIFORM4IPROC GLDriver::glUniform4i;
+    PFNGLUNIFORM1FPROC GLDriver::glUniform1f;
+    PFNGLUNIFORM2FPROC GLDriver::glUniform2f;
+    PFNGLUNIFORM3FPROC GLDriver::glUniform3f;
+    PFNGLUNIFORM4FPROC GLDriver::glUniform4f;
+    PFNGLUNIFORM4FVPROC GLDriver::glUniform1fv;
+    PFNGLUNIFORM4FVPROC GLDriver::glUniform2fv;
+    PFNGLUNIFORM4FVPROC GLDriver::glUniform3fv;
+    PFNGLUNIFORM4FVPROC GLDriver::glUniform4fv;
+    PFNGLUNIFORMMATRIX2FVPROC GLDriver::glUniformMatrix2fv;
+    PFNGLUNIFORMMATRIX3FVPROC GLDriver::glUniformMatrix3fv;
+    PFNGLUNIFORMMATRIX4FVPROC GLDriver::glUniformMatrix4fv;
+    PFNGLVERTEXATTRIB1FNVPROC GLDriver::glVertexAttrib1f;
+    PFNGLVERTEXATTRIB2FNVPROC GLDriver::glVertexAttrib2f;
+    PFNGLVERTEXATTRIB3FNVPROC GLDriver::glVertexAttrib3f;
+    PFNGLVERTEXATTRIB4FNVPROC GLDriver::glVertexAttrib4f;
+    PFNGLVERTEXATTRIBPOINTERPROC GLDriver::glVertexAttribPointer;
+    PFNGLENABLEVERTEXATTRIBARRAYPROC GLDriver::glEnableVertexAttribArray;
+    PFNGLDISABLEVERTEXATTRIBARRAYPROC GLDriver::glDisableVertexAttribArray;
+    PFNGLBINDATTRIBLOCATIONPROC GLDriver::glBindAttribLocation;
+    PFNGLGENRENDERBUFFERSPROC GLDriver::glGenRenderbuffers;
+    PFNGLDELETERENDERBUFFERSPROC GLDriver::glDeleteRenderbuffers;
+    PFNGLBINDRENDERBUFFERPROC GLDriver::glBindRenderbuffer;
+    PFNGLRENDERBUFFERSTORAGEPROC GLDriver::glRenderbufferStorage;
+    PFNGLGENFRAMEBUFFERSPROC GLDriver::glGenFramebuffers;
+    PFNGLDELETEFRAMEBUFFERSPROC GLDriver::glDeleteFramebuffers;
+    PFNGLBINDFRAMEBUFFERPROC GLDriver::glBindFramebuffer;
+    PFNGLDRAWBUFFERSPROC GLDriver::glDrawBuffers;
     //PFNGLDRAWARRAYSEXTPROC              GLDriver::glDrawArrays;
-    PFNGLFRAMEBUFFERRENDERBUFFERPROC    GLDriver::glFramebufferRenderbuffer;
-    PFNGLFRAMEBUFFERTEXTUREPROC         GLDriver::glFramebufferTexture;
-    PFNGLFRAMEBUFFERTEXTURE2DPROC       GLDriver::glFramebufferTexture2D;
-    PFNGLFRAMEBUFFERTEXTURE3DPROC       GLDriver::glFramebufferTexture3D;
-    PFNGLCHECKFRAMEBUFFERSTATUSPROC     GLDriver::glCheckFramebufferStatus;
-    PFNGLGENVERTEXARRAYSPROC            GLDriver::glGenVertexArrays;
-    PFNGLBINDVERTEXARRAYPROC            GLDriver::glBindVertexArray;
-    PFNGLDELETEVERTEXARRAYSPROC         GLDriver::glDeteVertexArrays;
+    PFNGLFRAMEBUFFERRENDERBUFFERPROC GLDriver::glFramebufferRenderbuffer;
+    PFNGLFRAMEBUFFERTEXTUREPROC GLDriver::glFramebufferTexture;
+    PFNGLFRAMEBUFFERTEXTURE2DPROC GLDriver::glFramebufferTexture2D;
+    PFNGLFRAMEBUFFERTEXTURE3DPROC GLDriver::glFramebufferTexture3D;
+    PFNGLCHECKFRAMEBUFFERSTATUSPROC GLDriver::glCheckFramebufferStatus;
+    PFNGLGENVERTEXARRAYSPROC GLDriver::glGenVertexArrays;
+    PFNGLBINDVERTEXARRAYPROC GLDriver::glBindVertexArray;
+    PFNGLDELETEVERTEXARRAYSPROC GLDriver::glDeteVertexArrays;
 
-    PFNWGLCREATECONTEXTATTRIBSARBPROC   GLDriver::wglCreateContextAttribsARB;
-    PFNWGLSWAPINTERVALEXTPROC           GLDriver::wglSwapIntervalEXT;
+    PFNWGLCREATECONTEXTATTRIBSARBPROC GLDriver::wglCreateContextAttribsARB;
+    PFNWGLSWAPINTERVALEXTPROC GLDriver::wglSwapIntervalEXT;
 
     GLDriver::GLDriver() :
         m_Hwnd(NULL),
@@ -160,7 +161,7 @@ namespace Agmd
         m_CurrentProgram(NULL),
         m_last_unit(TEXTURE_UNIT_0)
     {
-        std::memset(m_TextureBind, NULL, sizeof(void*)*MAX_TEXTUREUNIT);
+        std::memset(m_TextureBind, NULL, sizeof(void*) * MAX_TEXTUREUNIT);
     }
 
     GLDriver::~GLDriver()
@@ -196,24 +197,24 @@ namespace Agmd
 
         PIXELFORMATDESCRIPTOR PixelDescriptor =
         {
-            sizeof(PIXELFORMATDESCRIPTOR),   // size of this pfd 
-            1,                               // version number 
-            PFD_DRAW_TO_WINDOW |             // support window 
-            PFD_SUPPORT_OPENGL |             // support OpenGL 
-            PFD_DOUBLEBUFFER,                // double buffered 
-            PFD_TYPE_RGBA,                   // RGBA type 
-            32,                              // 32-bit color depth 
-            0, 0, 0, 0, 0, 0,                // color bits ignored 
-            0,                               // no alpha buffer 
-            0,                               // shift bit ignored 
-            0,                               // no accumulation buffer 
-            0, 0, 0, 0,                      // accum bits ignored 
-            32,                              // 32-bit z-buffer 
-            32,                              // 32-bits stencil buffer 
-            0,                               // no auxiliary buffer 
-            PFD_MAIN_PLANE,                  // main layer 
-            0,                               // reserved 
-            0, 0, 0                          // layer masks ignored 
+            sizeof(PIXELFORMATDESCRIPTOR), // size of this pfd 
+            1, // version number 
+            PFD_DRAW_TO_WINDOW | // support window 
+            PFD_SUPPORT_OPENGL | // support OpenGL 
+            PFD_DOUBLEBUFFER, // double buffered 
+            PFD_TYPE_RGBA, // RGBA type 
+            32, // 32-bit color depth 
+            0, 0, 0, 0, 0, 0, // color bits ignored 
+            0, // no alpha buffer 
+            0, // shift bit ignored 
+            0, // no accumulation buffer 
+            0, 0, 0, 0, // accum bits ignored 
+            32, // 32-bit z-buffer 
+            32, // 32-bits stencil buffer 
+            0, // no auxiliary buffer 
+            PFD_MAIN_PLANE, // main layer 
+            0, // reserved 
+            0, 0, 0 // layer masks ignored 
         };
 
         m_Hwnd = Hwnd;
@@ -241,13 +242,11 @@ namespace Agmd
         //Recreate a real GlContext (if possible)
         if (wglCreateContextAttribsARB)
         {
-
             HGLRC temp = wglCreateContextAttribsARB(m_Handle, 0, attribs);
             wglMakeCurrent(NULL, NULL);
             wglDeleteContext(m_Context);
             m_Context = temp;
             assert(wglMakeCurrent(m_Handle, m_Context));
-
         }
 
         ShowWindow(m_Hwnd, SW_NORMAL);
@@ -453,7 +452,7 @@ namespace Agmd
 
     BaseBuffer* GLDriver::CreateUB(unsigned long size, unsigned long stride, unsigned long flags, int bindPoint, int ubflags) const
     {
-        unsigned int uniformBuffer[3] = { 0 };
+        unsigned int uniformBuffer[3] = {0};
         glGenBuffers(1 + ubflags, uniformBuffer);
 
         for (int i = 0; i < ubflags + 1; i++)
@@ -502,11 +501,11 @@ namespace Agmd
 
             declaration->AddElement(Elt->stream, currentElement);
 
-            static const unsigned int Size[] = { 4, 8, 12, 16, 4 };
+            static const unsigned int Size[] = {4, 8, 12, 16, 4};
             offset[Elt->stream] += Size[Elt->dataType];
             glEnableVertexAttribArray(currentElement.usage);
-            static const unsigned int _Size[] = { 1, 2, 3, 4, 4, 1 };
-            static const unsigned int _Type[] = { GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_SHORT };
+            static const unsigned int _Size[] = {1, 2, 3, 4, 4, 1};
+            static const unsigned int _Type[] = {GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_FLOAT, GL_UNSIGNED_BYTE, GL_SHORT};
             glVertexAttribPointer(currentElement.usage, _Size[currentElement.type], _Type[currentElement.type], GL_FALSE, stride, 0);
         }
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -524,7 +523,6 @@ namespace Agmd
         }
         const GLVertexBuffer* vertexBuffer = static_cast<const GLVertexBuffer*>(buffer);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer->GetBuffer());
-
     }
 
     void GLDriver::SetIB(const BaseBuffer* buffer, unsigned long stride)
@@ -555,12 +553,19 @@ namespace Agmd
 
         switch (type)
         {
-        case PT_TRIANGLELIST:  glDrawArrays(GL_TRIANGLES, firstVertex, count * 3); m_stats->IncrVertexCount(count * 3); break;
-        case PT_TRIANGLESTRIP: glDrawArrays(GL_TRIANGLE_STRIP, firstVertex, count + 2); break;
-        case PT_TRIANGLEFAN:   glDrawArrays(GL_TRIANGLE_FAN, firstVertex, count + 1); break;
-        case PT_LINELIST:      glDrawArrays(GL_LINES, firstVertex, count * 2); break;
-        case PT_LINESTRIP:     glDrawArrays(GL_LINE_STRIP, firstVertex, count);     break;
-        case PT_POINTLIST:     glDrawArrays(GL_POINTS, firstVertex, count);     break;
+        case PT_TRIANGLELIST: glDrawArrays(GL_TRIANGLES, firstVertex, count * 3);
+            m_stats->IncrVertexCount(count * 3);
+            break;
+        case PT_TRIANGLESTRIP: glDrawArrays(GL_TRIANGLE_STRIP, firstVertex, count + 2);
+            break;
+        case PT_TRIANGLEFAN: glDrawArrays(GL_TRIANGLE_FAN, firstVertex, count + 1);
+            break;
+        case PT_LINELIST: glDrawArrays(GL_LINES, firstVertex, count * 2);
+            break;
+        case PT_LINESTRIP: glDrawArrays(GL_LINE_STRIP, firstVertex, count);
+            break;
+        case PT_POINTLIST: glDrawArrays(GL_POINTS, firstVertex, count);
+            break;
         }
     }
 
@@ -570,7 +575,7 @@ namespace Agmd
             return;
 
         unsigned long indicesType = (m_IndexStride == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT);
-        const void*   offset = BUFFER_OFFSET(firstIndex * m_IndexStride);
+        const void* offset = BUFFER_OFFSET(firstIndex * m_IndexStride);
 
         m_CurrentProgram->SetParameter(MAT_MODEL, m_CurrentTransform ? m_CurrentTransform->modelMatrix() : mat4(1.0f));
         m_CurrentProgram->SetParameter("u_textureFlags", (int)m_TextureFlags);
@@ -580,13 +585,20 @@ namespace Agmd
 
         switch (type)
         {
-        case PT_TRIANGLELIST:  glDrawElements(GL_TRIANGLES, count, indicesType, offset); break;
-        case PT_TRIANGLESTRIP: glDrawElements(GL_TRIANGLE_STRIP, count, indicesType, offset); break;
-        case PT_TRIANGLEFAN:   glDrawElements(GL_TRIANGLE_FAN, count, indicesType, offset); break;
-        case PT_LINELIST:      glDrawElements(GL_LINES, count, indicesType, offset); break;
-        case PT_LINESTRIP:     glDrawElements(GL_LINE_STRIP, count, indicesType, offset); break;
-        case PT_POINTLIST:     glDrawElements(GL_POINTS, count, indicesType, offset); break;
-        case PT_PATCHLIST:     glDrawElements(GL_PATCHES, count, indicesType, offset); break;
+        case PT_TRIANGLELIST: glDrawElements(GL_TRIANGLES, count, indicesType, offset);
+            break;
+        case PT_TRIANGLESTRIP: glDrawElements(GL_TRIANGLE_STRIP, count, indicesType, offset);
+            break;
+        case PT_TRIANGLEFAN: glDrawElements(GL_TRIANGLE_FAN, count, indicesType, offset);
+            break;
+        case PT_LINELIST: glDrawElements(GL_LINES, count, indicesType, offset);
+            break;
+        case PT_LINESTRIP: glDrawElements(GL_LINE_STRIP, count, indicesType, offset);
+            break;
+        case PT_POINTLIST: glDrawElements(GL_POINTS, count, indicesType, offset);
+            break;
+        case PT_PATCHLIST: glDrawElements(GL_PATCHES, count, indicesType, offset);
+            break;
         }
     }
 
@@ -597,7 +609,6 @@ namespace Agmd
 
     void GLDriver::SetTexture(a_uint32 unit, const TextureBase* texture, TTextureType type)
     {
-
         if (unit > MAX_TEXTUREUNIT)
             return;
 
@@ -684,7 +695,6 @@ namespace Agmd
             {
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
             }
 
             if ((nbMipmaps > 0) && (HasCapability(CAP_HW_MIPMAPPING)))
@@ -695,7 +705,7 @@ namespace Agmd
         {
             glTexImage2D(GL_TEXTURE_2D, i, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, format == PXF_DEPTH ? GL_FLOAT : GL_UNSIGNED_BYTE, NULL);
 
-            if (width > 1)  width /= 2;
+            if (width > 1) width /= 2;
             if (height > 1) height /= 2;
         }
 
@@ -720,7 +730,6 @@ namespace Agmd
 
         for (int i = 0; i < 6; i++)
         {
-
             glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, RGLEnum::Get(format).Internal, width, height, 0, RGLEnum::Get(format)._Format, GL_UNSIGNED_BYTE, NULL);
         }
         glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
@@ -776,45 +785,43 @@ namespace Agmd
         switch (param)
         {
         case RENDER_ZWRITE:
-        {
-            glDepthMask(value);
-            break;
-        }
+            {
+                glDepthMask(value);
+                break;
+            }
         case RENDER_TRANSPARENT: /* <!> Deprecated feature <!> */
-        {
-            /*if(value)
-            glEnable(GL_ALPHA_TEST);
-            else glDisable(GL_ALPHA_TEST);
-            glAlphaFunc(GL_GEQUAL,0.7f);
-            */
-            break;
-        }
+            {
+                /*if(value)
+                glEnable(GL_ALPHA_TEST);
+                else glDisable(GL_ALPHA_TEST);
+                glAlphaFunc(GL_GEQUAL,0.7f);
+                */
+                break;
+            }
         case RENDER_RENDERING:
             glDrawBuffer(value ? GL_BACK : GL_NONE);
         default:
-        {
-            int _value = RGLEnum::Get(param);
+            {
+                int _value = RGLEnum::Get(param);
 
-            if (!_value)
-                break;
+                if (!_value)
+                    break;
 
-            if (value)
-                glEnable(_value);
-            else
-                glDisable(_value);
-        }
+                if (value)
+                    glEnable(_value);
+                else
+                    glDisable(_value);
+            }
         }
     }
 
     void GLDriver::SetRenderMode(TRenderMode mode)
     {
-
         glPolygonMode(GL_FRONT_AND_BACK, RGLEnum::Get(mode));
     }
 
     BaseShader* GLDriver::CreateShader(std::string source, TShaderType type) const
     {
-
         int index;
         index = source.find("#ifdef");
         std::string define = "";
@@ -845,7 +852,6 @@ namespace Agmd
                 return NULL;
             define = "#define _FRAGMENT_\n";
             break;
-
         }
 
         if (index != std::string::npos)
@@ -863,7 +869,7 @@ namespace Agmd
         a_int32 logsize;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logsize);
 
-        char *log = new char[logsize + 1];
+        char* log = new char[logsize + 1];
         memset(log, '\0', logsize + 1);
 
         glGetShaderInfoLog(shader, logsize, &logsize, log);
@@ -938,7 +944,6 @@ namespace Agmd
         Logger::Log(LOGNORMAL, "%s", log);
 
 
-
         if (link != GL_TRUE)
         {
             printf("error : \n%s", log);
@@ -977,7 +982,6 @@ namespace Agmd
         glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
         return new GLRenderBuffer(id, size);
-
     }
 
     void GLDriver::SetCurrentProgram(const BaseShaderProgram* prog)
@@ -1001,7 +1005,6 @@ namespace Agmd
 
     void GLDriver::SetCullFace(int face)
     {
-
         if (face)
             glEnable(GL_CULL_FACE);
         else glDisable(GL_CULL_FACE);
@@ -1080,6 +1083,4 @@ namespace Agmd
             _flags |= GL_STENCIL_BUFFER_BIT;
         glClear(_flags);
     }
-
 }
-

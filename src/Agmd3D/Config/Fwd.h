@@ -29,7 +29,8 @@ namespace Agmd
     class Material;
     class Statistics;
     struct DeclarationElement;
-    template <class> class Loader;
+    template <class>
+    class Loader;
 
 
     //Shader Class
@@ -43,7 +44,8 @@ namespace Agmd
     //Buffer Class
 
     class BaseBuffer;
-    template <class> class Buffer;
+    template <class>
+    class Buffer;
     class FrameBuffer;
     class RenderBuffer;
 
@@ -65,7 +67,7 @@ namespace Agmd
     class AButton;
 
     //Rendering Mode
-    
+
     class RenderingMode;
     class ForwardRendering;
     class VertexRendering;

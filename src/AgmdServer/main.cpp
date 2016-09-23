@@ -71,21 +71,21 @@ status : in pause
 // 
 int main(int argc, char** argv)
 {
-//     server = new AgmdServer(4015);
-// 
-//     server->Init();
-// 
-//     OpServerMgr::Instance().SetReader(_opcode);
-//     HANDLE processThread = CreateThread(NULL, 0,&StartServer, server,0,NULL);
-// 
-//     while(1)
-//     {
-//         Packet message;
-//         OpServerMgr::Instance().BuildMessagePacket("TEST MESSAGE\n",message);
-//         server->SendPacket(message);
-//         printf("Envoie message\n");
-//         Sleep(2000);
-//     }
+    //     server = new AgmdServer(4015);
+    // 
+    //     server->Init();
+    // 
+    //     OpServerMgr::Instance().SetReader(_opcode);
+    //     HANDLE processThread = CreateThread(NULL, 0,&StartServer, server,0,NULL);
+    // 
+    //     while(1)
+    //     {
+    //         Packet message;
+    //         OpServerMgr::Instance().BuildMessagePacket("TEST MESSAGE\n",message);
+    //         server->SendPacket(message);
+    //         printf("Envoie message\n");
+    //         Sleep(2000);
+    //     }
 
     return 0;
 }

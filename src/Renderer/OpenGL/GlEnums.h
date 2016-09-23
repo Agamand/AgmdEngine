@@ -21,8 +21,11 @@ namespace Agmd
     {
     public :
 
-        struct TPixelFmt {GLenum Format, Internal, Type, _Format;};
-        
+        struct TPixelFmt
+        {
+            GLenum Format, Internal, Type, _Format;
+        };
+
         static unsigned long BufferFlags(unsigned long flags);
 
         static unsigned long RGLEnum::LockBitsFlags(unsigned long flags);
@@ -58,21 +61,20 @@ namespace Agmd
 
     private :
 
-        static GLenum       MatrixType[];
-        static std::string  MatrixName[];
-        static TPixelFmt    PixelFormat[];
-        static GLenum       Blend[];
-        static GLenum       Depth[];
-        static GLenum       TextureOp[];
-        static GLenum       TextureArg[];
-        static GLenum       RenderParameter[];
-        static GLenum       RenderMode[];
-        static GLenum       ShaderType[];
-        static GLenum       AttachmentType[];
-        static GLenum       ComponentType[];
-        static GLenum       TextureType[];
+        static GLenum MatrixType[];
+        static std::string MatrixName[];
+        static TPixelFmt PixelFormat[];
+        static GLenum Blend[];
+        static GLenum Depth[];
+        static GLenum TextureOp[];
+        static GLenum TextureArg[];
+        static GLenum RenderParameter[];
+        static GLenum RenderMode[];
+        static GLenum ShaderType[];
+        static GLenum AttachmentType[];
+        static GLenum ComponentType[];
+        static GLenum TextureType[];
     };
-
 }
 
 #endif /* _GLENUMS_H_ */

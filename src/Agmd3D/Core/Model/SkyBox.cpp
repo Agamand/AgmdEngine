@@ -14,7 +14,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     SkyBox::SkyBox()
     {
         m_Program = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/skybox.glsl");
@@ -22,9 +21,9 @@ namespace Agmd
     }
 
     SkyBox::~SkyBox()
-    {}
+    {
+    }
 
-    
 
     void SkyBox::Render() const
     {
@@ -38,10 +37,10 @@ namespace Agmd
         //render.SetCullFace(0);
         render.SetCurrentTransform(NULL);
         Driver::Get().SetDeclaration(m_Declaration);
-        Driver::Get().SetVertexBuffer(0,m_VertexBuffer);
+        Driver::Get().SetVertexBuffer(0, m_VertexBuffer);
         Driver::Get().SetIndexBuffer(m_IndexBuffer);
-        Driver::Get().SetTexture(0,m_Texture.GetTexture());
-        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST,0,36);
+        Driver::Get().SetTexture(0, m_Texture.GetTexture());
+        Driver::Get().DrawIndexedPrimitives(PT_TRIANGLELIST, 0, 36);
 
         render.SetCurrentProgram(NULL);
     }
@@ -53,44 +52,43 @@ namespace Agmd
 
     void SkyBox::Generate()
     {
-        TVertex vertex[] = 
-        {    
+        TVertex vertex[] =
+        {
             //Z+
-            {vec3(1.f,1.f,1.f)},{vec3(1.f,-1.f,1.f)},{vec3(-1.f,1.f,1.f)},{vec3(-1.f,-1.f,1.f)},
+            {vec3(1.f, 1.f, 1.f)},{vec3(1.f, -1.f, 1.f)},{vec3(-1.f, 1.f, 1.f)},{vec3(-1.f, -1.f, 1.f)},
             //Z-
-            {vec3(-1.f,-1.f,-1.f),},{vec3(1.f,-1.f,-1.f)},{vec3(-1.f,1.f,-1.f)},{vec3(1.f,1.f,-1.f)},
+            {vec3(-1.f, -1.f, -1.f),},{vec3(1.f, -1.f, -1.f)},{vec3(-1.f, 1.f, -1.f)},{vec3(1.f, 1.f, -1.f)},
             //X-
-            {vec3(-1.f,-1.f,-1.f)},{vec3(-1.f,1.f,-1.f)},{vec3(-1.f,-1.f,1.f)},{vec3(-1.f,1.f,1.f)},
+            {vec3(-1.f, -1.f, -1.f)},{vec3(-1.f, 1.f, -1.f)},{vec3(-1.f, -1.f, 1.f)},{vec3(-1.f, 1.f, 1.f)},
             //Y+
-            {vec3(-1.f,1.f,-1.f)},{vec3(1.f,1.f,-1.f)},{vec3(-1.f,1.f,1.f)},{vec3(1.f,1.f,1.f)},
+            {vec3(-1.f, 1.f, -1.f)},{vec3(1.f, 1.f, -1.f)},{vec3(-1.f, 1.f, 1.f)},{vec3(1.f, 1.f, 1.f)},
             //X+
-            {vec3(1.f,1.f,-1.f)},{vec3(1.f,-1.f,-1.f)},{vec3(1.f,1.f,1.f)},{vec3(1.f,-1.f,1.f)},
+            {vec3(1.f, 1.f, -1.f)},{vec3(1.f, -1.f, -1.f)},{vec3(1.f, 1.f, 1.f)},{vec3(1.f, -1.f, 1.f)},
             //Y-
-            {vec3(1.f,-1.f,-1.f)},{vec3(-1.f,-1.f,-1.f)},{vec3(1.f,-1.f,1.f)},{vec3(-1.f,-1.f,1.f)}
+            {vec3(1.f, -1.f, -1.f)},{vec3(-1.f, -1.f, -1.f)},{vec3(1.f, -1.f, 1.f)},{vec3(-1.f, -1.f, 1.f)}
         };
 
         a_vector<TIndex> indices;
 
-        for(a_uint32 i = 0; i < 6; i++)
+        for (a_uint32 i = 0; i < 6; i++)
         {
-            indices.push_back(1+i*4);
-            indices.push_back(0+i*4);
-            indices.push_back(2+i*4);
+            indices.push_back(1 + i * 4);
+            indices.push_back(0 + i * 4);
+            indices.push_back(2 + i * 4);
 
-            indices.push_back(1+i*4);
-            indices.push_back(2+i*4);
-            indices.push_back(3+i*4);
+            indices.push_back(1 + i * 4);
+            indices.push_back(2 + i * 4);
+            indices.push_back(3 + i * 4);
         }
 
         TDeclarationElement Elements[] =
         {
-            {0, ELT_USAGE_POSITION,        ELT_TYPE_FLOAT3}
+            {0, ELT_USAGE_POSITION, ELT_TYPE_FLOAT3}
         };
 
         m_Declaration = Driver::Get().CreateVertexDeclaration(Elements, sizeof(TVertex));
 
-        m_VertexBuffer = Driver::Get().CreateVertexBuffer(4*6,0,vertex);
-        m_IndexBuffer = Driver::Get().CreateIndexBuffer(6*6,0,&indices[0]);
+        m_VertexBuffer = Driver::Get().CreateVertexBuffer(4 * 6, 0, vertex);
+        m_IndexBuffer = Driver::Get().CreateIndexBuffer(6 * 6, 0, &indices[0]);
     }
-
 }

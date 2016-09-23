@@ -3,10 +3,7 @@
 
 namespace Agmd
 {
-
     void Nurbs::compute()
     {
-        
     }
 }
-

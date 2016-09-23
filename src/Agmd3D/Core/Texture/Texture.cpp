@@ -23,17 +23,16 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     void Texture::Create(const ivec2& size, TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
     {
-        Image image[6] = {Image(size,format)};
-        switch(type)
+        Image image[6] = {Image(size, format)};
+        switch (type)
         {
         case TEXTURE_2D:
             CreateFromImage(image[0], format, flags, name);
             break;
         case TEXTURE_CUBE:
-            CreateFromImage(image,format,flags,name);
+            CreateFromImage(image, format, flags, name);
             break;
         }
     }
@@ -52,13 +51,13 @@ namespace Agmd
 
     void Texture::CreateFromImage(const Image& image, TPixelFormat format, unsigned long flags, const std::string& name)
     {
-        if(name.length())
+        if (name.length())
             m_Texture = ResourceManager::Instance().Get<TextureBase>(name);
 
         if (!m_Texture)
             Load(image, format, TEXTURE_2D, flags, name);
-        if(m_Texture && name.length())
-            ResourceManager::Instance().Add(name,m_Texture);
+        if (m_Texture && name.length())
+            ResourceManager::Instance().Add(name, m_Texture);
     }
 
     void Texture::CreateFromFile(const std::string filename[], TPixelFormat format, unsigned long flags)
@@ -68,10 +67,10 @@ namespace Agmd
         if (!m_Texture)
         {
             Image image[6];
-            for(a_int32 i = 0; i < 6; i++)
+            for (a_int32 i = 0; i < 6; i++)
                 image[i] = *MediaManager::Instance().LoadMediaFromFile<Image>(filename[i]);
 
-           Load(image,format,TEXTURE_CUBE,flags,filename[0]);
+            Load(image, format, TEXTURE_CUBE, flags, filename[0]);
         }
     }
 
@@ -88,27 +87,27 @@ namespace Agmd
         if (FormatCompressed(format) && !Driver::Get().HasCapability(CAP_DXT_COMPRESSION))
         {
             format = PXF_A8R8G8B8;
-            Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
+            Logger::Log(LOGNORMAL, "WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
         }
 
         ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
         if ((size != pixels.GetSize()) && !Driver::Get().HasCapability(CAP_TEX_NON_POWER_2))
         {
-            Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
+            Logger::Log(LOGNORMAL, "WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
         }
         else
         {
             size = pixels.GetSize();
         }
         m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
-      /*try
-        {
-            m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
-        }
-        catch (const std::exception& E)
-        {
-            throw LoadingFailed(name, E.what());
-        }*/
+        /*try
+          {
+              m_Texture = Driver::Get().CreateTexture(size, format, type, flags);
+          }
+          catch (const std::exception& E)
+          {
+              throw LoadingFailed(name, E.what());
+          }*/
 
         if (name != "")
             ResourceManager::Instance().Add(name, m_Texture);
@@ -123,17 +122,17 @@ namespace Agmd
 
     void Texture::Load(const Image image[], TPixelFormat format, TTextureType type, unsigned long flags, const std::string& name)
     {
-        const Image &pixels = image[0];
+        const Image& pixels = image[0];
         if (FormatCompressed(format) && !Driver::Get().HasCapability(CAP_DXT_COMPRESSION))
         {
             format = PXF_A8R8G8B8;
-            Logger::Log(LOGNORMAL,"WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
+            Logger::Log(LOGNORMAL, "WARNING - Format compressé choisi, mais non supporté par le système de rendu. Le format utilisé sera PXF_A8R8G8B8. %s", (name != "" ? " (texture : \"" + name + "\")" : "").c_str());
         }
 
         ivec2 size(NearestPowerOfTwo(pixels.GetSize().x), NearestPowerOfTwo(pixels.GetSize().y));
         if ((size != pixels.GetSize()) && !Driver::Get().HasCapability(CAP_TEX_NON_POWER_2))
         {
-            Logger::Log(LOGNORMAL,"WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
+            Logger::Log(LOGNORMAL, "WARNING - Dimensions de texture non-puissances de 2, mais non supporté par le système de rendu. Les dimensions seront ajustées. (%dx%d->%dx%d)", pixels.GetSize().x, pixels.GetSize().y, size.x, size.y);
         }
         else
         {
@@ -156,9 +155,9 @@ namespace Agmd
             GetPixels() = Image(GetSize(), PXF_A8R8G8B8);
 
         // Copie des pixels
-            Image * img = &GetPixels();
-            for(int i = 0; i < 6; i++)
-                img[i].CopyImage(image[i]);
+        Image* img = &GetPixels();
+        for (int i = 0; i < 6; i++)
+            img[i].CopyImage(image[i]);
         Update();
     }
 
@@ -179,6 +178,7 @@ namespace Agmd
     {
         return *m_Texture->getPixels();
     }
+
     Image* Texture::GetPixelsPtr()
     {
         return m_Texture->getPixels();
@@ -213,7 +213,7 @@ namespace Agmd
     {
         return !(*this == texture);
     }
-    
+
 
     /*void Texture::SetPixel(const std::string& filename,uint32 face)
     {
@@ -240,16 +240,16 @@ namespace Agmd
     void Texture::TextureAdd(Texture output, Texture input1, Texture input2)
     {
         Driver& render = Driver::Get();
-        if(!s_addTexture)
+        if (!s_addTexture)
         {
             s_addTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/add_tex.glsl");
         }
-        if(!s_framebuffer)
+        if (!s_framebuffer)
             s_framebuffer = render.CreateFrameBuffer();
 
-        s_framebuffer->SetTexture(output,COLOR_ATTACHMENT);
-        render.SetTexture(0,input1.GetTexture());
-        render.SetTexture(1,input2.GetTexture());
+        s_framebuffer->SetTexture(output, COLOR_ATTACHMENT);
+        render.SetTexture(0, input1.GetTexture());
+        render.SetTexture(1, input2.GetTexture());
         s_framebuffer->Clear();
         s_framebuffer->Bind();
         render.SetCurrentProgram(s_addTexture);
@@ -261,16 +261,16 @@ namespace Agmd
     void Texture::TextureProd(Texture output, Texture input1, Texture input2)
     {
         Driver& render = Driver::Get();
-        if(!s_prodTexture)
+        if (!s_prodTexture)
         {
             s_prodTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/prod_tex.glsl");
         }
-        if(!s_framebuffer)
+        if (!s_framebuffer)
             s_framebuffer = render.CreateFrameBuffer();
 
-        s_framebuffer->SetTexture(output,COLOR_ATTACHMENT);
-        render.SetTexture(0,input1.GetTexture());
-        render.SetTexture(1,input2.GetTexture());
+        s_framebuffer->SetTexture(output, COLOR_ATTACHMENT);
+        render.SetTexture(0, input1.GetTexture());
+        render.SetTexture(1, input2.GetTexture());
         s_framebuffer->Clear();
         s_framebuffer->Bind();
         render.SetCurrentProgram(s_prodTexture);
@@ -279,16 +279,16 @@ namespace Agmd
         s_framebuffer->UnBind();
     }
 
-    void Texture::TextureRender( Texture input,ivec2 pos /*= ivec2(0)*/,ivec2 resolution/*=ivec2(-1)*/ )
+    void Texture::TextureRender(Texture input, ivec2 pos /*= ivec2(0)*/, ivec2 resolution/*=ivec2(-1)*/)
     {
         Driver& render = Driver::Get();
 
-        if(!s_renderTexture)
+        if (!s_renderTexture)
             s_renderTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/render_tex.glsl");
-        if(resolution.x  < 0 || resolution.y < 0)
+        if (resolution.x < 0 || resolution.y < 0)
             resolution = render.GetScreen();
-        render.SetViewPort(pos,resolution);
-        render.SetTexture(0,input.GetTexture());
+        render.SetViewPort(pos, resolution);
+        render.SetTexture(0, input.GetTexture());
         render.SetCurrentProgram(s_renderTexture);
         Fast2DSurface::Instance().Draw();
         render.SetCurrentProgram(nullptr);
@@ -298,13 +298,13 @@ namespace Agmd
     {
         Driver& render = Driver::Get();
 
-        if(!s_randomTexture)
+        if (!s_randomTexture)
             s_randomTexture = MediaManager::Instance().LoadMediaFromFile<BaseShaderProgram>("Shader/rand_tex.glsl");
 
         int seed = clock();
 
         render.SetCurrentProgram(s_randomTexture);
-        render.GetCurrentProgram()->SetParameter("seed",(float)seed);
+        render.GetCurrentProgram()->SetParameter("seed", (float)seed);
         Fast2DSurface::Instance().Draw();
         render.SetCurrentProgram(nullptr);
     }
@@ -312,53 +312,54 @@ namespace Agmd
     void Texture::BeginRenderToTexture(const Texture& texture0)
     {
         Driver& render = Driver::Get();
-        
-        if(!s_framebuffer)
+
+        if (!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
         a_uint32 flags[] = {COLOR_ATTACHMENT};
-        s_framebuffer->GenerateBufferFlags(flags,1,flags);
-        s_framebuffer->DrawBuffers(1,flags);
-        s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
+        s_framebuffer->GenerateBufferFlags(flags, 1, flags);
+        s_framebuffer->DrawBuffers(1, flags);
+        s_framebuffer->SetTexture(texture0, COLOR_ATTACHMENT);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();
-        render.SetViewPort(ivec2(0),ivec2(texture0.GetSize()));
+        render.SetViewPort(ivec2(0), ivec2(texture0.GetSize()));
     }
 
-    void Texture::BeginRenderToTexture(const Texture& texture0,const Texture& texture1)
+    void Texture::BeginRenderToTexture(const Texture& texture0, const Texture& texture1)
     {
-         Driver& render = Driver::Get();
-         render.SetViewPort(ivec2(0),ivec2(texture0.GetSize()));
-         if(!s_framebuffer)
+        Driver& render = Driver::Get();
+        render.SetViewPort(ivec2(0), ivec2(texture0.GetSize()));
+        if (!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
-        a_uint32 flags[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT+1};
-        s_framebuffer->GenerateBufferFlags(flags,2,flags);
-        s_framebuffer->DrawBuffers(2,flags);
-        s_framebuffer->SetTexture(texture0,COLOR_ATTACHMENT);
-        s_framebuffer->SetTexture(texture1,COLOR_ATTACHMENT+1);
+        a_uint32 flags[] = {COLOR_ATTACHMENT, COLOR_ATTACHMENT + 1};
+        s_framebuffer->GenerateBufferFlags(flags, 2, flags);
+        s_framebuffer->DrawBuffers(2, flags);
+        s_framebuffer->SetTexture(texture0, COLOR_ATTACHMENT);
+        s_framebuffer->SetTexture(texture1, COLOR_ATTACHMENT + 1);
         s_framebuffer->Clear(CLEAR_COLOR);
         s_framebuffer->Bind();
     }
 
     void Texture::EndRenderToTexture()
     {
-        Driver::Get().SetViewPort(ivec2(0),ivec2(Driver::Get().GetScreen()));
-        if(s_framebuffer)
+        Driver::Get().SetViewPort(ivec2(0), ivec2(Driver::Get().GetScreen()));
+        if (s_framebuffer)
             s_framebuffer->UnBind();
     }
 
     void Texture::BeginRenderToCubeMap(const Texture& texture, TAttachment attachment, int face)
     {
-        if(!s_framebuffer)
+        if (!s_framebuffer)
             s_framebuffer = Driver::Get().CreateFrameBuffer();
-        if(face < 0)
-            s_framebuffer->SetTexture(texture,attachment);
-        else s_framebuffer->SetTextureCube(texture,attachment,face);
+        if (face < 0)
+            s_framebuffer->SetTexture(texture, attachment);
+        else s_framebuffer->SetTextureCube(texture, attachment, face);
         s_framebuffer->Clear(attachment == DEPTH_ATTACHMENT ? CLEAR_DEPTH : CLEAR_COLOR);
         s_framebuffer->Bind();
     }
+
     void Texture::EndRenderToCubeMap()
     {
-        if(s_framebuffer)
+        if (s_framebuffer)
             s_framebuffer->UnBind();
     }
 

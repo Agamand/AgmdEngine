@@ -11,12 +11,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     GLDeclaration::GLDeclaration(a_uint32 vaoID) : m_Elements(8), m_vertexArray(vaoID)
-    {}
+    {
+    }
 
     GLDeclaration::~GLDeclaration()
-    {}
+    {
+    }
 
     void GLDeclaration::AddElement(unsigned int stream, const GLDeclaration::TElement& element)
     {

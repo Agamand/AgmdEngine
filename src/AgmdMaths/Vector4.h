@@ -22,9 +22,9 @@ using namespace glm;
                             X.z = Z; \
                             X.w = W; \
 
+
 namespace AgmdMaths
 {
-
     // INT VECTOR
     inline std::istream& operator >>(std::istream& stream, ivec4& vector)
     {

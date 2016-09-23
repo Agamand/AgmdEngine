@@ -19,14 +19,15 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     GLTexture2D::GLTexture2D(const ivec2& size, TPixelFormat format, bool hasMipmaps, bool autoMipmaps, a_uint32 texture) :
-    GLTexture(size, format, hasMipmaps, autoMipmaps, texture),
-    m_Data(size,format)
-    {}
+        GLTexture(size, format, hasMipmaps, autoMipmaps, texture),
+        m_Data(size, format)
+    {
+    }
 
     GLTexture2D::~GLTexture2D()
-    {}
+    {
+    }
 
     TTextureType GLTexture2D::GetType() const
     {
@@ -88,8 +89,7 @@ namespace Agmd
         RGLEnum::TPixelFmt texFmt = RGLEnum::Get(m_Format);
         RGLEnum::TPixelFmt imgFmt = RGLEnum::Get(m_Data.GetFormat());
         glBindTexture(GL_TEXTURE_2D, m_Texture);
-        glGetTexImage(GL_TEXTURE_2D,0,texFmt._Format,m_Format == PXF_DEPTH ? GL_FLOAT : GL_UNSIGNED_BYTE,m_Data.GetDataPtr());
+        glGetTexImage(GL_TEXTURE_2D, 0, texFmt._Format, m_Format == PXF_DEPTH ? GL_FLOAT : GL_UNSIGNED_BYTE, m_Data.GetDataPtr());
         glBindTexture(GL_TEXTURE_2D, 0);
     }
-
 }

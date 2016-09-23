@@ -35,17 +35,20 @@ namespace Agmd
 
         inline void Disable() const;
 
-        template <class T> inline void SetParameter(TMatrixType type, T value) const;
-        template <class T> inline void SetParameter(const std::string& name, T value) const;
-        template <class T> inline void SetParameter(const std::string& name, T value, a_uint32 size) const;
-        template <class T> inline void SetParameter(const std::string& name, Buffer<T> buf);
+        template <class T>
+        inline void SetParameter(TMatrixType type, T value) const;
+        template <class T>
+        inline void SetParameter(const std::string& name, T value) const;
+        template <class T>
+        inline void SetParameter(const std::string& name, T value, a_uint32 size) const;
+        template <class T>
+        inline void SetParameter(const std::string& name, Buffer<T> buf);
 
     private :
         SmartPtr<BaseShaderProgram, ResourceCOM> m_ShaderProgram;
     };
 
-    #include "ShaderProgram.inl"
-
+#include "ShaderProgram.inl"
 }
 
 #endif /* _SHADERPROGRAM_H_ */

@@ -23,15 +23,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
-    
-
     struct PhysicsTransfo
     {
-        PhysicsTransfo(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f,vec3(0.0f))) :
-        m_position(_position),
-        m_rotation(_rotation)
-        {}
+        PhysicsTransfo(vec3 _position = vec3(0.0f), quat _rotation = quat(1.0f, vec3(0.0f))) :
+            m_position(_position),
+            m_rotation(_rotation)
+        {
+        }
 
         vec3 m_position;
         quat m_rotation;
@@ -47,15 +45,15 @@ namespace Agmd
     class Entities
     {
     public:
-        Entities(float _mass, btCollisionShape* _shape , PhysicsTransfo& _transfo,EntitiesType _type);
+        Entities(float _mass, btCollisionShape* _shape, PhysicsTransfo& _transfo, EntitiesType _type);
         void Prepare();
         void Update();
 
-        EntitiesType GetType(){ return m_Type; }
+        EntitiesType GetType() { return m_Type; }
 
         void SetMass(float _mass) { m_fMass = _mass; }
         bool IsStatic() { return m_fMass == 0; }
-        void SetVelocity(vec3 _velocity); 
+        void SetVelocity(vec3 _velocity);
 
         btRigidBody* GetBody() { return m_Rigid; }
 
@@ -66,12 +64,11 @@ namespace Agmd
 
         btRigidBody* m_Rigid;
 
-        PhysicsTransfo &m_Tranfo;
+        PhysicsTransfo& m_Tranfo;
         EntitiesType m_Type;
         float m_fMass;
         btCollisionShape* m_Shape;
     };
-
 }
 
 #endif // ENTITIES_H

@@ -21,6 +21,7 @@ https://github.com/Agamand/AgmdEngine
 #include <string>
 
 using namespace AgmdUtilities;
+
 namespace Agmd
 {
     class AGMD3D_EXPORT Shader
@@ -39,7 +40,6 @@ namespace Agmd
 
         SmartPtr<BaseShader, ResourceCOM> m_Shader;
     };
-
 }
 
 

@@ -54,10 +54,10 @@ namespace Agmd
     {
         switch (cap)
         {
-            case CAP_HW_MIPMAPPING :   return "Génération hardware des niveaux de mipmapping";
-            case CAP_DXT_COMPRESSION : return "Compression de texture DXT";
-            case CAP_TEX_NON_POWER_2 : return "Dimensions de textures non-puissances de 2";
-            default :                  return "Fonctionnalité inconnue";
+        case CAP_HW_MIPMAPPING: return "Génération hardware des niveaux de mipmapping";
+        case CAP_DXT_COMPRESSION: return "Compression de texture DXT";
+        case CAP_TEX_NON_POWER_2: return "Dimensions de textures non-puissances de 2";
+        default: return "Fonctionnalité inconnue";
         }
     }
 
@@ -69,98 +69,100 @@ namespace Agmd
         Logger::Instance().SetFilename("Agmd3D");
         m_stats = new Statistics();
         m_CurrentTransform = NULL;
-        std::cout << "Renderer : "<< GetRendererDesc().c_str()<< std::endl;
-        Logger::Log(LOGNORMAL,"Renderer : %s",GetRendererDesc().c_str());
-        Logger::Log(LOGNORMAL,"Support function :");
+        std::cout << "Renderer : " << GetRendererDesc().c_str() << std::endl;
+        Logger::Log(LOGNORMAL, "Renderer : %s", GetRendererDesc().c_str());
+        Logger::Log(LOGNORMAL, "Support function :");
         for (std::map<TCapability, bool>::const_iterator i = m_Capabilities.begin(); i != m_Capabilities.end(); ++i)
-            Logger::Log(LOGNORMAL,"%s : %s", CapToString(i->first).c_str(), (i->second ? "OK" : "NO"));
-        Logger::Log(LOGNORMAL,"Function : \n");
+            Logger::Log(LOGNORMAL, "%s : %s", CapToString(i->first).c_str(), (i->second ? "OK" : "NO"));
+        Logger::Log(LOGNORMAL, "Function : \n");
         //Logger::Log(LOGNORMAL,GetExtension().c_str());
-        Logger::Log(LOGNORMAL,"");
+        Logger::Log(LOGNORMAL, "");
     }
 
     void Driver::OnUpdate(a_uint64 t_diff)
     {
-         //Camera* cam = Camera::getCurrent();
-         //if(cam)
-             //cam->onUpdate(t_diff);
+        //Camera* cam = Camera::getCurrent();
+        //if(cam)
+        //cam->onUpdate(t_diff);
     }
 
-        mat4 Driver::GetMatView() 
-        {
-            return mat4(1.0f);
-        }
+    mat4 Driver::GetMatView()
+    {
+        return mat4(1.0f);
+    }
 
-        mat4 Driver::GetMatProjection() 
-        {
-            return mat4(1.0f);
-        }
+    mat4 Driver::GetMatProjection()
+    {
+        return mat4(1.0f);
+    }
 
-        void Driver::SetMatView(mat4 _MatView) 
-        {
-            //Unused function !
-        }
+    void Driver::SetMatView(mat4 _MatView)
+    {
+        //Unused function !
+    }
 
-        void Driver::SetMatProjection(mat4 _MatProjection)
-        {
-            //Unused function !
-        }
+    void Driver::SetMatProjection(mat4 _MatProjection)
+    {
+        //Unused function !
+    }
 
-        void Driver::SetScreen(ivec2 _screen)
-        {
-            m_Screen = _screen;
-        }
+    void Driver::SetScreen(ivec2 _screen)
+    {
+        m_Screen = _screen;
+    }
 
-        ivec2 Driver::GetScreen()
-        {
-            return m_Screen;
-        }
+    ivec2 Driver::GetScreen()
+    {
+        return m_Screen;
+    }
 
-        void Driver::SetCamera(Camera* cam)
-        {
-            m_Camera = cam;
-        }
-        Camera* Driver::GetCamera()
-        {
-            return m_Camera;
-        }
+    void Driver::SetCamera(Camera* cam)
+    {
+        m_Camera = cam;
+    }
 
-        void Driver::SetTextureFlag(a_uint32 flag)
-        {
-            m_TextureFlags = flag;
-        }
+    Camera* Driver::GetCamera()
+    {
+        return m_Camera;
+    }
 
-        void Driver::AddTextureFlag(a_uint32 flag)
-        {
-            m_TextureFlags |= flag;
-        }
+    void Driver::SetTextureFlag(a_uint32 flag)
+    {
+        m_TextureFlags = flag;
+    }
 
-        void Driver::RemoveTextureFlag(a_uint32 flag)
-        {
-            m_TextureFlags &= ~flag;
-        }
+    void Driver::AddTextureFlag(a_uint32 flag)
+    {
+        m_TextureFlags |= flag;
+    }
 
-        a_uint32 Driver::GetTextureFlag()
-        {
-            return m_TextureFlags;
-        }
+    void Driver::RemoveTextureFlag(a_uint32 flag)
+    {
+        m_TextureFlags &= ~flag;
+    }
 
-        void Driver::SetActiveScene( ASceneMgr* sc )
-        {
-            m_ActiveScene = sc;
-        }
+    a_uint32 Driver::GetTextureFlag()
+    {
+        return m_TextureFlags;
+    }
 
-        ASceneMgr* Driver::GetActiveScene()
-        {
-            return m_ActiveScene;
-        }
-        Statistics& Driver::GetStatistics()
-        {
-            return *m_stats;
-        }
+    void Driver::SetActiveScene(ASceneMgr* sc)
+    {
+        m_ActiveScene = sc;
+    }
 
-        float Driver::GetAspectRatio()
-        {
-            return ((float)m_Screen.x)/m_Screen.y;
-        }
+    ASceneMgr* Driver::GetActiveScene()
+    {
+        return m_ActiveScene;
+    }
+
+    Statistics& Driver::GetStatistics()
+    {
+        return *m_stats;
+    }
+
+    float Driver::GetAspectRatio()
+    {
+        return ((float)m_Screen.x) / m_Screen.y;
+    }
 }

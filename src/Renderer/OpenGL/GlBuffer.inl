@@ -8,22 +8,22 @@ https://github.com/Agamand/AgmdEngine
 
 template <int Type, int bufferCount>
 inline GLBuffer<Type, bufferCount>::GLBuffer(unsigned long count, unsigned int* buffer) :
-BaseBuffer    (count),
-//m_Buffer   (buffer),
-m_currentBuffer(0),
-m_bufferCount(sizeof(m_Buffer)/sizeof(int)),
-m_sync (NULL)
+    BaseBuffer(count),
+    //m_Buffer   (buffer),
+    m_currentBuffer(0),
+    m_bufferCount(sizeof(m_Buffer) / sizeof(int)),
+    m_sync(NULL)
 {
-    for(a_uint32 i = 0; i < m_bufferCount; i++)
+    for (a_uint32 i = 0; i < m_bufferCount; i++)
         m_Buffer[i] = buffer[i]; //temp
 }
 
 template <int Type, int bufferCount>
 inline GLBuffer<Type, bufferCount>::~GLBuffer()
 {
-//     if (m_Buffer) // fail 
-//         GLDriver::glDeleteBuffers(m_bufferCount, m_Buffer);
-    if(m_sync)
+    //     if (m_Buffer) // fail 
+    //         GLDriver::glDeleteBuffers(m_bufferCount, m_Buffer);
+    if (m_sync)
         GLDriver::glDeleteSync(m_sync);
 }
 
@@ -47,8 +47,8 @@ inline void* GLBuffer<Type, bufferCount>::LockByte(unsigned long offset, unsigne
 {
     GLDriver::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
     unsigned char* buffer = reinterpret_cast<unsigned char*>(GLDriver::glMapBufferRange(Type, offset, size, RGLEnum::LockBitsFlags(flags) | GL_MAP_FLUSH_EXPLICIT_BIT | GL_MAP_INVALIDATE_RANGE_BIT));
-    if(flags & LOCK_SYNC_WAIT)
-        m_sync = GLDriver::glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    if (flags & LOCK_SYNC_WAIT)
+        m_sync = GLDriver::glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
     return buffer;
 }
 
@@ -56,7 +56,7 @@ template <int Type, int bufferCount>
 inline void GLBuffer<Type, bufferCount>::FillByte(unsigned char* data, unsigned long offset, unsigned long size)
 {
     GLDriver::glBindBuffer(Type, m_Buffer[m_currentBuffer]);
-    GLDriver::glBufferSubData(Type,offset,size,data);
+    GLDriver::glBufferSubData(Type, offset, size, data);
 }
 
 template <int Type, int bufferCount>
@@ -74,13 +74,15 @@ inline void GLBuffer<Type, bufferCount>::Flush()
 
 template <int Type, int bufferCount>
 inline void GLBuffer<Type, bufferCount>::Bind(a_uint32 /*bindpoint*/)
-{}
+{
+}
 
 #define TIMEOUT 100000
+
 template <int Type, int bufferCount>
 void GLBuffer<Type, bufferCount>::WaitSync()
 {
-    GLDriver::glClientWaitSync(m_sync,0,TIMEOUT);
+    GLDriver::glClientWaitSync(m_sync, 0,TIMEOUT);
     GLDriver::glDeleteSync(m_sync);
     m_sync = NULL;
 }
@@ -100,5 +102,5 @@ void GLBuffer<Type, 2>::SwapBuffers()
 template <int Type, int bufferCount>
 void GLBuffer<Type, bufferCount>::SwapBuffers()
 {
-    m_currentBuffer = (m_currentBuffer+1)%m_bufferCount;
+    m_currentBuffer = (m_currentBuffer + 1) % m_bufferCount;
 }

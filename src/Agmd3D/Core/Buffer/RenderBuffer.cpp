@@ -11,11 +11,12 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     RenderBuffer::RenderBuffer(const ivec2& size) :
-    m_Size(size)
-    {}
+        m_Size(size)
+    {
+    }
 
 
     RenderBuffer::~RenderBuffer()
-    {}
-
+    {
+    }
 }

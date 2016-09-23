@@ -34,6 +34,7 @@ status : in pause
 #include <Container/Vector.h>
 #define SCREEN_WIDTH_PLANET 800
 #define SCREEN_HEIGHT_PLANET 600
+
 class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
@@ -42,7 +43,9 @@ public:
     void Run(int argc, char** argv);
 private :
     App() : AgmdApplication(ivec2(SCREEN_WIDTH_PLANET,SCREEN_HEIGHT_PLANET))
-    {}
+    {
+    }
+
     virtual void init();
 
     virtual LRESULT CALLBACK WindowProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
@@ -51,13 +54,13 @@ private :
     virtual void OnUpdate(a_uint64 time_diff);
     virtual void OnRender3D();
     virtual void OnRender2D();
-    glm::mat4             m_MatProj2D;
-    glm::mat4             m_MatProj3D;
+    glm::mat4 m_MatProj2D;
+    glm::mat4 m_MatProj3D;
 
     Agmd::GraphicString* m_fps;
 
-    Agmd::Camera*       cam3D;
-    Agmd::Camera*       cam2D;
+    Agmd::Camera* cam3D;
+    Agmd::Camera* cam2D;
 
 
     bool pause;
@@ -66,8 +69,6 @@ private :
     //Bezier
 
     Agmd::DrawablePlane* m_plane;
-
-
 };
 
 #endif // APP_H

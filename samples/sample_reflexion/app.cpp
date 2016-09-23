@@ -63,18 +63,18 @@ SINGLETON_IMPL(App);
 #define WATER_RESOLUTION 2048
 
 
-
 void App::Run(int argc, char** argv)
 {
-    if(argc > 0)
+    if (argc > 0)
     {
         File main(argv[0]);
         MediaManager::Instance().AddSearchPath(main.Path());
-        ShaderPreCompiler::Instance().AddSearchPath(main.Path()+"/Shader");
+        ShaderPreCompiler::Instance().AddSearchPath(main.Path() + "/Shader");
     }
-    wxEntryStart( argc, argv );
-    AgmdApplication::Run(argc,argv);
+    wxEntryStart(argc, argv);
+    AgmdApplication::Run(argc, argv);
 }
+
 struct _WaveParameters
 {
     float speed;
@@ -88,6 +88,7 @@ struct _WaveDirections
     float x;
     float y;
 };
+
 #define WAVE_COUNT 1
 _WaveParameters m_PWave[WAVE_COUNT];
 
@@ -97,57 +98,56 @@ void App::MakeWindow()
 {
     //wxApp::SetInstance(m_wxApplication);
 }
-ShaderPipeline * refractionPipe;
+
+ShaderPipeline* refractionPipe;
 ShaderProgram tmp_program;
 Texture water_normal;
 
 
-
 void App::init()
-{ 
-
+{
     m_MatProj3D = glm::perspective(35.0f, (float)getScreen().x / (float)getScreen().y, 0.01f, 1000.f);
-    m_MatProj2D = ortho(0.0f,(float)getScreen().x,0.0f,(float)getScreen().y);
+    m_MatProj2D = ortho(0.0f, (float)getScreen().x, 0.0f, (float)getScreen().y);
     ForwardRendering* mode = new ForwardRendering(getScreen());
     //DeferredRendering* mode = new DeferredRendering(getScreen());
     RenderingMode::setRenderingMode(mode);
-    m_fps = new GraphicString(ivec2(0,getScreen().y-15),"",Color::black,"Arial",20);
+    m_fps = new GraphicString(ivec2(0, getScreen().y - 15), "", Color::black, "Arial", 20);
     m_Scene = new SceneMgr();
-    
-	AssetLoader assetLoader;
-	SceneNode* dragon = assetLoader.LoadFromFile("D:\\Moteur 3D\\AgmdEngine\\AgmdEngine\\bin\\Debug_Win32\\model\\dragon.obj");
+
+    AssetLoader assetLoader;
+    SceneNode* dragon = assetLoader.LoadFromFile("D:\\Moteur 3D\\AgmdEngine\\AgmdEngine\\bin\\Debug_Win32\\model\\dragon.obj");
 
     Image img[6];
-    for(int i = 0; i < 6; i++)
+    for (int i = 0; i < 6; i++)
     {
         img[i] = Image(ivec2(512));
         img[i].LoadFromFile(StringBuilder("texture/watercube/")(i)(".tga"));
     }
     Texture texCube;
-    texCube.CreateFromImage(img,PXF_A8R8G8B8);
-    water_normal.Create(ivec2(WATER_RESOLUTION),PXF_A8R8G8B8,TEXTURE_2D);
-    ShaderPipeline* _default= ShaderPipeline::GetDefaultPipeline();
+    texCube.CreateFromImage(img, PXF_A8R8G8B8);
+    water_normal.Create(ivec2(WATER_RESOLUTION), PXF_A8R8G8B8, TEXTURE_2D);
+    ShaderPipeline* _default = ShaderPipeline::GetDefaultPipeline();
     refractionPipe = new ShaderPipeline(*_default);
     ShaderProgram diffuseShader;
     diffuseShader.LoadFromFile("Shader/test/refraction.glsl");
     Texture normal;
-    normal.CreateFromFile("texture/water_normal.png",PXF_A8R8G8B8);
-    refractionPipe->setShader(diffuseShader,RENDERPASS_DIFFUSE);
+    normal.CreateFromFile("texture/water_normal.png", PXF_A8R8G8B8);
+    refractionPipe->setShader(diffuseShader, RENDERPASS_DIFFUSE);
     Material* mat = new Material(refractionPipe);
 
-    mat->SetTexture(texCube,0,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-    mat->SetTexture(water_normal,1,(TRenderPass)(1<<RENDERPASS_DEFERRED | (1<<RENDERPASS_DIFFUSE)));
-	m_Scene->AddNode(dragon);
-//     Model* mesh = GeometryFactory::createPlane(ivec2(100),ivec2(100));
-//     MeshNode* node = new MeshNode(mesh);
-//     node->setMaterial(mat);
-//     node->getTransform().rotate(90.0f,vec3(1,0,0));
-//     m_Scene->AddNode(node);
-//     mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
-//     node = new MeshNode(mesh);
-//     node->setMaterial(mat);
-//     m_Scene->AddNode(node);
-    
+    mat->SetTexture(texCube, 0, (TRenderPass)(1 << RENDERPASS_DEFERRED | (1 << RENDERPASS_DIFFUSE)));
+    mat->SetTexture(water_normal, 1, (TRenderPass)(1 << RENDERPASS_DEFERRED | (1 << RENDERPASS_DIFFUSE)));
+    m_Scene->AddNode(dragon);
+    //     Model* mesh = GeometryFactory::createPlane(ivec2(100),ivec2(100));
+    //     MeshNode* node = new MeshNode(mesh);
+    //     node->setMaterial(mat);
+    //     node->getTransform().rotate(90.0f,vec3(1,0,0));
+    //     m_Scene->AddNode(node);
+    //     mesh = GeometryFactory::createSphere(1,100,100,(float)M_PI*2);
+    //     node = new MeshNode(mesh);
+    //     node->setMaterial(mat);
+    //     m_Scene->AddNode(node);
+
     tmp_program.LoadFromFile("shader/waterNormal.glsl");
     GUIMgr& guimgr = GUIMgr::Instance();
 
@@ -155,97 +155,93 @@ void App::init()
     sk->SetTexture(texCube);
     m_Scene->SetSkybox(sk);
 
-        memset(m_PWave,0,sizeof(m_PWave));
-        memset(m_DWave,0,sizeof(m_DWave));
+    memset(m_PWave, 0, sizeof(m_PWave));
+    memset(m_DWave, 0, sizeof(m_DWave));
 
-        static float overallSteepness = 0.2f;
-        // Wave One
-        m_PWave[0].speed = 4.f;
-        m_PWave[0].amplitude = 0.05f;
-        m_PWave[0].wavelength = 0.5f;
-        m_PWave[0].steepness = overallSteepness / (m_PWave[0].wavelength * m_PWave[0].amplitude * 4);
-        m_DWave[0].x = +1.0f;
-        m_DWave[0].y = +1.5f;
+    static float overallSteepness = 0.2f;
+    // Wave One
+    m_PWave[0].speed = 4.f;
+    m_PWave[0].amplitude = 0.05f;
+    m_PWave[0].wavelength = 0.5f;
+    m_PWave[0].steepness = overallSteepness / (m_PWave[0].wavelength * m_PWave[0].amplitude * 4);
+    m_DWave[0].x = +1.0f;
+    m_DWave[0].y = +1.5f;
 
-        // Wave Two
-//         m_PWave[1].speed = 0.1f;
-//         m_PWave[1].amplitude = 0*0.01f;
-//         m_PWave[1].wavelength = 0.4f;
-//         m_PWave[1].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
-//         m_DWave[1].x = +0.8f;
-//         m_DWave[1].y = +0.2f;
-// 
-//         // Wave Three
-//         m_PWave[2].speed = 0.04f;
-//         m_PWave[2].amplitude = 0*0.035f;
-//         m_PWave[2].wavelength = 0.1f;
-//         m_PWave[2].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
-//         m_DWave[2].x = -0.2f;
-//         m_DWave[2].y = -0.1f;
-// 
-//         // Wave Four
-//         m_PWave[3].speed = 0.05f;
-//         m_PWave[3].amplitude = 0*0.007f;
-//         m_PWave[3].wavelength = 0.2f;
-//         m_PWave[3].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
-//         m_DWave[3].x = -0.4f;
-//         m_DWave[3].y = -0.3f;
+    // Wave Two
+    //         m_PWave[1].speed = 0.1f;
+    //         m_PWave[1].amplitude = 0*0.01f;
+    //         m_PWave[1].wavelength = 0.4f;
+    //         m_PWave[1].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+    //         m_DWave[1].x = +0.8f;
+    //         m_DWave[1].y = +0.2f;
+    // 
+    //         // Wave Three
+    //         m_PWave[2].speed = 0.04f;
+    //         m_PWave[2].amplitude = 0*0.035f;
+    //         m_PWave[2].wavelength = 0.1f;
+    //         m_PWave[2].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+    //         m_DWave[2].x = -0.2f;
+    //         m_DWave[2].y = -0.1f;
+    // 
+    //         // Wave Four
+    //         m_PWave[3].speed = 0.05f;
+    //         m_PWave[3].amplitude = 0*0.007f;
+    //         m_PWave[3].wavelength = 0.2f;
+    //         m_PWave[3].steepness = overallSteepness / (m_PWave[1].wavelength * m_PWave[1].amplitude * 4);
+    //         m_DWave[3].x = -0.4f;
+    //         m_DWave[3].y = -0.3f;
 
     Driver::Get().SetActiveScene(m_Scene);
     Driver::Get().SetCullFace(2);
-    cam3D = new Camera(PROJECTION_PERSPECTIVE,ProjectionOption(vec2(getScreen()),60.0f,0));
-    
+    cam3D = new Camera(PROJECTION_PERSPECTIVE, ProjectionOption(vec2(getScreen()), 60.0f, 0));
+
     InputController* controller = new FirstPersonController();
-    camNode = new CameraNode(cam3D,controller);
+    camNode = new CameraNode(cam3D, controller);
     camNode->setController(controller);
     m_Scene->AddNode(camNode);
-    cam2D =  new Camera(PROJECTION_ORTHO,ProjectionOption(vec4(0,100.0f,0,100.0f)));
+    cam2D = new Camera(PROJECTION_ORTHO, ProjectionOption(vec4(0, 100.0f, 0, 100.0f)));
     Camera::setCurrent(cam3D, CAMERA_3D);
     Camera::setCurrent(cam2D, CAMERA_2D);
 }
-void generateNormalMap(Texture& tex,float time)
+
+void generateNormalMap(Texture& tex, float time)
 {
     //mat4 tempProjection = glm::ortho(-(float)size.x/2.0f,(float)size.x/2.0f, -(float)size.y/2.0f,(float)size.y/2.0f);
     Driver& driver = Driver::Get();
     driver.SetCurrentProgram(tmp_program.GetShaderProgram());
-    driver.SetViewPort(ivec2(0),ivec2(WATER_RESOLUTION));
+    driver.SetViewPort(ivec2(0), ivec2(WATER_RESOLUTION));
     Texture::BeginRenderToTexture(water_normal);
-    tmp_program.SetParameter("u_waveParameters[0]",(vec4*)m_PWave,WAVE_COUNT);
-    tmp_program.SetParameter("u_waveDirections[0]",(vec2*)m_DWave,WAVE_COUNT);
+    tmp_program.SetParameter("u_waveParameters[0]", (vec4*)m_PWave,WAVE_COUNT);
+    tmp_program.SetParameter("u_waveDirections[0]", (vec2*)m_DWave,WAVE_COUNT);
     float _time = time;
-    tmp_program    .SetParameter("u_passedTime",_time);
+    tmp_program.SetParameter("u_passedTime", _time);
     Fast2DSurface::Instance().Draw();
     Texture::EndRenderToTexture();
 }
+
 float _time = 0;
+
 void App::OnUpdate(a_uint64 time_diff/*in ms*/)
 {
-    _time += time_diff/10000.0f;
+    _time += time_diff / 10000.0f;
 
-    refractionPipe->setParameter("u_camPosition",camNode->getTransform().getPosition());
-    generateNormalMap(water_normal,_time);
+    refractionPipe->setParameter("u_camPosition", camNode->getTransform().getPosition());
+    generateNormalMap(water_normal, _time);
 }
-
-
-
-
 
 
 void App::OnRender3D()
 {
-
-
 }
 
 void App::OnRender2D()
 {
-
 }
 
 
-void App::OnClick( int click, vec2 pos,bool up)
+void App::OnClick(int click, vec2 pos, bool up)
 {
-    AgmdApplication::OnClick(click,pos,up);
+    AgmdApplication::OnClick(click, pos, up);
 }
 
 
@@ -256,13 +252,5 @@ void App::OnMove(vec2 pos)
 
 void App::OnKey(a_char key, bool up)
 {
-    AgmdApplication::OnKey(key,up);
+    AgmdApplication::OnKey(key, up);
 }
-
-
-
-
-
-
-
-

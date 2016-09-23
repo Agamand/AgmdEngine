@@ -1,4 +1,3 @@
-
 #ifndef LOGGER_H
 #define LOGGER_H
 
@@ -19,11 +18,11 @@ namespace AgmdUtilities
 
     class Logger : public Singleton<Logger>
     {
-    MAKE_SINGLETON(Logger);
+        MAKE_SINGLETON(Logger);
     public :
         Logger();
         ~Logger();
-        static void Log(LogLevel loglevel,const char* format, ...);
+        static void Log(LogLevel loglevel, const char* format, ...);
         void SetFilename(std::string name);
 
     protected :
@@ -37,10 +36,9 @@ namespace AgmdUtilities
         std::ofstream m_File;
     };
 
-    #define LOG(msg, ...) Logger::Log(LOGNORMAL, msg, ...)
-    #define ERROR_LOG(msg, ...) Logger::Log(LOGERROR, msg, ...)
-    #define DEBUG_LOG(msg, ...) Logger::Log(LOGDEBUG, msg, ...)
-
+#define LOG(msg, ...) Logger::Log(LOGNORMAL, msg, ...)
+#define ERROR_LOG(msg, ...) Logger::Log(LOGERROR, msg, ...)
+#define DEBUG_LOG(msg, ...) Logger::Log(LOGDEBUG, msg, ...)
 }
 
 

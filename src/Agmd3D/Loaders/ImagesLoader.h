@@ -14,7 +14,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     class ImagesLoader : public Loader<Image>
     {
     public :
@@ -27,7 +26,6 @@ namespace Agmd
 
         virtual void SaveToFile(const Image* object, const std::string& filename);
     };
-
 }
 
 

@@ -33,7 +33,7 @@ class App : public Agmd::AgmdApplication, public Singleton<App>
 {
     MAKE_SINGLETON(App);
 public:
-    static Agmd::Model* CreateSphere(float r,float stack, float slice,float angle, std::string texture, Agmd::TPrimitiveType type, a_uint32 color = -1);
+    static Agmd::Model* CreateSphere(float r, float stack, float slice, float angle, std::string texture, Agmd::TPrimitiveType type, a_uint32 color = -1);
     static Agmd::Model* CreatePlane(ivec2 size, ivec2 n_poly, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateBox(vec3 size, std::string texture, Agmd::TPrimitiveType type);
     static Agmd::Model* CreateTriangle(float size, Agmd::TPrimitiveType type);
@@ -41,7 +41,9 @@ public:
     virtual void Run(int argc, char** argv);
 private :
     App() : AgmdApplication("StartBirth")
-    {}
+    {
+    }
+
     virtual void init();
 
 
@@ -57,18 +59,18 @@ private :
     virtual void MakeWindow();
 
 
-    glm::mat4             m_MatProj2D;
-    glm::mat4             m_MatProj3D;
-    glm::mat3             m_MatNormal;
+    glm::mat4 m_MatProj2D;
+    glm::mat4 m_MatProj3D;
+    glm::mat3 m_MatNormal;
 
-    Agmd::SceneMgr*        m_Scene;
+    Agmd::SceneMgr* m_Scene;
     Agmd::GraphicString* m_fps;
 
-    Agmd::Camera*       cam3D;
-    Agmd::Camera*       cam2D;
+    Agmd::Camera* cam3D;
+    Agmd::Camera* cam2D;
 
     Agmd::Light* m_light;
-    a_uint64  m_timer;
+    a_uint64 m_timer;
     bool pause;
 
 
@@ -76,9 +78,9 @@ private :
         UISLider    
     */
 
-    Agmd::ASlider*  m_frequencySlider;
-    Agmd::ASlider*  m_octaveCountSlider;
-    Agmd::ASlider*  m_persistanceSlider;
+    Agmd::ASlider* m_frequencySlider;
+    Agmd::ASlider* m_octaveCountSlider;
+    Agmd::ASlider* m_persistanceSlider;
     bool m_animated;
     ivec2 mousePos;
     PlanetFrame* m_planetFrame;

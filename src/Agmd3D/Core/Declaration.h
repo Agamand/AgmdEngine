@@ -21,15 +21,18 @@ namespace Agmd
     {
     public :
 
-        virtual ~Declaration() {}
+        virtual ~Declaration()
+        {
+        }
 
     protected :
 
-        Declaration() {}
+        Declaration()
+        {
+        }
     };
 
     typedef SmartPtr<Declaration> DeclarationPtr;
-
 }
 
 

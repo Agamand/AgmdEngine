@@ -25,100 +25,98 @@ using namespace AgmdUtilities;
 
 namespace Agmd
 {
-
     ShaderProgramsLoader::ShaderProgramsLoader()
-    {}
+    {
+    }
 
     ShaderProgramsLoader::~ShaderProgramsLoader()
-    {}
-	
-	inline bool ends_with(std::string const &val, std::string const & ending)
-	{
-		if (ending.size() > val.size()) return false;
-		return std::equal(ending.rbegin(), ending.rend(), val.rbegin());
-	}
+    {
+    }
+
+    inline bool ends_with(std::string const& val, std::string const& ending)
+    {
+        if (ending.size() > val.size()) return false;
+        return std::equal(ending.rbegin(), ending.rend(), val.rbegin());
+    }
 
 
     BaseShaderProgram* ShaderProgramsLoader::LoadFromFile(const std::string& filename)
     {
+        if (ends_with(filename, ".hlsl"))
+        {
+            ShaderPreCompiler& compiler = ShaderPreCompiler::Instance();
+            std::string buffer = compiler.LoadAndCompileShader(filename);
+            BaseShader* shader[5];
+            Logger::Log(LOGDEBUG, "load shader program : %s", filename.c_str());
+            shader[0] = Driver::Get().CreateShader(buffer, SHADER_VERTEX);
+            shader[4] = Driver::Get().CreateShader(buffer, SHADER_PIXEL);
 
-
-
-		if(ends_with(filename,".hlsl"))
-		{
-
-			ShaderPreCompiler& compiler = ShaderPreCompiler::Instance();
-			std::string buffer = compiler.LoadAndCompileShader(filename);
-			BaseShader* shader[5];
-			Logger::Log(LOGDEBUG,"load shader program : %s",filename.c_str());
-			shader[0] = Driver::Get().CreateShader(buffer, SHADER_VERTEX);
-			shader[4] = Driver::Get().CreateShader(buffer, SHADER_PIXEL);
-
-			return Driver::Get().CreateShaderProgram(shader[0],NULL,NULL,NULL,shader[4]);
-		}else
-		{
-			ShaderPreCompiler& compiler = ShaderPreCompiler::Instance();
-			std::string buffer = compiler.LoadAndCompileShader(filename);//LoadShader(filename);
-			BaseShader* shader[5];
-			Logger::Log(LOGDEBUG,"load shader program : %s",filename.c_str());
-			shader[0] = Driver::Get().CreateShader(buffer, SHADER_VERTEX);
-			if(shader[0])
-				Logger::Log(LOGDEBUG,"load Vertex shader");
-			shader[1] = Driver::Get().CreateShader(buffer, SHADER_TESS_CONTROL);
-			if(shader[1])
-				Logger::Log(LOGDEBUG,"load TessControl shader");
-			shader[2] = Driver::Get().CreateShader(buffer, SHADER_TESS_EVALUATION);
-			if(shader[2])
-				Logger::Log(LOGDEBUG,"load TessEval shader");
-			shader[3] = Driver::Get().CreateShader(buffer, SHADER_GEOMETRY);
-			if(shader[3])
-				Logger::Log(LOGDEBUG,"load Geometry shader");
-			shader[4] = Driver::Get().CreateShader(buffer, SHADER_PIXEL);
-			if(shader[4])
-				Logger::Log(LOGDEBUG,"load Frag shader");
-			return Driver::Get().CreateShaderProgram(shader[0],shader[2],shader[1],shader[3],shader[4]);
-		}
+            return Driver::Get().CreateShaderProgram(shader[0],NULL,NULL,NULL, shader[4]);
+        }
+        else
+        {
+            ShaderPreCompiler& compiler = ShaderPreCompiler::Instance();
+            std::string buffer = compiler.LoadAndCompileShader(filename);//LoadShader(filename);
+            BaseShader* shader[5];
+            Logger::Log(LOGDEBUG, "load shader program : %s", filename.c_str());
+            shader[0] = Driver::Get().CreateShader(buffer, SHADER_VERTEX);
+            if (shader[0])
+                Logger::Log(LOGDEBUG, "load Vertex shader");
+            shader[1] = Driver::Get().CreateShader(buffer, SHADER_TESS_CONTROL);
+            if (shader[1])
+                Logger::Log(LOGDEBUG, "load TessControl shader");
+            shader[2] = Driver::Get().CreateShader(buffer, SHADER_TESS_EVALUATION);
+            if (shader[2])
+                Logger::Log(LOGDEBUG, "load TessEval shader");
+            shader[3] = Driver::Get().CreateShader(buffer, SHADER_GEOMETRY);
+            if (shader[3])
+                Logger::Log(LOGDEBUG, "load Geometry shader");
+            shader[4] = Driver::Get().CreateShader(buffer, SHADER_PIXEL);
+            if (shader[4])
+                Logger::Log(LOGDEBUG, "load Frag shader");
+            return Driver::Get().CreateShaderProgram(shader[0], shader[2], shader[1], shader[3], shader[4]);
+        }
     }
 
     bool isPreprocessor(const std::string& line)
     {
         return false;
     }
+
     std::string ShaderProgramsLoader::LoadShader(const std::string& filename, const std::string& parentdir)
     {
-        
         std::ifstream file;
-        if(parentdir.empty())
+        if (parentdir.empty())
             file.open(filename, std::ios::in);
         else
         {
             File f(parentdir);
-            file.open(f.Path()+"\\"+filename, std::ios::in);
+            file.open(f.Path() + "\\" + filename, std::ios::in);
         }
         std::string str_shader = "", buffer = "";
-        if(!file)
-            throw LoadingFailed(filename,"Erreur lors du chargement du fichier (ShaderProgramsLoader)");
+        if (!file)
+            throw LoadingFailed(filename, "Erreur lors du chargement du fichier (ShaderProgramsLoader)");
         char cbuffer = 0;
-        while(file.read(&cbuffer,1))
+        while (file.read(&cbuffer, 1))
         {
             std::string instruction = "";
             std::string value = "";
-            switch(cbuffer)
+            switch (cbuffer)
             {
             case '#':
 
 
-                while(file.read(&cbuffer,1) && cbuffer != ' ')
+                while (file.read(&cbuffer, 1) && cbuffer != ' ')
                     instruction += cbuffer;
 
-                while(file.read(&cbuffer,1) && cbuffer != '\n')
+                while (file.read(&cbuffer, 1) && cbuffer != '\n')
                     value += cbuffer;
 
                 value += '\n';
-                switch(preprocessor(instruction))
+                switch (preprocessor(instruction))
                 {
                 case PREPROCESSOR_INCLUDE:
-                    buffer += LoadShader(value.substr(value.find_first_of('"')+1, value.find_last_of('"')-1),filename);
+                    buffer += LoadShader(value.substr(value.find_first_of('"') + 1, value.find_last_of('"') - 1), filename);
                     break;
                 default:
                     buffer += "#" + instruction + " " + value + "\n";
@@ -126,12 +124,12 @@ namespace Agmd
                 }
                 break;
             case '\n':
-                buffer +=cbuffer;
+                buffer += cbuffer;
                 break;
             default:
-                buffer +=cbuffer;
-                while(file.read(&cbuffer,1) && cbuffer != '\n')
-                    buffer +=cbuffer;
+                buffer += cbuffer;
+                while (file.read(&cbuffer, 1) && cbuffer != '\n')
+                    buffer += cbuffer;
 
                 buffer += '\n';
                 break;
@@ -139,19 +137,18 @@ namespace Agmd
 
             str_shader += buffer;
             buffer = "";
-            
         }
         return str_shader;
     }
 
     ShaderPreprocessor ShaderProgramsLoader::preprocessor(const std::string& instruction)
     {
-        if(!instruction.compare("include"))
+        if (!instruction.compare("include"))
         {
             return PREPROCESSOR_INCLUDE;
         }
 
-        if(!instruction.compare("revision"))
+        if (!instruction.compare("revision"))
         {
             return PREPROCESSOR_REVISION;
         }
@@ -162,6 +159,4 @@ namespace Agmd
     {
         throw Exception("");
     }
-
-
 }

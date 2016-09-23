@@ -31,7 +31,7 @@ namespace Agmd
 
         virtual void updatePixelFromTexture();
 
-        Image        m_Data;
+        Image m_Data;
     };
 }
 

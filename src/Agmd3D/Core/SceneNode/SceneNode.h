@@ -31,7 +31,7 @@ namespace Agmd
         LIGHT_NODE,
         MESH_NODE,
         CAMERA_NODE,
-		TREE_NODE
+        TREE_NODE
     };
 
     enum UpdateFlags
@@ -42,45 +42,51 @@ namespace Agmd
 
     class DisplayNode;
     class RootNode;
+
     class AGMD3D_EXPORT SceneNode
     {
     public :
         SceneNode(NodeType nodetype = TREE_NODE, Transform* t = NULL);
         virtual ~SceneNode();
-        virtual bool isVisible(BoundingSphere& bbox) { return true;}
-        virtual void findVisible(Camera*cam, RenderQueue& display,a_vector<LightNode*>& light) {
-            if(!m_children.empty())
-                for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
-                    m_children[i]->findVisible(cam,display,light);
+        virtual bool isVisible(BoundingSphere& bbox) { return true; }
+
+        virtual void findVisible(Camera* cam, RenderQueue& display,a_vector<LightNode*>& light)
+        {
+            if (!m_children.empty())
+                for (a_uint32 i = 0, len = m_children.size(); i < len; i++)
+                    m_children[i]->findVisible(cam, display, light);
         }
 
         virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
-        
+
         Transform& getTransform();
         void SetTransform(Transform* t);
 
         void addChild(SceneNode* node);
-        NodeType getType() const {return m_type;}
+        NodeType getType() const { return m_type; }
         bool isEmpty();
         void clear();
-        void setController( Controller* controller );
-        void SetRoot(RootNode* root){
+        void setController(Controller* controller);
+
+        void SetRoot(RootNode* root)
+        {
             m_root = root;
-            for(auto i  = 0; i < m_children.size(); i++)
+            for (auto i = 0; i < m_children.size(); i++)
                 m_children[i]->SetRoot(root);
         }
-        Controller* getController() const {return m_sceneController;}
-        void removeChild( SceneNode* node );
+
+        Controller* getController() const { return m_sceneController; }
+        void removeChild(SceneNode* node);
         Agmd::SceneNode* getParent();
         const a_vector<SceneNode*> GetChilden() const;
     protected:
-        
-        RootNode*             m_root;
-        Transform*             m_transform;
-        NodeType             m_type;
+
+        RootNode* m_root;
+        Transform* m_transform;
+        NodeType m_type;
         a_vector<SceneNode*> m_children;
-        SceneNode*             m_parent;
-        Controller*             m_sceneController;
+        SceneNode* m_parent;
+        Controller* m_sceneController;
     };
 }
 

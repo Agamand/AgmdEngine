@@ -26,7 +26,7 @@ inline Buffer<T> Driver::CreateIndexBuffer(unsigned long size, unsigned long fla
     return buffer;
 }
 
-    template <class T>
+template <class T>
 inline Buffer<T> Driver::CreateUniformBuffer(unsigned long size, unsigned long flags, int bindPoint, int ubflags, const T* data) const
 {
     Buffer<T> buffer(CreateUB(size, sizeof(T), flags, bindPoint, ubflags));
@@ -61,7 +61,7 @@ inline void Driver::SetIndexBuffer(const Buffer<T>& buffer)
 template <std::size_t N>
 Declaration* Driver::CreateVertexDeclaration(const TDeclarationElement (&elt)[N], a_uint32 stride) const
 {
-    return CreateDeclaration(elt, N, stride,);
+    return CreateDeclaration(elt, N, stride, );
 }
 
 inline void Driver::SetCurrentTransform(const Transform* transform)

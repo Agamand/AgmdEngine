@@ -29,7 +29,8 @@ namespace Agmd
         POINT_WITH_SHADOW,
         SPOT_WITH_SHADOW
     };
-    #define MAX_LIGHT_SHADER 6
+
+#define MAX_LIGHT_SHADER 6
 
     class AGMD3D_EXPORT DeferredRendering : public RenderingMode
     {
@@ -46,6 +47,7 @@ namespace Agmd
         Texture getDiffuseTexture();
         Texture getNormalTexture();
         Texture getPositionTexture();
+
         inline Texture getDepthTexture()
         {
             return m_textureBuffer[5];
@@ -54,24 +56,22 @@ namespace Agmd
         ShadowMapRenderer* getShadowRenderer();
         void init();
     private:
-        
-
-        FrameBuffer*        m_framebuffer;
-        RenderBuffer*        m_depthbuffer;
-        RenderBuffer*        m_colorbuffer;
-        RenderBuffer*        m_normalbuffer;
-        RenderBuffer*        m_positionbuffer;
-
-        Texture                m_textureBuffer[6];
-        a_uint32*            m_bufferFlags;
-        
-        ShaderProgram        m_light_program[MAX_LIGHT_SHADER];
-
-        ShadowMapRenderer*    m_shadowRender;
-        Texture                m_depthCubemap;
 
 
-    }; 
+        FrameBuffer* m_framebuffer;
+        RenderBuffer* m_depthbuffer;
+        RenderBuffer* m_colorbuffer;
+        RenderBuffer* m_normalbuffer;
+        RenderBuffer* m_positionbuffer;
+
+        Texture m_textureBuffer[6];
+        a_uint32* m_bufferFlags;
+
+        ShaderProgram m_light_program[MAX_LIGHT_SHADER];
+
+        ShadowMapRenderer* m_shadowRender;
+        Texture m_depthCubemap;
+    };
 }
 
 

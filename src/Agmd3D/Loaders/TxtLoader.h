@@ -28,7 +28,6 @@ namespace Agmd
 
         static void OnError();
     };
-
 }
 
 

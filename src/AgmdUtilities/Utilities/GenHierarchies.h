@@ -14,7 +14,8 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
-    template <class TList, template <class> class Handler> class ScatteredHierarchy;
+    template <class TList, template <class> class Handler>
+    class ScatteredHierarchy;
 
     template
     <
@@ -43,7 +44,8 @@ namespace AgmdUtilities
     {
     };
 
-    template <class TList, template <class, class> class Handler, class Root = NullType> class LinearHierarchy;
+    template <class TList, template <class, class> class Handler, class Root = NullType>
+    class LinearHierarchy;
 
     template
     <
@@ -52,7 +54,7 @@ namespace AgmdUtilities
         template <class, class> class Handler,
         class Root
     >
-    class LinearHierarchy<TypeList<T1, T2>, Handler, Root> : public Handler<T1, LinearHierarchy<T2, Handler, Root> >
+    class LinearHierarchy<TypeList<T1, T2>, Handler, Root> : public Handler<T1, LinearHierarchy<T2, Handler, Root>>
     {
     };
 
@@ -65,7 +67,6 @@ namespace AgmdUtilities
     class LinearHierarchy<TypeList<T, NullType>, Handler, Root> : public Handler<T, Root>
     {
     };
-
 }
 
 

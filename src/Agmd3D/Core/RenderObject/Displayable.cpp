@@ -12,16 +12,18 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-    Displayable::Displayable(Transform* transform) : 
-    m_material(NULL),
-    m_transform(transform)
-    {}
+    Displayable::Displayable(Transform* transform) :
+        m_material(NULL),
+        m_transform(transform)
+    {
+    }
 
     Displayable::~Displayable()
-    {}
+    {
+    }
 
-    Transform& Displayable::getTransform() 
-    { 
+    Transform& Displayable::getTransform()
+    {
         return *m_transform;
     }
 
@@ -30,11 +32,8 @@ namespace Agmd
         return m_material;
     }
 
-    void Displayable::setMaterial( Material* val )
+    void Displayable::setMaterial(Material* val)
     {
         m_material = val;
     }
-
-
 }
-

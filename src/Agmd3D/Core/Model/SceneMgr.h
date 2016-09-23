@@ -18,23 +18,20 @@ class wxFrame;
 
 namespace Agmd
 {
-
-
-
     class AGMD3D_EXPORT SceneMgr
     {
     public:
         SceneMgr();
 
-        void Render(TRenderPass pass, TRenderType type =  TRenderType::TYPE_DIFFUSE) const;
+        void Render(TRenderPass pass, TRenderType type = TRenderType::TYPE_DIFFUSE) const;
 
-        void Draw( TRenderType type =  TRenderType::TYPE_DIFFUSE) const;
+        void Draw(TRenderType type = TRenderType::TYPE_DIFFUSE) const;
         void Compute();
         void Update();
         void FindVisible(RenderQueue&,a_vector<LightNode*>&);
 
-        void AddNode(SceneNode *node); // add to root
-		void RemoveNode(SceneNode *node);
+        void AddNode(SceneNode* node); // add to root
+        void RemoveNode(SceneNode* node);
 
         const a_vector<Light*>& GetLights();
         const a_vector<LightNode*>& GetLightNodes();
@@ -43,14 +40,18 @@ namespace Agmd
         void SetSkybox(SkyBox* skybox);
 
         SkyBox* GetSkyBox();
+
         bool isEmpty() const
         {
             return !m_root || m_root->isEmpty();
         }
+
         void clear();
 
-        const RenderQueue& getRenderQueue(){return m_renderQueue;}
-        SceneNode* GetRoot(){
+        const RenderQueue& getRenderQueue() { return m_renderQueue; }
+
+        SceneNode* GetRoot()
+        {
             return m_root;
         }
 
@@ -71,7 +72,6 @@ namespace Agmd
         wxFrame* m_frame;
 #endif
     };
-
 }
 
 

@@ -12,9 +12,10 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     BaseShaderProgram::BaseShaderProgram()
-    {}
+    {
+    }
 
     BaseShaderProgram::~BaseShaderProgram()
-    {}
-
+    {
+    }
 }

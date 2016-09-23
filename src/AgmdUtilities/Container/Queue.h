@@ -13,28 +13,31 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdUtilities
 {
-    template<class T, class Allocator = DefaultAllocator> class Queue
+    template <class T, class Allocator = DefaultAllocator>
+    class Queue
     {
     public:
         class Node;
         typedef Node* NodePtr;
+
         struct Node
         {
         public:
             bool end();
             T data;
         };
+
         FastList();
-        FastList(bool with_sort, a_uint32 capacity = 10); 
+        FastList(bool with_sort, a_uint32 capacity = 10);
         ~FastList();
 
         const Iterator& Begin() const;
         const Iterator& End() const;
-        
-        void push(T); 
+
+        void push(T);
         void push_front(T);
         void push_back(T);
-        
+
         void pop(T);
         void pop(const Iterator&);
         void pop_front();
@@ -47,144 +50,153 @@ namespace AgmdUtilities
 
         NodePtr CreateNode(T element);
 
-        bool            m_bSort;
-        NodePtr         m_begin;
-        NodePtr         m_last;
-        NodePtr         m_begin_garbage;
-        a_uint32          m_size;
-        a_uint32          m_capacity;
-        NodePtr         m_storage; //MemPool
+        bool m_bSort;
+        NodePtr m_begin;
+        NodePtr m_last;
+        NodePtr m_begin_garbage;
+        a_uint32 m_size;
+        a_uint32 m_capacity;
+        NodePtr m_storage; //MemPool
     };
 
 
-template <class T> inline FastList::FastList(a_uint32 capacity) :
-m_bSort(false), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
-m_begin(NULL), m_last(NULL), m_begin_garbage(m_storage)
-{
-    for(int i = 0; i < m_capacity; i++)
+    template <class T>
+    inline FastList::FastList(a_uint32 capacity) :
+        m_bSort(false), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
+        m_begin(NULL), m_last(NULL), m_begin_garbage(m_storage)
     {
-        if(i < m_capacity-1)
-            m_storage[i].next = m_begin_garbage[i+1]
-        else
-            m_storage[i].next = NULL;
+        for (int i = 0; i < m_capacity; i++)
+        {
+            if (i < m_capacity - 1)
+                m_storage[i].next = m_begin_garbage[i + 1]
+            else
+                m_storage[i].next = NULL;
 
-        if(i > 0)
-            m_storage[i].next = m_begin_garbage[i-1]
-        else
-            m_storage[i].next = NULL;
-    }
-}
-
-template <class T> inline FastList::FastList(bool with_sort, a_uint32 capacity) :
-m_bSort(with_sort), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
-m_begin(NULL), m_begin_garbage(m_storage)
-{
-    for(int i = 0; i < m_capacity; i++)
-    {
-        if(i < m_capacity-1)
-            m_storage[i].next = m_begin_garbage[i+1]
-        else
-            m_storage[i].next = NULL;
-
-        if(i > 0)
-            m_storage[i].next = m_begin_garbage[i-1]
-        else
-            m_storage[i].next = &s_end;
-    }
-}
-
-template <class T> inline FastList::~FastList()
-{
-    delete[] m_storage;
-}
-
-
-template <class T> inline const FastList::Node& FastList::Begin()
-{
-    return *m_begin;
-}
-
-template <class T> inline const FastList::Node& FastList::End()
-{
-    return *m_last;
-}
-
-
-template <class T> inline const FastList::NodePtr CreateNode(T element)
-{
-    m_begin_garbage->data = element;
-    NodePtr node = m_begin_garbage;
-    m_begin_garbage = m_begin_garbage->next;
-    m_begin_garbage->prev = NULL;
-    return node;
-}
-        
-template <class T> inline void FastList::push(T element)
-{
-    if(1/*!m_bSort*/) //sort not implemented
-    {
-        push_front(element);
-        return;
+            if (i > 0)
+                m_storage[i].next = m_begin_garbage[i - 1]
+            else
+                m_storage[i].next = NULL;
+        }
     }
 
-    NodePtr node = CreateNode(element);
-}
+    template <class T>
+    inline FastList::FastList(bool with_sort, a_uint32 capacity) :
+        m_bSort(with_sort), m_capacity(capacity), m_size(0), m_storage(new FastList::Iterator[m_capacity]),
+        m_begin(NULL), m_begin_garbage(m_storage)
+    {
+        for (int i = 0; i < m_capacity; i++)
+        {
+            if (i < m_capacity - 1)
+                m_storage[i].next = m_begin_garbage[i + 1]
+            else
+                m_storage[i].next = NULL;
 
-template <class T> inline void FastList::push_front(T element)
-{
-    NodePtr node = CreateNode(element);
-    node->next = m_begin;
-    m_begin = node;
-    if(!m_last)
-        m_last = m_begin;
-}
+            if (i > 0)
+                m_storage[i].next = m_begin_garbage[i - 1]
+            else
+                m_storage[i].next = &s_end;
+        }
+    }
 
-template <class T> inline void FastList::push_back(T element)
-{
-    
-    NodePtr node = CreateNode(element);
-    m_begin = node;
-    node->prev = m_last;
-    if(!m_begin)
-        m_begin = m_last;
-}
-        
-template <class T> inline void FastList::pop(T element)
-{
-}
+    template <class T>
+    inline FastList::~FastList()
+    {
+        delete[] m_storage;
+    }
 
-template <class T> inline void FastList::pop(const Iterator& itr)
-{
 
-}
+    template <class T>
+    inline const FastList::Node& FastList::Begin()
+    {
+        return *m_begin;
+    }
 
-template <class T> inline void FastList::pop_front()
-{
+    template <class T>
+    inline const FastList::Node& FastList::End()
+    {
+        return *m_last;
+    }
 
-}
 
-template <class T> inline void FastList::pop_back()
-{
+    template <class T>
+    inline const FastList::NodePtr CreateNode(T element)
+    {
+        m_begin_garbage->data = element;
+        NodePtr node = m_begin_garbage;
+        m_begin_garbage = m_begin_garbage->next;
+        m_begin_garbage->prev = NULL;
+        return node;
+    }
 
-}
+    template <class T>
+    inline void FastList::push(T element)
+    {
+        if (1/*!m_bSort*/) //sort not implemented
+        {
+            push_front(element);
+            return;
+        }
 
-template <class T> inline void FastList::resize(a_uint32 size)
-{
+        NodePtr node = CreateNode(element);
+    }
 
-}
+    template <class T>
+    inline void FastList::push_front(T element)
+    {
+        NodePtr node = CreateNode(element);
+        node->next = m_begin;
+        m_begin = node;
+        if (!m_last)
+            m_last = m_begin;
+    }
 
-template <class T> inline a_uint32 FastList::size() const
-{
-    return m_size;
-}
+    template <class T>
+    inline void FastList::push_back(T element)
+    {
+        NodePtr node = CreateNode(element);
+        m_begin = node;
+        node->prev = m_last;
+        if (!m_begin)
+            m_begin = m_last;
+    }
 
-template <class T> inline a_uint32 FastList::capacity() const
-{
-    return m_capacity;
-}
+    template <class T>
+    inline void FastList::pop(T element)
+    {
+    }
+
+    template <class T>
+    inline void FastList::pop(const Iterator& itr)
+    {
+    }
+
+    template <class T>
+    inline void FastList::pop_front()
+    {
+    }
+
+    template <class T>
+    inline void FastList::pop_back()
+    {
+    }
+
+    template <class T>
+    inline void FastList::resize(a_uint32 size)
+    {
+    }
+
+    template <class T>
+    inline a_uint32 FastList::size() const
+    {
+        return m_size;
+    }
+
+    template <class T>
+    inline a_uint32 FastList::capacity() const
+    {
+        return m_capacity;
+    }
 
 #include <FastStl\Queue.inl>
-
 }
 #endif /* _QUEUE_H_ */
- 

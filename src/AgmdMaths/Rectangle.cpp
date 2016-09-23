@@ -11,18 +11,18 @@ https://github.com/Agamand/AgmdEngine
 
 namespace AgmdMaths
 {
-
     Rectangle::Rectangle(const ivec2& start, const ivec2& size) :
-    m_origin(start),
-    m_end   (start + size)
+        m_origin(start),
+        m_end(start + size)
     {
     }
 
 
     Rectangle::Rectangle(a_int32 left, a_int32 top, a_int32 width, a_int32 height) :
-    m_origin(left, top),
-    m_end   (left + width, top + height)
-    {}
+        m_origin(left, top),
+        m_end(left + width, top + height)
+    {
+    }
 
 
     void Rectangle::Set(a_int32 left, a_int32 top, a_int32 width, a_int32 height)
@@ -113,5 +113,4 @@ namespace AgmdMaths
     {
         return stream << rect.m_origin << " " << VEC2TOSTREAM(rect.m_end);
     }
-
 }

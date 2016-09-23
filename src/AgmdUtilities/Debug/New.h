@@ -57,4 +57,3 @@ inline void operator delete[](void* ptr, const char* file, int line) throw()
 #endif
 
 #endif // _DEBUG
-

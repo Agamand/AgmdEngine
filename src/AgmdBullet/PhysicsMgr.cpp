@@ -10,19 +10,19 @@ https://github.com/Agamand/AgmdEngine
 #include "Entities.h"
 
 SINGLETON_IMPL(Agmd::PhysicsMgr);
+
 namespace Agmd
 {
-
     PhysicsMgr::PhysicsMgr() :
-    m_uidt(0),
-    m_defaultContactProcessingThreshold(BT_LARGE_FLOAT)
+        m_uidt(0),
+        m_defaultContactProcessingThreshold(BT_LARGE_FLOAT)
     {
-        btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration(); 
-        btCollisionDispatcher* dispatcher = new    btCollisionDispatcher(collisionConfiguration);
+        btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+        btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
         btDbvtBroadphase* broadphase = new btDbvtBroadphase();
         btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver = new btSequentialImpulseConstraintSolver();
-        m_World = new btDiscreteDynamicsWorld(dispatcher,broadphase,sequentialImpulseConstraintSolver,collisionConfiguration);
-        m_World->setGravity( btVector3(0,0,-10) ); 
+        m_World = new btDiscreteDynamicsWorld(dispatcher, broadphase, sequentialImpulseConstraintSolver, collisionConfiguration);
+        m_World->setGravity(btVector3(0, 0, -10));
     }
 
     void PhysicsMgr::Add(Entities* _entitie)
@@ -33,7 +33,6 @@ namespace Agmd
 
     void PhysicsMgr::Remove(Entities* _entitie)
     {
-        
     }
 
     void PhysicsMgr::Update(a_uint64 dt)
@@ -42,42 +41,42 @@ namespace Agmd
 
         std::size_t size = m_evEntities.size();
 
-        for(std::size_t i = 0; i < size; i++)
+        for (std::size_t i = 0; i < size; i++)
             m_evEntities[i]->Prepare();
 
-        if(m_World)
-            m_World->stepSimulation(((float)dt)/1000.0f);
-        
-        for(std::size_t i = 0; i < size; i++)
+        if (m_World)
+            m_World->stepSimulation(((float)dt) / 1000.0f);
+
+        for (std::size_t i = 0; i < size; i++)
             m_evEntities[i]->Update();
     }
 
-    btRigidBody*    PhysicsMgr::createRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape)
+    btRigidBody* PhysicsMgr::createRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape)
     {
         btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 
         //rigidbody is dynamic if and only if mass is non zero, otherwise static
         bool isDynamic = (mass != 0.f);
 
-        btVector3 localInertia(0,0,0);
+        btVector3 localInertia(0, 0, 0);
         if (isDynamic)
-            shape->calculateLocalInertia(mass,localInertia);
+            shape->calculateLocalInertia(mass, localInertia);
 
         //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 
-    #define USE_MOTIONSTATE 1
-    #ifdef USE_MOTIONSTATE
+#define USE_MOTIONSTATE 1
+#ifdef USE_MOTIONSTATE
         btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
 
-        btRigidBody::btRigidBodyConstructionInfo cInfo(mass,myMotionState,shape,localInertia);
+        btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
 
         btRigidBody* body = new btRigidBody(cInfo);
         body->setContactProcessingThreshold(m_defaultContactProcessingThreshold);
 
-    #else
+#else
         btRigidBody* body = new btRigidBody(mass,0,shape,localInertia);    
         body->setWorldTransform(startTransform);
-    #endif//
+#endif//
 
         return body;
     }
@@ -89,7 +88,6 @@ namespace Agmd
 
     void PhysicsMgr::SetGravity(vec3 g)
     {
-        m_World->setGravity(btVector3(g.x,g.y,g.z));
+        m_World->setGravity(btVector3(g.x, g.y, g.z));
     }
-
 }

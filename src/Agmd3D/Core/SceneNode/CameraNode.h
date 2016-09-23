@@ -25,19 +25,20 @@ namespace Agmd
     class AGMD3D_EXPORT CameraNode : public SceneNode
     {
     public :
-        CameraNode(Camera* cam, InputController* c = NULL,Transform* t = NULL);
-        virtual ~CameraNode(){};
+        CameraNode(Camera* cam, InputController* c = NULL, Transform* t = NULL);
 
-        virtual bool isVisible( BoundingSphere& bounds );
+        virtual ~CameraNode()
+        {
+        };
 
-        virtual void findVisible( Camera*cam, RenderQueue& display,a_vector<LightNode*>& light );
+        virtual bool isVisible(BoundingSphere& bounds);
 
-        virtual bool update( Transform* transform, a_uint32 time, a_uint32 updateFlags );
+        virtual void findVisible(Camera* cam, RenderQueue& display,a_vector<LightNode*>& light);
+
+        virtual bool update(Transform* transform, a_uint32 time, a_uint32 updateFlags);
         Camera* m_camera;
     protected:
-
     };
-
 }
 
 

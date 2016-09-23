@@ -8,7 +8,8 @@ https://github.com/Agamand/AgmdEngine
 
 template <class T>
 inline Buffer<T>::Buffer(BaseBuffer* buffer) : m_Buffer(buffer)
-{}
+{
+}
 
 template <class T>
 inline T* Buffer<T>::Lock(unsigned long offset, unsigned long size, unsigned long flags)
@@ -89,4 +90,3 @@ inline void Buffer<T>::Flush()
 {
     m_Buffer->Flush();
 }
-

@@ -17,18 +17,19 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     Image::Image(const ivec2& size, TPixelFormat format) :
-    m_Size  (size),
-    m_Format(format),
-    m_Pixels(size.x * size.y * GetBytesPerPixel(format), 0x00)
-    {}
+        m_Size(size),
+        m_Format(format),
+        m_Pixels(size.x * size.y * GetBytesPerPixel(format), 0x00)
+    {
+    }
 
     Image::Image(const ivec2& size, TPixelFormat format, const unsigned char* pixels) :
-    m_Size  (size),
-    m_Format(format),
-    m_Pixels(pixels, pixels + size.x * size.y * GetBytesPerPixel(format))
-    {}
+        m_Size(size),
+        m_Format(format),
+        m_Pixels(pixels, pixels + size.x * size.y * GetBytesPerPixel(format))
+    {
+    }
 
     const ivec2& Image::GetSize() const
     {
@@ -54,13 +55,12 @@ namespace Agmd
 
     void Image::Fill(const Color& color)
     {
-
         SetPixel(0, 0, color);
 
         unsigned int bpp = GetBytesPerPixel(m_Format);
         a_uint32 begin = 0;
         //for (a_uint32 i = begin + bpp,len = m_Pixels.size(); i < len; i += bpp)
-            //std::copy(&m_Pixels[begin], &m_Pixels[begin + bpp], i);
+        //std::copy(&m_Pixels[begin], &m_Pixels[begin + bpp], i);
     }
 
     void Image::SetPixel(int x, int y, const unsigned char* pix)
@@ -103,23 +103,22 @@ namespace Agmd
             }
             else
             {
-                const unsigned char* srcPix  = &src.m_Pixels[0];
-                unsigned char*       destPix = &m_Pixels[0];
-                unsigned int         srcBpp  = GetBytesPerPixel(src.m_Format);
-                unsigned int         destBpp = GetBytesPerPixel(m_Format);
+                const unsigned char* srcPix = &src.m_Pixels[0];
+                unsigned char* destPix = &m_Pixels[0];
+                unsigned int srcBpp = GetBytesPerPixel(src.m_Format);
+                unsigned int destBpp = GetBytesPerPixel(m_Format);
 
                 for (int i = 0; i < m_Size.x; ++i)
                     for (int j = 0; j < m_Size.y; ++j)
                     {
                         ConvertPixel(src.m_Format, srcPix, m_Format, destPix);
-                        srcPix  += srcBpp;
+                        srcPix += srcBpp;
                         destPix += destBpp;
                     }
             }
         }
         else
         {
-
             vec2 step(static_cast<float>(src.m_Size.x) / m_Size.x, static_cast<float>(src.m_Size.y) / m_Size.y);
 
             if (m_Format == src.m_Format)
@@ -154,16 +153,16 @@ namespace Agmd
         Image Img(ivec2(rect.width(), rect.height()), m_Format);
 
         // Calcul de variables temporaires
-        const unsigned char* src       = &m_Pixels[(rect.left() + rect.top() * m_Size.x) * GetBytesPerPixel(m_Format)];
-        unsigned char*       dest      = &Img.m_Pixels[0];
-        const unsigned int   srcPitch  = m_Size.x * GetBytesPerPixel(m_Format);
-        const unsigned int   destPitch = Img.m_Size.x * GetBytesPerPixel(Img.m_Format);
+        const unsigned char* src = &m_Pixels[(rect.left() + rect.top() * m_Size.x) * GetBytesPerPixel(m_Format)];
+        unsigned char* dest = &Img.m_Pixels[0];
+        const unsigned int srcPitch = m_Size.x * GetBytesPerPixel(m_Format);
+        const unsigned int destPitch = Img.m_Size.x * GetBytesPerPixel(Img.m_Format);
 
         // Copie des pixels de l'image originale dans la sous-image
         for (int i = rect.left(); i < rect.right(); ++i)
         {
             std::copy(src, src + destPitch, dest);
-            src  += srcPitch;
+            src += srcPitch;
             dest += destPitch;
         }
 
@@ -200,17 +199,15 @@ namespace Agmd
             }
     }
 
-    void Image::saveToFile( const std::string& filename )
+    void Image::saveToFile(const std::string& filename)
     {
         a_uint32 texture;
         ilGenImages(1, &texture);
         ilBindImage(texture);
-        ilTexImage(m_Size.x,m_Size.y,0,4,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
+        ilTexImage(m_Size.x, m_Size.y, 0, 4,IL_RGBA,IL_UNSIGNED_BYTE, &m_Pixels[0]);
         //ilSetPixels(0,0,0,m_Size.x,m_Size.y,0,IL_RGBA,IL_UNSIGNED_BYTE,&m_Pixels[0]);
         ivec2 Size(ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT));
         ilSaveImage(filename.c_str());
         ilDeleteImages(1, &texture);
     }
-
-
 }

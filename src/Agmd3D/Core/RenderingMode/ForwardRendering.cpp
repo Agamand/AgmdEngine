@@ -18,27 +18,27 @@ https://github.com/Agamand/AgmdEngine
 namespace Agmd
 {
     ForwardRendering::ForwardRendering(int width, int height) :
-    RenderingMode(width,height),
-    m_framebuffer(NULL),
-    m_depthbuffer(NULL)
+        RenderingMode(width, height),
+        m_framebuffer(NULL),
+        m_depthbuffer(NULL)
     {
         init();
     }
 
     ForwardRendering::ForwardRendering(ivec2& screen) :
-    RenderingMode(screen),
-    m_framebuffer(NULL),
-    m_depthbuffer(NULL)
+        RenderingMode(screen),
+        m_framebuffer(NULL),
+        m_depthbuffer(NULL)
     {
         init();
     }
 
     ForwardRendering::~ForwardRendering()
     {
-        if(bufferFlags[0])
+        if (bufferFlags[0])
             delete bufferFlags[0];
 
-        if(bufferFlags[1])
+        if (bufferFlags[1])
             delete bufferFlags[1];
     }
 
@@ -46,29 +46,28 @@ namespace Agmd
     {
         Driver& render = Driver::Get();
 
-//         if(!m_framebuffer)
-//             m_framebuffer = render.CreateFrameBuffer();
-//         if(m_depthbuffer)
-//         {
-//             delete m_depthbuffer;
-//             m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-//         }else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
-// 
-//         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
-//         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
-//         m_textureBuffer[2].Create(m_screen, PXF_DEPTH, TEXTURE_2D,TEX_NOMIPMAP);
+        //         if(!m_framebuffer)
+        //             m_framebuffer = render.CreateFrameBuffer();
+        //         if(m_depthbuffer)
+        //         {
+        //             delete m_depthbuffer;
+        //             m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+        //         }else m_depthbuffer = render.CreateRenderBuffer(m_screen, PXF_DEPTH);
+        // 
+        //         m_textureBuffer[0].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
+        //         m_textureBuffer[1].Create(m_screen, PXF_A8R8G8B8, TEXTURE_2D,TEX_NOMIPMAP);
+        //         m_textureBuffer[2].Create(m_screen, PXF_DEPTH, TEXTURE_2D,TEX_NOMIPMAP);
 
-//         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
-// 
-//         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
-//         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
-//         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
+        //         m_framebuffer->SetRender(m_depthbuffer, DEPTH_ATTACHMENT);
+        // 
+        //         m_framebuffer->SetTexture(m_textureBuffer[0], COLOR_ATTACHMENT);
+        //         m_framebuffer->SetTexture(m_textureBuffer[1], COLOR_ATTACHMENT+1);
+        //         m_framebuffer->SetTexture(m_textureBuffer[2], DEPTH_ATTACHMENT);
 
-//         a_uint32 buffer[] = {COLOR_ATTACHMENT};
-//         bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
-//         a_uint32 buffer2[] = {COLOR_ATTACHMENT+1};
-//         bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
-
+        //         a_uint32 buffer[] = {COLOR_ATTACHMENT};
+        //         bufferFlags[0] = m_framebuffer->GenerateBufferFlags(1,buffer);
+        //         a_uint32 buffer2[] = {COLOR_ATTACHMENT+1};
+        //         bufferFlags[1] = m_framebuffer->GenerateBufferFlags(1,buffer2);
     }
 
     void ForwardRendering::compute(ARenderQueue& queue)
@@ -78,34 +77,33 @@ namespace Agmd
         start();
 
 
-		a_vector<Drawable> drawable = queue.GetDrawable(TRenderType::TYPE_DIFFUSE);
-		render.SetViewPort(ivec2(),render.GetScreen());
-		Material* mat = NULL;
-		for(a_uint32 i = 0; i < drawable.size();i++)
-		{
-			Drawable& d = drawable[i];
-			if(mat != d.mat)
-			{
-				mat = d.mat;
-				mat->Enable(RENDERPASS_DIFFUSE);
-			}
-			d.model->Draw(&d.transform);
-		}
+        a_vector<Drawable> drawable = queue.GetDrawable(TRenderType::TYPE_DIFFUSE);
+        render.SetViewPort(ivec2(), render.GetScreen());
+        Material* mat = NULL;
+        for (a_uint32 i = 0; i < drawable.size(); i++)
+        {
+            Drawable& d = drawable[i];
+            if (mat != d.mat)
+            {
+                mat = d.mat;
+                mat->Enable(RENDERPASS_DIFFUSE);
+            }
+            d.model->Draw(&d.transform);
+        }
 
 
-
-		end();
-//         
-//         SceneMgr* sc = NULL;// render.GetActiveScene();
-//         SkyBox* box = sc->GetSkyBox();
-//         render.SetCullFace(1);
-//         if(box)
-//         {
-//             render.Enable(RENDER_ZWRITE,false);
-//             box->Render();
-//         }
-//         render.SetRenderMode(m_mode);
-//         render.SetCullFace(0);
+        end();
+        //         
+        //         SceneMgr* sc = NULL;// render.GetActiveScene();
+        //         SkyBox* box = sc->GetSkyBox();
+        //         render.SetCullFace(1);
+        //         if(box)
+        //         {
+        //             render.Enable(RENDER_ZWRITE,false);
+        //             box->Render();
+        //         }
+        //         render.SetRenderMode(m_mode);
+        //         render.SetCullFace(0);
         //sc->Update();
         //sc->Compute();
         /*
@@ -135,13 +133,13 @@ namespace Agmd
         //m_framebuffer->Bind();
         //render.SetupDepthTest(DEPTH_LEQUAL);
         //render.Enable(RENDER_ZWRITE,false);
-//         sc->Render(RENDERPASS_DIFFUSE);
-//         render.Enable(RENDER_ALPHABLEND,true);
-//         render.SetupDepthTest(DEPTH_LEQUAL);
-//         render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
-//         sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
-//         render.Enable(RENDER_ALPHABLEND,false);
-        
+        //         sc->Render(RENDERPASS_DIFFUSE);
+        //         render.Enable(RENDER_ALPHABLEND,true);
+        //         render.SetupDepthTest(DEPTH_LEQUAL);
+        //         render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_INVSRCALPHA);
+        //         sc->Render(RENDERPASS_DIFFUSE,TRenderType::TYPE_BLEND);
+        //         render.Enable(RENDER_ALPHABLEND,false);
+
         //m_framebuffer->UnBind();
 
         /*
@@ -149,28 +147,28 @@ namespace Agmd
             Render lighting to color_attachment1
         */
 
-//         const a_vector<LightNode*>&  lights = sc->GetLightNodes();
-//         a_uint32 maxLights = lights.size();
-//         if(maxLights)
-//         {
-//             m_framebuffer->DrawBuffers(1,bufferFlags[1]);
-//             m_framebuffer->Clear(CLEAR_COLOR);
-//             m_framebuffer->Bind();
-//             render.SetupDepthTest(DEPTH_LEQUAL);
-//             render.Enable(RENDER_ZWRITE, false);
-//             render.Enable(RENDER_ALPHABLEND, true);
-//             render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
-//         
-//             LightNode*const* _lights = &lights[0];
-//             for(a_uint32 i = 0; i < maxLights; i++)
-//             {
-//                 LightNode* l = _lights[i];
-//                 l->GetLightModel()->Bind();
-//                 //sc->Render(RENDERPASS_FORWARD_LIGHTING);
-//             }
-//             m_framebuffer->UnBind();
-//             render.Enable(RENDER_ALPHABLEND, false);
-//         }
+        //         const a_vector<LightNode*>&  lights = sc->GetLightNodes();
+        //         a_uint32 maxLights = lights.size();
+        //         if(maxLights)
+        //         {
+        //             m_framebuffer->DrawBuffers(1,bufferFlags[1]);
+        //             m_framebuffer->Clear(CLEAR_COLOR);
+        //             m_framebuffer->Bind();
+        //             render.SetupDepthTest(DEPTH_LEQUAL);
+        //             render.Enable(RENDER_ZWRITE, false);
+        //             render.Enable(RENDER_ALPHABLEND, true);
+        //             render.SetupAlphaBlending(BLEND_SRCALPHA, BLEND_DESTALPHA);
+        //         
+        //             LightNode*const* _lights = &lights[0];
+        //             for(a_uint32 i = 0; i < maxLights; i++)
+        //             {
+        //                 LightNode* l = _lights[i];
+        //                 l->GetLightModel()->Bind();
+        //                 //sc->Render(RENDERPASS_FORWARD_LIGHTING);
+        //             }
+        //             m_framebuffer->UnBind();
+        //             render.Enable(RENDER_ALPHABLEND, false);
+        //         }
         /*
             Render to main framebuffer
         */
@@ -189,7 +187,6 @@ namespace Agmd
 
     void ForwardRendering::start()
     {
-
     }
 
     void ForwardRendering::end()
@@ -210,5 +207,4 @@ namespace Agmd
     {
         return m_textureBuffer[2];
     }
-
 }

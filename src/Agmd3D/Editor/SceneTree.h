@@ -1,4 +1,3 @@
-
 #ifndef _SCENETREE_H_
 #define _SCENETREE_H_
 #ifdef USE_EDITOR

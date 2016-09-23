@@ -16,7 +16,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     enum ShaderPreprocessor
     {
         PREPROCESSOR_UNKNOW,
@@ -39,9 +38,7 @@ namespace Agmd
 
         ShaderPreprocessor preprocessor(const std::string& instruction);
         static void OnError();
-
     };
-
 }
 
 

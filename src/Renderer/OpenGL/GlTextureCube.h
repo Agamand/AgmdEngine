@@ -35,7 +35,6 @@ namespace Agmd
         virtual void updatePixelFromTexture();
 
         Image m_Data[MAX_CUBEFACE];
-
     };
 }
 

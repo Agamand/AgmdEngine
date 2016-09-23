@@ -22,9 +22,9 @@ using namespace glm;
 #define VEC2SET(V,X,Y) V.x = X; \
                         V.y = Y; \
 
+
 namespace AgmdMaths
 {
-
     // INT VECTOR
     inline std::istream& operator >>(std::istream& stream, ivec2& vector)
     {

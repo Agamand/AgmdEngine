@@ -35,7 +35,9 @@ public:
     virtual void Run(int argc, char** argv);
 private :
     App() : AgmdApplication("Sample 1")
-    {}
+    {
+    }
+
     virtual void init();
 
 
@@ -51,18 +53,15 @@ private :
     virtual void MakeWindow();
 
 
-    glm::mat4             m_MatProj2D;
-    glm::mat4             m_MatProj3D;
+    glm::mat4 m_MatProj2D;
+    glm::mat4 m_MatProj3D;
 
-    Agmd::SceneMgr*        m_Scene;
-    Agmd::GraphicString*   m_fps;
+    Agmd::SceneMgr* m_Scene;
+    Agmd::GraphicString* m_fps;
 
-    Agmd::Camera*       cam3D;
-    Agmd::Camera*       cam2D;
+    Agmd::Camera* cam3D;
+    Agmd::Camera* cam2D;
     Agmd::SceneNode* camNode;
-
-
-
 };
 
 #endif // APP_H

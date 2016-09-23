@@ -21,7 +21,7 @@ namespace Agmd
         GLShader(a_uint32 shaderid, TShaderType type);
         virtual ~GLShader();
 
-        a_uint32 GetId() {return m_Shader;}
+        a_uint32 GetId() { return m_Shader; }
 
     private:
         a_uint32 m_Shader;

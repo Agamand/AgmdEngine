@@ -32,7 +32,6 @@ namespace Agmd
 
         TShaderType m_Type;
     };
-
 }
 
 

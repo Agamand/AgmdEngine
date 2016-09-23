@@ -1,4 +1,3 @@
-
 #ifndef _OBJECTPROPERTYGRID_H_
 #define _OBJECTPROPERTYGRID_H_
 

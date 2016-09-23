@@ -59,7 +59,6 @@ namespace AgmdMaths
 
     std::istream& operator >>(std::ostream& stream, Rectangle& rect);
     std::ostream& operator <<(std::ostream& stream, const Rectangle& rect);
-
 }
 
 #endif

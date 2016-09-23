@@ -21,7 +21,7 @@ namespace Agmd
     {
     public :
 
-        GLBuffer(unsigned long count, unsigned int *buffer);
+        GLBuffer(unsigned long count, unsigned int* buffer);
 
         virtual ~GLBuffer();
 
@@ -40,7 +40,7 @@ namespace Agmd
         void WaitSync();
 
         void SwapBuffers();
-        
+
         void FillByte(unsigned char* data, unsigned long offset, unsigned long size);
         void Flush();
 
@@ -50,11 +50,10 @@ namespace Agmd
         GLsync m_sync;
     };
 
-    typedef GLBuffer<GL_ARRAY_BUFFER,1>         GLVertexBuffer;
-    typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER,1> GLIndexBuffer;
+    typedef GLBuffer<GL_ARRAY_BUFFER, 1> GLVertexBuffer;
+    typedef GLBuffer<GL_ELEMENT_ARRAY_BUFFER, 1> GLIndexBuffer;
 
-    #include "GLBuffer.inl"
-
+#include "GLBuffer.inl"
 }
 
 

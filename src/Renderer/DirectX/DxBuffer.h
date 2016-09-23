@@ -14,6 +14,7 @@ https://github.com/Agamand/AgmdEngine
 #include <Debug/Profiler.h>
 #include <dxgi.h>
 #include <d3d11.h>
+
 namespace Agmd
 {
     template <int bufferCount>
@@ -40,7 +41,7 @@ namespace Agmd
         void WaitSync();
 
         void SwapBuffers();
-        
+
         void FillByte(unsigned char* data, unsigned long offset, unsigned long size);
         void Flush();
 
@@ -49,12 +50,11 @@ namespace Agmd
         a_uint32 m_bufferCount;
     };
 
-    typedef DXBuffer<1>        DXVertexBuffer;
-    typedef DXBuffer<1>        DXIndexBuffer;
-	typedef DXBuffer<1>		   DXConstantBuffer;
+    typedef DXBuffer<1> DXVertexBuffer;
+    typedef DXBuffer<1> DXIndexBuffer;
+    typedef DXBuffer<1> DXConstantBuffer;
 
-    #include "DxBuffer.inl"
-
+#include "DxBuffer.inl"
 }
 
 

@@ -10,14 +10,14 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     FrameBuffer::FrameBuffer() :
-    m_TextureMap(MAX_ATTACHMENT),
-    m_RenderBufferMap(MAX_ATTACHMENT)
-    {}
+        m_TextureMap(MAX_ATTACHMENT),
+        m_RenderBufferMap(MAX_ATTACHMENT)
+    {
+    }
 
 
     FrameBuffer::~FrameBuffer()
-    {}
-
+    {
+    }
 }

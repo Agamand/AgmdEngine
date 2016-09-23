@@ -18,7 +18,6 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     ImagesLoader::ImagesLoader()
     {
         ilInit();
@@ -53,7 +52,7 @@ namespace Agmd
         Image* image = new Image(Size, PXF_A8R8G8B8, Pixels);
 
         ilDeleteImages(1, &texture);
-        
+
         image->Flip();
 
         return image;
@@ -61,7 +60,6 @@ namespace Agmd
 
     void ImagesLoader::SaveToFile(const Image* object, const std::string& filename)
     {
-
         Image image(object->GetSize(), PXF_A8R8G8B8);
         image.CopyImage(*object);
 
@@ -82,5 +80,4 @@ namespace Agmd
 
         ilDeleteImages(1, &texture);
     }
-
 } // namespace Agmd

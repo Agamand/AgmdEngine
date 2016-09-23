@@ -12,15 +12,13 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
-    
     VertexRendering::VertexRendering(int width, int height) :
-    RenderingMode(width,height)
+        RenderingMode(width, height)
     {
     }
 
     VertexRendering::VertexRendering(ivec2& screen) :
-    RenderingMode(screen)
+        RenderingMode(screen)
     {
     }
 
@@ -31,18 +29,17 @@ namespace Agmd
     void VertexRendering::compute(ARenderQueue& queue)
     {
         Driver& render = Driver::Get();
-//         SceneMgr* sc = render.GetActiveScene();
-//         start();
-// 
-// 		sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
-// 
-// 		sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
+        //         SceneMgr* sc = render.GetActiveScene();
+        //         start();
+        // 
+        // 		sc->Render(TRenderPass::RENDERPASS_ZBUFFER);
+        // 
+        // 		sc->Render(TRenderPass::RENDERPASS_DIFFUSE);
         end();
     }
 
     void VertexRendering::start()
     {
-
     }
 
     void VertexRendering::end()
@@ -51,6 +48,5 @@ namespace Agmd
 
     void VertexRendering::init()
     {
-
     }
 }

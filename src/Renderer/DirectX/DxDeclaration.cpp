@@ -11,17 +11,16 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
     DXDeclaration::DXDeclaration(ID3D11InputLayout* declaration) : m_declaration(declaration)
-    {}
+    {
+    }
 
     DXDeclaration::~DXDeclaration()
-    {}
+    {
+    }
 
     ID3D11InputLayout* DXDeclaration::GetDeclaration() const
     {
         return m_declaration;
     }
-
-
 }

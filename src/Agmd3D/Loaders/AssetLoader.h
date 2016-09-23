@@ -17,13 +17,17 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-	struct Mesh {
-		std::string name;
-		a_vector<Model::TVertex> vertices;
-		a_vector<Model::TIndex> indices;
-		Material* material;
-		Mesh() : material(NULL) {}
-	};
+    struct Mesh
+    {
+        std::string name;
+        a_vector<Model::TVertex> vertices;
+        a_vector<Model::TIndex> indices;
+        Material* material;
+
+        Mesh() : material(NULL)
+        {
+        }
+    };
 
 
     class AGMD3D_EXPORT AssetLoader : public Loader<SceneNode>
@@ -34,13 +38,12 @@ namespace Agmd
         ~AssetLoader();
 
         virtual SceneNode* LoadFromFile(const std::string& filename);
-		virtual Mesh* LoadSingleMesh(const std::string& filename, const std::string name);
+        virtual Mesh* LoadSingleMesh(const std::string& filename, const std::string name);
         virtual void SaveToFile(const Model* object, const std::string& filename);
-        
+
     private:
         static void OnError();
     };
-
 }
 
 

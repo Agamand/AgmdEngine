@@ -13,46 +13,45 @@ https://github.com/Agamand/AgmdEngine
 
 namespace Agmd
 {
-
-    SceneNode::SceneNode(NodeType type,Transform* transform) : m_type(type), m_parent(NULL),m_sceneController(NULL),m_root(NULL)
+    SceneNode::SceneNode(NodeType type, Transform* transform) : m_type(type), m_parent(NULL), m_sceneController(NULL), m_root(NULL)
     {
-        if(!transform)
+        if (!transform)
             m_transform = new Transform();
         else m_transform = transform;
-        update(NULL,0,TRANSFORM_CHANGED);
+        update(NULL, 0, TRANSFORM_CHANGED);
     }
 
     SceneNode::~SceneNode()
     {
-        if(m_sceneController)
+        if (m_sceneController)
             m_sceneController->m_bindedNode = NULL;
-        if(m_parent)
-            m_parent->removeChild(this);    
+        if (m_parent)
+            m_parent->removeChild(this);
         clear();
     }
 
-    Transform& SceneNode::getTransform() 
-    { 
+    Transform& SceneNode::getTransform()
+    {
         return *m_transform;
     }
 
-    void SceneNode::SetTransform(Transform* t){
+    void SceneNode::SetTransform(Transform* t)
+    {
         m_transform = t;
     }
 
-    bool SceneNode::update( Transform* transform, a_uint32 time, a_uint32 updateFlags )
+    bool SceneNode::update(Transform* transform, a_uint32 time, a_uint32 updateFlags)
     {
-        
-        if(m_transform->needUpdate())
+        if (m_transform->needUpdate())
             updateFlags |= TRANSFORM_CHANGED;
-        if(updateFlags & TRANSFORM_CHANGED)
+        if (updateFlags & TRANSFORM_CHANGED)
             m_transform->update(transform);
-        if(updateFlags & UPDATE_CHILDREN && !m_children.empty())
+        if (updateFlags & UPDATE_CHILDREN && !m_children.empty())
         {
-            for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
-                m_children[i]->update(m_transform,time,updateFlags);
+            for (a_uint32 i = 0, len = m_children.size(); i < len; i++)
+                m_children[i]->update(m_transform, time, updateFlags);
         }
-        if(m_sceneController)
+        if (m_sceneController)
             m_sceneController->update(time);
         return (updateFlags & TRANSFORM_CHANGED) != 0;
     }
@@ -62,55 +61,54 @@ namespace Agmd
         return m_children.empty();
     }
 
-    void SceneNode::removeChild( SceneNode* node )
+    void SceneNode::removeChild(SceneNode* node)
     {
-        for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
+        for (a_uint32 i = 0, len = m_children.size(); i < len; i++)
         {
-            if(m_children[i] == node)
+            if (m_children[i] == node)
             {
-                if(node->m_root)
+                if (node->m_root)
                     node->m_root->remove(node);
                 node->m_parent = node->m_root = NULL;
-                m_children.erase(m_children.begin()+i);
+                m_children.erase(m_children.begin() + i);
                 break;
-
             }
-        }    
+        }
     }
 
     void SceneNode::clear()
     {
-        for(a_uint32 i = 0,len = m_children.size(); i < len; i++)
+        for (a_uint32 i = 0, len = m_children.size(); i < len; i++)
         {
-            if(m_children[i]->m_root)
+            if (m_children[i]->m_root)
                 m_children[i]->m_root->remove(m_children[i]);
             m_children[i]->m_parent = m_children[i]->m_root = NULL;
         }
         m_children.clear();
     }
 
-    void SceneNode::setController( Controller* controller )
+    void SceneNode::setController(Controller* controller)
     {
-        if(m_sceneController)
+        if (m_sceneController)
             m_sceneController->m_bindedNode = NULL;
-        m_sceneController=controller;
+        m_sceneController = controller;
         //m_sceneController->m_bindedNode = this;
     }
 
-    void SceneNode::addChild( SceneNode* node )
+    void SceneNode::addChild(SceneNode* node)
     {
-        m_children.push_back(node); 
+        m_children.push_back(node);
         node->m_parent = this;
-        
+
         node->m_root = this->m_type == ROOT_NODE ? (RootNode*)this : this->m_root;
-        if(this->m_type == ROOT_NODE)
+        if (this->m_type == ROOT_NODE)
             ((RootNode*)this)->add(node);
-        else if(m_root) m_root->add(node);
-        for(auto i = 0; i < m_children.size(); i++)
+        else if (m_root) m_root->add(node);
+        for (auto i = 0; i < m_children.size(); i++)
         {
             m_children[i]->SetRoot(node->m_root);
         }
-        node->update(m_transform,0,TRANSFORM_CHANGED|UPDATE_CHILDREN);
+        node->update(m_transform, 0, TRANSFORM_CHANGED | UPDATE_CHILDREN);
     }
 
     Agmd::SceneNode* SceneNode::getParent()
@@ -122,8 +120,4 @@ namespace Agmd
     {
         return m_children;
     }
-
-
-
 }
-

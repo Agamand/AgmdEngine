@@ -8,7 +8,6 @@ namespace Agmd
 {
     SceneMgr::SceneMgr() : m_skybox(NULL)
     {
-        
 #if defined(USE_WX) && defined(USE_EDITOR)
 
         m_frame = AgmdApplication::getApplication()->getWxFrame();
@@ -16,18 +15,18 @@ namespace Agmd
         m_root = new RootNode(this);
     }
 
-    void SceneMgr::Render( TRenderPass pass, TRenderType type /*= TYPE_DIFFUSE*/ ) const
+    void SceneMgr::Render(TRenderPass pass, TRenderType type /*= TYPE_DIFFUSE*/) const
     {
-        if(type < 0 || type >= MAX_TYPE)
+        if (type < 0 || type >= MAX_TYPE)
             return;
 
-        for(a_uint32 i = 0, len =m_renderQueue.m_displayable[type].size(); i < len;i++)
+        for (a_uint32 i = 0, len = m_renderQueue.m_displayable[type].size(); i < len; i++)
             m_renderQueue.m_displayable[type][i]->render(pass);
     }
 
-    void SceneMgr::Draw( TRenderType type /*= RenderQueue::TRenderType::TYPE_DIFFUSE*/ ) const
+    void SceneMgr::Draw(TRenderType type /*= RenderQueue::TRenderType::TYPE_DIFFUSE*/) const
     {
-        for(a_uint32 i = 0, len =m_renderQueue.m_displayable[type].size(); i < len;i++)
+        for (a_uint32 i = 0, len = m_renderQueue.m_displayable[type].size(); i < len; i++)
             m_renderQueue.m_displayable[type][i]->draw();
     }
 
@@ -35,47 +34,47 @@ namespace Agmd
     {
         m_lights.clear();
         m_renderQueue.clear();
-        
-        FindVisible(m_renderQueue,m_lights);
 
-        for(auto i = 0; i <m_lights.size() && i < MAX_LIGHT; ++i)
+        FindVisible(m_renderQueue, m_lights);
+
+        for (auto i = 0; i < m_lights.size() && i < MAX_LIGHT; ++i)
         {
-            m_lights[i]->GetLightModel()->FillBuffer(m_lightBuffer+i);
+            m_lights[i]->GetLightModel()->FillBuffer(m_lightBuffer + i);
         }
     }
 
     void SceneMgr::Update()
     {
         a_uint32 time = AgmdApplication::getApplication()->getDeltaTime();
-        m_root->update(NULL,time,UPDATE_CHILDREN);
+        m_root->update(NULL, time, UPDATE_CHILDREN);
     }
 
-    void SceneMgr::FindVisible( RenderQueue& displayable,std::vector<LightNode*>& light)
+    void SceneMgr::FindVisible(RenderQueue& displayable, std::vector<LightNode*>& light)
     {
-        m_root->findVisible(Camera::getCurrent(CAMERA_3D),displayable,light);
+        m_root->findVisible(Camera::getCurrent(CAMERA_3D), displayable, light);
     }
 
-    void SceneMgr::AddNode( SceneNode *node )
+    void SceneMgr::AddNode(SceneNode* node)
     {
         m_root->addChild(node);
     }
 
-	void SceneMgr::RemoveNode(SceneNode *node)
-	{
-		m_root->removeChild(node);
-	}
+    void SceneMgr::RemoveNode(SceneNode* node)
+    {
+        m_root->removeChild(node);
+    }
 
     const a_vector<Light*>& SceneMgr::GetLights()
     {
         return m_light;
     }
 
-    void SceneMgr::AddLight( Light* l )
+    void SceneMgr::AddLight(Light* l)
     {
-       // m_light.push_back(l);
+        // m_light.push_back(l);
     }
 
-    void SceneMgr::SetSkybox( SkyBox* skybox )
+    void SceneMgr::SetSkybox(SkyBox* skybox)
     {
         m_skybox = skybox;
     }
@@ -90,7 +89,7 @@ namespace Agmd
         m_root->clear();
     }
 
-    void SceneMgr::__addNode( SceneNode* node)
+    void SceneMgr::__addNode(SceneNode* node)
     {
 #if defined(USE_WX) && defined(USE_EDITOR)
 
@@ -99,7 +98,7 @@ namespace Agmd
 #endif    
     }
 
-    void SceneMgr::__removeNode( SceneNode* node)
+    void SceneMgr::__removeNode(SceneNode* node)
     {
 #if defined(USE_WX) && defined(USE_EDITOR)
 
@@ -117,5 +116,4 @@ namespace Agmd
     {
         return m_lights;
     }
-
 }
